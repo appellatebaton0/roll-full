@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://di0wp02kd6uso"]
 
 [ext_resource type="Script" uid="uid://dv2pwr5layc06" path="res://Scripts/WorldScreen.gd" id="1_5kqrn"]
-[ext_resource type="PackedScene" uid="uid://dqduu8fu52dky" path="res://Scenes/LevelEntry.tscn" id="2_p75ps"]
 
 [sub_resource type="Gradient" id="Gradient_p75ps"]
 offsets = PackedFloat32Array(0)
@@ -105,24 +104,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 13
-
-[node name="LevelEntry" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=959268396 instance=ExtResource("2_p75ps")]
-layout_mode = 2
-
-[node name="LevelEntry2" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=2106373225 instance=ExtResource("2_p75ps")]
-layout_mode = 2
-
-[node name="LevelEntry3" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=1721646021 instance=ExtResource("2_p75ps")]
-layout_mode = 2
-
-[node name="LevelEntry4" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=1573100022 instance=ExtResource("2_p75ps")]
-layout_mode = 2
-
-[node name="LevelEntry5" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=1062391788 instance=ExtResource("2_p75ps")]
-layout_mode = 2
-
-[node name="LevelEntry6" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=657698846 instance=ExtResource("2_p75ps")]
-layout_mode = 2
 
 [node name="NextWorld" type="Button" parent="MarginContainer/HBoxContainer" unique_id=320704603]
 custom_minimum_size = Vector2(75, 150)

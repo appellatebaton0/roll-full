@@ -37,6 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kln2b")
+screen_dir = "res://Scenes/WorldScreens"
 
 [node name="MainMenu" type="TextureRect" parent="CanvasLayer/UI" unique_id=1586898699]
 visible = false

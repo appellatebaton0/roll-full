@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bogtpydmpfmc1"]
+
+[ext_resource type="PackedScene" uid="uid://di0wp02kd6uso" path="res://Scenes/BaseWorldScreen.tscn" id="1_sm1cw"]
+
+[node name="World1Screen" unique_id=476064473 instance=ExtResource("1_sm1cw")]
