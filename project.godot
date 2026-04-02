@@ -14,6 +14,14 @@ config/name="roll-full"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://2epbr11ss74w"
+
+[display]
+
+window/size/viewport_height=864
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-hackatime/plugin.cfg", "res://addons/godot-hackatime/tracker/plugin.cfg")

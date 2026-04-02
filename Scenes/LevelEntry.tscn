@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dqduu8fu52dky"]
+
+[ext_resource type="Script" uid="uid://nk2cc3fltn7v" path="res://Scripts/LevelEntry.gd" id="1_re8m5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxhfk"]
+bg_color = Color(0, 0, 0, 0.32156864)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[node name="LevelEntry" type="Button" unique_id=959268396]
+custom_minimum_size = Vector2(0, 100)
+offset_right = 645.0
+offset_bottom = 103.0
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_jxhfk")
+script = ExtResource("1_re8m5")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1174031395]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=594201762]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LevelName" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1983134325]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "[LEVEL NAME]"
+
+[node name="BestTime" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1412126754]
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+text = "00:00.00"
+
+[node name="Ranking" type="Label" parent="MarginContainer/HBoxContainer" unique_id=547270705]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 62
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1

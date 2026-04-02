@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://nd8r32rdw4fb"]
+
+[ext_resource type="Script" uid="uid://c83wkaljnc28x" path="res://Scripts/AnimationButton.gd" id="1_idj7w"]
+[ext_resource type="Script" uid="uid://cvard1071wlfx" path="res://Scripts/LevelPickHandler.gd" id="1_kln2b"]
+[ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/MainAnimator.gd" id="1_r150o"]
+
+[sub_resource type="Gradient" id="Gradient_idj7w"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kln2b"]
+gradient = SubResource("Gradient_idj7w")
+
+[sub_resource type="Animation" id="Animation_rgh2o"]
+resource_name = "Main->Levels"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pbw6q"]
+_data = {
+&"Main->Levels": SubResource("Animation_rgh2o")
+}
+
+[node name="Main" type="Node" unique_id=1682853294]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1024431284]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=622215936]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kln2b")
+
+[node name="MainMenu" type="TextureRect" parent="CanvasLayer/UI" unique_id=1586898699]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_kln2b")
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/MainMenu" unique_id=346110339]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -79.75
+offset_right = 189.0
+offset_bottom = 79.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "PLAY"
+script = ExtResource("1_idj7w")
+animation_name = "Main->Levels"
+use_global = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/UI/MainMenu" unique_id=887973936]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = 99.0
+offset_right = 165.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "OPTIONS"
+
+[node name="Button3" type="Button" parent="CanvasLayer/UI/MainMenu" unique_id=144337488]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = 228.0
+offset_right = 165.0
+offset_bottom = 338.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "QUIT
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
+libraries/ = SubResource("AnimationLibrary_pbw6q")
+script = ExtResource("1_r150o")
