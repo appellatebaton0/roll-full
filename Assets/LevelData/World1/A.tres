@@ -5,5 +5,6 @@
 
 [resource]
 script = ExtResource("2_x84h0")
+name = "asd"
 scene = ExtResource("1_0ku5c")
 metadata/_custom_type_script = "uid://dmqr6mq2bgy3k"

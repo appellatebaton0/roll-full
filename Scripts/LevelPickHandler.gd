@@ -10,12 +10,26 @@ var screens:Array[WorldScreen]
 
 @export var current_index := 0
 
+@export var animator:AnimationPlayer
+@export var level_popup:LevelPopup
+
 func _ready() -> void:
 	for scene in screen_scenes:
 		var new:WorldScreen = scene.instantiate()
 		
-		print(new)
 		add_child(new)
+		move_child(new, 0)
+		
+		screens.append(new)
+		
+		new.request_popup.connect(_on_popup_request)
+
+func _on_popup_request(with:LevelData) -> void:
+	
+	print("!")
+	level_popup.update_with(with)
+	if not animator.is_playing(): 
+		animator.play("OpenPopup")
 
 func get_screen_scenes() -> Array[PackedScene]:
 	

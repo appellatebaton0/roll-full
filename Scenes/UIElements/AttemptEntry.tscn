@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c83ddqse82epw"]
+
+[ext_resource type="Script" uid="uid://dhhjq4tl05eu2" path="res://Scripts/AttemptEntry.gd" id="1_8va3k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e74al"]
+bg_color = Color(0, 0, 0, 0.28627452)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="AttemptEntry" type="Panel" unique_id=364246883]
+custom_minimum_size = Vector2(0, 90)
+offset_right = 619.0
+offset_bottom = 90.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_e74al")
+script = ExtResource("1_8va3k")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1571701622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=413772236]
+layout_mode = 2
+theme_override_constants/separation = 52
+alignment = 1
+
+[node name="Attempt" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1090532638]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "ATTEMPT 001"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=774188615]
+layout_mode = 2
+
+[node name="Time" type="Label" parent="MarginContainer/HBoxContainer" unique_id=956452491]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "TIME: 00:00.00"
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=1927166197]
+layout_mode = 2
+
+[node name="Rank" type="Label" parent="MarginContainer/HBoxContainer" unique_id=38186395]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "A"

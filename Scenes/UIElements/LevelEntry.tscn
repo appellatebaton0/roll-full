@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqduu8fu52dky"]
 
-[ext_resource type="Script" uid="uid://nk2cc3fltn7v" path="res://Scripts/LevelEntry.gd" id="1_re8m5"]
+[ext_resource type="Script" uid="uid://nk2cc3fltn7v" path="res://Scripts/LevelEntry.gd" id="1_x6mls"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxhfk"]
 bg_color = Color(0, 0, 0, 0.32156864)
@@ -13,10 +13,10 @@ corner_detail = 20
 [node name="LevelEntry" type="Button" unique_id=959268396]
 custom_minimum_size = Vector2(0, 100)
 offset_right = 645.0
-offset_bottom = 103.0
+offset_bottom = 100.0
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_jxhfk")
-script = ExtResource("1_re8m5")
+script = ExtResource("1_x6mls")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1174031395]
 layout_mode = 1

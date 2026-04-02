@@ -1,5 +1,7 @@
 class_name WorldScreen extends TextureRect
 
+signal request_popup(data:LevelData)
+
 ## THe folder the level_data this screen will have on it are stored in.
 ## Turns this file's name into the folder name for the LevelData.
 @onready var level_data_folder:String = "res://Assets/LevelData/" + Array(scene_file_path.split("/")).back().replace(".tscn", "")
@@ -17,18 +19,21 @@ func _ready() -> void:
 	
 	## Load all the levels in this world into the level_box.
 	for file in get_level_data():
-		var new := preload("res://Scenes/LevelEntry.tscn").instantiate()
+		var new:LevelEntry = preload("res://Scenes/UIElements/LevelEntry.tscn").instantiate()
 		new.level_data = file
 		
 		level_box.add_child(new)
 		
+		new.pressed.connect(_on_entry_pressed.bind(new))
+		
 	update_progression()
 
-func update_progression():
+func update_progression() -> void:
 	var children := level_box.get_children()
 	for i in range(len(children)): if children[i] is LevelEntry:
 		children[i].locked = i > progression_index
-		print(i, progression_index)
+
+func _on_entry_pressed(entry:LevelEntry) -> void: if not entry.locked: request_popup.emit(entry.level_data)
 
 func get_level_data() -> Array[LevelData]:
 	

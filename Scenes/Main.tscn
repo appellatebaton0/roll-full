@@ -3,17 +3,158 @@
 [ext_resource type="Script" uid="uid://c83wkaljnc28x" path="res://Scripts/AnimationButton.gd" id="1_idj7w"]
 [ext_resource type="Script" uid="uid://cvard1071wlfx" path="res://Scripts/LevelPickHandler.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/MainAnimator.gd" id="1_r150o"]
+[ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/LevelPopup.gd" id="2_rgh2o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
+bg_color = Color(0, 0, 0, 0.54901963)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
+bg_color = Color(0, 0, 0, 0.14117648)
+
+[sub_resource type="Animation" id="Animation_pbw6q"]
+resource_name = "ClosePopup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelPopup:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -864)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LevelPopup:focused")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:focused")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_v1gob"]
+resource_name = "OpenPopup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelPopup:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -864), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:focused")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LevelPopup:focused")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jw32o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelPopup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -864)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LevelPopup:focused")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:focused")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50glp"]
+_data = {
+&"ClosePopup": SubResource("Animation_pbw6q"),
+&"OpenPopup": SubResource("Animation_v1gob"),
+&"RESET": SubResource("Animation_jw32o")
+}
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kln2b"]
 gradient = SubResource("Gradient_idj7w")
 
+[sub_resource type="Animation" id="Animation_50glp"]
+resource_name = "Levels->Game"
+
 [sub_resource type="Animation" id="Animation_rgh2o"]
 resource_name = "Main->Levels"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbw6q"]
 _data = {
+&"Levels->Game": SubResource("Animation_50glp"),
 &"Main->Levels": SubResource("Animation_rgh2o")
 }
 
@@ -29,7 +170,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214]
+[node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +179,101 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kln2b")
 screen_dir = "res://Scenes/WorldScreens"
+animator = NodePath("AnimationPlayer")
+level_popup = NodePath("LevelPopup")
+
+[node name="LevelPopup" type="MarginContainer" parent="CanvasLayer/UI/Levels" unique_id=1928721524 node_paths=PackedStringArray("animator")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -864.0
+offset_bottom = -864.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 320
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 320
+theme_override_constants/margin_bottom = 100
+script = ExtResource("2_rgh2o")
+animator = NodePath("../AnimationPlayer")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/Levels/LevelPopup" unique_id=2010336761]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbw6q")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel" unique_id=1597998910]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer" unique_id=1603183209]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=285678009]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LevelName" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=478806576]
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "[LEVEL NAME]"
+horizontal_alignment = 1
+
+[node name="Rank" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1166579756]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "A"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=788545920]
+layout_mode = 2
+
+[node name="BestTime" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1152537488]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Best Time: 00:00.00"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=832974219]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
+
+[node name="AttemptBox" type="VBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1670891420]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1549215641]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1154570476]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "PLAY"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1089395300]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Levels" unique_id=152351141]
+libraries/ = SubResource("AnimationLibrary_50glp")
 
 [node name="MainMenu" type="TextureRect" parent="CanvasLayer/UI" unique_id=1586898699]
 visible = false
