@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_ky8nt"]
 [ext_resource type="Script" uid="uid://uqppn5dx4v6d" path="res://Scripts/Chain.gd" id="3_e1lpc"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_a5732"]
+[ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="5_e4eam"]
 
 [node name="LevelTest" type="Node" unique_id=1260259211]
 
@@ -74,5 +75,32 @@ inner_radius = 40.0
 inner_radius_modifiers = Dictionary[int, float]({
 2: 10.0
 })
-rotation_amount = 0.0
 metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="AnimatedPolygon" type="Polygon2D" parent="Goal" unique_id=1216459468]
+position = Vector2(71, 121)
+polygon = PackedVector2Array(-36.82621, -45.6398, -28.233448, -95.9316, 6.232278, -58.312263, 47.870018, -87.797844, 45.639965, -36.826008, 95.931725, -28.23302, 58.312237, 6.2325377, 87.79763, 47.87041, 36.825806, 45.64013, 28.232592, 95.931854, -6.2327976, 58.31221, -47.870804, 87.79742, -45.640293, 36.825603, -95.931984, 28.232166, -58.31218, -6.233057, -87.7972, -47.871193, -36.82621, -45.6398, -16.767572, -28.793839, -38.675385, -10.208557, -28.793764, 16.7677, -10.208385, 38.67543, 16.76783, 28.79369, 38.675293, 10.208901, 28.793913, -16.767445, 10.20873, -38.67534, -16.767572, -28.793839)
+uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("5_e4eam")
+outer_wave_amounts = Dictionary[int, float]({
+2: 17.0
+})
+outer_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+outer_rotation = 50.0
+inner_wave_amounts = Dictionary[int, float]({
+2: 10.0
+})
+inner_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+inner_rotation = -70.0
+outer_vertices = 16
+outer_radius = 100.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -30.0
+})
+inner_vertices = 8
+inner_radius = 40.0
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
