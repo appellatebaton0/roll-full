@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d1bj0gujak4nv"]
+
+[ext_resource type="PackedScene" uid="uid://di0wp02kd6uso" path="res://Scenes/UIElements/BaseWorldScreen.tscn" id="1_bwgu5"]
+
+[sub_resource type="Gradient" id="Gradient_bwgu5"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.46666667, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1gqla"]
+gradient = SubResource("Gradient_bwgu5")
+width = 54
+
+[node name="World1Screen" unique_id=476064473 instance=ExtResource("1_bwgu5")]
+texture = SubResource("GradientTexture2D_1gqla")

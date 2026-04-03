@@ -2,6 +2,9 @@ class_name WorldScreen extends TextureRect
 
 signal request_popup(data:LevelData)
 
+@onready var next_button := $MarginContainer/HBoxContainer/NextWorld
+@onready var prev_button := $MarginContainer/HBoxContainer/PrevWorld
+
 ## THe folder the level_data this screen will have on it are stored in.
 ## Turns this file's name into the folder name for the LevelData.
 @onready var level_data_folder:String = "res://Assets/LevelData/" + Array(scene_file_path.split("/")).back().replace(".tscn", "")

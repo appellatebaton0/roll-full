@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://l42eobrh0r7k"]
+
+[ext_resource type="PackedScene" uid="uid://di0wp02kd6uso" path="res://Scenes/UIElements/BaseWorldScreen.tscn" id="1_gsjre"]
+
+[sub_resource type="Gradient" id="Gradient_gsjre"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0.4862745, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ii2s5"]
+gradient = SubResource("Gradient_gsjre")
+
+[node name="World1Screen" unique_id=476064473 instance=ExtResource("1_gsjre")]
+texture = SubResource("GradientTexture2D_ii2s5")

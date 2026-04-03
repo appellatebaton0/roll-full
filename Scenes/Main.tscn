@@ -148,17 +148,83 @@ gradient = SubResource("Gradient_idj7w")
 
 [sub_resource type="Animation" id="Animation_50glp"]
 resource_name = "Levels->Game"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Levels:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -864)]
+}
 
 [sub_resource type="Animation" id="Animation_rgh2o"]
 resource_name = "Main->Levels"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1152, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Levels:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1152, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vy5pj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Levels:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1152, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbw6q"]
 _data = {
 &"Levels->Game": SubResource("Animation_50glp"),
-&"Main->Levels": SubResource("Animation_rgh2o")
+&"Main->Levels": SubResource("Animation_rgh2o"),
+&"RESET": SubResource("Animation_vy5pj")
 }
 
-[node name="Main" type="Node" unique_id=1682853294]
+[node name="Main" type="Node" unique_id=1682853294 groups=["Main"]]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1024431284]
 
@@ -175,10 +241,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1152.0
+offset_right = -1152.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kln2b")
 screen_dir = "res://Scenes/WorldScreens"
+lerp_time = 0.5
+lerp_ease = -2.4
 animator = NodePath("AnimationPlayer")
 level_popup = NodePath("LevelPopup")
 
@@ -276,13 +346,14 @@ text = "BACK"
 libraries/ = SubResource("AnimationLibrary_50glp")
 
 [node name="MainMenu" type="TextureRect" parent="CanvasLayer/UI" unique_id=1586898699]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 0.0007324219
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(576, 0)
 texture = SubResource("GradientTexture2D_kln2b")
 
 [node name="Button" type="Button" parent="CanvasLayer/UI/MainMenu" unique_id=346110339]

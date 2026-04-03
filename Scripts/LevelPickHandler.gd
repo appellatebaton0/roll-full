@@ -7,26 +7,68 @@ class_name LevelPickHandler extends Control
 @export_dir var screen_dir:String
 @onready var screen_scenes:Array[PackedScene] = get_screen_scenes()
 var screens:Array[WorldScreen]
+var ori_x:Array[float]
+
+@export var lerp_time := 1.
+var lerp_timer := 0.
+@export var lerp_ease := -2.
 
 @export var current_index := 0
 
 @export var animator:AnimationPlayer
 @export var level_popup:LevelPopup
 
+@onready var viewport_width := get_viewport_rect().size.x
+
 func _ready() -> void:
-	for scene in screen_scenes:
-		var new:WorldScreen = scene.instantiate()
+	for i in range(len(screen_scenes)):
+		var new:WorldScreen = screen_scenes[i].instantiate()
 		
 		add_child(new)
 		move_child(new, 0)
 		
 		screens.append(new)
+		ori_x.append((viewport_width * i) - (viewport_width * current_index))
 		
 		new.request_popup.connect(_on_popup_request)
+		
+		new.next_button.pressed.connect(cycle_right)
+		new.prev_button.pressed.connect(cycle_left)
+	
+	screens.front().prev_button.modulate.a = 0.0
+	screens.back() .next_button.modulate.a = 0.0
+	
+	lerp_timer = lerp_time
+
+func _process(delta: float) -> void:
+	for i in range(len(screens)):
+		var screen := screens[i]
+		var targ_x := (viewport_width * i) - (viewport_width * current_index)
+		
+		screen.position.x = lerp(ori_x[i], targ_x, ease(lerp_timer / lerp_time, lerp_ease))
+		
+		screen.next_button.modulate.a = 1.0 if (i < Global.world_progression) and not i == len(screens) else 0.0
+		
+	lerp_timer = move_toward(lerp_timer, lerp_time, delta)
+	
+	if Input.is_action_just_pressed("Cycle World Left"): cycle_left()
+	if Input.is_action_just_pressed("Cycle World Right"): cycle_right()
+
+
+func cycle_left() -> void: if focused:
+	current_index = clamp(current_index - 1, 0 , Global.world_progression)
+	lerp_timer = 0.0
+	
+	for i in range(len(screens)):
+		ori_x[i] = screens[i].position.x
+func cycle_right() -> void: if focused:
+	current_index = clamp(current_index + 1, 0 , Global.world_progression)
+	lerp_timer = 0.0
+	
+	for i in range(len(screens)):
+		ori_x[i] = screens[i].position.x
 
 func _on_popup_request(with:LevelData) -> void:
-	
-	print("!")
 	level_popup.update_with(with)
 	if not animator.is_playing(): 
 		animator.play("OpenPopup")
@@ -48,7 +90,6 @@ func get_screen_scenes() -> Array[PackedScene]:
 	
 	# Sort alphebetically. (A-Z then 0-9)
 	file_names.sort()
-	file_names.reverse()
 	
 	var scenes:Array[PackedScene]
 	
