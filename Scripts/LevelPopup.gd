@@ -50,7 +50,7 @@ func update_with(data:LevelData):
 	rank_lab.text = data.ranking
 
 ## Load the current level, play the opening animation.
-func _on_play_pressed() -> void:
+func _on_play_pressed() -> void: if focused:
 	
 	Global.request_animation.emit("Levels->Game")
 	

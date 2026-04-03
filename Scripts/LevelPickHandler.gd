@@ -73,6 +73,7 @@ func _on_popup_request(with:LevelData) -> void:
 	if not animator.is_playing(): 
 		animator.play("OpenPopup")
 
+
 func get_screen_scenes() -> Array[PackedScene]:
 	
 	var file_names:Array[StringName]
