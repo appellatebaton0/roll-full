@@ -91,6 +91,7 @@ func get_screen_scenes() -> Array[PackedScene]:
 	
 	# Sort alphebetically. (A-Z then 0-9)
 	file_names.sort()
+	file_names.reverse()
 	
 	var scenes:Array[PackedScene]
 	

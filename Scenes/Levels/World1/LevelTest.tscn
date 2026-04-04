@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://sf5p3xylkovv"]
 
 [ext_resource type="PackedScene" uid="uid://no1j6n5wfkgq" path="res://Scenes/Player.tscn" id="1_buwtm"]
-[ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_ky8nt"]
-[ext_resource type="Script" uid="uid://uqppn5dx4v6d" path="res://Scripts/Chain.gd" id="3_e1lpc"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_a5732"]
+[ext_resource type="Script" path="res://Scripts/Spline.gd" id="2_ky8nt"]
+[ext_resource type="Script" path="res://Scripts/Chain.gd" id="3_e1lpc"]
+[ext_resource type="Script" uid="uid://hnboj7u32fis" path="res://Scripts/Goal.gd" id="4_e4eam"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="5_e4eam"]
+[ext_resource type="Script" uid="uid://dv1k22hfa8h6v" path="res://Scripts/DeathBorder.gd" id="6_sfw1b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfw1b"]
+radius = 74.431175
 
 [node name="LevelTest" type="Node" unique_id=1260259211]
+process_mode = 1
 
-[node name="Player" parent="." unique_id=1267848784 instance=ExtResource("1_buwtm")]
+[node name="Player" parent="." unique_id=1267848784 groups=["Player"] instance=ExtResource("1_buwtm")]
 position = Vector2(134, 615)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=807067945]
@@ -21,7 +26,6 @@ width = 50.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_ky8nt")
 collider = NodePath("StaticBody2D/CollisionPolygon2D")
-metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Spline2D" unique_id=1439712255]
 
@@ -35,7 +39,6 @@ width = 50.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_ky8nt")
 collider = NodePath("StaticBody2D/CollisionPolygon2D")
-metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Spline2D2" unique_id=1552775928]
 
@@ -51,7 +54,6 @@ collision_mesh = NodePath("StaticBody2D/CollisionPolygon2D")
 segment_spacing = 30.0
 last_position = Vector2(-249, 205)
 last_points = PackedVector2Array(2083, 1383, 2107.7896, 1366.104, 2126.7908, 1342.8885, 2147.2122, 1320.912, 2169.231, 1300.5361, 2192.4783, 1281.574, 2216.493, 1263.5935, 2240.8816, 1246.1239, 2265.4167, 1228.8605, 2290.0647, 1211.7584, 2314.9524, 1195.0073, 2340.2896, 1178.944, 2366.2847, 1163.9686, 2393.0813, 1150.4803, 2420.7302, 1138.8385, 2449.1892, 1129.3472, 2478.338, 1122.2516, 2507.998, 1117.7493, 2537.9473, 1116.0042, 2567.9248, 1117.1619, 2597.63, 1121.3583, 2626.7122, 1128.7214, 2654.7625, 1139.3602, 2681.3042, 1153.3438, 2705.7966, 1170.6677, 2727.6523, 1191.2183, 2746.2751, 1214.7383, 2761.1157, 1240.8104, 2771.7368, 1268.8673, 2777.872, 1298.2333, 2779.4612, 1328.1912, 2776.6482, 1358.059, 2769.7463, 1387.2543, 2759.1846, 1415.3336, 2745.4458, 1442.0028, 2729.0166, 1467.1042, 2710.3525, 1490.5916, 2689.857, 1512.4989, 2667.8752, 1532.9148, 2644.6953, 1551.9594, 2620.5525, 1569.7672, 2595.6372, 1586.4775, 2570.1025, 1602.2247, 2544.0708, 1617.1361, 2517.6396, 1631.3276, 2490.8872, 1644.9038, 2463.8762, 1657.9576, 2436.6563, 1670.57, 2409.2673, 1682.8112, 2381.7412, 1694.7404, 2354.1023, 1706.4061, 2326.3704, 1717.8489, 2298.5598, 1729.0992, 2270.681, 1740.1793, 2242.7405, 1751.1035, 2214.7424, 1761.8792, 2186.6877, 1772.506, 2158.5745, 1782.9773, 2130.3994, 1793.2813, 2102.157, 1803.3989, 2073.84, 1813.3064, 2045.4409, 1822.9752, 2016.9506, 1832.3721, 1988.3601, 1841.4598, 1959.6608, 1850.1975, 1930.8446, 1858.5417, 1901.9048, 1866.4464, 1872.8364, 1873.8646, 1843.637, 1880.7485, 1814.3066, 1887.0516, 1784.8486, 1892.7286, 1755.2698, 1897.7377, 1725.5801, 1902.0417, 1695.793, 1905.6097, 1665.9248, 1908.4186, 1635.9939, 1910.4528, 1606.0201, 1911.7073, 1576.0239, 1912.1875, 1546.0253, 1911.9083, 1516.0424, 1910.896, 1486.0912, 1909.1855, 1456.1846, 1906.8206, 1426.3319, 1903.8507, 1396.5392, 1900.3301, 1366.8091, 1896.315, 1337.1416, 1891.8608, 1307.5349, 1887.0189, 1277.9862, 1881.8351, 1248.4929, 1876.3448, 1219.0536, 1870.5719, 1189.6703, 1864.5204, 1160.3517, 1858.1628, 1131.1252, 1851.3942, 1102.0697, 1843.926, 1073.3998, 1835.0922, 1045.6683, 1823.6482, 1019.2305, 1809.4692, 992.95886, 1794.9847, 965.45325, 1783.008, 936.79315, 1774.1425, 907.7659, 1766.565, 879.0444, 1757.9005, 851.2294, 1746.661, 824.80853, 1732.4504, 799.99536, 1715.589, 776.6493, 1696.7485, 754.262, 1676.7783, 732.0214, 1656.6449, 709.02875, 1637.3748, 684.6682, 1619.8658)
-metadata/_custom_type_script = "uid://uqppn5dx4v6d"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ChainBit" unique_id=1038328288]
 
@@ -59,27 +61,18 @@ metadata/_custom_type_script = "uid://uqppn5dx4v6d"
 polygon = PackedVector2Array(593.54193, -1015.0295, 1445.8944, -1108.0011, 1820.4645, -990.4645, 1819.1714, -736.29803, 1748.7568, -719.9941, 1290.407, -713.9834, 1149.6873, -768.9526, 870.0304, -771.5957, 766.9577, -604.9428, 598.5453, -396.97928, 115.47735, -546.77673, 112.52265, -537.22327, 599.4547, -387.02072, 775.0423, -599.0572, 873.9696, -762.4043, 1148.3127, -759.0474, 1289.593, -704.0166, 1749.2432, -710.0059, 1828.8286, -733.70197, 1827.5355, -997.5355, 1446.1056, -1117.9989, 592.45807, -1024.9706)
 
 [node name="Goal" type="Area2D" parent="." unique_id=1703199421]
+position = Vector2(158, 115)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_e4eam")
 
-[node name="RegularPolygon" type="Polygon2D" parent="Goal" unique_id=2090074233]
-position = Vector2(357, 320)
-rotation = 86.652695
-polygon = PackedVector2Array(90, 0, 110.86554, 45.922016, 63.63961, 63.63961, 45.922012, 110.86554, -3.934025e-06, 90, -45.92201, 110.86555, -63.63961, 63.63961, -110.86554, 45.92202, -90, -7.86805e-06, -110.86554, -45.922012, -63.639614, -63.639603, -45.922028, -110.86554, 1.0732392e-06, -90, 45.92203, -110.86553, 63.6396, -63.63962, 110.86555, -45.922012, 90, 0, 50, 0, 28.284266, -28.284275, 5.9624404e-07, -50, -28.284273, -28.284267, -50, -4.371139e-06, -28.284271, 28.284271, -2.1855694e-06, 50, 28.284271, 28.284271, 50, 0)
-script = ExtResource("4_a5732")
-outer_vertices = 16
-outer_radius = 120.0
-outer_radius_modifiers = Dictionary[int, float]({
-2: -30.0
-})
-inner_vertices = 8
-inner_radius = 40.0
-inner_radius_modifiers = Dictionary[int, float]({
-2: 10.0
-})
-metadata/_custom_type_script = "uid://johp6kal78ik"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" unique_id=750464415]
+shape = SubResource("CircleShape2D_sfw1b")
 
-[node name="AnimatedPolygon" type="Polygon2D" parent="Goal" unique_id=1216459468]
-position = Vector2(71, 121)
-polygon = PackedVector2Array(-36.82621, -45.6398, -28.233448, -95.9316, 6.232278, -58.312263, 47.870018, -87.797844, 45.639965, -36.826008, 95.931725, -28.23302, 58.312237, 6.2325377, 87.79763, 47.87041, 36.825806, 45.64013, 28.232592, 95.931854, -6.2327976, 58.31221, -47.870804, 87.79742, -45.640293, 36.825603, -95.931984, 28.232166, -58.31218, -6.233057, -87.7972, -47.871193, -36.82621, -45.6398, -16.767572, -28.793839, -38.675385, -10.208557, -28.793764, 16.7677, -10.208385, 38.67543, 16.76783, 28.79369, 38.675293, 10.208901, 28.793913, -16.767445, 10.20873, -38.67534, -16.767572, -28.793839)
+[node name="AnimatedPolygon3" type="Polygon2D" parent="Goal" unique_id=1614080772]
+color = Color(0.100000024, 1, 0.100000024, 0.7294118)
+antialiased = true
+polygon = PackedVector2Array(34.84925, 78.09017, 2.7043695, 99.963425, -30.576126, 79.86016, -68.7727, 72.59695, -78.090324, 34.848904, -99.96344, 2.7039242, -79.86002, -30.576483, -72.596634, -68.773026, -34.848553, -78.09048, -2.703479, -99.96345, 30.576838, -79.85989, 68.773346, -72.59633, 78.09064, -34.848206, 99.96346, -2.7030337, 79.85976, 30.577194, 72.596016, 68.77367)
 uv = PackedVector2Array(-221.25, -85)
 script = ExtResource("5_e4eam")
 outer_wave_amounts = Dictionary[int, float]({
@@ -102,5 +95,53 @@ outer_radius_modifiers = Dictionary[int, float]({
 2: -30.0
 })
 inner_vertices = 8
-inner_radius = 40.0
 metadata/_custom_type_script = "uid://2fyexmj0cjug"
+
+[node name="AnimatedPolygon2" type="Polygon2D" parent="Goal" unique_id=1401794138]
+rotation = 0.38397244
+color = Color(0.100000024, 1, 0.100000024, 0.7294118)
+antialiased = true
+polygon = PackedVector2Array(23.537569, 52.742966, 2.1634958, 79.97074, -20.651453, 53.93844, -55.018158, 58.077553, -52.743073, 23.537334, -79.97075, 2.1631393, -53.938343, -20.651695, -58.07731, -55.01842, -23.537098, -52.743176, -2.1627834, -79.970764, 20.651934, -53.938255, 55.018677, -58.077065, 52.743282, -23.536865, 79.97077, -2.162427, 53.93816, 20.652174, 58.076817, 55.018936)
+uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("5_e4eam")
+outer_wave_amounts = Dictionary[int, float]({
+2: 8.5
+})
+outer_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+outer_rotation = 50.0
+inner_wave_amounts = Dictionary[int, float]({
+2: 10.0
+})
+inner_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+inner_rotation = -70.0
+outer_vertices = 16
+outer_radius = 80.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -30.0
+})
+inner_vertices = 8
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+
+[node name="Polygon2D" type="Polygon2D" parent="Goal" unique_id=2096975926]
+color = Color(0.94, 0.94, 0.94, 0.72156864)
+polygon = PackedVector2Array(27.968788, 0, 27.015774, 7.238855, 24.22168, 13.984394, 19.77692, 19.77692, 13.984393, 24.221682, 7.238856, 27.015774, -1.2225546e-06, 27.968788, -7.238855, 27.015774, -13.984396, 24.22168, -19.77692, 19.77692, -24.22168, 13.984396, -27.015774, 7.2388573, -27.968788, -2.4451092e-06, -27.015774, -7.238856, -24.22168, -13.984393, -19.77692, -19.776918, -13.984391, -24.221682, -7.2388535, -27.015776, 3.3352447e-07, -27.968788, 7.238854, -27.015774, 13.984391, -24.221682, 19.776917, -19.776922, 24.22168, -13.984399, 27.015776, -7.238849)
+script = ExtResource("5_e4eam")
+outer_wave_amounts = Dictionary[int, float]({
+1: 3.0
+})
+outer_wave_intervals = Dictionary[int, float]({
+1: 7.0
+})
+outer_vertices = 24
+outer_radius = 30.0
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=614710692]
+position = Vector2(573, 854)
+script = ExtResource("6_sfw1b")
+width = 1479.0
+height = 1484.0

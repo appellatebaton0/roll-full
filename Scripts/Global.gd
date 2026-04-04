@@ -2,8 +2,10 @@ extends Node
 
 @warning_ignore("unused_signal")
 signal request_animation(anim_name:String)
+@warning_ignore("unused_signal")
+signal reset_level
 
-## -- PROGRESSION -- ##
+## -- GAME STATE -- ##
 
 var world_progression := 1 ## The number of worlds completed.
 

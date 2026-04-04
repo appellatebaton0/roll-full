@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://yl07d77783nh"]
+
+[ext_resource type="Script" uid="uid://dv2pwr5layc06" path="res://Scripts/WorldScreen.gd" id="1_5kqrn"]
+[ext_resource type="PackedScene" uid="uid://8mf81em7r0bu" path="res://Scenes/LevelEntry.tscn" id="2_p75ps"]
+
+[sub_resource type="Gradient" id="Gradient_p75ps"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.5647059, 0.5803922, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3wc88"]
+gradient = SubResource("Gradient_p75ps")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us01x"]
+bg_color = Color(0, 0, 0, 0.46666667)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4lxd"]
+bg_color = Color(0.93333334, 0.93333334, 0.93333334, 0.7176471)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aavx1"]
+content_margin_left = 20.0
+bg_color = Color(0, 0, 0, 0.56078434)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_02q38"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_y4lxd")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_aavx1")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y80w0"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 12
+
+[node name="BaseWorldScreen" type="TextureRect" unique_id=476064473]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_3wc88")
+script = ExtResource("1_5kqrn")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1677495858]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1467632060]
+layout_mode = 2
+theme_override_constants/separation = 37
+
+[node name="PrevWorld" type="Button" parent="MarginContainer/HBoxContainer" unique_id=343733507]
+custom_minimum_size = Vector2(75, 150)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 38
+text = "<"
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=250795472]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_us01x")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel" unique_id=2035245394]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer" unique_id=1097584774]
+clip_children = 1
+layout_mode = 2
+theme = SubResource("Theme_02q38")
+theme_override_styles/panel = SubResource("StyleBoxFlat_y80w0")
+
+[node name="LevelBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer" unique_id=452966382]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 13
+
+[node name="LevelEntry" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=959268396 instance=ExtResource("2_p75ps")]
+layout_mode = 2
+
+[node name="LevelEntry2" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=2106373225 instance=ExtResource("2_p75ps")]
+layout_mode = 2
+
+[node name="LevelEntry3" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=1721646021 instance=ExtResource("2_p75ps")]
+layout_mode = 2
+
+[node name="LevelEntry4" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=1573100022 instance=ExtResource("2_p75ps")]
+layout_mode = 2
+
+[node name="LevelEntry5" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=1062391788 instance=ExtResource("2_p75ps")]
+layout_mode = 2
+
+[node name="LevelEntry6" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox" unique_id=657698846 instance=ExtResource("2_p75ps")]
+layout_mode = 2
+
+[node name="NextWorld" type="Button" parent="MarginContainer/HBoxContainer" unique_id=320704603]
+custom_minimum_size = Vector2(75, 150)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 38
+text = ">"

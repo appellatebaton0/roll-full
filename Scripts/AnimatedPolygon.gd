@@ -73,8 +73,6 @@ func generate():
 		
 	
 	set("polygon", new_points)
-	
-	regenerated.emit()
 
 func make_animated_points_for(radius:float, vertices:int, modifiers:Dictionary[int, float], wave_amounts:Dictionary[int, float], wave_intervals:Dictionary[int, float], added_rotation:float) -> Array[Vector2]:
 	var points:Array[Vector2]

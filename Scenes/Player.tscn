@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://no1j6n5wfkgq"]
 
-[ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/PlayerController.gd" id="1_rpqav"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
+[ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/Player.gd" id="1_rpqav"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5732"]
 radius = 32.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "ray_node")]
+[node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "ray_node") groups=["Player"]]
+z_index = 1
+collision_layer = 2
+collision_mask = 13
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_rpqav")
@@ -17,13 +20,12 @@ sprite = NodePath("Sprite")
 ray_node = NodePath("RayCast2D")
 ray_distance = 140.0
 ray_fallback = 1.3
-metadata/_custom_type_script = "uid://6021cayp7g2j"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=929644173]
 shape = SubResource("CircleShape2D_a5732")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1614047959]
-target_position = Vector2(99, 95)
+target_position = Vector2(0, -1)
 
 [node name="Sprite" type="Node2D" parent="." unique_id=1727747307]
 
@@ -37,14 +39,14 @@ outer_radius = 32.0
 
 [node name="Embellish1" type="Polygon2D" parent="Sprite" unique_id=357489469]
 color = Color(0, 0.4, 0.8, 1)
-polygon = PackedVector2Array(29.06, 0, 20.548523, 20.548523, -1.2702529e-06, 29.06, -20.548523, 20.548523, -29.06, -2.5405059e-06, -20.548525, -20.548521, 3.4653704e-07, -29.06, 20.54852, -20.548525, 29.06, 0, 6, 0, 11.313706, -11.31371, 7.154928e-08, -6, -11.313709, -11.313707, -6, -5.2453663e-07, -11.313708, 11.313708, -2.6226832e-07, 6, 11.313708, 11.313708, 6, 0)
+polygon = PackedVector2Array(29.06, 0, 20.548523, 20.548523, -1.2702529e-06, 29.06, -20.548523, 20.548523, -29.06, -2.5405059e-06, -20.548525, -20.548521, 3.4653704e-07, -29.06, 20.54852, -20.548525, 29.06, 0, 7.725, 0, 9.754537, -9.7545395, 9.21197e-08, -7.725, -9.754539, -9.754538, -7.725, -6.753409e-07, -9.754538, 9.754538, -3.3767046e-07, 7.725, 9.754538, 9.754538, 7.725, 0)
 script = ExtResource("2_kyqiw")
 outer_vertices = 8
 outer_radius = 29.06
 inner_vertices = 8
-inner_radius = 16.0
+inner_radius = 13.795
 inner_radius_modifiers = Dictionary[int, float]({
-2: -10.0
+2: -6.07
 })
 
 [node name="Embellish2" type="Polygon2D" parent="Sprite" unique_id=392980578]

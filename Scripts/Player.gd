@@ -1,4 +1,4 @@
-class_name PlayerController extends CharacterBody2D
+class_name Player extends CharacterBody2D
 ## Allows a node to snap to surfaces, and grind along them / jump off them.
 ## Best used w/ a circle collider.
 
@@ -17,18 +17,25 @@ const DEBUG := true
 @export var ray_node:RayCast2D
 @export var ray_distance := 200.0
 @export var ray_fallback := 1.2
-var ray_fall_time := 0.0
+var ray_fall_time := 0.0:
+	set(to):
+		ray_fall_time = to
+		print("S2 ", to)
+var ray_resetting := false
 
 const JUMP_BUFFER := 0.1
 var jump_buffering := 0.0
 var jumping := false
 
-#func _ready() -> void: Engine.set_time_scale(0.3)
+@onready var respawn_position := global_position
 
 # A normalized vector of the direction the player is grinding in.
 var direction := Vector2(1,1):
 	set(to): direction = to.normalized()
 
+func _ready() -> void:
+	Global.reset_level.connect(_on_reset)
+	Engine.time_scale = 0.2
 
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2
@@ -41,15 +48,18 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump"): jump_buffering = JUMP_BUFFER
 	
 	# Control the ray target.
-	if is_on_wall(): # If on wall, pierce the surface.
+	if is_on_wall() and not ray_resetting: # If on wall, pierce the surface.
 		ray_node.target_position = lerp(ray_node.target_position, -get_wall_normal() * ray_distance, 0.2)
 		ray_fall_time = 0.0
+		print("IS ON WALL")
 	elif not ray_node.is_colliding(): # Otherwise, slowly return to Vector2.ZERO
 		ray_node.target_position = lerp(-last_normal * ray_distance, Vector2.ZERO, ease(ray_fall_time, ray_fallback))
+		#print(ray_fall_time)
 		ray_fall_time = move_toward(ray_fall_time, 1.0, delta)
+		ray_resetting = false
 	
 	# Grinding
-	if ray_node.is_colliding():
+	if ray_node.is_colliding() and not ray_resetting:
 		
 		## -- DIRECTION SETTING -- ##
 		
@@ -95,8 +105,19 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-
-
+func _on_reset() -> void:
+	global_position = respawn_position
+	velocity = Vector2.ZERO
+	
+	ray_node.target_position = Vector2.ZERO
+	ray_fall_time = 1.0
+	ray_resetting = true
+	
+	last_normal = Vector2.ZERO
+	
+	
+	print(ray_node.target_position)
+	
 
 # Returns the Vector2 that is most similar to the comparator out of the given array.
 func closest(of:Array[Vector2], compared_to:Vector2):
