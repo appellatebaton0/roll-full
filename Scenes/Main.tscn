@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cvard1071wlfx" path="res://Scripts/LevelPickHandler.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/MainAnimator.gd" id="1_r150o"]
 [ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/LevelPopup.gd" id="2_rgh2o"]
-[ext_resource type="PackedScene" uid="uid://sf5p3xylkovv" path="res://Scenes/Levels/World1/LevelTest.tscn" id="5_pbw6q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
 bg_color = Color(0, 0, 0, 0.54901963)
@@ -453,7 +452,6 @@ _data = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1024431284]
 layer = 3
-visible = false
 
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=622215936]
 process_mode = 3
@@ -679,5 +677,3 @@ color = Color(0, 0, 0, 1)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
 libraries/ = SubResource("AnimationLibrary_pbw6q")
 script = ExtResource("1_r150o")
-
-[node name="LevelTest" parent="." unique_id=1260259211 instance=ExtResource("5_pbw6q")]

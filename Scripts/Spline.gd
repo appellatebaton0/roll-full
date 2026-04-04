@@ -26,7 +26,7 @@ var sample_mesh:Array[Vector2]
 #@export_tool_button("GenerateShape") var gen := generate
 func generate(): if collider: collider.polygon = regenerate_mesh()
 
-func _draw() -> void: draw_polygon(sample_mesh, [color])
+func _draw() -> void: if Engine.is_editor_hint(): draw_polygon(sample_mesh, [color])
 
 func _ready() -> void: 
 	default_color = Color(0,0,0,0)
@@ -34,6 +34,10 @@ func _ready() -> void:
 	regenerate_sample()
 	queue_redraw()
 	generate()
+	
+	if not Engine.is_editor_hint():
+		default_color = color
+		points = sample_points
 	
 	if not collider: collider = find_collider()
 

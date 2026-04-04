@@ -29,7 +29,7 @@ func _draw() -> void: if Engine.is_editor_hint():
 			#draw_circle(point, 3.0, Color.RED if outside_bounds(point) else Color.BLUE)
 
 var has_reset := false
-func _process(_delta: float) -> void: if player:
+func _process(_delta: float) -> void: if player and not Engine.is_editor_hint():
 	if outside_bounds(player.global_position):
 		if not has_reset:
 			## Something something reset.
@@ -38,4 +38,4 @@ func _process(_delta: float) -> void: if player:
 	else: has_reset = false ## Reset the tracker when the player leaves the border.
 
 func outside_bounds(a:Vector2) -> bool:
-	return a.x >  width || a.x < -width || a.y >  height || a.y < -height
+	return a.x >  width + global_position.x || a.x < -width + global_position.x || a.y >  height + global_position.y || a.y < -height + global_position.y

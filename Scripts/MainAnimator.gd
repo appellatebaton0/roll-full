@@ -17,8 +17,7 @@ func _on_animation_requested(anim_name:String):
 			"Game->Levels":
 				get_tree().paused = true
 			"ResetIn":
-				pass
-				#get_tree().paused = true
+				get_tree().paused = true
 
 func _on_animation_finished(anim_name:String) -> void:
 	match anim_name:

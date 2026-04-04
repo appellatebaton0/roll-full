@@ -17,10 +17,7 @@ const DEBUG := true
 @export var ray_node:RayCast2D
 @export var ray_distance := 200.0
 @export var ray_fallback := 1.2
-var ray_fall_time := 0.0:
-	set(to):
-		ray_fall_time = to
-		print("S2 ", to)
+var ray_fall_time := 0.0
 var ray_resetting := false
 
 const JUMP_BUFFER := 0.1
@@ -29,13 +26,16 @@ var jumping := false
 
 @onready var respawn_position := global_position
 
+## Whether the player was on the wall the previous prame.
+var was_on_wall := false
+var slide_mag := 0. ## The magnitude of the player's velocity slid against the wall on contact.
+
 # A normalized vector of the direction the player is grinding in.
 var direction := Vector2(1,1):
 	set(to): direction = to.normalized()
 
 func _ready() -> void:
 	Global.reset_level.connect(_on_reset)
-	Engine.time_scale = 0.2
 
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2
@@ -47,14 +47,25 @@ func _physics_process(delta: float) -> void:
 	jump_buffering = move_toward(jump_buffering, 0, delta)
 	if Input.is_action_just_pressed("Jump"): jump_buffering = JUMP_BUFFER
 	
+	# On hitting a wall...
+	if not was_on_wall and is_on_wall():
+		var wn := get_wall_normal()
+		var wall_dir := Vector2(wn.y, -wn.x)
+		
+		var projection := velocity.project(wall_dir)
+		
+		slide_mag = mag(projection)
+		
+		
+	was_on_wall = is_on_wall()
+	
 	# Control the ray target.
 	if is_on_wall() and not ray_resetting: # If on wall, pierce the surface.
 		ray_node.target_position = lerp(ray_node.target_position, -get_wall_normal() * ray_distance, 0.2)
 		ray_fall_time = 0.0
-		print("IS ON WALL")
 	elif not ray_node.is_colliding(): # Otherwise, slowly return to Vector2.ZERO
 		ray_node.target_position = lerp(-last_normal * ray_distance, Vector2.ZERO, ease(ray_fall_time, ray_fallback))
-		#print(ray_fall_time)
+		
 		ray_fall_time = move_toward(ray_fall_time, 1.0, delta)
 		ray_resetting = false
 	
@@ -76,7 +87,7 @@ func _physics_process(delta: float) -> void:
 		
 		## -- VELOCITY APPLICATION -- ##
 		
-		velocity = direction * grind_speed - (last_normal * stick_force) #max(grind_speed, on_snap_mag)
+		velocity = direction * max(grind_speed, slide_mag) - (last_normal * stick_force) 
 		
 		
 		## -- JUMPING -- ##
@@ -104,6 +115,8 @@ func _physics_process(delta: float) -> void:
 		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y / 110))
 	
 	move_and_slide()
+	
+	print(mag(velocity))
 
 func _on_reset() -> void:
 	global_position = respawn_position
@@ -114,9 +127,6 @@ func _on_reset() -> void:
 	ray_resetting = true
 	
 	last_normal = Vector2.ZERO
-	
-	
-	print(ray_node.target_position)
 	
 
 # Returns the Vector2 that is most similar to the comparator out of the given array.
@@ -145,19 +155,22 @@ func _draw() -> void:
 	
 	if not DEBUG: return
 	
-	# Debug lines to show the direction and plane parallel. NOTE: Doesn't show correctly with rotation.
-	draw_line(Vector2.ZERO, direction * 250, Color.RED, 15) 
-	
-	draw_line(Vector2.ZERO, velocity.normalized() * LINE_COEFF, Color.AQUA, 10)
-	
-	if is_on_wall():
-		draw_line(Vector2.ZERO, -get_wall_normal() * LINE_COEFF, Color.WEB_PURPLE, 10)
 	
 	
-	var jump_direction = get_wall_normal()
-	draw_line(Vector2.ZERO, jump_direction * mag(velocity) / 100, Color.BLUE, 15)
-	
-	draw_line(Vector2.ZERO, velocity, Color.GREEN, 15)
+	else:
+		# Debug lines to show the direction and plane parallel. NOTE: Doesn't show correctly with rotation.
+		draw_line(Vector2.ZERO, direction * 250, Color.RED, 15) 
+		
+		draw_line(Vector2.ZERO, velocity.normalized() * LINE_COEFF, Color.AQUA, 10)
+		
+		if is_on_wall():
+			draw_line(Vector2.ZERO, -get_wall_normal() * LINE_COEFF, Color.WEB_PURPLE, 10)
+		
+		
+		var jump_direction = get_wall_normal()
+		draw_line(Vector2.ZERO, jump_direction * mag(velocity) / 100, Color.BLUE, 15)
+		
+		draw_line(Vector2.ZERO, velocity, Color.GREEN, 15)
 	
 	
 	draw_circle(ray_node.target_position, 10.0, Color.ALICE_BLUE)
