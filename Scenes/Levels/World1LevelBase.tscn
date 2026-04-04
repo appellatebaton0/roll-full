@@ -1,0 +1,323 @@
+[gd_scene format=3 uid="uid://fnicrh43rd6"]
+
+[ext_resource type="PackedScene" uid="uid://sf5p3xylkovv" path="res://Scenes/Levels/LevelBase.tscn" id="1_hjvo4"]
+
+[sub_resource type="GDScript" id="GDScript_hjvo4"]
+script/source = "@tool extends Parallax2D
+
+@export_tool_button(\"Run\") var run := _run
+
+func _run() -> void:
+	
+	for child in get_children(): if child is Polygon2D:
+		child.global_position.x = wrap(child.global_position.x, 0.0, 2048.)
+		child.global_position.y = wrap(child.global_position.y, 0.0, 2048.)
+		#
+		#var offset:Vector2 = child.polygon[0]
+		#var new:Array = Array(child.polygon.duplicate())
+		#for i in range(len(new)):
+			#new[i] = new[i] - offset
+		#child.polygon = new
+		#child.global_position += offset
+"
+
+[sub_resource type="Gradient" id="Gradient_210hp"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.07450981, 0.21960784, 0.4, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tltf1"]
+gradient = SubResource("Gradient_210hp")
+width = 2048
+height = 2048
+
+[node name="World1LevelBase" unique_id=1260259211 instance=ExtResource("1_hjvo4")]
+
+[node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=882957438]
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(2048, 2048)
+repeat_times = 6
+script = SubResource("GDScript_hjvo4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" index="0" unique_id=831186512]
+texture = SubResource("GradientTexture2D_tltf1")
+
+[node name="Polygon2D2" type="Polygon2D" parent="Parallax2D" index="1" unique_id=533568688]
+position = Vector2(1517, 1202)
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 17, -85, 86, -108, 178, -101, 232, 16, 165, 80, 49, 50)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Parallax2D" index="2" unique_id=1263135332]
+position = Vector2(975, 1290)
+rotation = 0.53784955
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 17, -85, 86, -108, 178, -101, 232, 16, 165, 80, 49, 50)
+
+[node name="Polygon2D4" type="Polygon2D" parent="Parallax2D" index="3" unique_id=1330862064]
+position = Vector2(1074.0001, 1822)
+rotation = -0.35305274
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 17, -85, 86, -108, 178, -101, 232, 16, 165, 80, 49, 50)
+
+[node name="Polygon2D5" type="Polygon2D" parent="Parallax2D" index="4" unique_id=748635]
+position = Vector2(1772.0001, 1812.0002)
+rotation = -0.35305274
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
+
+[node name="Polygon2D6" type="Polygon2D" parent="Parallax2D" index="5" unique_id=1175738023]
+position = Vector2(1644.0001, 80)
+rotation = -0.79643464
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
+
+[node name="Polygon2D7" type="Polygon2D" parent="Parallax2D" index="6" unique_id=1655789621]
+position = Vector2(1449.9998, 155)
+rotation = 0.10132122
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
+
+[node name="Polygon2D8" type="Polygon2D" parent="Parallax2D" index="7" unique_id=112038144]
+position = Vector2(825, 1480.9998)
+rotation = 0.10132122
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
+
+[node name="Polygon2D9" type="Polygon2D" parent="Parallax2D" index="8" unique_id=294918177]
+position = Vector2(291, 1314)
+rotation = 1.2810777
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
+
+[node name="Polygon2D10" type="Polygon2D" parent="Parallax2D" index="9" unique_id=1623083530]
+position = Vector2(1162, 201)
+rotation = 1.2810777
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
+
+[node name="Polygon2D11" type="Polygon2D" parent="Parallax2D" index="10" unique_id=408320427]
+position = Vector2(337, 1568.0001)
+rotation = 1.3737866
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
+
+[node name="Polygon2D12" type="Polygon2D" parent="Parallax2D" index="11" unique_id=546315460]
+position = Vector2(980, 531.00024)
+rotation = 1.3737866
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
+
+[node name="Polygon2D13" type="Polygon2D" parent="Parallax2D" index="12" unique_id=1987160855]
+position = Vector2(571.99994, 2015)
+rotation = 2.0543072
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
+
+[node name="Polygon2D14" type="Polygon2D" parent="Parallax2D" index="13" unique_id=1808350070]
+position = Vector2(873.99994, 1086.0001)
+rotation = 2.0543072
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 52.325684, -22.957275, 64.3833, -113.99927, 29.427734, -184.87305, -40.122437, -218.38086, -109.3114, -143.64893, -71.83008, -35.69922)
+
+[node name="Polygon2D15" type="Polygon2D" parent="Parallax2D" index="14" unique_id=111029854]
+position = Vector2(1247, 688)
+rotation = 2.8846192
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 52.325684, -22.957275, 64.3833, -113.99927, 29.427734, -184.87305, -40.122437, -218.38086, -109.3114, -143.64893, -71.83008, -35.69922)
+
+[node name="Polygon2D16" type="Polygon2D" parent="Parallax2D" index="15" unique_id=2132113688]
+position = Vector2(416.99997, 760)
+rotation = 2.8846192
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -88.2605, 139.13696, -192.78564, 198.52148, -353.0669, 194.65845, -393.12183, 55.92285, -331.58887, -99.54321, -198.45825, -157.6145, -58.120605, -129.00757)
+
+[node name="Polygon2D17" type="Polygon2D" parent="Parallax2D" index="16" unique_id=154329499]
+position = Vector2(1130, 1184)
+rotation = 2.8846192
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -88.2605, 139.13696, -192.78564, 198.52148, -353.0669, 194.65845, -393.12183, 55.92285, -331.58887, -99.54321, -198.45825, -157.6145, -58.120605, -129.00757)
+
+[node name="Polygon2D18" type="Polygon2D" parent="Parallax2D" index="17" unique_id=673997994]
+position = Vector2(452.00003, 1441)
+rotation = 2.8846192
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -88.2605, 139.13696, -192.78564, 198.52148, -353.0669, 194.65845, -393.12183, 55.92285, -331.58887, -99.54321, -198.45825, -157.6145, -58.120605, -129.00757)
+
+[node name="Polygon2D19" type="Polygon2D" parent="Parallax2D" index="18" unique_id=22456148]
+position = Vector2(1482.9999, 915.99976)
+rotation = 3.2270746
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(-26.047852, 12.268311, -81.24817, 129.40894, -194.74744, 175.26685, -333.77942, 133.98608, -370.47107, 33.75293, -331.58887, -99.54321, -200.12048, -133.40161, -73.98364, -102.0564)
+
+[node name="Polygon2D20" type="Polygon2D" parent="Parallax2D" index="19" unique_id=241820958]
+position = Vector2(632, 1638)
+rotation = 3.2270746
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -104.958984, 40.107666, -194.57153, -33.510254, -195.47998, -137.81348, -102.36279, -198.98706, 2.1956787, -161.77808, 27.272705, -56.534912)
+
+[node name="Polygon2D21" type="Polygon2D" parent="Parallax2D" index="20" unique_id=1939404614]
+position = Vector2(288, 842.9995)
+rotation = 3.2270746
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -104.958984, 40.107666, -194.57153, -33.510254, -195.47998, -137.81348, -102.36279, -198.98706, 2.1956787, -161.77808, 27.272705, -56.534912)
+
+[node name="Polygon2D22" type="Polygon2D" parent="Parallax2D" index="21" unique_id=855734089]
+position = Vector2(1519.9999, 1563)
+rotation = 2.2626138
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -98.38855, 30.490723, -228.92639, -3.2717285, -272.8717, -114.14917, -176.35559, -229.09961, -21.710327, -283.9253, 67.33313, -189.60547, 44.802124, -73.16943)
+
+[node name="Polygon2D24" type="Polygon2D" parent="Parallax2D" index="22" unique_id=1678689844]
+position = Vector2(1972.9064, 48.978516)
+rotation = 2.7005458
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -69.5199, 51.224854, -191.36584, 63.373047, -274.365, -6.770508, -308.36804, -145.56836, -238.40393, -256.29785, -143.06348, -313.02686, -33.23828, -243.48975, 6.763794, -136.14063)
+
+[node name="Polygon2D25" type="Polygon2D" parent="Parallax2D" index="23" unique_id=648873520]
+position = Vector2(1470.979, 2010.6194)
+rotation = 2.7005458
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
+
+[node name="Polygon2D26" type="Polygon2D" parent="Parallax2D" index="24" unique_id=140655324]
+position = Vector2(130, 1301)
+rotation = 2.7005458
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
+
+[node name="Polygon2D27" type="Polygon2D" parent="Parallax2D" index="25" unique_id=1987158088]
+position = Vector2(165, 515)
+rotation = 3.4062183
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
+
+[node name="Polygon2D28" type="Polygon2D" parent="Parallax2D" index="26" unique_id=125799041]
+position = Vector2(956.99994, 297.99997)
+rotation = 2.9206874
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
+
+[node name="Polygon2D29" type="Polygon2D" parent="Parallax2D" index="27" unique_id=862132811]
+position = Vector2(141, 1944)
+rotation = 3.3850558
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
+
+[node name="Polygon2D30" type="Polygon2D" parent="Parallax2D" index="28" unique_id=267624217]
+position = Vector2(864.0001, 982.0002)
+rotation = 1.9295793
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
+
+[node name="Polygon2D31" type="Polygon2D" parent="Parallax2D" index="29" unique_id=1136645499]
+position = Vector2(1123.9998, 981.0001)
+rotation = 1.9295793
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
+
+[node name="Polygon2D32" type="Polygon2D" parent="Parallax2D" index="30" unique_id=1392948140]
+position = Vector2(466.00003, 1248)
+rotation = 1.9295793
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
+
+[node name="Polygon2D33" type="Polygon2D" parent="Parallax2D" index="31" unique_id=1678796499]
+position = Vector2(119.999756, 745.99976)
+rotation = 1.4119656
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
+
+[node name="Polygon2D34" type="Polygon2D" parent="Parallax2D" index="32" unique_id=941142019]
+position = Vector2(1966.9785, 1317.6191)
+rotation = 1.4119656
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
+
+[node name="Polygon2D35" type="Polygon2D" parent="Parallax2D" index="33" unique_id=965873703]
+position = Vector2(654.9999, 268.99997)
+rotation = 2.5985875
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(23.26709, -44.358154, 98.39395, -114.650024, 228.99396, -149.12671, 331.94052, -101.01221, 353.65015, -7.317566, 288.05798, 89.75284, 186.48062, 109.04111, 74.42557, 68.27759)
+
+[node name="Polygon2D36" type="Polygon2D" parent="Parallax2D" index="34" unique_id=1465363560]
+position = Vector2(1360, 1349)
+rotation = 1.8253807
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 10.763428, -104.30786, 95.438965, -158.0393, 223.98267, -193.72607, 331.96265, -113.74927, 304.53418, 43.54248, 210.63916, 97.24292, 89.198975, 84.90332)
+
+[node name="Polygon2D37" type="Polygon2D" parent="Parallax2D" index="35" unique_id=516517251]
+position = Vector2(1758.0002, 300)
+rotation = 0.6661963
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 10.763428, -104.30786, 95.438965, -158.0393, 223.98267, -193.72607, 331.96265, -113.74927, 304.53418, 43.54248, 210.63916, 97.24292, 89.198975, 84.90332)
+
+[node name="Polygon2D38" type="Polygon2D" parent="Parallax2D" index="36" unique_id=724883988]
+position = Vector2(1027.0005, 1948.0005)
+rotation = 0.6661963
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 10.763428, -104.30786, 95.438965, -158.0393, 223.98267, -193.72607, 331.96265, -113.74927, 304.53418, 43.54248, 210.63916, 97.24292, 89.198975, 84.90332)
+
+[node name="Polygon2D39" type="Polygon2D" parent="Parallax2D" index="37" unique_id=684022367]
+position = Vector2(372, 1869.0002)
+rotation = 0.6661963
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
+
+[node name="Polygon2D40" type="Polygon2D" parent="Parallax2D" index="38" unique_id=673094256]
+position = Vector2(740, 420.9995)
+rotation = 0.46709353
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
+
+[node name="Polygon2D41" type="Polygon2D" parent="Parallax2D" index="39" unique_id=205525401]
+position = Vector2(1248.7847, 520.0166)
+rotation = 0.46709353
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
+
+[node name="Polygon2D42" type="Polygon2D" parent="Parallax2D" index="40" unique_id=1231819078]
+position = Vector2(795.78467, 2038.0166)
+rotation = -0.17426312
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
+
+[node name="Polygon2D43" type="Polygon2D" parent="Parallax2D" index="41" unique_id=2079164421]
+position = Vector2(1850.2251, 1469.6265)
+rotation = -0.17426312
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -25.633545, 70.625244, 20.148682, 116.25415, 117.13623, 153.63623, 182.51758, 105.23926, 163.6521, 10.533936, 88.6228, -18.920898)
+
+[node name="Polygon2D44" type="Polygon2D" parent="Parallax2D" index="42" unique_id=1772005841]
+position = Vector2(2027, 1634.0002)
+rotation = -0.17426312
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
+
+[node name="Polygon2D45" type="Polygon2D" parent="Parallax2D" index="43" unique_id=896191455]
+position = Vector2(1711, 585.0005)
+rotation = -0.17426312
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
+
+[node name="Polygon2D46" type="Polygon2D" parent="Parallax2D" index="44" unique_id=1646233246]
+position = Vector2(178, 643.0005)
+rotation = -0.17426312
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
+
+[node name="Polygon2D47" type="Polygon2D" parent="Parallax2D" index="45" unique_id=850394077]
+position = Vector2(1661, 638.0005)
+rotation = 2.1188674
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
+
+[node name="Polygon2D48" type="Polygon2D" parent="Parallax2D" index="46" unique_id=350582255]
+position = Vector2(25.000488, 1004)
+rotation = 2.1188674
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
+
+[node name="Polygon2D49" type="Polygon2D" parent="Parallax2D" index="47" unique_id=1355302794]
+position = Vector2(213.99976, 876)
+rotation = 1.6251549
+color = Color(0.09397825, 0.26401964, 0.46555948, 1)
+polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)

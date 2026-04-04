@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://no1j6n5wfkgq"]
 
 [ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/Player.gd" id="1_rpqav"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5732"]
 radius = 32.0
@@ -13,7 +13,7 @@ collision_mask = 13
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_rpqav")
-grind_speed = 1500.0
+grind_speed = 2000.0
 jump_height = 250.0
 stick_force = 300.0
 sprite = NodePath("Sprite")

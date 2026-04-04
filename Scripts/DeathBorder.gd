@@ -6,11 +6,11 @@ class_name DeathBorder extends Node2D
 		if not player: player = get_tree().get_first_node_in_group("Player")
 		return player
 
-@export_range(0.0, 6000.0, 1) var width := 0.:
+@export_range(0.0, 15000.0, 1) var width := 0.:
 	set(to):
 		width = to
 		queue_redraw()
-@export_range(0.0, 6000.0, 1) var height := 0.:
+@export_range(0.0, 15000.0, 1) var height := 0.:
 	set(to):
 		height = to
 		queue_redraw()

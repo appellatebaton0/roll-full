@@ -2,13 +2,16 @@
 class_name ChainBit extends Line2D
 ## Creates an inverse-kinematics chain.
 
-@export var collision_mesh:CollisionPolygon2D
+var collision_mesh:CollisionPolygon2D
 @export_tool_button("Regenerate Mesh") var regmes_button := regenerate_mesh
+@export_group("Collision", "collider_")
+@export_flags_2d_physics var collision_layer:int = 1
+@export_flags_2d_physics var collision_mask:int = 2
 
 @export var segment_spacing := 0.3
 @export var change_depth := -1
 
-func _ready() -> void: if not Engine.is_editor_hint(): regenerate_mesh()
+func _ready() -> void: if not Engine.is_editor_hint(): fabricate_collision()
 
 @export_storage var last_position:Vector2
 @export_storage var last_points:PackedVector2Array
@@ -106,3 +109,15 @@ func regenerate_mesh(): if collision_mesh:
 		
 		unre.commit_action()
 	else: collision_mesh.polygon = a + b
+
+func fabricate_collision() -> void:
+	var static_body := StaticBody2D.new()
+	collision_mesh = CollisionPolygon2D.new()
+	
+	add_child(static_body)
+	static_body.add_child(collision_mesh)
+	
+	static_body.collision_layer = collision_layer
+	static_body.collision_mask  = collision_mask
+	
+	regenerate_mesh()

@@ -7,7 +7,10 @@ class_name Spline2D extends Line2D
 		
 		queue_redraw()
 
-@export var collider:CollisionPolygon2D
+var collision_mesh:CollisionPolygon2D
+@export_group("Collision", "collider_")
+@export_flags_2d_physics var collision_layer:int = 1
+@export_flags_2d_physics var collision_mask:int = 2
 
 ## The points that make up the visible line / mesh.
 ## Amount depends on seg
@@ -24,7 +27,7 @@ var sample_mesh:Array[Vector2]
 		generate()
 
 #@export_tool_button("GenerateShape") var gen := generate
-func generate(): if collider: collider.polygon = regenerate_mesh()
+func generate(): if collision_mesh: collision_mesh.polygon = regenerate_mesh()
 
 func _draw() -> void: if Engine.is_editor_hint(): draw_polygon(sample_mesh, [color])
 
@@ -33,18 +36,19 @@ func _ready() -> void:
 	
 	regenerate_sample()
 	queue_redraw()
-	generate()
+	
 	
 	if not Engine.is_editor_hint():
 		default_color = color
 		points = sample_points
-	
-	if not collider: collider = find_collider()
+		
+		## Create the collision nodes.
+		fabricate_collision()
 
-## Constantly update while in the editor.
+## Update whenever anything changes.
 var last_points
-func _process(_delta: float) -> void: if points != last_points: #if randf() > 0.5:
-	
+func _process(_delta: float) -> void: if points != last_points: 
+		
 	regenerate_sample()
 	queue_redraw()
 	generate()
@@ -130,14 +134,14 @@ func regenerate_mesh() -> Array[Vector2]:
 	sample_mesh = a + b
 	return sample_mesh
 
-func find_collider(with:Node = self, depth := 3) -> CollisionPolygon2D:
+func fabricate_collision() -> void:
+	var static_body := StaticBody2D.new()
+	collision_mesh = CollisionPolygon2D.new()
 	
-	if not with or depth == 0: return null
+	add_child(static_body)
+	static_body.add_child(collision_mesh)
 	
-	if with is CollisionPolygon2D: return with
+	static_body.collision_layer = collision_layer
+	static_body.collision_mask  = collision_mask
 	
-	for child in with.get_children():
-		var try = find_collider(child, depth - 1)
-		if try: return try
-	
-	return null
+	generate()

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://nd8r32rdw4fb"]
 
-[ext_resource type="Script" uid="uid://c83wkaljnc28x" path="res://Scripts/AnimationButton.gd" id="1_idj7w"]
-[ext_resource type="Script" uid="uid://cvard1071wlfx" path="res://Scripts/LevelPickHandler.gd" id="1_kln2b"]
-[ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/MainAnimator.gd" id="1_r150o"]
-[ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/LevelPopup.gd" id="2_rgh2o"]
+[ext_resource type="Script" uid="uid://c83wkaljnc28x" path="res://Scripts/UI/AnimationButton.gd" id="1_idj7w"]
+[ext_resource type="Script" uid="uid://cvard1071wlfx" path="res://Scripts/UI/LevelPickHandler.gd" id="1_kln2b"]
+[ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
+[ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/UI/LevelPopup.gd" id="2_rgh2o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
 bg_color = Color(0, 0, 0, 0.54901963)

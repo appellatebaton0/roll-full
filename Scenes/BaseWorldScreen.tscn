@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yl07d77783nh"]
 
-[ext_resource type="Script" uid="uid://dv2pwr5layc06" path="res://Scripts/WorldScreen.gd" id="1_5kqrn"]
+[ext_resource type="Script" uid="uid://dv2pwr5layc06" path="res://Scripts/UI/WorldScreen.gd" id="1_5kqrn"]
 [ext_resource type="PackedScene" uid="uid://8mf81em7r0bu" path="res://Scenes/LevelEntry.tscn" id="2_p75ps"]
 
 [sub_resource type="Gradient" id="Gradient_p75ps"]

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bw16huunuc7lg"]
+
+[ext_resource type="Script" uid="uid://hnboj7u32fis" path="res://Scripts/Goal.gd" id="1_ugxcw"]
+[ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="2_kmleq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfw1b"]
+radius = 74.431175
+
+[node name="Goal" type="Area2D" unique_id=1338618760]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ugxcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527626523]
+shape = SubResource("CircleShape2D_sfw1b")
+
+[node name="AnimatedPolygon3" type="Polygon2D" parent="." unique_id=633318547]
+color = Color(0.100000024, 1, 0.100000024, 0.7294118)
+antialiased = true
+polygon = PackedVector2Array(53, 0, 92.38795, 38.268345, 37.476658, 37.476658, 38.26834, 92.38795, -2.3167036e-06, 53, -38.26834, 92.387955, -37.476658, 37.476658, -92.38795, 38.26835, -53, -4.633407e-06, -92.38795, -38.26834, -37.47666, -37.476654, -38.268356, -92.38795, 6.3201867e-07, -53, 38.26836, -92.38795, 37.476654, -37.476665, 92.387955, -38.26834)
+uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("2_kmleq")
+outer_wave_amounts = Dictionary[int, float]({
+2: 17.0
+})
+outer_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+outer_rotation = 50.0
+inner_wave_amounts = Dictionary[int, float]({
+2: 10.0
+})
+inner_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+inner_rotation = -70.0
+outer_vertices = 16
+outer_radius = 100.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -30.0
+})
+inner_vertices = 8
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+
+[node name="AnimatedPolygon2" type="Polygon2D" parent="." unique_id=1348666305]
+rotation = 0.38397244
+color = Color(0.100000024, 1, 0.100000024, 0.7294118)
+antialiased = true
+polygon = PackedVector2Array(41.5, 0, 73.91036, 30.614677, 29.34493, 29.34493, 30.614674, 73.91036, -1.8140227e-06, 41.5, -30.614672, 73.91036, -29.34493, 29.34493, -73.91036, 30.61468, -41.5, -3.6280453e-06, -73.91036, -30.614674, -29.344933, -29.344929, -30.614685, -73.91036, 4.9488256e-07, -41.5, 30.614689, -73.910355, 29.344927, -29.344936, 73.91036, -30.614674)
+uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("2_kmleq")
+outer_wave_amounts = Dictionary[int, float]({
+2: 8.5
+})
+outer_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+outer_rotation = 50.0
+inner_wave_amounts = Dictionary[int, float]({
+2: 10.0
+})
+inner_wave_intervals = Dictionary[int, float]({
+2: 3.5
+})
+inner_rotation = -70.0
+outer_vertices = 16
+outer_radius = 80.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -30.0
+})
+inner_vertices = 8
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1884289119]
+color = Color(0.94, 0.94, 0.94, 0.72156864)
+polygon = PackedVector2Array(27, 0, 26.079996, 6.9881144, 23.382685, 13.5, 19.091883, 19.091883, 13.499999, 23.382687, 6.988115, 26.079996, -1.1802075e-06, 27, -6.9881144, 26.079996, -13.500002, 23.382685, -19.091883, 19.091883, -23.382685, 13.500002, -26.079996, 6.9881167, -27, -2.360415e-06, -26.079996, -6.988115, -23.382685, -13.499999, -19.091885, -19.09188, -13.499997, -23.382687, -6.9881124, -26.079998, 3.2197178e-07, -27, 6.9881134, -26.079996, 13.499997, -23.382687, 19.091879, -19.091887, 23.382685, -13.500005, 26.079998, -6.9881086)
+script = ExtResource("2_kmleq")
+outer_wave_amounts = Dictionary[int, float]({
+1: 3.0
+})
+outer_wave_intervals = Dictionary[int, float]({
+1: 7.0
+})
+outer_vertices = 24
+outer_radius = 30.0
+metadata/_custom_type_script = "uid://2fyexmj0cjug"

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://sf5p3xylkovv"]
+
+[ext_resource type="PackedScene" uid="uid://no1j6n5wfkgq" path="res://Scenes/Player.tscn" id="1_63row"]
+[ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="2_jnsj8"]
+[ext_resource type="PackedScene" uid="uid://bw16huunuc7lg" path="res://Scenes/Goal.tscn" id="3_ks63r"]
+[ext_resource type="Script" uid="uid://dv1k22hfa8h6v" path="res://Scripts/DeathBorder.gd" id="4_bybyf"]
+
+[node name="LevelBase" type="Node" unique_id=1260259211]
+process_mode = 1
+
+[node name="Player" parent="." unique_id=1267848784 instance=ExtResource("1_63row")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=807067945]
+process_mode = 3
+zoom = Vector2(0.3, 0.3)
+script = ExtResource("2_jnsj8")
+f = 1.0
+z = 0.8
+r = 0.2
+
+[node name="Goal" parent="." unique_id=1338618760 instance=ExtResource("3_ks63r")]
+
+[node name="DeathBorder" type="Node2D" parent="." unique_id=1495088171]
+script = ExtResource("4_bybyf")
+width = 5000.0
+height = 5000.0
+metadata/_custom_type_script = "uid://dv1k22hfa8h6v"

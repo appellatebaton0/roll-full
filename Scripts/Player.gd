@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	print(mag(velocity))
+	#print(mag(velocity))
 
 func _on_reset() -> void:
 	global_position = respawn_position
