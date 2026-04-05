@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dpxnd5w4dc3fw"]
+
+[ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_gbbuh"]
+[ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_j24j6"]
+[ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="3_fnxhk"]
+
+[node name="1" unique_id=1260259211 instance=ExtResource("1_gbbuh")]
+
+[node name="Goal" parent="." index="3" unique_id=1338618760]
+position = Vector2(1637, 643)
+
+[node name="Spline2D" type="Line2D" parent="." index="5" unique_id=696827401]
+position = Vector2(1017, -26)
+points = PackedVector2Array(-1105, 145, -1269, 932, -877, 1550, 248, 1196, 248, 1196, 248, 1196, 2261, 1195, 2371, 1162, 2507, 1232, 2428, 1380)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Label" type="Label" parent="." index="6" unique_id=59020230]
+offset_left = 977.0
+offset_top = 549.0
+offset_right = 1271.0
+offset_bottom = 661.0
+text = "asdasd"
+
+[node name="TimeSlow" type="Node2D" parent="." index="7" unique_id=116690775]
+position = Vector2(1773, 1038)
+script = ExtResource("3_fnxhk")
+radius = 640.0
+easing = 2.0
+min_scale = 0.2
+
+[node name="TimeSlow2" type="Node2D" parent="." index="8" unique_id=816118717]
+position = Vector2(4426, 699)
+script = ExtResource("3_fnxhk")
+radius = 640.0
+easing = 2.0
+min_scale = 0.2

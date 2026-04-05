@@ -40,6 +40,8 @@ func _ready() -> void:
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2
 func _physics_process(delta: float) -> void:
+	print(delta)
+	
 	# For the line debugging.
 	if DEBUG: queue_redraw()
 	
@@ -61,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Control the ray target.
 	if is_on_wall() and not ray_resetting: # If on wall, pierce the surface.
-		ray_node.target_position = lerp(ray_node.target_position, -get_wall_normal() * ray_distance, 0.2)
+		ray_node.target_position = Global.d_lerp(ray_node.target_position, -get_wall_normal() * ray_distance, 0.0001, delta)
 		ray_fall_time = 0.0
 	elif not ray_node.is_colliding(): # Otherwise, slowly return to Vector2.ZERO
 		ray_node.target_position = lerp(-last_normal * ray_distance, Vector2.ZERO, ease(ray_fall_time, ray_fallback))
@@ -98,7 +100,7 @@ func _physics_process(delta: float) -> void:
 			ray_fall_time = 1.0
 			
 			# Apply jump velocity
-			velocity += last_normal * jump_height * delta * 300.0
+			velocity += last_normal * jump_height * 300.0
 			
 			# Clear the jump buffer so you don't spam jumps.
 			jump_buffering = 0.0

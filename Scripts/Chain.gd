@@ -8,7 +8,7 @@ var collision_mesh:CollisionPolygon2D
 @export_flags_2d_physics var collision_layer:int = 1
 @export_flags_2d_physics var collision_mask:int = 2
 
-@export var segment_spacing := 0.3
+@export var segment_spacing := 50.
 @export var change_depth := -1
 
 func _ready() -> void: if not Engine.is_editor_hint(): fabricate_collision()

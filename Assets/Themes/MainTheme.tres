@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://csk0lolivrox1"]
+
+[ext_resource type="FontFile" uid="uid://cnakc81irxpb1" path="res://Assets/Fonts/humaroid.regular.otf" id="1_uuho2"]
+
+[resource]
+Button/fonts/font = ExtResource("1_uuho2")
+Label/font_sizes/font_size = 112
+Label/fonts/font = ExtResource("1_uuho2")

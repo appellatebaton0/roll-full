@@ -32,4 +32,9 @@ func digitize(value:int, digits:int) -> String:
 	response += string
 	
 	return response
+
+func d_lerp(a, b, r:float, delta:float) -> Variant:
+	if a is Vector2 and b is Vector2:
+		return Vector2(d_lerp(a.x, b.x, r, delta), d_lerp(a.y, b.y, r, delta))
 	
+	return ((a - b) * pow(r, delta)) + b
