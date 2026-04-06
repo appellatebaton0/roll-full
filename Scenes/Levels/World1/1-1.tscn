@@ -6,11 +6,17 @@
 
 [node name="1" unique_id=1260259211 instance=ExtResource("1_gbbuh")]
 
+[node name="Player" parent="." index="1" unique_id=1267848784]
+position = Vector2(-1450, 59)
+
 [node name="Goal" parent="." index="3" unique_id=1338618760]
-position = Vector2(1637, 643)
+position = Vector2(5643, -2181)
+
+[node name="DeathBorder" parent="." index="4" unique_id=1495088171]
+position = Vector2(2588, -951)
 
 [node name="Spline2D" type="Line2D" parent="." index="5" unique_id=696827401]
-position = Vector2(1017, -26)
+position = Vector2(-470, -26)
 points = PackedVector2Array(-1105, 145, -1269, 932, -877, 1550, 248, 1196, 248, 1196, 248, 1196, 2261, 1195, 2371, 1162, 2507, 1232, 2428, 1380)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
@@ -18,22 +24,34 @@ script = ExtResource("2_j24j6")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Label" type="Label" parent="." index="6" unique_id=59020230]
-offset_left = 977.0
-offset_top = 549.0
-offset_right = 1271.0
-offset_bottom = 661.0
-text = "asdasd"
+offset_left = 1498.0
+offset_top = 423.0
+offset_right = 2296.0
+offset_bottom = 650.0
+text = "Press Space or LMB
+To Jump."
+horizontal_alignment = 1
 
 [node name="TimeSlow" type="Node2D" parent="." index="7" unique_id=116690775]
-position = Vector2(1773, 1038)
+position = Vector2(1440, 880)
 script = ExtResource("3_fnxhk")
-radius = 640.0
-easing = 2.0
-min_scale = 0.2
+radius = 480.0
+easing = 4.0
+min_scale = 0.04
 
-[node name="TimeSlow2" type="Node2D" parent="." index="8" unique_id=816118717]
-position = Vector2(4426, 699)
-script = ExtResource("3_fnxhk")
-radius = 640.0
-easing = 2.0
-min_scale = 0.2
+[node name="Spline2D2" type="Line2D" parent="." index="8" unique_id=1450912531]
+position = Vector2(4615, 1157)
+points = PackedVector2Array(8, 182, -144, 66, 88, -29, 171, 13, 1058, 18, 1303, 18, 1656, 19, 2094, 16, 2320, -134, 2307, -692, 2305, -1320, 2305, -1447, 2306, -1646)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+seg = 10.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D3" type="Line2D" parent="." index="9" unique_id=1143561864]
+position = Vector2(6353, -113)
+points = PackedVector2Array(-1, -6, -1, -12, -1, -22, -0.022399902, -1460.9973, 37, -1745, -77, -1882, -451, -1791)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"

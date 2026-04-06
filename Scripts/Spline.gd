@@ -27,7 +27,17 @@ var sample_mesh:Array[Vector2]
 		generate()
 
 #@export_tool_button("GenerateShape") var gen := generate
-func generate(): if collision_mesh: collision_mesh.polygon = regenerate_mesh()
+func generate(): if collision_mesh: 
+	#if Engine.is_editor_hint():
+		#var unre := EditorInterface.get_editor_undo_redo()
+		#var new_mesh := regenerate_mesh()
+		#
+		#unre.create_action("Bake Collision Polygon")
+		#unre.add_do_property(collision_mesh, "polygon", new_mesh)
+		##unre.add_undo_property(collision_mesh, "polygon", collision_mesh.polygon)
+		#unre.commit_action()
+	#else:
+	collision_mesh.polygon = regenerate_mesh()
 
 func _draw() -> void: if Engine.is_editor_hint(): draw_polygon(sample_mesh, [color])
 
@@ -41,9 +51,9 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		default_color = color
 		points = sample_points
-		
-		## Create the collision nodes.
-		fabricate_collision()
+	
+	## Create the collision nodes.
+	fabricate_collision()
 
 ## Update whenever anything changes.
 var last_points
@@ -135,13 +145,38 @@ func regenerate_mesh() -> Array[Vector2]:
 	return sample_mesh
 
 func fabricate_collision() -> void:
-	var static_body := StaticBody2D.new()
-	collision_mesh = CollisionPolygon2D.new()
-	
-	add_child(static_body)
-	static_body.add_child(collision_mesh)
-	
-	static_body.collision_layer = collision_layer
-	static_body.collision_mask  = collision_mask
+	if not collision_mesh:
+		
+		if Engine.is_editor_hint():
+			var unre := EditorInterface.get_editor_undo_redo()
+			unre.create_action("Fabricate Collision")
+			
+			var static_body := StaticBody2D.new()
+			var new_collider = CollisionPolygon2D.new()
+			
+			unre.add_do_method(self, "add_child", static_body)
+			unre.add_undo_method(self, "remove_child", static_body)
+			
+			unre.add_do_method(static_body, "add_child", new_collider)
+			unre.add_undo_method(static_body, "remove_child", new_collider)
+			
+			unre.add_do_property(static_body, "collision_layer", collision_layer)
+			unre.add_do_property(static_body, "collision_mask", collision_mask)
+			
+			unre.add_do_property(self, "collision_mesh", new_collider)
+			unre.add_undo_property(self, "collision_mesh", collision_mesh)
+			
+			unre.commit_action()
+			
+		else:
+			
+			var static_body := StaticBody2D.new()
+			collision_mesh = CollisionPolygon2D.new()
+		
+			add_child(static_body)
+			static_body.add_child(collision_mesh)
+		
+			static_body.collision_layer = collision_layer
+			static_body.collision_mask  = collision_mask
 	
 	generate()

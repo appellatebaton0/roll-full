@@ -40,7 +40,6 @@ func _ready() -> void:
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2
 func _physics_process(delta: float) -> void:
-	print(delta)
 	
 	# For the line debugging.
 	if DEBUG: queue_redraw()
