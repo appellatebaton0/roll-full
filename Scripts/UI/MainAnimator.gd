@@ -16,6 +16,9 @@ func _on_animation_requested(anim_name:String):
 				get_tree().paused = true
 			"Game->Levels":
 				get_tree().paused = true
+				
+				## Add the current attempt to the entries, set up the attempt-end-popup.
+				
 			"ResetIn":
 				get_tree().paused = true
 
@@ -23,7 +26,10 @@ func _on_animation_finished(anim_name:String) -> void:
 	match anim_name:
 		"Game->Levels":
 			## Free the current level.
-			pass
+			
+			Global.current_level.process_mode = Node.PROCESS_MODE_ALWAYS
+			Global.current_level.queue_free()
+			Global.current_level = null
 		"Levels->Game":
 			play("Countdown")
 		"Countdown":

@@ -57,6 +57,7 @@ func _on_play_pressed() -> void: if focused:
 	var level = current_data.scene.instantiate()
 	
 	level_root.add_child(level)
+	Global.current_level = level
 
 func _on_back_pressed() -> void: if focused:
 
