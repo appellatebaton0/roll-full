@@ -1,6 +1,8 @@
 class_name LevelData extends Resource
 ## Holds all the reference data for a level.
 
+signal times_updated
+
 @export var name:String ## The name of the level.
 
 @export var scene:PackedScene ## The scene containing this level.
@@ -14,6 +16,8 @@ var times:Array[float]: ## Stores time, in seconds
 		
 		## Update the ranking
 		ranking = _get_ranking()
+		
+		times_updated.emit()
 var best_time:float ## The best time out of times.
 
 enum RANKINGS {S, A, B, C, D}

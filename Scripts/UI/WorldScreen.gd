@@ -54,8 +54,9 @@ func get_level_data() -> Array[LevelData]:
 		print("An error occurred when trying to access the path.")
 	
 	# Sort alphebetically. (A-Z then 0-9)
-	file_names.sort()
-	file_names.reverse()
+	var new_files := Global.merge_sort(file_names, _screen_sort_condition)
+	for i in range(len(new_files)):
+		file_names[i] = new_files[i]
 	
 	var data:Array[LevelData]
 	
@@ -65,3 +66,15 @@ func get_level_data() -> Array[LevelData]:
 			data.append(file)
 	
 	return data
+
+## Just... find a number and return the higher of the two. I'm so tired, Finn.
+func _screen_sort_condition(a:StringName, b:StringName):
+	
+	var av := -1
+	var bv := -1
+	
+	for i in range(10):
+		if a.contains(str(i)): av = i
+		if b.contains(str(i)): bv = i
+	
+	return av > bv
