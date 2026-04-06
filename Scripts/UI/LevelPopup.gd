@@ -11,7 +11,15 @@ class_name LevelPopup extends MarginContainer
 
 @onready var level_root := get_tree().get_first_node_in_group("Main")
 
-var current_data:LevelData
+var current_data:LevelData:
+	set(to): 
+		if current_data:
+			current_data.times_updated.disconnect(_update)
+		
+		current_data = to
+		
+		if current_data:
+			current_data.times_updated.connect(_update)
 
 @export var animator:AnimationPlayer
 @export var focused := false
@@ -20,22 +28,22 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 
-func update_with(data:LevelData):
+func _update() -> void:
 	
-	current_data = data
+	print(">_>")
 	
-	best_time_lab.text = "BEST TIME: " + Global.seconds_as_timer(data.best_time)
+	best_time_lab.text = "BEST TIME: " + Global.seconds_as_timer(current_data.best_time)
 	
-	level_name_lab.text = data.name
+	level_name_lab.text = current_data.name
 	
 	# Update the attempt entries.
 	var entries := attempt_box.get_children()
-	var attempts = len(data.times)
+	var attempts = len(current_data.times)
 	for i in range(len(entries)):
 		var entry = entries[i]
 		if entry is AttemptEntry:
 			if attempts > 0:
-				entry.update(data, i)
+				entry.update(current_data, i)
 				attempts -= 1
 			else:
 				entry.queue_free()
@@ -43,11 +51,11 @@ func update_with(data:LevelData):
 	for i in range(attempts):
 		var entry:AttemptEntry = preload("res://Scenes/UIElements/AttemptEntry.tscn").instantiate()
 		
-		entry.update(data, i + len(entries))
+		entry.update(current_data, i + len(entries))
 		
 		attempt_box.add_child(entry)
 	
-	rank_lab.text = data.ranking
+	rank_lab.text = current_data.ranking
 
 ## Load the current level, play the opening animation.
 func _on_play_pressed() -> void: if focused:
@@ -57,7 +65,11 @@ func _on_play_pressed() -> void: if focused:
 	var level = current_data.scene.instantiate()
 	
 	level_root.add_child(level)
+	
 	Global.current_level = level
+	Global.current_data  = current_data
+	
+	Global.run_timer.reset()
 
 func _on_back_pressed() -> void: if focused:
 

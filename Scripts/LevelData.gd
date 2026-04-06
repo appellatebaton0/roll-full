@@ -17,6 +17,7 @@ var times:Array[float]: ## Stores time, in seconds
 		## Update the ranking
 		ranking = _get_ranking()
 		
+		print("UPDATED")
 		times_updated.emit()
 var best_time:float ## The best time out of times.
 
@@ -44,11 +45,11 @@ func _get_best_time() -> float:
 func _get_ranking(for_time := best_time) -> String:
 	var current_max := 0.0
 	
-	for rank in RANKINGS:
-		current_max = ranking_maximums[rank]
+	for i in range(RANKINGS.size()):
+		current_max = ranking_maximums[i]
 		
 		if for_time <= current_max:
-			match rank: # Return as single-character
+			match i as RANKINGS: # Return as single-character
 				RANKINGS.D: return "D"
 				RANKINGS.C: return "C"
 				RANKINGS.B: return "B"

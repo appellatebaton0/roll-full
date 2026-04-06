@@ -17,7 +17,8 @@ func _on_animation_requested(anim_name:String):
 			"Game->Levels":
 				get_tree().paused = true
 				
-				## Add the current attempt to the entries, set up the attempt-end-popup.
+				print("SAVING TIME")
+				Global.run_timer.save()
 				
 			"ResetIn":
 				get_tree().paused = true
@@ -36,6 +37,7 @@ func _on_animation_finished(anim_name:String) -> void:
 			get_tree().paused = false
 		"ResetIn":
 			Global.reset_level.emit()
+			Global.run_timer.reset()
 			play("ResetOut")
 		"ResetOut":
 			play("Countdown")

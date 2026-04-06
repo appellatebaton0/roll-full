@@ -69,7 +69,7 @@ func cycle_right() -> void: if focused:
 		ori_x[i] = screens[i].position.x
 
 func _on_popup_request(with:LevelData) -> void:
-	level_popup.update_with(with)
+	level_popup.current_data = with
 	if not animator.is_playing(): 
 		animator.play("OpenPopup")
 

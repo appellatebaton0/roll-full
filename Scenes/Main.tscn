@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
 [ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/UI/LevelPopup.gd" id="2_rgh2o"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
+[ext_resource type="PackedScene" uid="uid://c83ddqse82epw" path="res://Scenes/UIElements/AttemptEntry.tscn" id="6_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
+[ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
 bg_color = Color(0, 0, 0, 0.54901963)
@@ -466,6 +469,35 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jw32o")
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI" unique_id=759992458]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MarginContainer" unique_id=849892367]
+layout_mode = 2
+
+[node name="Timer" type="Label" parent="CanvasLayer/UI/MarginContainer/VBoxContainer" unique_id=1878646220]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 65
+text = "00:00.00"
+script = ExtResource("8_vy5pj")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/UI/MarginContainer/VBoxContainer" unique_id=1818482585]
+layout_mode = 2
+size_flags_horizontal = 0
+fill_mode = 4
+texture_under = ExtResource("9_bmxlf")
+
 [node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
 layout_mode = 1
 anchors_preset = 15
@@ -553,6 +585,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="AttemptEntry" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/ScrollContainer/AttemptBox" unique_id=364246883 instance=ExtResource("6_bmxlf")]
+layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1549215641]
 layout_mode = 2

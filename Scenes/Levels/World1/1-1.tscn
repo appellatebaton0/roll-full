@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_gbbuh"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_j24j6"]
 [ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="3_fnxhk"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_fnxhk"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="4_fnxhk"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="5_kebnn"]
 
 [node name="1" unique_id=1260259211 instance=ExtResource("1_gbbuh")]
@@ -66,7 +66,6 @@ outer_vertices = 24
 outer_radius = 70.0
 inner_vertices = 24
 inner_radius = 60.0
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="RegularPolygon2" type="Polygon2D" parent="." index="11" unique_id=1282478319]
 position = Vector2(6808, -267)
@@ -76,7 +75,6 @@ outer_vertices = 24
 outer_radius = 70.0
 inner_vertices = 24
 inner_radius = 60.0
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="RegularPolygon3" type="Polygon2D" parent="." index="12" unique_id=1406343370]
 position = Vector2(4397, -2068)
@@ -86,7 +84,6 @@ outer_vertices = 24
 outer_radius = 70.0
 inner_vertices = 24
 inner_radius = 60.0
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="RegularPolygon4" type="Polygon2D" parent="." index="13" unique_id=1331990952]
 position = Vector2(-998, -2595)
@@ -96,7 +93,6 @@ outer_vertices = 24
 outer_radius = 70.0
 inner_vertices = 24
 inner_radius = 60.0
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="RegularPolygon5" type="Polygon2D" parent="." index="14" unique_id=61888475]
 position = Vector2(4360, -4699)
@@ -106,7 +102,6 @@ outer_vertices = 24
 outer_radius = 70.0
 inner_vertices = 24
 inner_radius = 60.0
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="Spline2D4" type="Line2D" parent="." index="15" unique_id=1190590369]
 position = Vector2(1175, -1969)

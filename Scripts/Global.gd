@@ -8,7 +8,11 @@ signal reset_level
 ## -- GAME STATE -- ##
 
 var world_progression := 1 ## The number of worlds completed.
+
 var current_level:Node
+var current_data :LevelData
+
+var run_timer:RunTimer
 
 ## -- GENERIC -- ## 
 
