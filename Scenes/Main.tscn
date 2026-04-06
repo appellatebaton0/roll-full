@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://cvard1071wlfx" path="res://Scripts/UI/LevelPickHandler.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
 [ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/UI/LevelPopup.gd" id="2_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://cs5v3fakqrwi7" path="res://Assets/Textures/BlackRing.png" id="3_grg3l"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
+[ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
 [ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
@@ -554,11 +556,39 @@ theme_override_font_sizes/font_size = 65
 text = "00:00.00"
 script = ExtResource("8_vy5pj")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1818482585]
+[node name="Reset" type="TextureProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1818482585]
 layout_mode = 2
 size_flags_horizontal = 0
+max_value = 1.0
+step = 0.001
 fill_mode = 4
-texture_under = ExtResource("9_bmxlf")
+texture_under = ExtResource("3_grg3l")
+texture_progress = ExtResource("9_bmxlf")
+script = ExtResource("5_frkhe")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer/Reset" unique_id=225371934]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "R"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer/Reset" unique_id=1013575963]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_right = 146.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "  Hold R To Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
 layout_mode = 1

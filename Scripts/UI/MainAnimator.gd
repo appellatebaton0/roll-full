@@ -38,7 +38,6 @@ func _on_animation_finished(anim_name:String) -> void:
 			get_tree().paused = false
 		"ResetIn":
 			Global.reset_level.emit()
-			Global.run_timer.reset()
 			play("ResetOut")
 		"ResetOut":
 			play("Countdown")
