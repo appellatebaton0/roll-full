@@ -33,7 +33,7 @@ height = 2048
 [node name="World1LevelBase" unique_id=1260259211 instance=ExtResource("1_hjvo4")]
 
 [node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=882957438]
-scroll_scale = Vector2(0.9, 0.9)
+scroll_scale = Vector2(0.8, 0.8)
 repeat_size = Vector2(2048, 2048)
 repeat_times = 6
 script = SubResource("GDScript_hjvo4")

@@ -6,6 +6,8 @@ var running := false
 
 func _ready() -> void:
 	Global.run_timer = self
+	Global.level_complete.connect(save)
+
 
 func _process(delta: float) -> void:
 	if running:

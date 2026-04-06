@@ -7,3 +7,10 @@
 script = ExtResource("1_owbt0")
 name = "Introduction"
 scene = ExtResource("1_s41fo")
+ranking_maximums = Dictionary[int, float]({
+0: 20.0,
+1: 22.0,
+2: 26.0,
+3: 30.0,
+4: 53.0
+})

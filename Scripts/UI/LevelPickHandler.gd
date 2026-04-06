@@ -39,6 +39,8 @@ func _ready() -> void:
 	screens.back() .next_button.modulate.a = 0.0
 	
 	lerp_timer = lerp_time
+	
+	Global.level_complete.connect(_on_level_complete)
 
 func _process(delta: float) -> void:
 	for i in range(len(screens)):
@@ -53,7 +55,6 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Cycle World Left"): cycle_left()
 	if Input.is_action_just_pressed("Cycle World Right"): cycle_right()
-
 
 func cycle_left() -> void: if focused:
 	current_index = clamp(current_index - 1, 0 , Global.world_progression)
@@ -73,6 +74,18 @@ func _on_popup_request(with:LevelData) -> void:
 	if not animator.is_playing(): 
 		animator.play("OpenPopup")
 
+func _on_level_complete() -> void:
+	var world := screens[current_index]
+	
+	if world.progression_index <= world.level_data.find(Global.current_data):
+		if Global.current_data.ranking as int < 3:
+			
+			## Unlock the next level / world.
+			
+			if world.progression_index < len(world.level_data) - 1:
+				world.progression_index += 1
+			else: 
+				Global.world_progression += 1
 
 func get_screen_scenes() -> Array[PackedScene]:
 	

@@ -17,8 +17,7 @@ func _on_animation_requested(anim_name:String):
 			"Game->Levels":
 				get_tree().paused = true
 				
-				print("SAVING TIME")
-				Global.run_timer.save()
+				Global.level_complete.emit()
 				
 			"ResetIn":
 				get_tree().paused = true
@@ -29,7 +28,9 @@ func _on_animation_finished(anim_name:String) -> void:
 			## Free the current level.
 			
 			Global.current_level.process_mode = Node.PROCESS_MODE_ALWAYS
-			Global.current_level.queue_free()
+			
+			for level in get_tree().get_nodes_in_group("Level"):
+				level.queue_free()
 			Global.current_level = null
 		"Levels->Game":
 			play("Countdown")

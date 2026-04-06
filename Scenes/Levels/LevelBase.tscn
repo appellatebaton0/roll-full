@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bw16huunuc7lg" path="res://Scenes/Goal.tscn" id="3_ks63r"]
 [ext_resource type="Script" uid="uid://dv1k22hfa8h6v" path="res://Scripts/DeathBorder.gd" id="4_bybyf"]
 
-[node name="LevelBase" type="Node" unique_id=1260259211]
+[node name="LevelBase" type="Node" unique_id=1260259211 groups=["Level"]]
 process_mode = 1
 
 [node name="Player" parent="." unique_id=1267848784 instance=ExtResource("1_63row")]

@@ -5,6 +5,8 @@ class_name LevelEntry extends Button
 @onready var best_time := $MarginContainer/HBoxContainer/BestTime
 @onready var ranking := $MarginContainer/HBoxContainer/Ranking
 
+var needs_update := false
+
 @export var level_data:LevelData:
 	set(to):
 		if level_data:
@@ -22,8 +24,13 @@ class_name LevelEntry extends Button
 
 func _on_times_updated() -> void: if level_data:
 	
-	await ready
+	if not is_node_ready():
+		needs_update = true
+		return
 	
 	level_name.text = level_data.name
 	best_time.text = Global.seconds_as_timer(level_data.best_time)
 	ranking.text = level_data.ranking
+
+func _ready() -> void:
+	if needs_update: _on_times_updated()

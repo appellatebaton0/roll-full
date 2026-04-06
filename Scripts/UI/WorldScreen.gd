@@ -8,6 +8,7 @@ signal request_popup(data:LevelData)
 ## THe folder the level_data this screen will have on it are stored in.
 ## Turns this file's name into the folder name for the LevelData.
 @onready var level_data_folder:String = "res://Assets/LevelData/" + Array(scene_file_path.split("/")).back().replace(".tscn", "")
+@onready var level_data:Array[LevelData] = get_level_data()
 
 ## How far into the world the player has progressed.
 @export var progression_index := 0:
@@ -21,7 +22,7 @@ signal request_popup(data:LevelData)
 func _ready() -> void:
 	
 	## Load all the levels in this world into the level_box.
-	for file in get_level_data():
+	for file in level_data:
 		var new:LevelEntry = preload("res://Scenes/UIElements/LevelEntry.tscn").instantiate()
 		new.level_data = file
 		

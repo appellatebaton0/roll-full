@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
 [ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/UI/LevelPopup.gd" id="2_rgh2o"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
-[ext_resource type="PackedScene" uid="uid://c83ddqse82epw" path="res://Scenes/UIElements/AttemptEntry.tscn" id="6_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
+[ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
@@ -151,6 +151,67 @@ _data = {
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kln2b"]
 gradient = SubResource("Gradient_idj7w")
+
+[sub_resource type="Gradient" id="Gradient_grg3l"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.45490196)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_frkhe"]
+gradient = SubResource("Gradient_grg3l")
+
+[sub_resource type="Animation" id="Animation_1p5hy"]
+resource_name = "Pause"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -864), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h1m7h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -864)]
+}
+
+[sub_resource type="Animation" id="Animation_erwvk"]
+resource_name = "Unpause"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -864)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2w5on"]
+_data = {
+&"Pause": SubResource("Animation_1p5hy"),
+&"RESET": SubResource("Animation_h1m7h"),
+&"Unpause": SubResource("Animation_erwvk")
+}
 
 [sub_resource type="Animation" id="Animation_4kpch"]
 resource_name = "Countdown"
@@ -469,7 +530,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jw32o")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI" unique_id=759992458]
+[node name="HUD" type="MarginContainer" parent="CanvasLayer/UI" unique_id=759992458]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -481,10 +542,11 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MarginContainer" unique_id=849892367]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=849892367]
 layout_mode = 2
 
-[node name="Timer" type="Label" parent="CanvasLayer/UI/MarginContainer/VBoxContainer" unique_id=1878646220]
+[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1878646220]
+process_mode = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -492,7 +554,7 @@ theme_override_font_sizes/font_size = 65
 text = "00:00.00"
 script = ExtResource("8_vy5pj")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/UI/MarginContainer/VBoxContainer" unique_id=1818482585]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1818482585]
 layout_mode = 2
 size_flags_horizontal = 0
 fill_mode = 4
@@ -585,9 +647,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AttemptEntry" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/ScrollContainer/AttemptBox" unique_id=364246883 instance=ExtResource("6_bmxlf")]
-layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1549215641]
 layout_mode = 2
@@ -689,7 +748,6 @@ patch_margin_right = 64
 axis_stretch_vertical = 1
 
 [node name="Countdown" type="Control" parent="CanvasLayer/UI" unique_id=633146946]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -708,6 +766,21 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 540
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseScreen" type="TextureRect" parent="CanvasLayer/UI" unique_id=143204885]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -864.0
+offset_bottom = -864.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_frkhe")
+script = ExtResource("9_4kpch")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/PauseScreen" unique_id=59671625]
+libraries/ = SubResource("AnimationLibrary_2w5on")
 
 [node name="ResetLevel" type="Control" parent="CanvasLayer/UI" unique_id=843567868]
 visible = false
