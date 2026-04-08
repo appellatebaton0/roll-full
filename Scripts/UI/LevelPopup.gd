@@ -20,6 +20,7 @@ var current_data:LevelData:
 		
 		if current_data:
 			current_data.times_updated.connect(_update)
+			_update()
 
 @export var animator:AnimationPlayer
 @export var focused := false
@@ -29,8 +30,6 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
 
 func _update() -> void:
-	
-	print(">_>")
 	
 	best_time_lab.text = "BEST TIME: " + Global.seconds_as_timer(current_data.best_time)
 	

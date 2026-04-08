@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 	text = Global.seconds_as_timer(timer)
 
 func save() -> void:
-	print("SAVED")
 	Global.current_data.times += [timer]
 	
 	running = false

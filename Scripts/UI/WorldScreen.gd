@@ -35,7 +35,7 @@ func _ready() -> void:
 func update_progression() -> void:
 	var children := level_box.get_children()
 	for i in range(len(children)): if children[i] is LevelEntry:
-		children[i].locked = i > progression_index
+		children[i].locked = i > progression_index and not Global.PROGRESSION_OVERRIDE
 
 func _on_entry_pressed(entry:LevelEntry) -> void: if not entry.locked: request_popup.emit(entry.level_data)
 

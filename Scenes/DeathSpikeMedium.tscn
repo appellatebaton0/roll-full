@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c7qjkmidxi07v"]
+
+[ext_resource type="Script" uid="uid://dh5osbuu612im" path="res://Scripts/DeathSpike.gd" id="1_odeew"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_g2vya"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_odeew"]
+radius = 128.0
+
+[node name="DeathSpikeMedium" type="Area2D" unique_id=2139363536]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_odeew")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=245094717]
+shape = SubResource("CircleShape2D_odeew")
+
+[node name="Polygon" type="Polygon2D" parent="." unique_id=1382325132]
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(70, 0, 121.24355, 70, 34.999996, 60.62178, -6.119594e-06, 140, -35.000004, 60.621777, -121.24355, 70.00001, -70, -6.119594e-06, -121.24355, -69.99999, -34.999992, -60.62178, 1.6694833e-06, -140, 34.999992, -60.62178, 121.243546, -70.00002)
+script = ExtResource("2_g2vya")
+outer_vertices = 12
+outer_radius = 140.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -70.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="." unique_id=1268693204]
+rotation = 1.5711809
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(70, 0, 121.24355, 70, 34.999996, 60.62178, -6.119594e-06, 140, -35.000004, 60.621777, -121.24355, 70.00001, -70, -6.119594e-06, -121.24355, -69.99999, -34.999992, -60.62178, 1.6694833e-06, -140, 34.999992, -60.62178, 121.243546, -70.00002)
+script = ExtResource("2_g2vya")
+outer_vertices = 12
+outer_radius = 140.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -70.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="." unique_id=2078218414]
+rotation = 0.5235988
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(40, 0, 34.641014, 20, 19.999998, 34.641018, -1.7484556e-06, 40, -20.000002, 34.641014, -34.641014, 20.000002, -40, -3.4969112e-06, -34.641014, -19.999998, -19.999996, -34.641018, 4.7699524e-07, -40, 19.999996, -34.641018, 34.641014, -20.000008)
+script = ExtResource("2_g2vya")
+outer_vertices = 12
+outer_radius = 40.0
+metadata/_custom_type_script = "uid://johp6kal78ik"

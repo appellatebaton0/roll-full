@@ -153,6 +153,7 @@ func fabricate_collision() -> void:
 			
 			var static_body := StaticBody2D.new()
 			var new_collider = CollisionPolygon2D.new()
+			new_collider.z_index = -1
 			
 			unre.add_do_method(self, "add_child", static_body)
 			unre.add_undo_method(self, "remove_child", static_body)

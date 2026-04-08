@@ -9,6 +9,8 @@ signal level_complete
 
 ## -- GAME STATE -- ##
 
+const PROGRESSION_OVERRIDE := true
+
 var world_progression := 0 ## The number of worlds completed.
 
 var current_level:Node

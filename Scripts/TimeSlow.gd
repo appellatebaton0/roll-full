@@ -47,7 +47,7 @@ func should_slow() -> bool:
 func _draw() -> void: if Engine.is_editor_hint():
 	
 	var spacing := 10.0
-	var size := 130
+	var size := 2 * radius / spacing
 	for i in range(size):
 		for j in range(size):
 			var point := Vector2(i - (size / 2.),j - (size / 2.)) * spacing

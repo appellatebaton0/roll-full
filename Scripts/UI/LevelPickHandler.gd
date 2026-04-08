@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		
 		screen.position.x = lerp(ori_x[i], targ_x, ease(lerp_timer / lerp_time, lerp_ease))
 		
-		screen.next_button.modulate.a = 1.0 if (i < Global.world_progression) and not i == len(screens) else 0.0
+		screen.next_button.modulate.a = 1.0 if ((i < Global.world_progression) and not i == len(screens)) or Global.PROGRESSION_OVERRIDE else 0.0
 		
 	lerp_timer = move_toward(lerp_timer, lerp_time, delta)
 	
@@ -57,13 +57,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Cycle World Right"): cycle_right()
 
 func cycle_left() -> void: if focused:
-	current_index = clamp(current_index - 1, 0 , Global.world_progression)
+	current_index = clamp(current_index - 1, 0 , Global.world_progression if not Global.PROGRESSION_OVERRIDE else len(screens))
 	lerp_timer = 0.0
 	
 	for i in range(len(screens)):
 		ori_x[i] = screens[i].position.x
 func cycle_right() -> void: if focused:
-	current_index = clamp(current_index + 1, 0 , Global.world_progression)
+	current_index = clamp(current_index + 1, 0 , Global.world_progression if not Global.PROGRESSION_OVERRIDE else len(screens))
 	lerp_timer = 0.0
 	
 	for i in range(len(screens)):

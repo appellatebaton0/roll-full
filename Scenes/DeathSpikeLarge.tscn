@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c476jebf22eni"]
+
+[ext_resource type="Script" uid="uid://dh5osbuu612im" path="res://Scripts/DeathSpike.gd" id="1_mpevh"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_lssm5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvp3r"]
+radius = 197.06345
+
+[node name="DeathSpikeLarge" type="Area2D" unique_id=2139363536]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_mpevh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=245094717]
+shape = SubResource("CircleShape2D_lvp3r")
+
+[node name="Polygon" type="Polygon2D" parent="." unique_id=1382325132]
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("2_lssm5")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="." unique_id=1268693204]
+rotation = 1.5711809
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("2_lssm5")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="." unique_id=2078218414]
+rotation = 0.5235988
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("2_lssm5")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"

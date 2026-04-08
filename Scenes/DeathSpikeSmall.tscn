@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://08144s3h56jf"]
+
+[ext_resource type="Script" uid="uid://dh5osbuu612im" path="res://Scripts/DeathSpike.gd" id="1_hbmwc"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_hbmwc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]
+radius = 65.27634
+
+[node name="DeathSpikeSmall" type="Area2D" unique_id=2139363536]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_hbmwc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=245094717]
+shape = SubResource("CircleShape2D_hbmwc")
+
+[node name="Polygon" type="Polygon2D" parent="." unique_id=1382325132]
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(40, 0, 69.28203, 40, 19.999998, 34.641018, -3.4969112e-06, 80, -20.000002, 34.641014, -69.28203, 40.000004, -40, -3.4969112e-06, -69.28203, -39.999996, -19.999996, -34.641018, 9.539905e-07, -80, 19.999996, -34.641018, 69.28203, -40.000015)
+script = ExtResource("2_hbmwc")
+outer_vertices = 12
+outer_radius = 80.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -40.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="." unique_id=1268693204]
+rotation = 1.5711809
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(40, 0, 69.28203, 40, 19.999998, 34.641018, -3.4969112e-06, 80, -20.000002, 34.641014, -69.28203, 40.000004, -40, -3.4969112e-06, -69.28203, -39.999996, -19.999996, -34.641018, 9.539905e-07, -80, 19.999996, -34.641018, 69.28203, -40.000015)
+script = ExtResource("2_hbmwc")
+outer_vertices = 12
+outer_radius = 80.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -40.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="." unique_id=2078218414]
+rotation = 0.5235988
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(20, 0, 17.320507, 10, 9.999999, 17.320509, -8.742278e-07, 20, -10.000001, 17.320507, -17.320507, 10.000001, -20, -1.7484556e-06, -17.320507, -9.999999, -9.999998, -17.320509, 2.3849762e-07, -20, 9.999998, -17.320509, 17.320507, -10.000004)
+script = ExtResource("2_hbmwc")
+outer_vertices = 12
+outer_radius = 20.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
