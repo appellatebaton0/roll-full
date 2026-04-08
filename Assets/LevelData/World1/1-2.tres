@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://pkfsmif755m7"]
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://cgt02gdy7hpp"]
 
-[ext_resource type="PackedScene" uid="uid://de3cgugs7r73f" path="res://Scenes/Levels/World1/1-2.tscn" id="1_n6t0w"]
+[ext_resource type="PackedScene" uid="uid://ep2xoul3ssct" path="res://Scenes/Levels/World1/1-2.tscn" id="1_n6t0w"]
 [ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_dncip"]
 
 [resource]
@@ -8,9 +8,9 @@ script = ExtResource("2_dncip")
 name = "Danger Zone"
 scene = ExtResource("1_n6t0w")
 ranking_maximums = Dictionary[int, float]({
-0: 20.0,
-1: 22.0,
-2: 26.0,
-3: 30.0,
-4: 53.0
+0: 16.0,
+1: 16.5,
+2: 17.0,
+3: 20.0,
+4: 27.0
 })

@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://de3cgugs7r73f"]
+[gd_scene format=3 uid="uid://ep2xoul3ssct"]
 
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_ahayt"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_m3uj5"]
-[ext_resource type="PackedScene" uid="uid://c7qjkmidxi07v" path="res://Scenes/DeathSpikeMedium.tscn" id="3_0wrr3"]
-[ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="4_0r7tg"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="5_4pk5b"]
+[ext_resource type="PackedScene" path="res://Scenes/DeathSpikeMedium.tscn" id="3_0wrr3"]
+[ext_resource type="PackedScene" path="res://Scenes/DeathSpikeLarge.tscn" id="4_0r7tg"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="5_4pk5b"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="6_d87g3"]
-[ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="7_m3uj5"]
+[ext_resource type="PackedScene" path="res://Scenes/DeathSpikeSmall.tscn" id="7_m3uj5"]
 
 [node name="1-2" unique_id=1260259211 instance=ExtResource("1_ahayt")]
 
@@ -23,7 +23,7 @@ height = 2526.0
 
 [node name="Spline2D" type="Line2D" parent="." index="5" unique_id=414618299]
 position = Vector2(-171, 10)
-points = PackedVector2Array(-946, -192, -1189, 424, -914, 2085, 228, 1406, 1189, 1660, 1502, 1444, 1463, 559, 1252, 127, 1922, -334, 2209, -166, 2898, -179, 3251, -390, 3228, 804)
+points = PackedVector2Array(-946, -192, -1189, 424, -914, 2085, 228, 1406, 1189, 1660, 1502, 1444, 1463, 559, 1252, 127, 1922, -334, 2209, -166, 2898, -179, 3251, -390, 3233, 793)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_m3uj5")
@@ -59,19 +59,20 @@ outer_radius = 70.0
 inner_vertices = 24
 inner_radius = 60.0
 
-[node name="Arrow" type="Sprite2D" parent="." index="14" unique_id=530403087]
+[node name="RegularPolygon7" type="Polygon2D" parent="." index="14" unique_id=2783117]
+position = Vector2(3086, 955)
+polygon = PackedVector2Array(160, 0, 154.54813, 41.41105, 138.56406, 80, 113.137085, 113.137085, 79.99999, 138.56407, 41.411053, 154.54813, -6.9938224e-06, 160, -41.41105, 154.54813, -80.00001, 138.56406, -113.137085, 113.137085, -138.56406, 80.00001, -154.54813, 41.41106, -160, -1.3987645e-05, -154.54813, -41.411053, -134, -121, -119, -214, -110, -296, -97, -409, -65, -446, 5, -325, 67, -211, 116, -126, 138.56406, -80.00003, 154.54814, -41.411015)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon7" index="0" unique_id=588905312]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon7/StaticBody2D" index="0" unique_id=1696542123]
+polygon = PackedVector2Array(160, 0, 154.54813, 41.41105, 138.56406, 80, 113.137085, 113.137085, 79.99999, 138.56407, 41.411053, 154.54813, -6.9938224e-06, 160, -41.41105, 154.54813, -80.00001, 138.56406, -113.137085, 113.137085, -138.56406, 80.00001, -154.54813, 41.41106, -160, -1.3987645e-05, -154.54813, -41.411053, -134, -121, -119, -214, -110, -296, -97, -409, -65, -446, 5, -325, 67, -211, 116, -126, 138.56406, -80.00003, 154.54814, -41.411015)
+
+[node name="Arrow" type="Sprite2D" parent="." index="15" unique_id=530403087]
 position = Vector2(1724.9999, -547)
 rotation = -2.681739
 texture = ExtResource("6_d87g3")
-
-[node name="Spline2D5" type="Line2D" parent="." index="15" unique_id=1391114698]
-position = Vector2(3040, 789)
-points = PackedVector2Array(16.97998, 24.869995, 114.97998, 318.87, 100, 666, -169, 492, -670, 916, -444, 133, -229, -6, -72, -133, 6, -318, -170.5, -582)
-width = 40.0
-default_color = Color(0, 0, 0, 0)
-script = ExtResource("2_m3uj5")
-seg = 10.0
-metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D3" type="Line2D" parent="." index="16" unique_id=948670295]
 points = PackedVector2Array(-1400, 635, -1654.0039, -252.17676, -1662.221, -621.93036, -1670, -972, -1633, -1366, -1793, -1531, -2145, -1428, -2460, -1302, -2615, -1563, -2607, -1063, -2478, -728, -2921, -611, -3212, -697, -3648, -608, -3866, -878, -3862, -1311, -4118, -1777, -3804, -2115, -3100, -2088)
