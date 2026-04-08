@@ -8,5 +8,5 @@ func _process(delta: float) -> void:
 		value = move_toward(value, 0, delta)
 	
 	if value >= max_value:
-		Global.reset_level.emit()
+		Global.request_animation.emit("ResetIn")
 		value = 0.0

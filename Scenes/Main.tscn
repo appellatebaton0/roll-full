@@ -7,7 +7,8 @@
 [ext_resource type="Script" uid="uid://c7vjkatrvoyap" path="res://Scripts/UI/LevelPopup.gd" id="2_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://cs5v3fakqrwi7" path="res://Assets/Textures/BlackRing.png" id="3_grg3l"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
-[ext_resource type="Script" path="res://Scripts/Reset.gd" id="5_frkhe"]
+[ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
+[ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
 [ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
 [ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
@@ -559,7 +560,7 @@ script = ExtResource("8_vy5pj")
 [node name="Reset" type="TextureProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1818482585]
 layout_mode = 2
 size_flags_horizontal = 0
-max_value = 1.0
+max_value = 0.6
 step = 0.001
 fill_mode = 4
 texture_under = ExtResource("3_grg3l")
@@ -589,6 +590,14 @@ theme_override_font_sizes/font_size = 32
 text = "  Hold R To Reset"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD" unique_id=175140257]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+text = "0.0u/s"
+script = ExtResource("6_frkhe")
 
 [node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
 layout_mode = 1

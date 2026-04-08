@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 ## Allows a node to snap to surfaces, and grind along them / jump off them.
 ## Best used w/ a circle collider.
 
-const DEBUG := true
+const DEBUG := false
 
 @export var grind_speed := 1000.0
 @export var jump_height := 670.0
@@ -113,7 +113,7 @@ func _physics_process(delta: float) -> void:
 		direction = velocity
 	
 	if sprite:
-		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y / 110))
+		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y * delta))
 	
 	move_and_slide()
 	
