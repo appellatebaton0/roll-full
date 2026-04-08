@@ -65,8 +65,8 @@ rotation = -2.681739
 texture = ExtResource("6_d87g3")
 
 [node name="Spline2D5" type="Line2D" parent="." index="15" unique_id=1391114698]
-position = Vector2(3041, 794)
-points = PackedVector2Array(15, 11, 121, 288, 120, 623, -195, 488, -670, 916, -444, 133, -229, -6, -104, -168, -49, -257, -147, -525)
+position = Vector2(3040, 789)
+points = PackedVector2Array(16.97998, 24.869995, 114.97998, 318.87, 100, 666, -169, 492, -670, 916, -444, 133, -229, -6, -72, -133, 6, -318, -170.5, -582)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_m3uj5")
