@@ -5,6 +5,8 @@ class_name VelocityAmplifier extends Area2D
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	
+	for child in get_children(): if child is RegularPolygon:
+		child.modulate.r = 1.0 - (additor / 80)
 	
 func _on_body_entered(body:Node2D): if body is Player:
 	var direction:Vector2 = body.velocity.normalized()

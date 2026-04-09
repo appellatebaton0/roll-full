@@ -3,30 +3,136 @@
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_760mn"]
 [ext_resource type="PackedScene" uid="uid://c0irskw8rr7gb" path="res://Scenes/VelocityAmplifier.tscn" id="2_x7iu8"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="3_c67ry"]
+[ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="4_1yqm5"]
+[ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="5_iiou0"]
+[ext_resource type="PackedScene" uid="uid://c7qjkmidxi07v" path="res://Scenes/DeathSpikeMedium.tscn" id="6_ffwev"]
+[ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="7_f5f24"]
 
 [node name="World1LevelBase" unique_id=1260259211 instance=ExtResource("1_760mn")]
 
+[node name="Player" parent="." index="1" unique_id=1267848784]
+position = Vector2(-186, -150)
+
 [node name="Goal" parent="." index="3" unique_id=1338618760]
-position = Vector2(0, -293)
+position = Vector2(4324, -1733)
 
 [node name="DeathBorder" parent="." index="4" unique_id=1495088171]
-width = 15000.0
-height = 15000.0
+position = Vector2(2065, -411)
+width = 3309.0
+height = 2173.0
 
 [node name="VelocityAmp" parent="." index="5" unique_id=995167821 instance=ExtResource("2_x7iu8")]
-position = Vector2(286, 162)
-additor = -10.0
+position = Vector2(1994, 162)
+additor = 5.0
 
-[node name="VelocityAmp2" parent="." index="6" unique_id=1922996685 instance=ExtResource("2_x7iu8")]
-position = Vector2(802, 168)
-additor = -10.0
+[node name="VelocityAmp2" parent="." index="6" unique_id=1621264343 instance=ExtResource("2_x7iu8")]
+position = Vector2(2101, -975)
+additor = 20.0
 
-[node name="VelocityAmp3" parent="." index="7" unique_id=1029071437 instance=ExtResource("2_x7iu8")]
-position = Vector2(1470, 168)
-additor = -10.0
+[node name="Spline2D" type="Line2D" parent="." index="7" unique_id=73837100]
+points = PackedVector2Array(-242, -129, -208, 238, -146, 324, 243.90552, 298.94983, 367.66144, 299.68002, 1180.6196, 307.1318, 1998.2595, 314.6266, 2690, 453, 2727, 167, 2692, -152, 2813, -540, 2487, -768, 2202, -1053)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_c67ry")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D" type="Line2D" parent="." index="8" unique_id=73837100]
-points = PackedVector2Array(-256, 296, 367.66144, 299.68002, 1180.6196, 307.1318, 1998.2595, 314.6266, 3088, 959, 3494, -1101, 1995, -806)
+[node name="TimeSlow" type="Node2D" parent="." index="8" unique_id=1302416863]
+position = Vector2(1672, 269)
+script = ExtResource("4_1yqm5")
+easing = 4.0
+metadata/_custom_type_script = "uid://bq5d8130qbdd4"
+
+[node name="TimeSlow2" type="Node2D" parent="." index="9" unique_id=1000416762]
+position = Vector2(2300, -861)
+script = ExtResource("4_1yqm5")
+easing = 4.0
+metadata/_custom_type_script = "uid://bq5d8130qbdd4"
+
+[node name="Label" type="Label" parent="." index="10" unique_id=180981038]
+offset_left = 1391.0
+offset_top = -246.0
+offset_right = 1866.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 80
+text = "Adds to your
+current velocity"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." index="11" unique_id=891421922]
+offset_left = 2292.0
+offset_top = -1259.0
+offset_right = 2767.0
+offset_bottom = -1032.0
+theme_override_font_sizes/font_size = 80
+text = "The more
+green, the
+more it adds."
+horizontal_alignment = 1
+
+[node name="Arrow" type="Sprite2D" parent="." index="12" unique_id=421422445]
+position = Vector2(1891.0001, -16.999949)
+rotation = 1.0192795
+scale = Vector2(0.33640712, 0.33640712)
+texture = ExtResource("5_iiou0")
+
+[node name="Spline2D2" type="Line2D" parent="." index="13" unique_id=616188299]
+position = Vector2(794, -2065)
+points = PackedVector2Array(401, -21, -32, -186, -444, -177, -580, -95, -741, -141, -1294, 163, -1229, 502, -1328.364, 964.00244, -1625, 1545, -1468, 2124, -1664, 2433, -1288, 2837, -827, 2736, -277, 2871, 855.8723, 2778.2832, 1760, 2801, 2102, 2879, 2305, 2756, 2378, 2525, 2438, 2386, 2607, 2255, 2911, 2364, 3361, 2192, 3258, 2592, 3173, 2825)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_c67ry")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D3" type="Line2D" parent="." index="14" unique_id=1641194232]
+position = Vector2(3418, -5)
+points = PackedVector2Array(-239, -1396, -444, -1338, -616, -1191, -626, -919, -818, -738, -1015, 1318, -246.3678, 162.71701, 192, -20, 478, 39, 652, 247, 947, 394, 914, 610, 714, 935, 393, 1139, 634, 1459, 977.87683, 1528.3452, 1247, 1810, 1796, 1704, 1517.3978, 1083.9473, 1516.4408, 885.92664, 1515.0519, 598.62286, 1514, 163)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_c67ry")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="VelocityAmp3" parent="." index="15" unique_id=1845321137 instance=ExtResource("2_x7iu8")]
+position = Vector2(5084, 289)
+additor = 5.0
+
+[node name="VelocityAmp4" parent="." index="16" unique_id=1235321359 instance=ExtResource("2_x7iu8")]
+position = Vector2(4794, 724)
+additor = 5.0
+
+[node name="DeathSpikeMedium" parent="." index="17" unique_id=2139363536 instance=ExtResource("6_ffwev")]
+position = Vector2(2733, 203)
+
+[node name="DeathSpikeMedium2" parent="." index="18" unique_id=1535907648 instance=ExtResource("6_ffwev")]
+position = Vector2(2623, -811)
+
+[node name="Spline2D4" type="Line2D" parent="." index="19" unique_id=1043351215]
+position = Vector2(5244, 668)
+points = PackedVector2Array(-9, 295, -10.997192, 43.920654, -13.597534, -282.97278, -16, -585, 36, -823, -53, -945, -311, -915, -507, -969, -590, -873, -571, -635, -574.27637, -345.03613, -578.02673, -13.13501, -581, 250)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_c67ry")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="DeathSpikeSmall" parent="." index="20" unique_id=1115678551 instance=ExtResource("7_f5f24")]
+position = Vector2(4660, 924)
+
+[node name="DeathSpikeSmall2" parent="." index="21" unique_id=1212598844 instance=ExtResource("7_f5f24")]
+position = Vector2(4928, 147)
+
+[node name="DeathSpikeSmall3" parent="." index="22" unique_id=2116688171 instance=ExtResource("7_f5f24")]
+position = Vector2(5228, 959)
+
+[node name="Spline2D5" type="Line2D" parent="." index="23" unique_id=734634322]
+position = Vector2(2747, -1001)
+points = PackedVector2Array(297, 686, 233, 312, 191, -2, 491, -168, 526, -418, 883, -440, 1215, -521, 1366, -551, 1530, -578, 1795, -575)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_c67ry")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D6" type="Line2D" parent="." index="24" unique_id=880156295]
+position = Vector2(4318, -1232)
+points = PackedVector2Array(-242, -82, -65, 21, 143, 4, 261, -25, 459, -68, 606, -81, 558, -333, 611, -476, 512, -647, 226, -673, 34, -770, -164, -774, -515, -622)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("3_c67ry")
