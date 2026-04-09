@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
 [ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
+[ext_resource type="PackedScene" uid="uid://cecu6hgtphola" path="res://Scenes/Levels/World1/1-5.tscn" id="14_1p5hy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
 bg_color = Color(0, 0, 0, 0.54901963)
@@ -600,6 +601,7 @@ text = "0.0u/s"
 script = ExtResource("6_frkhe")
 
 [node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -709,6 +711,7 @@ text = "BACK"
 libraries/ = SubResource("AnimationLibrary_50glp")
 
 [node name="MainMenu" type="TextureRect" parent="CanvasLayer/UI" unique_id=1586898699]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -787,6 +790,7 @@ patch_margin_right = 64
 axis_stretch_vertical = 1
 
 [node name="Countdown" type="Control" parent="CanvasLayer/UI" unique_id=633146946]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -807,6 +811,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseScreen" type="TextureRect" parent="CanvasLayer/UI" unique_id=143204885]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -843,3 +848,5 @@ color = Color(0, 0, 0, 1)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
 libraries/ = SubResource("AnimationLibrary_pbw6q")
 script = ExtResource("1_r150o")
+
+[node name="World1LevelBase" parent="." unique_id=1260259211 instance=ExtResource("14_1p5hy")]

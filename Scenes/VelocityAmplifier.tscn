@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c0irskw8rr7gb"]
+
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="1_pqp6l"]
+[ext_resource type="Script" uid="uid://bvfbi3qlb3p16" path="res://Scripts/VelocityAmplifier.gd" id="1_spxvq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_spxvq"]
+radius = 128.0
+
+[sub_resource type="Gradient" id="Gradient_j6mvk"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 0, 0.596)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ul3f8"]
+gradient = SubResource("Gradient_j6mvk")
+width = 4
+height = 4
+
+[sub_resource type="Curve" id="Curve_02ay6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1261468, 0.99747175), 0.0, 0.0, 0, 0, Vector2(0.88532114, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3ts1s"]
+curve = SubResource("Curve_02ay6")
+
+[sub_resource type="Curve" id="Curve_sgppe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8348625, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_10qvu"]
+curve = SubResource("Curve_sgppe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_brhyj"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 128.0
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+angular_velocity_min = 163.75998
+angular_velocity_max = 183.51997
+scale_curve = SubResource("CurveTexture_10qvu")
+alpha_curve = SubResource("CurveTexture_3ts1s")
+
+[node name="VelocityAmp" type="Area2D" unique_id=995167821]
+collision_mask = 2
+script = ExtResource("1_spxvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1799321975]
+visible = false
+shape = SubResource("CircleShape2D_spxvq")
+
+[node name="RegularPolygon" type="Polygon2D" parent="." unique_id=1295874372]
+color = Color(1, 1, 0.3671535, 0.47500002)
+polygon = PackedVector2Array(135, 0, 117.377716, 24.949404, 123.328636, 54.909447, 97.08204, 70.534225, 90.33263, 100.324554, 59.999996, 103.92305, 41.717293, 128.39264, 12.54341, 119.34263, -14.111349, 134.26045, -37.082043, 114.12678, -67.50001, 116.91343, -80.295685, 89.177376, -109.2173, 79.351, -109.62546, 48.80839, -132.04993, 28.068068, -120, -1.0490733e-05, -132.04993, -28.068092, -109.62545, -48.808407, -109.217285, -79.35102, -80.29566, -89.17738, -67.499985, -116.91344, -37.08205, -114.12678, -14.111325, -134.26045, 12.543404, -119.34263, 41.71731, -128.39262, 59.99999, -103.92305, 90.33265, -100.32454, 97.08203, -70.53423, 123.32865, -54.909428, 117.37771, -24.949411)
+script = ExtResource("1_pqp6l")
+outer_vertices = 30
+outer_radius = 120.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: 15.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=53169457]
+amount = 92
+texture = SubResource("GradientTexture2D_ul3f8")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_brhyj")

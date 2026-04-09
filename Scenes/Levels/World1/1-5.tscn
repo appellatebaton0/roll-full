@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cecu6hgtphola"]
+
+[ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_760mn"]
+[ext_resource type="PackedScene" uid="uid://c0irskw8rr7gb" path="res://Scenes/VelocityAmplifier.tscn" id="2_x7iu8"]
+[ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="3_c67ry"]
+
+[node name="World1LevelBase" unique_id=1260259211 instance=ExtResource("1_760mn")]
+
+[node name="Goal" parent="." index="3" unique_id=1338618760]
+position = Vector2(0, -293)
+
+[node name="DeathBorder" parent="." index="4" unique_id=1495088171]
+width = 15000.0
+height = 15000.0
+
+[node name="VelocityAmp" parent="." index="5" unique_id=995167821 instance=ExtResource("2_x7iu8")]
+position = Vector2(286, 162)
+additor = -10.0
+
+[node name="VelocityAmp2" parent="." index="6" unique_id=1922996685 instance=ExtResource("2_x7iu8")]
+position = Vector2(802, 168)
+additor = -10.0
+
+[node name="VelocityAmp3" parent="." index="7" unique_id=1029071437 instance=ExtResource("2_x7iu8")]
+position = Vector2(1470, 168)
+additor = -10.0
+
+[node name="Spline2D" type="Line2D" parent="." index="8" unique_id=73837100]
+points = PackedVector2Array(-256, 296, 367.66144, 299.68002, 1180.6196, 307.1318, 1998.2595, 314.6266, 3088, 959, 3494, -1101, 1995, -806)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_c67ry")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"

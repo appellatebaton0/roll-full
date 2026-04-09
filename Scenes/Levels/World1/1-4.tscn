@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dekerl4xn3eol"]
+
+[ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_g8nid"]
+[ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_wt62m"]
+[ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="3_fc1vf"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_xorxi"]
+[ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="5_xorxi"]
+
+[node name="1-4" unique_id=1260259211 instance=ExtResource("1_g8nid")]
+
+[node name="Player" parent="." index="1" unique_id=1267848784]
+position = Vector2(719, 15)
+
+[node name="Goal" parent="." index="3" unique_id=1338618760]
+position = Vector2(2959, -738)
+
+[node name="DeathBorder" parent="." index="4" unique_id=1495088171]
+position = Vector2(2057, 1387)
+width = 2986.0
+height = 3410.0
+
+[node name="Spline2D" type="Line2D" parent="." index="5" unique_id=204338463]
+points = PackedVector2Array(627, 143, 581, 480, 786, 905, 1254, 685, 1663, 617, 1818, 700, 1738, 1137, 1861, 1607, 1658, 1712, 1267, 1635, 316, 1941, -155, 1302, 225, 650, 233.95355, 451.31583, 249.1211, 114.7417, 267, -282)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_wt62m")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D2" type="Line2D" parent="." index="6" unique_id=1217726322]
+position = Vector2(1885, 2286)
+points = PackedVector2Array(-28, -308, -53, 362, -259, 772, -836, 547, -1814, 858, -1808, 128, -1710, -438)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_wt62m")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D3" type="Line2D" parent="." index="7" unique_id=289766633]
+position = Vector2(-163, 108)
+points = PackedVector2Array(17, 737, 53, 141, 83.924805, -371.30505, 108, -770, 5, -1292, 310, -1626, 826, -1480, 1274.2097, -1481.0808, 1703.2397, -1482.1152, 2070, -1483, 2464, -1762, 3129, -1276, 2717, -883, 2474.4229, 542.4437, 2337.3472, 1347.9352, 2119, 2631)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_wt62m")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D4" type="Line2D" parent="." index="8" unique_id=1244114987]
+position = Vector2(664, 3191)
+points = PackedVector2Array(625, -136, 303, -174, -130.7417, -191.95764, -577, -225, -1143, -477, -1234, -64, -1161, 296, -1343, 684, -982.1832, 713.5752, -489, 754, 84, 767, 1054.3896, 774.3386, 1803, 780, 2628, 756, 3067, 689, 2704, 38, 2714, -408, 2372, -501, 1707, -259)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_wt62m")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="DeathSpikeSmall" parent="." index="9" unique_id=2139363536 instance=ExtResource("3_fc1vf")]
+position = Vector2(1959, 2744)
+
+[node name="DeathSpikeSmall2" parent="." index="10" unique_id=558942086 instance=ExtResource("3_fc1vf")]
+position = Vector2(2364, 2937)
+
+[node name="RegularPolygon" type="Polygon2D" parent="." index="11" unique_id=657004748]
+position = Vector2(2580, 2372)
+polygon = PackedVector2Array(350, 0, 348.08267, 36.58496, 342.35165, 72.7691, 332.86978, 108.15595, 319.7409, 142.35782, 303.1089, 175, 283.15594, 205.72484, 260.10068, 234.19572, 234.1957, 260.1007, 205.72484, 283.15594, 174.99998, 303.10892, 142.35782, 319.74094, 108.15594, 332.86978, 72.76908, 342.35165, 36.584946, 348.08267, -1.5298985e-05, 350, -36.58498, 348.08267, -72.76911, 342.35165, -108.15596, 332.86978, -142.35785, 319.7409, -175.00002, 303.1089, -205.72481, 283.15594, -234.19574, 260.10068, -260.10068, 234.19572, -283.15598, 205.72481, -303.1089, 175.00002, -319.74094, 142.3578, -332.86978, 108.15596, -342.35165, 72.769066, -348.08267, 36.584972, -350, -3.059797e-05, -348.08267, -36.584953, -342.35165, -72.76913, -332.86978, -108.15594, -319.7409, -142.35785, -303.1089, -174.99998, -283.15594, -205.72488, -260.10068, -234.19572, -234.19568, -260.1007, -205.72478, -283.156, -174.99997, -303.10892, -142.35782, -319.7409, -108.15598, -332.86978, -72.76917, -342.35165, -36.58492, -348.08267, 4.173708e-06, -350, 36.584927, -348.08267, 72.76902, -342.35165, 108.15599, -332.86978, 142.35783, -319.7409, 174.99997, -303.10892, 205.72478, -283.156, 234.19576, -260.10068, 260.1007, -234.1957, 283.15594, -205.72485, 303.10886, -175.00006, 319.74094, -142.35777, 332.86978, -108.15593, 342.35165, -72.76912, 348.08264, -36.58503)
+script = ExtResource("4_xorxi")
+outer_vertices = 60
+outer_radius = 350.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon" index="0" unique_id=1378811825]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon/StaticBody2D" index="0" unique_id=540707745]
+polygon = PackedVector2Array(350, 0, 348.08267, 36.58496, 342.35165, 72.7691, 332.86978, 108.15595, 319.7409, 142.35782, 303.1089, 175, 283.15594, 205.72484, 260.10068, 234.19572, 234.1957, 260.1007, 205.72484, 283.15594, 174.99998, 303.10892, 142.35782, 319.74094, 108.15594, 332.86978, 72.76908, 342.35165, 36.584946, 348.08267, -1.5298985e-05, 350, -36.58498, 348.08267, -72.76911, 342.35165, -108.15596, 332.86978, -142.35785, 319.7409, -175.00002, 303.1089, -205.72481, 283.15594, -234.19574, 260.10068, -260.10068, 234.19572, -283.15598, 205.72481, -303.1089, 175.00002, -319.74094, 142.3578, -332.86978, 108.15596, -342.35165, 72.769066, -348.08267, 36.584972, -350, -3.059797e-05, -348.08267, -36.584953, -342.35165, -72.76913, -332.86978, -108.15594, -319.7409, -142.35785, -303.1089, -174.99998, -283.15594, -205.72488, -260.10068, -234.19572, -234.19568, -260.1007, -205.72478, -283.156, -174.99997, -303.10892, -142.35782, -319.7409, -108.15598, -332.86978, -72.76917, -342.35165, -36.58492, -348.08267, 4.173708e-06, -350, 36.584927, -348.08267, 72.76902, -342.35165, 108.15599, -332.86978, 142.35783, -319.7409, 174.99997, -303.10892, 205.72478, -283.156, 234.19576, -260.10068, 260.1007, -234.1957, 283.15594, -205.72485, 303.10886, -175.00006, 319.74094, -142.35777, 332.86978, -108.15593, 342.35165, -72.76912, 348.08264, -36.58503)
+
+[node name="Spline2D5" type="Line2D" parent="." index="12" unique_id=921044961]
+position = Vector2(2685, 1835)
+points = PackedVector2Array(1498, -138, 935.8331, -82.92053, 491.53455, -39.389404, 92, -1, -290, 319, -302, -209, -196, -429, -149.54224, -634.69354, -103.67639, -837.7662, -58, -1040, -136, -1320, 129, -1311, 487, -1313, 877.678, -1306.3091, 1241.8334, -1300.0723, 1538, -1295)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_wt62m")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="DeathSpikeLarge" parent="." index="13" unique_id=297431826 instance=ExtResource("5_xorxi")]
+position = Vector2(2660, 81)
+
+[node name="DeathSpikeLarge2" parent="." index="14" unique_id=1311388473 instance=ExtResource("5_xorxi")]
+position = Vector2(3759, 2351)
+
+[node name="Spline2D6" type="Line2D" parent="." index="15" unique_id=1682404539]
+position = Vector2(4544, 2800)
+points = PackedVector2Array(-583, -280, -271, -117, 228, -194, -4.753174, -604.3821, 82, -1487, 38.938477, -2340.1423, -37, -3437)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_wt62m")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D7" type="Line2D" parent="." index="16" unique_id=1123757639]
+points = PackedVector2Array(4204, -924, 3767.1133, -925.8751, 3272, -928, 2895, -928)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_wt62m")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="DeathSpikeSmall3" parent="." index="17" unique_id=231578530 instance=ExtResource("3_fc1vf")]
+position = Vector2(-238, 785)
