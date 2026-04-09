@@ -1,6 +1,6 @@
 class_name VelocityAmplifier extends Area2D
 
-@export var additor := 40.0
+@export var additor := 4.0
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)

@@ -35,7 +35,7 @@ height = 2048
 [node name="Parallax2D" type="Parallax2D" parent="." index="0" unique_id=882957438]
 scroll_scale = Vector2(0.8, 0.8)
 repeat_size = Vector2(2048, 2048)
-repeat_times = 6
+repeat_times = 10
 script = SubResource("GDScript_hjvo4")
 metadata/_edit_lock_ = true
 

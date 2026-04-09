@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_ahayt"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_m3uj5"]
-[ext_resource type="PackedScene" path="res://Scenes/DeathSpikeMedium.tscn" id="3_0wrr3"]
-[ext_resource type="PackedScene" path="res://Scenes/DeathSpikeLarge.tscn" id="4_0r7tg"]
+[ext_resource type="PackedScene" uid="uid://c7qjkmidxi07v" path="res://Scenes/DeathSpikeMedium.tscn" id="3_0wrr3"]
+[ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="4_0r7tg"]
 [ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="5_4pk5b"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="6_d87g3"]
-[ext_resource type="PackedScene" path="res://Scenes/DeathSpikeSmall.tscn" id="7_m3uj5"]
+[ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="7_m3uj5"]
 
 [node name="1-2" unique_id=1260259211 instance=ExtResource("1_ahayt")]
 

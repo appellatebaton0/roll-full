@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://dekerl4xn3eol"]
+[gd_scene format=3 uid="uid://dmjq0s8cp0u30"]
 
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_g8nid"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_wt62m"]
 [ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="3_fc1vf"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_xorxi"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="4_xorxi"]
 [ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="5_xorxi"]
 
 [node name="1-4" unique_id=1260259211 instance=ExtResource("1_g8nid")]
@@ -62,7 +62,6 @@ polygon = PackedVector2Array(350, 0, 348.08267, 36.58496, 342.35165, 72.7691, 33
 script = ExtResource("4_xorxi")
 outer_vertices = 60
 outer_radius = 350.0
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon" index="0" unique_id=1378811825]
 collision_mask = 2

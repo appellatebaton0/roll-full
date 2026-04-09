@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dy5k0clx7rjxm"]
+
+[ext_resource type="PackedScene" uid="uid://dpbfq5sfrqh4b" path="res://Scenes/Levels/World1/1-6.tscn" id="1_8hqcy"]
+[ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_3sjok"]
+
+[resource]
+script = ExtResource("2_3sjok")
+name = "Roundabout"
+scene = ExtResource("1_8hqcy")
+ranking_maximums = Dictionary[int, float]({
+0: 14.1,
+1: 14.3,
+2: 15.0,
+3: 19.0,
+4: 21.0
+})
