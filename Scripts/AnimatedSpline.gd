@@ -15,24 +15,29 @@ func _ready() -> void:
 	regenerate_sample()
 	queue_redraw()
 	
+	
+	
 	## Create the collision nodes.
 	fabricate_collision()
-	if Engine.is_editor_hint():
-		fabricate_animator()
-	else:
+	
+	## Set up the animator.
+	if not animator: animator = find_animator()
+	if not animator and Engine.is_editor_hint(): fabricate_animator()
+	
+	if not animator.animation_finished.is_connected(_on_animation_finished):
+		animator.animation_finished.connect(_on_animation_finished)
+	if not animator.get_parent():
+		add_child(animator)
+	
+	if animator:
+		## Connect the signal and add the child, since those apparently get ruined.
+		if not animator.animation_finished.is_connected(_on_animation_finished):
+			animator.animation_finished.connect(_on_animation_finished)
+		if not animator.get_parent():
+			add_child(animator)
 		
-		if not animator: animator = find_animator()
-		
-		if animator:
-		
-			## Connect the signal and add the child, since those apparently get ruined.
-			if not animator.animation_finished.is_connected(_on_animation_finished):
-				animator.animation_finished.connect(_on_animation_finished)
-			if not animator.get_parent():
-				add_child(animator)
-			
-			Global.reset_level.connect(_on_reset)
-			_on_reset()
+		if not Engine.is_editor_hint(): Global.reset_level.connect(_on_reset)
+		_on_reset()
 
 func _draw() -> void: draw_polygon(sample_mesh, [color])
 func _process(_delta: float) -> void: if points != last_points: 
