@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_k5w1j"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_qc2uk"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="3_efpia"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="3_efpia"]
 [ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="4_efpia"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="5_vprnh"]
 [ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="6_vprnh"]

@@ -27,19 +27,9 @@ var sample_mesh:Array[Vector2]
 		generate()
 
 #@export_tool_button("GenerateShape") var gen := generate
-func generate(): if collision_mesh: 
-	#if Engine.is_editor_hint():
-		#var unre := EditorInterface.get_editor_undo_redo()
-		#var new_mesh := regenerate_mesh()
-		#
-		#unre.create_action("Bake Collision Polygon")
-		#unre.add_do_property(collision_mesh, "polygon", new_mesh)
-		##unre.add_undo_property(collision_mesh, "polygon", collision_mesh.polygon)
-		#unre.commit_action()
-	#else:
-	collision_mesh.polygon = regenerate_mesh()
+func generate(): if collision_mesh:  collision_mesh.polygon = regenerate_mesh()
 
-func _draw() -> void: if Engine.is_editor_hint(): draw_polygon(sample_mesh, [color])
+func _draw() -> void: if Engine.is_editor_hint() and len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
 
 func _ready() -> void: 
 	default_color = Color(0,0,0,0)
@@ -56,11 +46,10 @@ func _ready() -> void:
 	fabricate_collision()
 
 ## Update whenever anything changes.
-var last_points
+var last_points:PackedVector2Array
 func _process(_delta: float) -> void: if points != last_points: 
 		
 	regenerate_sample()
-	queue_redraw()
 	generate()
 	
 	last_points = points

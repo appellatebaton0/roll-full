@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_gbbuh"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_j24j6"]
 [ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="3_fnxhk"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="4_fnxhk"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_fnxhk"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="5_kebnn"]
 
 [node name="1" unique_id=1260259211 instance=ExtResource("1_gbbuh")]

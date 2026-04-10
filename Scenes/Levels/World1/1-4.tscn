@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_g8nid"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_wt62m"]
 [ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="3_fc1vf"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="4_xorxi"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_xorxi"]
 [ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="5_xorxi"]
 
 [node name="1-4" unique_id=1260259211 instance=ExtResource("1_g8nid")]

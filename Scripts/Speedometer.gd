@@ -1,6 +1,6 @@
 class_name Speedometer extends Label
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var player:Player = get_tree().get_first_node_in_group("Player")
 	if player:
 		var speed = (floor(player.velocity.distance_to(Vector2.ZERO)) / 100)
