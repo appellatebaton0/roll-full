@@ -1,0 +1,277 @@
+[gd_scene format=3 uid="uid://chu2nfrue1tkn"]
+
+[ext_resource type="PackedScene" uid="uid://c2dsahyg54qxj" path="res://Scenes/Levels/World2LevelBase.tscn" id="1_ndq4r"]
+[ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_24hlk"]
+[ext_resource type="Script" uid="uid://s8a4ubcxsm22" path="res://Scripts/AnimatedSpline.gd" id="3_dfau1"]
+[ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="4_1qt3i"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="5_jwdga"]
+[ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="6_jwdga"]
+
+[sub_resource type="Animation" id="Animation_24hlk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(11, 10, 25.96814, -318.02734, 48.917603, -820.96985, 70, -1283)]
+}
+
+[sub_resource type="Animation" id="Animation_dfau1"]
+resource_name = "new_animation"
+length = 50.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.375, 3.8, 5, 5.6666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(11, 10, 25.96814, -318.02734, 48.917603, -820.96985, 70, -1283), PackedVector2Array(11, 10, 25.96814, -318.02734, 48.917603, -820.96985, 70, -1283), PackedVector2Array(3125, -1962, 1841, -1962, 496, -1973, 70, -1991), PackedVector2Array(3125, -1962, 1841, -1962, 496, -1973, 70, -1991), PackedVector2Array(3109, -1962, 3121, -975, 3162, -200, 3159, 305, 2521, 1294, 3831, 1081, 4151, 627)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qt3i"]
+_data = {
+&"RESET": SubResource("Animation_24hlk"),
+&"new_animation": SubResource("Animation_dfau1")
+}
+
+[sub_resource type="Animation" id="Animation_jwdga"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(37, 150, 35.20276, -384.3634, 32.691406, -819, 33, -1306)]
+}
+
+[sub_resource type="Animation" id="Animation_2gobw"]
+resource_name = "new_animation"
+length = 50.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9.414532, 9.6145315, 10.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(37, 375, 35.20276, -116, 32.691406, -819, 33, -1306), PackedVector2Array(37, 375, 35.20276, -116, 32.691406, -819, 33, -1306), PackedVector2Array(37, 375, 35.20276, -116, 32.691406, -819, 33, -1306), PackedVector2Array(37, -800, 32.21405, -1020.83984, 30, -1123, 33, -1418, 6, -1918, 119, -2178, 706, -2169, 984, -2261, 1300, -2219, 1249, -1895)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_susfy"]
+_data = {
+&"RESET": SubResource("Animation_jwdga"),
+&"new_animation": SubResource("Animation_2gobw")
+}
+
+[sub_resource type="Animation" id="Animation_mcvjb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(47, -1442, 65.38867, -1039.0518, 91, -385, 116, 70)]
+}
+
+[sub_resource type="Animation" id="Animation_bc37h"]
+resource_name = "new_animation"
+length = 50.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:points")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10.366667, 10.6, 11.066667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(47, -1442, 65.38867, -1039.0518, 91, -385, 116, 70), PackedVector2Array(47, -1442, 65.38867, -1039.0518, 91, -385, 116, 70), PackedVector2Array(47, -1442, 65.38867, -1039.0518, 91, -385, 116, 70), PackedVector2Array(47, -1442, 143, -851, 91, -385, 1540, -660)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u1bd6"]
+_data = {
+&"RESET": SubResource("Animation_mcvjb"),
+&"new_animation": SubResource("Animation_bc37h")
+}
+
+[node name="2-1" unique_id=1260259211 instance=ExtResource("1_ndq4r")]
+
+[node name="GearPolygon" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="1" unique_id=756961456]
+rotation = 1581.19
+
+[node name="GearPolygon2" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="2" unique_id=113240054]
+rotation = -700.0782
+
+[node name="GearPolygon5" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="3" unique_id=1974313286]
+rotation = 971.1382
+
+[node name="GearPolygon6" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="4" unique_id=277630478]
+rotation = 969.53723
+
+[node name="GearPolygon7" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="5" unique_id=885158201]
+rotation = -808.8504
+
+[node name="GearPolygon4" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="6" unique_id=1311450805]
+rotation = -706.3125
+
+[node name="GearPolygon3" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="7" unique_id=758807519]
+rotation = 543.05286
+
+[node name="Goal" parent="." index="3" unique_id=1338618760]
+position = Vector2(7029, -3751)
+
+[node name="DeathBorder" parent="." index="4" unique_id=1495088171]
+position = Vector2(4435, 0)
+
+[node name="Spline2D" type="Line2D" parent="." index="5" unique_id=777500613]
+points = PackedVector2Array(-115, -58, -24, 445, 410, 592, 755, 511, 1768.6091, 512.6489, 2208.304, 514.5741, 2613, 517)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_24hlk")
+color = Color(0.78431374, 0.78431374, 0.8, 1)
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D2" type="Line2D" parent="." index="6" unique_id=497957504]
+position = Vector2(2481, -119)
+points = PackedVector2Array(51, 61, 102, -430, 164, -1134, 227, -1766, -294, -2648, 909, -2756, 1209, -2290, 1757, -2089, 2023, -1983, 2235.616, -2048.8096, 2499, -2055, 2813.6353, -2040.8788, 3630, -2035.0752, 3867, -2201, 4435, -1800, 4216, -1510, 4220.6396, -1026, 4225.6655, -430.2339, 4229, -35)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_24hlk")
+color = Color(0.78431374, 0.78431374, 0.8, 1)
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="AnimatedSpline2D" type="Line2D" parent="." index="7" unique_id=2130287266]
+position = Vector2(3068, 337)
+points = PackedVector2Array(11, 10, 25.96814, -318.02734, 48.917603, -820.96985, 70, -1283)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_dfau1")
+animator = Object(AnimationPlayer,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"root_motion_local":false,"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"callback_mode_discrete":1,"libraries/":SubResource("AnimationLibrary_1qt3i"),"autoplay":&"","playback_auto_capture":true,"playback_auto_capture_duration":-1.0,"playback_auto_capture_transition_type":0,"playback_auto_capture_ease_type":0,"playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
+
+color = Color(0.78431374, 0.78431374, 0.8, 1)
+metadata/_custom_type_script = "uid://s8a4ubcxsm22"
+
+[node name="Player" type="AnimationPlayer" parent="AnimatedSpline2D" index="1" unique_id=617153446]
+libraries/ = SubResource("AnimationLibrary_1qt3i")
+
+[node name="Arrow" type="Sprite2D" parent="." index="8" unique_id=618671826]
+position = Vector2(2769.0002, 229)
+rotation = -0.703718
+scale = Vector2(0.71671325, 0.71671325)
+texture = ExtResource("4_1qt3i")
+
+[node name="Arrow2" type="Sprite2D" parent="." index="9" unique_id=765404452]
+position = Vector2(2836, -367.99997)
+rotation = -2.256192
+scale = Vector2(0.71671325, 0.71671325)
+texture = ExtResource("4_1qt3i")
+
+[node name="RegularPolygon5" type="Polygon2D" parent="." index="10" unique_id=1129702499]
+position = Vector2(3027, -67.00008)
+rotation = 0.82568717
+scale = Vector2(0.71671325, 0.71671325)
+polygon = PackedVector2Array(70, 0, 67.61481, 18.117332, 60.621777, 35, 49.497475, 49.497475, 34.999996, 60.62178, 18.117334, 67.61481, -3.059797e-06, 70, -18.117332, 67.61481, -35.000004, 60.621777, -49.497475, 49.497475, -60.621777, 35.000004, -67.61481, 18.11734, -70, -6.119594e-06, -67.61481, -18.117334, -60.621777, -34.999996, -49.49748, -49.49747, -34.999992, -60.62178, -18.117329, -67.614815, 8.347416e-07, -70, 18.11733, -67.61481, 34.999992, -60.62178, 49.497467, -49.497482, 60.621773, -35.00001, 67.614815, -18.11732, 70, 0, 60, 0, 57.95555, -15.52913, 51.96152, -30.000011, 42.4264, -42.426414, 29.999994, -51.961525, 15.52914, -57.955547, 7.1549283e-07, -60, -15.529139, -57.95555, -29.999994, -51.961525, -42.42641, -42.426403, -51.961525, -29.999998, -57.955547, -15.529144, -60, -5.2453665e-06, -57.955547, 15.529148, -51.961525, 30.000004, -42.426407, 42.426407, -30.000004, 51.961525, -15.529142, 57.955547, -2.6226833e-06, 60, 15.529144, 57.955547, 29.999998, 51.961525, 42.426407, 42.426407, 51.961525, 30, 57.955547, 15.529142, 60, 0)
+script = ExtResource("5_jwdga")
+outer_vertices = 24
+outer_radius = 70.0
+inner_vertices = 24
+inner_radius = 60.0
+
+[node name="Arrow3" type="Sprite2D" parent="." index="11" unique_id=700839220]
+position = Vector2(3878, -2195.9998)
+rotation = 0.82568717
+scale = Vector2(0.71671325, 0.71671325)
+texture = ExtResource("4_1qt3i")
+
+[node name="Arrow4" type="Sprite2D" parent="." index="12" unique_id=33296863]
+position = Vector2(6727.001, -2419)
+rotation = 2.653522
+scale = Vector2(0.71671325, 0.71671325)
+texture = ExtResource("4_1qt3i")
+
+[node name="Arrow5" type="Sprite2D" parent="." index="13" unique_id=1593561330]
+position = Vector2(7448, 490.00024)
+rotation = 5.4663935
+scale = Vector2(0.71671325, 0.71671325)
+texture = ExtResource("4_1qt3i")
+
+[node name="DeathSpikeLarge" parent="." index="14" unique_id=2139363536 instance=ExtResource("6_jwdga")]
+position = Vector2(4835, -2165)
+
+[node name="RegularPolygon3" type="Polygon2D" parent="." index="15" unique_id=1917119356]
+position = Vector2(7269, -1813)
+color = Color(0.78431374, 0.78431374, 0.8, 1)
+polygon = PackedVector2Array(350, 0, 348.08267, 36.58496, 342.35165, 72.7691, 332.86978, 108.15595, 319.7409, 142.35782, 303.1089, 175, 283.15594, 205.72484, 260.10068, 234.19572, 234.1957, 260.1007, 205.72484, 283.15594, 174.99998, 303.10892, 142.35782, 319.74094, 108.15594, 332.86978, 72.76908, 342.35165, 36.584946, 348.08267, -1.5298985e-05, 350, -36.58498, 348.08267, -72.76911, 342.35165, -108.15596, 332.86978, -142.35785, 319.7409, -175.00002, 303.1089, -205.72481, 283.15594, -234.19574, 260.10068, -260.10068, 234.19572, -283.15598, 205.72481, -303.1089, 175.00002, -319.74094, 142.3578, -332.86978, 108.15596, -342.35165, 72.769066, -348.08267, 36.584972, -350, -3.059797e-05, -348.08267, -36.584953, -342.35165, -72.76913, -332.86978, -108.15594, -319.7409, -142.35785, -303.1089, -174.99998, -283.15594, -205.72488, -260.10068, -234.19572, -234.19568, -260.1007, -205.72478, -283.156, -174.99997, -303.10892, -142.35782, -319.7409, -108.15598, -332.86978, -72.76917, -342.35165, -36.58492, -348.08267, 4.173708e-06, -350, 36.584927, -348.08267, 72.76902, -342.35165, 108.15599, -332.86978, 142.35783, -319.7409, 174.99997, -303.10892, 205.72478, -283.156, 234.19576, -260.10068, 260.1007, -234.1957, 283.15594, -205.72485, 303.10886, -175.00006, 319.74094, -142.35777, 332.86978, -108.15593, 342.35165, -72.76912, 348.08264, -36.58503)
+script = ExtResource("5_jwdga")
+outer_vertices = 60
+outer_radius = 350.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon3" index="0" unique_id=779679068]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon3/StaticBody2D" index="0" unique_id=1630101183]
+polygon = PackedVector2Array(350, 0, 348.08267, 36.58496, 342.35165, 72.7691, 332.86978, 108.15595, 319.7409, 142.35782, 303.1089, 175, 283.15594, 205.72484, 260.10068, 234.19572, 234.1957, 260.1007, 205.72484, 283.15594, 174.99998, 303.10892, 142.35782, 319.74094, 108.15594, 332.86978, 72.76908, 342.35165, 36.584946, 348.08267, -1.5298985e-05, 350, -36.58498, 348.08267, -72.76911, 342.35165, -108.15596, 332.86978, -142.35785, 319.7409, -175.00002, 303.1089, -205.72481, 283.15594, -234.19574, 260.10068, -260.10068, 234.19572, -283.15598, 205.72481, -303.1089, 175.00002, -319.74094, 142.3578, -332.86978, 108.15596, -342.35165, 72.769066, -348.08267, 36.584972, -350, -3.059797e-05, -348.08267, -36.584953, -342.35165, -72.76913, -332.86978, -108.15594, -319.7409, -142.35785, -303.1089, -174.99998, -283.15594, -205.72488, -260.10068, -234.19572, -234.19568, -260.1007, -205.72478, -283.156, -174.99997, -303.10892, -142.35782, -319.7409, -108.15598, -332.86978, -72.76917, -342.35165, -36.58492, -348.08267, 4.173708e-06, -350, 36.584927, -348.08267, 72.76902, -342.35165, 108.15599, -332.86978, 142.35783, -319.7409, 174.99997, -303.10892, 205.72478, -283.156, 234.19576, -260.10068, 260.1007, -234.1957, 283.15594, -205.72485, 303.10886, -175.00006, 319.74094, -142.35777, 332.86978, -108.15593, 342.35165, -72.76912, 348.08264, -36.58503)
+
+[node name="Spline2D3" type="Line2D" parent="." index="16" unique_id=1584237371]
+position = Vector2(7048, 780)
+points = PackedVector2Array(737, 182, 732.12354, -477.47974, 720.0469, -2110.9053, 716.6526, -3063.017, 935, -3511, 511, -3409, 44, -3399)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_24hlk")
+color = Color(0.78431374, 0.78431374, 0.8, 1)
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="DeathSpikeLarge2" parent="." index="17" unique_id=1063357608 instance=ExtResource("6_jwdga")]
+position = Vector2(2317, -292)
+
+[node name="AnimatedSpline2D2" type="Line2D" parent="." index="18" unique_id=1608508096]
+position = Vector2(4787, -2674)
+points = PackedVector2Array(37, 150, 35.20276, -384.3634, 32.691406, -819, 33, -1306)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_dfau1")
+animator = Object(AnimationPlayer,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"root_motion_local":false,"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"callback_mode_discrete":1,"libraries/":SubResource("AnimationLibrary_susfy"),"autoplay":&"","playback_auto_capture":true,"playback_auto_capture_duration":-1.0,"playback_auto_capture_transition_type":0,"playback_auto_capture_ease_type":0,"playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
+
+color = Color(0.78431374, 0.78431374, 0.8, 1)
+metadata/_custom_type_script = "uid://s8a4ubcxsm22"
+
+[node name="Player" type="AnimationPlayer" parent="AnimatedSpline2D2" index="1" unique_id=936914854]
+libraries/ = SubResource("AnimationLibrary_susfy")
+
+[node name="AnimatedSpline2D3" type="Line2D" parent="." index="19" unique_id=725328684]
+position = Vector2(5448, -2905)
+points = PackedVector2Array(47, -1442, 65.38867, -1039.0518, 91, -385, 116, 70)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("3_dfau1")
+animator = Object(AnimationPlayer,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"root_motion_local":false,"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"callback_mode_discrete":1,"libraries/":SubResource("AnimationLibrary_u1bd6"),"autoplay":&"","playback_auto_capture":true,"playback_auto_capture_duration":-1.0,"playback_auto_capture_transition_type":0,"playback_auto_capture_ease_type":0,"playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
+
+color = Color(0.78431374, 0.78431374, 0.8, 1)
+metadata/_custom_type_script = "uid://s8a4ubcxsm22"
+
+[node name="Player" type="AnimationPlayer" parent="AnimatedSpline2D3" index="1" unique_id=1796944151]
+libraries/ = SubResource("AnimationLibrary_u1bd6")

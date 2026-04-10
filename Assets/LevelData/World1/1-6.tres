@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_3sjok")
-name = "Roundabout"
+name = "Current"
 scene = ExtResource("1_8hqcy")
 ranking_maximums = Dictionary[int, float]({
 0: 14.1,

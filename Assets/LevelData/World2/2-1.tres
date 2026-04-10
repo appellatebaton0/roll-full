@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://d2ngsu0b8nk1v"]
+
+[ext_resource type="PackedScene" uid="uid://chu2nfrue1tkn" path="res://Scenes/Levels/World2/2-1.tscn" id="1_4uxh5"]
+[ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_cjkkd"]
+
+[resource]
+script = ExtResource("2_cjkkd")
+name = "Interpolation"
+scene = ExtResource("1_4uxh5")
+ranking_maximums = Dictionary[int, float]({
+0: 13.5,
+1: 15.0,
+2: 20.0,
+3: 25.0,
+4: 35.0
+})

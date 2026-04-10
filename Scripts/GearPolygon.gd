@@ -29,7 +29,16 @@ class_name GearPolygon extends Polygon2D
 		inner_radius = to
 		generate()
 
+@export var rotation_speed := 0.0
+
 func _ready() -> void: generate()
+
+# S P I N
+func _process(delta: float) -> void: if rotation_speed != 0: 
+	rotate(deg_to_rad(rotation_speed) * delta)
+	
+	# Clamp within 360*, so we don't get rotations in the thousands.
+	rotation = wrap(rotation, 0.0, 2 * PI)
 
 func generate():
 	
