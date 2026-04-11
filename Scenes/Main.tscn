@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
 [ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
+[ext_resource type="PackedScene" uid="uid://cvrg0ty56qcuc" path="res://Scenes/Levels/World2/2-2.tscn" id="14_1p5hy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
 bg_color = Color(0, 0, 0, 0.54901963)
@@ -843,3 +844,5 @@ color = Color(0, 0, 0, 1)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
 libraries/ = SubResource("AnimationLibrary_pbw6q")
 script = ExtResource("1_r150o")
+
+[node name="World2LevelBase" parent="." unique_id=1260259211 instance=ExtResource("14_1p5hy")]
