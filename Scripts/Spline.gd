@@ -136,29 +136,29 @@ func regenerate_mesh() -> Array[Vector2]:
 func fabricate_collision() -> void:
 	if not collision_mesh:
 		
-		if Engine.is_editor_hint():
-			var unre := EditorInterface.get_editor_undo_redo()
-			unre.create_action("Fabricate Collision")
-			
-			var static_body := StaticBody2D.new()
-			var new_collider = CollisionPolygon2D.new()
-			new_collider.z_index = -1
-			
-			unre.add_do_method(self, "add_child", static_body)
-			unre.add_undo_method(self, "remove_child", static_body)
-			
-			unre.add_do_method(static_body, "add_child", new_collider)
-			unre.add_undo_method(static_body, "remove_child", new_collider)
-			
-			unre.add_do_property(static_body, "collision_layer", collision_layer)
-			unre.add_do_property(static_body, "collision_mask", collision_mask)
-			
-			unre.add_do_property(self, "collision_mesh", new_collider)
-			unre.add_undo_property(self, "collision_mesh", collision_mesh)
-			
-			unre.commit_action()
-			
-		else:
+		#if Engine.is_editor_hint():
+			#var unre := EditorInterface.get_editor_undo_redo()
+			#unre.create_action("Fabricate Collision")
+			#
+			#var static_body := StaticBody2D.new()
+			#var new_collider = CollisionPolygon2D.new()
+			#new_collider.z_index = -1
+			#
+			#unre.add_do_method(self, "add_child", static_body)
+			#unre.add_undo_method(self, "remove_child", static_body)
+			#
+			#unre.add_do_method(static_body, "add_child", new_collider)
+			#unre.add_undo_method(static_body, "remove_child", new_collider)
+			#
+			#unre.add_do_property(static_body, "collision_layer", collision_layer)
+			#unre.add_do_property(static_body, "collision_mask", collision_mask)
+			#
+			#unre.add_do_property(self, "collision_mesh", new_collider)
+			#unre.add_undo_property(self, "collision_mesh", collision_mesh)
+			#
+			#unre.commit_action()
+			#
+		#else:
 			
 			var static_body := StaticBody2D.new()
 			collision_mesh = CollisionPolygon2D.new()

@@ -96,6 +96,8 @@ func get_screen_scenes() -> Array[PackedScene]:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
+			## REMAPN'T
+			file_name = file_name.replace(".remap", "")
 			if not dir.current_is_dir():
 				file_names.append(screen_dir + "/" + file_name)
 			file_name = dir.get_next()
