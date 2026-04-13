@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/Player.gd" id="1_rpqav"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="3_gntrk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5732"]
 radius = 32.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "ray_node") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "pointer", "joy", "ray_node") groups=["Player"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 13
@@ -16,10 +17,31 @@ script = ExtResource("1_rpqav")
 grind_speed = 2000.0
 jump_height = 4.2
 stick_force = 300.0
-sprite = NodePath("Sprite")
+sprite = NodePath("Bearing")
+pointer = NodePath("Pointer")
+joy = NodePath("")
 ray_node = NodePath("RayCast2D")
 ray_distance = 140.0
 ray_fallback = 1.4
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1972560634]
+position = Vector2(0, -5)
+polygon = PackedVector2Array(0, 0, -40, -40, -50, -120, 50, -120, 40, -40)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=2072868802]
+position = Vector2(5, 0)
+rotation = 1.5707964
+polygon = PackedVector2Array(0, 0, -40, -40, -50, -120, 50, -120, 40, -40)
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1566669671]
+position = Vector2(0, 5)
+rotation = -3.1415925
+polygon = PackedVector2Array(0, 0, -40, -40, -50, -120, 50, -120, 40, -40)
+
+[node name="Polygon2D4" type="Polygon2D" parent="." unique_id=127754094]
+position = Vector2(-5, 0)
+rotation = -1.5707964
+polygon = PackedVector2Array(0, 0, -40, -40, -50, -120, 50, -120, 40, -40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=929644173]
 shape = SubResource("CircleShape2D_a5732")
@@ -27,36 +49,39 @@ shape = SubResource("CircleShape2D_a5732")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1614047959]
 target_position = Vector2(0, -1)
 
-[node name="Sprite" type="Node2D" parent="." unique_id=1727747307]
+[node name="Pointer" type="Sprite2D" parent="." unique_id=1631365984]
+scale = Vector2(0.2856368, 0.2856368)
+texture = ExtResource("3_gntrk")
+offset = Vector2(266.07214, 0)
 
-[node name="Circle" type="Polygon2D" parent="Sprite" unique_id=667486142]
-color = Color(0.45999998, 0.829, 1, 1)
-antialiased = true
-polygon = PackedVector2Array(32, 0, 30.909626, 8.282209, 27.712812, 16, 22.627417, 22.627417, 15.999999, 27.712814, 8.28221, 30.909626, -1.3987644e-06, 32, -8.282209, 30.909626, -16.000002, 27.712812, -22.627417, 22.627417, -27.712812, 16.000002, -30.909626, 8.282212, -32, -2.7975289e-06, -30.909626, -8.28221, -27.712812, -15.999999, -22.627419, -22.627415, -15.999997, -27.712814, -8.2822075, -30.909628, 3.8159618e-07, -32, 8.282208, -30.909626, 15.999997, -27.712814, 22.627413, -22.62742, 27.71281, -16.000006, 30.909628, -8.282203)
+[node name="Background" type="Polygon2D" parent="." unique_id=188306052]
+color = Color(0.52, 0.88800013, 1, 1)
+polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 26.607027, 17.778248, 22.627417, 22.627417, 17.778248, 26.607027, 12.24587, 29.564144, 6.2428913, 31.385128, -1.3987644e-06, 32, -6.2428904, 31.385128, -12.245869, 29.564146, -17.778246, 26.607029, -22.627417, 22.627417, -26.607029, 17.778246, -29.564144, 12.245872, -31.38513, 6.24289, -32, -2.7975289e-06, -31.38513, -6.242888, -29.564144, -12.24587, -26.607025, -17.77825, -22.627419, -22.627415, -17.778254, -26.607023, -12.245874, -29.564144, -6.2428923, -31.385128, 3.8159618e-07, -32, 6.242893, -31.385128, 12.245875, -29.564142, 17.778242, -26.60703, 22.627413, -22.62742, 26.607027, -17.77825, 29.564146, -12.24587, 31.38513, -6.2428875)
 script = ExtResource("2_kyqiw")
-outer_vertices = 24
+outer_vertices = 32
 outer_radius = 32.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
 
-[node name="Embellish1" type="Polygon2D" parent="Sprite" unique_id=357489469]
-color = Color(0, 0.4, 0.8, 1)
-polygon = PackedVector2Array(29.06, 0, 20.548523, 20.548523, -1.2702529e-06, 29.06, -20.548523, 20.548523, -29.06, -2.5405059e-06, -20.548525, -20.548521, 3.4653704e-07, -29.06, 20.54852, -20.548525, 29.06, 0, 7.725, 0, 9.754537, -9.7545395, 9.21197e-08, -7.725, -9.754539, -9.754538, -7.725, -6.753409e-07, -9.754538, 9.754538, -3.3767046e-07, 7.725, 9.754538, 9.754538, 7.725, 0)
+[node name="Bearing" type="Polygon2D" parent="." unique_id=637349228]
+color = Color(0.101960786, 0.7882353, 1, 1)
+polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 26.607027, 17.778248, 22.627417, 22.627417, 17.778248, 26.607027, 12.24587, 29.564144, 6.2428913, 31.385128, -1.3987644e-06, 32, -6.2428904, 31.385128, -12.245869, 29.564146, -17.778246, 26.607029, -22.627417, 22.627417, -26.607029, 17.778246, -29.564144, 12.245872, -31.38513, 6.24289, -32, -2.7975289e-06, -31.38513, -6.242888, -29.564144, -12.24587, -26.607025, -17.77825, -22.627419, -22.627415, -17.778254, -26.607023, -12.245874, -29.564144, -6.2428923, -31.385128, 3.8159618e-07, -32, 6.242893, -31.385128, 12.245875, -29.564142, 17.778242, -26.60703, 22.627413, -22.62742, 26.607027, -17.77825, 29.564146, -12.24587, 31.38513, -6.2428875, 32, 0, 30, 0, 21.2132, -21.213207, 5.9624405e-08, -5, -21.213205, -21.213202, -30, -2.6226833e-06, -21.213203, 21.213203, -2.1855695e-07, 5, 21.213203, 21.213203, 30, 0)
+script = ExtResource("2_kyqiw")
+outer_vertices = 32
+outer_radius = 32.0
+inner_vertices = 8
+inner_radius = 30.0
+inner_radius_modifiers = Dictionary[int, float]({
+2: -25.0,
+4: 25.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Ring" type="Polygon2D" parent="." unique_id=1801212948]
+color = Color(0.08900002, 0.3960499, 0.89, 0.7019608)
+polygon = PackedVector2Array(25, 0, 17.67767, 17.67767, -1.0927847e-06, 25, -17.67767, 17.67767, -25, -2.1855694e-06, -17.677671, -17.677668, 2.9812202e-07, -25, 17.677666, -17.677671, 25, 0, 20, 0, 14.142133, -14.142138, 2.3849762e-07, -20, -14.142137, -14.142134, -20, -1.7484556e-06, -14.142136, 14.142136, -8.742278e-07, 20, 14.142136, 14.142136, 20, 0)
 script = ExtResource("2_kyqiw")
 outer_vertices = 8
-outer_radius = 29.06
+outer_radius = 25.0
 inner_vertices = 8
-inner_radius = 13.795
-inner_radius_modifiers = Dictionary[int, float]({
-2: -6.07
-})
-
-[node name="Embellish2" type="Polygon2D" parent="Sprite" unique_id=392980578]
-color = Color(0.33999997, 0.77999985, 1, 1)
-polygon = PackedVector2Array(23, 0, 21.24923, 8.80172, 16.263456, 16.263456, 8.801719, 21.24923, -1.0053619e-06, 23, -8.801718, 21.24923, -16.263456, 16.263456, -21.24923, 8.801721, -23, -2.0107238e-06, -21.24923, -8.801719, -16.263456, -16.263454, -8.801723, -21.24923, 2.7427225e-07, -23, 8.801723, -21.249228, 16.263453, -16.263458, 21.24923, -8.801719, 23, 0, 17, 0, 20.32535, -8.419035, 12.020813, -12.020817, 8.41904, -20.325348, 2.0272297e-07, -17, -8.419039, -20.32535, -12.020816, -12.020814, -20.32535, -8.419035, -17, -1.4861872e-06, -20.32535, 8.419037, -12.020815, 12.020815, -8.419035, 20.32535, -7.430936e-07, 17, 8.419035, 20.32535, 12.020815, 12.020815, 20.32535, 8.419036, 17, 0)
-script = ExtResource("2_kyqiw")
-outer_vertices = 16
-outer_radius = 23.0
-inner_vertices = 16
-inner_radius = 22.0
-inner_radius_modifiers = Dictionary[int, float]({
-2: -5.0
-})
+inner_radius = 20.0
+metadata/_custom_type_script = "uid://johp6kal78ik"

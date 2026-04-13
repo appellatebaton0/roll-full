@@ -13,6 +13,8 @@ const DEBUG := false
 
 @export var sprite:Node2D
 
+@export var pointer:Node2D
+
 @export_group("Raycast", "ray_")
 @export var ray_node:RayCast2D
 @export var ray_distance := 200.0
@@ -40,6 +42,9 @@ func _ready() -> void:
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2
 func _physics_process(delta: float) -> void:
+	
+	
+	
 	
 	# For the line debugging.
 	if DEBUG: queue_redraw()
@@ -114,6 +119,16 @@ func _physics_process(delta: float) -> void:
 	
 	if sprite:
 		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y * delta))
+	
+	var dash_dir := (get_global_mouse_position() - global_position).normalized()
+	
+	pointer.rotation = dash_dir.angle()
+	
+	if Input.is_action_just_pressed("Dash"):
+		velocity = dash_dir * 2500
+		
+		ray_node.target_position = Vector2.ZERO
+		ray_fall_time = 1.0
 	
 	move_and_slide()
 	
