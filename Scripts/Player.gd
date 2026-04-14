@@ -8,14 +8,6 @@ const DEBUG := false
 @export var sprite:Node2D
 @export var pointer:Node2D
 
-enum DIR {UP, RIGHT, DOWN, LEFT}
-@export var dir_sprites:Dictionary[DIR, Node2D] = {
-	DIR.UP: null,
-	DIR.RIGHT: null,
-	DIR.DOWN: null,
-	DIR.LEFT: null,
-}
-
 ## MOVEMENT 
 
 @export var grind_speed := 1000.0
@@ -131,21 +123,7 @@ func _physics_process(delta: float) -> void:
 		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y * delta))
 	
 	var dash_dir := (get_global_mouse_position() - global_position).normalized()
-	
-	if not is_on_wall():
-		var inputs := {
-			DIR.UP: "ComboUp",
-			DIR.RIGHT: "ComboRight",
-			DIR.DOWN: "ComboDown",
-			DIR.LEFT: "ComboLeft",
-		}
-		for input in inputs:
-			if Input.is_action_just_pressed(inputs[input]):
-				_on_combo_input(input)
-	
-	for dir in DIR.values():
-		dir_sprites[dir as int].self_modulate.a = move_toward(dir_sprites[dir as int].self_modulate.a, 0.0, delta * 3.5)
-	
+
 	pointer.rotation = dash_dir.angle()
 	
 	if Input.is_action_just_pressed("Dash"):
@@ -156,9 +134,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _on_combo_input(input:DIR) -> void:
-	dir_sprites[input as int].self_modulate.a = 1.0
-	dir_sprites[input as int].scale = Vector2.ONE
+
 
 func _on_reset() -> void:
 	global_position = respawn_position

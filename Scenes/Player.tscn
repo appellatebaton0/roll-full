@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://no1j6n5wfkgq"]
 
 [ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/Player.gd" id="1_rpqav"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="3_gntrk"]
+[ext_resource type="Script" uid="uid://df3sty4wpm85y" path="res://Scripts/ComboDriver.gd" id="4_dewec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5732"]
 radius = 32.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "pointer", "dir_sprites", "ray_node") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "pointer", "ray_node") groups=["Player"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 13
@@ -16,12 +17,6 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_rpqav")
 sprite = NodePath("Bearing")
 pointer = NodePath("Pointer")
-dir_sprites = {
-0: NodePath("Up"),
-1: NodePath("Right"),
-2: NodePath("Down"),
-3: NodePath("Left")
-}
 grind_speed = 2000.0
 jump_height = 4.2
 stick_force = 300.0
@@ -29,27 +24,37 @@ ray_node = NodePath("RayCast2D")
 ray_distance = 140.0
 ray_fallback = 1.4
 
-[node name="Up" type="Polygon2D" parent="." unique_id=1972560634]
+[node name="ComboDriver" type="Node2D" parent="." unique_id=1150365074 node_paths=PackedStringArray("player", "dir_sprites")]
+script = ExtResource("4_dewec")
+player = NodePath("..")
+dir_sprites = {
+0: NodePath("Up"),
+1: NodePath("Right"),
+2: NodePath("Down"),
+3: NodePath("Left")
+}
+
+[node name="Up" type="Polygon2D" parent="ComboDriver" unique_id=1972560634]
 modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
 position = Vector2(0, -5)
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
 polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
-[node name="Right" type="Polygon2D" parent="." unique_id=2072868802]
+[node name="Right" type="Polygon2D" parent="ComboDriver" unique_id=2072868802]
 modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
 position = Vector2(5, 0)
 rotation = 1.5707964
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
 polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
-[node name="Down" type="Polygon2D" parent="." unique_id=1566669671]
+[node name="Down" type="Polygon2D" parent="ComboDriver" unique_id=1566669671]
 modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
 position = Vector2(0, 5)
 rotation = -3.1415925
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
 polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
-[node name="Left" type="Polygon2D" parent="." unique_id=127754094]
+[node name="Left" type="Polygon2D" parent="ComboDriver" unique_id=127754094]
 modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
 position = Vector2(-5, 0)
 rotation = -1.5707964
@@ -73,7 +78,6 @@ polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 
 script = ExtResource("2_kyqiw")
 outer_vertices = 32
 outer_radius = 32.0
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="Bearing" type="Polygon2D" parent="." unique_id=637349228]
 color = Color(0.101960786, 0.7882353, 1, 1)
@@ -87,7 +91,6 @@ inner_radius_modifiers = Dictionary[int, float]({
 2: -25.0,
 4: 25.0
 })
-metadata/_custom_type_script = "uid://johp6kal78ik"
 
 [node name="Ring" type="Polygon2D" parent="." unique_id=1801212948]
 color = Color(0.08900002, 0.3960499, 0.89, 0.7019608)
@@ -97,4 +100,3 @@ outer_vertices = 8
 outer_radius = 25.0
 inner_vertices = 8
 inner_radius = 20.0
-metadata/_custom_type_script = "uid://johp6kal78ik"

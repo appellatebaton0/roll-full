@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bw16huunuc7lg"]
 
 [ext_resource type="Script" uid="uid://hnboj7u32fis" path="res://Scripts/Goal.gd" id="1_ugxcw"]
-[ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="2_kmleq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfw1b"]
 radius = 131.01526
@@ -14,87 +13,25 @@ script = ExtResource("1_ugxcw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527626523]
 shape = SubResource("CircleShape2D_sfw1b")
 
-[node name="AnimatedPolygon3" type="Polygon2D" parent="." unique_id=633318547]
+[node name="Sprite" type="Node2D" parent="." unique_id=765588126]
+
+[node name="AnimatedPolygon3" type="Polygon2D" parent="Sprite" unique_id=1504529992]
 color = Color(0.100000024, 1, 0.100000024, 0.7294118)
 antialiased = true
-polygon = PackedVector2Array(78.029045, -96.72355, 131.68988, -71.81767, 123.56878, -13.218739, 143.90147, 42.336357, 96.72321, 78.02948, 71.817085, 131.69019, 13.218188, 123.56884, -42.337, 143.90128, -78.02991, 96.72286, -131.6905, 71.8165, -123.56889, 13.217638, -143.9011, -42.337643, -96.7237, -78.02886, -71.817924, -131.68973, -13.218973, -123.568756, 42.336086, -143.90155)
+polygon = PackedVector2Array(120, 0, 138.58192, 57.40252, 84.85281, 84.85281, 57.402515, 138.58192, -5.2453665e-06, 120, -57.402508, 138.58194, -84.85281, 84.85281, -138.58192, 57.402523, -120, -1.0490733e-05, -138.58192, -57.402515, -84.85282, -84.852806, -57.402534, -138.58192, 1.4309857e-06, -120, 57.402542, -138.58191, 84.8528, -84.85283, 138.58194, -57.402515)
 uv = PackedVector2Array(-221.25, -85)
-script = ExtResource("2_kmleq")
-outer_wave_amounts = Dictionary[int, float]({
-2: 17.0
-})
-outer_wave_intervals = Dictionary[int, float]({
-2: 3.5
-})
-outer_rotation = 50.0
-inner_wave_amounts = Dictionary[int, float]({
-2: 10.0
-})
-inner_wave_intervals = Dictionary[int, float]({
-2: 3.5
-})
-inner_rotation = -70.0
-outer_vertices = 16
-outer_radius = 150.0
-outer_radius_modifiers = Dictionary[int, float]({
-2: -30.0
-})
-inner_vertices = 8
-metadata/_custom_type_script = "uid://2fyexmj0cjug"
 
-[node name="AnimatedPolygon2" type="Polygon2D" parent="." unique_id=1348666305]
+[node name="AnimatedPolygon2" type="Polygon2D" parent="Sprite" unique_id=1332664961]
 rotation = 0.38397244
 color = Color(0.100000024, 1, 0.100000024, 0.7294118)
 antialiased = true
-polygon = PackedVector2Array(64.12973, -79.49418, 114.131226, -62.24198, 101.557465, -10.864084, 124.71461, 36.69151, 79.4939, 64.13008, 62.241474, 114.13149, 10.863631, 101.55751, -36.69207, 124.71445, -64.13043, 79.493614, -114.131775, 62.240967, -101.557556, 10.863179, -124.71428, -36.692623, -79.4943, -64.12958, -62.2422, -114.131096, -10.864277, -101.55744, 36.691273, -124.714676)
+polygon = PackedVector2Array(100, 0, 120.10433, 49.748848, 70.71068, 70.71068, 49.748844, 120.10433, -4.371139e-06, 100, -49.74884, 120.10434, -70.71068, 70.71068, -120.10433, 49.74885, -100, -8.742278e-06, -120.10433, -49.748844, -70.710686, -70.71067, -49.748863, -120.10433, 1.1924881e-06, -100, 49.748867, -120.104324, 70.71066, -70.710686, 120.10434, -49.748844)
 uv = PackedVector2Array(-221.25, -85)
-script = ExtResource("2_kmleq")
-outer_wave_amounts = Dictionary[int, float]({
-2: 8.5
-})
-outer_wave_intervals = Dictionary[int, float]({
-2: 3.5
-})
-outer_rotation = 50.0
-inner_wave_amounts = Dictionary[int, float]({
-2: 10.0
-})
-inner_wave_intervals = Dictionary[int, float]({
-2: 3.5
-})
-inner_rotation = -70.0
-outer_vertices = 16
-outer_radius = 130.0
-outer_radius_modifiers = Dictionary[int, float]({
-2: -30.0
-})
-inner_vertices = 8
-metadata/_custom_type_script = "uid://2fyexmj0cjug"
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1884289119]
-color = Color(0.94, 0.94, 0.94, 0.72156864)
-polygon = PackedVector2Array(30.970453, 0, 29.915161, 8.015743, 26.8212, 15.485227, 21.899418, 21.899418, 15.485226, 26.821201, 8.015744, 29.915161, -1.3537615e-06, 30.970453, -8.015743, 29.915161, -15.485229, 26.8212, -21.899418, 21.899418, -26.8212, 15.485229, -29.915161, 8.015746, -30.970453, -2.707523e-06, -29.915161, -8.015744, -26.8212, -15.485226, -21.89942, -21.899416, -15.485224, -26.821201, -8.015741, -29.915161, 3.6931897e-07, -30.970453, 8.015742, -29.915161, 15.485224, -26.821201, 21.899414, -21.899422, 26.821198, -15.485232, 29.915161, -8.015737)
-script = ExtResource("2_kmleq")
-outer_wave_amounts = Dictionary[int, float]({
-1: 3.0
-})
-outer_wave_intervals = Dictionary[int, float]({
-1: 7.0
-})
-outer_vertices = 24
-outer_radius = 30.0
-metadata/_custom_type_script = "uid://2fyexmj0cjug"
+[node name="Polygon2D3" type="Polygon2D" parent="Sprite" unique_id=2065614588]
+color = Color(0.9411765, 0.9411765, 0.9411765, 0.72156864)
+polygon = PackedVector2Array(28.19735, 0, 27.236547, 7.298011, 24.41962, 14.098675, 19.938538, 19.938538, 14.098674, 24.419622, 7.298012, 27.236547, -1.2325453e-06, 28.19735, -7.298011, 27.236547, -14.098677, 24.41962, -19.938538, 19.938538, -24.41962, 14.098677, -27.236547, 7.2980137, -28.19735, -2.4650906e-06, -27.236547, -7.298012, -24.41962, -14.098674, -19.938538, -19.938536, -14.098672, -24.419622, -7.2980094, -27.23655, 3.3625003e-07, -28.19735, 7.2980103, -27.236547, 14.098672, -24.419622, 19.938534, -19.93854, 24.419619, -14.09868, 27.23655, -7.298005)
 
-[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=2088263249]
-color = Color(0.94, 0.94, 0.94, 0.72156864)
-polygon = PackedVector2Array(58.449776, 0, 56.45815, 15.127915, 50.618988, 29.224888, 41.33023, 41.33023, 29.224886, 50.61899, 15.127916, 56.45815, -2.554921e-06, 58.449776, -15.127915, 56.45815, -29.224892, 50.618988, -41.33023, 41.33023, -50.618988, 29.224892, -56.45815, 15.12792, -58.449776, -5.109842e-06, -56.45815, -15.127916, -50.618988, -29.224886, -41.330235, -41.330227, -29.224882, -50.61899, -15.127912, -56.45815, 6.970066e-07, -58.449776, 15.127913, -56.45815, 29.224882, -50.61899, 41.330227, -41.33024, 50.618988, -29.224897, 56.45815, -15.127903)
-script = ExtResource("2_kmleq")
-outer_wave_amounts = Dictionary[int, float]({
-1: 3.0
-})
-outer_wave_intervals = Dictionary[int, float]({
-1: 7.0
-})
-outer_vertices = 24
-outer_radius = 60.0
-metadata/_custom_type_script = "uid://2fyexmj0cjug"
+[node name="Polygon2D4" type="Polygon2D" parent="Sprite" unique_id=225333695]
+color = Color(0.9411765, 0.9411765, 0.9411765, 0.72156864)
+polygon = PackedVector2Array(59.431854, 0, 57.40676, 15.382095, 51.469494, 29.715927, 42.024666, 42.024666, 29.715925, 51.469498, 15.382097, 57.40676, -2.5978488e-06, 59.431854, -15.382095, 57.40676, -29.71593, 51.469494, -42.024666, 42.024666, -51.469494, 29.71593, -57.40676, 15.382101, -59.431854, -5.1956977e-06, -57.40676, -15.382097, -51.469494, -29.715925, -42.02467, -42.024662, -29.715921, -51.469498, -15.382092, -57.406765, 7.087178e-07, -59.431854, 15.382094, -57.40676, 29.715921, -51.469498, 42.02466, -42.024673, 51.46949, -29.715939, 57.406765, -15.382083)
