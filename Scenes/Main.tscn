@@ -9,17 +9,18 @@
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
 [ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
+[ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
-[ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
+[ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 [ext_resource type="PackedScene" uid="uid://no1j6n5wfkgq" path="res://Scenes/Player.tscn" id="14_h1m7h"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="15_erwvk"]
 [ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="16_erwvk"]
 [ext_resource type="PackedScene" uid="uid://bw16huunuc7lg" path="res://Scenes/Goal.tscn" id="16_fq0cl"]
-[ext_resource type="Script" uid="uid://dv1k22hfa8h6v" path="res://Scripts/DeathBorder.gd" id="17_hwpts"]
+[ext_resource type="Script" path="res://Scripts/DeathBorder.gd" id="17_hwpts"]
 [ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="19_jyqft"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="20_3tgeq"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="20_3tgeq"]
 [ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="21_c4ay3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
@@ -673,15 +674,6 @@ theme_override_constants/margin_bottom = 30
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=849892367]
 layout_mode = 2
 
-[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1878646220]
-process_mode = 1
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 65
-text = "00:00.00"
-script = ExtResource("8_vy5pj")
-
 [node name="Reset" type="TextureProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1818482585]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -716,13 +708,51 @@ text = "  Hold R To Reset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD" unique_id=175140257]
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=175140257]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 40
 text = "0.0u/s"
 script = ExtResource("6_frkhe")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=1624346038]
+custom_minimum_size = Vector2(250, 500)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("6_jyqft")
+
+[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=1878646220]
+process_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 72
+text = "00:00.00"
+script = ExtResource("8_vy5pj")
+
+[node name="Score" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=277202492]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 53
+text = "000000"
+
+[node name="ComboBox" type="VBoxContainer" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=382588904]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ComboSeperator" type="HSeparator" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=942550201]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ComboTotal" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=1638351789]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "320"
 
 [node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
 visible = false
@@ -972,6 +1002,7 @@ libraries/ = SubResource("AnimationLibrary_pbw6q")
 script = ExtResource("1_r150o")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=707555593]
+visible = false
 material = SubResource("ShaderMaterial_hwpts")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1344,10 +1375,10 @@ r = 0.4
 position = Vector2(2959, -738)
 
 [node name="DeathBorder" type="Node2D" parent="1-4" unique_id=1495088171]
-position = Vector2(2057, 1387)
+position = Vector2(1322, -1074)
 script = ExtResource("17_hwpts")
-width = 2986.0
-height = 3410.0
+width = 5047.0
+height = 6445.0
 
 [node name="Spline2D" type="Line2D" parent="1-4" unique_id=204338463]
 points = PackedVector2Array(627, 143, 581, 480, 786, 905, 1254, 685, 1663, 617, 1818, 700, 1738, 1137, 1861, 1607, 1658, 1712, 1267, 1635, 316, 1941, -155, 1302, 225, 650, 233.95355, 451.31583, 249.1211, 114.7417, 267, -282)

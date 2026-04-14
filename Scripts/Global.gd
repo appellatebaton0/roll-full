@@ -21,6 +21,7 @@ var run_timer:RunTimer
 ## -- COMBO MANAGEMENT -- ##
 
 signal finished_combo(combo:Combo)
+signal trick_ended
 
 const COMBO_LENGTH := 3
 const ACTION_POINTS := 8 ## How many points a single direction press is worth.
@@ -28,6 +29,7 @@ const ACTION_POINTS := 8 ## How many points a single direction press is worth.
 enum DIR {UP, RIGHT, DOWN, LEFT}
 
 var combo_buffer:Array[DIR]
+var score := 0
 var score_buffer := 0
 
 class Combo:
@@ -44,7 +46,9 @@ class Combo:
 	
 	# 270 degree arc
 	Combo.new("Arc", [0, 1, 2], 1.3), Combo.new("Arc", [1, 2, 3], 1.3), 
-	Combo.new("Arc", [2, 3, 0], 1.3), Combo.new("Arc", [3, 0, 2], 1.3),
+	Combo.new("Arc", [2, 3, 0], 1.3), Combo.new("Arc", [3, 0, 1], 1.3),
+	Combo.new("Arc", [2, 1, 0], 1.3), Combo.new("Arc", [3, 2, 1], 1.3), 
+	Combo.new("Arc", [0, 3, 2], 1.3), Combo.new("Arc", [1, 0, 3], 1.3),
 	
 	# Triple-Taps
 	Combo.new("Triple", [0, 0, 0], 1.5), Combo.new("Triple", [1, 1, 1], 1.5), 
@@ -55,26 +59,45 @@ class Combo:
 func push_direction(direction:DIR):
 	
 	combo_buffer.append(direction)
-	score_buffer += ACTION_POINTS
 	
 	## IF this is the final action in the combo, finish the combo.
-	if len(combo_buffer) >= COMBO_LENGTH:
+	if len(combo_buffer) >= COMBO_LENGTH: complete_combo()
+
+## Figure out what the current combo is, and complete it.
+func complete_combo() -> void:
+	var this_combo:Combo
+	
+	score_buffer += int(len(combo_buffer) * ACTION_POINTS)
+	
+	## Check existing combos for a specific one.
+	for combo in combos:
+		if combo_buffer as Array[int] == combo.key:
+			this_combo = combo
+			break
+	## Default combo if no specific ones found.
+	if not this_combo: this_combo = Combo.new("Basic", combo_buffer as Array[int], 1.1)
+	
+	score_buffer = int(score_buffer * this_combo.multiplier)
+	
+	print(this_combo.name, " -> ", this_combo.key)
+	
+	finished_combo.emit(this_combo)
+	combo_buffer.clear()
+
+## Push the current score_buffer into the score.
+func end_trick_sequence() -> void:
+	combo_buffer.clear()
+	
+	if score_buffer > 0:
+		score += score_buffer
+		score_buffer = 0
 		
-		var this_combo:Combo
-		
-		
-		## Check existing combos for a specific one.
-		for combo in combos:
-			if combo_buffer == combo.key:
-				this_combo = combo
-				break
-		## Default combo if no specific ones found.
-		if not this_combo: this_combo = Combo.new("Basic", [-1, -1, -1], 1.1)
-		
-		score_buffer = int(score_buffer * this_combo.multiplier)
-		
-		finished_combo.emit(this_combo)
-		combo_buffer.clear()
+	trick_ended.emit()
+
+func _ready() -> void: reset_level.connect(_on_reset)
+func _on_reset() -> void: 
+	end_trick_sequence()
+	score = 0
 
 ## -- GENERIC -- ## 
 

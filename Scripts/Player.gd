@@ -24,6 +24,11 @@ const DEBUG := false
 var ray_fall_time := 0.0
 var ray_resetting := false
 
+@export_group("Dashing", "dash_")
+@export var dash_force := 2500.0
+@export var dash_cooldown := 1.0
+var dash_cooldown_time := 0.0
+
 const JUMP_BUFFER := 0.1
 var jump_buffering := 0.0
 var jumping := false
@@ -45,7 +50,7 @@ func _ready() -> void:
 var last_normal:Vector2
 func _physics_process(delta: float) -> void:
 	
-	
+	var on_wall := is_on_wall()
 	
 	
 	# For the line debugging.
@@ -56,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump"): jump_buffering = JUMP_BUFFER
 	
 	# On hitting a wall...
-	if not was_on_wall and is_on_wall():
+	if not was_on_wall and on_wall:
 		var wn := get_wall_normal()
 		var wall_dir := Vector2(wn.y, -wn.x)
 		
@@ -65,10 +70,10 @@ func _physics_process(delta: float) -> void:
 		slide_mag = mag(projection)
 		
 		
-	was_on_wall = is_on_wall()
+	was_on_wall = on_wall
 	
 	# Control the ray target.
-	if is_on_wall() and not ray_resetting: # If on wall, pierce the surface.
+	if on_wall and not ray_resetting: # If on wall, pierce the surface.
 		ray_node.target_position = Global.d_lerp(ray_node.target_position, -get_wall_normal() * ray_distance, 0.0001, delta)
 		ray_fall_time = 0.0
 	elif not ray_node.is_colliding(): # Otherwise, slowly return to Vector2.ZERO
@@ -122,15 +127,22 @@ func _physics_process(delta: float) -> void:
 	if sprite:
 		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y * delta))
 	
-	var dash_dir := (get_global_mouse_position() - global_position).normalized()
-
-	pointer.rotation = dash_dir.angle()
 	
-	if Input.is_action_just_pressed("Dash"):
-		velocity = dash_dir * 2500
+	# Dashing
+	
+	if on_wall:
+		dash_cooldown_time = move_toward(dash_cooldown_time, 0.0, delta)
+	
+	var dash_dir := (get_global_mouse_position() - global_position).normalized()
+	if Input.is_action_just_pressed("Dash") and dash_cooldown_time <= 0:
+		velocity = dash_dir * dash_force
 		
 		ray_node.target_position = Vector2.ZERO
 		ray_fall_time = 1.0
+		
+		dash_cooldown_time = dash_cooldown
+	
+	pointer.rotation = dash_dir.angle()
 	
 	move_and_slide()
 

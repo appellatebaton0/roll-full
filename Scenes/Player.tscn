@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://no1j6n5wfkgq"]
 
 [ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/Player.gd" id="1_rpqav"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="3_gntrk"]
 [ext_resource type="Script" uid="uid://df3sty4wpm85y" path="res://Scripts/ComboDriver.gd" id="4_dewec"]
 

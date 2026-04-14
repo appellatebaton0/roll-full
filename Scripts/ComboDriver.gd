@@ -14,7 +14,7 @@ func _on_combo_input(input:Global.DIR) -> void:
 	dir_sprites[input as int].scale = Vector2.ONE
 	
 	Global.push_direction(input)
-	print(Global.combo_buffer)
+	print(Global.score_buffer)
 
 
 func _process(delta: float) -> void:
@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 		for input in inputs:
 			if Input.is_action_just_pressed(inputs[input]):
 				_on_combo_input(input)
+	else: Global.end_trick_sequence()
 
 	for dir in Global.DIR.values():
 		dir_sprites[dir as int].self_modulate.a = move_toward(dir_sprites[dir as int].self_modulate.a, 0.0, delta * 3.5)
