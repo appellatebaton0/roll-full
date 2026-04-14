@@ -35,27 +35,27 @@ dir_sprites = {
 }
 
 [node name="Up" type="Polygon2D" parent="ComboDriver" unique_id=1972560634]
-modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
+modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
 position = Vector2(0, -5)
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
 polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
 [node name="Right" type="Polygon2D" parent="ComboDriver" unique_id=2072868802]
-modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
+modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
 position = Vector2(5, 0)
 rotation = 1.5707964
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
 polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
 [node name="Down" type="Polygon2D" parent="ComboDriver" unique_id=1566669671]
-modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
+modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
 position = Vector2(0, 5)
 rotation = -3.1415925
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
 polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
 [node name="Left" type="Polygon2D" parent="ComboDriver" unique_id=127754094]
-modulate = Color(0.5070423, 1.3954307, 1.5720325, 1)
+modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
 position = Vector2(-5, 0)
 rotation = -1.5707964
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)

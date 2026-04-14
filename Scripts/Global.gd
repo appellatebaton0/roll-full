@@ -79,8 +79,6 @@ func complete_combo() -> void:
 	
 	score_buffer = int(score_buffer * this_combo.multiplier)
 	
-	print(this_combo.name, " -> ", this_combo.key)
-	
 	finished_combo.emit(this_combo)
 	combo_buffer.clear()
 

@@ -27,9 +27,9 @@ func _on_animation_finished(anim_name:String) -> void:
 		"Game->Levels":
 			## Free the current level.
 			
-			Global.current_level.process_mode = Node.PROCESS_MODE_ALWAYS
-			
+			# Make sure all the levels are freed, actually.
 			for level in get_tree().get_nodes_in_group("Level"):
+				level.process_mode = Node.PROCESS_MODE_ALWAYS
 				level.queue_free()
 			Global.current_level = null
 		"Levels->Game":

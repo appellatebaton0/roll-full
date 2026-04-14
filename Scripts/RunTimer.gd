@@ -16,7 +16,9 @@ func _process(delta: float) -> void:
 	text = Global.seconds_as_timer(timer)
 
 func save() -> void:
-	Global.current_data.times += [timer]
+	if Global.current_data:
+		Global.current_data.times += [timer]
+		Global.current_data.scores += [Global.score]
 	
 	running = false
 	timer = 0.0
@@ -24,3 +26,4 @@ func save() -> void:
 func reset() -> void:
 	running = true
 	timer = 0.
+	text = Global.seconds_as_timer(timer)

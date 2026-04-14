@@ -9,13 +9,8 @@ class_name ComboDriver extends Node2D
 	Global.DIR.LEFT: null,
 }
 
-func _on_combo_input(input:Global.DIR) -> void:
-	dir_sprites[input as int].self_modulate.a = 1.0
-	dir_sprites[input as int].scale = Vector2.ONE
-	
-	Global.push_direction(input)
-	print(Global.score_buffer)
-
+func _ready() -> void:
+	Global.reset_level.connect(_on_reset)
 
 func _process(delta: float) -> void:
 
@@ -33,4 +28,14 @@ func _process(delta: float) -> void:
 
 	for dir in Global.DIR.values():
 		dir_sprites[dir as int].self_modulate.a = move_toward(dir_sprites[dir as int].self_modulate.a, 0.0, delta * 3.5)
+
+func _on_combo_input(input:Global.DIR) -> void:
+	dir_sprites[input as int].self_modulate.a = 1.0
+	dir_sprites[input as int].scale = Vector2.ONE
 	
+	Global.push_direction(input)
+	print(Global.score_buffer)
+
+func _on_reset() -> void:
+	for dir in Global.DIR.values():
+		dir_sprites[dir as int].self_modulate.a = 0.0

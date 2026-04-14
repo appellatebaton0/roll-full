@@ -1,7 +1,7 @@
 class_name ComboEntry extends Label
 ## A fancy lil entry for a combo.
 
-var end_font_size := 36.0
+var end_font_size := 30.0
 var real_text := ""
 
 var transition_progress := 0.0
@@ -9,8 +9,10 @@ var transition_progress := 0.0
 var ending := false
 var real_ending := false
 
-func _ready() -> void:
+func _init() -> void:
 	horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	add_theme_font_size_override("font_size", 2.0)
+	size.y = 0.0
 
 func _process(delta: float) -> void:
 	

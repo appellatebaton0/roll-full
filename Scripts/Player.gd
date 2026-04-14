@@ -26,7 +26,7 @@ var ray_resetting := false
 
 @export_group("Dashing", "dash_")
 @export var dash_force := 2500.0
-@export var dash_cooldown := 1.0
+@export var dash_cooldown := 0.5
 var dash_cooldown_time := 0.0
 
 const JUMP_BUFFER := 0.1
@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
 		dash_cooldown_time = move_toward(dash_cooldown_time, 0.0, delta)
 	
 	var dash_dir := (get_global_mouse_position() - global_position).normalized()
-	if Input.is_action_just_pressed("Dash") and dash_cooldown_time <= 0:
+	if Input.is_action_just_pressed("Dash") and dash_cooldown_time <= 0 :
 		velocity = dash_dir * dash_force
 		
 		ray_node.target_position = Vector2.ZERO
