@@ -13,6 +13,8 @@ func _ready() -> void:
 	Global.reset_level.connect(_on_reset)
 
 func _process(delta: float) -> void:
+	
+	var rdelt := delta / Engine.time_scale
 
 	if not player.is_on_wall():
 		var inputs := {
@@ -27,14 +29,13 @@ func _process(delta: float) -> void:
 	else: Global.end_trick_sequence()
 
 	for dir in Global.DIR.values():
-		dir_sprites[dir as int].self_modulate.a = move_toward(dir_sprites[dir as int].self_modulate.a, 0.0, delta * 3.5)
+		dir_sprites[dir as int].self_modulate.a = move_toward(dir_sprites[dir as int].self_modulate.a, 0.0, rdelt * 3.5)
 
 func _on_combo_input(input:Global.DIR) -> void:
 	dir_sprites[input as int].self_modulate.a = 1.0
 	dir_sprites[input as int].scale = Vector2.ONE
 	
 	Global.push_direction(input)
-	print(Global.score_buffer)
 
 func _on_reset() -> void:
 	for dir in Global.DIR.values():

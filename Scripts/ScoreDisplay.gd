@@ -15,12 +15,23 @@ func _ready() -> void:
 	_on_reset()
 
 func _process(delta: float) -> void:
-	var fade_in := len(combo_box.get_children()) > 0
-	combo_sep.modulate.a = move_toward(combo_sep.modulate.a, 1.0 if fade_in else 0.0, delta * (3. if fade_in else 2.3))
-	combo_tot.modulate.a = move_toward(combo_tot.modulate.a, 1.0 if fade_in else 0.0, delta * (3. if fade_in else 2.3))
+	var rdelt := delta / Engine.time_scale
+	var entries := combo_box.get_children().filter(_is_entry)
+	
+	if len(entries) > 10:
+		var ended = false
+		for entry in entries: if entry is ComboEntry and not ended:
+			if not entry.ending:
+				entry.ending = true
+				ended = true
+	
+	var fade_in := len(entries) > 0
+	combo_sep.modulate.a = move_toward(combo_sep.modulate.a, 1.0 if fade_in else 0.0, rdelt * (3. if fade_in else 2.3))
+	combo_tot.modulate.a = move_toward(combo_tot.modulate.a, 1.0 if fade_in else 0.0, rdelt * (3. if fade_in else 2.3))
 	
 	score_lab.text = str(int(lerp(int(score_lab.text), Global.score, 0.2)))
 
+func _is_entry(a): return a is ComboEntry
 
 func _on_combo_finished(combo:Global.Combo) -> void:
 	

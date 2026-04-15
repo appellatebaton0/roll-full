@@ -5,9 +5,13 @@ class_name AnimationButton extends Button
 @export var use_global := false
 @export var animator:AnimationPlayer
 
+@export var starts_with_focus := false
+
 func _ready() -> void:
 	if not animator and not use_global:
 		animator = find_animator()
+	
+	if starts_with_focus: grab_focus()
 
 func _pressed() -> void:
 	if use_global: 
