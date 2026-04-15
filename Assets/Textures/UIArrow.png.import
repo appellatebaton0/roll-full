@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsqpjxa30vyhd"
-path="res://.godot/imported/Bar.svg-f7510e6ca10189846084b96b2e487512.ctex"
+uid="uid://dparj85pico7e"
+path="res://.godot/imported/UIArrow.png-b7d9aef54e818c6c1aa74e1249d2a3f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/UI/Bar.svg"
-dest_files=["res://.godot/imported/Bar.svg-f7510e6ca10189846084b96b2e487512.ctex"]
+source_file="res://Assets/Textures/UIArrow.png"
+dest_files=["res://.godot/imported/UIArrow.png-b7d9aef54e818c6c1aa74e1249d2a3f9.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

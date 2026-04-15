@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://di0wp02kd6uso"]
 
 [ext_resource type="Script" uid="uid://dv2pwr5layc06" path="res://Scripts/UI/WorldScreen.gd" id="1_5kqrn"]
+[ext_resource type="Texture2D" uid="uid://dparj85pico7e" path="res://Assets/Textures/UIArrow.png" id="2_kcjwq"]
 
 [sub_resource type="Gradient" id="Gradient_p75ps"]
 offsets = PackedFloat32Array(0)
@@ -9,13 +10,11 @@ colors = PackedColorArray(0.5647059, 0.5803922, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3wc88"]
 gradient = SubResource("Gradient_p75ps")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us01x"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjeow"]
 bg_color = Color(0, 0, 0, 0.46666667)
 corner_radius_top_left = 80
-corner_radius_top_right = 80
 corner_radius_bottom_right = 80
-corner_radius_bottom_left = 80
-corner_detail = 12
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4lxd"]
 bg_color = Color(0.93333334, 0.93333334, 0.93333334, 0.7176471)
@@ -38,11 +37,9 @@ VScrollBar/styles/scroll = SubResource("StyleBoxFlat_aavx1")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y80w0"]
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-corner_detail = 12
+corner_radius_top_left = 40
+corner_radius_bottom_right = 40
+corner_detail = 1
 
 [node name="BaseWorldScreen" type="TextureRect" unique_id=476064473]
 anchors_preset = 15
@@ -69,17 +66,20 @@ theme_override_constants/margin_bottom = 80
 layout_mode = 2
 theme_override_constants/separation = 37
 
-[node name="PrevWorld" type="Button" parent="MarginContainer/HBoxContainer" unique_id=343733507]
+[node name="PrevWorld" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=312686652]
 custom_minimum_size = Vector2(75, 150)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 38
-text = "<"
+texture_normal = ExtResource("2_kcjwq")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=250795472]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_us01x")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjeow")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel" unique_id=2035245394]
 layout_mode = 1
@@ -105,9 +105,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 13
 
-[node name="NextWorld" type="Button" parent="MarginContainer/HBoxContainer" unique_id=320704603]
+[node name="NextWorld" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=1180553189]
 custom_minimum_size = Vector2(75, 150)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 38
-text = ">"
+texture_normal = ExtResource("2_kcjwq")
+ignore_texture_size = true
+stretch_mode = 0

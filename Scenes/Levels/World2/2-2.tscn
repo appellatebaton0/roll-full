@@ -50,25 +50,25 @@ _data = {
 [node name="World2LevelBase" unique_id=1260259211 instance=ExtResource("1_5um05")]
 
 [node name="GearPolygon" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="1" unique_id=756961456]
-rotation = 1.4157645
+rotation = 4.183462
 
 [node name="GearPolygon2" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="2" unique_id=113240054]
-rotation = 2.6087751
+rotation = 4.366022
 
 [node name="GearPolygon5" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="3" unique_id=1974313286]
-rotation = 6.1672063
+rotation = 3.3553019
 
 [node name="GearPolygon6" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="4" unique_id=277630478]
-rotation = 5.855237
+rotation = 3.0433342
 
 [node name="GearPolygon7" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="5" unique_id=885158201]
-rotation = 1.6574907
+rotation = 3.7663925
 
 [node name="GearPolygon4" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="6" unique_id=1311450805]
-rotation = 2.4252288
+rotation = 4.182464
 
 [node name="GearPolygon3" parent="Parallax2D" parent_id_path=PackedInt32Array(1556032398) index="7" unique_id=758807519]
-rotation = 1.7144158
+rotation = 0.30792075
 
 [node name="Player" parent="." index="1" unique_id=1267848784]
 position = Vector2(1689, 416)
@@ -94,8 +94,7 @@ width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("3_s30qa")
 loop_type = 1
-animator = Object(AnimationPlayer,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"root_motion_local":false,"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"callback_mode_discrete":1,"libraries/":SubResource("AnimationLibrary_kkja4"),"autoplay":&"","playback_auto_capture":true,"playback_auto_capture_duration":-1.0,"playback_auto_capture_transition_type":0,"playback_auto_capture_ease_type":0,"playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
-
+animator = null
 metadata/_custom_type_script = "uid://s8a4ubcxsm22"
 
 [node name="Player" type="AnimationPlayer" parent="AnimatedSpline2D" index="0" unique_id=1901640796]

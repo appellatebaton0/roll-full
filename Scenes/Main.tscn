@@ -9,11 +9,26 @@
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
 [ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
+[ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
+[ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
-[ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
+[ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
-[ext_resource type="PackedScene" uid="uid://cvrg0ty56qcuc" path="res://Scenes/Levels/World2/2-2.tscn" id="14_1p5hy"]
+[ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
+[ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
+
+[sub_resource type="Theme" id="Theme_hwpts"]
+Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hwpts"]
+color = Color(0.74, 0.74, 0.74, 1)
+thickness = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2w5on"]
+shader = ExtResource("10_erwvk")
+shader_parameter/lod = 2.000000095
+shader_parameter/fade = 1.76
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
 bg_color = Color(0, 0, 0, 0.54901963)
@@ -64,6 +79,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LevelPopup:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_v1gob"]
 resource_name = "OpenPopup"
@@ -100,6 +127,18 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LevelPopup:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -143,6 +182,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LevelPopup:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50glp"]
 _data = {
@@ -152,9 +203,57 @@ _data = {
 }
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.11372549, 0.18039216, 0.2784314, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kln2b"]
 gradient = SubResource("Gradient_idj7w")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_346fj"]
+bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
+border_width_bottom = 20
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
+bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
+border_width_bottom = 20
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erwvk"]
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+border_width_bottom = 20
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w5on"]
+bg_color = Color(0.41, 0.57399994, 0.82, 1)
+border_width_bottom = 10
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_346fj"]
+Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_346fj")
+Button/styles/hover = SubResource("StyleBoxFlat_h1m7h")
+Button/styles/normal = SubResource("StyleBoxFlat_erwvk")
+Button/styles/pressed = SubResource("StyleBoxFlat_2w5on")
 
 [sub_resource type="Gradient" id="Gradient_grg3l"]
 offsets = PackedFloat32Array(0)
@@ -269,7 +368,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -297,6 +396,18 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Levels/LevelPopup:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
@@ -307,26 +418,50 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:position")
+tracks/0/path = NodePath("Levels:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1152, 0)]
+"update": 1,
+"values": [Vector2(-1152, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Levels:position")
+tracks/1/path = NodePath("MainMenu:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(1152, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Polygon2D3:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-1152, 0), Vector2(0, 0)]
+"values": [-0.92851514, 0.92851514]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Polygon2D4:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.2130775, 4.070108]
 }
 
 [sub_resource type="Animation" id="Animation_vy5pj"]
@@ -334,95 +469,131 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:position")
+tracks/0/path = NodePath("Levels:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-1152, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Levels:position")
+tracks/1/path = NodePath("Levels/LevelPopup:focused")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1152, 0)]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Levels/LevelPopup:focused")
+tracks/2/path = NodePath("ResetLevel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Countdown/Label:text")
+tracks/3/path = NodePath("ResetLevel/ColorRect:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [""]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Countdown:visible")
+tracks/4/path = NodePath("ResetLevel/ColorRect:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ResetLevel/ColorRect:visible")
+tracks/5/path = NodePath("MainMenu:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ResetLevel/ColorRect:modulate")
+tracks/6/path = NodePath("Countdown/Label:text")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [""]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ResetLevel:visible")
+tracks/7/path = NodePath("Countdown:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Polygon2D3:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.92851514]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Polygon2D4:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.2130775]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Levels/LevelPopup:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -434,13 +605,13 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ResetLevel/ColorRect:visible")
+tracks/0/path = NodePath("ResetLevel:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/1/type = "value"
@@ -458,13 +629,13 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ResetLevel:visible")
+tracks/2/path = NodePath("ResetLevel/ColorRect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -474,14 +645,14 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ResetLevel/ColorRect:visible")
+tracks/0/path = NodePath("ResetLevel:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -498,14 +669,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ResetLevel:visible")
+tracks/2/path = NodePath("ResetLevel/ColorRect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbw6q"]
@@ -518,6 +689,95 @@ _data = {
 &"ResetIn": SubResource("Animation_grg3l"),
 &"ResetOut": SubResource("Animation_frkhe")
 }
+
+[sub_resource type="Shader" id="Shader_fq0cl"]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/VHS-and-CRT-monitor-effect
+
+This shader is under CC0 license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result to godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+//*** IMPORTANT! ***/ 
+// - If you are using this shader to affect the node it is applied to set 'overlay' to false (unchecked in the instepctor).
+// - If you are using this shader as an overlay, and want the shader to affect the nodes below in the Scene hierarchy,
+//   set 'overlay' to true (checked in the inspector).
+// On Mac there is potentially a bug causing this to not work properly. If that is the case and you want to use the shader as an overlay
+// change all \"overlay ? SCREEN_TEXTURE : TEXTURE\" to only \"SCREEN_TEXTURE\" on lines 129-140, and \"vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV);\"
+// to \"vec2 uv = warp(SCREEN_UV);\" on line 98.
+uniform sampler2D SCREEN_TEXTURE:hint_screen_texture;
+
+uniform float warp_amount :hint_range(0.0, 5.0) = 1.0; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
+uniform bool clip_warp = false;
+
+uniform float vignette_intensity = 0.4; // Size of the vignette, how far towards the middle it should go.
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+
+// Takes in the UV and warps the edges, creating the spherized effect
+vec2 warp(vec2 uv){
+	vec2 delta = uv - 0.5;
+	float delta_offset = pow(length(delta), 4.0) * warp_amount;
+	
+	return uv + delta * delta_offset;
+}
+
+// Adds a black border to hide stretched pixel created by the warp effect
+float border (vec2 uv){
+	float radius = min(warp_amount, 0.08);
+	radius = max(abs(radius * 2.0), 1e-5);
+	vec2 abs_uv = abs(uv * 2.0 - 1.0) - vec2(1.0, 1.0) + radius;
+	float dist = length(max(vec2(0.0), abs_uv)) / radius;
+	float square = smoothstep(0.96, 1.0, dist);
+	return clamp(1.0 - square, 0.0, 1.0);
+}
+
+// Adds a vignette shadow to the edges of the image
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment()
+{
+	vec2 uv = warp(UV);
+	
+	vec4 text = texture(SCREEN_TEXTURE, uv);
+	
+	//uv = warp(UV);
+	
+	// Apply a black border to hide imperfections caused by the warping.
+	// Also apply the vignette
+	text.rgb *= border(uv);
+	text.rgb *= vignette(uv);
+	// Hides the black border and make that area transparent. Good if you want to add the the texture on top an image of a TV or monitor.
+	if (clip_warp)
+	{
+		text.a = border(uv);
+	}
+	
+	COLOR = text;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwpts"]
+shader = SubResource("Shader_fq0cl")
+shader_parameter/warp_amount = 1.0000000475
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.350000016625
+
+[sub_resource type="Sky" id="Sky_1p5hy"]
+
+[sub_resource type="Environment" id="Environment_hwpts"]
+background_mode = 3
+sky = SubResource("Sky_1p5hy")
+sky_custom_fov = 34.9
+glow_enabled = true
+glow_intensity = 1.5
 
 [node name="Main" type="Node" unique_id=1682853294 groups=["Main"]]
 
@@ -548,15 +808,6 @@ theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=849892367]
 layout_mode = 2
-
-[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1878646220]
-process_mode = 1
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 65
-text = "00:00.00"
-script = ExtResource("8_vy5pj")
 
 [node name="Reset" type="TextureProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1818482585]
 layout_mode = 2
@@ -592,13 +843,80 @@ text = "  Hold R To Reset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD" unique_id=175140257]
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=175140257]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 40
 text = "0.0u/s"
 script = ExtResource("6_frkhe")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=1624346038]
+process_mode = 3
+custom_minimum_size = Vector2(250, 500)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("6_jyqft")
+
+[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=1878646220]
+process_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 72
+text = "00:00.00"
+script = ExtResource("8_vy5pj")
+
+[node name="Score" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=277202492]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 53
+text = "000000"
+
+[node name="ComboBox" type="VBoxContainer" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=382588904]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = SubResource("Theme_hwpts")
+
+[node name="ComboEntry7" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=1665394933]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry8" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=1332139870]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry9" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=292181857]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry10" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=148228918]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboSeperator" type="HSeparator" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=942550201]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/separator = SubResource("StyleBoxLine_hwpts")
+
+[node name="ComboTotal" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=1638351789]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
+theme_override_font_sizes/font_size = 36
+text = "320"
 
 [node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
 layout_mode = 1
@@ -617,6 +935,7 @@ animator = NodePath("AnimationPlayer")
 level_popup = NodePath("LevelPopup")
 
 [node name="LevelPopup" type="MarginContainer" parent="CanvasLayer/UI/Levels" unique_id=1928721524 node_paths=PackedStringArray("animator")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -625,15 +944,25 @@ offset_top = -864.0
 offset_bottom = -864.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 320
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 320
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 script = ExtResource("2_rgh2o")
 animator = NodePath("../AnimationPlayer")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/UI/Levels/LevelPopup" unique_id=2010336761]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/Levels/LevelPopup" unique_id=2087063237]
+material = SubResource("ShaderMaterial_2w5on")
+custom_minimum_size = Vector2(750, 850)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/Levels/LevelPopup" unique_id=2010336761]
+custom_minimum_size = Vector2(512, 664)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_pbw6q")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel" unique_id=1597998910]
@@ -748,22 +1077,36 @@ offset_right = 391.0
 offset_bottom = 599.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme = SubResource("Theme_346fj")
 theme_override_constants/separation = 15
 
 [node name="Button" type="Button" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=346110339]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Button3")
+focus_neighbor_top = NodePath("../Button3")
+focus_neighbor_right = NodePath("../Button2")
+focus_neighbor_bottom = NodePath("../Button2")
+focus_next = NodePath("../Button2")
+focus_previous = NodePath("../Button3")
 theme_override_font_sizes/font_size = 57
 text = "PLAY"
 script = ExtResource("1_idj7w")
 animation_name = "Main->Levels"
 use_global = true
+starts_with_focus = true
 
 [node name="Button2" type="Button" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=887973936]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Button")
+focus_neighbor_top = NodePath("../Button")
+focus_neighbor_right = NodePath("../Button3")
+focus_neighbor_bottom = NodePath("../Button3")
+focus_next = NodePath("../Button3")
+focus_previous = NodePath("../Button")
 theme_override_font_sizes/font_size = 57
 text = "OPTIONS"
 
@@ -772,6 +1115,12 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+focus_neighbor_left = NodePath("../Button2")
+focus_neighbor_top = NodePath("../Button2")
+focus_neighbor_right = NodePath("../Button")
+focus_neighbor_bottom = NodePath("../Button")
+focus_next = NodePath("../Button")
+focus_previous = NodePath("../Button2")
 theme_override_font_sizes/font_size = 57
 text = "QUIT
 "
@@ -787,7 +1136,36 @@ patch_margin_left = 64
 patch_margin_right = 64
 axis_stretch_vertical = 1
 
+[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
+position = Vector2(1152, 432)
+color = Color(0.5376, 0.70655996, 0.96, 1)
+polygon = PackedVector2Array(491.23996, 204.22372, 410.6553, 252.36128, 404.09225, 346.0252, 312.57663, 366.9058, 277.39206, 453.95776, 183.87576, 445.54877, 123.54069, 517.457, 37.19954, 480.56238, -42.40281, 530.3075, -113.117775, 468.53854, -204.19594, 491.2515, -252.36313, 410.65417, -346.02704, 404.0907, -366.90717, 312.575, -453.959, 277.39, -445.53836, 183.90097, -517.4575, 123.53839, -480.56256, 37.1974, -530.30725, -42.405174, -468.53806, -113.11986, -491.25058, -204.19812, -410.65305, -252.36496, -404.08917, -346.0288, -312.57336, -366.90857, -277.388, -453.96024, -183.89899, -445.53918, -123.53608, -517.45807, -37.19526, -480.56268, 42.407536, -530.30707, 113.12195, -468.53754, 204.2003, -491.2497, 252.36678, -410.65195, 346.0306, -404.08762, 366.90994, -312.57172, 453.9615, -277.38596, 445.54, -183.897, 517.4586, -123.533775, 480.5606, -37.22245, 530.3069, 42.409897, 468.53705, 113.12403, 491.23996, 204.22372, 320.73065, 140.1137, 229.95773, 4.4090815, 325.86588, -127.71621, 165.722, -159.48735, 140.11226, -320.7313, 4.408057, -229.95775, -127.71766, -325.8653, -159.4881, -165.7213, -320.7319, -140.11082, -229.95778, -4.407033, -325.86475, 127.71911, -165.7206, 159.48883, -140.1094, 320.73254, -4.4060082, 229.9578, 127.72056, 325.86417, 159.48956, 165.71988, 320.73065, 140.1137)
+script = ExtResource("13_h1m7h")
+outer_rotation = 10.0
+inner_rotation = -10.0
+outer_vertices = 40
+outer_radius = 482.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: 50.0
+})
+inner_vertices = 16
+inner_radius = 350.0
+inner_radius_modifiers = Dictionary[int, float]({
+2: -120.0
+})
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=599458090]
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+polygon = PackedVector2Array(60, 0, -2.6226833e-06, 60, 0, 0)
+
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1705481192]
+position = Vector2(0, 864)
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+polygon = PackedVector2Array(60, 0, 0, -5.2453665e-06, 7.1549283e-07, -60)
+
 [node name="Countdown" type="Control" parent="CanvasLayer/UI" unique_id=633146946]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -841,8 +1219,44 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/UI" unique_id=371789246]
+position = Vector2(-864, 432)
+rotation = -0.92851514
+color = Color(0.05882353, 0.09019608, 0.14117648, 1)
+polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/Polygon2D3" unique_id=183513758]
+visible = false
+z_index = 1
+color = Color(0.64, 0.77799994, 1, 1)
+polygon = PackedVector2Array(1345.4487, -672.11444, 1434.9319, -463.32092, 1498.0933, -189.253, 1511.0167, 5.5043335, 1498.0933, 189.25319, 1462.5605, 375.52176, 1403.9625, 555.86804, 1347.563, 673.684, 1226.4219, 613.16437, 1302.9475, 423.3533, 1353.133, 214.31523, 1370, 0, 1353.133, -214.31506, 1302.9475, -423.3532, 1224.915, -612.425)
+
+[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/UI" unique_id=461649627]
+position = Vector2(2016, 432)
+rotation = 2.2130775
+color = Color(0.05882353, 0.09019608, 0.14117648, 1)
+polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/Polygon2D4" unique_id=1285744738]
+visible = false
+color = Color(0.64, 0.77799994, 1, 1)
+polygon = PackedVector2Array(1345.4487, -672.11444, 1434.9319, -463.32092, 1498.0933, -189.253, 1511.0167, 5.5043335, 1498.0933, 189.25319, 1462.5605, 375.52176, 1403.9625, 555.86804, 1347.563, 673.684, 1226.4219, 613.16437, 1302.9475, 423.3533, 1353.133, 214.31523, 1370, 0, 1353.133, -214.31506, 1302.9475, -423.3532, 1224.915, -612.425)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
 libraries/ = SubResource("AnimationLibrary_pbw6q")
 script = ExtResource("1_r150o")
 
-[node name="World2LevelBase" parent="." unique_id=1260259211 instance=ExtResource("14_1p5hy")]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=707555593]
+visible = false
+material = SubResource("ShaderMaterial_hwpts")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=582492900]
+environment = SubResource("Environment_hwpts")

@@ -2,6 +2,7 @@ class_name LevelData extends Resource
 ## Holds all the reference data for a level.
 
 signal times_updated
+signal scores_updated
 
 @export var name:String ## The name of the level.
 
@@ -12,14 +13,26 @@ var times:Array[float]: ## Stores time, in seconds
 		times = to
 		
 		## Update the best time.
-		best_time = _get_best_time()
+		best_time = _get_best(times)
 		
 		## Update the ranking
 		ranking = _get_ranking()
 		
-		print("UPDATED")
 		times_updated.emit()
 var best_time:float ## The best time out of times.
+
+var scores:Array[float]: ## Stores time, in seconds
+	set(to):
+		scores = to
+		
+		## Update the best time.
+		best_score = _get_best(scores)
+		
+		## Update the ranking
+		ranking = _get_ranking()
+		
+		scores_updated.emit()
+var best_score:float ## The best time out of times.
 
 enum RANKINGS {S, A, B, C, D}
 @export var ranking_maximums:Dictionary[RANKINGS, float] = {
@@ -33,12 +46,12 @@ enum RANKINGS {S, A, B, C, D}
 ## The current letter ranking for this level.
 var ranking:String
 
-func _get_best_time() -> float: 
+func _get_best(from:Array[float]) -> float: 
 	var best:float = INF
 	
-	for time in times:
-		if min(best, time) == time:
-			best = time
+	for val in from:
+		if min(best, val) == val:
+			best = val
 	
 	return best
 

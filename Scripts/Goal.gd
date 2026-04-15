@@ -7,3 +7,5 @@ func _ready() -> void:
 func _on_body_entered(body:Node2D) -> void:
 	if body is Player:
 		Global.request_animation.emit("Game->Levels")
+
+func _process(delta: float) -> void: $Sprite.rotate(delta)
