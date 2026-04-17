@@ -1,5 +1,5 @@
 class_name RunTimer extends Label
-## Manages the time taken in the current run.
+## Manages the time taken in the current run, and saving the time and score.
 
 @export var timer := 0.0
 var running := false
@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 func save() -> void:
 	if Global.current_data:
 		Global.current_data.times += [timer]
+		print(Global.score)
 		Global.current_data.scores += [Global.score]
 	
 	running = false

@@ -14,6 +14,3 @@ func _on_body_entered(body:Node2D): if body is Player:
 	
 	body.velocity = direction * (magnitude + (additor * 60))
 	body.was_on_wall = false # Hijack it so the projection works.
-	
-	print(direction * magnitude, " -> ", direction * (magnitude + additor))
-		

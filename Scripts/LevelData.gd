@@ -13,7 +13,7 @@ var times:Array[float]: ## Stores time, in seconds
 		times = to
 		
 		## Update the best time.
-		best_time = _get_best(times)
+		best_time = _get_best(times) as float
 		
 		## Update the ranking
 		ranking = _get_ranking()
@@ -21,18 +21,15 @@ var times:Array[float]: ## Stores time, in seconds
 		times_updated.emit()
 var best_time:float ## The best time out of times.
 
-var scores:Array[float]: ## Stores time, in seconds
+var scores:Array[int]: ## Stores scores
 	set(to):
 		scores = to
 		
 		## Update the best time.
-		best_score = _get_best(scores)
-		
-		## Update the ranking
-		ranking = _get_ranking()
+		best_score = _get_best(scores) as int
 		
 		scores_updated.emit()
-var best_score:float ## The best time out of times.
+var best_score:int ## The best time out of times.
 
 enum RANKINGS {S, A, B, C, D}
 @export var ranking_maximums:Dictionary[RANKINGS, float] = {
@@ -46,8 +43,8 @@ enum RANKINGS {S, A, B, C, D}
 ## The current letter ranking for this level.
 var ranking:String
 
-func _get_best(from:Array[float]) -> float: 
-	var best:float = INF
+func _get_best(from:Array) -> Variant: 
+	var best = INF
 	
 	for val in from:
 		if min(best, val) == val:

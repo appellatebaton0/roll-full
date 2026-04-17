@@ -14,12 +14,12 @@ class_name LevelPopup extends MarginContainer
 var current_data:LevelData:
 	set(to): 
 		if current_data:
-			current_data.times_updated.disconnect(_update)
+			current_data.scores_updated.disconnect(_update)
 		
 		current_data = to
 		
 		if current_data:
-			current_data.times_updated.connect(_update)
+			current_data.scores_updated.connect(_update)
 			_update()
 
 @export var animator:AnimationPlayer
@@ -30,6 +30,8 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
 
 func _update() -> void:
+	
+	print("UPDA!", current_data.scores, current_data.times)
 	
 	best_time_lab.text = "BEST TIME: " + Global.seconds_as_timer(current_data.best_time)
 	

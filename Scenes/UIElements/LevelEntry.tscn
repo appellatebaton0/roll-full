@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqduu8fu52dky"]
 
 [ext_resource type="Script" uid="uid://nk2cc3fltn7v" path="res://Scripts/UI/LevelEntry.gd" id="1_x6mls"]
+[ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_ys53a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxhfk"]
 bg_color = Color(0, 0, 0, 0.32156864)
@@ -62,7 +63,8 @@ text = "00:00.00"
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 62
+theme_override_fonts/font = ExtResource("2_ys53a")
+theme_override_font_sizes/font_size = 79
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
