@@ -1,9 +1,18 @@
 [gd_scene format=3 uid="uid://no1j6n5wfkgq"]
 
 [ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/Player.gd" id="1_rpqav"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="3_gntrk"]
 [ext_resource type="Script" uid="uid://df3sty4wpm85y" path="res://Scripts/ComboDriver.gd" id="4_dewec"]
+[ext_resource type="Script" uid="uid://bbl15es03g582" path="res://Scripts/Trail.gd" id="5_5ixxa"]
+
+[sub_resource type="Curve" id="Curve_5ixxa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.97310096, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_nn08x"]
+offsets = PackedFloat32Array(0, 0.5141243, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.8248588, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5732"]
 radius = 32.0
@@ -24,6 +33,18 @@ ray_node = NodePath("RayCast2D")
 ray_distance = 140.0
 ray_fallback = 1.4
 
+[node name="Line2D" type="Line2D" parent="." unique_id=1371172353]
+modulate = Color(0.65999997, 0.92066675, 1, 1)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 48.0
+width_curve = SubResource("Curve_5ixxa")
+default_color = Color(1, 1, 1, 0.33333334)
+gradient = SubResource("Gradient_nn08x")
+joint_mode = 2
+script = ExtResource("5_5ixxa")
+trail_segments = 30
+lerp_weight = 0.6
+
 [node name="ComboDriver" type="Node2D" parent="." unique_id=1150365074 node_paths=PackedStringArray("player", "dir_sprites")]
 script = ExtResource("4_dewec")
 player = NodePath("..")
@@ -36,12 +57,14 @@ dir_sprites = {
 
 [node name="Up" type="Polygon2D" parent="ComboDriver" unique_id=1972560634]
 modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -5)
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
 polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
 [node name="Right" type="Polygon2D" parent="ComboDriver" unique_id=2072868802]
 modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(5, 0)
 rotation = 1.5707964
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
@@ -49,6 +72,7 @@ polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
 [node name="Down" type="Polygon2D" parent="ComboDriver" unique_id=1566669671]
 modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 5)
 rotation = -3.1415925
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)
@@ -56,6 +80,7 @@ polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
 
 [node name="Left" type="Polygon2D" parent="ComboDriver" unique_id=127754094]
 modulate = Color(0.59535605, 1.6198895, 1.8247963, 1)
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(-5, 0)
 rotation = -1.5707964
 color = Color(0.30943933, 0.8865197, 1, 0.70000005)

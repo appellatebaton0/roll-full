@@ -1,10 +1,14 @@
 class_name LevelPopup extends MarginContainer
 ## Manages the popup that appears when you click on a level.
 
-@onready var best_time_lab  := $Panel/MarginContainer/VBoxContainer/BestTime
-@onready var level_name_lab := $Panel/MarginContainer/VBoxContainer/HBoxContainer/LevelName
+@onready var best_time_lab  := $Panel/MarginContainer/VBoxContainer/HBoxContainer/BestTime
+@onready var best_score_lab := $Panel/MarginContainer/VBoxContainer/HBoxContainer/BestScore
+
+@onready var level_name_lab := $Panel/MarginContainer/VBoxContainer/LevelName
 @onready var attempt_box    := $Panel/MarginContainer/VBoxContainer/ScrollContainer/AttemptBox
-@onready var rank_lab       := $Panel/MarginContainer/VBoxContainer/HBoxContainer/Rank
+
+@onready var rank_star      := $Panel/Polygon2D
+@onready var rank_lab       := $Panel/Polygon2D/Rank
 
 @onready var play_button    := $Panel/MarginContainer/VBoxContainer/HBoxContainer2/PlayButton
 @onready var back_button    := $Panel/MarginContainer/VBoxContainer/HBoxContainer2/BackButton
@@ -29,11 +33,14 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 
+func _process(delta: float) -> void:
+	rank_star.rotate(delta * 0.7)
+	rank_lab.rotation = -rank_star.rotation
+
 func _update() -> void:
 	
-	print("UPDA!", current_data.scores, current_data.times)
-	
-	best_time_lab.text = "BEST TIME: " + Global.seconds_as_timer(current_data.best_time)
+	best_time_lab.text  = "BEST TIME: "  + Global.seconds_as_timer(current_data.best_time)
+	best_score_lab.text = "BEST SCORE: " + Global.digitize(current_data.best_score, 7)
 	
 	level_name_lab.text = current_data.name
 	

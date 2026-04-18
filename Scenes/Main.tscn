@@ -10,12 +10,13 @@
 [ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
 [ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
-[ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
+[ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 [ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
@@ -31,14 +32,79 @@ shader_parameter/lod = 2.000000095
 shader_parameter/fade = 1.76
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
-bg_color = Color(0, 0, 0, 0.54901963)
+bg_color = Color(0.11372549, 0.18039216, 0.2784314, 1)
+border_width_bottom = 20
+border_color = Color(0.051217474, 0.093585126, 0.15588868, 1)
 corner_radius_top_left = 60
-corner_radius_top_right = 60
 corner_radius_bottom_right = 60
-corner_radius_bottom_left = 60
+corner_detail = 1
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
+bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
+border_width_bottom = 20
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxkr1"]
+bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
+border_width_bottom = 20
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fq0cl"]
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+border_width_bottom = 20
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwpts"]
+bg_color = Color(0.41, 0.57399994, 0.82, 1)
+border_width_bottom = 10
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_jyqft"]
+Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_0sclb")
+Button/styles/hover = SubResource("StyleBoxFlat_sxkr1")
+Button/styles/normal = SubResource("StyleBoxFlat_fq0cl")
+Button/styles/pressed = SubResource("StyleBoxFlat_hwpts")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tgeq"]
+atlas = ExtResource("6_vy5pj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4ay3"]
+load_path = "res://.godot/imported/bar.svg-2cb6b669aa98b64c645271969f83b515.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aht7i"]
+atlas = SubResource("CompressedTexture2D_c4ay3")
+region = Rect2(191, 0, 64, 64)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
-bg_color = Color(0, 0, 0, 0.14117648)
+bg_color = Color(0, 0, 0, 0.56078434)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 1
 
 [sub_resource type="Animation" id="Animation_pbw6q"]
 resource_name = "ClosePopup"
@@ -318,15 +384,15 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_4kpch"]
 resource_name = "Countdown"
-length = 1.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Countdown/Label:text")
+tracks/0/path = NodePath("Countdown/RegularPolygon/Label:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"times": PackedFloat32Array(0, 0.6667, 1.3333, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["3", "2", "1", ""]
@@ -338,10 +404,34 @@ tracks/1/path = NodePath("Countdown:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Countdown/RegularPolygon:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.11197586, 0.17840078, 0.5457516, 0.5737964, 0.6782713, 0.75413334, 0.8333333, 1.2008137, 1.2288584, 1.3333333, 1.4091954, 1.4666667, 1.8595718, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Countdown/RegularPolygon:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.11197586, 0.16788399, 0.5429713, 0.5763046, 0.75413334, 0.8333333, 1.1921707, 1.2313665, 1.4091954, 1.4626279, 1.8514942, 1.8999602, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-3.1415927, 0.0, 0.0, 0.0, 0.0, 6.283185307179586, 6.283185307179586, 6.283185307179586, 6.283185307179586, 0.0, 0.0, 0.0, 0.0, 6.283185307179586]
 }
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
@@ -371,6 +461,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PauseScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Countdown:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HUD:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_50glp"]
 resource_name = "Levels->Game"
@@ -399,6 +525,54 @@ tracks/1/keys = {
 "update": 0,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Levels:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PauseScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Countdown:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HUD:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_rgh2o"]
 resource_name = "Main->Levels"
@@ -406,50 +580,62 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Levels:position")
+tracks/0/path = NodePath("Polygon2D3:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(-1152, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MainMenu:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(0, 0), Vector2(1152, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Polygon2D3:rotation")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.92851514, 0.92851514]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Polygon2D4:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D4:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [2.2130775, 4.070108]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Levels:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_vy5pj"]
@@ -457,19 +643,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Levels:position")
+tracks/0/path = NodePath("Levels/LevelPopup:focused")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1152, 0)]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Levels/LevelPopup:focused")
+tracks/1/path = NodePath("ResetLevel/ColorRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -481,98 +667,158 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ResetLevel:visible")
+tracks/2/path = NodePath("ResetLevel/ColorRect:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.001),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ResetLevel/ColorRect:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ResetLevel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ResetLevel/ColorRect:visible")
+tracks/4/path = NodePath("Countdown/RegularPolygon/Label:text")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
+"update": 1,
+"values": [""]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MainMenu:position")
+tracks/5/path = NodePath("Countdown:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Countdown/Label:text")
+tracks/6/path = NodePath("Polygon2D3:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [""]
+"update": 0,
+"values": [-0.92851514]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Countdown:visible")
+tracks/7/path = NodePath("Polygon2D4:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [2.2130775]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Polygon2D3:rotation")
+tracks/8/path = NodePath("Countdown/RegularPolygon:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.92851514]
+"values": [Vector2(1e-05, 1e-05)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Polygon2D4:rotation")
+tracks/9/path = NodePath("Countdown/RegularPolygon:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [2.2130775]
+"values": [-3.1415927]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MainMenu:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Levels:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HUD:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("PauseScreen:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_grg3l"]
@@ -581,7 +827,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ResetLevel:visible")
+tracks/0/path = NodePath("ResetLevel/ColorRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -605,7 +851,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ResetLevel/ColorRect:visible")
+tracks/2/path = NodePath("ResetLevel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -621,14 +867,14 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ResetLevel:visible")
+tracks/0/path = NodePath("ResetLevel/ColorRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [false]
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -645,14 +891,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ResetLevel/ColorRect:visible")
+tracks/2/path = NodePath("ResetLevel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [true, false]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbw6q"]
@@ -771,6 +1017,7 @@ grow_vertical = 2
 theme = ExtResource("1_jw32o")
 
 [node name="HUD" type="MarginContainer" parent="CanvasLayer/UI" unique_id=759992458]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -895,12 +1142,11 @@ theme_override_font_sizes/font_size = 36
 text = "320"
 
 [node name="Levels" type="Control" parent="CanvasLayer/UI" unique_id=1766420214 node_paths=PackedStringArray("animator", "level_popup")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1152.0
-offset_right = -1152.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kln2b")
@@ -927,7 +1173,7 @@ theme_override_constants/margin_bottom = 0
 script = ExtResource("2_rgh2o")
 animator = NodePath("../AnimationPlayer")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/Levels/LevelPopup" unique_id=2087063237]
+[node name="Blur" type="ColorRect" parent="CanvasLayer/UI/Levels/LevelPopup" unique_id=2087063237]
 material = SubResource("ShaderMaterial_2w5on")
 custom_minimum_size = Vector2(750, 850)
 layout_mode = 2
@@ -949,41 +1195,66 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 60
+theme_override_constants/margin_top = 45
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer" unique_id=1603183209]
 layout_mode = 2
+theme = SubResource("Theme_jyqft")
 theme_override_constants/separation = 7
+
+[node name="LevelName" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=478806576]
+layout_mode = 2
+theme_override_font_sizes/font_size = 62
+text = "[LEVEL NAME]"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=285678009]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="LevelName" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=478806576]
-layout_mode = 2
-theme_override_font_sizes/font_size = 39
-text = "[LEVEL NAME]"
-horizontal_alignment = 1
-
-[node name="Rank" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1166579756]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 36
-text = "A"
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=788545920]
-layout_mode = 2
-
-[node name="BestTime" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1152537488]
+[node name="BestTime" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1152537488]
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
 text = "Best Time: 00:00.00"
 horizontal_alignment = 1
 
+[node name="BestScore" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1384646365]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Best Score: 00000"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1967514212]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1042288966]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_3tgeq")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=2144130747]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1895035969]
+custom_minimum_size = Vector2(10, 15)
+layout_mode = 2
+texture = SubResource("AtlasTexture_aht7i")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=832974219]
+clip_children = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
@@ -994,6 +1265,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1549215641]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -1001,6 +1273,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 32
 text = "PLAY"
 
@@ -1008,8 +1281,33 @@ text = "PLAY"
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 32
 text = "BACK"
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/Levels/LevelPopup/Panel" unique_id=1516729072]
+position = Vector2(492, 20)
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+polygon = PackedVector2Array(55, 0, 71.32924, 23.176275, 44.495934, 32.32819, 44.083893, 60.676273, 16.995934, 52.30811, -3.2783541e-06, 75, -16.995937, 52.308105, -44.08389, 60.676273, -44.495937, 32.328186, -71.32924, 23.176277, -55, -4.808253e-06, -71.32924, -23.176273, -44.495934, -32.328194, -44.08388, -60.676285, -16.99594, -52.308105, 8.9436605e-07, -75, 16.995941, -52.308105, 44.08388, -60.676285, 44.495934, -32.32819, 71.32924, -23.176271)
+script = ExtResource("13_346fj")
+outer_vertices = 20
+outer_radius = 75.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -20.0
+})
+
+[node name="Rank" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/Polygon2D" unique_id=1166579756]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(22, 52)
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+theme_override_fonts/font = ExtResource("5_50glp")
+theme_override_font_sizes/font_size = 103
+text = "S"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Levels" unique_id=152351141]
 libraries/ = SubResource("AnimationLibrary_50glp")
@@ -1115,7 +1413,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(172.66907, -503.19916, 225.83417, -425.8203, 319.7152, -425.2131, 346.3668, -335.19254, 435.46533, -305.60425, 432.99463, -211.75377, 508.58908, -156.08064, 477.23785, -67.58703, 531.92847, 8.721223, 474.76572, 83.19559, 503.19907, 172.66939, 425.82016, 225.83443, 425.21292, 319.71545, 335.19232, 346.36703, 305.60437, 435.46524, 211.75389, 432.99457, 156.08081, 508.589, 67.58718, 477.23785, -8.721056, 531.9285, -83.19544, 474.76575, -172.66922, 503.1991, -225.8343, 425.82022, -319.71533, 425.213, -346.3669, 335.1924, -435.46542, 305.60406, -432.9947, 211.75362, -508.5891, 156.08047, -477.23788, 67.586876, -531.92847, -8.721396, -474.76578, -83.19529, -503.199, -172.66956, -425.82007, -225.83458, -425.2128, -319.7156, -335.1922, -346.36713, -305.6038, -435.4656, -211.75334, -432.9948, -156.08112, -508.5889, -67.58749, -477.2378, 8.720722, -531.9285, 83.19514, -474.7658, 172.66907, -503.19916, 21.73705, -349.32434, -74.6503, -217.54846, -231.6393, -262.37997, -206.61566, -101.044395, -349.32434, -21.737158, -217.54848, 74.65023, -262.38004, 231.6392, -101.04426, 206.61572, -21.736935, 349.32434, 74.65016, 217.54851, 231.6392, 262.38004, 206.61568, 101.04436, 349.32434, 21.737106, 217.54848, -74.65026, 262.3801, -231.63913, 101.04433, -206.61569, 21.73705, -349.32434)
+polygon = PackedVector2Array(-307.6519, -434.02112, -213.79001, -431.9929, -158.47244, -507.84888, -69.835, -476.91412, 6.2157297, -531.9637, 80.95941, -475.15216, 170.29933, -504.0061, 223.8255, -426.87955, 317.70914, -426.71405, 344.78506, -336.81934, 434.02246, -307.64996, 431.9922, -213.79137, 507.8484, -158.47404, 476.91443, -69.83287, 531.9637, 6.214041, 475.15244, 80.95791, 504.00665, 170.29773, 426.87854, 223.8274, 426.7151, 317.7078, 336.82043, 344.78397, 307.6513, 434.02148, 213.78944, 431.99313, 158.47566, 507.8479, 69.83439, 476.91418, -6.2164106, 531.9637, -80.96002, 475.15204, -170.29613, 504.00717, -223.82605, 426.87927, -317.7097, 426.71365, -344.7855, 336.81888, -434.0205, 307.6527, -431.99246, 213.79082, -507.84857, 158.47339, -476.91452, 69.83226, -531.9637, -6.2147217, -475.1523, -80.95851, -504.0064, -170.29836, -426.87827, -223.82794, -426.71466, -317.7083, -336.81998, -344.7844, -307.6519, -434.02112, -186.34924, -296.2667, -187.64111, -133.0068, -341.2612, -77.72262, -226.73253, 38.631073, -296.2673, 186.34831, -133.0074, 187.6407, -77.72457, 341.26074, 38.631508, 226.73245, 186.34888, 296.26694, 187.64096, 133.00703, 341.26108, 77.72305, 226.73228, -38.632515, 296.26752, -186.34793, 133.00764, -187.64053, 77.72414, -341.26083, -38.631794, -226.7324, -186.34924, -296.2667)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1141,6 +1439,7 @@ color = Color(0.5372549, 0.7058824, 0.95686275, 1)
 polygon = PackedVector2Array(60, 0, 0, -5.2453665e-06, 7.1549283e-07, -60)
 
 [node name="Countdown" type="Control" parent="CanvasLayer/UI" unique_id=633146946]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1149,18 +1448,49 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/Countdown" unique_id=479276474]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="RegularPolygon" type="Polygon2D" parent="CanvasLayer/UI/Countdown" unique_id=769910967]
+position = Vector2(576, 432)
+rotation = -3.1415927
+scale = Vector2(1e-05, 1e-05)
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+antialiased = true
+polygon = PackedVector2Array(200, 0, 285.31696, 92.7051, 161.8034, 117.55705, 176.33557, 242.7051, 61.803394, 190.2113, -1.3113417e-05, 300, -61.803406, 190.2113, -176.33556, 242.7051, -161.8034, 117.55704, -285.31696, 92.70511, -200, -1.7484555e-05, -285.31696, -92.70509, -161.80339, -117.557076, -176.33553, -242.70514, -61.803417, -190.2113, 3.5774642e-06, -300, 61.803425, -190.2113, 176.33553, -242.70514, 161.80339, -117.55706, 285.31696, -92.705086)
+script = ExtResource("13_346fj")
+outer_vertices = 20
+outer_radius = 300.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+
+[node name="RegularPolygon2" type="Polygon2D" parent="CanvasLayer/UI/Countdown/RegularPolygon" unique_id=1170209603]
+color = Color(0.2509804, 0.44705883, 0.7411765, 1)
+antialiased = true
+polygon = PackedVector2Array(140, 0, 190.2113, 61.803402, 113.26238, 82.28993, 117.55705, 161.8034, 43.262375, 133.14792, -8.742278e-06, 200, -43.262386, 133.1479, -117.55704, 161.8034, -113.26239, 82.289925, -190.2113, 61.803406, -140, -1.2239188e-05, -190.2113, -61.803394, -113.262375, -82.28995, -117.557014, -161.80342, -43.262394, -133.1479, 2.3849761e-06, -200, 43.262398, -133.1479, 117.557014, -161.80342, 113.262375, -82.28994, 190.2113, -61.80339)
+script = ExtResource("13_346fj")
+outer_vertices = 20
+outer_radius = 200.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -60.0
+})
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Countdown/RegularPolygon" unique_id=479276474]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -270.0
+offset_right = 118.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 540
+theme_override_font_sizes/font_size = 280
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseScreen" type="TextureRect" parent="CanvasLayer/UI" unique_id=143204885]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1201,23 +1531,12 @@ color = Color(0.05882353, 0.09019608, 0.14117648, 1)
 polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
 metadata/_edit_lock_ = true
 
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/Polygon2D3" unique_id=183513758]
-visible = false
-z_index = 1
-color = Color(0.64, 0.77799994, 1, 1)
-polygon = PackedVector2Array(1345.4487, -672.11444, 1434.9319, -463.32092, 1498.0933, -189.253, 1511.0167, 5.5043335, 1498.0933, 189.25319, 1462.5605, 375.52176, 1403.9625, 555.86804, 1347.563, 673.684, 1226.4219, 613.16437, 1302.9475, 423.3533, 1353.133, 214.31523, 1370, 0, 1353.133, -214.31506, 1302.9475, -423.3532, 1224.915, -612.425)
-
 [node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/UI" unique_id=461649627]
 position = Vector2(2016, 432)
 rotation = 2.2130775
 color = Color(0.05882353, 0.09019608, 0.14117648, 1)
 polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
 metadata/_edit_lock_ = true
-
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/Polygon2D4" unique_id=1285744738]
-visible = false
-color = Color(0.64, 0.77799994, 1, 1)
-polygon = PackedVector2Array(1345.4487, -672.11444, 1434.9319, -463.32092, 1498.0933, -189.253, 1511.0167, 5.5043335, 1498.0933, 189.25319, 1462.5605, 375.52176, 1403.9625, 555.86804, 1347.563, 673.684, 1226.4219, 613.16437, 1302.9475, 423.3533, 1353.133, 214.31523, 1370, 0, 1353.133, -214.31506, 1302.9475, -423.3532, 1224.915, -612.425)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
 libraries/ = SubResource("AnimationLibrary_pbw6q")

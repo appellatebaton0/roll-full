@@ -11,7 +11,7 @@ var real_ending := false
 
 func _init() -> void:
 	horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	add_theme_font_size_override("font_size", 2.0)
+	add_theme_font_size_override("font_size", 2)
 	size.y = 0.0
 
 func _process(delta: float) -> void:

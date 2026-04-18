@@ -2,6 +2,8 @@
 class_name AnimatedPolygon extends RegularPolygon
 ## A regular polygon with extra settings for animation.
 
+@export var processing := true
+
 @export_group("Outer Animation", "outer_")
 ## Apply +- modifiers to every nth point.
 @export var outer_wave_amounts:Dictionary[int, float]
@@ -23,7 +25,7 @@ var current_inner_rotation := 0.
 ## The timers for every existing wave animation. Formatted as interval:time
 var animation_timers:Dictionary[float, float]
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void: if processing:
 	for key in animation_timers:
 		animation_timers[key] = move_toward(animation_timers[key], key, delta)
 		
