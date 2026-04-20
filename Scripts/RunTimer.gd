@@ -17,9 +17,8 @@ func _process(delta: float) -> void:
 
 func save() -> void:
 	if Global.current_data:
-		Global.current_data.times += [timer]
-		print(Global.score)
-		Global.current_data.scores += [Global.score]
+		Global.current_data.log_run(timer, Global.score)
+	Global.score = 0
 	
 	running = false
 	timer = 0.0

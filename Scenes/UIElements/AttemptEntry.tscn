@@ -92,8 +92,19 @@ horizontal_alignment = 1
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=1927166197]
 layout_mode = 2
 
-[node name="Rank" type="Label" parent="MarginContainer/HBoxContainer" unique_id=38186395]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1634040115]
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="Rank" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer" unique_id=38186395]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4mh8l")
 theme_override_font_sizes/font_size = 45
 text = "S"
+
+[node name="Bonused" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer" unique_id=960860431]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_4mh8l")
+theme_override_font_sizes/font_size = 15
+text = "+"

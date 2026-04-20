@@ -8,7 +8,9 @@ class_name LevelPopup extends MarginContainer
 @onready var attempt_box    := $Panel/MarginContainer/VBoxContainer/ScrollContainer/AttemptBox
 
 @onready var rank_star      := $Panel/Polygon2D
-@onready var rank_lab       := $Panel/Polygon2D/Rank
+@onready var rank_box       := $Panel/Polygon2D/HBoxContainer
+@onready var rank_lab       := $Panel/Polygon2D/HBoxContainer/Rank
+@onready var rank_bonus_lab := $Panel/Polygon2D/HBoxContainer/Label
 
 @onready var play_button    := $Panel/MarginContainer/VBoxContainer/HBoxContainer2/PlayButton
 @onready var back_button    := $Panel/MarginContainer/VBoxContainer/HBoxContainer2/BackButton
@@ -18,12 +20,12 @@ class_name LevelPopup extends MarginContainer
 var current_data:LevelData:
 	set(to): 
 		if current_data:
-			current_data.scores_updated.disconnect(_update)
+			current_data.runs_updated.disconnect(_update)
 		
 		current_data = to
 		
 		if current_data:
-			current_data.scores_updated.connect(_update)
+			current_data.runs_updated.connect(_update)
 			_update()
 
 @export var animator:AnimationPlayer
@@ -35,7 +37,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	rank_star.rotate(delta * 0.7)
-	rank_lab.rotation = -rank_star.rotation
+	
+	rank_box.rotation = -rank_star.rotation
+	rank_box.pivot_offset = rank_box.size / 2
 
 func _update() -> void:
 	
@@ -46,12 +50,12 @@ func _update() -> void:
 	
 	# Update the attempt entries.
 	var entries := attempt_box.get_children()
-	var attempts = len(current_data.times)
+	var attempts = len(current_data.runs)
 	for i in range(len(entries)):
-		var entry = entries[i]
+		var entry := entries[i]
 		if entry is AttemptEntry:
 			if attempts > 0:
-				entry.update(current_data, i)
+				entry.update(current_data.runs[i], i)
 				attempts -= 1
 			else:
 				entry.queue_free()
@@ -59,11 +63,13 @@ func _update() -> void:
 	for i in range(attempts):
 		var entry:AttemptEntry = preload("res://Scenes/UIElements/AttemptEntry.tscn").instantiate()
 		
-		entry.update(current_data, i + len(entries))
+		var index := i + len(entries)
+		entry.update(current_data.runs[index], index)
 		
 		attempt_box.add_child(entry)
 	
-	rank_lab.text = current_data.ranking
+	rank_lab.text = current_data.best_run.ranking_as_string()  if current_data.best_run != null else "-"
+	rank_bonus_lab.visible = current_data.bonused
 
 ## Load the current level, play the opening animation.
 func _on_play_pressed() -> void: if focused:

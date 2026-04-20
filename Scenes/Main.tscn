@@ -10,13 +10,13 @@
 [ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
 [ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
-[ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
+[ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 [ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
@@ -496,6 +496,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Levels:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -1288,26 +1300,38 @@ text = "BACK"
 [node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/Levels/LevelPopup/Panel" unique_id=1516729072]
 position = Vector2(492, 20)
 color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-polygon = PackedVector2Array(55, 0, 71.32924, 23.176275, 44.495934, 32.32819, 44.083893, 60.676273, 16.995934, 52.30811, -3.2783541e-06, 75, -16.995937, 52.308105, -44.08389, 60.676273, -44.495937, 32.328186, -71.32924, 23.176277, -55, -4.808253e-06, -71.32924, -23.176273, -44.495934, -32.328194, -44.08388, -60.676285, -16.99594, -52.308105, 8.9436605e-07, -75, 16.995941, -52.308105, 44.08388, -60.676285, 44.495934, -32.32819, 71.32924, -23.176271)
+polygon = PackedVector2Array(65, 0, 85.595085, 27.811531, 52.586105, 38.20604, 52.900673, 72.81153, 20.086103, 61.818676, -3.934025e-06, 90, -20.086107, 61.818672, -52.900665, 72.81153, -52.58611, 38.206036, -85.595085, 27.811533, -65, -5.6824806e-06, -85.595085, -27.811527, -52.5861, -38.206047, -52.900658, -72.81154, -20.086111, -61.818672, 1.0732392e-06, -90, 20.086113, -61.818672, 52.900658, -72.81154, 52.5861, -38.206043, 85.595085, -27.811525)
 script = ExtResource("13_346fj")
 outer_vertices = 20
-outer_radius = 75.0
+outer_radius = 90.0
 outer_radius_modifiers = Dictionary[int, float]({
-2: -20.0
+2: -25.0
 })
 
-[node name="Rank" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/Polygon2D" unique_id=1166579756]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/Polygon2D" unique_id=1851196001]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(22, 52)
+pivot_offset = Vector2(52, 40)
+theme_override_constants/separation = -3
+
+[node name="Rank" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/Polygon2D/HBoxContainer" unique_id=1166579756]
+layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 theme_override_fonts/font = ExtResource("5_50glp")
 theme_override_font_sizes/font_size = 103
 text = "S"
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Levels/LevelPopup/Panel/Polygon2D/HBoxContainer" unique_id=1353962331]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+theme_override_fonts/font = ExtResource("5_50glp")
+theme_override_font_sizes/font_size = 40
+text = "+"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Levels" unique_id=152351141]
 libraries/ = SubResource("AnimationLibrary_50glp")
@@ -1413,7 +1437,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-307.6519, -434.02112, -213.79001, -431.9929, -158.47244, -507.84888, -69.835, -476.91412, 6.2157297, -531.9637, 80.95941, -475.15216, 170.29933, -504.0061, 223.8255, -426.87955, 317.70914, -426.71405, 344.78506, -336.81934, 434.02246, -307.64996, 431.9922, -213.79137, 507.8484, -158.47404, 476.91443, -69.83287, 531.9637, 6.214041, 475.15244, 80.95791, 504.00665, 170.29773, 426.87854, 223.8274, 426.7151, 317.7078, 336.82043, 344.78397, 307.6513, 434.02148, 213.78944, 431.99313, 158.47566, 507.8479, 69.83439, 476.91418, -6.2164106, 531.9637, -80.96002, 475.15204, -170.29613, 504.00717, -223.82605, 426.87927, -317.7097, 426.71365, -344.7855, 336.81888, -434.0205, 307.6527, -431.99246, 213.79082, -507.84857, 158.47339, -476.91452, 69.83226, -531.9637, -6.2147217, -475.1523, -80.95851, -504.0064, -170.29836, -426.87827, -223.82794, -426.71466, -317.7083, -336.81998, -344.7844, -307.6519, -434.02112, -186.34924, -296.2667, -187.64111, -133.0068, -341.2612, -77.72262, -226.73253, 38.631073, -296.2673, 186.34831, -133.0074, 187.6407, -77.72457, 341.26074, 38.631508, 226.73245, 186.34888, 296.26694, 187.64096, 133.00703, 341.26108, 77.72305, 226.73228, -38.632515, 296.26752, -186.34793, 133.00764, -187.64053, 77.72414, -341.26083, -38.631794, -226.7324, -186.34924, -296.2667)
+polygon = PackedVector2Array(369.64777, 382.60233, 276.55542, 394.76718, 233.32704, 478.103, 141.03175, 460.90567, 74.16317, 526.8053, -8.300415, 481.92853, -92.25649, 523.93964, -156.81659, 455.77686, -249.64925, 469.78638, -289.98575, 385.00943, -382.60117, 369.64896, -394.76627, 276.55664, -478.10406, 233.3249, -460.9063, 141.0297, -526.80505, 74.16485, -481.92856, -8.298885, -523.9392, -92.25883, -455.77618, -156.81862, -469.78717, -249.64775, -385.01038, -289.98453, -369.64725, -382.6028, -276.55792, -394.7654, -233.32643, -478.10333, -141.03116, -460.90588, -74.1625, -526.80536, 8.297355, -481.9286, 92.257164, -523.9395, 156.81717, -455.77667, 249.64984, -469.78607, 289.9833, -385.0113, 382.60162, -369.64847, 394.76663, -276.55615, 478.10434, -233.3243, 460.9054, -141.03262, 526.8052, -74.16417, 481.92856, 8.299502, 523.9391, 92.25949, 455.7772, 156.81572, 469.78687, 249.64835, 385.00998, 289.98502, 369.64777, 382.60233, 139.48776, 321.00336, 165.41129, 159.8096, 325.6157, 128.35268, 229.96591, -3.9597547, 321.0038, -139.48674, 159.81012, -165.41078, 128.35207, -325.61594, -3.9601903, -229.96591, -139.48735, -321.00354, -165.41109, -159.8098, -325.61652, -128.35062, -229.96591, 3.9594605, -321.004, 139.48633, -159.81032, 165.41057, -128.35164, 325.61612, 3.9604847, 229.9659, 139.48776, 321.00336)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1529,7 +1553,6 @@ position = Vector2(-864, 432)
 rotation = -0.92851514
 color = Color(0.05882353, 0.09019608, 0.14117648, 1)
 polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
-metadata/_edit_lock_ = true
 
 [node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/UI" unique_id=461649627]
 position = Vector2(2016, 432)
