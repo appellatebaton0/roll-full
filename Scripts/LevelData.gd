@@ -49,19 +49,15 @@ var runs:Array[Run]: ## Stores time:score runs, in seconds and points
 		
 		## Update the best run.
 		best_run = _get_best_run()
-		print(best_run)
 		
 		## Update the ranking and bonused.
 		ranking = best_run.ranking
 		bonused = best_run.bonused
-		print("R:",ranking,"B:",bonused)
 		
 		## Update the best time/score
 		best_time  = _get_best_time()
 		best_score = _get_best_score()
-		print("T:",best_time,"S:",best_score)
 		
-		print("EMITTED")
 		runs_updated.emit()
 var best_run:Run ## The best run, overall.
 
@@ -98,7 +94,6 @@ func _get_best_run() -> Run:
 	var best := 0
 	for rating in ratings:
 		best = max(best, rating)
-		print(best)
 	
 	## Return the run that has that best rating.
 	return runs[ratings.find(best)]

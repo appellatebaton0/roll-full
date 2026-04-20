@@ -158,6 +158,10 @@ func _on_reset() -> void:
 	
 	last_normal = Vector2.ZERO
 	
+	## Reset buffers and cooldowns.
+	jump_buffering = 0.0
+	dash_cooldown_time = 0.0
+	
 
 # Returns the Vector2 that is most similar to the comparator out of the given array.
 func closest(of:Array[Vector2], compared_to:Vector2):

@@ -8,10 +8,14 @@ class_name Trail extends Line2D
 		trail_segments = to
 @export_range(0.0, 1.0, 0.05) var lerp_weight:float = 0.0
 
+@onready var start_pos := global_position
+
 func get_follow_point() -> Vector2:
 	return Vector2.ZERO
  
-func _ready() -> void: last_position = global_position
+func _ready() -> void: 
+	last_position = global_position
+	Global.reset_level.connect(_on_reset)
 
 var last_position := Vector2.ZERO
 func _process(_delta: float) -> void:
@@ -28,3 +32,11 @@ func _process(_delta: float) -> void:
 			set_point_position(i, lerp(get_point_position(i) + additor, get_point_position(i - 1), lerp_weight))
 	
 	last_position = global_position
+
+func _on_reset():
+	var new_points:Array[Vector2]
+	for i in trail_segments: new_points.append(Vector2.ZERO)
+	
+	points = new_points
+	
+	last_position = start_pos
