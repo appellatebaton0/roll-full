@@ -18,6 +18,7 @@
 [ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
+[ext_resource type="PackedScene" uid="uid://dpxnd5w4dc3fw" path="res://Scenes/Levels/World1/1-1.tscn" id="19_0sclb"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
 Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
@@ -1017,6 +1018,7 @@ glow_intensity = 1.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1024431284]
 layer = 3
+visible = false
 
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=622215936]
 process_mode = 3
@@ -1577,3 +1579,5 @@ mouse_filter = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=582492900]
 environment = SubResource("Environment_hwpts")
+
+[node name="1" parent="." unique_id=1260259211 instance=ExtResource("19_0sclb")]

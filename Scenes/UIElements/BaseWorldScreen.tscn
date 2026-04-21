@@ -48,6 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_3wc88")
+expand_mode = 1
 script = ExtResource("1_5kqrn")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1677495858]
