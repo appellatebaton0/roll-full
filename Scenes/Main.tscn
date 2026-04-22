@@ -18,7 +18,6 @@
 [ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
-[ext_resource type="PackedScene" uid="uid://dpxnd5w4dc3fw" path="res://Scenes/Levels/World1/1-1.tscn" id="19_0sclb"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
 Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
@@ -322,6 +321,13 @@ Button/styles/hover = SubResource("StyleBoxFlat_h1m7h")
 Button/styles/normal = SubResource("StyleBoxFlat_erwvk")
 Button/styles/pressed = SubResource("StyleBoxFlat_2w5on")
 
+[sub_resource type="GDScript" id="GDScript_0sclb"]
+resource_name = "Quit"
+script/source = "extends Button
+# Called when the node enters the scene tree for the first time.
+func _pressed() -> void: get_tree().quit()
+"
+
 [sub_resource type="Gradient" id="Gradient_grg3l"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.45490196)
@@ -437,7 +443,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
 resource_name = "Game->Levels"
-length = 0.5
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -445,9 +451,9 @@ tracks/0/path = NodePath("Levels:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.23333335, 0.48333335),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(0, -864), Vector2(0, 0)]
 }
 tracks/1/type = "value"
@@ -457,7 +463,7 @@ tracks/1/path = NodePath("Levels/LevelPopup:focused")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.23333335),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [true]
@@ -469,7 +475,7 @@ tracks/2/path = NodePath("PauseScreen:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.73333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -481,7 +487,7 @@ tracks/3/path = NodePath("Countdown:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.73333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -493,7 +499,7 @@ tracks/4/path = NodePath("HUD:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.73333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -505,10 +511,34 @@ tracks/5/path = NodePath("Levels:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.23333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Polygon2D3:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.23333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.92851514, 0.92852676]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Polygon2D4:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.23333335, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.2130775, 4.0701194]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -521,9 +551,9 @@ tracks/0/path = NodePath("Levels:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(0, 0), Vector2(0, -864)]
 }
 tracks/1/type = "value"
@@ -545,10 +575,10 @@ tracks/2/path = NodePath("Levels:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -585,6 +615,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Polygon2D3:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.92851514, 0.9294099]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Polygon2D4:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.2130775, 4.0710025]
 }
 
 [sub_resource type="Animation" id="Animation_rgh2o"]
@@ -649,6 +703,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Levels:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vy5pj"]
@@ -832,6 +898,18 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Levels:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_grg3l"]
@@ -1018,7 +1096,6 @@ glow_intensity = 1.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1024431284]
 layer = 3
-visible = false
 
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=622215936]
 process_mode = 3
@@ -1397,6 +1474,7 @@ use_global = true
 starts_with_focus = true
 
 [node name="Button2" type="Button" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=887973936]
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1409,6 +1487,10 @@ focus_next = NodePath("../Button3")
 focus_previous = NodePath("../Button")
 theme_override_font_sizes/font_size = 57
 text = "OPTIONS"
+
+[node name="Control" type="Control" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=1826443040]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Button3" type="Button" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=144337488]
 custom_minimum_size = Vector2(300, 0)
@@ -1424,6 +1506,12 @@ focus_previous = NodePath("../Button2")
 theme_override_font_sizes/font_size = 57
 text = "QUIT
 "
+script = SubResource("GDScript_0sclb")
+
+[node name="Control2" type="Control" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=513952968]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/UI/MainMenu" unique_id=1232178499]
 layout_mode = 0
@@ -1439,7 +1527,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(369.64777, 382.60233, 276.55542, 394.76718, 233.32704, 478.103, 141.03175, 460.90567, 74.16317, 526.8053, -8.300415, 481.92853, -92.25649, 523.93964, -156.81659, 455.77686, -249.64925, 469.78638, -289.98575, 385.00943, -382.60117, 369.64896, -394.76627, 276.55664, -478.10406, 233.3249, -460.9063, 141.0297, -526.80505, 74.16485, -481.92856, -8.298885, -523.9392, -92.25883, -455.77618, -156.81862, -469.78717, -249.64775, -385.01038, -289.98453, -369.64725, -382.6028, -276.55792, -394.7654, -233.32643, -478.10333, -141.03116, -460.90588, -74.1625, -526.80536, 8.297355, -481.9286, 92.257164, -523.9395, 156.81717, -455.77667, 249.64984, -469.78607, 289.9833, -385.0113, 382.60162, -369.64847, 394.76663, -276.55615, 478.10434, -233.3243, 460.9054, -141.03262, 526.8052, -74.16417, 481.92856, 8.299502, 523.9391, 92.25949, 455.7772, 156.81572, 469.78687, 249.64835, 385.00998, 289.98502, 369.64777, 382.60233, 139.48776, 321.00336, 165.41129, 159.8096, 325.6157, 128.35268, 229.96591, -3.9597547, 321.0038, -139.48674, 159.81012, -165.41078, 128.35207, -325.61594, -3.9601903, -229.96591, -139.48735, -321.00354, -165.41109, -159.8098, -325.61652, -128.35062, -229.96591, 3.9594605, -321.004, 139.48633, -159.81032, 165.41057, -128.35164, 325.61612, 3.9604847, 229.9659, 139.48776, 321.00336)
+polygon = PackedVector2Array(259.55597, -464.38635, 298.0884, -378.77078, 390.3571, -361.44894, 400.54657, -268.11646, 482.9464, -223.12949, 463.7935, -131.22343, 528.2604, -62.96803, 481.64404, 18.521063, 521.8648, 103.34937, 452.3467, 166.45255, 464.38522, 259.55804, 378.77402, 298.08432, 361.4472, 390.3587, 268.12076, 400.54367, 223.12733, 482.9474, 131.22137, 463.79407, 62.973736, 528.2597, -18.523209, 481.64395, -103.3517, 521.8644, -166.44766, 452.3485, -259.5601, 464.38406, -298.086, 378.77264, -390.36032, 361.44547, -400.5449, 268.119, -482.94498, 223.13255, -463.79468, 131.21931, -528.25995, 62.971382, -481.64417, -18.518003, -521.8639, -103.35403, -452.34778, -166.44968, -464.3829, -259.56216, -378.77133, -298.0877, -361.4497, -390.3564, -268.1172, -400.54608, -223.13042, -482.94598, -131.22432, -463.79324, -62.96903, -528.26025, 18.52015, -481.64407, 103.34839, -521.865, 166.45169, -452.34702, 259.55597, -464.38635, 216.91318, -274.6792, 62.616573, -221.31238, -40.847523, -347.60825, -112.21532, -200.76784, -274.68018, -216.91197, -221.31265, -62.615585, -347.60806, 40.849075, -200.76733, 112.21622, -216.91074, 274.68115, -62.614605, 221.31293, 40.845314, 347.6085, 112.21404, 200.76854, 274.67825, 216.91441, 221.31209, 62.61756, 347.6084, -40.845974, 200.76833, -112.214424, 216.91318, -274.6792)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1561,7 +1649,6 @@ position = Vector2(2016, 432)
 rotation = 2.2130775
 color = Color(0.05882353, 0.09019608, 0.14117648, 1)
 polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
-metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
 libraries/ = SubResource("AnimationLibrary_pbw6q")
@@ -1579,5 +1666,3 @@ mouse_filter = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=582492900]
 environment = SubResource("Environment_hwpts")
-
-[node name="1" parent="." unique_id=1260259211 instance=ExtResource("19_0sclb")]

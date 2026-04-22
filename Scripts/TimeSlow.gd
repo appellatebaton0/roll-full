@@ -3,6 +3,7 @@ class_name TimeSlow extends Node2D
 ## Slows time the closer the player is to the node.
 
 enum SHAPE{CIRCLE, RECTANGLE}
+@export var show_overlay := true
 @export var shape := SHAPE.CIRCLE:
 	set(to):
 		shape = to
@@ -37,7 +38,7 @@ var dist:float:
 	set(to):
 		
 		## Player left the range.
-		if to == -1.:
+		if to == -1. and dist != -1.:
 			Engine.time_scale = 1.0
 		
 		dist = to
@@ -55,7 +56,8 @@ func _process(_delta: float) -> void:
 			Engine.time_scale = get_scale_for_dist(dist)
 			was_slowing = true
 			
-			if Input.is_action_pressed(input_disable) or should_disable():
+			var input := Input.is_action_pressed(input_disable) if InputMap.has_action(input_disable) else false
+			if input or should_disable():
 				disable_toggle = true
 		elif was_slowing:
 			Engine.time_scale = 1.0
@@ -95,7 +97,7 @@ func get_slow(a := global_position, b := player.global_position) -> float:
 	
 	return -1.
 
-func _draw() -> void: if Engine.is_editor_hint():
+func _draw() -> void: if Engine.is_editor_hint() and show_overlay:
 	
 	var spacing := 20.0
 	var size:Vector2
@@ -111,11 +113,11 @@ func _draw() -> void: if Engine.is_editor_hint():
 			## Outside bounds / invalid, don't draw.
 			if slow == -1.: continue
 			
-			draw_rect(Rect2(point, Vector2.ONE * spacing), Color(1. - slow, 0.0, 0.0, 0.4) )
+			draw_rect(Rect2(point, Vector2.ONE * spacing), Color(1, 0.0, 0.0, 1. - slow) )
 	
 	match shape:
-		SHAPE.CIRCLE:    draw_circle(Vector2.ZERO, radius, Color(1.0, 0.0, 0.0, 0.7), false, 15.0)
-		SHAPE.RECTANGLE: draw_rect(Rect2(-dimensions, dimensions * 2), Color(1.0, 0.0, 0.0, 0.7), false, 15.0)
+		SHAPE.CIRCLE:    draw_circle(Vector2.ZERO, radius, Color(1.0, 0.0, 0.0, 0.5), false, 7.0)
+		SHAPE.RECTANGLE: draw_rect(Rect2(-dimensions, dimensions * 2), Color(1.0, 0.0, 0.0, 0.5), false, 7.0)
 
 func get_scale_for_dist(distance:float):
 	return lerp(min_scale, 1.0, ease(clamp(distance / radius, 0.0, 1.0), easing))

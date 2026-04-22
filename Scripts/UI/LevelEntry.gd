@@ -3,7 +3,9 @@ class_name LevelEntry extends Button
 
 @onready var level_name := $MarginContainer/HBoxContainer/LevelName
 @onready var best_time := $MarginContainer/HBoxContainer/BestTime
-@onready var ranking := $MarginContainer/HBoxContainer/Ranking
+@onready var best_score := $MarginContainer/HBoxContainer/BestScore
+@onready var ranking := $MarginContainer/HBoxContainer/HBoxContainer/Rank
+@onready var bonused := $MarginContainer/HBoxContainer/HBoxContainer/Label
 
 var needs_update := false
 
@@ -29,8 +31,12 @@ func _on_runs_updated() -> void: if level_data:
 		return
 	
 	level_name.text = level_data.name
+	
 	best_time.text = Global.seconds_as_timer(level_data.best_run.time) if level_data.best_run != null else "00:00.00"
+	best_score.text = Global.digitize(level_data.best_run.score, 7) if level_data.best_run != null else "0000000"
+	
 	ranking.text = level_data.best_run.ranking_as_string()  if level_data.best_run != null else "-"
+	bonused.modulate.a = (1.0 if level_data.best_run.bonused else 0.0) if level_data.best_run != null else 0.0
 
 func _ready() -> void:
 	if needs_update: _on_runs_updated()

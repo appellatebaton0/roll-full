@@ -47,6 +47,7 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=594201762]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 49
 
 [node name="LevelName" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1983134325]
 layout_mode = 2
@@ -59,12 +60,26 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 27
 text = "00:00.00"
 
-[node name="Ranking" type="Label" parent="MarginContainer/HBoxContainer" unique_id=547270705]
-custom_minimum_size = Vector2(80, 0)
+[node name="BestScore" type="Label" parent="MarginContainer/HBoxContainer" unique_id=577645000]
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+text = "0000000"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1682771046]
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="Rank" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer" unique_id=1560731530]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_ys53a")
-theme_override_font_sizes/font_size = 79
-text = "A"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 88
+text = "-"
 vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer" unique_id=1599572791]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_ys53a")
+theme_override_font_sizes/font_size = 40
+text = "+"

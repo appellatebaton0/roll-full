@@ -168,5 +168,7 @@ func fabricate_collision() -> void:
 		
 			static_body.collision_layer = collision_layer
 			static_body.collision_mask  = collision_mask
+			
+			collision_mesh.modulate.a = 0.2
 	
 	generate()
