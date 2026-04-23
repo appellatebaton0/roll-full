@@ -32,8 +32,8 @@ func _on_runs_updated() -> void: if level_data:
 	
 	level_name.text = level_data.name
 	
-	best_time.text = Global.seconds_as_timer(level_data.best_run.time) if level_data.best_run != null else "00:00.00"
-	best_score.text = Global.digitize(level_data.best_run.score, 7) if level_data.best_run != null else "0000000"
+	best_time.text = Global.seconds_as_timer(level_data.best_time)
+	best_score.text = Global.digitize(level_data.best_score, 7)
 	
 	ranking.text = level_data.best_run.ranking_as_string()  if level_data.best_run != null else "-"
 	bonused.modulate.a = (1.0 if level_data.best_run.bonused else 0.0) if level_data.best_run != null else 0.0

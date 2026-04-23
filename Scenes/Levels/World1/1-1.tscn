@@ -20,9 +20,9 @@ position = Vector2(-4026, 48)
 position = Vector2(492, -7589)
 
 [node name="DeathBorder" parent="." index="4" unique_id=1495088171]
-position = Vector2(2588, -3236)
-width = 10000.0
-height = 10000.0
+position = Vector2(-63, -5170)
+width = 9395.0
+height = 8367.0
 
 [node name="Spline2D" type="Line2D" parent="." index="5" unique_id=696827401]
 position = Vector2(-1837, -26)

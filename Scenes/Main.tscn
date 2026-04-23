@@ -1097,6 +1097,131 @@ glow_intensity = 1.5
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1024431284]
 layer = 3
 
+[node name="DebugHUD" type="MarginContainer" parent="CanvasLayer" unique_id=1421139228]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DebugHUD" unique_id=1187074192]
+layout_mode = 2
+
+[node name="Reset" type="TextureProgressBar" parent="CanvasLayer/DebugHUD/VBoxContainer" unique_id=1431686522]
+layout_mode = 2
+size_flags_horizontal = 0
+max_value = 0.6
+step = 0.001
+fill_mode = 4
+texture_under = ExtResource("3_grg3l")
+texture_progress = ExtResource("9_bmxlf")
+script = ExtResource("5_frkhe")
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer/Reset" unique_id=623425738]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "R"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer/Reset" unique_id=1948938174]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_right = 146.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "  Hold R To Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer" unique_id=562645988]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+text = "0.0u/s"
+script = ExtResource("6_frkhe")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/DebugHUD" unique_id=1058063023]
+process_mode = 3
+custom_minimum_size = Vector2(250, 500)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("6_jyqft")
+
+[node name="Timer" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=269810718]
+process_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 72
+text = "00:00.00"
+script = ExtResource("8_vy5pj")
+can_save = false
+
+[node name="Score" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=788310041]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 53
+text = "000000"
+
+[node name="ComboBox" type="VBoxContainer" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=411615042]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = SubResource("Theme_hwpts")
+
+[node name="ComboEntry7" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=1556703977]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry8" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=1455450950]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry9" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=1134948481]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry10" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=2134795519]
+layout_mode = 2
+text = "asd"
+script = ExtResource("8_3tgeq")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboSeperator" type="HSeparator" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=1887336694]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/separator = SubResource("StyleBoxLine_hwpts")
+
+[node name="ComboTotal" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=955398066]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
+theme_override_font_sizes/font_size = 36
+text = "320"
+
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=622215936]
 process_mode = 3
 layout_mode = 3
@@ -1527,7 +1652,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(259.55597, -464.38635, 298.0884, -378.77078, 390.3571, -361.44894, 400.54657, -268.11646, 482.9464, -223.12949, 463.7935, -131.22343, 528.2604, -62.96803, 481.64404, 18.521063, 521.8648, 103.34937, 452.3467, 166.45255, 464.38522, 259.55804, 378.77402, 298.08432, 361.4472, 390.3587, 268.12076, 400.54367, 223.12733, 482.9474, 131.22137, 463.79407, 62.973736, 528.2597, -18.523209, 481.64395, -103.3517, 521.8644, -166.44766, 452.3485, -259.5601, 464.38406, -298.086, 378.77264, -390.36032, 361.44547, -400.5449, 268.119, -482.94498, 223.13255, -463.79468, 131.21931, -528.25995, 62.971382, -481.64417, -18.518003, -521.8639, -103.35403, -452.34778, -166.44968, -464.3829, -259.56216, -378.77133, -298.0877, -361.4497, -390.3564, -268.1172, -400.54608, -223.13042, -482.94598, -131.22432, -463.79324, -62.96903, -528.26025, 18.52015, -481.64407, 103.34839, -521.865, 166.45169, -452.34702, 259.55597, -464.38635, 216.91318, -274.6792, 62.616573, -221.31238, -40.847523, -347.60825, -112.21532, -200.76784, -274.68018, -216.91197, -221.31265, -62.615585, -347.60806, 40.849075, -200.76733, 112.21622, -216.91074, 274.68115, -62.614605, 221.31293, 40.845314, 347.6085, 112.21404, 200.76854, 274.67825, 216.91441, 221.31209, 62.61756, 347.6084, -40.845974, 200.76833, -112.214424, 216.91318, -274.6792)
+polygon = PackedVector2Array(532, 0, 476.0658, 75.40142, 505.96207, 164.39705, 429.46515, 218.82343, 430.39703, 312.70175, 340.82547, 340.82547, 312.70175, 430.39703, 218.82343, 429.46515, 164.39703, 505.96207, 75.40143, 476.0658, -2.3254459e-05, 532, -75.401405, 476.0658, -164.39706, 505.96204, -218.82347, 429.46512, -312.70172, 430.39703, -340.82547, 340.82547, -430.39706, 312.70172, -429.46512, 218.82346, -505.96204, 164.39706, -476.0658, 75.401405, -532, -4.6508918e-05, -476.0658, -75.40137, -505.96207, -164.39703, -429.46515, -218.82344, -430.397, -312.7018, -340.8255, -340.82544, -312.70166, -430.3971, -218.8235, -429.46512, -164.3971, -505.96204, -75.401436, -476.06577, 6.3440366e-06, -532, 75.40144, -476.06577, 164.39711, -505.96204, 218.8235, -429.4651, 312.70166, -430.3971, 340.8254, -340.82553, 430.397, -312.70178, 429.46515, -218.82343, 505.96207, -164.39702, 476.0658, -75.40136, 532, 0, 323.35785, -133.9392, 162.63454, -162.63458, 133.93925, -323.35782, 2.7427225e-06, -230, -133.93925, -323.35782, -162.63457, -162.63454, -323.35782, -133.9392, -230, -2.0107238e-05, -323.35782, 133.93922, -162.63455, 162.63455, -133.9392, 323.35785, -1.0053619e-05, 230, 133.9392, 323.35782, 162.63455, 162.63455, 323.35782, 133.93921, 230, 0, 323.35785, -133.9392)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0

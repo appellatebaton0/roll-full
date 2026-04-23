@@ -3,6 +3,7 @@ class_name RunTimer extends Label
 
 @export var timer := 0.0
 var running := false
+@export var can_save := true
 
 func _ready() -> void:
 	Global.run_timer = self
@@ -15,7 +16,7 @@ func _process(delta: float) -> void:
 	
 	text = Global.seconds_as_timer(timer)
 
-func save() -> void:
+func save() -> void: if can_save:
 	if Global.current_data:
 		Global.current_data.log_run(timer, Global.score)
 	Global.score = 0
