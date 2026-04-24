@@ -124,12 +124,6 @@ func _get_best_score() -> int:
 	
 	return best
 
-
-func _get_bonused(score:int, rank:int) -> bool:
-	return score > score_thresholds[rank]
-
-
-
 func log_run(time:float, score:int):
 	var rank := _get_ranking(time)
 	runs += [Run.new(time, score, rank, _is_bonused(score, rank))]
@@ -145,4 +139,5 @@ func _get_ranking(time:float) -> int:
 	return -1
 	
 func _is_bonused(score, rank:int) -> bool:
+	if rank == -1: return false
 	return score > score_thresholds[rank]

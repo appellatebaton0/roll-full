@@ -43,8 +43,7 @@ var slide_mag := 0. ## The magnitude of the player's velocity slid against the w
 var direction := Vector2(1,1):
 	set(to): direction = to.normalized()
 
-func _ready() -> void:
-	Global.reset_level.connect(_on_reset)
+func _ready() -> void: Global.reset_level.connect(_on_reset)
 
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2
@@ -61,15 +60,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump"): jump_buffering = JUMP_BUFFER
 	
 	# On hitting a wall...
-	if not was_on_wall and on_wall:
+	if not was_on_wall and on_wall and not ray_node.is_colliding():
 		var wn := get_wall_normal()
 		var wall_dir := Vector2(wn.y, -wn.x)
 		
 		var projection := velocity.project(wall_dir)
 		
-		slide_mag = mag(projection)
-		
-		
+		slide_mag = projection.distance_to(Vector2.ZERO)
+	
+	
 	was_on_wall = on_wall
 	
 	# Control the ray target.
@@ -119,7 +118,7 @@ func _physics_process(delta: float) -> void:
 	# Freefall
 	else:
 		
-		velocity += get_gravity() * delta * gravity_scale
+		velocity += Vector2(0, 980) * delta * gravity_scale
 		
 		# Set the current direction to the velocity (automatically normalized).
 		direction = velocity
@@ -135,7 +134,7 @@ func _physics_process(delta: float) -> void:
 	
 	var dash_dir := (get_global_mouse_position() - global_position).normalized()
 	if Input.is_action_just_pressed("Dash") and dash_cooldown_time <= 0 :
-		velocity = dash_dir * dash_force
+		velocity = dash_dir * max(dash_force, mag(velocity) * 0.9)
 		
 		ray_node.target_position = Vector2.ZERO
 		ray_fall_time = 1.0
@@ -185,27 +184,21 @@ func mag(of:Vector2): return sqrt(pow(of.x, 2) + pow(of.y, 2))
 func _process(_delta: float) -> void: if DEBUG: queue_redraw()
 
 const LINE_COEFF := 500.0
-func _draw() -> void: 
+func _draw() -> void: if DEBUG:
+
+	# Debug lines to show the direction and plane parallel. NOTE: Doesn't show correctly with rotation.
+	draw_line(Vector2.ZERO, direction * 250, Color.RED, 15) 
 	
-	if not DEBUG: return
+	draw_line(Vector2.ZERO, velocity.normalized() * LINE_COEFF, Color.AQUA, 10)
+	
+	if is_on_wall():
+		draw_line(Vector2.ZERO, -get_wall_normal() * LINE_COEFF, Color.WEB_PURPLE, 10)
 	
 	
+	var jump_direction = get_wall_normal()
+	draw_line(Vector2.ZERO, jump_direction * mag(velocity) / 100, Color.BLUE, 15)
 	
-	else:
-		# Debug lines to show the direction and plane parallel. NOTE: Doesn't show correctly with rotation.
-		draw_line(Vector2.ZERO, direction * 250, Color.RED, 15) 
-		
-		draw_line(Vector2.ZERO, velocity.normalized() * LINE_COEFF, Color.AQUA, 10)
-		
-		if is_on_wall():
-			draw_line(Vector2.ZERO, -get_wall_normal() * LINE_COEFF, Color.WEB_PURPLE, 10)
-		
-		
-		var jump_direction = get_wall_normal()
-		draw_line(Vector2.ZERO, jump_direction * mag(velocity) / 100, Color.BLUE, 15)
-		
-		draw_line(Vector2.ZERO, velocity, Color.GREEN, 15)
-	
+	draw_line(Vector2.ZERO, velocity, Color.GREEN, 15)
 	
 	draw_circle(ray_node.target_position, 10.0, Color.ALICE_BLUE)
 	

@@ -5,7 +5,7 @@ func _ready() -> void:
 	Global.request_animation.connect(_on_animation_requested)
 	animation_finished.connect(_on_animation_finished)
 
-func _on_animation_requested(anim_name:String):
+func _on_animation_requested(anim_name:String, optional_data:Variant = true):
 	if has_animation(anim_name) and not is_playing():
 		play(anim_name)
 		
@@ -17,7 +17,8 @@ func _on_animation_requested(anim_name:String):
 			"Game->Levels":
 				get_tree().paused = true
 				
-				Global.level_complete.emit()
+				if optional_data:
+					Global.level_complete.emit()
 				
 			"ResetIn":
 				get_tree().paused = true

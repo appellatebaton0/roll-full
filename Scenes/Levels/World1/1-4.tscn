@@ -3,100 +3,122 @@
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_g8nid"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_wt62m"]
 [ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="3_fc1vf"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_xorxi"]
+[ext_resource type="Script" uid="uid://dh5osbuu612im" path="res://Scripts/DeathSpike.gd" id="3_teead"]
+[ext_resource type="PackedScene" uid="uid://c7qjkmidxi07v" path="res://Scenes/DeathSpikeMedium.tscn" id="5_j62kb"]
 [ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="5_xorxi"]
 
 [node name="1-4" unique_id=1260259211 instance=ExtResource("1_g8nid")]
 
-[node name="Player" parent="." index="1" unique_id=1267848784]
-position = Vector2(719, 15)
+[node name="Player" parent="." index="3" unique_id=1267848784]
+position = Vector2(231, 178)
 
-[node name="Goal" parent="." index="3" unique_id=1338618760]
-position = Vector2(2959, -738)
+[node name="Goal" parent="." index="5" unique_id=1338618760]
+position = Vector2(2934, -729)
 
-[node name="DeathBorder" parent="." index="4" unique_id=1495088171]
-position = Vector2(2057, 1387)
+[node name="DeathBorder" parent="." index="6" unique_id=1495088171]
+position = Vector2(1662, 1473)
 width = 2986.0
-height = 3410.0
+height = 3773.0
 
-[node name="Spline2D" type="Line2D" parent="." index="5" unique_id=204338463]
-points = PackedVector2Array(627, 143, 581, 480, 786, 905, 1254, 685, 1663, 617, 1818, 700, 1738, 1137, 1861, 1607, 1658, 1712, 1267, 1635, 316, 1941, -155, 1302, 225, 650, 233.95355, 451.31583, 249.1211, 114.7417, 267, -282)
-width = 40.0
+[node name="Spline2D" type="Line2D" parent="." index="7" unique_id=2087799436]
+position = Vector2(-140, -5)
+points = PackedVector2Array(169, -176, 77, 157, 155, 259, 401, 202, 683, 164, 1621, 533, 1165, -348, 820, -503, 589, -507, 447, -610, 327, -694, 188, -720, 70, -703, 30, -630, 29, -505, 301, -393)
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_wt62m")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D2" type="Line2D" parent="." index="6" unique_id=1217726322]
-position = Vector2(1885, 2286)
-points = PackedVector2Array(-28, -308, -53, 362, -259, 772, -836, 547, -1814, 858, -1808, 128, -1710, -438)
-width = 40.0
+[node name="Spline2D2" type="Line2D" parent="." index="8" unique_id=675388998]
+position = Vector2(-269, -198)
+points = PackedVector2Array(0, -3, -44, -328, -127, -754, -157, -1059, -199, -1470)
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_wt62m")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D3" type="Line2D" parent="." index="7" unique_id=289766633]
-position = Vector2(-163, 108)
-points = PackedVector2Array(17, 737, 53, 141, 83.924805, -371.30505, 108, -770, 5, -1292, 310, -1626, 826, -1480, 1274.2097, -1481.0808, 1703.2397, -1482.1152, 2070, -1483, 2464, -1762, 3129, -1276, 2717, -883, 2474.4229, 542.4437, 2337.3472, 1347.9352, 2119, 2631)
-width = 40.0
+[node name="DeathSpike" type="Area2D" parent="." index="9" unique_id=475828334]
+position = Vector2(8, -6)
+script = ExtResource("3_teead")
+metadata/_custom_type_script = "uid://dh5osbuu612im"
+
+[node name="DeathSpikeLarge" parent="." index="10" unique_id=2139363536 instance=ExtResource("5_xorxi")]
+position = Vector2(-211, -150)
+
+[node name="DeathSpikeMedium" parent="." index="11" unique_id=1653937403 instance=ExtResource("5_j62kb")]
+position = Vector2(258, -441)
+
+[node name="DeathSpikeMedium2" parent="." index="12" unique_id=1522103488 instance=ExtResource("5_j62kb")]
+position = Vector2(83, -58)
+
+[node name="DeathSpikeSmall" parent="." index="13" unique_id=1496002268 instance=ExtResource("3_fc1vf")]
+position = Vector2(71, -726)
+
+[node name="DeathSpikeLarge2" parent="." index="14" unique_id=1875041086 instance=ExtResource("5_xorxi")]
+position = Vector2(819, -661)
+
+[node name="DeathSpikeSmall13" parent="." index="15" unique_id=21070544 instance=ExtResource("3_fc1vf")]
+position = Vector2(-470, -1644)
+
+[node name="DeathSpikeSmall14" parent="." index="16" unique_id=1251358705 instance=ExtResource("3_fc1vf")]
+position = Vector2(63, -484)
+
+[node name="Spline2D3" type="Line2D" parent="." index="17" unique_id=1251710237]
+points = PackedVector2Array(636, -1547, 1230, -1163, 2426, -522, 1311, 453, 1128, 905, 760, 713, 404, 750, 134, 692, -33, 645, -206, 549, -426, 391, -599, 187, -723, -132, -838, -584, -884, -909, -906, -1209, -881, -1513, -785, -1708, -692, -1757, -590, -1795, -457, -1841, -336, -1844, -188, -1847, -58, -1835, 42, -1838, 137.50812, -1871.7086, 212.75583, -1898.2665, 314, -1934)
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_wt62m")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D4" type="Line2D" parent="." index="8" unique_id=1244114987]
-position = Vector2(664, 3191)
-points = PackedVector2Array(625, -136, 303, -174, -130.7417, -191.95764, -577, -225, -1143, -477, -1234, -64, -1161, 296, -1343, 684, -982.1832, 713.5752, -489, 754, 84, 767, 1054.3896, 774.3386, 1803, 780, 2628, 756, 3067, 689, 2704, 38, 2714, -408, 2372, -501, 1707, -259)
-width = 40.0
-default_color = Color(0, 0, 0, 0)
-script = ExtResource("2_wt62m")
-metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+[node name="DeathSpikeLarge3" parent="." index="18" unique_id=1468488350 instance=ExtResource("5_xorxi")]
+position = Vector2(1010, -302)
 
-[node name="DeathSpikeSmall" parent="." index="9" unique_id=2139363536 instance=ExtResource("3_fc1vf")]
-position = Vector2(1959, 2744)
+[node name="DeathSpikeLarge4" parent="." index="19" unique_id=2140479192 instance=ExtResource("5_xorxi")]
+position = Vector2(82, -990)
 
-[node name="DeathSpikeSmall2" parent="." index="10" unique_id=558942086 instance=ExtResource("3_fc1vf")]
-position = Vector2(2364, 2937)
+[node name="DeathSpikeSmall2" parent="." index="20" unique_id=362276046 instance=ExtResource("3_fc1vf")]
+position = Vector2(810, -1528)
 
-[node name="RegularPolygon" type="Polygon2D" parent="." index="11" unique_id=657004748]
-position = Vector2(2580, 2372)
-polygon = PackedVector2Array(350, 0, 348.08267, 36.58496, 342.35165, 72.7691, 332.86978, 108.15595, 319.7409, 142.35782, 303.1089, 175, 283.15594, 205.72484, 260.10068, 234.19572, 234.1957, 260.1007, 205.72484, 283.15594, 174.99998, 303.10892, 142.35782, 319.74094, 108.15594, 332.86978, 72.76908, 342.35165, 36.584946, 348.08267, -1.5298985e-05, 350, -36.58498, 348.08267, -72.76911, 342.35165, -108.15596, 332.86978, -142.35785, 319.7409, -175.00002, 303.1089, -205.72481, 283.15594, -234.19574, 260.10068, -260.10068, 234.19572, -283.15598, 205.72481, -303.1089, 175.00002, -319.74094, 142.3578, -332.86978, 108.15596, -342.35165, 72.769066, -348.08267, 36.584972, -350, -3.059797e-05, -348.08267, -36.584953, -342.35165, -72.76913, -332.86978, -108.15594, -319.7409, -142.35785, -303.1089, -174.99998, -283.15594, -205.72488, -260.10068, -234.19572, -234.19568, -260.1007, -205.72478, -283.156, -174.99997, -303.10892, -142.35782, -319.7409, -108.15598, -332.86978, -72.76917, -342.35165, -36.58492, -348.08267, 4.173708e-06, -350, 36.584927, -348.08267, 72.76902, -342.35165, 108.15599, -332.86978, 142.35783, -319.7409, 174.99997, -303.10892, 205.72478, -283.156, 234.19576, -260.10068, 260.1007, -234.1957, 283.15594, -205.72485, 303.10886, -175.00006, 319.74094, -142.35777, 332.86978, -108.15593, 342.35165, -72.76912, 348.08264, -36.58503)
-script = ExtResource("4_xorxi")
-outer_vertices = 60
-outer_radius = 350.0
+[node name="DeathSpikeSmall3" parent="." index="21" unique_id=593903354 instance=ExtResource("3_fc1vf")]
+position = Vector2(299, -1163)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon" index="0" unique_id=1378811825]
-collision_mask = 2
+[node name="DeathSpikeSmall4" parent="." index="22" unique_id=952583148 instance=ExtResource("3_fc1vf")]
+position = Vector2(-733, -120)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon/StaticBody2D" index="0" unique_id=540707745]
-polygon = PackedVector2Array(350, 0, 348.08267, 36.58496, 342.35165, 72.7691, 332.86978, 108.15595, 319.7409, 142.35782, 303.1089, 175, 283.15594, 205.72484, 260.10068, 234.19572, 234.1957, 260.1007, 205.72484, 283.15594, 174.99998, 303.10892, 142.35782, 319.74094, 108.15594, 332.86978, 72.76908, 342.35165, 36.584946, 348.08267, -1.5298985e-05, 350, -36.58498, 348.08267, -72.76911, 342.35165, -108.15596, 332.86978, -142.35785, 319.7409, -175.00002, 303.1089, -205.72481, 283.15594, -234.19574, 260.10068, -260.10068, 234.19572, -283.15598, 205.72481, -303.1089, 175.00002, -319.74094, 142.3578, -332.86978, 108.15596, -342.35165, 72.769066, -348.08267, 36.584972, -350, -3.059797e-05, -348.08267, -36.584953, -342.35165, -72.76913, -332.86978, -108.15594, -319.7409, -142.35785, -303.1089, -174.99998, -283.15594, -205.72488, -260.10068, -234.19572, -234.19568, -260.1007, -205.72478, -283.156, -174.99997, -303.10892, -142.35782, -319.7409, -108.15598, -332.86978, -72.76917, -342.35165, -36.58492, -348.08267, 4.173708e-06, -350, 36.584927, -348.08267, 72.76902, -342.35165, 108.15599, -332.86978, 142.35783, -319.7409, 174.99997, -303.10892, 205.72478, -283.156, 234.19576, -260.10068, 260.1007, -234.1957, 283.15594, -205.72485, 303.10886, -175.00006, 319.74094, -142.35777, 332.86978, -108.15593, 342.35165, -72.76912, 348.08264, -36.58503)
+[node name="DeathSpikeSmall5" parent="." index="23" unique_id=563223786 instance=ExtResource("3_fc1vf")]
+position = Vector2(756, 747)
 
-[node name="Spline2D5" type="Line2D" parent="." index="12" unique_id=921044961]
-position = Vector2(2685, 1835)
-points = PackedVector2Array(1498, -138, 935.8331, -82.92053, 491.53455, -39.389404, 92, -1, -290, 319, -302, -209, -196, -429, -149.54224, -634.69354, -103.67639, -837.7662, -58, -1040, -136, -1320, 129, -1311, 487, -1313, 877.678, -1306.3091, 1241.8334, -1300.0723, 1538, -1295)
-width = 40.0
-default_color = Color(0, 0, 0, 0)
-script = ExtResource("2_wt62m")
-metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+[node name="DeathSpikeMedium3" parent="." index="24" unique_id=593768680 instance=ExtResource("5_j62kb")]
+position = Vector2(1492, -510)
 
-[node name="DeathSpikeLarge" parent="." index="13" unique_id=297431826 instance=ExtResource("5_xorxi")]
-position = Vector2(2660, 81)
+[node name="DeathSpikeLarge6" parent="." index="25" unique_id=330088564 instance=ExtResource("5_xorxi")]
+position = Vector2(2966, -1261)
 
-[node name="DeathSpikeLarge2" parent="." index="14" unique_id=1311388473 instance=ExtResource("5_xorxi")]
-position = Vector2(3759, 2351)
+[node name="DeathSpikeLarge7" parent="." index="26" unique_id=534151031 instance=ExtResource("5_xorxi")]
+position = Vector2(3368, -954)
 
-[node name="Spline2D6" type="Line2D" parent="." index="15" unique_id=1682404539]
-position = Vector2(4544, 2800)
-points = PackedVector2Array(-583, -280, -271, -117, 228, -194, -4.753174, -604.3821, 82, -1487, 38.938477, -2340.1423, -37, -3437)
-width = 40.0
-default_color = Color(0, 0, 0, 0)
-script = ExtResource("2_wt62m")
-metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+[node name="DeathSpikeLarge8" parent="." index="27" unique_id=1736828451 instance=ExtResource("5_xorxi")]
+position = Vector2(3307, -437)
 
-[node name="Spline2D7" type="Line2D" parent="." index="16" unique_id=1123757639]
-points = PackedVector2Array(4204, -924, 3767.1133, -925.8751, 3272, -928, 2895, -928)
-width = 40.0
-default_color = Color(0, 0, 0, 0)
-script = ExtResource("2_wt62m")
-metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+[node name="DeathSpikeLarge9" parent="." index="28" unique_id=1384391365 instance=ExtResource("5_xorxi")]
+position = Vector2(2830, -267)
 
-[node name="DeathSpikeSmall3" parent="." index="17" unique_id=231578530 instance=ExtResource("3_fc1vf")]
-position = Vector2(-238, 785)
+[node name="DeathSpikeLarge10" parent="." index="29" unique_id=1156285032 instance=ExtResource("5_xorxi")]
+position = Vector2(2384, -589)
+
+[node name="DeathSpikeLarge11" parent="." index="30" unique_id=1736803031 instance=ExtResource("5_xorxi")]
+position = Vector2(768, 118)
+
+[node name="DeathSpikeLarge12" parent="." index="31" unique_id=682995097 instance=ExtResource("5_xorxi")]
+position = Vector2(460, -820)
+
+[node name="DeathSpikeLarge5" parent="." index="32" unique_id=1365855381 instance=ExtResource("5_xorxi")]
+position = Vector2(2021, -949)
+
+[node name="DeathSpikeLarge13" parent="." index="33" unique_id=912677572 instance=ExtResource("5_xorxi")]
+position = Vector2(1544, -1246)
+
+[node name="DeathSpikeLarge14" parent="." index="34" unique_id=1941554718 instance=ExtResource("5_xorxi")]
+position = Vector2(2535, -1587)
+
+[node name="DeathSpikeLarge15" parent="." index="35" unique_id=2039283356 instance=ExtResource("5_xorxi")]
+position = Vector2(2061, -1823)
+
+[node name="DeathSpikeLarge16" parent="." index="36" unique_id=1003321259 instance=ExtResource("5_xorxi")]
+position = Vector2(96, -2082)

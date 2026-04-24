@@ -10,19 +10,11 @@
 
 [node name="1" unique_id=1260259211 instance=ExtResource("1_gbbuh")]
 
-[node name="Parallax2D" parent="." index="0" unique_id=882957438]
+[node name="Parallax2D" parent="." index="1" unique_id=882957438]
 scroll_scale = Vector2(0.9, 0.9)
 
-[node name="Player" parent="." index="1" unique_id=1267848784]
+[node name="Player" parent="." index="3" unique_id=1267848784]
 position = Vector2(-4026, 48)
-
-[node name="Goal" parent="." index="3" unique_id=1338618760]
-position = Vector2(492, -7589)
-
-[node name="DeathBorder" parent="." index="4" unique_id=1495088171]
-position = Vector2(-63, -5170)
-width = 9395.0
-height = 8367.0
 
 [node name="Spline2D" type="Line2D" parent="." index="5" unique_id=696827401]
 position = Vector2(-1837, -26)
@@ -72,7 +64,6 @@ autowrap_mode = 2
 [node name="TimeSlow" type="Node2D" parent="." index="10" unique_id=116690775]
 position = Vector2(351, 1056)
 script = ExtResource("3_fnxhk")
-show_overlay = null
 max_dim = 50.0
 radius = 480.0
 easing = 4.0
@@ -540,7 +531,7 @@ position = Vector2(2993, -8390)
 position = Vector2(2783, -8753)
 
 [node name="Spline2D12" type="Line2D" parent="." index="72" unique_id=1961446782]
-points = PackedVector2Array(4546, -10587, 4634, -11008, 4274, -11079, 3730, -10961, 3172, -10942, 2861, -10837, 2954, -10382, 3009, -9905, 2725, -9342, 2129, -9644, 1607.937, -9637.287, 1025.5603, -9629.784, 499, -9623, 121, -9717, -151, -9517, -133, -9146)
+points = PackedVector2Array(4546, -10587, 4634, -11008, 4274, -11079, 3730, -10961, 3165, -10944, 2861, -10837, 2954, -10382, 3009, -9905, 2725, -9342, 2129, -9644, 1607.937, -9637.287, 1025.5603, -9629.784, 499, -9623, 121, -9717, -151, -9517, -133, -9146)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_j24j6")
@@ -548,3 +539,11 @@ metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="DeathSpikeLarge7" parent="." index="73" unique_id=2055131614 instance=ExtResource("8_bh540")]
 position = Vector2(3848, -8167)
+
+[node name="Goal" parent="." index="74" unique_id=1338618760]
+position = Vector2(492, -7589)
+
+[node name="DeathBorder" parent="." index="75" unique_id=1495088171]
+position = Vector2(-63, -5170)
+width = 9395.0
+height = 8367.0
