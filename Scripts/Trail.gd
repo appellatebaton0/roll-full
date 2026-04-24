@@ -15,7 +15,8 @@ func get_follow_point() -> Vector2:
  
 func _ready() -> void: 
 	last_position = global_position
-	Global.reset_level.connect(_on_reset)
+	if not Engine.is_editor_hint():
+		Global.reset_level.connect(_on_reset)
 
 var last_position := Vector2.ZERO
 func _process(_delta: float) -> void:

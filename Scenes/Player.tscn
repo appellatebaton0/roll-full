@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://no1j6n5wfkgq"]
 
 [ext_resource type="Script" uid="uid://6021cayp7g2j" path="res://Scripts/Player.gd" id="1_rpqav"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="2_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="3_gntrk"]
 [ext_resource type="Script" uid="uid://df3sty4wpm85y" path="res://Scripts/ComboDriver.gd" id="4_dewec"]
 [ext_resource type="Script" uid="uid://bbl15es03g582" path="res://Scripts/Trail.gd" id="5_5ixxa"]
@@ -16,6 +15,32 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.8248588, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5732"]
 radius = 32.0
+
+[sub_resource type="Gradient" id="Gradient_dewec"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1.3532556, 0.15670925, 0.17196518, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ixxa"]
+gradient = SubResource("Gradient_dewec")
+width = 8
+height = 8
+
+[sub_resource type="Curve" id="Curve_dewec"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ixxa"]
+curve = SubResource("Curve_dewec")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nn08x"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 25.0
+spread = 180.0
+initial_velocity_min = 335.6
+initial_velocity_max = 367.35
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_5ixxa")
 
 [node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "pointer", "ray_node") groups=["Player"]]
 z_index = 1
@@ -92,36 +117,32 @@ shape = SubResource("CircleShape2D_a5732")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1614047959]
 target_position = Vector2(0, -1)
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=151603442]
+emitting = false
+amount = 16
+texture = SubResource("GradientTexture2D_5ixxa")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+use_fixed_seed = true
+seed = 3828252886
+process_material = SubResource("ParticleProcessMaterial_nn08x")
+
 [node name="Pointer" type="Sprite2D" parent="." unique_id=1631365984]
 scale = Vector2(0.2856368, 0.2856368)
 texture = ExtResource("3_gntrk")
 offset = Vector2(266.07214, 0)
 
 [node name="Background" type="Polygon2D" parent="." unique_id=188306052]
-color = Color(0.52, 0.88800013, 1, 1)
+color = Color(0.52156866, 0.8862745, 1, 1)
 polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 26.607027, 17.778248, 22.627417, 22.627417, 17.778248, 26.607027, 12.24587, 29.564144, 6.2428913, 31.385128, -1.3987644e-06, 32, -6.2428904, 31.385128, -12.245869, 29.564146, -17.778246, 26.607029, -22.627417, 22.627417, -26.607029, 17.778246, -29.564144, 12.245872, -31.38513, 6.24289, -32, -2.7975289e-06, -31.38513, -6.242888, -29.564144, -12.24587, -26.607025, -17.77825, -22.627419, -22.627415, -17.778254, -26.607023, -12.245874, -29.564144, -6.2428923, -31.385128, 3.8159618e-07, -32, 6.242893, -31.385128, 12.245875, -29.564142, 17.778242, -26.60703, 22.627413, -22.62742, 26.607027, -17.77825, 29.564146, -12.24587, 31.38513, -6.2428875)
-script = ExtResource("2_kyqiw")
-outer_vertices = 32
-outer_radius = 32.0
 
 [node name="Bearing" type="Polygon2D" parent="." unique_id=637349228]
 color = Color(0.101960786, 0.7882353, 1, 1)
 polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 26.607027, 17.778248, 22.627417, 22.627417, 17.778248, 26.607027, 12.24587, 29.564144, 6.2428913, 31.385128, -1.3987644e-06, 32, -6.2428904, 31.385128, -12.245869, 29.564146, -17.778246, 26.607029, -22.627417, 22.627417, -26.607029, 17.778246, -29.564144, 12.245872, -31.38513, 6.24289, -32, -2.7975289e-06, -31.38513, -6.242888, -29.564144, -12.24587, -26.607025, -17.77825, -22.627419, -22.627415, -17.778254, -26.607023, -12.245874, -29.564144, -6.2428923, -31.385128, 3.8159618e-07, -32, 6.242893, -31.385128, 12.245875, -29.564142, 17.778242, -26.60703, 22.627413, -22.62742, 26.607027, -17.77825, 29.564146, -12.24587, 31.38513, -6.2428875, 32, 0, 30, 0, 21.2132, -21.213207, 5.9624405e-08, -5, -21.213205, -21.213202, -30, -2.6226833e-06, -21.213203, 21.213203, -2.1855695e-07, 5, 21.213203, 21.213203, 30, 0)
-script = ExtResource("2_kyqiw")
-outer_vertices = 32
-outer_radius = 32.0
-inner_vertices = 8
-inner_radius = 30.0
-inner_radius_modifiers = Dictionary[int, float]({
-2: -25.0,
-4: 25.0
-})
 
 [node name="Ring" type="Polygon2D" parent="." unique_id=1801212948]
 color = Color(0.08900002, 0.3960499, 0.89, 0.7019608)
 polygon = PackedVector2Array(25, 0, 17.67767, 17.67767, -1.0927847e-06, 25, -17.67767, 17.67767, -25, -2.1855694e-06, -17.677671, -17.677668, 2.9812202e-07, -25, 17.677666, -17.677671, 25, 0, 20, 0, 14.142133, -14.142138, 2.3849762e-07, -20, -14.142137, -14.142134, -20, -1.7484556e-06, -14.142136, 14.142136, -8.742278e-07, 20, 14.142136, 14.142136, 20, 0)
-script = ExtResource("2_kyqiw")
-outer_vertices = 8
-outer_radius = 25.0
-inner_vertices = 8
-inner_radius = 20.0
+
+[connection signal="dash_reset" from="." to="GPUParticles2D" method="restart"]

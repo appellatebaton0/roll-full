@@ -30,7 +30,7 @@ enum SHAPE{CIRCLE, RECTANGLE}
 		queue_redraw()
 
 @export var input_disable := ""
-enum TYPE {NONE, ON_WALL, MIDAIR}
+enum TYPE {NONE, ON_WALL, MIDAIR, HAS_DASHED}
 @export var type_disable := TYPE.NONE
 
 
@@ -68,9 +68,10 @@ func _process(_delta: float) -> void:
 
 func should_disable() -> bool:
 	match type_disable:
-		TYPE.ON_WALL: return player.is_on_wall()
-		TYPE.MIDAIR:  return not player.is_on_wall()
-		_:            return false
+		TYPE.ON_WALL:    return player.is_on_wall()
+		TYPE.MIDAIR:     return not player.is_on_wall()
+		TYPE.HAS_DASHED: return player.dash_cooldown_time > 0
+		_:               return false
 
 func get_slow(a := global_position, b := player.global_position) -> float:
 	

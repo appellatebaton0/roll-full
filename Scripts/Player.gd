@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
-## Allows a node to snap to surfaces, and grind along them / jump off them.
-## Best used w/ a circle collider.
+## The driver for the player's movement.
+
+signal dash_reset
 
 const DEBUG := false
 
@@ -27,7 +28,15 @@ var ray_resetting := false
 @export_group("Dashing", "dash_")
 @export var dash_force := 2500.0
 @export var dash_cooldown := 0.5
-var dash_cooldown_time := 0.0
+var dash_cooldown_time := 0.0:
+	set(to):
+		
+		if dash_cooldown_time > 0 and to <= 0:
+			## Just reset :D
+			dash_reset.emit()
+		
+		dash_cooldown_time = to
+
 
 const JUMP_BUFFER := 0.1
 var jump_buffering := 0.0

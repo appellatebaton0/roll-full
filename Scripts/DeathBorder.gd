@@ -15,18 +15,22 @@ class_name DeathBorder extends Node2D
 		height = to
 		queue_redraw()
 
-func _draw() -> void: if Engine.is_editor_hint():
-	draw_line(Vector2(-width, -height), Vector2(-width, height), Color.RED, 20.0)
-	draw_line(Vector2(width, -height), Vector2(width, height), Color.RED, 20.0)
-	draw_line(Vector2(width, -height), Vector2(-width, -height), Color.RED, 20.0)
-	draw_line(Vector2(width, height), Vector2(-width, height), Color.RED, 20.0)
-	
-	## Shows a grid of points, colored according to whether they're inside the border.
-	#for i in range(50):
-		#for j in range(50):
-			#var point := (Vector2(i, j) - Vector2(25, 25)) * 70
-			#
-			#draw_circle(point, 3.0, Color.RED if outside_bounds(point) else Color.BLUE)
+@export var visual_width := 2000.0:
+	set(to):
+		visual_width = to
+		queue_redraw()
+@export var border_color:Color = Color(0.389, 0.093, 0.093, 1.0)
+
+func _draw() -> void: 
+	if Engine.is_editor_hint():
+		draw_line(Vector2(-width, -height), Vector2(-width, height), Color.RED, 20.0)
+		draw_line(Vector2(width, -height), Vector2(width, height), Color.RED, 20.0)
+		draw_line(Vector2(width, -height), Vector2(-width, -height), Color.RED, 20.0)
+		draw_line(Vector2(width, height), Vector2(-width, height), Color.RED, 20.0)
+	draw_rect(Rect2(width, -height - visual_width, visual_width, height * 2 + visual_width), border_color)
+	draw_rect(Rect2(-width - visual_width, -height - visual_width, visual_width, height * 2 + visual_width), border_color)
+	draw_rect(Rect2(-width - visual_width, -height - visual_width, width * 2 + visual_width, visual_width), border_color)
+	draw_rect(Rect2(-width - visual_width, height, width * 2 + visual_width * 2, visual_width), border_color)
 
 var has_reset := false
 func _process(_delta: float) -> void: if player and not Engine.is_editor_hint():
