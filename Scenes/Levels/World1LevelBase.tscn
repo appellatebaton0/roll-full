@@ -563,7 +563,3 @@ rotation = 2.1188674
 color = Color(0.09397825, 0.26401964, 0.46555948, 1)
 polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
 metadata/_edit_lock_ = true
-
-[node name="DeathBorder" parent="." index="6" unique_id=1495088171]
-visual_width = null
-border_color = null

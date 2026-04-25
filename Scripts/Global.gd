@@ -9,7 +9,7 @@ signal level_complete
 
 ## -- GAME STATE -- ##
 
-const PROGRESSION_OVERRIDE := true
+const PROGRESSION_OVERRIDE := false
 
 var world_progression := 0: ## The number of worlds completed.
 	set(to): pass ## Temporarily for this demo, don't allow progression to other worlds.

@@ -45,6 +45,8 @@ var dist:float:
 
 @onready var player:Player = get_tree().get_first_node_in_group("Player")
 
+func _ready() -> void: Global.request_animation.connect(finish)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var was_slowing = false
 var disable_toggle = false
@@ -122,3 +124,7 @@ func _draw() -> void: if Engine.is_editor_hint() and show_overlay:
 
 func get_scale_for_dist(distance:float):
 	return lerp(min_scale, 1.0, ease(clamp(distance / radius, 0.0, 1.0), easing))
+
+func finish(anim_name:String) -> void: if anim_name == "Game->Levels":
+	Engine.time_scale = 1.0
+	queue_free()

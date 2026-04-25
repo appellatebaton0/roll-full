@@ -16,7 +16,6 @@ func _on_animation_requested(anim_name:String, optional_data:Variant = true):
 				get_tree().paused = true
 			"Game->Levels":
 				get_tree().paused = true
-				Engine.time_scale = 1.0
 				
 				if optional_data:
 					Global.level_complete.emit()
