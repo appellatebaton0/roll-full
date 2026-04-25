@@ -34,14 +34,6 @@ func _ready() -> void:
 		
 	update_progression()
 
-var last_position:Vector2
-func _process(_delta: float) -> void:
-	if last_position != global_position:
-		last_position = global_position
-		
-		for node in focusees:
-			node.set("focused", global_position == Vector2.ZERO and is_visible_in_tree())
-
 func update_progression() -> void:
 	var children := level_box.get_children()
 	for i in range(len(children)): if children[i] is LevelEntry:

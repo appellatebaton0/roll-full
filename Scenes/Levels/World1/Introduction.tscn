@@ -113,13 +113,13 @@ script = ExtResource("2_j24j6")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Label" type="Label" parent="." index="17" unique_id=207390704]
-offset_left = -18.0
+offset_left = -97.0
 offset_top = -495.0
-offset_right = 528.0
-offset_bottom = -268.0
-text = "Tap Q / Space
-To Jump"
+offset_right = 618.0
+offset_bottom = -153.0
+text = "Tap Q / Space / Left Click To Jump"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Spline2D3" type="Line2D" parent="." index="18" unique_id=387992741]
 points = PackedVector2Array(8522, -85, 8522, -697.5537, 8522, -2470, 8524.998, -3461)

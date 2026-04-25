@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://ift5cmcqtp8u"]
 
-[ext_resource type="PackedScene" uid="uid://d037esdqa54v" path="res://Scenes/Levels/World1/1-3.tscn" id="1_bcrlx"]
+[ext_resource type="PackedScene" uid="uid://ep2xoul3ssct" path="res://Scenes/Levels/World1/Winding.tscn" id="1_bcrlx"]
 [ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_m8rab"]
 
 [resource]
 script = ExtResource("2_m8rab")
-name = "Preservation"
+name = "Winding"
 scene = ExtResource("1_bcrlx")
 ranking_maximums = Dictionary[int, float]({
 0: 12.0,

@@ -12,8 +12,9 @@ gradient = SubResource("Gradient_210hp")
 width = 2048
 height = 2048
 
-[node name="World1Screen" unique_id=476064473 instance=ExtResource("1_sm1cw")]
+[node name="World1Screen" unique_id=476064473 node_paths=PackedStringArray("focusees") instance=ExtResource("1_sm1cw")]
 texture = SubResource("GradientTexture2D_sm1cw")
+focusees = [NodePath("SubViewportContainer/SubViewport/Parallax2D"), NodePath("SubViewportContainer/SubViewport/Parallax2D2")]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." index="0" unique_id=584657548]
 layout_mode = 0

@@ -13,7 +13,15 @@ var ori_x:Array[float]
 var lerp_timer := 0.
 @export var lerp_ease := -2.
 
-@export var current_index := 0
+@export var current_index := 0:
+	set(to):
+		for node in screens[current_index].focusees:
+			node.set("focused", false)
+		
+		current_index = to
+		
+		for node in screens[current_index].focusees:
+			node.set("focused", true)
 
 @export var animator:AnimationPlayer
 @export var level_popup:LevelPopup
@@ -41,6 +49,8 @@ func _ready() -> void:
 	lerp_timer = lerp_time
 	
 	Global.level_complete.connect(_on_level_complete)
+	
+	current_index = 0
 
 func _process(delta: float) -> void:
 	for i in range(len(screens)):

@@ -11,7 +11,8 @@ signal level_complete
 
 const PROGRESSION_OVERRIDE := true
 
-var world_progression := 0 ## The number of worlds completed.
+var world_progression := 0: ## The number of worlds completed.
+	set(to): pass ## Temporarily for this demo, don't allow progression to other worlds.
 
 var current_level:Node
 var current_data :LevelData
