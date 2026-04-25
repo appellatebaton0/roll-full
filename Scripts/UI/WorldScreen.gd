@@ -19,6 +19,8 @@ signal request_popup(data:LevelData)
 ## The VBox holding the level entries
 @onready var level_box := $MarginContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/LevelBox
 
+@export var focusees:Array[Node2D]
+
 func _ready() -> void:
 	
 	## Load all the levels in this world into the level_box.
@@ -31,6 +33,14 @@ func _ready() -> void:
 		new.pressed.connect(_on_entry_pressed.bind(new))
 		
 	update_progression()
+
+var last_position:Vector2
+func _process(_delta: float) -> void:
+	if last_position != global_position:
+		last_position = global_position
+		
+		for node in focusees:
+			node.set("focused", global_position == Vector2.ZERO and is_visible_in_tree())
 
 func update_progression() -> void:
 	var children := level_box.get_children()

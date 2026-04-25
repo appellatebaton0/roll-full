@@ -14,6 +14,7 @@ func _ready() -> void:
 	
 	_on_reset()
 
+var mod_a := 1.0
 func _process(delta: float) -> void:
 	var rdelt := delta / Engine.time_scale
 	var entries := combo_box.get_children().filter(_is_entry)
@@ -26,8 +27,9 @@ func _process(delta: float) -> void:
 				ended = true
 	
 	var fade_in := len(entries) > 0
-	combo_sep.modulate.a = move_toward(combo_sep.modulate.a, 1.0 if fade_in else 0.0, rdelt * (3. if fade_in else 2.3))
-	combo_tot.modulate.a = move_toward(combo_tot.modulate.a, 1.0 if fade_in else 0.0, rdelt * (3. if fade_in else 2.3))
+	mod_a = move_toward(mod_a, 1.0 if fade_in else 0.0, rdelt * (3. if fade_in else 2.3))
+	combo_sep.modulate.a = mod_a
+	combo_tot.modulate.a = mod_a
 	
 	score_lab.text = str(int(lerp(int(score_lab.text), Global.score, 0.2)))
 

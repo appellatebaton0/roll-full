@@ -10,16 +10,15 @@
 [ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
 [ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://c8fyb184em3f" path="res://Scripts/DashCooldownBar.gd" id="8_0sclb"]
 [ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
 [ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 [ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
-[ext_resource type="PackedScene" uid="uid://dpxnd5w4dc3fw" path="res://Scenes/Levels/World1/1-1.tscn" id="19_0sclb"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
 Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
@@ -1263,157 +1262,8 @@ glow_intensity = 1.5
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1024431284]
 layer = 3
 
-[node name="DebugHUD" type="MarginContainer" parent="CanvasLayer" unique_id=1421139228]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DebugHUD" unique_id=1187074192]
-layout_mode = 2
-
-[node name="Reset" type="TextureProgressBar" parent="CanvasLayer/DebugHUD/VBoxContainer" unique_id=1431686522]
-layout_mode = 2
-size_flags_horizontal = 0
-max_value = 0.6
-step = 0.001
-fill_mode = 4
-texture_under = ExtResource("3_grg3l")
-texture_progress = ExtResource("9_bmxlf")
-script = ExtResource("5_frkhe")
-
-[node name="Label" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer/Reset" unique_id=623425738]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "R"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer/Reset" unique_id=1948938174]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 48.0
-offset_right = 146.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "  Hold R To Reset"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer" unique_id=562645988]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 40
-text = "0.0u/s"
-script = ExtResource("6_frkhe")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/DebugHUD" unique_id=1058063023]
-process_mode = 3
-custom_minimum_size = Vector2(250, 500)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-script = ExtResource("6_jyqft")
-
-[node name="Timer" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=269810718]
-process_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 72
-text = "00:00.00"
-script = ExtResource("8_vy5pj")
-can_save = false
-
-[node name="Score" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=788310041]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 53
-text = "000000"
-
-[node name="ComboBox" type="VBoxContainer" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=411615042]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-theme = SubResource("Theme_hwpts")
-
-[node name="ComboEntry7" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=1556703977]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry8" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=1455450950]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry9" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=1134948481]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry10" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2/ComboBox" unique_id=2134795519]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboSeperator" type="HSeparator" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=1887336694]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_styles/separator = SubResource("StyleBoxLine_hwpts")
-
-[node name="ComboTotal" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer2" unique_id=955398066]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
-theme_override_font_sizes/font_size = 36
-text = "320"
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/DebugHUD" unique_id=1022818480]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Label" type="Label" parent="CanvasLayer/DebugHUD/VBoxContainer3" unique_id=2021930500]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Dash"
-horizontal_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/DebugHUD/VBoxContainer3" unique_id=1180276701]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_styles/background = SubResource("StyleBoxFlat_jyqft")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3tgeq")
-max_value = 1.0
-step = 0.001
-value = 0.71
-show_percentage = false
-script = ExtResource("8_0sclb")
-
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=622215936]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1866,7 +1716,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-404.75674, -345.2477, -313.26465, -366.3185, -278.25735, -453.4279, -184.7388, -445.19162, -124.5195, -517.2223, -38.123363, -480.49, 41.407486, -530.3861, 112.22394, -468.75342, 203.2736, -491.63385, 251.58571, -411.13092, 345.2495, -404.75522, 366.31512, -313.26862, 453.42914, -278.2553, 445.19244, -184.73682, 517.22284, -124.5172, 480.4901, -38.121223, 530.38654, 41.401756, 468.75293, 112.22603, 491.63297, 203.27582, 411.13364, 251.58128, 404.75366, 345.2513, 313.26697, 366.31653, 278.26022, 453.42612, 184.73483, 445.19327, 124.52278, 517.2215, 38.11908, 480.4903, -41.404118, 530.38635, -112.22096, 468.75415, -203.278, 491.63205, -251.5831, 411.1325, -345.24695, 404.7574, -366.31793, 313.26538, -453.42737, 278.2582, -445.1941, 184.73285, -517.22205, 124.52048, -480.4899, 38.12427, -530.38617, -41.40648, -468.75366, -112.22305, -491.63422, -203.27269, -411.1314, -251.58493, -404.75674, -345.2477, -311.75253, -159.09227, -229.27937, -18.192667, -332.93896, 107.94278, -174.98882, 149.26123, -159.09644, 311.75043, -18.192232, 229.2794, 107.94341, 332.93875, 149.26155, 174.98854, 311.75113, 159.09505, 229.27948, 18.19121, 332.93826, -107.94489, 174.98787, -149.26233, 159.09366, -311.75183, 18.19019, -229.27956, -107.94637, -332.9378, -149.26312, -174.98721, -311.75253, -159.09227)
+polygon = PackedVector2Array(532, 0, 476.0658, 75.40142, 505.96207, 164.39705, 429.46515, 218.82343, 430.39703, 312.70175, 340.82547, 340.82547, 312.70175, 430.39703, 218.82343, 429.46515, 164.39703, 505.96207, 75.40143, 476.0658, -2.3254459e-05, 532, -75.401405, 476.0658, -164.39706, 505.96204, -218.82347, 429.46512, -312.70172, 430.39703, -340.82547, 340.82547, -430.39706, 312.70172, -429.46512, 218.82346, -505.96204, 164.39706, -476.0658, 75.401405, -532, -4.6508918e-05, -476.0658, -75.40137, -505.96207, -164.39703, -429.46515, -218.82344, -430.397, -312.7018, -340.8255, -340.82544, -312.70166, -430.3971, -218.8235, -429.46512, -164.3971, -505.96204, -75.401436, -476.06577, 6.3440366e-06, -532, 75.40144, -476.06577, 164.39711, -505.96204, 218.8235, -429.4651, 312.70166, -430.3971, 340.8254, -340.82553, 430.397, -312.70178, 429.46515, -218.82343, 505.96207, -164.39702, 476.0658, -75.40136, 532, 0, 323.35785, -133.9392, 162.63454, -162.63458, 133.93925, -323.35782, 2.7427225e-06, -230, -133.93925, -323.35782, -162.63457, -162.63454, -323.35782, -133.9392, -230, -2.0107238e-05, -323.35782, 133.93922, -162.63455, 162.63455, -133.9392, 323.35785, -1.0053619e-05, 230, 133.9392, 323.35782, 162.63455, 162.63455, 323.35782, 133.93921, 230, 0, 323.35785, -133.9392)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -2168,5 +2018,3 @@ mouse_filter = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=582492900]
 environment = SubResource("Environment_hwpts")
-
-[node name="1" parent="." unique_id=1260259211 instance=ExtResource("19_0sclb")]

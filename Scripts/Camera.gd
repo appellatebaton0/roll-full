@@ -38,13 +38,13 @@ func _ready() -> void:
 	Global.reset_level.connect(_on_reset)
 	_on_reset()
 
-func _on_reset() -> void: global_position = target.global_position
+func _on_reset() -> void: if target: global_position = target.global_position
 
 #func _draw():
 	#draw_circle(Vector2.ZERO, 20.0, Color.RED)
 	#queue_redraw()
 
-func target_position(delta:float):
+func target_position(delta:float): 
 	
 	var target_pos:Vector2
 	
@@ -71,7 +71,7 @@ func target_position(delta:float):
 
 var applied_velocity := Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta: float) -> void: if target:
 	global_position = target_position(delta) + applied_velocity
 	
 	zoom = lerp(zoom, Vector2.ONE * clamp((0.7 - pow(target.mag(target.velocity) / 50000., 1./3.)), 0.05, 1.), 0.1)

@@ -73,7 +73,7 @@ func should_disable() -> bool:
 		TYPE.HAS_DASHED: return player.dash_cooldown_time > 0
 		_:               return false
 
-func get_slow(a := global_position, b := player.global_position) -> float:
+func get_slow(a := global_position, b := player.global_position if player else global_position) -> float:
 	
 	var distance:float
 	match shape:

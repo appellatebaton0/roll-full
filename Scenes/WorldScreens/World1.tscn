@@ -22,7 +22,9 @@ offset_bottom = 40.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" index="0" unique_id=1650713286]
 transparent_bg = true
+handle_input_locally = false
 size = Vector2i(1152, 864)
+render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport" index="0" unique_id=583575322]
 modulate = Color(0.92156863, 0.92156863, 0.92156863, 1)

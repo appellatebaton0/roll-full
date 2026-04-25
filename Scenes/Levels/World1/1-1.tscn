@@ -3,29 +3,30 @@
 [ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_gbbuh"]
 [ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="2_j24j6"]
 [ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="3_fnxhk"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_fnxhk"]
+[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="4_fnxhk"]
+[ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="5_fnxhk"]
 
 [node name="1" unique_id=1260259211 instance=ExtResource("1_gbbuh")]
 
 [node name="Player" parent="." index="3" unique_id=1267848784]
-position = Vector2(-1705, -167)
+position = Vector2(-1867, -230)
 
 [node name="Camera2D" parent="." index="4" unique_id=807067945]
 position = Vector2(-1648, 0)
 
 [node name="Goal" parent="." index="5" unique_id=1338618760]
-position = Vector2(492, -7589)
+position = Vector2(1798, -13069)
 
 [node name="DeathBorder" parent="." index="6" unique_id=1495088171]
-position = Vector2(-63, -6743)
-width = 9395.0
-height = 8367.0
+position = Vector2(1748, -8756)
+width = 8279.0
+height = 9434.0
 visual_width = 2000.0
 border_color = Color(0.389, 0.093, 0.093, 1)
 
 [node name="Spline2D" type="Line2D" parent="." index="7" unique_id=1008196265]
 position = Vector2(-1648, 0)
-points = PackedVector2Array(-125, -147, -135, 89, -33, 135, 179, 114, 608.6194, 115.74786, 1358.9789, 118.121155, 1954, 111)
+points = PackedVector2Array(-275, -233, -388, 64, -143, 155, 179, 114, 608.6194, 115.74786, 1358.9789, 118.121155, 1954, 111)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_j24j6")
@@ -34,7 +35,9 @@ metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 [node name="TimeSlow" type="Node2D" parent="." index="8" unique_id=635582280]
 position = Vector2(237, 26)
 script = ExtResource("3_fnxhk")
+show_overlay = false
 radius = 300.0
+easing = 3.0
 min_scale = 0.01
 input_disable = "Jump"
 type_disable = 2
@@ -76,7 +79,16 @@ outer_radius = 70.0
 inner_vertices = 24
 inner_radius = 60.0
 
-[node name="Spline2D2" type="Line2D" parent="." index="13" unique_id=546419739]
+[node name="RegularPolygon11" type="Polygon2D" parent="." index="13" unique_id=711895785]
+position = Vector2(-1578, -3995)
+polygon = PackedVector2Array(70, 0, 67.61481, 18.117332, 60.621777, 35, 49.497475, 49.497475, 34.999996, 60.62178, 18.117334, 67.61481, -3.059797e-06, 70, -18.117332, 67.61481, -35.000004, 60.621777, -49.497475, 49.497475, -60.621777, 35.000004, -67.61481, 18.11734, -70, -6.119594e-06, -67.61481, -18.117334, -60.621777, -34.999996, -49.49748, -49.49747, -34.999992, -60.62178, -18.117329, -67.614815, 8.347416e-07, -70, 18.11733, -67.61481, 34.999992, -60.62178, 49.497467, -49.497482, 60.621773, -35.00001, 67.614815, -18.11732, 70, 0, 60, 0, 57.95555, -15.52913, 51.96152, -30.000011, 42.4264, -42.426414, 29.999994, -51.961525, 15.52914, -57.955547, 7.1549283e-07, -60, -15.529139, -57.95555, -29.999994, -51.961525, -42.42641, -42.426403, -51.961525, -29.999998, -57.955547, -15.529144, -60, -5.2453665e-06, -57.955547, 15.529148, -51.961525, 30.000004, -42.426407, 42.426407, -30.000004, 51.961525, -15.529142, 57.955547, -2.6226833e-06, 60, 15.529144, 57.955547, 29.999998, 51.961525, 42.426407, 42.426407, 51.961525, 30, 57.955547, 15.529142, 60, 0)
+script = ExtResource("4_fnxhk")
+outer_vertices = 24
+outer_radius = 70.0
+inner_vertices = 24
+inner_radius = 60.0
+
+[node name="Spline2D2" type="Line2D" parent="." index="14" unique_id=546419739]
 position = Vector2(2875, 51)
 points = PackedVector2Array(1802, 154, 3135, 153, 4487, 153.30066, 5242, 153)
 width = 40.0
@@ -84,23 +96,23 @@ default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_j24j6")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D5" type="Line2D" parent="." index="14" unique_id=242783996]
+[node name="Spline2D5" type="Line2D" parent="." index="15" unique_id=242783996]
 position = Vector2(-2366, -2841)
-points = PackedVector2Array(2979, 154, 3732, 153, 4499, 153.30066, 5242, 153)
+points = PackedVector2Array(2012, 154, 2974, 153, 4242, 153.30066, 5242, 153)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_j24j6")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D6" type="Line2D" parent="." index="15" unique_id=681935932]
+[node name="Spline2D6" type="Line2D" parent="." index="16" unique_id=681935932]
 position = Vector2(-3896, -3118)
-points = PackedVector2Array(2431, -466, 2202, -41, 2652, 131, 3059.9753, 153.89246, 3732, 153, 4499, 153.30066, 5242, 153)
+points = PackedVector2Array(2433, -2773, 2433.0002, -1972, 2433.0005, -1185, 2433, -462, 2202, -41, 2626, 320, 3059.9753, 153.89246, 3732, 153, 4499, 153.30066, 5242, 153)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_j24j6")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Label" type="Label" parent="." index="16" unique_id=207390704]
+[node name="Label" type="Label" parent="." index="17" unique_id=207390704]
 offset_left = -18.0
 offset_top = -495.0
 offset_right = 528.0
@@ -109,17 +121,312 @@ text = "Tap Q / Space
 To Jump"
 horizontal_alignment = 1
 
-[node name="Spline2D3" type="Line2D" parent="." index="17" unique_id=387992741]
+[node name="Spline2D3" type="Line2D" parent="." index="18" unique_id=387992741]
 points = PackedVector2Array(8522, -85, 8522, -697.5537, 8522, -2470, 8524.998, -3461)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_j24j6")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D4" type="Line2D" parent="." index="18" unique_id=621373988]
+[node name="Spline2D4" type="Line2D" parent="." index="19" unique_id=621373988]
 position = Vector2(-370, -416)
 points = PackedVector2Array(8522, -85, 8522, -697.5537, 8522, -1454.6599, 8522, -1846.5786, 8558, -2196, 8474, -2321, 8123, -2237, 7624.7065, -2237, 6934.3936, -2237, 6268, -2237)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_j24j6")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="RegularPolygon" type="Polygon2D" parent="." index="20" unique_id=189198126]
+position = Vector2(-2483, -4561)
+polygon = PackedVector2Array(800, 0, 787.8462, 138.91855, 751.7541, 273.6161, 692.8203, 400, 612.8356, 514.23004, 514.2301, 612.8356, 399.99997, 692.8204, 273.61612, 751.7541, 138.91858, 787.8462, -3.496911e-05, 800, -138.91855, 787.8462, -273.6161, 751.7541, -400.00006, 692.8203, -514.2301, 612.8356, -612.8356, 514.2301, -692.8203, 400.00006, -751.7541, 273.61618, -787.8462, 138.91864, -800, -6.993822e-05, -787.8462, -138.91858, -751.7541, -273.61612, -692.8203, -399.99997, -612.8356, -514.23004, -514.23004, -612.83563, -399.99994, -692.8204, -273.61606, -751.75415, -138.9185, -787.84625, 9.539905e-06, -800, 138.91852, -787.8462, 273.6161, -751.7541, 399.99994, -692.8204, 514.23004, -612.8356, 612.83545, -514.2302, 692.82025, -400.00015, 751.754, -273.6163, 787.84625, -138.91838, 800, 0, 275, 0, 459.61932, -459.61948, 3.279342e-06, -275, -459.61945, -459.61935, -275, -2.4041263e-05, -459.6194, 459.6194, -1.2020631e-05, 275, 459.6194, 459.6194, 275, 0)
+script = ExtResource("4_fnxhk")
+outer_vertices = 36
+outer_radius = 800.0
+inner_vertices = 8
+inner_radius = 650.0
+inner_radius_modifiers = Dictionary[int, float]({
+2: -375.0
+})
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon" index="0" unique_id=944195389]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon/StaticBody2D" index="0" unique_id=1199348060]
+polygon = PackedVector2Array(800, 0, 787.8462, 138.91855, 751.7541, 273.6161, 692.8203, 400, 612.8356, 514.23004, 514.2301, 612.8356, 399.99997, 692.8204, 273.61612, 751.7541, 138.91858, 787.8462, -3.496911e-05, 800, -138.91855, 787.8462, -273.6161, 751.7541, -400.00006, 692.8203, -514.2301, 612.8356, -612.8356, 514.2301, -692.8203, 400.00006, -751.7541, 273.61618, -787.8462, 138.91864, -800, -6.993822e-05, -787.8462, -138.91858, -751.7541, -273.61612, -692.8203, -399.99997, -612.8356, -514.23004, -514.23004, -612.83563, -399.99994, -692.8204, -273.61606, -751.75415, -138.9185, -787.84625, 9.539905e-06, -800, 138.91852, -787.8462, 273.6161, -751.7541, 399.99994, -692.8204, 514.23004, -612.8356, 612.83545, -514.2302, 692.82025, -400.00015, 751.754, -273.6163, 787.84625, -138.91838)
+
+[node name="RegularPolygon2" type="Polygon2D" parent="." index="21" unique_id=1277036027]
+position = Vector2(-4214, -4561)
+polygon = PackedVector2Array(800, 0, 787.8462, 138.91855, 751.7541, 273.6161, 692.8203, 400, 612.8356, 514.23004, 514.2301, 612.8356, 399.99997, 692.8204, 273.61612, 751.7541, 138.91858, 787.8462, -3.496911e-05, 800, -138.91855, 787.8462, -273.6161, 751.7541, -400.00006, 692.8203, -514.2301, 612.8356, -612.8356, 514.2301, -692.8203, 400.00006, -751.7541, 273.61618, -787.8462, 138.91864, -800, -6.993822e-05, -787.8462, -138.91858, -751.7541, -273.61612, -692.8203, -399.99997, -612.8356, -514.23004, -514.23004, -612.83563, -399.99994, -692.8204, -273.61606, -751.75415, -138.9185, -787.84625, 9.539905e-06, -800, 138.91852, -787.8462, 273.6161, -751.7541, 399.99994, -692.8204, 514.23004, -612.8356, 612.83545, -514.2302, 692.82025, -400.00015, 751.754, -273.6163, 787.84625, -138.91838, 800, 0, 275, 0, 459.61932, -459.61948, 3.279342e-06, -275, -459.61945, -459.61935, -275, -2.4041263e-05, -459.6194, 459.6194, -1.2020631e-05, 275, 459.6194, 459.6194, 275, 0)
+script = ExtResource("4_fnxhk")
+outer_vertices = 36
+outer_radius = 800.0
+inner_vertices = 8
+inner_radius = 650.0
+inner_radius_modifiers = Dictionary[int, float]({
+2: -375.0
+})
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon2" index="0" unique_id=434850567]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon2/StaticBody2D" index="0" unique_id=1205532958]
+polygon = PackedVector2Array(800, 0, 787.8462, 138.91855, 751.7541, 273.6161, 692.8203, 400, 612.8356, 514.23004, 514.2301, 612.8356, 399.99997, 692.8204, 273.61612, 751.7541, 138.91858, 787.8462, -3.496911e-05, 800, -138.91855, 787.8462, -273.6161, 751.7541, -400.00006, 692.8203, -514.2301, 612.8356, -612.8356, 514.2301, -692.8203, 400.00006, -751.7541, 273.61618, -787.8462, 138.91864, -800, -6.993822e-05, -787.8462, -138.91858, -751.7541, -273.61612, -692.8203, -399.99997, -612.8356, -514.23004, -514.23004, -612.83563, -399.99994, -692.8204, -273.61606, -751.75415, -138.9185, -787.84625, 9.539905e-06, -800, 138.91852, -787.8462, 273.6161, -751.7541, 399.99994, -692.8204, 514.23004, -612.8356, 612.83545, -514.2302, 692.82025, -400.00015, 751.754, -273.6163, 787.84625, -138.91838)
+
+[node name="RegularPolygon3" type="Polygon2D" parent="." index="22" unique_id=934021360]
+position = Vector2(2746, -14072)
+polygon = PackedVector2Array(500, 0, 492.40387, 86.82409, 469.8463, 171.01006, 433.0127, 250, 383.02222, 321.3938, 321.39383, 383.02222, 249.99998, 433.01273, 171.01007, 469.8463, 86.82411, 492.40387, -2.1855694e-05, 500, -86.8241, 492.40387, -171.01006, 469.8463, -250.00003, 433.0127, -321.39383, 383.02222, -383.02222, 321.39383, -433.0127, 250.00003, -469.8463, 171.0101, -492.40387, 86.82415, -500, -4.371139e-05, -492.40387, -86.82411, -469.8463, -171.01007, -433.0127, -249.99998, -383.02225, -321.3938, -321.39377, -383.02228, -249.99995, -433.01273, -171.01003, -469.84634, -86.824066, -492.4039, 5.9624404e-06, -500, 86.82407, -492.40387, 171.01004, -469.8463, 249.99995, -433.01273, 321.39377, -383.02225, 383.02216, -321.3939, 433.01266, -250.00009, 469.84628, -171.01018, 492.4039, -86.82398, 500, 0, 150, 0, 247.48732, -247.48741, 1.7887321e-06, -150, -247.4874, -247.48735, -150, -1.3113417e-05, -247.48737, 247.48737, -6.5567083e-06, 150, 247.48737, 247.48737, 150, 0)
+script = ExtResource("4_fnxhk")
+outer_vertices = 36
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 350.0
+inner_radius_modifiers = Dictionary[int, float]({
+2: -200.0
+})
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon3" index="0" unique_id=2123455401]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon3/StaticBody2D" index="0" unique_id=141882940]
+polygon = PackedVector2Array(500, 0, 492.40387, 86.82409, 469.8463, 171.01006, 433.0127, 250, 383.02222, 321.3938, 321.39383, 383.02222, 249.99998, 433.01273, 171.01007, 469.8463, 86.82411, 492.40387, -2.1855694e-05, 500, -86.8241, 492.40387, -171.01006, 469.8463, -250.00003, 433.0127, -321.39383, 383.02222, -383.02222, 321.39383, -433.0127, 250.00003, -469.8463, 171.0101, -492.40387, 86.82415, -500, -4.371139e-05, -492.40387, -86.82411, -469.8463, -171.01007, -433.0127, -249.99998, -383.02225, -321.3938, -321.39377, -383.02228, -249.99995, -433.01273, -171.01003, -469.84634, -86.824066, -492.4039, 5.9624404e-06, -500, 86.82407, -492.40387, 171.01004, -469.8463, 249.99995, -433.01273, 321.39377, -383.02225, 383.02216, -321.3939, 433.01266, -250.00009, 469.84628, -171.01018, 492.4039, -86.82398)
+
+[node name="RegularPolygon4" type="Polygon2D" parent="." index="23" unique_id=1839899785]
+position = Vector2(4516, -14869)
+polygon = PackedVector2Array(300, 0, 295.44232, 52.09445, 281.90778, 102.60604, 259.80762, 150, 229.81332, 192.83627, 192.83629, 229.81332, 149.99998, 259.80765, 102.60605, 281.90778, 52.094467, 295.44232, -1.3113417e-05, 300, -52.09446, 295.44232, -102.60604, 281.90778, -150.00002, 259.80762, -192.83629, 229.81332, -229.81332, 192.83629, -259.80762, 150.00002, -281.90778, 102.606064, -295.44232, 52.09449, -300, -2.6226833e-05, -295.44232, -52.094467, -281.90778, -102.60605, -259.80762, -149.99998, -229.81335, -192.83627, -192.83626, -229.81337, -149.99997, -259.80765, -102.60602, -281.9078, -52.09444, -295.44232, 3.5774642e-06, -300, 52.094444, -295.44232, 102.606026, -281.90778, 149.99997, -259.80765, 192.83626, -229.81335, 229.8133, -192.83632, 259.8076, -150.00006, 281.90778, -102.60611, 295.44232, -52.09439, 300, 0, 80, 0, 141.42133, -141.42137, 9.539905e-07, -80, -141.42137, -141.42134, -80, -6.9938224e-06, -141.42136, 141.42136, -3.4969112e-06, 80, 141.42136, 141.42136, 80, 0)
+script = ExtResource("4_fnxhk")
+outer_vertices = 36
+outer_radius = 300.0
+inner_vertices = 8
+inner_radius = 200.0
+inner_radius_modifiers = Dictionary[int, float]({
+2: -120.0
+})
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RegularPolygon4" index="0" unique_id=1889009274]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RegularPolygon4/StaticBody2D" index="0" unique_id=702951385]
+polygon = PackedVector2Array(300, 0, 295.44232, 52.09445, 281.90778, 102.60604, 259.80762, 150, 229.81332, 192.83627, 192.83629, 229.81332, 149.99998, 259.80765, 102.60605, 281.90778, 52.094467, 295.44232, -1.3113417e-05, 300, -52.09446, 295.44232, -102.60604, 281.90778, -150.00002, 259.80762, -192.83629, 229.81332, -229.81332, 192.83629, -259.80762, 150.00002, -281.90778, 102.606064, -295.44232, 52.09449, -300, -2.6226833e-05, -295.44232, -52.094467, -281.90778, -102.60605, -259.80762, -149.99998, -229.81335, -192.83627, -192.83626, -229.81337, -149.99997, -259.80765, -102.60602, -281.9078, -52.09444, -295.44232, 3.5774642e-06, -300, 52.094444, -295.44232, 102.606026, -281.90778, 149.99997, -259.80765, 192.83626, -229.81335, 229.8133, -192.83632, 259.8076, -150.00006, 281.90778, -102.60611, 295.44232, -52.09439)
+
+[node name="Arrow" type="Sprite2D" parent="." index="24" unique_id=885037949]
+position = Vector2(705.99994, -2823.0002)
+rotation = -2.7657702
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow2" type="Sprite2D" parent="." index="25" unique_id=1586285039]
+position = Vector2(-1629, -4155)
+rotation = -1.7989681
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="RegularPolygon12" type="Polygon2D" parent="." index="26" unique_id=1086967660]
+position = Vector2(-5106.1665, -7165.4287)
+polygon = PackedVector2Array(70, 0, 67.61481, 18.117332, 60.621777, 35, 49.497475, 49.497475, 34.999996, 60.62178, 18.117334, 67.61481, -3.059797e-06, 70, -18.117332, 67.61481, -35.000004, 60.621777, -49.497475, 49.497475, -60.621777, 35.000004, -67.61481, 18.11734, -70, -6.119594e-06, -67.61481, -18.117334, -60.621777, -34.999996, -49.49748, -49.49747, -34.999992, -60.62178, -18.117329, -67.614815, 8.347416e-07, -70, 18.11733, -67.61481, 34.999992, -60.62178, 49.497467, -49.497482, 60.621773, -35.00001, 67.614815, -18.11732, 70, 0, 60, 0, 57.95555, -15.52913, 51.96152, -30.000011, 42.4264, -42.426414, 29.999994, -51.961525, 15.52914, -57.955547, 7.1549283e-07, -60, -15.529139, -57.95555, -29.999994, -51.961525, -42.42641, -42.426403, -51.961525, -29.999998, -57.955547, -15.529144, -60, -5.2453665e-06, -57.955547, 15.529148, -51.961525, 30.000004, -42.426407, 42.426407, -30.000004, 51.961525, -15.529142, 57.955547, -2.6226833e-06, 60, 15.529144, 57.955547, 29.999998, 51.961525, 42.426407, 42.426407, 51.961525, 30, 57.955547, 15.529142, 60, 0)
+script = ExtResource("4_fnxhk")
+outer_vertices = 24
+outer_radius = 70.0
+inner_vertices = 24
+inner_radius = 60.0
+
+[node name="Arrow8" type="Sprite2D" parent="." index="27" unique_id=257363300]
+position = Vector2(-5027.0005, -7317)
+rotation = -1.104086
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow9" type="Sprite2D" parent="." index="28" unique_id=1106441623]
+position = Vector2(-4254, -8578)
+rotation = -0.89393055
+scale = Vector2(1.0125202, 1.0125202)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow10" type="Sprite2D" parent="." index="29" unique_id=236658397]
+position = Vector2(-1978.9998, -8973)
+rotation = 0.92562616
+scale = Vector2(1.0125202, 1.0125202)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow3" type="Sprite2D" parent="." index="30" unique_id=17037696]
+position = Vector2(-3102, -5245.0005)
+rotation = -3.8689914
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow4" type="Sprite2D" parent="." index="31" unique_id=802718297]
+position = Vector2(-3512, -3974.0005)
+rotation = -3.8689914
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow5" type="Sprite2D" parent="." index="32" unique_id=471988311]
+position = Vector2(-1749, -5165)
+rotation = -2.3272796
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow6" type="Sprite2D" parent="." index="33" unique_id=62465552]
+position = Vector2(-4897, -4021.0005)
+rotation = -2.3272796
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow7" type="Sprite2D" parent="." index="34" unique_id=799959120]
+position = Vector2(-5105.9995, -4713.9995)
+rotation = -1.5665686
+scale = Vector2(0.46625704, 0.46625704)
+texture = ExtResource("5_fnxhk")
+
+[node name="Spline2D7" type="Line2D" parent="." index="35" unique_id=1568656425]
+points = PackedVector2Array(-5242, -3964, -5242, -5247, -5242, -6547, -5242, -7967)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D8" type="Line2D" parent="." index="36" unique_id=736864593]
+position = Vector2(1419, 0)
+points = PackedVector2Array(-3142, -8172, -2207.2366, -8172.0005, -852.63794, -8172.001, -112.20001, -8172.0005, 119, -8291, 397, -8096, 253, -7748, 132, -7369, 417, -7152, 748, -7276, 2221.7612, -7276.0005, 3652.6138, -7276.0005, 4449.169, -7276.001, 4710, -7260, 5221, -7268, 5103, -7594)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Up" type="Polygon2D" parent="." index="37" unique_id=1668402828]
+position = Vector2(-3244, -10046)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
+
+[node name="Right" type="Polygon2D" parent="." index="38" unique_id=1715264600]
+position = Vector2(-3170, -9961)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
+
+[node name="Down" type="Polygon2D" parent="." index="39" unique_id=423650152]
+position = Vector2(-3244, -9876)
+rotation = -3.1415925
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
+
+[node name="Left" type="Polygon2D" parent="." index="40" unique_id=197847730]
+position = Vector2(-3329, -9961)
+rotation = -1.5707964
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(0, 0, -40, -45, -50, -140, 50, -140, 40, -45)
+
+[node name="TimeSlow2" type="Node2D" parent="." index="41" unique_id=797349651]
+position = Vector2(-3241, -9938)
+script = ExtResource("3_fnxhk")
+show_overlay = false
+radius = 1000.0
+min_scale = 0.4
+metadata/_custom_type_script = "uid://bq5d8130qbdd4"
+
+[node name="Label2" type="Label" parent="." index="42" unique_id=574698671]
+offset_left = -3802.0
+offset_top = -10803.0
+offset_right = -2697.0
+offset_bottom = -10346.0
+text = "While midair, use WASD to perform tricks.
+Chain tricks to perform combos for points."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="." index="43" unique_id=1718728478]
+offset_left = -3802.0
+offset_top = -9587.0
+offset_right = -2697.0
+offset_bottom = -9130.0
+text = "Collecting enough points during a run will earn you the + of that run's rank.
+(A -> A+, etc)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="." index="44" unique_id=325517578]
+offset_left = 2048.0
+offset_top = -13217.018
+offset_right = 2645.0
+offset_bottom = -12888.018
+theme_override_font_sizes/font_size = 80
+text = "The faster you reach the goal, the better your rank will be."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spline2D10" type="Line2D" parent="." index="45" unique_id=1162869803]
+position = Vector2(7128, -10086)
+points = PackedVector2Array(0, 2798, -727, 1938.975, -727, 877.535, 0, 0)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D11" type="Line2D" parent="." index="46" unique_id=952340693]
+position = Vector2(6208, -9111)
+rotation = 3.1181734
+points = PackedVector2Array(0, 2798, -727, 1938.975, -727, 877.535, 0, 0)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D12" type="Line2D" parent="." index="47" unique_id=1987767352]
+position = Vector2(6966, -13879)
+rotation = 6.2831855
+points = PackedVector2Array(0, 2798, -727, 1938.975, -727, 877.535, 0, 0)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D13" type="Line2D" parent="." index="48" unique_id=103663932]
+position = Vector2(6283.9995, -12882)
+rotation = 8.901179
+points = PackedVector2Array(3002.42, 3369.6572, 3201.3008, 3915.1846, 3825, 3876.9053, 4117.617, 3316.0771, 4412.4326, 3069.4424, 4815.0903, 2504.0186, 4153.005, 2446.698, 3903.706, 2162.583, 3414.4443, 1954.0088, 2976.164, 1717.1328, 2661.9258, 1339.4082, 2225.6992, 1448.9746, 2098.496, 1993.2979, 1817.9648, 2681.1934, 1579.4072, 2856.3857, 1005.4502, 2364.5078, -727, 1938.975, -727, 877.535, 0, 0)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("2_j24j6")
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Arrow11" type="Sprite2D" parent="." index="49" unique_id=241527329]
+position = Vector2(5826.0005, -7518)
+rotation = -0.91841376
+scale = Vector2(0.5893999, 0.5893999)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow12" type="Sprite2D" parent="." index="50" unique_id=990006859]
+position = Vector2(6703.001, -9702)
+rotation = -1.6704113
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow13" type="Sprite2D" parent="." index="51" unique_id=76447060]
+position = Vector2(6434.0005, -11798)
+rotation = -1.2777992
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow14" type="Sprite2D" parent="." index="52" unique_id=1484538810]
+position = Vector2(6479, -12961.999)
+rotation = -1.8617535
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow15" type="Sprite2D" parent="." index="53" unique_id=1872375773]
+position = Vector2(2978.001, -13284.001)
+rotation = -3.3576617
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow16" type="Sprite2D" parent="." index="54" unique_id=1840476909]
+modulate = Color(0.11372549, 0.972549, 0.1764706, 1)
+position = Vector2(2033.0007, -13189.018)
+rotation = -3.6318614
+scale = Vector2(0.39062065, 0.39062065)
+texture = ExtResource("5_fnxhk")
+
+[node name="Arrow17" type="Sprite2D" parent="." index="55" unique_id=1480599194]
+modulate = Color(0.11372549, 0.972549, 0.1764706, 1)
+position = Vector2(1571.9995, -13202.016)
+rotation = -5.590117
+scale = Vector2(0.39062065, 0.39062065)
+texture = ExtResource("5_fnxhk")
+
+[node name="TimeSlow3" type="Node2D" parent="." index="56" unique_id=430353515]
+position = Vector2(1795, -13067.018)
+script = ExtResource("3_fnxhk")
+radius = 800.0
+min_scale = 0.4
+metadata/_custom_type_script = "uid://bq5d8130qbdd4"
