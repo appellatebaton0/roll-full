@@ -35,15 +35,18 @@ func _process(delta: float) -> void:
 
 func _is_entry(a): return a is ComboEntry
 
+## When a new combo is performed;
 func _on_combo_finished(combo:Global.Combo) -> void:
+	# Add a ComboEntry to the combo_box
 	push_combo_entry("+" + combo.name)
 	
+	# Update the score_buffer display
 	combo_tot.text = str(Global.score_buffer)
 
-func _on_trick_ended() -> void:
-	clear_combo_entries()
-	#score_lab.text = str(Global.score)
+## When a trick ends, fade out the combo entries. 
+func _on_trick_ended() -> void: clear_combo_entries()
 
+## Create a new ComboEntry and add it to the box.
 func push_combo_entry(text:String):
 	var new = ComboEntry.new()
 	
