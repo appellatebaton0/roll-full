@@ -24,7 +24,6 @@ var sample_mesh:Array[Vector2]
 		
 		regenerate_sample()
 		queue_redraw()
-		generate()
 
 #@export_tool_button("GenerateShape") var gen := generate
 func generate(): if collision_mesh:  collision_mesh.polygon = regenerate_mesh()
@@ -114,7 +113,7 @@ func regenerate_mesh() -> Array[Vector2]:
 		
 		var point = sample_points[i]
 		
-		# Get the 2 points surrounding this one, and get the direction between them.
+		# Get the two points surrounding this one, and get the direction between them.
 		
 		var dir_a = sample_points[max(i - 1, 0)]
 		var dir_b = sample_points[min(i + 1, len(sample_points) - 1)]
@@ -130,7 +129,11 @@ func regenerate_mesh() -> Array[Vector2]:
 	# Reverse one side so they'll be continous.
 	b.reverse()
 	
+	# Set the sample mesh to the combined arrays.
 	sample_mesh = a + b
+	
+	if collision_mesh:  collision_mesh.polygon = sample_mesh
+	
 	return sample_mesh
 
 func fabricate_collision() -> void:

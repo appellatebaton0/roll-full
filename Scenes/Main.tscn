@@ -10,14 +10,14 @@
 [ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
 [ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://c8fyb184em3f" path="res://Scripts/DashCooldownBar.gd" id="8_0sclb"]
 [ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
 [ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 [ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
-[ext_resource type="Script" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
@@ -1330,7 +1330,7 @@ theme_override_font_sizes/font_size = 40
 text = "0.0u/s"
 script = ExtResource("6_frkhe")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=1624346038]
+[node name="ScoreDisplay" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=1624346038]
 process_mode = 3
 custom_minimum_size = Vector2(250, 500)
 layout_mode = 2
@@ -1338,7 +1338,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 script = ExtResource("6_jyqft")
 
-[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=1878646220]
+[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=1878646220]
 process_mode = 1
 layout_mode = 2
 size_flags_horizontal = 8
@@ -1347,49 +1347,49 @@ theme_override_font_sizes/font_size = 72
 text = "00:00.00"
 script = ExtResource("8_vy5pj")
 
-[node name="Score" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=277202492]
+[node name="Score" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=277202492]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 53
 text = "000000"
 
-[node name="ComboBox" type="VBoxContainer" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=382588904]
+[node name="ComboBox" type="VBoxContainer" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=382588904]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme = SubResource("Theme_hwpts")
 
-[node name="ComboEntry7" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=1665394933]
+[node name="ComboEntry7" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=1665394933]
 layout_mode = 2
 text = "asd"
 script = ExtResource("8_3tgeq")
 metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
 
-[node name="ComboEntry8" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=1332139870]
+[node name="ComboEntry8" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=1332139870]
 layout_mode = 2
 text = "asd"
 script = ExtResource("8_3tgeq")
 metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
 
-[node name="ComboEntry9" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=292181857]
+[node name="ComboEntry9" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=292181857]
 layout_mode = 2
 text = "asd"
 script = ExtResource("8_3tgeq")
 metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
 
-[node name="ComboEntry10" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2/ComboBox" unique_id=148228918]
+[node name="ComboEntry10" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=148228918]
 layout_mode = 2
 text = "asd"
 script = ExtResource("8_3tgeq")
 metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
 
-[node name="ComboSeperator" type="HSeparator" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=942550201]
+[node name="ComboSeperator" type="HSeparator" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=942550201]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/separator = SubResource("StyleBoxLine_hwpts")
 
-[node name="ComboTotal" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer2" unique_id=1638351789]
+[node name="ComboTotal" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=1638351789]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -1716,7 +1716,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-517.8996, 121.67168, -480.6926, 35.477127, -530.1504, -44.323208, -468.12885, -114.80149, -490.50635, -205.97943, -409.74136, -253.84251, -402.84805, -347.47293, -311.24548, -368.03568, -275.75616, -454.95334, -182.2827, -446.20288, -121.67135, -517.8997, -35.47682, -480.6926, 44.323547, -530.1504, 114.80179, -468.12875, 205.97975, -490.50623, 253.84277, -409.74118, 347.47318, -402.84784, 368.03586, -311.24524, 454.9535, -275.7559, 446.203, -182.28241, 517.8998, -121.67101, 480.69263, -35.476513, 530.1503, 44.323887, 468.12872, 114.80209, 490.50607, 205.98004, 409.741, 253.84303, 402.84763, 347.47342, 311.245, 368.03607, 275.75735, 454.95264, 182.28214, 446.20313, 121.67265, 517.89935, 35.476204, 480.69266, -44.3222, 530.1505, -114.80239, 468.12863, -205.97849, 490.50674, -253.84332, 409.74088, -347.47217, 402.84872, -368.03625, 311.24478, -454.9528, 275.75702, -446.20325, 182.28186, -517.8996, 121.67168, -345.4201, 56.435444, -195.51958, 121.12842, -204.34346, 284.15445, -52.602417, 223.90396, 56.435005, 345.42017, 121.12854, 195.5195, 284.15457, 204.34328, 223.904, 52.602276, 345.42014, -56.435223, 195.51965, -121.128296, 204.34363, -284.15433, 52.60256, -223.90393, -56.435444, -345.4201, -121.12881, -195.51935, -284.15445, -204.34346, -223.90396, -52.602417, -345.4201, 56.435444)
+polygon = PackedVector2Array(-3.1634417, -531.9906, 72.57018, -476.50558, 161.38559, -506.93066, 216.26672, -430.7583, 310.1371, -432.24875, 338.79355, -342.84534, 428.53015, -315.25534, 428.15686, -221.37228, 504.97565, -167.40248, 475.6092, -78.22974, 531.9906, -3.1631014, 476.50552, 72.57048, 506.93054, 161.38591, 430.75815, 216.267, 432.24857, 310.13733, 342.84515, 338.79376, 315.25507, 428.53033, 221.37201, 428.157, 167.40218, 504.97574, 78.22944, 475.60925, 3.162761, 531.9906, -72.56897, 476.50577, -161.38625, 506.93045, -216.26564, 430.75882, -310.1376, 432.24838, -338.7927, 342.8462, -428.53052, 315.2548, -428.1563, 221.37337, -504.9759, 167.40184, -475.60898, 78.23094, -531.9906, 3.1624205, -476.50574, -72.569275, -506.93033, -161.38657, -430.7587, -216.2659, -432.2482, -310.1379, -342.84598, -338.7929, -315.25452, -428.53073, -221.3731, -428.15646, -167.40152, -504.97598, -78.23064, -475.60904, -3.1634417, -531.9906, -132.01399, -324.1486, -161.66476, -163.5986, -322.55594, -135.85896, -229.99594, -1.3669232, -324.1485, 132.0142, -163.59851, 161.66487, -135.85875, 322.55606, -1.3676534, 229.99593, 132.0148, 324.14825, 161.66455, 163.59882, 322.5558, 135.85936, 229.99594, 1.3672174, 324.14816, -132.01501, 163.59871, -161.66466, 135.85916, -322.55588, 1.3670703, -229.99594, -132.01399, -324.1486)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0

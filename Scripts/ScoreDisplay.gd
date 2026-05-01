@@ -31,15 +31,12 @@ func _process(delta: float) -> void:
 	combo_sep.modulate.a = mod_a
 	combo_tot.modulate.a = mod_a
 	
-	score_lab.text = str(int(lerp(int(score_lab.text), Global.score, 0.2)))
+	score_lab.text = Global.digitize(int(lerp(int(score_lab.text), Global.score, 0.2)), 7)
 
 func _is_entry(a): return a is ComboEntry
 
 func _on_combo_finished(combo:Global.Combo) -> void:
-	
-	#var score_worth := int(len(combo.key) * Global.ACTION_POINTS)
-	
-	push_combo_entry("+" + combo.name) #combo.name + " +" + str(score_worth) + " x" + str(combo.multiplier)
+	push_combo_entry("+" + combo.name)
 	
 	combo_tot.text = str(Global.score_buffer)
 
