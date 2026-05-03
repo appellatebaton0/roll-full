@@ -112,32 +112,42 @@ func _get_best_time() -> float:
 	return best
 
 func _get_best_score() -> int:
-	## Turn each Run into their score.
+	# Turn each Run into their score.
 	var scores := []
 	for run in runs:
 		scores.append(run.score)
 	
-	## Get the best time out of the list
+	# Get the best time out of the list
 	var best := 0
 	for score in scores:
 		best = max(best, score)
 	
 	return best
 
+## Ran whenever a level is beat.
 func log_run(time:float, score:int):
-	var rank := _get_ranking(time)
+	var rank := _get_ranking(time) # Get the ranking.
+	# Append the new run to the list.
 	runs += [Run.new(time, score, rank, _is_bonused(score, rank))]
 
+## Figure out the ranking for a time.
 func _get_ranking(time:float) -> int:
 	var current_max := 0.0
 
+	# From S to D, check if the time is under the time threshold.
 	for i in range(RANKINGS.size()):
 		current_max = ranking_maximums[i]
 		
+		# It's under, so this is the rank.
+		# Ex, S = 12 seconds, an 11 second run would return RANKINGS.S
 		if time <= current_max: return i as RANKINGS
 	
+	# -1 counts for F, and is the default.
 	return -1
-	
+
+## Whether a score is bonused for a certain rank.
 func _is_bonused(score, rank:int) -> bool:
-	if rank == -1: return false
-	return score > score_thresholds[rank]
+	if rank == -1: return false # F ranks are never bonused
+	
+	# Whether the input score is over the threshold for the rank.
+	return score >= score_thresholds[rank]

@@ -68,6 +68,7 @@ func push_direction(direction:DIR):
 func complete_combo() -> void:
 	var this_combo:Combo
 	
+	# Add the action points
 	score_buffer += int(len(combo_buffer) * ACTION_POINTS)
 	
 	## Check existing combos for a specific one.
@@ -78,8 +79,10 @@ func complete_combo() -> void:
 	## Default combo if no specific ones found.
 	if not this_combo: this_combo = Combo.new("Basic", combo_buffer as Array[int], 1.1)
 	
+	# Apply the multiplier
 	score_buffer = int(score_buffer * this_combo.multiplier)
 	
+	# Emit the combo and clear the buffer.
 	finished_combo.emit(this_combo)
 	combo_buffer.clear()
 

@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 
 signal dash_reset
 
-const DEBUG := false
+const DEBUG := true
 
 ## VISUALS
 @export var sprite:Node2D
@@ -93,6 +93,9 @@ func _physics_process(delta: float) -> void:
 	# Grinding
 	if ray_node.is_colliding() and not ray_resetting:
 		
+		## Wind down the dash cooldown.
+		dash_cooldown_time = move_toward(dash_cooldown_time, 0.0, delta)
+		
 		## -- DIRECTION SETTING -- ##
 		
 		# Update the last normal.
@@ -137,9 +140,6 @@ func _physics_process(delta: float) -> void:
 	
 	
 	# Dashing
-	
-	if on_wall:
-		dash_cooldown_time = move_toward(dash_cooldown_time, 0.0, delta)
 	
 	var dash_dir := (get_global_mouse_position() - global_position).normalized()
 	if Input.is_action_just_pressed("Dash") and dash_cooldown_time <= 0 :
@@ -209,6 +209,6 @@ func _draw() -> void: if DEBUG:
 	
 	draw_line(Vector2.ZERO, velocity, Color.GREEN, 15)
 	
-	draw_circle(ray_node.target_position, 10.0, Color.ALICE_BLUE)
+	draw_circle(ray_node.target_position, 10.0, Color.TEAL)
 	
 	#draw_line(to_local(snapped_to.global_position), (Vector2.DOWN.rotated(snapped_to.rotation) * 250) + to_local(snapped_to.global_position), Color.GREEN, 15)

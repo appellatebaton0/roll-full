@@ -1,6 +1,8 @@
 class_name Camera extends Camera2D
 ## Follows the player f a n c i l y
 
+const DEBUG := true
+
 ## Second-order-system time? Idk...
 
 @onready var target:Player = get_tree().get_first_node_in_group("Player")
@@ -72,6 +74,12 @@ func target_position(delta:float):
 var applied_velocity := Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: if target:
+	
+	if DEBUG:
+		global_position = target.global_position
+		zoom = Vector2.ONE * 2.3
+		return
+	
 	global_position = target_position(delta) + applied_velocity
 	
 	zoom = lerp(zoom, Vector2.ONE * clamp((0.7 - pow(target.mag(target.velocity) / 50000., 1./3.)), 0.05, 1.), 0.1)

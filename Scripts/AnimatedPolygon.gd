@@ -26,16 +26,20 @@ var current_inner_rotation := 0.
 var animation_timers:Dictionary[float, float]
 
 func _process(delta: float) -> void: if processing:
-	for key in animation_timers:
-		animation_timers[key] = move_toward(animation_timers[key], key, delta)
+	
+	if outer_rotation != 0 or inner_rotation != 0:
+		for key in animation_timers:
+			animation_timers[key] = move_toward(animation_timers[key], key, delta)
+			
+			if animation_timers[key] >= key:
+				animation_timers[key] = 0.0
 		
-		if animation_timers[key] >= key:
-			animation_timers[key] = 0.0
-	
-	current_inner_rotation += inner_rotation * delta
-	current_outer_rotation += outer_rotation * delta
-	
-	generate()
+		current_inner_rotation += inner_rotation * delta
+		current_outer_rotation += outer_rotation * delta
+		
+		generate()
+	elif outer_rotation != 0:
+		rotate(outer_rotation * delta)
 
 func generate():
 	

@@ -55,7 +55,7 @@ grind_speed = 2500.0
 jump_height = 4.2
 stick_force = 300.0
 ray_node = NodePath("RayCast2D")
-ray_distance = 140.0
+ray_distance = 40.0
 ray_fallback = 1.4
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1371172353]
