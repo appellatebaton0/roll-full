@@ -19,6 +19,8 @@ var current_data :LevelData
 
 var run_timer:RunTimer
 
+var default_time_scale := 2.0
+
 ## -- COMBO MANAGEMENT -- ##
 
 signal finished_combo(combo:Combo)

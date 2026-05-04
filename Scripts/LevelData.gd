@@ -69,13 +69,7 @@ enum RANKINGS {S, A, B, C, D}
 	RANKINGS.C: 0,
 	RANKINGS.D: 0,
 }
-@export var score_thresholds:Dictionary[RANKINGS, int] = {
-	RANKINGS.S: 0,
-	RANKINGS.A: 0,
-	RANKINGS.B: 0,
-	RANKINGS.C: 0,
-	RANKINGS.D: 0,
-}
+@export var score_threshold:int
 
 ## The current letter ranking for this level.
 var ranking:int
@@ -128,7 +122,7 @@ func _get_best_score() -> int:
 func log_run(time:float, score:int):
 	var rank := _get_ranking(time) # Get the ranking.
 	# Append the new run to the list.
-	runs += [Run.new(time, score, rank, _is_bonused(score, rank))]
+	runs += [Run.new(time, score, rank, _is_bonused(score))]
 
 ## Figure out the ranking for a time.
 func _get_ranking(time:float) -> int:
@@ -145,9 +139,5 @@ func _get_ranking(time:float) -> int:
 	# -1 counts for F, and is the default.
 	return -1
 
-## Whether a score is bonused for a certain rank.
-func _is_bonused(score, rank:int) -> bool:
-	if rank == -1: return false # F ranks are never bonused
-	
-	# Whether the input score is over the threshold for the rank.
-	return score >= score_thresholds[rank]
+## Whether the input score is over the threshold.
+func _is_bonused(score:int) -> bool: return score >= score_threshold

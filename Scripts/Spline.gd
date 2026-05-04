@@ -14,9 +14,9 @@ var collision_mesh:CollisionPolygon2D
 
 ## The points that make up the visible line / mesh.
 ## Amount depends on seg
-var sample_points:Array[Vector2]
+@export_storage var sample_points:Array[Vector2]
 ## The current mesh based off sample_points and width.
-var sample_mesh:Array[Vector2]
+@export_storage var sample_mesh:Array[Vector2]
 
 @export_range(1, 100, 1.0) var seg := 20.0:
 	set(to):
@@ -31,11 +31,11 @@ func generate(): if collision_mesh:  collision_mesh.polygon = regenerate_mesh()
 func _draw() -> void: if Engine.is_editor_hint() and len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
 
 func _ready() -> void: 
-	default_color = Color(0,0,0,0)
-	
-	regenerate_sample()
-	queue_redraw()
-	
+	if Engine.is_editor_hint():
+		default_color = Color(0,0,0,0)
+		
+		regenerate_sample()
+		queue_redraw()
 	
 	if not Engine.is_editor_hint():
 		default_color = color
@@ -46,7 +46,7 @@ func _ready() -> void:
 
 ## Update whenever anything changes.
 var last_points:PackedVector2Array
-func _process(_delta: float) -> void: if points != last_points: 
+func _process(_delta: float) -> void: if Engine.is_editor_hint() and points != last_points: 
 		
 	regenerate_sample()
 	generate()

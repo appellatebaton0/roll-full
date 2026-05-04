@@ -1,7 +1,7 @@
 class_name Camera extends Camera2D
 ## Follows the player f a n c i l y
 
-const DEBUG := true
+const DEBUG := false
 
 ## Second-order-system time? Idk...
 

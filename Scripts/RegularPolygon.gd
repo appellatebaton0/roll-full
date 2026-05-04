@@ -54,6 +54,8 @@ func generate():
 		outer_points.append(outer_points.front())
 		inner_points.append(inner_points.front())
 		
+		inner_points.reverse()
+		
 		# The new polygon is just the two arrays added together
 		new_points = outer_points + inner_points
 	
