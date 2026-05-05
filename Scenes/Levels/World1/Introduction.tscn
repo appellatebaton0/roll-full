@@ -43,7 +43,8 @@ sample_mesh = Array[Vector2]([Vector2(-1125.5853, -483.8032), Vector2(-1144.2888
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D14" type="Line2D" parent="." index="9" unique_id=17705330]
-position = Vector2(-1648, 0)
+position = Vector2(-1904.9999, -448.99994)
+rotation = 0.35813415
 points = PackedVector2Array(-1145, -479, -1343, -969, -1339, -1524, -1193, -1613, -645, -1855, -320, -1855, 349, -1855, 448, -1638, 397, -1231, 91, -1164, -527, -1533, -1059, -1438, -1021, -1074, -890, -797, -616, -702, -174, -479, 190, -542, 403, -673, 518, -810, 747, -1457, 1282, -1597, 1499, -1074, 2098, -1119, 2123, -1438, 1814, -1753, 1480, -1813)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
@@ -53,7 +54,7 @@ sample_mesh = Array[Vector2]([Vector2(-1125.5853, -483.8032), Vector2(-1144.2888
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D15" type="Line2D" parent="." index="10" unique_id=1961817825]
-position = Vector2(-1648, 0)
+position = Vector2(-2713, -269)
 points = PackedVector2Array(-1145, -479, -1343, -969, -1339, -1524, -1193, -1613, -645, -1855, -320, -1855, 349, -1855, 448, -1638, 397, -1231, 91, -1164, -527, -1533, -1059, -1438, -1021, -1074, -890, -797, -616, -702, -174, -479, 190, -542, 403, -673, 518, -810, 747, -1457, 1282, -1597, 1499, -1074, 2098, -1119, 2123, -1438, 1814, -1753, 1480, -1813)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
@@ -63,7 +64,8 @@ sample_mesh = Array[Vector2]([Vector2(-1125.5853, -483.8032), Vector2(-1144.2888
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D16" type="Line2D" parent="." index="11" unique_id=1560013694]
-position = Vector2(-1648, 0)
+position = Vector2(-1661, -378)
+rotation = 0.39615935
 points = PackedVector2Array(-1145, -479, -1343, -969, -1339, -1524, -1193, -1613, -645, -1855, -320, -1855, 349, -1855, 448, -1638, 397, -1231, 91, -1164, -527, -1533, -1059, -1438, -1021, -1074, -890, -797, -616, -702, -174, -479, 190, -542, 403, -673, 518, -810, 747, -1457, 1282, -1597, 1499, -1074, 2098, -1119, 2123, -1438, 1814, -1753, 1480, -1813)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
@@ -73,7 +75,8 @@ sample_mesh = Array[Vector2]([Vector2(-1125.5853, -483.8032), Vector2(-1144.2888
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D17" type="Line2D" parent="." index="12" unique_id=1662367955]
-position = Vector2(-1648, 0)
+position = Vector2(-2443, 308)
+rotation = -0.2580512
 points = PackedVector2Array(-1145, -479, -1343, -969, -1339, -1524, -1193, -1613, -645, -1855, -320, -1855, 349, -1855, 448, -1638, 397, -1231, 91, -1164, -527, -1533, -1059, -1438, -1021, -1074, -890, -797, -616, -702, -174, -479, 190, -542, 403, -673, 518, -810, 747, -1457, 1282, -1597, 1499, -1074, 2098, -1119, 2123, -1438, 1814, -1753, 1480, -1813)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
@@ -83,7 +86,8 @@ sample_mesh = Array[Vector2]([Vector2(-1125.5853, -483.8032), Vector2(-1144.2888
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D18" type="Line2D" parent="." index="13" unique_id=643068272]
-position = Vector2(-1648, 0)
+position = Vector2(-2450, -359)
+rotation = 0.49645802
 points = PackedVector2Array(-1145, -479, -1343, -969, -1339, -1524, -1193, -1613, -645, -1855, -320, -1855, 349, -1855, 448, -1638, 397, -1231, 91, -1164, -527, -1533, -1059, -1438, -1021, -1074, -890, -797, -616, -702, -174, -479, 190, -542, 403, -673, 518, -810, 747, -1457, 1282, -1597, 1499, -1074, 2098, -1119, 2123, -1438, 1814, -1753, 1480, -1813)
 width = 40.0
 default_color = Color(0, 0, 0, 0)

@@ -22,7 +22,7 @@ func _on_animation_requested(anim_name:String, optional_data:Variant = true):
 				
 			"ResetIn":
 				get_tree().paused = true
-				Engine.time_scale = 1.0
+				Engine.time_scale = Global.default_time_scale
 
 func _on_animation_finished(anim_name:String) -> void:
 	match anim_name:
