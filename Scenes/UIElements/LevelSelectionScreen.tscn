@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://w2o6j5cqphex" path="res://Scripts/UI/SpinContainer.gd" id="3_woile"]
 [ext_resource type="Script" uid="uid://bu7foox8xva0i" path="res://Scripts/UI/LevelSelector.gd" id="4_oneo4"]
 [ext_resource type="Script" uid="uid://b46wol6nsuin7" path="res://Scripts/UI/CycleContainer.gd" id="4_woile"]
+[ext_resource type="Shader" uid="uid://bupwsrtj71q6r" path="res://Shaders/TextureAlpha.gdshader" id="5_ek4xw"]
 [ext_resource type="PackedScene" uid="uid://dqduu8fu52dky" path="res://Scenes/UIElements/LevelEntry.tscn" id="6_q46ju"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="7_b2y8u"]
+[ext_resource type="PackedScene" uid="uid://cnfljsla0enkg" path="res://Scenes/UIElements/RankingBar.tscn" id="8_7mpik"]
 
 [sub_resource type="Gradient" id="Gradient_vafqf"]
 offsets = PackedFloat32Array(0)
@@ -18,18 +20,27 @@ width = 1
 height = 1
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_pdqk2"]
-color = Color(0.08999999, 0.24600002, 0.45, 1)
+color = Color(0.16470589, 0.32156864, 0.52156866, 1)
 grow_begin = 45.0
 grow_end = 0.0
 thickness = 5
+
+[sub_resource type="Gradient" id="Gradient_ek4xw"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0.19607843, 1, 1, 1, 1, 1, 1, 1, 0.19607843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7mpik"]
+gradient = SubResource("Gradient_ek4xw")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mpik"]
+shader = ExtResource("5_ek4xw")
+shader_parameter/alpha_texture = SubResource("GradientTexture2D_7mpik")
 
 [sub_resource type="Curve" id="Curve_woile"]
 _limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5031847, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek4xw"]
-bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mpik"]
 
@@ -572,7 +583,6 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator32" type="HSeparator" parent="SpinContainer" unique_id=2088172696]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
@@ -609,6 +619,7 @@ grow_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1957301097 node_paths=PackedStringArray("spin_container", "entry_container")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../MarginContainer2/VBoxContainer/HBoxContainer2/Play")
 focus_mode = 2
 theme_override_constants/margin_left = 67
 theme_override_constants/margin_right = 179
@@ -617,6 +628,7 @@ spin_container = NodePath("../../SpinContainer")
 entry_container = NodePath("LevelEntryContainer")
 
 [node name="LevelEntryContainer" type="Container" parent="HBoxContainer/MarginContainer" unique_id=2047304327]
+material = SubResource("ShaderMaterial_7mpik")
 custom_minimum_size = Vector2(0, 1098)
 layout_mode = 2
 script = ExtResource("4_woile")
@@ -625,28 +637,35 @@ distance_curve = SubResource("Curve_woile")
 scroll_offset = -346.0
 
 [node name="LevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="LevelEntry2" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=2062440854 instance=ExtResource("6_q46ju")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="LevelEntry3" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=299551750 instance=ExtResource("6_q46ju")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="LevelEntry4" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1402775686 instance=ExtResource("6_q46ju")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="LevelEntry5" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1736211613 instance=ExtResource("6_q46ju")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="LevelEntry6" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=304930703 instance=ExtResource("6_q46ju")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="LevelEntry7" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=941117780 instance=ExtResource("6_q46ju")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="LevelEntry8" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1515945423 instance=ExtResource("6_q46ju")]
-modulate = Color(1, 1, 1, 0.54509807)
+use_parent_material = true
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1476397087]
@@ -679,102 +698,8 @@ theme_override_font_sizes/font_size = 25
 text = "Time -> Rank"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1942993523]
+[node name="RankingBar" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1027662342 instance=ExtResource("8_7mpik")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 13
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=198436390]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_ek4xw")
-value = 40.0
-fill_mode = 3
-show_percentage = false
-
-[node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=337044128]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control" unique_id=1211049011]
-layout_mode = 0
-offset_right = 74.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer" unique_id=1259055587]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "S "
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer" unique_id=328058772]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "<12.0"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control" unique_id=1347934249]
-layout_mode = 0
-offset_top = 287.0
-offset_right = 74.0
-offset_bottom = 327.0
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer2" unique_id=2099953798]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "D "
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer2" unique_id=750982956]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "<12.0"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control" unique_id=340095828]
-layout_mode = 0
-offset_top = 214.0
-offset_right = 74.0
-offset_bottom = 254.0
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer3" unique_id=1588005646]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "C "
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer3" unique_id=722859847]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "<12.0"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control" unique_id=2126894424]
-layout_mode = 0
-offset_top = 144.0
-offset_right = 74.0
-offset_bottom = 184.0
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer4" unique_id=167308410]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "B "
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer4" unique_id=280227382]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "<12.0"
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control" unique_id=1378954016]
-layout_mode = 0
-offset_top = 71.0
-offset_right = 74.0
-offset_bottom = 111.0
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer5" unique_id=600583489]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "A "
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer5" unique_id=1439481124]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "<12.0"
 
 [node name="Control" type="VSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1300587058]
 layout_mode = 2
@@ -938,6 +863,7 @@ size_flags_horizontal = 3
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=259156879]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer" unique_id=882195909]
@@ -998,6 +924,7 @@ horizontal_alignment = 1
 [node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1975144076]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2" unique_id=1412383055]
@@ -1058,6 +985,7 @@ horizontal_alignment = 1
 [node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1482572576]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3" unique_id=30497664]
@@ -1118,6 +1046,7 @@ horizontal_alignment = 1
 [node name="PanelContainer4" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1251361654]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4" unique_id=268087837]
@@ -1178,6 +1107,7 @@ horizontal_alignment = 1
 [node name="PanelContainer5" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=439508606]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5" unique_id=682276580]
@@ -1238,6 +1168,7 @@ horizontal_alignment = 1
 [node name="PanelContainer6" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1659558552]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6" unique_id=1769034669]
@@ -1298,6 +1229,7 @@ horizontal_alignment = 1
 [node name="PanelContainer7" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=497207657]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7" unique_id=1620608449]
@@ -1358,6 +1290,7 @@ horizontal_alignment = 1
 [node name="PanelContainer8" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=761232169]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+focus_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8" unique_id=1224496758]

@@ -34,8 +34,8 @@ class Run:
 		
 		return points
 	
-	func ranking_as_string() -> String:
-		match ranking:
+	func ranking_as_string(rank:RANKINGS = ranking as RANKINGS) -> String:
+		match rank:
 			RANKINGS.S: return "S"
 			RANKINGS.A: return "A"
 			RANKINGS.B: return "B"

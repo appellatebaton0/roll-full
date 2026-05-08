@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cnfljsla0enkg"]
+
+[ext_resource type="Script" uid="uid://cnpq5p3sqerii" path="res://Scripts/UI/RankingBar.gd" id="1_yvypi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek4xw"]
+bg_color = Color(0.06666667, 0.07450981, 0.12941177, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvypi"]
+bg_color = Color(0.61960787, 0.6627451, 1, 1)
+border_width_top = 3
+border_color = Color(0.48235294, 0.53333336, 0.9098039, 1)
+
+[node name="RankingBar" type="HBoxContainer" unique_id=1027662342]
+custom_minimum_size = Vector2(143, 325)
+size_flags_vertical = 3
+theme_override_constants/separation = 13
+script = ExtResource("1_yvypi")
+
+[node name="Bar" type="ProgressBar" parent="." unique_id=1438797537]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ek4xw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yvypi")
+value = 3.94
+fill_mode = 3
+show_percentage = false
+
+[node name="LabelContainer" type="Control" parent="." unique_id=323317854]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="LabelBox" type="HBoxContainer" parent="LabelContainer" unique_id=1741598645]
+layout_mode = 0
+offset_right = 74.0
+offset_bottom = 40.0
+
+[node name="Rank" type="Label" parent="LabelContainer/LabelBox" unique_id=433932193]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "S "
+
+[node name="Range" type="Label" parent="LabelContainer/LabelBox" unique_id=452309667]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "<12.0"
