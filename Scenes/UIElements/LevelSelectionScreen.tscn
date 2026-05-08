@@ -436,7 +436,7 @@ offset_top = 432.0
 offset_right = -1010.0
 offset_bottom = 472.0
 script = ExtResource("3_woile")
-add_angle = -340.42
+add_angle = 19.8
 radius = 800.0
 
 [node name="HSeparator" type="HSeparator" parent="SpinContainer" unique_id=1307233007]
@@ -572,6 +572,7 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator32" type="HSeparator" parent="SpinContainer" unique_id=2088172696]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
@@ -608,6 +609,7 @@ grow_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1957301097 node_paths=PackedStringArray("spin_container", "entry_container")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 theme_override_constants/margin_left = 67
 theme_override_constants/margin_right = 179
 script = ExtResource("4_oneo4")
@@ -620,7 +622,7 @@ layout_mode = 2
 script = ExtResource("4_woile")
 seperation = 65
 distance_curve = SubResource("Curve_woile")
-scroll_offset = -345.9
+scroll_offset = -346.0
 
 [node name="LevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
 layout_mode = 2
@@ -644,6 +646,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="LevelEntry8" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1515945423 instance=ExtResource("6_q46ju")]
+modulate = Color(1, 1, 1, 0.54509807)
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1476397087]

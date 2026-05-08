@@ -18,6 +18,8 @@ var selected:LevelEntry:
 		if selected: selected.selected = true
 		
 		selection_updated.emit(to)
+		
+		_on_focused()
 
 func _ready() -> void:
 	create_level_entries()
@@ -25,25 +27,35 @@ func _ready() -> void:
 	## Wire up the signals so that when a entry is clicked on, it's selected.
 	for entry in level_entries:
 		entry.pressed.connect(select.bind(entry))
+		entry.focus_entered.connect(_on_focused.bind(entry))
+
+	focus_entered.connect(_on_focused)
+
+func _on_focused(node:Node = self) -> void: if node != selected: selected.grab_focus()
+func _is_focused() -> bool: return selected.has_focus()
 
 func _process(delta: float) -> void:
-	if selected:
-		var selected_center_y := selected.global_position.y + (selected.size.y / 2)
-		if abs(selected_center_y - 432) > 3:
-			entry_container.scroll_offset += (432 - selected_center_y)#* 8 * delta
-			print(432 - selected_center_y)
 	
+	## Per entry, move 137 units on the cycle, 9.23u on the spin.
 	
-	queue_redraw()
-
-func _draw() -> void:
-	draw_line(Vector2(0, 432) - global_position, Vector2(1152,432) - global_position, Color.WHITE, 1)
+	## Scroll the cycle and spin containers to center on the selected entry.
 	if selected:
-		var selected_center_y := selected.global_position.y + (selected.size.y / 2)
-		draw_circle(Vector2(selected.global_position.x, selected_center_y) - global_position, 3, Color.WHITE)
-		
-		draw_line(Vector2(selected.global_position.x, selected_center_y) - global_position, Vector2(selected.global_position.x, 432) - global_position, Color.RED, 1.0)
-
+		var selected_center_y := selected.global_position.y + (selected.size.y * selected.scale.y / 2)
+		if abs(selected_center_y - 432) > 1:
+			entry_container.scroll_offset += (432 - selected_center_y) * 10 * delta
+			
+		elif abs(selected_center_y - 432) > 0.2:
+			entry_container.scroll_offset += (432 - selected_center_y)
+	spin_container.add_angle = 19.8 + (entry_container.scroll_offset * (9.23 / 137.))
+	
+	## Allow for using Up/Down inputs to move the selection.
+	if _is_focused():
+		if Input.is_action_just_pressed("UIUp"):
+			var index = wrap(level_entries.find(selected) - 1, 0, len(level_entries))
+			select(index)
+		elif Input.is_action_just_pressed("UIDown"):
+			var index = wrap(level_entries.find(selected) + 1, 0, len(level_entries))
+			select(index)
 
 ## Make a index or node the selected level entry
 func select(target:Variant):
@@ -59,11 +71,14 @@ func create_level_entries() -> void:
 	for node in entry_container.get_children(): 
 		if node is LevelEntry: entries.append(node)
 	
+	## Make sure the amount of entries is correct, but use existing ones.
 	var len_dist := len(entries) - len(level_data)
 	while len_dist != 0:
 		if   len_dist > 0: entries.pop_back().queue_free()
 		elif len_dist < 0: 
 			var new:LevelEntry = LEVEL_ENTRY_SCENE.instantiate()
+			
+			new.focus_mode = Control.FOCUS_NONE
 			
 			entry_container.add_child(new)
 			entries.append(new)
@@ -72,6 +87,8 @@ func create_level_entries() -> void:
 	
 	for i in len(level_data): entries[i].level_data = level_data[i]
 	level_entries = entries
+	
+	select(0)
 
 func get_level_data() -> Array[LevelData]:
 	

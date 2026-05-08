@@ -5,21 +5,16 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxhfk"]
 bg_color = Color(0, 0, 0, 0.32156864)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6mls"]
-bg_color = Color(0.27, 0.27, 0.27, 0.32156864)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
+draw_center = false
+border_width_left = 10
+border_width_right = 10
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ys53a"]
-bg_color = Color(0.64, 0.64, 0.64, 0.32156864)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
+draw_center = false
 
 [node name="LevelEntry" type="Button" unique_id=959268396]
 custom_minimum_size = Vector2(350, 61.25)
@@ -27,8 +22,9 @@ offset_right = 350.0
 offset_bottom = 61.25
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_jxhfk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_x6mls")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ys53a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jxhfk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jxhfk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ys53a")
 script = ExtResource("1_x6mls")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1174031395]
