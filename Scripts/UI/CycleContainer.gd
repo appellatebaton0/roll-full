@@ -1,5 +1,5 @@
 @tool
-class_name CustomContainer extends Container
+class_name CycleContainer extends Container
 
 @export var seperation := 0:
 	set(to):
@@ -11,7 +11,7 @@ class_name CustomContainer extends Container
 		distance_curve = to
 		queue_sort()
 
-@export_range(-600.0, 600.0, 0.1) var scroll_offset := 0.0:
+@export var scroll_offset := 0.0:
 	set(to):
 		scroll_offset = to
 		queue_sort()

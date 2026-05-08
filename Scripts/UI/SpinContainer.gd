@@ -1,5 +1,5 @@
 @tool
-extends Container
+class_name SpinContainer extends Container
 
 @export var add_angle := 0.:
 	set(to):

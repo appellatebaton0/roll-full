@@ -2,10 +2,8 @@ class_name LevelEntry extends Button
 ## Provides an interface into a level.
 
 @onready var level_name := $MarginContainer/HBoxContainer/LevelName
-@onready var best_time := $MarginContainer/HBoxContainer/BestTime
-@onready var best_score := $MarginContainer/HBoxContainer/BestScore
-@onready var ranking := $MarginContainer/HBoxContainer/HBoxContainer/Rank
-@onready var bonused := $MarginContainer/HBoxContainer/HBoxContainer/Label
+@onready var ranking := $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Rank
+@onready var bonused := $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Bonused
 
 var needs_update := false
 
@@ -19,10 +17,8 @@ var needs_update := false
 		if level_data:
 			level_data.runs_updated.connect(_on_runs_updated)
 		_on_runs_updated()
-@export var locked := false:
-	set(to):
-		locked = to
-		disabled = to
+
+@export var selected := false
 
 func _on_runs_updated() -> void: if level_data:
 	
@@ -32,11 +28,13 @@ func _on_runs_updated() -> void: if level_data:
 	
 	level_name.text = level_data.name
 	
-	best_time.text = Global.seconds_as_timer(level_data.best_time)
-	best_score.text = Global.digitize(level_data.best_score, 7)
-	
 	ranking.text = level_data.best_run.ranking_as_string()  if level_data.best_run != null else "-"
 	bonused.modulate.a = (1.0 if level_data.best_run.bonused else 0.0) if level_data.best_run != null else 0.0
 
 func _ready() -> void:
 	if needs_update: _on_runs_updated()
+
+func _process(delta: float) -> void:
+	pivot_offset = Vector2(0, size.y / 2)
+	scale.x = move_toward(scale.x, 1.1 if selected else 1., delta * 2.)
+	scale.y = move_toward(scale.y, 1.1 if selected else 1., delta * 2.)
