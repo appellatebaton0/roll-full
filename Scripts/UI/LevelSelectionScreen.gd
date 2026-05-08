@@ -3,9 +3,7 @@ class_name LevelSelectionScreen extends TextureRect
 
 @export var focused := false:
 	set(to):
-		print("!")
 		for node in focusees:
-			print("setting ", node)
 			node.set("focused", to)
 		focused = to
 @export var focusees:Array[Node]

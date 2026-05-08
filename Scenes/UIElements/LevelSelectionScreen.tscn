@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dqduu8fu52dky" path="res://Scenes/UIElements/LevelEntry.tscn" id="6_q46ju"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="7_b2y8u"]
 [ext_resource type="PackedScene" uid="uid://cnfljsla0enkg" path="res://Scenes/UIElements/RankingBar.tscn" id="8_7mpik"]
+[ext_resource type="Script" uid="uid://carfkn31m5052" path="res://Scripts/UI/LevelOverview.gd" id="8_8at3y"]
 
 [sub_resource type="Gradient" id="Gradient_vafqf"]
 offsets = PackedFloat32Array(0)
@@ -43,12 +44,62 @@ _data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5031847, 100), 0.
 point_count = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mpik"]
+bg_color = Color(0.42745098, 0.4745098, 0.78039217, 1)
+border_width_bottom = 6
+border_color = Color(0.275, 0.30499998, 0.5, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+corner_detail = 1
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_8at3y"]
+color = Color(0.27058825, 0.30588236, 0.5019608, 1)
+thickness = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8at3y"]
-bg_color = Color(0.09411765, 0.09803922, 0.13725491, 1)
+bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
+border_width_bottom = 10
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kjg5"]
-bg_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
+border_width_bottom = 10
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eebbl"]
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+border_width_bottom = 10
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du3wf"]
+bg_color = Color(0.41, 0.57399994, 0.82, 1)
+border_width_bottom = 5
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_dnu7h"]
+Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_8at3y")
+Button/styles/hover = SubResource("StyleBoxFlat_0kjg5")
+Button/styles/normal = SubResource("StyleBoxFlat_eebbl")
+Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
 
 [node name="LevelSelectionScreen" type="TextureRect" unique_id=17560446 node_paths=PackedStringArray("focusees")]
 anchors_preset = 15
@@ -60,7 +111,7 @@ texture = SubResource("GradientTexture2D_pdqk2")
 expand_mode = 1
 script = ExtResource("1_vafqf")
 focused = true
-focusees = [NodePath("SubViewportContainer/SubViewport/Parallax2D"), NodePath("SubViewportContainer/SubViewport/Parallax2D2")]
+focusees = [NodePath("SubViewportContainer/SubViewport/Parallax2D"), NodePath("SubViewportContainer/SubViewport/Parallax2D2"), NodePath("HBoxContainer/MarginContainer2"), NodePath("HBoxContainer/MarginContainer")]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1174239960]
 layout_mode = 1
@@ -677,10 +728,11 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
+script = ExtResource("8_8at3y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2" unique_id=1832886100]
 layout_mode = 2
-theme_override_constants/separation = 22
+theme_override_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1439104922]
 custom_minimum_size = Vector2(0, 360)
@@ -716,20 +768,27 @@ theme_override_constants/separation = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=600170883]
 layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1314706164]
-visible = false
-custom_minimum_size = Vector2(40, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1190458743]
 layout_mode = 2
-theme_override_font_sizes/font_size = 27
+theme_override_constants/separation = 0
+
+[node name="ResetButton" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1314706164]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
 text = "R"
 
-[node name="RunName" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1902601552]
+[node name="RunName" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1902601552]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 45
-text = "Best Run"
+text = "Run"
 horizontal_alignment = 1
 
 [node name="AttemptNum" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=116498969]
@@ -741,7 +800,7 @@ horizontal_alignment = 1
 
 [node name="Rank" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1936608507]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("7_b2y8u")
 theme_override_font_sizes/font_size = 153
 text = "S"
@@ -752,9 +811,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
+offset_left = -29.0
 offset_top = -20.0
-offset_right = 20.0
+offset_right = 11.0
 offset_bottom = 20.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("7_b2y8u")
@@ -852,6 +911,10 @@ theme_override_font_sizes/font_size = 20
 text = "Speed"
 horizontal_alignment = 1
 
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1751233831]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_8at3y")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=556640604]
 layout_mode = 2
 size_flags_vertical = 3
@@ -860,507 +923,19 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=259156879]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer" unique_id=882195909]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer/HBoxContainer" unique_id=61146844]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer/HBoxContainer/Label" unique_id=431877391]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer/HBoxContainer" unique_id=1882329974]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer/HBoxContainer" unique_id=906078053]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer/HBoxContainer" unique_id=271708372]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer/HBoxContainer" unique_id=1630907243]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
-[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1975144076]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2" unique_id=1412383055]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2/HBoxContainer" unique_id=257321500]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2/HBoxContainer/Label" unique_id=908572172]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2/HBoxContainer" unique_id=371876153]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2/HBoxContainer" unique_id=146604728]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2/HBoxContainer" unique_id=1798918971]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer2/HBoxContainer" unique_id=2068632932]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
-[node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1482572576]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3" unique_id=30497664]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3/HBoxContainer" unique_id=1168295296]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3/HBoxContainer/Label" unique_id=1479086927]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3/HBoxContainer" unique_id=872473970]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3/HBoxContainer" unique_id=1391017566]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3/HBoxContainer" unique_id=419994967]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer3/HBoxContainer" unique_id=1018036288]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
-[node name="PanelContainer4" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1251361654]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4" unique_id=268087837]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4/HBoxContainer" unique_id=2138989332]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4/HBoxContainer/Label" unique_id=177025837]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4/HBoxContainer" unique_id=2068690306]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4/HBoxContainer" unique_id=1393843494]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4/HBoxContainer" unique_id=1534559896]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer4/HBoxContainer" unique_id=1136920384]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
-[node name="PanelContainer5" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=439508606]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5" unique_id=682276580]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5/HBoxContainer" unique_id=951000133]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5/HBoxContainer/Label" unique_id=1848441159]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5/HBoxContainer" unique_id=1619298354]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5/HBoxContainer" unique_id=1998322836]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5/HBoxContainer" unique_id=327094419]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer5/HBoxContainer" unique_id=1835319555]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
-[node name="PanelContainer6" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=1659558552]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6" unique_id=1769034669]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6/HBoxContainer" unique_id=906061880]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6/HBoxContainer/Label" unique_id=1836699814]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6/HBoxContainer" unique_id=2133473063]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6/HBoxContainer" unique_id=1412438908]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6/HBoxContainer" unique_id=1013998794]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer6/HBoxContainer" unique_id=1491803181]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
-[node name="PanelContainer7" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=497207657]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7" unique_id=1620608449]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7/HBoxContainer" unique_id=1474822236]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7/HBoxContainer/Label" unique_id=1266264574]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7/HBoxContainer" unique_id=710513341]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7/HBoxContainer" unique_id=157912496]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7/HBoxContainer" unique_id=704420452]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer7/HBoxContainer" unique_id=867818523]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
-[node name="PanelContainer8" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" unique_id=761232169]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8at3y")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8" unique_id=1224496758]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8/HBoxContainer" unique_id=2045238621]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 30
-text = "S"
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8/HBoxContainer/Label" unique_id=1234031517]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -4.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("7_b2y8u")
-theme_override_font_sizes/font_size = 15
-text = "+"
-horizontal_alignment = 1
-
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8/HBoxContainer" unique_id=562270008]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00000"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8/HBoxContainer" unique_id=1881550678]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8/HBoxContainer" unique_id=1697872260]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "0000000"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox/PanelContainer8/HBoxContainer" unique_id=1882710979]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "100%"
-horizontal_alignment = 1
-
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=798856563]
 layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1097579893]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
+theme = SubResource("Theme_dnu7h")
 theme_override_constants/separation = 30
 
 [node name="Play" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=156681750]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_0kjg5")
 text = "Play"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=647771361]
@@ -1374,12 +949,20 @@ theme_override_font_sizes/font_size = 61
 text = "<"
 
 [node name="Speed" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=1195093939]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 52
 text = "100%"
+horizontal_alignment = 1
 
 [node name="SpeedUp" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=760811447]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 62
 text = ">"
+
+[connection signal="selection_updated" from="HBoxContainer/MarginContainer" to="HBoxContainer/MarginContainer2" method="_set_level_data"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ResetButton" to="HBoxContainer/MarginContainer2" method="update_overview"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Play" to="HBoxContainer/MarginContainer2" method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer/SpeedDown" to="HBoxContainer/MarginContainer2" method="_speed_down"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer/SpeedUp" to="HBoxContainer/MarginContainer2" method="_speed_up"]

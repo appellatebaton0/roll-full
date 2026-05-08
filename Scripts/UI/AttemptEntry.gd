@@ -1,20 +1,26 @@
-class_name AttemptEntry extends Panel
+class_name AttemptEntry extends Button
 ## Shows information about a single attempt.
 
-@onready var attempt_lab := $MarginContainer/HBoxContainer/Attempt
-@onready var time_lab    := $MarginContainer/HBoxContainer/VBoxContainer2/Time
-@onready var score_lab   := $MarginContainer/HBoxContainer/VBoxContainer/Score
-@onready var rank_lab    := $MarginContainer/HBoxContainer/HBoxContainer/Rank
-@onready var bonus_lab   := $MarginContainer/HBoxContainer/HBoxContainer/Bonused
+signal requested(run:LevelData.Run)
+
+@onready var attempt_lab      := $HBoxContainer/RunNumber
+@onready var time_lab         := $HBoxContainer/Time
+@onready var score_lab        := $HBoxContainer/Score
+@onready var rank_lab         := $HBoxContainer/Rank
+@onready var bonus_lab        := $HBoxContainer/Rank/Bonused
 
 var ready_buffer := []
+var run:LevelData.Run
 
-func update(run:LevelData.Run, index:int):
+func _pressed() -> void: requested.emit(run)
+
+func update(set_run:LevelData.Run, index:int):
+	run = set_run
 	
 	if is_node_ready():
-		attempt_lab.text = "ATTEMPT " + Global.digitize(index + 1, 3)
+		attempt_lab.text = Global.digitize(index + 1, 3)
 		time_lab.text    = Global.seconds_as_timer(run.time)
-		score_lab.text   = Global.digitize(run.score, 7)
+		score_lab.text   = Global.digitize(run.score, 4)
 		rank_lab.text    = run.ranking_as_string()
 		bonus_lab.visible = run.bonused
 		

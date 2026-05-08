@@ -12,12 +12,15 @@ class Run:
 	var score:int
 	var ranking:int
 	var bonused:bool
-	func _init(set_time:float, set_score:int, set_ranking:int, set_bonused:bool):
+	var speed:float
+	func _init(set_time:float, set_score:int, set_ranking:int, set_bonused:bool, set_speed:float):
 		time = set_time
 		score = set_score
 		
 		ranking = set_ranking# _get_ranking()
 		bonused = set_bonused# _is_bonused(ranking)
+		
+		speed = set_speed
 	
 	## How many points this run is worth.
 	func rating() -> int:
@@ -122,7 +125,7 @@ func _get_best_score() -> int:
 func log_run(time:float, score:int):
 	var rank := _get_ranking(time) # Get the ranking.
 	# Append the new run to the list.
-	runs += [Run.new(time, score, rank, _is_bonused(score))]
+	runs += [Run.new(time, score, rank, _is_bonused(score), Global.default_time_scale)]
 
 ## Figure out the ranking for a time.
 func _get_ranking(time:float) -> int:

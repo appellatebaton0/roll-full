@@ -1,10 +1,12 @@
 class_name LevelSelector extends Control
 ## Manages the LevelSelection nodes.
 
-signal selection_updated(to:LevelEntry)
+signal selection_updated(to:LevelData)
 
 const LEVEL_DATA_FOLDER := "res://Assets/LevelData/"
 const LEVEL_ENTRY_SCENE := preload("res://Scenes/UIElements/LevelEntry.tscn")
+
+@export var focused := false
 
 @export var spin_container :SpinContainer
 @export var entry_container:CycleContainer
@@ -17,7 +19,7 @@ var selected:LevelEntry:
 		selected = to
 		if selected: selected.selected = true
 		
-		selection_updated.emit(to)
+		selection_updated.emit(to.level_data)
 		
 		_on_focused()
 
@@ -34,9 +36,7 @@ func _ready() -> void:
 
 func _on_focused(node:Node = self) -> void: if node != selected: selected.grab_focus()
 
-func _is_focused() -> bool: return selected.has_focus(true)
-
-func _process(delta: float) -> void:
+func _process(delta: float) -> void: if focused:
 	
 	## Per entry, move 137 units on the cycle, 9.23u on the spin.
 	
@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 	spin_container.add_angle = 19.8 + (entry_container.scroll_offset * (9.23 / 137.))
 	
 	## Allow for using Up/Down inputs to move the selection.
-	if _is_focused():
+	if selected.has_focus():
 		if Input.is_action_just_pressed("ui_up"):
 			var index = wrap(level_entries.find(selected) - 1, 0, len(level_entries))
 			select(index)
@@ -103,8 +103,6 @@ func create_level_entries() -> void:
 		# Inherit this node's neighbors for the remaining sides.
 		entry.focus_neighbor_right = get_node(focus_neighbor_right).get_path()
 		entry.focus_neighbor_left  = get_node(focus_neighbor_right).get_path()
-		
-		print(focus_neighbor_right, " -> ", entry.focus_neighbor_right)
 	
 	level_entries = entries
 	

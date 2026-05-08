@@ -3,108 +3,79 @@
 [ext_resource type="Script" uid="uid://dhhjq4tl05eu2" path="res://Scripts/UI/AttemptEntry.gd" id="1_8va3k"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_4mh8l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awpw4"]
-bg_color = Color(0, 0, 0, 0.32156864)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mh8l"]
+bg_color = Color(0.09411765, 0.105882354, 0.21960784, 1)
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_awpw4"]
-color = Color(1, 1, 1, 1)
-grow_begin = -5.0
-grow_end = -5.0
-thickness = 2
-vertical = true
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvkg8"]
+bg_color = Color(0.15294118, 0.18431373, 0.4509804, 1)
 
-[sub_resource type="Theme" id="Theme_4mh8l"]
-VSeparator/styles/separator = SubResource("StyleBoxLine_awpw4")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mal55"]
+bg_color = Color(0.15294118, 0.18431373, 0.4509804, 1)
 
-[node name="AttemptEntry" type="Panel" unique_id=364246883]
-custom_minimum_size = Vector2(0, 60)
-offset_right = 463.0
-offset_bottom = 60.0
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_awpw4")
+[node name="PanelContainer" type="Button" unique_id=2137061202]
+custom_minimum_size = Vector2(491, 40)
+offset_right = 491.0
+offset_bottom = 40.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_4mh8l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4mh8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tvkg8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mal55")
 script = ExtResource("1_8va3k")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1571701622]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 7
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1853087130]
+layout_mode = 0
+offset_right = 491.0
+offset_bottom = 40.0
+mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=413772236]
+[node name="Rank" type="Label" parent="HBoxContainer" unique_id=1040446286]
 layout_mode = 2
-theme = SubResource("Theme_4mh8l")
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="Attempt" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1090532638]
-layout_mode = 2
-theme_override_font_sizes/font_size = 23
-text = "ATTEMPT 001"
-
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=774188615]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=624463646]
-layout_mode = 2
-theme_override_constants/separation = -3
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1304394116]
-layout_mode = 2
-theme_override_font_sizes/font_size = 23
-text = "SCORE"
-horizontal_alignment = 1
-
-[node name="Score" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=2141168583]
-layout_mode = 2
-theme_override_font_sizes/font_size = 23
-text = "00000000"
-horizontal_alignment = 1
-
-[node name="VSeparator3" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=594490325]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=679680897]
-layout_mode = 2
-theme_override_constants/separation = -3
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=56519161]
-layout_mode = 2
-theme_override_font_sizes/font_size = 23
-text = "TIME"
-horizontal_alignment = 1
-
-[node name="Time" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=841900141]
-layout_mode = 2
-theme_override_font_sizes/font_size = 23
-text = "00:00.00"
-horizontal_alignment = 1
-
-[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=1927166197]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1634040115]
-layout_mode = 2
-theme_override_constants/separation = -3
-
-[node name="Rank" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer" unique_id=38186395]
-layout_mode = 2
+size_flags_horizontal = 6
 theme_override_fonts/font = ExtResource("2_4mh8l")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 30
 text = "S"
+horizontal_alignment = 1
 
-[node name="Bonused" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer" unique_id=960860431]
-layout_mode = 2
-size_flags_vertical = 0
+[node name="Bonused" type="Label" parent="HBoxContainer/Rank" unique_id=1128039595]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -4.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 7.0
+grow_horizontal = 0
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_4mh8l")
 theme_override_font_sizes/font_size = 15
 text = "+"
+horizontal_alignment = 1
+
+[node name="RunNumber" type="Label" parent="HBoxContainer" unique_id=496384117]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "00000"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="HBoxContainer" unique_id=1585184826]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "00:00.00"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="HBoxContainer" unique_id=886789635]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "0000"
+horizontal_alignment = 1
+
+[node name="Speed" type="Label" parent="HBoxContainer" unique_id=2005537451]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "100%"
+horizontal_alignment = 1

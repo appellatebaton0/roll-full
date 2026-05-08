@@ -46,7 +46,7 @@ func _ready() -> void:
 
 ## Update whenever anything changes.
 var last_points:PackedVector2Array
-func _process(_delta: float) -> void:if points != last_points: 
+func _process(_delta: float) -> void: if points != last_points and Engine.is_editor_hint(): 
 		
 	regenerate_sample()
 	generate()
