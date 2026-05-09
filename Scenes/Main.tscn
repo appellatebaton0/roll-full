@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
 [ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
 [ext_resource type="Script" uid="uid://c8fyb184em3f" path="res://Scripts/DashCooldownBar.gd" id="8_0sclb"]
 [ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
@@ -506,6 +506,20 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LevelSelectionScreen")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_50glp"]
 resource_name = "Levels->Game"
@@ -669,6 +683,20 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LevelSelectionScreen")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_focused"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_vy5pj"]
@@ -1339,7 +1367,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-273.65054, 456.22296, -309.54114, 369.47028, -401.23914, 349.3296, -408.56277, 255.73512, -489.5491, 208.24428, -467.59326, 116.96389, -529.94006, 46.770992, -480.85156, -33.253223, -518.4564, -119.27672, -447.0405, -180.21877, -456.22174, -273.65256, -369.47125, -309.53998, -349.33087, -401.23804, -255.73332, -408.5639, -208.24583, -489.54846, -116.96538, -467.59286, -46.77267, -529.93994, 33.255363, -480.85144, 119.27507, -518.4568, 180.21735, -447.04108, 273.6511, -456.2226, 309.5416, -369.46985, 401.23694, -349.33212, 408.5631, -255.7346, 489.54938, -208.24364, 467.59338, -116.96329, 529.93976, -46.774357, 480.8515, 33.253838, 518.45624, 119.27739, 447.04025, 180.21935, 456.22348, 273.64963, 369.47086, 309.54047, 349.33035, 401.2385, 255.7328, 408.56424, 208.2452, 489.5487, 116.96477, 467.59302, 46.771996, 529.94, -33.255978, 480.85138, -119.275734, 518.45667, -180.21791, 447.04083, -273.65054, 456.22296, -208.4028, 281.1908, -55.81222, 223.12552, 51.467022, 346.19522, 118.3073, 197.2394, 281.19016, 208.4037, 223.12534, 55.812927, 346.195, -51.468567, 197.23888, -118.308174, 208.40245, -281.19107, 55.813637, -223.12517, -51.46747, -346.19516, -118.307556, -197.23924, -281.18988, -208.40405, -223.12527, -55.813217, -346.19507, 51.468124, -197.23903, 118.30793, -208.4028, 281.1908)
+polygon = PackedVector2Array(-195.20845, -494.89157, -104.541435, -470.52637, -32.724293, -530.99255, 45.9759, -479.80225, 132.96315, -515.11633, 191.9928, -442.1117, 285.6352, -448.8168, 319.21606, -361.14417, 410.34732, -338.58398, 415.19226, -244.82527, 494.8917, -195.20813, 470.52646, -104.54114, 530.9926, -32.723953, 479.80222, 45.976204, 515.1162, 132.96349, 442.11157, 191.99306, 448.81662, 285.6355, 361.14395, 319.2163, 338.58368, 410.3475, 244.82498, 415.19238, 195.20781, 494.8918, 104.54083, 470.52652, 32.723614, 530.9926, -45.97468, 479.8024, -132.9638, 515.11615, -191.99167, 442.11218, -285.6358, 448.81644, -319.21515, 361.14496, -410.34772, 338.58344, -415.19162, 244.8263, -494.89194, 195.20749, -470.5262, 104.54233, -530.9927, 32.723274, -479.80234, -45.974987, -515.1161, -132.96414, -442.1121, -191.99194, -448.81625, -285.63608, -361.14478, -319.2154, -338.5832, -410.34793, -244.82605, -415.19177, -195.20845, -494.89157, -5.945807, -349.9495, -91.61454, -210.9663, -251.65652, -243.24678, -213.95715, -84.39395, -349.9495, 5.9460306, -210.96623, 91.61468, -243.24661, 251.65666, -84.39463, 213.95688, 5.9466944, 349.94946, 91.61468, 210.96623, 251.6562, 243.2471, 213.95705, 84.394226, 349.9495, -5.946251, 210.96617, -91.61481, 243.24693, -251.65636, 84.39409, -213.95709, -5.945807, -349.9495)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0

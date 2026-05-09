@@ -68,16 +68,16 @@ func update_overview(run:Variant = null) -> bool:
 		ranking_bar.update(level_data, run)
 		
 		reset_button.visible = not is_showing_best
-		run_name.text = "Best Run" if is_showing_best else "Run"
-		attempt_number.text = "(%s)" % Global.digitize(level_data.runs.find(run) + 1, 3)
+		run_name.text        = "Best Run" if is_showing_best else "Run"
+		attempt_number.text  = "(%s)" % Global.digitize(level_data.runs.find(run) + 1, 3)
 		
-		rank.text = run.ranking_as_string()
-		bonused.visible = run.bonused
+		rank.text            = run.ranking_as_string()
+		bonused.visible      = run.bonused
 		
-		time.text = "Time: " + Global.seconds_as_timer(run.time)
-		score.text = "Score: " + Global.digitize(run.score, 4)
+		time.text            = "Time: " + Global.seconds_as_timer(run.time)
+		score.text           = "Score: " + Global.digitize(run.score, 4)
 		score_threshold.text = "/" + Global.digitize(level_data.score_threshold, 4)
-		speed.text = "Speed: " + str(round(run.speed * 100)) + "%"
+		speed.text           = "Speed: " + str(round(run.speed * 100)) + "%"
 		return true
 	return false
 
@@ -91,8 +91,12 @@ func update_attempt_box() -> bool:
 		entries.append(child)
 	
 	
+	
+	
+	var attempts = len(level_data.runs)
+	
 	# Make sure the amount of entries is correct, but use existing ones.
-	var len_dist := len(entries) - len(level_data)
+	var len_dist:int = len(entries) - attempts
 	while len_dist != 0:
 		# If extra, get rid of them.
 		if   len_dist > 0: entries.pop_back().queue_free()
@@ -104,30 +108,16 @@ func update_attempt_box() -> bool:
 			entries.append(entry)
 		
 		# Update the check.
-		len_dist = len(entries) != len(level_data)
+		len_dist = len(entries) - attempts
 	
-	var attempts = len(level_data.runs)
+	
 	for i in range(len(entries)):
 		var entry := entries[i]
 		if entry is AttemptEntry:
-			if attempts > 0:
-				entry.update(level_data.runs[i], i)
-				attempts -= 1
-			else:
-				entry.queue_free()
-	
-	for i in range(attempts):
-		var entry:AttemptEntry = preload("res://Scenes/UIElements/AttemptEntry.tscn").instantiate()
-		
-		var index := i + len(entries)
-		entry.update(level_data.runs[index], index)
-		
-		attempt_box.add_child(entry)
-		entries.append(entry)
-	
-	for entry in entries: if entry is AttemptEntry:
-		if not entry.requested.is_connected(update_overview):
-			entry.requested.connect(update_overview)
+			entry.update(level_data.runs[i], i)
+			
+			if not entry.requested.is_connected(update_overview):
+				entry.requested.connect(update_overview)
 	
 	return true
 

@@ -8,4 +8,10 @@ class_name LevelSelectionScreen extends TextureRect
 		focused = to
 @export var focusees:Array[Node]
 
-func _ready() -> void: focused = focused
+func _ready() -> void: 
+	focused = focused
+	focus_entered.connect(_on_focused)
+
+@export var focus_pass:Control
+func _on_focused() -> void: 
+	if focus_pass: focus_pass.grab_focus()

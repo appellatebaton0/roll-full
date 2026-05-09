@@ -101,7 +101,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_0kjg5")
 Button/styles/normal = SubResource("StyleBoxFlat_eebbl")
 Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
 
-[node name="LevelSelectionScreen" type="TextureRect" unique_id=17560446 node_paths=PackedStringArray("focusees")]
+[node name="LevelSelectionScreen" type="TextureRect" unique_id=17560446 node_paths=PackedStringArray("focusees", "focus_pass")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -112,6 +112,7 @@ expand_mode = 1
 script = ExtResource("1_vafqf")
 focused = true
 focusees = [NodePath("SubViewportContainer/SubViewport/Parallax2D"), NodePath("SubViewportContainer/SubViewport/Parallax2D2"), NodePath("HBoxContainer/MarginContainer2"), NodePath("HBoxContainer/MarginContainer")]
+focus_pass = NodePath("HBoxContainer/MarginContainer")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1174239960]
 layout_mode = 1
