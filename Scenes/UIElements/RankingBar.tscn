@@ -17,6 +17,7 @@ theme_override_constants/separation = 13
 script = ExtResource("1_yvypi")
 
 [node name="Bar" type="ProgressBar" parent="." unique_id=1438797537]
+use_parent_material = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -27,20 +28,24 @@ fill_mode = 3
 show_percentage = false
 
 [node name="LabelContainer" type="Control" parent="." unique_id=323317854]
+use_parent_material = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 
 [node name="LabelBox" type="HBoxContainer" parent="LabelContainer" unique_id=1741598645]
+use_parent_material = true
 layout_mode = 0
 offset_right = 74.0
 offset_bottom = 40.0
 
 [node name="Rank" type="Label" parent="LabelContainer/LabelBox" unique_id=433932193]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "S "
 
 [node name="Range" type="Label" parent="LabelContainer/LabelBox" unique_id=452309667]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "<12.0"

@@ -796,7 +796,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 45
-text = "(00000)"
+text = "(000)"
 horizontal_alignment = 1
 
 [node name="Rank" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1936608507]

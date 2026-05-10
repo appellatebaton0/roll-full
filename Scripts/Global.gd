@@ -19,7 +19,7 @@ var current_data :LevelData
 
 var run_timer:RunTimer
 
-var default_time_scale := 2.0
+var default_time_scale := 1.0
 
 ## -- COMBO MANAGEMENT -- ##
 

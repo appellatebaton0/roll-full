@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func _on_animation_requested(anim_name:String, optional_data:Variant = true):
 	if has_animation(anim_name) and not is_playing():
-		play(anim_name)
+		play(anim_name, -1, 1.0 / Engine.time_scale)
 		
 		match anim_name:
 			"Levels->Game":
@@ -35,11 +35,11 @@ func _on_animation_finished(anim_name:String) -> void:
 				level.queue_free()
 			Global.current_level = null
 		"Levels->Game":
-			play("Countdown")
+			play("Countdown", -1, 1.0 / Engine.time_scale)
 		"Countdown":
 			get_tree().paused = false
 		"ResetIn":
 			Global.reset_level.emit()
-			play("ResetOut")
+			play("ResetOut", -1, 1.0 / Engine.time_scale)
 		"ResetOut":
-			play("Countdown")
+			play("Countdown", -1, 1.0 / Engine.time_scale)

@@ -12,12 +12,11 @@
 [ext_resource type="Script" uid="uid://c8fyb184em3f" path="res://Scripts/DashCooldownBar.gd" id="8_0sclb"]
 [ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
-[ext_resource type="Script" uid="uid://cpv05cpe03fdj" path="res://Scripts/PauseScreen.gd" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
 [ext_resource type="PackedScene" uid="uid://b37kon8k6vbga" path="res://Scenes/UIElements/LevelSelectionScreen.tscn" id="10_346fj"]
-[ext_resource type="Shader" uid="uid://dr2hvxf8cg3xm" path="res://Shaders/Blur.gdshader" id="10_erwvk"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
+[ext_resource type="PackedScene" uid="uid://pfc88xk4q0lc" path="res://Scenes/UIElements/PauseScreen.tscn" id="16_2w5on"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
 Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
@@ -105,244 +104,6 @@ script/source = "extends Button
 func _pressed() -> void: get_tree().quit()
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_346fj"]
-shader = ExtResource("10_erwvk")
-shader_parameter/lod = 1.218000057855
-shader_parameter/fade = 1.15
-
-[sub_resource type="Gradient" id="Gradient_grg3l"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.45490196)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_frkhe"]
-gradient = SubResource("Gradient_grg3l")
-
-[sub_resource type="Animation" id="Animation_1p5hy"]
-resource_name = "Pause"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -864), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_h1m7h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -864)]
-}
-
-[sub_resource type="Animation" id="Animation_erwvk"]
-resource_name = "Unpause"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -864)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2w5on"]
-_data = {
-&"Pause": SubResource("Animation_1p5hy"),
-&"RESET": SubResource("Animation_h1m7h"),
-&"Unpause": SubResource("Animation_erwvk")
-}
-
-[sub_resource type="GDScript" id="GDScript_sxkr1"]
-resource_name = "PausePopup"
-script/source = "extends MarginContainer
-## Manages the popup that appears when you pause the game.
-
-@onready var best_time_lab  := $Panel/MarginContainer/VBoxContainer/HBoxContainer/BestTime
-@onready var best_score_lab := $Panel/MarginContainer/VBoxContainer/HBoxContainer/BestScore
-
-@onready var level_name_lab := $Panel/MarginContainer/VBoxContainer/LevelName
-@onready var attempt_box    := $Panel/MarginContainer/VBoxContainer/ScrollContainer/AttemptBox
-
-@onready var rank_star      := $Panel/Polygon2D
-@onready var rank_box       := $Panel/Polygon2D/HBoxContainer
-@onready var rank_lab       := $Panel/Polygon2D/HBoxContainer/Rank
-@onready var rank_bonus_lab := $Panel/Polygon2D/HBoxContainer/Label
-
-@onready var quit_button    := $Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuitButton
-@onready var resu_button    := $Panel/MarginContainer/VBoxContainer/HBoxContainer2/ResumeButton
-
-@onready var level_root := get_tree().get_first_node_in_group(\"Main\")
-
-var current_data:LevelData:
-	set(to): 
-		if current_data:
-			current_data.runs_updated.disconnect(_update)
-		
-		current_data = to
-		
-		if current_data:
-			current_data.runs_updated.connect(_update)
-			_update()
-
-@export var animator:AnimationPlayer
-
-func _ready() -> void:
-	quit_button.pressed.connect(_on_quit_pressed)
-	resu_button.pressed.connect(_on_resume_pressed)
-
-func _process(delta: float) -> void:
-	rank_star.rotate(delta * 0.7)
-	
-	rank_box.rotation = -rank_star.rotation
-	rank_box.pivot_offset = rank_box.size / 2
-	
-	if Global.current_data != current_data: current_data = Global.current_data
-
-func _update() -> void:
-	
-	best_time_lab.text  = \"BEST TIME: \"  + Global.seconds_as_timer(current_data.best_time)
-	best_score_lab.text = \"BEST SCORE: \" + Global.digitize(current_data.best_score, 7)
-	
-	level_name_lab.text = current_data.name
-	
-	# Update the attempt entries.
-	var entries := attempt_box.get_children()
-	var attempts = len(current_data.runs)
-	for i in range(len(entries)):
-		var entry := entries[i]
-		if entry is AttemptEntry:
-			if attempts > 0:
-				entry.update(current_data.runs[i], i)
-				attempts -= 1
-			else:
-				entry.queue_free()
-	
-	for i in range(attempts):
-		var entry:AttemptEntry = preload(\"res://Scenes/UIElements/AttemptEntry.tscn\").instantiate()
-		
-		var index := i + len(entries)
-		entry.update(current_data.runs[index], index)
-		
-		attempt_box.add_child(entry)
-	
-	rank_lab.text = current_data.best_run.ranking_as_string()  if current_data.best_run != null else \"-\"
-	rank_bonus_lab.visible = current_data.bonused
-
-## Load the current level, play the opening animation.
-func _on_quit_pressed() -> void:# if focused:
-	
-	Global.request_animation.emit(\"Game->Levels\", false)
-	
-	var pause:PauseScreen = get_parent()
-	if pause.paused:
-		pause.toggle_pause()
-
-func _on_resume_pressed() -> void:# if focused:
-
-	var pause:PauseScreen = get_parent()
-	if pause.paused:
-		pause.toggle_pause()
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2w5on"]
-shader = ExtResource("10_erwvk")
-shader_parameter/lod = 2.000000095
-shader_parameter/fade = 1.76
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
-bg_color = Color(0.11372549, 0.18039216, 0.2784314, 1)
-border_width_bottom = 20
-border_color = Color(0.051217474, 0.093585126, 0.15588868, 1)
-corner_radius_top_left = 60
-corner_radius_bottom_right = 60
-corner_detail = 1
-shadow_size = 10
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
-bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
-border_width_bottom = 20
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxkr1"]
-bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
-border_width_bottom = 20
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fq0cl"]
-bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-border_width_bottom = 20
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwpts"]
-bg_color = Color(0.41, 0.57399994, 0.82, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
-corner_detail = 1
-
-[sub_resource type="Theme" id="Theme_jyqft"]
-Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_0sclb")
-Button/styles/hover = SubResource("StyleBoxFlat_sxkr1")
-Button/styles/normal = SubResource("StyleBoxFlat_fq0cl")
-Button/styles/pressed = SubResource("StyleBoxFlat_hwpts")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3tgeq"]
-atlas = ExtResource("6_vy5pj")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4ay3"]
-load_path = "res://.godot/imported/bar.svg-2cb6b669aa98b64c645271969f83b515.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aht7i"]
-atlas = SubResource("CompressedTexture2D_c4ay3")
-region = Rect2(191, 0, 64, 64)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1gob"]
-bg_color = Color(0, 0, 0, 0.56078434)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 1
-
 [sub_resource type="Animation" id="Animation_4kpch"]
 resource_name = "Countdown"
 length = 2.0
@@ -401,10 +162,10 @@ tracks/4/path = NodePath("PauseScreen:can_pause")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
@@ -413,7 +174,7 @@ length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PauseScreen:visible")
+tracks/0/path = NodePath("Countdown:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -425,7 +186,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Countdown:visible")
+tracks/1/path = NodePath("HUD:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -437,152 +198,38 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HUD:visible")
-tracks/2/interp = 1
+tracks/2/path = NodePath("Polygon2D3:rotation")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.73333335),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Polygon2D3:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0.23333335, 0.73333335),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.92851514, 0.92852676]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Polygon2D4:rotation")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Polygon2D4:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0.23333335, 0.73333335),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [2.2130775, 4.0701194]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PauseScreen:can_pause")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("LevelSelectionScreen:focused")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("LevelSelectionScreen:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("LevelSelectionScreen")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"grab_focus"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_50glp"]
-resource_name = "Levels->Game"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PauseScreen:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Countdown:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HUD:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Polygon2D3:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.92851514, 0.9294099]
-}
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Polygon2D4:rotation")
-tracks/4/interp = 2
+tracks/4/path = NodePath("LevelSelectionScreen:focused")
+tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.2130775, 4.0710025]
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -591,18 +238,108 @@ tracks/5/path = NodePath("LevelSelectionScreen:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LevelSelectionScreen")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PauseScreen:can_pause")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_50glp"]
+resource_name = "Levels->Game"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Countdown:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Polygon2D3:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.92851514, 0.9294099]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Polygon2D4:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.2130775, 4.0710025]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LevelSelectionScreen:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("LevelSelectionScreen:focused")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelSelectionScreen:focused")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -836,31 +573,31 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("PauseScreen:visible")
+tracks/11/path = NodePath("MainMenu/AnimatedPolygon:processing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/12/path = NodePath("LevelSelectionScreen:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("PauseScreen:can_pause")
+tracks/13/path = NodePath("LevelSelectionScreen:focused")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -872,22 +609,10 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("LevelSelectionScreen:visible")
+tracks/14/path = NodePath("PauseScreen:can_pause")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("LevelSelectionScreen:focused")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -932,18 +657,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PauseScreen:can_pause")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_frkhe"]
@@ -1367,7 +1080,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(405.0609, 344.8908, 313.5916, 366.03864, 278.65863, 453.18137, 185.13113, 445.0286, 124.97931, 517.1113, 38.548714, 480.45602, -40.933887, 530.42285, -111.80713, 468.85303, -202.84018, 491.81284, -251.21852, 411.3554, -344.89105, 405.0607, -366.03885, 313.5914, -453.18155, 278.65836, -445.02872, 185.13084, -517.11145, 124.97897, -480.45605, 38.548405, -530.42285, -40.934223, -468.85294, -111.807434, -491.81268, -202.8405, -411.35522, -251.21878, -405.06177, -344.88977, -313.59116, -366.03906, -278.6598, -453.18066, -185.13057, -445.02884, -124.98061, -517.1111, -38.548096, -480.4561, 40.932545, -530.423, 111.80774, -468.8529, 202.83893, -491.81335, 251.21904, -411.35507, 344.89, -405.06155, 366.03925, -313.59094, 453.18085, -278.65952, 445.02896, -185.13028, 517.11115, -124.980286, 480.45612, -38.54779, 530.423, 40.93288, 468.8528, 111.80804, 491.81323, 202.83925, 411.35492, 251.21928, 405.0609, 344.8908, 311.61038, 159.37057, 229.26323, 18.39476, 333.034, -107.64926, 175.12033, -149.10693, 159.37117, -311.61005, 18.394325, -229.26328, -107.6499, -333.03378, -149.10658, -175.1206, -311.61017, -159.37097, -229.26329, -18.394178, -333.03412, 107.648834, -175.12051, 149.10669, -159.37077, 311.61026, -18.394033, 229.2633, 107.649055, 333.03406, 149.10681, 175.12042, 311.61038, 159.37057)
+polygon = PackedVector2Array(31.677263, 531.0561, -46.920868, 479.7108, -133.97844, 514.85315, -192.86317, 441.7327, -286.5195, 448.25284, -319.92667, 360.5148, -411.01395, 337.77438, -415.67358, 244.00714, -495.27554, 194.2322, -470.73138, 103.614426, -531.0561, 31.677305, -479.7108, -46.92089, -514.85315, -133.97852, -441.73273, -192.86314, -448.25284, -286.51947, -360.51474, -319.92673, -337.7744, -411.01392, -244.00717, -415.67355, -194.23225, -495.2755, -103.61435, -470.7314, -31.677217, -531.0561, 46.920967, -479.7108, 133.97835, -514.8532, 192.86313, -441.73273, 286.5194, -448.25287, 319.9267, -360.51477, 411.01398, -337.77435, 415.6736, -244.00708, 495.27554, -194.23215, 470.73138, -103.614494, 531.0561, -31.677385, 479.7108, 46.92082, 514.85315, 133.97844, 441.7327, 192.86319, 448.2528, 286.5195, 360.5147, 319.92676, 337.7743, 411.014, 244.00723, 415.67352, 194.23232, 495.27548, 103.614426, 470.73138, 31.677263, 531.0561, 114.44761, 330.75934, 152.66211, 172.02988, 314.80887, 152.9555, 229.5919, 13.69507, 330.75934, -114.4476, 172.02988, -152.66211, 152.9555, -314.80887, 13.695058, -229.5919, -114.44753, -330.75937, -152.66211, -172.02988, -314.80884, -152.95554, -229.5919, -13.69506, -330.75934, 114.447586, -172.02989, 152.6621, -152.95549, 314.80887, -13.695078, 229.5919, 114.44761, 330.75934)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1443,184 +1156,8 @@ theme_override_font_sizes/font_size = 280
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseScreen" type="TextureRect" parent="CanvasLayer/UI" unique_id=143204885]
-visible = false
-material = SubResource("ShaderMaterial_346fj")
+[node name="PauseScreen" parent="CanvasLayer/UI" unique_id=538197376 instance=ExtResource("16_2w5on")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -864.0
-offset_bottom = -864.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_frkhe")
-script = ExtResource("9_4kpch")
-can_pause = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/PauseScreen" unique_id=59671625]
-libraries/ = SubResource("AnimationLibrary_2w5on")
-
-[node name="LevelPopup" type="MarginContainer" parent="CanvasLayer/UI/PauseScreen" unique_id=1961804892]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
-script = SubResource("GDScript_sxkr1")
-
-[node name="Blur" type="ColorRect" parent="CanvasLayer/UI/PauseScreen/LevelPopup" unique_id=1211685276]
-material = SubResource("ShaderMaterial_2w5on")
-custom_minimum_size = Vector2(750, 850)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Panel" type="Panel" parent="CanvasLayer/UI/PauseScreen/LevelPopup" unique_id=419352428]
-custom_minimum_size = Vector2(512, 664)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_pbw6q")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel" unique_id=1988250239]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 45
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 60
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer" unique_id=859990565]
-layout_mode = 2
-theme = SubResource("Theme_jyqft")
-theme_override_constants/separation = 7
-
-[node name="LevelName" type="Label" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=2027779939]
-layout_mode = 2
-theme_override_font_sizes/font_size = 62
-text = "[LEVEL NAME]"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=800053875]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="BestTime" type="Label" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1229951208]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Best Time: 00:00.00"
-horizontal_alignment = 1
-
-[node name="BestScore" type="Label" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1324843714]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Best Score: 00000"
-horizontal_alignment = 1
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=684143442]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 0
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=787979897]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = SubResource("AtlasTexture_3tgeq")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=714148]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=830780522]
-custom_minimum_size = Vector2(10, 15)
-layout_mode = 2
-texture = SubResource("AtlasTexture_aht7i")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=226569580]
-clip_children = 2
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_v1gob")
-
-[node name="AttemptBox" type="VBoxContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=278054235]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer" unique_id=1145611338]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="QuitButton" type="Button" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1656143722]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
-text = "QUIT"
-
-[node name="ResumeButton" type="Button" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1973090500]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
-text = "RESUME"
-
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel" unique_id=1765871028]
-position = Vector2(492, 20)
-color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-polygon = PackedVector2Array(65, 0, 85.595085, 27.811531, 52.586105, 38.20604, 52.900673, 72.81153, 20.086103, 61.818676, -3.934025e-06, 90, -20.086107, 61.818672, -52.900665, 72.81153, -52.58611, 38.206036, -85.595085, 27.811533, -65, -5.6824806e-06, -85.595085, -27.811527, -52.5861, -38.206047, -52.900658, -72.81154, -20.086111, -61.818672, 1.0732392e-06, -90, 20.086113, -61.818672, 52.900658, -72.81154, 52.5861, -38.206043, 85.595085, -27.811525)
-script = ExtResource("13_346fj")
-outer_vertices = 20
-outer_radius = 90.0
-outer_radius_modifiers = Dictionary[int, float]({
-2: -25.0
-})
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/Polygon2D" unique_id=1772549489]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(52, 40)
-theme_override_constants/separation = -3
-
-[node name="Rank" type="Label" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/Polygon2D/HBoxContainer" unique_id=481159119]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-theme_override_fonts/font = ExtResource("5_50glp")
-theme_override_font_sizes/font_size = 103
-text = "S"
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/PauseScreen/LevelPopup/Panel/Polygon2D/HBoxContainer" unique_id=92780314]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-theme_override_fonts/font = ExtResource("5_50glp")
-theme_override_font_sizes/font_size = 40
-text = "+"
 
 [node name="ResetLevel" type="Control" parent="CanvasLayer/UI" unique_id=843567868]
 visible = false
