@@ -13,28 +13,34 @@ var player:Player:
 func _ready() -> void:
 	fill_stylebox = get_theme_stylebox("fill")
 
+const COLOR_BANK:Array[Color] = [
+	Color(0.336, 0.866, 0.96, 0.902),
+	Color(0.735, 0.692, 0.91, 0.902),
+	Color(0.87, 0.452, 0.564, 0.722),
+	Color(0.9, 0.126, 0.294, 0.722)
+]
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-@onready var new_value := value
+@onready var new_value:float = value
+var index:int
 func _process(_delta: float) -> void: if is_visible_in_tree():
+	
+	if index == null: index = get_color_index(value)
 	
 	if player:
 		new_value = 1. - (player.dash_cooldown_time / player.dash_cooldown)
+	
+		var new_index := get_color_index(new_value)
+		if new_index != index:
+			modulate = COLOR_BANK[new_index]
+			
+			index = new_index
 		
-	## If the value's changed.
-	if new_value != value:
 		value = new_value
-		
-		# Update the stylebox color
-		if value >= 1.:
-			fill_stylebox.bg_color = Color(0.132, 0.81, 0.057, 0.627)
-		elif value >= 0.75:
-			fill_stylebox.bg_color = Color(0.81, 0.71, 0.057, 0.627)
-		elif value >= 0.4:
-			fill_stylebox.bg_color = Color(0.81, 0.458, 0.057, 0.627)
-		else:
-			fill_stylebox.bg_color = Color(0.81, 0.057, 0.057, 0.627)
-		
-		# Update the border color
-		fill_stylebox.border_color = fill_stylebox.bg_color * 0.8
-		
-		
+
+
+func get_color_index(for_value:float) -> int:
+	if   for_value >= 1.:   return 0
+	elif for_value >= 0.75: return 1
+	elif for_value >= 0.4:  return 2
+	return 3

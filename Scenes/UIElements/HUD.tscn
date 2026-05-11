@@ -18,7 +18,7 @@ thickness = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyqft"]
 bg_color = Color(0, 0, 0, 0.7294118)
-skew = Vector2(0.3, 0)
+skew = Vector2(0, 0.1)
 corner_radius_top_left = 7
 corner_radius_bottom_right = 7
 corner_detail = 1
@@ -27,12 +27,12 @@ shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgeq"]
 bg_color = Color(1, 1, 1, 0.6313726)
-skew = Vector2(0.3, 0)
+skew = Vector2(0, 0.1)
 border_width_bottom = 8
+border_color = Color(0.6509804, 0.6509804, 0.6509804, 1)
 corner_radius_top_left = 7
 corner_radius_bottom_right = 7
 corner_detail = 1
-shadow_size = 1
 shadow_offset = Vector2(2, 0)
 
 [node name="HUD" type="MarginContainer" unique_id=2030183849]
@@ -83,7 +83,8 @@ text = "  Hold R To Reset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=2030391255]
+[node name="Speedometer" type="Label" parent="VBoxContainer" unique_id=2030391255]
+process_priority = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -161,7 +162,8 @@ text = "320"
 [node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=1017507742]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 6
 
 [node name="Label" type="Label" parent="VBoxContainer3" unique_id=1337594344]
 layout_mode = 2
@@ -169,8 +171,10 @@ theme_override_font_sizes/font_size = 25
 text = "Dash"
 horizontal_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer3" unique_id=891438729]
-custom_minimum_size = Vector2(100, 50)
+[node name="DashBar" type="ProgressBar" parent="VBoxContainer3" unique_id=891438729]
+process_mode = 3
+modulate = Color(0.3372549, 0.8666667, 0.9607843, 0.9019608)
+custom_minimum_size = Vector2(44, 196)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -179,5 +183,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_3tgeq")
 max_value = 1.0
 step = 0.001
 value = 0.71
+fill_mode = 3
 show_percentage = false
 script = ExtResource("8_rvhig")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer3" unique_id=1234552491]
+layout_mode = 2

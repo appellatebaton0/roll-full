@@ -37,6 +37,9 @@ var dash_cooldown_time := 0.0:
 		
 		dash_cooldown_time = to
 
+const DASH_BUFFER := 0.1
+var dash_buffering := 0.0
+
 
 const JUMP_BUFFER := 0.1
 var jump_buffering := 0.0
@@ -142,19 +145,26 @@ func _physics_process(delta: float) -> void:
 	# Dashing
 	
 	var dash_dir := (get_global_mouse_position() - global_position).normalized()
-	if Input.is_action_just_pressed("Dash") and dash_cooldown_time <= 0 :
+	
+	dash_buffering = move_toward(dash_buffering, 0.0, delta)
+	if Input.is_action_just_pressed("Dash"): dash_buffering = DASH_BUFFER
+	
+	if dash_buffering > 0 and dash_cooldown_time <= 0:
 		velocity = dash_dir * max(dash_force, mag(velocity) * 0.9)
 		
 		ray_node.target_position = Vector2.ZERO
 		ray_fall_time = 1.0
 		
 		dash_cooldown_time = dash_cooldown
+		dash_buffering = 0.0
 	
 	pointer.rotation = dash_dir.angle()
 	
 	move_and_slide()
+	real_velocity = velocity + (last_normal * stick_force) 
+var real_velocity:Vector2
 
-
+func can_dash() -> bool: return dash_cooldown_time <= 0
 
 func _on_reset() -> void:
 	global_position = respawn_position
