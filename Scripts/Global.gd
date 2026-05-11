@@ -6,6 +6,7 @@ signal request_animation(anim_name:String)
 signal reset_level
 @warning_ignore("unused_signal")
 signal level_complete
+signal starting_level
 
 ## -- GAME STATE -- ##
 

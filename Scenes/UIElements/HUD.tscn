@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://csckywnxt55rb"]
+
+[ext_resource type="Texture2D" uid="uid://cs5v3fakqrwi7" path="res://Assets/Textures/BlackRing.png" id="1_gwayq"]
+[ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="2_jf0pg"]
+[ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="3_ya8ga"]
+[ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="4_o3ndg"]
+[ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="5_p4y4b"]
+[ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="6_pls1t"]
+[ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="7_l3ih3"]
+[ext_resource type="Script" uid="uid://c8fyb184em3f" path="res://Scripts/DashCooldownBar.gd" id="8_rvhig"]
+
+[sub_resource type="Theme" id="Theme_hwpts"]
+Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hwpts"]
+color = Color(0.74, 0.74, 0.74, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyqft"]
+bg_color = Color(0, 0, 0, 0.7294118)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgeq"]
+bg_color = Color(1, 1, 1, 0.6313726)
+skew = Vector2(0.3, 0)
+border_width_bottom = 8
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+shadow_size = 1
+shadow_offset = Vector2(2, 0)
+
+[node name="HUD" type="MarginContainer" unique_id=2030183849]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=793299559]
+layout_mode = 2
+
+[node name="Reset" type="TextureProgressBar" parent="VBoxContainer" unique_id=241803858]
+layout_mode = 2
+size_flags_horizontal = 0
+max_value = 0.6
+step = 0.001
+fill_mode = 4
+texture_under = ExtResource("1_gwayq")
+texture_progress = ExtResource("2_jf0pg")
+script = ExtResource("3_ya8ga")
+
+[node name="Label" type="Label" parent="VBoxContainer/Reset" unique_id=1502211527]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "R"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/Reset" unique_id=2109105224]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_right = 146.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "  Hold R To Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2030391255]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+text = "0.0u/s"
+script = ExtResource("4_o3ndg")
+
+[node name="ScoreDisplay" type="VBoxContainer" parent="." unique_id=840786667]
+process_mode = 3
+custom_minimum_size = Vector2(250, 500)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("5_p4y4b")
+
+[node name="Timer" type="Label" parent="ScoreDisplay" unique_id=366362190]
+process_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 72
+text = "00:00.00"
+script = ExtResource("6_pls1t")
+
+[node name="Score" type="Label" parent="ScoreDisplay" unique_id=913715935]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 53
+text = "000000"
+
+[node name="ComboBox" type="VBoxContainer" parent="ScoreDisplay" unique_id=822022943]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = SubResource("Theme_hwpts")
+
+[node name="ComboEntry7" type="Label" parent="ScoreDisplay/ComboBox" unique_id=1907386816]
+layout_mode = 2
+text = "asd"
+script = ExtResource("7_l3ih3")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry8" type="Label" parent="ScoreDisplay/ComboBox" unique_id=848387951]
+layout_mode = 2
+text = "asd"
+script = ExtResource("7_l3ih3")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry9" type="Label" parent="ScoreDisplay/ComboBox" unique_id=1423814674]
+layout_mode = 2
+text = "asd"
+script = ExtResource("7_l3ih3")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboEntry10" type="Label" parent="ScoreDisplay/ComboBox" unique_id=431730443]
+layout_mode = 2
+text = "asd"
+script = ExtResource("7_l3ih3")
+metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
+
+[node name="ComboSeperator" type="HSeparator" parent="ScoreDisplay" unique_id=1352053015]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/separator = SubResource("StyleBoxLine_hwpts")
+
+[node name="ComboTotal" type="Label" parent="ScoreDisplay" unique_id=788732568]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
+theme_override_font_sizes/font_size = 36
+text = "320"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=1017507742]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="VBoxContainer3" unique_id=1337594344]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Dash"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer3" unique_id=891438729]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_jyqft")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3tgeq")
+max_value = 1.0
+step = 0.001
+value = 0.71
+show_percentage = false
+script = ExtResource("8_rvhig")

@@ -3,46 +3,13 @@
 [ext_resource type="Script" uid="uid://c83wkaljnc28x" path="res://Scripts/UI/AnimationButton.gd" id="1_idj7w"]
 [ext_resource type="Theme" uid="uid://csk0lolivrox1" path="res://Assets/Themes/MainTheme.tres" id="1_jw32o"]
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
-[ext_resource type="Texture2D" uid="uid://cs5v3fakqrwi7" path="res://Assets/Textures/BlackRing.png" id="3_grg3l"]
+[ext_resource type="PackedScene" uid="uid://csckywnxt55rb" path="res://Scenes/UIElements/HUD.tscn" id="2_bmxlf"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
-[ext_resource type="Script" uid="uid://bpfkddklnq7ra" path="res://Scripts/Reset.gd" id="5_frkhe"]
-[ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="6_frkhe"]
-[ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="6_jyqft"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/bar.svg" id="6_vy5pj"]
-[ext_resource type="Script" uid="uid://c8fyb184em3f" path="res://Scripts/DashCooldownBar.gd" id="8_0sclb"]
-[ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="8_3tgeq"]
-[ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="8_vy5pj"]
-[ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="9_bmxlf"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://b37kon8k6vbga" path="res://Scenes/UIElements/LevelSelectionScreen.tscn" id="10_346fj"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
 [ext_resource type="PackedScene" uid="uid://pfc88xk4q0lc" path="res://Scenes/UIElements/PauseScreen.tscn" id="16_2w5on"]
-
-[sub_resource type="Theme" id="Theme_hwpts"]
-Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_hwpts"]
-color = Color(0.74, 0.74, 0.74, 1)
-thickness = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyqft"]
-bg_color = Color(0, 0, 0, 0.7294118)
-skew = Vector2(0.3, 0)
-corner_radius_top_left = 7
-corner_radius_bottom_right = 7
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(5, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgeq"]
-bg_color = Color(1, 1, 1, 0.6313726)
-skew = Vector2(0.3, 0)
-border_width_bottom = 8
-corner_radius_top_left = 7
-corner_radius_bottom_right = 7
-corner_detail = 1
-shadow_size = 1
-shadow_offset = Vector2(2, 0)
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
 offsets = PackedFloat32Array(0)
@@ -814,154 +781,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jw32o")
 
-[node name="HUD" type="MarginContainer" parent="CanvasLayer/UI" unique_id=759992458]
+[node name="HUD" parent="CanvasLayer/UI" unique_id=2030183849 instance=ExtResource("2_bmxlf")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=849892367]
-layout_mode = 2
-
-[node name="Reset" type="TextureProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=1818482585]
-layout_mode = 2
-size_flags_horizontal = 0
-max_value = 0.6
-step = 0.001
-fill_mode = 4
-texture_under = ExtResource("3_grg3l")
-texture_progress = ExtResource("9_bmxlf")
-script = ExtResource("5_frkhe")
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer/Reset" unique_id=225371934]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "R"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer/Reset" unique_id=1013575963]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 48.0
-offset_right = 146.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "  Hold R To Reset"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer" unique_id=175140257]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 40
-text = "0.0u/s"
-script = ExtResource("6_frkhe")
-
-[node name="ScoreDisplay" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=1624346038]
-process_mode = 3
-custom_minimum_size = Vector2(250, 500)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-script = ExtResource("6_jyqft")
-
-[node name="Timer" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=1878646220]
-process_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 72
-text = "00:00.00"
-script = ExtResource("8_vy5pj")
-
-[node name="Score" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=277202492]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 53
-text = "000000"
-
-[node name="ComboBox" type="VBoxContainer" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=382588904]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-theme = SubResource("Theme_hwpts")
-
-[node name="ComboEntry7" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=1665394933]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry8" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=1332139870]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry9" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=292181857]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry10" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay/ComboBox" unique_id=148228918]
-layout_mode = 2
-text = "asd"
-script = ExtResource("8_3tgeq")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboSeperator" type="HSeparator" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=942550201]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_styles/separator = SubResource("StyleBoxLine_hwpts")
-
-[node name="ComboTotal" type="Label" parent="CanvasLayer/UI/HUD/ScoreDisplay" unique_id=1638351789]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
-theme_override_font_sizes/font_size = 36
-text = "320"
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/UI/HUD" unique_id=836651668]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer3" unique_id=2124296876]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Dash"
-horizontal_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/UI/HUD/VBoxContainer3" unique_id=1313834317]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_styles/background = SubResource("StyleBoxFlat_jyqft")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3tgeq")
-max_value = 1.0
-step = 0.001
-value = 0.71
-show_percentage = false
-script = ExtResource("8_0sclb")
 
 [node name="LevelSelectionScreen" parent="CanvasLayer/UI" unique_id=17560446 instance=ExtResource("10_346fj")]
 visible = false
@@ -1080,7 +902,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(31.677263, 531.0561, -46.920868, 479.7108, -133.97844, 514.85315, -192.86317, 441.7327, -286.5195, 448.25284, -319.92667, 360.5148, -411.01395, 337.77438, -415.67358, 244.00714, -495.27554, 194.2322, -470.73138, 103.614426, -531.0561, 31.677305, -479.7108, -46.92089, -514.85315, -133.97852, -441.73273, -192.86314, -448.25284, -286.51947, -360.51474, -319.92673, -337.7744, -411.01392, -244.00717, -415.67355, -194.23225, -495.2755, -103.61435, -470.7314, -31.677217, -531.0561, 46.920967, -479.7108, 133.97835, -514.8532, 192.86313, -441.73273, 286.5194, -448.25287, 319.9267, -360.51477, 411.01398, -337.77435, 415.6736, -244.00708, 495.27554, -194.23215, 470.73138, -103.614494, 531.0561, -31.677385, 479.7108, 46.92082, 514.85315, 133.97844, 441.7327, 192.86319, 448.2528, 286.5195, 360.5147, 319.92676, 337.7743, 411.014, 244.00723, 415.67352, 194.23232, 495.27548, 103.614426, 470.73138, 31.677263, 531.0561, 114.44761, 330.75934, 152.66211, 172.02988, 314.80887, 152.9555, 229.5919, 13.69507, 330.75934, -114.4476, 172.02988, -152.66211, 152.9555, -314.80887, 13.695058, -229.5919, -114.44753, -330.75937, -152.66211, -172.02988, -314.80884, -152.95554, -229.5919, -13.69506, -330.75934, 114.447586, -172.02989, 152.6621, -152.95549, 314.80887, -13.695078, 229.5919, 114.44761, 330.75934)
+polygon = PackedVector2Array(-282.55655, 450.76138, -316.73392, 363.32303, -408.0189, 341.38626, -413.50583, 247.66293, -493.54398, 198.59091, -469.79907, 107.76286, -530.75604, 36.35967, -480.10583, -42.689217, -516.0142, -129.43457, -443.4168, -188.95909, -450.76227, -282.5551, -363.32162, -316.73553, -341.38446, -408.02042, -247.66425, -413.50504, -198.59248, -493.54333, -107.76077, -469.79956, -36.357307, -530.75616, 42.687695, -480.106, 129.43294, -516.01465, 188.96106, -443.41595, 282.5571, -450.761, 316.7344, -363.32263, 408.01935, -341.38574, 413.50613, -247.66241, 493.54422, -198.59029, 469.79922, -107.76226, 530.7561, -36.35899, 480.1058, 42.68983, 516.0141, 129.43523, 443.41656, 188.95966, 450.7619, 282.5557, 363.32123, 316.736, 341.38705, 408.01822, 247.66374, 413.50534, 198.59186, 493.54358, 107.76017, 469.7997, 36.360676, 530.756, -42.68831, 480.10593, -129.4336, 516.01447, -188.96164, 443.41574, -282.55655, 450.76138, -202.8431, 285.22742, -51.421688, 224.17807, 58.255287, 345.11783, 122.15765, 194.87819, 285.22833, 202.84183, 224.17831, 51.42069, 345.118, -58.254192, 194.87857, -122.15703, 202.84271, -285.2277, 51.4214, -224.17815, -58.255726, -345.11777, -122.157906, -194.87804, -285.22806, -202.84218, -224.17824, -51.420975, -345.11765, 58.256382, -194.8778, 122.15827, -202.8431, 285.22742)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0

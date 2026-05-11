@@ -9,22 +9,19 @@ class_name ScoreDisplay extends VBoxContainer
 
 func _ready() -> void:
 	Global.finished_combo.connect(_on_combo_finished)
-	Global.trick_ended.connect(_on_trick_ended)
+	Global.trick_ended.connect(clear_combo_entries)
 	Global.reset_level.connect(_on_reset)
+	Global.starting_level.connect(_on_reset)
 	
 	_on_reset()
 
 var mod_a := 1.0
 func _process(delta: float) -> void:
 	var rdelt := delta / Engine.time_scale
-	var entries := combo_box.get_children().filter(_is_entry)
+	var entries := combo_box.get_children().filter(_is_valid_entry)
 	
-	if len(entries) > 10:
-		var ended = false
-		for entry in entries: if entry is ComboEntry and not ended:
-			if not entry.ending:
-				entry.ending = true
-				ended = true
+	while len(entries) > 10:
+		entries.pop_back().ending = true
 	
 	var fade_in := len(entries) > 0
 	mod_a = move_toward(mod_a, 1.0 if fade_in else 0.0, rdelt * (3. if fade_in else 2.3))
@@ -33,7 +30,7 @@ func _process(delta: float) -> void:
 	
 	score_lab.text = Global.digitize(int(lerp(int(score_lab.text), Global.score, 0.2)), 7)
 
-func _is_entry(a): return a is ComboEntry
+func _is_valid_entry(a): return a is ComboEntry and not a.ending
 
 ## When a new combo is performed;
 func _on_combo_finished(combo:Global.Combo) -> void:
@@ -42,9 +39,6 @@ func _on_combo_finished(combo:Global.Combo) -> void:
 	
 	# Update the score_buffer display
 	combo_tot.text = str(Global.score_buffer)
-
-## When a trick ends, fade out the combo entries. 
-func _on_trick_ended() -> void: clear_combo_entries()
 
 ## Create a new ComboEntry and add it to the box.
 func push_combo_entry(text:String):

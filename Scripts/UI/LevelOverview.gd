@@ -135,6 +135,8 @@ func _on_play_pressed() -> void: if focused:
 	Global.current_data  = level_data
 	
 	Global.run_timer.reset()
+	
+	Global.starting_level.emit()
 
 func _speed_up() -> void:
 	Global.default_time_scale += speed_step

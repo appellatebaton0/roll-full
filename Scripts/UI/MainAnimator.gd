@@ -27,12 +27,11 @@ func _on_animation_requested(anim_name:String, optional_data:Variant = true):
 func _on_animation_finished(anim_name:String) -> void:
 	match anim_name:
 		"Game->Levels":
-			## Free the current level.
-			
-			# Make sure all the levels are freed, actually.
+			# Make sure all the levels are freed.
 			for level in get_tree().get_nodes_in_group("Level"):
 				level.process_mode = Node.PROCESS_MODE_ALWAYS
 				level.queue_free()
+				
 			Global.current_level = null
 		"Levels->Game":
 			play("Countdown", -1, 1.0 / Engine.time_scale)
