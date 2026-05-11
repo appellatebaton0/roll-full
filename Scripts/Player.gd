@@ -11,7 +11,7 @@ const DEBUG := true
 
 ## MOVEMENT 
 
-@export var grind_speed := 1000.0
+@export var base_speed := 1000.0
 @export var jump_height := 670.0
 
 @export var stick_force := 500.0
@@ -26,7 +26,6 @@ var ray_fall_time := 0.0
 var ray_resetting := false
 
 @export_group("Dashing", "dash_")
-@export var dash_force := 2500.0
 @export var dash_cooldown := 0.5
 var dash_cooldown_time := 0.0:
 	set(to):
@@ -55,7 +54,14 @@ var slide_mag := 0. ## The magnitude of the player's velocity slid against the w
 var direction := Vector2(1,1):
 	set(to): direction = to.normalized()
 
-func _ready() -> void: Global.reset_level.connect(_on_reset)
+func _ready() -> void: 
+	Global.reset_level.connect(_on_reset)
+	
+	## Allows for a custom base speed on a level-by-level basis.
+	print(Global.current_data)
+	if Global.current_data: 
+		base_speed = Global.current_data.base_player_speed
+		print(Global.current_data.name, " -> ", Global.current_data.base_player_speed)
 
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2
@@ -114,7 +120,7 @@ func _physics_process(delta: float) -> void:
 		
 		## -- VELOCITY APPLICATION -- ##
 		
-		velocity = direction * max(grind_speed, slide_mag) - (last_normal * stick_force) 
+		velocity = direction * max(base_speed, slide_mag) - (last_normal * stick_force) 
 		
 		
 		## -- JUMPING -- ##
@@ -150,7 +156,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Dash"): dash_buffering = DASH_BUFFER
 	
 	if dash_buffering > 0 and dash_cooldown_time <= 0:
-		velocity = dash_dir * max(dash_force, mag(velocity) * 0.9)
+		velocity = dash_dir * max(base_speed, mag(velocity) * 0.9)
 		
 		ray_node.target_position = Vector2.ZERO
 		ray_fall_time = 1.0

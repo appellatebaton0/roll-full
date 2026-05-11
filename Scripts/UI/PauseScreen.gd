@@ -9,7 +9,6 @@ var paused := false
 ## Level information
 @onready var ranking_box := $Popup/PanelContainer/MarginContainer/HBoxContainer/RankingBar
 @onready var level_name   := $Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/LevelName
-@onready var reset_button := $Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer/HBoxContainer/Control/Reset
 @onready var options      := $Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Options
 
 ## Attempt Information

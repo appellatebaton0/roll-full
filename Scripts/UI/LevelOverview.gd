@@ -127,12 +127,12 @@ func _on_play_pressed() -> void: if focused:
 	
 	Global.request_animation.emit("Levels->Game")
 	
+	Global.current_data  = level_data
+	
 	var level = level_data.scene.instantiate()
+	Global.current_level = level
 	
 	level_root.add_child(level)
-	
-	Global.current_level = level
-	Global.current_data  = level_data
 	
 	Global.run_timer.reset()
 	
