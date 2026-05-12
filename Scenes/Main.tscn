@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://csckywnxt55rb" path="res://Scenes/UIElements/HUD.tscn" id="2_bmxlf"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
+[ext_resource type="Script" uid="uid://rlqm8pmiwns4" path="res://Scripts/UI/OffsetVBoxContainer.gd" id="5_frkhe"]
 [ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://b37kon8k6vbga" path="res://Scenes/UIElements/LevelSelectionScreen.tscn" id="10_346fj"]
 [ext_resource type="PackedScene" uid="uid://dvooy22gtyfrf" path="res://Scenes/UIElements/OptionsScreen.tscn" id="10_grg3l"]
@@ -865,18 +866,19 @@ theme_override_fonts/font = ExtResource("5_50glp")
 theme_override_font_sizes/font_size = 160
 text = "ROLL"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainMenu" unique_id=735262319]
+[node name="OptionContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainMenu" unique_id=1078881873]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 292.0
-offset_right = 391.0
-offset_bottom = 599.0
+offset_right = 452.0
+offset_bottom = 614.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = SubResource("Theme_346fj")
-theme_override_constants/separation = 15
+theme_override_constants/separation = 23
+script = ExtResource("5_frkhe")
 
-[node name="Button" type="Button" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=346110339]
+[node name="Button" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=346110339]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../Button3")
@@ -892,11 +894,9 @@ animation_name = "Main->Levels"
 use_global = true
 starts_with_focus = true
 
-[node name="Button2" type="Button" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=887973936]
-visible = false
+[node name="Button2" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=887973936]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../Button")
 focus_neighbor_top = NodePath("../Button")
@@ -907,14 +907,9 @@ focus_previous = NodePath("../Button")
 theme_override_font_sizes/font_size = 57
 text = "OPTIONS"
 
-[node name="Control" type="Control" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=1826443040]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Button3" type="Button" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=144337488]
+[node name="Button3" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=144337488]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../Button2")
 focus_neighbor_top = NodePath("../Button2")
@@ -926,11 +921,6 @@ theme_override_font_sizes/font_size = 57
 text = "QUIT
 "
 script = SubResource("GDScript_0sclb")
-
-[node name="Control2" type="Control" parent="CanvasLayer/UI/MainMenu/VBoxContainer" unique_id=513952968]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/UI/MainMenu" unique_id=1232178499]
 layout_mode = 0
@@ -946,7 +936,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-513.23083, -140.06465, -439.41797, -198.0804, -444.82803, -291.80823, -356.69983, -324.17468, -332.88443, -414.98428, -239.06776, -418.53387, -188.35275, -497.5412, -98.031006, -471.92575, -25.387384, -531.3939, 52.598286, -479.12152, 140.06693, -513.2302, 198.07901, -439.4186, 291.8068, -444.82895, 324.17355, -356.70087, 414.98578, -332.88257, 418.5331, -239.06908, 497.5406, -188.35434, 471.92545, -98.0325, 531.39404, -25.385017, 479.12167, 52.596764, 513.23065, 140.0653, 439.41772, 198.08096, 444.82764, 291.80875, 356.7019, 324.17242, 332.8839, 414.9847, 239.06723, 418.53418, 188.35211, 497.54144, 98.034004, 471.92514, 25.386705, 531.3939, -52.5989, 479.12146, -140.0676, 513.23004, -198.07957, 439.41833, -291.80737, 444.82858, -324.174, 356.70047, -414.98618, 332.88205, -418.53342, 239.06854, -497.54083, 188.35368, -471.92557, 98.0319, -531.39404, 25.384336, -479.1216, -52.597378, -513.23083, -140.06465, -347.21304, -44.080704, -221.88551, 60.554264, -276.68488, 214.34895, -114.07848, 199.71506, -44.08004, 347.2131, 60.554684, 221.88539, 214.34807, 276.68558, 199.71556, 114.0776, 347.21332, 44.0785, 221.88559, -60.55398, 276.68625, -214.3472, 114.07823, -199.7152, 44.079597, -347.21317, -60.55497, -221.88531, -214.34842, -276.6853, -199.7157, -114.07734, -347.21304, -44.080704)
+polygon = PackedVector2Array(-417.6295, 329.55972, -420.42975, 235.71771, -499.02814, 184.37717, -472.69287, 94.262665, -531.5797, 21.14284, -478.6866, -56.419243, -512.0964, -144.15724, -437.82272, -201.58192, -442.4844, -295.3499, -354.10312, -327.00912, -329.56107, -417.62845, -235.71904, -420.429, -184.37495, -499.02896, -94.26417, -472.69257, -21.144527, -531.57965, 56.421375, -478.68634, 144.15952, -512.0957, 201.58052, -437.82333, 295.3485, -442.48532, 327.0107, -354.10165, 417.6299, -329.5592, 420.42825, -235.72038, 499.02835, -184.37653, 472.693, -94.26206, 531.5797, -21.14216, 478.68655, 56.419857, 512.0962, 144.15788, 437.82245, 201.58247, 442.484, 295.35046, 354.1027, 327.00958, 329.56052, 417.62888, 235.71849, 420.4293, 184.37811, 499.02777, 94.263565, 472.6927, 21.143848, 531.57965, -56.421986, 478.68628, -144.15627, 512.0966, -201.58109, 437.8231, -295.3491, 442.48495, -327.01117, 354.10126, -417.6295, 329.55972, -305.45602, 170.87016, -142.47849, 180.55437, -95.168396, 336.81296, 26.922478, 228.41887, 170.86919, 305.45657, 180.55391, 142.47906, 336.8134, 95.16691, 228.41876, -26.923494, 305.45712, -170.86823, 142.47963, -180.55347, 95.16797, -336.8131, -26.92277, -228.41884, -170.86957, -305.45636, -180.55411, -142.47882, -336.81326, -95.167336, -228.41878, 26.923203, -305.45602, 170.87016)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1026,8 +1016,13 @@ vertical_alignment = 1
 layout_mode = 1
 
 [node name="OptionsScreen" parent="CanvasLayer/UI" unique_id=2145581008 instance=ExtResource("10_grg3l")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="ResetLevel" type="Control" parent="CanvasLayer/UI" unique_id=843567868]
 visible = false
