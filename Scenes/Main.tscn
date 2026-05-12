@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://csckywnxt55rb" path="res://Scenes/UIElements/HUD.tscn" id="2_bmxlf"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
 [ext_resource type="Script" uid="uid://rlqm8pmiwns4" path="res://Scripts/UI/OffsetVBoxContainer.gd" id="5_frkhe"]
-[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/UI/Bar.svg" id="6_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/Bar.svg" id="6_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://b37kon8k6vbga" path="res://Scenes/UIElements/LevelSelectionScreen.tscn" id="10_346fj"]
 [ext_resource type="PackedScene" uid="uid://dvooy22gtyfrf" path="res://Scenes/UIElements/OptionsScreen.tscn" id="10_grg3l"]
 [ext_resource type="Shader" uid="uid://5um5rx0wnwre" path="res://Shaders/PauseTransition.gdshader" id="11_frkhe"]
@@ -229,7 +229,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [false],
+"args": [],
 "method": &"grab_focus"
 }]
 }
@@ -320,6 +320,96 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1p5hy"]
+resource_name = "Levels->Main"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D3:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.92851514, -0.92851514]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D4:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.070108, 2.2130775]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LevelSelectionScreen:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelSelectionScreen:focused")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainMenu/OptionContainer/Button")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_rgh2o"]
@@ -716,6 +806,7 @@ _data = {
 &"Countdown": SubResource("Animation_4kpch"),
 &"Game->Levels": SubResource("Animation_bmxlf"),
 &"Levels->Game": SubResource("Animation_50glp"),
+&"Levels->Main": SubResource("Animation_1p5hy"),
 &"Main->Levels": SubResource("Animation_rgh2o"),
 &"RESET": SubResource("Animation_vy5pj"),
 &"ResetIn": SubResource("Animation_grg3l"),
@@ -936,7 +1027,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-417.6295, 329.55972, -420.42975, 235.71771, -499.02814, 184.37717, -472.69287, 94.262665, -531.5797, 21.14284, -478.6866, -56.419243, -512.0964, -144.15724, -437.82272, -201.58192, -442.4844, -295.3499, -354.10312, -327.00912, -329.56107, -417.62845, -235.71904, -420.429, -184.37495, -499.02896, -94.26417, -472.69257, -21.144527, -531.57965, 56.421375, -478.68634, 144.15952, -512.0957, 201.58052, -437.82333, 295.3485, -442.48532, 327.0107, -354.10165, 417.6299, -329.5592, 420.42825, -235.72038, 499.02835, -184.37653, 472.693, -94.26206, 531.5797, -21.14216, 478.68655, 56.419857, 512.0962, 144.15788, 437.82245, 201.58247, 442.484, 295.35046, 354.1027, 327.00958, 329.56052, 417.62888, 235.71849, 420.4293, 184.37811, 499.02777, 94.263565, 472.6927, 21.143848, 531.57965, -56.421986, 478.68628, -144.15627, 512.0966, -201.58109, 437.8231, -295.3491, 442.48495, -327.01117, 354.10126, -417.6295, 329.55972, -305.45602, 170.87016, -142.47849, 180.55437, -95.168396, 336.81296, 26.922478, 228.41887, 170.86919, 305.45657, 180.55391, 142.47906, 336.8134, 95.16691, 228.41876, -26.923494, 305.45712, -170.86823, 142.47963, -180.55347, 95.16797, -336.8131, -26.92277, -228.41884, -170.86957, -305.45636, -180.55411, -142.47882, -336.81326, -95.167336, -228.41878, 26.923203, -305.45602, 170.87016)
+polygon = PackedVector2Array(-219.20766, 484.7391, -264.86328, 402.70517, -358.27148, 393.2754, -376.3427, 301.14807, -462.26526, 263.31506, -450.98303, 170.11258, -521.0092, 107.579765, -481.47806, 22.425186, -528.7532, -58.686333, -464.84262, -127.45724, -484.7391, -219.20767, -402.7051, -264.86337, -393.27533, -358.27155, -301.148, -376.34277, -263.31525, -462.26517, -170.11261, -450.98303, -107.57981, -521.0092, -22.42522, -481.47806, 58.68629, -528.7532, 127.457306, -464.8426, 219.20775, -484.73904, 264.86343, -402.70508, 358.27142, -393.27545, 376.34268, -301.14813, 462.2652, -263.31516, 450.98306, -170.11253, 521.0092, -107.57972, 481.47806, -22.425142, 528.7532, 58.686375, 464.84262, 127.45716, 484.73914, 219.20761, 402.70514, 264.86328, 393.2754, 358.27148, 301.14807, 376.3427, 263.31506, 462.26526, 170.11247, 450.9831, 107.579636, 521.0092, 22.425293, 481.47806, -58.68621, 528.7532, -127.45745, 464.84256, -219.20766, 484.7391, -239.44302, 255.27835, -81.17403, 215.19939, 11.197304, 349.82083, 94.77023, 209.56766, 255.27837, 239.44301, 215.19939, 81.174034, 349.82083, -11.197285, 209.56766, -94.77024, 239.44302, -255.27837, 81.174034, -215.19939, -11.197292, -349.82083, -94.770226, -209.56766, -255.27837, -239.44301, -215.19939, -81.17404, -349.82083, 11.197247, -209.56764, 94.77025, -239.44302, 255.27835)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0

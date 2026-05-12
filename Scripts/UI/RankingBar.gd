@@ -23,29 +23,31 @@ func update(level_data:LevelData = null, run:Variant = null):
 	if run is int: run = level_data.runs[run]
 	
 	## Update the interface
-	if run is LevelData.Run:
-		
+	if level_data:
 		var d := level_data.ranking_maximums[LevelData.RANKINGS.D]
 		var s := level_data.ranking_maximums[LevelData.RANKINGS.S]
 		
 		# Bar
 		bar.min_value = -d
 		bar.max_value = -s
-		bar.value     = -run.time
 		
-		# Label Boxes
+		# Run time
+		if run is LevelData.Run: bar.value     = -run.time
+		else: bar.value = bar.min_value
+		
+		# Label Boxes, has level data.
 		for i in range(len(LevelData.RANKINGS.keys())):
 			print(i as int)
 			var box := label_boxes[i as LevelData.RANKINGS]
 			
 			# Information
-			box.get_child(0).text = run.ranking_as_string(i)
+			box.get_child(0).text = ['S','A','B','C','D'][i]
 			box.get_child(1).text = "<" + str(level_data.ranking_maximums[i])
 			
 			# Position
 			box.position.y = lerp(0, 285, inv_lerp(s, d, level_data.ranking_maximums[i]))
 	else:
-		# Label Boxes
+		# Label Boxes, no level data.
 		for i in range(len(LevelData.RANKINGS.keys())):
 			var box := label_boxes[i as LevelData.RANKINGS]
 			

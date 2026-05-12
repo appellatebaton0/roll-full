@@ -102,7 +102,7 @@ func create_level_entries() -> void:
 		
 		# Inherit this node's neighbors for the remaining sides.
 		entry.focus_neighbor_right = get_node(focus_neighbor_right).get_path()
-		entry.focus_neighbor_left  = get_node(focus_neighbor_right).get_path()
+		entry.focus_neighbor_left  = get_node(focus_neighbor_left).get_path()
 	
 	level_entries = entries
 	

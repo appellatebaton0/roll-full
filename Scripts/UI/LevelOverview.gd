@@ -50,20 +50,56 @@ func _set_level_data(to:LevelData):
 	if level_data:
 		level_data.runs_updated.connect(_update)
 		
-		if is_node_ready():
-			_update()
+	if is_node_ready():
+		_update()
 
-func update_overview(run:Variant = null) -> bool:
-	if not level_data: return false
+func update_overview(run:Variant = null) -> int:
+	if not level_data:
+		## Set everything to a null state. This should never happen.
+		
+		ranking_bar.update()
+		
+		reset_button.visible = false
+		run_name.text        = "Run"
+		attempt_number.text  = "___"
+		
+		rank.text            = "-"
+		bonused.visible      = false
+		
+		time.text            = "Time: __:__.__"
+		score.text           = "Score: ____"
+		score_threshold.text = "/____"
+		speed.text           = "Speed: ___%"
+		
+		return 0
 	
 	var is_showing_best := false
 	
 	if run is int: run = level_data.runs[run]
 	if run == null:
-		run = level_data.best_run
-		is_showing_best = true
+		
+		if len(level_data.runs) > 0:
+			run = level_data.best_run
+			is_showing_best = true
+		else:
+			## The overview is blank. Update w/o runs.
+			ranking_bar.update(level_data)
+			
+			reset_button.visible = false
+			run_name.text        = "Run"
+			attempt_number.text  = "___"
+			
+			rank.text            = "-"
+			bonused.visible      = false
+			
+			time.text            = "Time: __:__.__"
+			score.text           = "Score: ____"
+			score_threshold.text = "/" + Global.digitize(level_data.score_threshold, 4)
+			speed.text           = "Speed: ___%"
+			
+			return 2
 	
-	## Update the overview display.
+	## Update the overview display, with runs.
 	if run is LevelData.Run: if level_data.runs.has(run):
 		ranking_bar.update(level_data, run)
 		
@@ -78,8 +114,8 @@ func update_overview(run:Variant = null) -> bool:
 		score.text           = "Score: " + Global.digitize(run.score, 4)
 		score_threshold.text = "/" + Global.digitize(level_data.score_threshold, 4)
 		speed.text           = "Speed: " + str(round(run.speed * 100)) + "%"
-		return true
-	return false
+		return 1
+	return -1
 
 func update_attempt_box() -> bool:
 	if not level_data: return false
@@ -89,9 +125,6 @@ func update_attempt_box() -> bool:
 	
 	for child in attempt_box.get_children(): if child is AttemptEntry:
 		entries.append(child)
-	
-	
-	
 	
 	var attempts = len(level_data.runs)
 	
@@ -115,6 +148,8 @@ func update_attempt_box() -> bool:
 		var entry := entries[i]
 		if entry is AttemptEntry:
 			entry.update(level_data.runs[i], i)
+			
+			entry.focus_neighbor_bottom = play_button.get_path()
 			
 			if not entry.requested.is_connected(update_overview):
 				entry.requested.connect(update_overview)
@@ -150,3 +185,11 @@ func _speed_down() -> void:
 	Global.default_time_scale = clamp(Global.default_time_scale, speed_step, 2.)
 	
 	this_speed.text = str(round(Global.default_time_scale * 100)) + "%"
+
+
+func _on_attempt_box_focus_entered() -> void:
+	for child in attempt_box.get_children(): if child is AttemptEntry:
+		child.grab_focus()
+		return
+	
+	

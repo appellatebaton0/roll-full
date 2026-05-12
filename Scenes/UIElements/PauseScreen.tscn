@@ -217,6 +217,7 @@ shader_parameter/fade = 1.15
 shader = ExtResource("3_xjtkk")
 shader_parameter/multipli = 70.0
 shader_parameter/threshold = 1.0
+shader_parameter/inverted = false
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_y1m4c"]
 color = Color(0.08627451, 0.11764706, 0.21960784, 1)
