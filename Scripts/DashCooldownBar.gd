@@ -22,10 +22,12 @@ const COLOR_BANK:Array[Color] = [
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @onready var new_value:float = value
+@onready var goal_value:float = value
 var index:int
-func _process(_delta: float) -> void: if is_visible_in_tree():
+func _process(delta: float) -> void: if is_visible_in_tree():
 	
-	if index == null: index = get_color_index(value)
+	if index == null: 
+		index = get_color_index(goal_value)
 	
 	if player:
 		new_value = 1. - (player.dash_cooldown_time / player.dash_cooldown)
@@ -36,7 +38,9 @@ func _process(_delta: float) -> void: if is_visible_in_tree():
 			
 			index = new_index
 		
-		value = new_value
+		goal_value = new_value
+	
+	value = lerp(value, goal_value, 0.3)
 
 
 func get_color_index(for_value:float) -> int:

@@ -58,10 +58,8 @@ func _ready() -> void:
 	Global.reset_level.connect(_on_reset)
 	
 	## Allows for a custom base speed on a level-by-level basis.
-	print(Global.current_data)
 	if Global.current_data: 
 		base_speed = Global.current_data.base_player_speed
-		print(Global.current_data.name, " -> ", Global.current_data.base_player_speed)
 
 ## The last direction, normalized, of the surface intersected by the raycast.
 var last_normal:Vector2

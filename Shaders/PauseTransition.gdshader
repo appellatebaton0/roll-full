@@ -2,14 +2,25 @@ shader_type canvas_item;
 
 uniform float multipli = 100;
 uniform float threshold = 0.3;
+uniform bool inverted = false;
 
 void fragment() {
 	
 	float original_alpha = COLOR.a;
 	
-	if (mod((SCREEN_UV.x + SCREEN_UV.y) * multipli, 1.) < threshold)
+	if (inverted)
 	{
-		 COLOR.a = 0.;
+		if (mod((SCREEN_UV.x + SCREEN_UV.y) * multipli, 1.) > threshold)
+		{
+			 COLOR.a = 0.;
+		}
+	}
+	else
+	{
+		if (mod((SCREEN_UV.x + SCREEN_UV.y) * multipli, 1.) < threshold)
+		{
+			 COLOR.a = 0.;
+		}
 	}
 	
 	// Called for every pixel the material is visible on.

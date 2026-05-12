@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://cnakc81irxpb1" path="res://Assets/Fonts/humaroid.regular.otf" id="4_xjtkk"]
 [ext_resource type="Texture2D" uid="uid://dfjrboslahf8" path="res://Assets/Textures/BestRunIcon.png" id="5_oj4g4"]
 [ext_resource type="Texture2D" uid="uid://b6of2dxwmup5c" path="res://Assets/Textures/NewRunIcon.png" id="6_76ovi"]
+[ext_resource type="Texture2D" uid="uid://ddc4p1lpaaif5" path="res://Assets/Textures/OptionsIcon.png" id="9_oj4g4"]
 
 [sub_resource type="Animation" id="Animation_1p5hy"]
 resource_name = "Pause"
@@ -601,11 +602,33 @@ text = "Levels"
 
 [node name="Options" type="Button" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1595431615]
 use_parent_material = true
-custom_minimum_size = Vector2(60, 55)
+custom_minimum_size = Vector2(80, 55)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/icon_max_width = 32
 theme_override_font_sizes/font_size = 44
-text = "="
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Options" unique_id=2039813250]
+modulate = Color(0.05490196, 0.08235294, 0.12941177, 1)
+custom_minimum_size = Vector2(27, 27)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -17.5
+offset_right = 13.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_oj4g4")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1274577487]
 visible = false

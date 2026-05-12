@@ -105,4 +105,4 @@ func _on_quit_pressed() -> void:# if focused:
 	toggle_pause()
 
 func _on_options_pressed() -> void:
-	Global.request_animation.emit("Pause->Options", false)
+	Global.request_animation.emit("OpenOptions", false)
