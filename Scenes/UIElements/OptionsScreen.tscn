@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dvooy22gtyfrf"]
 
 [ext_resource type="Shader" uid="uid://by3kpcfu4w7ft" path="res://Shaders/OptionsTransition.gdshader" id="1_h2ohr"]
+[ext_resource type="Script" uid="uid://dh0xq62jurl0q" path="res://Scripts/UI/OptionsScreen.gd" id="2_epioe"]
+[ext_resource type="Script" uid="uid://bewhrg107j63j" path="res://Scripts/UI/RemapButton.gd" id="3_8q2qo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rw1ak"]
 shader = ExtResource("1_h2ohr")
@@ -12,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_epioe")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=61187682]
 layout_mode = 1
@@ -20,7 +23,81 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1911833918]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1220458022]
+layout_mode = 2
+theme_override_font_sizes/font_size = 89
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=2043572343]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=340312656]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1653815494]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Controls" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=507118335]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=766321389]
+layout_mode = 2
+
+[node name="ControlsBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=419098273]
+layout_mode = 2
+
+[node name="Graphics" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1912907515]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Graphics"
+horizontal_alignment = 1
+
+[node name="RemapButton" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Graphics" unique_id=1670694952]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("3_8q2qo")
+action = "ComboUp"
+metadata/_custom_type_script = "uid://bewhrg107j63j"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Graphics" unique_id=587382667]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 8.0
+offset_right = 98.0
+offset_bottom = 16.0
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=259916067]
+layout_mode = 2
+
+[node name="GraphicsBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=669576193]
+layout_mode = 2
+
+[node name="Audio" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=788881636]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=567435400]
+layout_mode = 2
+
+[node name="AudioBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1061432633]
+layout_mode = 2

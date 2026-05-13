@@ -12,6 +12,7 @@ process_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=807067945]
 process_mode = 3
+ignore_rotation = false
 zoom = Vector2(0.3, 0.3)
 script = ExtResource("2_jnsj8")
 f = 1.0
