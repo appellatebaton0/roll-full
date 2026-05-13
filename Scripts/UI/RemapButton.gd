@@ -39,16 +39,13 @@ func _unmap():
 		InputMap.action_erase_event(action, action_events_list[action_event_index])
 	
 	remapped.emit()
-	print(InputMap.action_get_events(action))
 	
 	_toggled(is_pressed())
 
 func _toggled(toggled_on: bool = button_pressed) -> void: 
-	
-	print(self, " -> ", toggled_on)
 
 	if !action or !InputMap.has_action(action):
-		text = ".."
+		text = ""
 		return
 
 	if toggled_on:
@@ -56,7 +53,7 @@ func _toggled(toggled_on: bool = button_pressed) -> void:
 		return
 	
 	if action_event_index >= InputMap.action_get_events(action).size():
-		text = ".."
+		text = ""
 		return
 	
 	var input := InputMap.action_get_events(action)[action_event_index]
@@ -66,7 +63,7 @@ func _toggled(toggled_on: bool = button_pressed) -> void:
 		else:
 			# None found in the constant D:
 			text = "Button " + str(input.button_index)
-	elif InputEventKey:
+	elif input is InputEventKey:
 		if input.physical_keycode != 0:
 			text = OS.get_keycode_string(input.physical_keycode)
 		else:
@@ -84,7 +81,10 @@ func _input(event: InputEvent) -> void:
 			InputMap.action_erase_event(action, action_events_list[action_event_index])
 		
 		InputMap.action_add_event(action, event)
-		#action_event_index = InputMap.action_get_events(action).size() - 1
 		button_pressed = false
 		
 		remapped.emit()
+		
+		# Consume the input to stop it from being registered by other
+		# things, like repressing the button.
+		get_viewport().set_input_as_handled()

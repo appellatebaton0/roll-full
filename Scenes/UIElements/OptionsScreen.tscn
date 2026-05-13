@@ -2,7 +2,6 @@
 
 [ext_resource type="Shader" uid="uid://by3kpcfu4w7ft" path="res://Shaders/OptionsTransition.gdshader" id="1_h2ohr"]
 [ext_resource type="Script" uid="uid://dh0xq62jurl0q" path="res://Scripts/UI/OptionsScreen.gd" id="2_epioe"]
-[ext_resource type="Script" uid="uid://bewhrg107j63j" path="res://Scripts/UI/RemapButton.gd" id="3_8q2qo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rw1ak"]
 shader = ExtResource("1_h2ohr")
@@ -15,6 +14,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_epioe")
+reconfigurable_inputs = Dictionary[StringName, String]({
+&"ComboDown": "Combo Down",
+&"ComboLeft": "Combo Left",
+&"ComboRight": "Combo Right",
+&"ComboUp": "Combo Up",
+&"Dash": "",
+&"Jump": "",
+&"Pause": "",
+&"Reset": "",
+&"ui_accept": "UI Select",
+&"ui_down": "UI Down",
+&"ui_left": "UI Left",
+&"ui_right": "UI Right",
+&"ui_up": "UI Up"
+})
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=61187682]
 layout_mode = 1
@@ -59,8 +73,14 @@ horizontal_alignment = 1
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=766321389]
 layout_mode = 2
 
-[node name="ControlsBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=419098273]
+[node name="ControlsBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1314144848]
 layout_mode = 2
+
+[node name="RemapBox" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ControlsBox" unique_id=2009432936]
+layout_mode = 2
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 30
+columns = 8
 
 [node name="Graphics" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1912907515]
 layout_mode = 2
@@ -68,26 +88,10 @@ theme_override_font_sizes/font_size = 50
 text = "Graphics"
 horizontal_alignment = 1
 
-[node name="RemapButton" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Graphics" unique_id=1670694952]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-script = ExtResource("3_8q2qo")
-action = "ComboUp"
-metadata/_custom_type_script = "uid://bewhrg107j63j"
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Graphics" unique_id=587382667]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 8.0
-offset_right = 98.0
-offset_bottom = 16.0
-
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=259916067]
 layout_mode = 2
 
-[node name="GraphicsBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=669576193]
+[node name="GraphicsBox2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=419098273]
 layout_mode = 2
 
 [node name="Audio" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=788881636]
