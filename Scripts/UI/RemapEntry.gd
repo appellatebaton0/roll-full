@@ -1,5 +1,8 @@
 class_name RemapEntry extends BoxContainer
 
+@onready var input_label  := $HBoxContainer2/InputLabel
+@onready var reset_button := $HBoxContainer2/Button
+
 @export var action:String
 @export var label_override:String
 
@@ -7,10 +10,15 @@ class_name RemapEntry extends BoxContainer
 @export var button_count := 4
 
 var buttons:Array[RemapButton]
+var sane_default:Array[InputEvent]
 
 func _ready() -> void:
 	
-	$InputLabel.text = action if not label_override else label_override
+	if action:
+		sane_default = InputMap.action_get_events(action)
+	
+	input_label.text = action if not label_override else label_override
+	reset_button.pressed.connect(_reset_pressed)
 	
 	var trebut := get_remap_button_from(template)
 	if trebut: buttons.append(trebut)
@@ -27,6 +35,7 @@ func _ready() -> void:
 	
 	for button in buttons:
 		button.action = action
+		button.remapped.connect(_any_remapped)
 		
 		for targ in buttons: 
 			if targ == button: continue
@@ -46,3 +55,19 @@ func get_remap_button_from(control:Control) -> RemapButton:
 		if test: return test
 	
 	return null
+
+func _any_remapped() -> void: reset_button.visible = true
+func _reset_pressed() -> void:
+	
+	InputMap.action_erase_events(action)
+	for event in sane_default:
+		InputMap.action_add_event(action, event)
+	
+	buttons[0]._toggled()
+	buttons[0].remapped.emit()
+	
+	buttons[0].grab_focus()
+	
+	reset_button.visible = false
+	
+	pass

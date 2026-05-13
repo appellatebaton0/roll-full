@@ -58,11 +58,14 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1653815494]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 15
 
 [node name="Controls" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=507118335]
 layout_mode = 2
@@ -78,20 +81,47 @@ layout_mode = 2
 
 [node name="RemapBox" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ControlsBox" unique_id=2009432936]
 layout_mode = 2
-theme_override_constants/h_separation = 60
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 30
 columns = 8
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=577833215]
+layout_mode = 2
 
 [node name="Graphics" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1912907515]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Graphics"
+text = "Graphics / QOL"
 horizontal_alignment = 1
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=259916067]
 layout_mode = 2
 
-[node name="GraphicsBox2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=419098273]
+[node name="GraphicsBox2" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1897275976]
+layout_mode = 2
+columns = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2" unique_id=1562355717]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=450527484]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Window Mode"
+
+[node name="WindowMode" type="OptionButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=1787587728]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+selected = 0
+item_count = 1
+popup/item_0/text = "Maximized"
+popup/item_0/id = 0
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=970215650]
 layout_mode = 2
 
 [node name="Audio" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=788881636]
@@ -103,5 +133,75 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=567435400]
 layout_mode = 2
 
-[node name="AudioBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1061432633]
+[node name="AudioBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1657201768]
 layout_mode = 2
+theme_override_constants/separation = 77
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox" unique_id=1267854111]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer" unique_id=2146434982]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Master"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer" unique_id=1519509542]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer/HBoxContainer" unique_id=1707861590]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer/HBoxContainer" unique_id=1047345199]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0.0"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox" unique_id=1775887290]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2" unique_id=431050941]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2" unique_id=2005853973]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2/HBoxContainer" unique_id=129018890]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2/HBoxContainer" unique_id=1691666116]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0.0"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox" unique_id=1682873991]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3" unique_id=838416680]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3" unique_id=496866445]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3/HBoxContainer" unique_id=229272627]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3/HBoxContainer" unique_id=1781254921]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0.0"

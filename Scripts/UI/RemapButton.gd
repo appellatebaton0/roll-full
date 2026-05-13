@@ -30,7 +30,7 @@ func _ready() -> void:
 	unmap_button.pressed.connect(_unmap)
 
 func _unmap():
-	
+
 	if !action or !InputMap.has_action(action): 
 		return 
 	
@@ -40,9 +40,13 @@ func _unmap():
 	
 	remapped.emit()
 	
-	_toggled(is_pressed())
+	button_pressed = false
+	
+	_toggled()
 
 func _toggled(toggled_on: bool = button_pressed) -> void: 
+	
+	unmap_button.disabled = InputMap.action_get_events(action).size() <= 1
 
 	if !action or !InputMap.has_action(action):
 		text = ""
@@ -63,28 +67,35 @@ func _toggled(toggled_on: bool = button_pressed) -> void:
 		else:
 			# None found in the constant D:
 			text = "Button " + str(input.button_index)
+		return
 	elif input is InputEventKey:
 		if input.physical_keycode != 0:
 			text = OS.get_keycode_string(input.physical_keycode)
 		else:
 			text = OS.get_keycode_string(input.keycode)
+		return
 	
-	unmap_button.disabled = InputMap.action_get_events(action).size() <= 1
+	text = ""
 
 
 func _input(event: InputEvent) -> void:
 	if !InputMap.has_action(action) or !is_pressed(): return
 	
-	if event.is_pressed() and (event is InputEventKey or event is InputEventJoypadButton):
-		var action_events_list := InputMap.action_get_events(action)
-		if action_event_index < action_events_list.size():
-			InputMap.action_erase_event(action, action_events_list[action_event_index])
-		
-		InputMap.action_add_event(action, event)
-		button_pressed = false
-		
-		remapped.emit()
-		
-		# Consume the input to stop it from being registered by other
-		# things, like repressing the button.
-		get_viewport().set_input_as_handled()
+	if event.is_pressed():
+		if (event is InputEventKey or event is InputEventJoypadButton):
+			var action_events_list := InputMap.action_get_events(action)
+			if action_event_index < action_events_list.size():
+				InputMap.action_erase_event(action, action_events_list[action_event_index])
+			
+			InputMap.action_add_event(action, event)
+			button_pressed = false
+			
+			remapped.emit()
+			
+			# Consume the input to stop it from being registered by other
+			# things, like repressing the button.
+			get_viewport().set_input_as_handled()
+		elif event is InputEventMouseButton:
+			_unmap()
+	
+	

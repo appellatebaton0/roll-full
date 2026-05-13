@@ -3,32 +3,42 @@
 [ext_resource type="Script" uid="uid://bewhrg107j63j" path="res://Scripts/UI/RemapButton.gd" id="1_g1cjy"]
 [ext_resource type="Script" uid="uid://bplo7msib57yy" path="res://Scripts/UI/RemapEntry.gd" id="1_y47wx"]
 
-[node name="HBoxContainer" type="VBoxContainer" unique_id=2069976299 node_paths=PackedStringArray("template")]
+[node name="VBoxContainer" type="VBoxContainer" unique_id=2069976299 node_paths=PackedStringArray("template")]
+custom_minimum_size = Vector2(120, 0)
 offset_right = 79.0
 offset_bottom = 208.0
 script = ExtResource("1_y47wx")
 action = "ComboUp"
 label_override = "Combo Up"
-template = NodePath("HBoxContainer/HBoxContainer3")
+template = NodePath("VBoxContainer/HBoxContainer3")
 
-[node name="InputLabel" type="Label" parent="." unique_id=399750534]
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1659697633]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="InputLabel" type="Label" parent="HBoxContainer2" unique_id=399750534]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
 text = "Combo Up"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="VBoxContainer" parent="." unique_id=2087984748]
+[node name="Button" type="Button" parent="HBoxContainer2" unique_id=1240229476]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 8
+text = "R"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer" unique_id=1340325178]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2087984748]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=1340325178]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="RemapButton" type="Button" parent="HBoxContainer/HBoxContainer3" unique_id=118556631 node_paths=PackedStringArray("unmap_button")]
+[node name="RemapButton" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=118556631 node_paths=PackedStringArray("unmap_button")]
 custom_minimum_size = Vector2(55, 45)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 17
 text = "W"
 autowrap_mode = 1
@@ -37,7 +47,7 @@ action = "ComboDown"
 unmap_button = NodePath("../Button")
 metadata/_custom_type_script = "uid://bewhrg107j63j"
 
-[node name="Button" type="Button" parent="HBoxContainer/HBoxContainer3" unique_id=189750943]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=189750943]
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
 text = "DEL"
