@@ -1,6 +1,6 @@
 @tool
 class_name OptionsScreen extends Panel
-## Manages most of the happenings in the options screen.
+## Manages some of the happenings in the options screen.
 
 ## All the configurable inputs. Input Name : Display Name
 @export var reconfigurable_inputs:Dictionary[StringName, String]

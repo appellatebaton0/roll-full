@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://by3kpcfu4w7ft" path="res://Shaders/OptionsTransition.gdshader" id="1_h2ohr"]
 [ext_resource type="Script" uid="uid://dh0xq62jurl0q" path="res://Scripts/UI/OptionsScreen.gd" id="2_epioe"]
 [ext_resource type="Script" uid="uid://gyny8bxojorg" path="res://Scripts/UI/VolumeSlider.gd" id="3_8q2qo"]
+[ext_resource type="Script" uid="uid://dvamb3i8qn7gy" path="res://Scripts/UI/WindowModeSwitch.gd" id="3_yne6l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rw1ak"]
 shader = ExtResource("1_h2ohr")
@@ -121,6 +122,7 @@ selected = 0
 item_count = 1
 popup/item_0/text = "Maximized"
 popup/item_0/id = 0
+script = ExtResource("3_yne6l")
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=970215650]
 layout_mode = 2
