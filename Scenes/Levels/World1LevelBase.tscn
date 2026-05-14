@@ -44,7 +44,7 @@ repeat_times = 10
 script = SubResource("GDScript_hjvo4")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" index="0" unique_id=931023183]
+[node name="Backdrop" type="Sprite2D" parent="Parallax2D3" index="0" unique_id=931023183]
 texture = SubResource("GradientTexture2D_tltf1")
 metadata/_edit_lock_ = true
 
@@ -62,7 +62,7 @@ repeat_times = 10
 script = SubResource("GDScript_hjvo4")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" index="0" unique_id=1959852298]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" index="0" unique_id=1959852298]
 modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
 position = Vector2(1024, 1024)
 scale = Vector2(2, 2)
@@ -80,21 +80,3 @@ modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
 position = Vector2(1024, 1024)
 scale = Vector2(2, 2)
 texture = ExtResource("2_210hp")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D2" index="1" unique_id=1442133993]
-visible = false
-position = Vector2(1024, 1024)
-scale = Vector2(2, 2)
-texture = ExtResource("2_tltf1")
-
-[node name="Player" parent="." index="3" unique_id=1267848784]
-visible = false
-
-[node name="Camera2D" parent="." index="4" unique_id=807067945]
-visible = false
-
-[node name="Goal" parent="." index="5" unique_id=1338618760]
-visible = false
-
-[node name="DeathBorder" parent="." index="6" unique_id=1495088171]
-visible = false

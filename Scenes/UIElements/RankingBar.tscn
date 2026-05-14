@@ -16,7 +16,12 @@ size_flags_vertical = 3
 theme_override_constants/separation = 13
 script = ExtResource("1_yvypi")
 
-[node name="Bar" type="ProgressBar" parent="." unique_id=1438797537]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1633918332]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Bar" type="ProgressBar" parent="MarginContainer" unique_id=1438797537]
 use_parent_material = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2

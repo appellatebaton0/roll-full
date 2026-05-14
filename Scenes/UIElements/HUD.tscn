@@ -6,11 +6,9 @@
 [ext_resource type="Script" uid="uid://b7vwwot4lsjo1" path="res://Scripts/Speedometer.gd" id="4_o3ndg"]
 [ext_resource type="Script" uid="uid://blguosqbms0ey" path="res://Scripts/ScoreDisplay.gd" id="5_p4y4b"]
 [ext_resource type="Script" uid="uid://dmyfxr6mu36sg" path="res://Scripts/RunTimer.gd" id="6_pls1t"]
-[ext_resource type="Script" uid="uid://bg5n2byl5ryrc" path="res://Scripts/ComboEntry.gd" id="7_l3ih3"]
 [ext_resource type="Script" uid="uid://c8fyb184em3f" path="res://Scripts/DashCooldownBar.gd" id="8_rvhig"]
 
 [sub_resource type="Theme" id="Theme_hwpts"]
-Label/colors/font_color = Color(0.7411765, 0.7411765, 0.7411765, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hwpts"]
 color = Color(0.74, 0.74, 0.74, 1)
@@ -116,34 +114,11 @@ theme_override_font_sizes/font_size = 53
 text = "000000"
 
 [node name="ComboBox" type="VBoxContainer" parent="ScoreDisplay" unique_id=822022943]
+modulate = Color(0.78039217, 0.78039217, 0.78039217, 1)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme = SubResource("Theme_hwpts")
-
-[node name="ComboEntry7" type="Label" parent="ScoreDisplay/ComboBox" unique_id=1907386816]
-layout_mode = 2
-text = "asd"
-script = ExtResource("7_l3ih3")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry8" type="Label" parent="ScoreDisplay/ComboBox" unique_id=848387951]
-layout_mode = 2
-text = "asd"
-script = ExtResource("7_l3ih3")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry9" type="Label" parent="ScoreDisplay/ComboBox" unique_id=1423814674]
-layout_mode = 2
-text = "asd"
-script = ExtResource("7_l3ih3")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
-
-[node name="ComboEntry10" type="Label" parent="ScoreDisplay/ComboBox" unique_id=431730443]
-layout_mode = 2
-text = "asd"
-script = ExtResource("7_l3ih3")
-metadata/_custom_type_script = "uid://bg5n2byl5ryrc"
 
 [node name="ComboSeperator" type="HSeparator" parent="ScoreDisplay" unique_id=1352053015]
 custom_minimum_size = Vector2(100, 0)
