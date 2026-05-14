@@ -23,6 +23,10 @@ var run_timer:RunTimer
 
 var default_time_scale := 1.0
 
+var spinning_camera := false
+
+var return_focus:Control
+
 ## -- COMBO MANAGEMENT -- ##
 
 signal finished_combo(combo:Combo)

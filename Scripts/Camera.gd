@@ -75,12 +75,15 @@ var applied_velocity := Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: if target:
 	
-	#var targ_angle := target.real_velocity.angle() + (0.5 * PI)
-	#
-	#while abs(targ_angle - rotation) > 2 * PI:
-		#rotation -= PI
-	#
-	#rotation = move_toward(rotation, targ_angle, abs(rotation - targ_angle) / 10)
+	if Global.spinning_camera:
+		var targ_angle := target.real_velocity.angle() + (0.5 * PI)
+		
+		while abs(targ_angle - rotation) > 2 * PI:
+			rotation -= PI
+		
+		rotation = move_toward(rotation, targ_angle, abs(rotation - targ_angle) / 10)
+	else:
+		rotation = 0.0
 	
 	if DEBUG:
 		global_position = target.global_position

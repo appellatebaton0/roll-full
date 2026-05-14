@@ -17,6 +17,7 @@ theme_override_constants/separation = 13
 script = ExtResource("1_yvypi")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1633918332]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20

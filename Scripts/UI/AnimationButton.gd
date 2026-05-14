@@ -6,14 +6,20 @@ class_name AnimationButton extends Button
 @export var animator:AnimationPlayer
 
 @export var starts_with_focus := false
+@export var returns_focus := false
 
 func _ready() -> void:
 	if not animator and not use_global:
 		animator = find_animator()
 	
-	if starts_with_focus: grab_focus()
+	if starts_with_focus: grab_focus(true)
 
 func _pressed() -> void:
+	
+	
+	if returns_focus:
+		Global.return_focus = self
+	
 	if use_global: 
 		Global.request_animation.emit(animation_name)
 		return
@@ -21,6 +27,7 @@ func _pressed() -> void:
 	if animator:
 		if animator.has_animation(animation_name) and not animator.is_playing():
 			animator.play(animation_name)
+	
 
 func find_animator(with:Node = self, depth := 7) -> AnimationPlayer:
 	

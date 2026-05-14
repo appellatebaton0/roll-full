@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://dvooy22gtyfrf"]
 
-[ext_resource type="Shader" uid="uid://by3kpcfu4w7ft" path="res://Shaders/OptionsTransition.gdshader" id="1_h2ohr"]
 [ext_resource type="Script" uid="uid://dh0xq62jurl0q" path="res://Scripts/UI/OptionsScreen.gd" id="2_epioe"]
 [ext_resource type="Script" uid="uid://gyny8bxojorg" path="res://Scripts/UI/VolumeSlider.gd" id="3_8q2qo"]
 [ext_resource type="Script" uid="uid://dvamb3i8qn7gy" path="res://Scripts/UI/WindowModeSwitch.gd" id="3_yne6l"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw1ak"]
-shader = ExtResource("1_h2ohr")
+[sub_resource type="GDScript" id="GDScript_yne6l"]
+script/source = "extends CheckButton
+
+func _ready() -> void:
+	button_pressed = Global.spinning_camera
+
+func _toggled(toggled_on: bool) -> void:
+	Global.spinning_camera = toggled_on
+"
 
 [node name="OptionsScreen" type="Panel" unique_id=2145581008]
-material = SubResource("ShaderMaterial_rw1ak")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,6 +31,7 @@ reconfigurable_inputs = Dictionary[StringName, String]({
 &"Pause": "",
 &"Reset": "",
 &"ui_accept": "UI Select",
+&"ui_cancel": "UI Back",
 &"ui_down": "UI Down",
 &"ui_left": "UI Left",
 &"ui_right": "UI Right",
@@ -33,6 +39,7 @@ reconfigurable_inputs = Dictionary[StringName, String]({
 })
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=61187682]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,18 +52,31 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1911833918]
+use_parent_material = true
 layout_mode = 2
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1220458022]
+use_parent_material = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 89
-text = "SETTINGS"
+theme_override_font_sizes/font_size = 80
+text = "OPTIONS"
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Title" unique_id=674279506]
+use_parent_material = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_neighbor_bottom = NodePath("../../ScrollContainer/VBoxContainer/ControlsBox/RemapBox")
+text = "Back"
+
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=2043572343]
+use_parent_material = true
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=340312656]
+use_parent_material = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
@@ -64,58 +84,75 @@ follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1653815494]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="Controls" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=507118335]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Controls"
 horizontal_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=766321389]
+use_parent_material = true
 layout_mode = 2
 
 [node name="ControlsBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1314144848]
+use_parent_material = true
 layout_mode = 2
 
 [node name="RemapBox" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ControlsBox" unique_id=2009432936]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 30
 columns = 8
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=577833215]
+use_parent_material = true
 layout_mode = 2
 
 [node name="Graphics" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1912907515]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Graphics / QOL"
 horizontal_alignment = 1
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=259916067]
+use_parent_material = true
 layout_mode = 2
 
 [node name="GraphicsBox2" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1897275976]
+use_parent_material = true
 layout_mode = 2
+theme_override_constants/h_separation = 39
+columns = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2" unique_id=1562355717]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=450527484]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "Window Mode"
 
 [node name="WindowMode" type="OptionButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=1787587728]
+use_parent_material = true
 layout_mode = 2
+focus_neighbor_right = NodePath("../../HBoxContainer2/CheckButton")
+focus_neighbor_bottom = NodePath("../../../AudioBox/VBoxContainer/HBoxContainer/HSlider")
 theme_override_font_sizes/font_size = 25
 selected = 0
 item_count = 1
@@ -123,39 +160,66 @@ popup/item_0/text = "Maximized"
 popup/item_0/id = 0
 script = ExtResource("3_yne6l")
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2" unique_id=1650440177]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2" unique_id=69958933]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Camera Follows Velocity"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2" unique_id=1375466107]
+use_parent_material = true
+layout_mode = 2
+script = SubResource("GDScript_yne6l")
+
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=970215650]
+use_parent_material = true
 layout_mode = 2
 
 [node name="Audio" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=788881636]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Audio"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=567435400]
+use_parent_material = true
 layout_mode = 2
 
 [node name="AudioBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1657201768]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 77
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox" unique_id=1267854111]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer" unique_id=2146434982]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Master"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer" unique_id=1519509542]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer/HBoxContainer" unique_id=1707861590 node_paths=PackedStringArray("value_display")]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../../GraphicsBox2/HBoxContainer2/CheckButton")
+focus_neighbor_bottom = NodePath("../../../VBoxContainer2/HBoxContainer/HSlider")
 max_value = 1.5
 step = 0.01
 script = ExtResource("3_8q2qo")
@@ -163,27 +227,34 @@ bus_name = &"Master"
 value_display = NodePath("../Label")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer/HBoxContainer" unique_id=1047345199]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "0.0"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox" unique_id=1775887290]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2" unique_id=431050941]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Music"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2" unique_id=2005853973]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2/HBoxContainer" unique_id=129018890 node_paths=PackedStringArray("value_display")]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../VBoxContainer/HBoxContainer/HSlider")
+focus_neighbor_bottom = NodePath("../../../VBoxContainer3/HBoxContainer/HSlider")
 max_value = 1.5
 step = 0.01
 script = ExtResource("3_8q2qo")
@@ -191,27 +262,33 @@ bus_name = &"Music"
 value_display = NodePath("../Label")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2/HBoxContainer" unique_id=1691666116]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "0.0"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox" unique_id=1682873991]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3" unique_id=838416680]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "SFX"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3" unique_id=496866445]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3/HBoxContainer" unique_id=229272627 node_paths=PackedStringArray("value_display")]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../VBoxContainer2/HBoxContainer/HSlider")
 max_value = 1.5
 step = 0.01
 script = ExtResource("3_8q2qo")
@@ -219,6 +296,10 @@ bus_name = &"SFX"
 value_display = NodePath("../Label")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3/HBoxContainer" unique_id=1781254921]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "0.0"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Title/Button" to="." method="close"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ControlsBox/RemapBox" to="." method="_on_remap_box_focused"]

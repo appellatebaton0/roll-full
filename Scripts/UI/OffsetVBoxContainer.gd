@@ -8,7 +8,7 @@ func _process(_delta: float) -> void:
 	var best := _best_option()
 	
 	for child in get_children(): if child is Control:
-		child.position.x = offset if best == child else 0.0
+		child.position.x = offset if child.has_focus(true) else 0.0
 	
 	if best: if not best.has_focus(): best.grab_focus()
 
@@ -29,6 +29,6 @@ func _best_option() -> Control:
 func _selected(child:Control) -> int:
 	if child.has_focus(): return 1
 	
-	if child is BaseButton: if child.is_hovered(): return 2
+	#if child is BaseButton: if child.is_hovered(): return 2
 	
 	return 0

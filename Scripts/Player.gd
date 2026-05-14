@@ -35,6 +35,7 @@ var dash_cooldown_time := 0.0:
 			dash_reset.emit()
 		
 		dash_cooldown_time = to
+var dash_direction:Vector2
 
 const DASH_BUFFER := 0.1
 var dash_buffering := 0.0
@@ -148,13 +149,11 @@ func _physics_process(delta: float) -> void:
 	
 	# Dashing
 	
-	var dash_dir := (get_global_mouse_position() - global_position).normalized()
-	
 	dash_buffering = move_toward(dash_buffering, 0.0, delta)
 	if Input.is_action_just_pressed("Dash"): dash_buffering = DASH_BUFFER
 	
 	if dash_buffering > 0 and dash_cooldown_time <= 0:
-		velocity = dash_dir * max(base_speed, mag(velocity) * 0.9)
+		velocity = dash_direction * max(base_speed, mag(velocity) * 0.9)
 		
 		ray_node.target_position = Vector2.ZERO
 		ray_fall_time = 1.0
@@ -162,13 +161,18 @@ func _physics_process(delta: float) -> void:
 		dash_cooldown_time = dash_cooldown
 		dash_buffering = 0.0
 	
-	pointer.rotation = dash_dir.angle()
+	pointer.rotation = dash_direction.angle()
 	
 	move_and_slide()
 	real_velocity = velocity + (last_normal * stick_force) 
 var real_velocity:Vector2
 
-func can_dash() -> bool: return dash_cooldown_time <= 0
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouse:
+		dash_direction = (get_global_mouse_position() - global_position).normalized()
+	elif event is InputEventJoypadMotion:
+		## Something something controller support.
+		print(Input.get_joy_axis(0, JOY_AXIS_LEFT_X))
 
 func _on_reset() -> void:
 	global_position = respawn_position

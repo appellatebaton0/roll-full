@@ -73,6 +73,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Resume")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_h1m7h"]
 length = 0.001
@@ -328,6 +342,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 mouse_filter = 1
 script = ExtResource("2_ywlsq")
 
@@ -589,6 +604,7 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_right = NodePath("../Quit")
 theme_override_font_sizes/font_size = 29
 text = "Resume"
 
@@ -598,6 +614,8 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Resume")
+focus_neighbor_right = NodePath("../Options")
 theme_override_font_sizes/font_size = 29
 text = "Levels"
 
@@ -606,6 +624,7 @@ use_parent_material = true
 custom_minimum_size = Vector2(80, 55)
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Quit")
 theme_override_constants/icon_max_width = 32
 theme_override_font_sizes/font_size = 44
 icon_alignment = 1
@@ -613,6 +632,7 @@ expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Options" unique_id=2039813250]
 modulate = Color(0.05490196, 0.08235294, 0.12941177, 1)
+use_parent_material = true
 custom_minimum_size = Vector2(27, 27)
 layout_mode = 1
 anchors_preset = 8

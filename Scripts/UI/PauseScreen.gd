@@ -37,7 +37,13 @@ var current_data:LevelData:
 			current_data.runs_updated.connect(_update_options)
 			_update_options()
 
-func _ready() -> void: options.item_selected.connect(_update_overview)
+func _ready() -> void: 
+	options.item_selected.connect(_update_overview)
+	focus_entered.connect(_on_focused)
+
+func _on_focused() -> void: 
+	resu_button.grab_focus()
+	can_pause = true
 
 var attempt_dict:Dictionary[String, LevelData.Run]
 ## Update the interface.
@@ -86,7 +92,7 @@ func _update_overview(index:int) -> void:
 func _process(_delta: float) -> void:
 	if Global.current_data != current_data: current_data = Global.current_data
 	if can_pause and not animator.is_playing():
-		if Input.is_action_just_pressed("Pause"):
+		if Input.is_action_just_pressed("Pause") or (paused and Input.is_action_just_pressed("ui_cancel")):
 			toggle_pause()
 
 func toggle_pause() -> void:
@@ -106,3 +112,5 @@ func _on_quit_pressed() -> void:# if focused:
 
 func _on_options_pressed() -> void:
 	Global.request_animation.emit("OpenOptions", false)
+	can_pause = false
+	Global.return_focus = options_button

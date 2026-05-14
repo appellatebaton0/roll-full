@@ -74,11 +74,57 @@ script/source = "extends Button
 func _pressed() -> void: get_tree().quit()
 "
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_frkhe"]
+shader = ExtResource("11_frkhe")
+shader_parameter/multipli = 50.0
+shader_parameter/threshold = 1.0
+shader_parameter/inverted = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p5hy"]
 shader = ExtResource("11_frkhe")
 shader_parameter/multipli = 50.0
 shader_parameter/threshold = 0.0
 shader_parameter/inverted = false
+
+[sub_resource type="Animation" id="Animation_erwvk"]
+resource_name = "CloseOptions"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionsScreen:material:shader_parameter/threshold")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionsScreen:material:shader_parameter/inverted")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_4kpch"]
 resource_name = "Countdown"
@@ -245,6 +291,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("OptionsScreen:return_focus")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
 
 [sub_resource type="Animation" id="Animation_50glp"]
 resource_name = "Levels->Game"
@@ -320,6 +378,19 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OptionsScreen:return_focus")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Object(Button,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":true,"clip_contents":false,"custom_minimum_size":Vector2(0, 55),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"pivot_offset_ratio":Vector2(0, 0),"size_flags_horizontal":3,"size_flags_vertical":4,"size_flags_stretch_ratio":1.0,"localize_numeral_system":true,"tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath("../Quit"),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":2,"focus_behavior_recursive":0,"mouse_filter":0,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","theme_override_font_sizes/font_size":29,"disabled":false,"toggle_mode":false,"button_pressed":false,"action_mode":1,"button_mask":1,"keep_pressed_outside":false,"button_group":null,"shortcut":null,"shortcut_feedback":true,"shortcut_in_tooltip":true,"text":"Resume","icon":null,"flat":false,"alignment":1,"text_overrun_behavior":0,"autowrap_mode":0,"autowrap_trim_flags":128,"clip_text":false,"icon_alignment":0,"vertical_icon_alignment":1,"expand_icon":false,"text_direction":0,"language":"","script":null)
+]
 }
 
 [sub_resource type="Animation" id="Animation_1p5hy"]
@@ -499,6 +570,60 @@ tracks/6/keys = {
 "values": [{
 "args": [],
 "method": &"_on_focused"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_h1m7h"]
+resource_name = "OpenOptions"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionsScreen:material:shader_parameter/threshold")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionsScreen:material:shader_parameter/inverted")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OptionsScreen")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
 }]
 }
 
@@ -696,6 +821,54 @@ tracks/15/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("OptionsScreen:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("OptionsScreen:material:shader_parameter/threshold")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("OptionsScreen:material:shader_parameter/inverted")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("OptionsScreen:return_focus")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
 
 [sub_resource type="Animation" id="Animation_grg3l"]
 resource_name = "ResetIn"
@@ -803,11 +976,13 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbw6q"]
 _data = {
+&"CloseOptions": SubResource("Animation_erwvk"),
 &"Countdown": SubResource("Animation_4kpch"),
 &"Game->Levels": SubResource("Animation_bmxlf"),
 &"Levels->Game": SubResource("Animation_50glp"),
 &"Levels->Main": SubResource("Animation_1p5hy"),
 &"Main->Levels": SubResource("Animation_rgh2o"),
+&"OpenOptions": SubResource("Animation_h1m7h"),
 &"RESET": SubResource("Animation_vy5pj"),
 &"ResetIn": SubResource("Animation_grg3l"),
 &"ResetOut": SubResource("Animation_frkhe")
@@ -997,6 +1172,10 @@ focus_next = NodePath("../Button3")
 focus_previous = NodePath("../Button")
 theme_override_font_sizes/font_size = 57
 text = "OPTIONS"
+script = ExtResource("1_idj7w")
+animation_name = "OpenOptions"
+use_global = true
+returns_focus = true
 
 [node name="Button3" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=144337488]
 custom_minimum_size = Vector2(300, 0)
@@ -1027,7 +1206,7 @@ axis_stretch_vertical = 1
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(531.98083, -4.516578, 476.68878, 71.3568, 507.33957, 160.09543, 431.3075, 215.16933, 433.03638, 309.0364, 343.7068, 337.9196, 316.3445, 427.7267, 222.46162, 427.5919, 168.68661, 504.54816, 79.44058, 475.40845, 4.5167456, 531.98083, -71.356865, 476.68878, -160.0955, 507.33954, -215.1694, 431.30746, -309.03647, 433.03635, -337.91965, 343.70673, -427.72678, 316.34442, -427.59192, 222.46155, -504.5482, 168.68654, -475.40848, 79.440285, -531.98083, 4.5169125, -476.6888, -71.35672, -507.3396, -160.09534, -431.30753, -215.16928, -433.03644, -309.03635, -343.70682, -337.91953, -316.34457, -427.72668, -222.46169, -427.59186, -168.68669, -504.54813, -79.44042, -475.40845, -4.516572, -531.98083, 71.357025, -476.68875, 160.09566, -507.3395, 215.16956, -431.3074, 309.03662, -433.03622, 337.91943, -343.70694, 427.7266, -316.34473, 427.5918, -222.46182, 504.54803, -168.68686, 475.40845, -79.440575, 531.98083, -4.516578, 324.48334, -131.18906, 164.00946, -161.24792, 136.67967, -322.20905, 1.9526863, -229.9917, -131.18906, -324.48334, -161.24794, -164.00946, -322.20905, -136.6797, -229.9917, -1.9526762, -324.48334, 131.18907, -164.00948, 161.24792, -136.67973, 322.209, -1.9526936, 229.9917, 131.18913, 324.4833, 161.24791, 164.00948, 322.20905, 136.67967, 229.9917, 1.952656, 324.48334, -131.18906)
+polygon = PackedVector2Array(-144.63275, 511.96228, -201.98676, 437.63608, -295.75732, 442.21216, -327.33786, 353.7993, -417.93304, 329.17468, -420.64682, 235.3301, -499.19855, 183.91522, -472.7799, 93.82514, -531.59894, 20.65287, -478.63397, -56.864082, -511.9627, -144.63113, -437.636, -201.98705, -442.21198, -295.75763, -353.79907, -327.33807, -329.17438, -417.9333, -235.32982, -420.64697, -183.9149, -499.19867, -93.82484, -472.77997, -20.652529, -531.59894, 56.864388, -478.63394, 144.63145, -511.96262, 201.98732, -437.63583, 295.7579, -442.2118, 327.33832, -353.79886, 417.9335, -329.17413, 420.64713, -235.32956, 499.1988, -183.91458, 472.78003, -93.82453, 531.599, -20.65219, 478.63388, 56.864693, 511.96252, 144.63179, 437.6357, 201.98761, 442.21158, 295.7582, 353.7999, 327.3372, 329.17386, 417.9337, 235.33089, 420.6464, 183.91428, 499.1989, 93.82603, 472.77975, 20.651848, 531.599, -56.863174, 478.6341, -144.63275, 511.96228, -40.985195, 347.59204, 62.52892, 221.33716, 216.80438, 274.7651, 200.72345, 112.2947, 347.59204, 40.98497, 221.33711, -62.52906, 274.76578, -216.80351, 112.29457, -200.72351, 40.98475, -347.59207, -62.529198, -221.33708, -216.80403, -274.76538, -200.72372, -112.29419, -347.592, -40.985416, -221.33719, 62.528774, -274.76523, 216.8042, -112.29482, 200.72337, -40.985195, 347.59204)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1108,12 +1287,9 @@ layout_mode = 1
 
 [node name="OptionsScreen" parent="CanvasLayer/UI" unique_id=2145581008 instance=ExtResource("10_grg3l")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+material = SubResource("ShaderMaterial_frkhe")
+layout_mode = 1
+focus_mode = 2
 
 [node name="ResetLevel" type="Control" parent="CanvasLayer/UI" unique_id=843567868]
 visible = false
@@ -1164,3 +1340,5 @@ mouse_filter = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=582492900]
 environment = SubResource("Environment_hwpts")
+
+[editable path="CanvasLayer/UI/PauseScreen"]
