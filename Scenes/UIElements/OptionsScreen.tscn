@@ -103,7 +103,6 @@ layout_mode = 2
 
 [node name="GraphicsBox2" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1897275976]
 layout_mode = 2
-columns = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/GraphicsBox2" unique_id=1562355717]
 layout_mode = 2
