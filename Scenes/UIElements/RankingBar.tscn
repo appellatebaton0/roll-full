@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cnpq5p3sqerii" path="res://Scripts/UI/RankingBar.gd" id="1_yvypi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4317"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek4xw"]
 bg_color = Color(0.06666667, 0.07450981, 0.12941177, 1)
 
@@ -22,7 +29,12 @@ layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Bar" type="ProgressBar" parent="MarginContainer" unique_id=1438797537]
+[node name="Panel" type="PanelContainer" parent="MarginContainer" unique_id=660358387]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y4317")
+
+[node name="Bar" type="ProgressBar" parent="MarginContainer/Panel" unique_id=1438797537]
 use_parent_material = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2

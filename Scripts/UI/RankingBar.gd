@@ -1,7 +1,7 @@
 class_name RankingBar extends HBoxContainer
 ## Displays an attempt's time as a ranking percentage.
 
-@onready var bar              := $MarginContainer/Bar
+@onready var bar              := $MarginContainer/Panel/Bar
 @onready var label_container  := $LabelContainer
 @onready var sample_label_box := $LabelContainer/LabelBox
 var label_boxes:Dictionary[LevelData.RANKINGS, HBoxContainer]
@@ -18,6 +18,11 @@ func _ready() -> void:
 	update()
 
 func update(level_data:LevelData = null, run:Variant = null):
+	
+	print(run, " <- ", level_data.best_run, " |  ", Global.seconds_as_timer(level_data.best_run.time))
+	print(Global.seconds_as_timer(level_data._get_best_run().time))
+	for ron in level_data.runs:
+		print(": ", Global.seconds_as_timer(ron.time))
 	
 	## Allow for inputting an int as the run.
 	if run is int: run = level_data.runs[run]

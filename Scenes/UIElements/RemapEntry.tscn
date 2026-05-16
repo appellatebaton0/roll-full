@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bewhrg107j63j" path="res://Scripts/UI/RemapButton.gd" id="1_g1cjy"]
 [ext_resource type="Script" uid="uid://bplo7msib57yy" path="res://Scripts/UI/RemapEntry.gd" id="1_y47wx"]
+[ext_resource type="Texture2D" uid="uid://daqhtur6h7fyq" path="res://Assets/Textures/ResetIcon.svg" id="2_8lwhd"]
+[ext_resource type="Texture2D" uid="uid://dog21d3x324ub" path="res://Assets/Textures/DeleteIcon.svg" id="4_0txid"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_y47wx"]
 color = Color(0.4509804, 0.654902, 0.9607843, 1)
@@ -192,10 +194,27 @@ theme_override_constants/margin_right = 4
 
 [node name="Button" type="Button" parent="HBoxContainer2/MarginContainer" unique_id=1240229476]
 use_parent_material = true
+custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
 theme = SubResource("Theme_2028h")
 disabled = true
 text = "R"
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/MarginContainer/Button" unique_id=676515702]
+visible = false
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8lwhd")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=673666887]
 use_parent_material = true
@@ -236,3 +255,22 @@ theme = SubResource("Theme_b4bem")
 theme_override_font_sizes/font_size = 15
 text = "DEL"
 alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer3/Button" unique_id=977666910]
+visible = false
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -12.5
+offset_right = 10.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0txid")
+expand_mode = 1
+stretch_mode = 5

@@ -46,7 +46,7 @@ _data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5031847, 100), 0.
 point_count = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mpik"]
-bg_color = Color(0.42745098, 0.4745098, 0.78039217, 1)
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
 border_width_bottom = 6
 border_color = Color(0.275, 0.30499998, 0.5, 1)
 corner_radius_top_left = 20
@@ -105,13 +105,13 @@ Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_du3wf"]
 shader = ExtResource("11_eebbl")
-shader_parameter/speed = 0.99
+shader_parameter/speed = 1.0
 shader_parameter/range = Vector2(0.912, 0.95)
-shader_parameter/colorA = Color(1, 1, 1, 1)
-shader_parameter/colorB = Color(0.05490196, 0.8901961, 0.8745098, 1)
+shader_parameter/colorA = Color(0.9019608, 0.9019608, 0.9019608, 1)
+shader_parameter/colorB = Color(0.047058824, 0.78039217, 0.76862746, 1)
 shader_parameter/wave_affect = 6.0
 shader_parameter/wave_density = 150.0
-shader_parameter/wave_drift = 3.0
+shader_parameter/wave_drift = 4.0
 
 [sub_resource type="GDScript" id="GDScript_eebbl"]
 script/source = "extends TextureButton
@@ -908,35 +908,40 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1451477949]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+theme_override_font_sizes/font_size = 27
 text = "Rank"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1700668177]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+theme_override_font_sizes/font_size = 27
 text = "Run Number"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1159152682]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+theme_override_font_sizes/font_size = 27
 text = "Time"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1026971722]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+theme_override_font_sizes/font_size = 27
 text = "Score"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=2089123089]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+theme_override_font_sizes/font_size = 27
 text = "Speed"
 horizontal_alignment = 1
 
@@ -984,7 +989,7 @@ text = "<"
 material = SubResource("ShaderMaterial_du3wf")
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.68235296, 0.4392157, 1, 1)
+theme_override_colors/font_color = Color(0.654902, 0.3882353, 1, 1)
 theme_override_font_sizes/font_size = 55
 text = "100%"
 horizontal_alignment = 1

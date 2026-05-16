@@ -83,18 +83,18 @@ var best_time:float
 var best_score:int
 
 func _get_best_run() -> Run:
-	## Turn each Run into their rating.
-	var ratings := []
+	
+	var best:Run = null
 	for run in runs:
-		ratings.append(run.rating())
+		if best == null: 
+			best = run
+			continue
+		
+		if best.time > run.time:
+			best = run
 	
-	## Get the best rating out of the list
-	var best := 0
-	for rating in ratings:
-		best = max(best, rating)
-	
-	## Return the run that has that best rating.
-	return runs[ratings.find(best)]
+	## Return the run with the lowest time.
+	return best
 
 func _get_best_time() -> float:
 	## Turn each Run into their time.

@@ -38,8 +38,7 @@ func _ready() -> void:
 func _update():
 	update_overview()
 	update_attempt_box()
-	
-	this_speed.text = str(int(round(Global.default_time_scale * 100))) + "%"
+	update_speed_display()
 
 func _set_level_data(to:LevelData):
 	if level_data:
@@ -156,7 +155,6 @@ func update_attempt_box() -> bool:
 	
 	return true
 
-
 ## Load the current level, play the opening animation.
 func _on_play_pressed() -> void: if focused:
 	
@@ -175,18 +173,17 @@ func _on_play_pressed() -> void: if focused:
 
 func _speed_up() -> void:
 	Global.default_time_scale += speed_step
-	
 	Global.default_time_scale = clamp(Global.default_time_scale, speed_step, 2.)
 	
-	this_speed.text = str(int(round(Global.default_time_scale * 100))) + "%"
-	
-	print(Global.default_time_scale, " -> ", inv_lerp(speed_step, 2., Global.default_time_scale))
-	this_speed.material.set_shader_parameter("speed", inv_lerp(0., 2., Global.default_time_scale))
+	update_speed_display()
+
 func _speed_down() -> void:
 	Global.default_time_scale -= speed_step
-	
 	Global.default_time_scale = clamp(Global.default_time_scale, speed_step, 2.)
 	
+	update_speed_display()
+
+func update_speed_display() -> void:
 	this_speed.text = str(int(round(Global.default_time_scale * 100))) + "%"
 	
 	this_speed.material.set_shader_parameter("speed", inv_lerp(0., 2., Global.default_time_scale))
