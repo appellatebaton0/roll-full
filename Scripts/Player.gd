@@ -35,7 +35,8 @@ var dash_cooldown_time := 0.0:
 			dash_reset.emit()
 		
 		dash_cooldown_time = to
-var dash_direction:Vector2
+var dash_direction:Vector2:
+	set(to): dash_direction = to.normalized()
 
 const DASH_BUFFER := 0.1
 var dash_buffering := 0.0
@@ -52,7 +53,7 @@ var was_on_wall := false
 var slide_mag := 0. ## The magnitude of the player's velocity slid against the wall on contact.
 
 # A normalized vector of the direction the player is grinding in.
-var direction := Vector2(1,1):
+var direction := Vector2(1,0):
 	set(to): direction = to.normalized()
 
 func _ready() -> void: 
@@ -168,11 +169,13 @@ func _physics_process(delta: float) -> void:
 var real_velocity:Vector2
 
 func _input(event: InputEvent) -> void:
+	## Mouse control.
 	if event is InputEventMouse:
-		dash_direction = (get_global_mouse_position() - global_position).normalized()
+		dash_direction = get_global_mouse_position() - global_position
+	
+	## Something something controller support.
 	elif event is InputEventJoypadMotion:
-		## Something something controller support.
-		print(Input.get_joy_axis(0, JOY_AXIS_LEFT_X))
+		dash_direction = Input.get_vector("JL", "JR", "JU", "JD")
 
 func _on_reset() -> void:
 	global_position = respawn_position
@@ -228,5 +231,3 @@ func _draw() -> void: if DEBUG:
 	draw_line(Vector2.ZERO, velocity, Color.GREEN, 15)
 	
 	draw_circle(ray_node.target_position, 10.0, Color.TEAL)
-	
-	#draw_line(to_local(snapped_to.global_position), (Vector2.DOWN.rotated(snapped_to.rotation) * 250) + to_local(snapped_to.global_position), Color.GREEN, 15)

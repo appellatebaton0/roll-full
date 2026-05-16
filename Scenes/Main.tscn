@@ -289,43 +289,31 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/6/type = "method"
+tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("LevelSelectionScreen")
+tracks/6/path = NodePath("PauseScreen:can_pause")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"grab_focus"
-}]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PauseScreen:can_pause")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("OptionsScreen:return_focus")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Play")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.375),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -1161,6 +1149,9 @@ visible = false
 layout_mode = 1
 focused = false
 
+[node name="SubViewport" parent="CanvasLayer/UI/LevelSelectionScreen/SubViewportContainer" parent_id_path=PackedInt32Array(17560446, 1174239960) index="0" unique_id=1258049184]
+render_target_update_mode = 0
+
 [node name="MainMenu" type="Panel" parent="CanvasLayer/UI" unique_id=49104739]
 layout_mode = 1
 anchors_preset = 15
@@ -1264,7 +1255,7 @@ patch_margin_right = 64
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-237.06238, -476.26193, -144.63705, -459.78702, -78.286606, -526.2083, 4.5240674, -481.97876, 88.1524, -524.64575, 153.24234, -456.99103, 245.96242, -471.72714, 286.96014, -387.26978, 379.69592, -372.63254, 392.5883, -279.6398, 476.26117, -237.06387, 459.78714, -144.63675, 526.20807, -78.28828, 481.97876, 4.524376, 524.646, 88.15073, 456.9909, 153.24263, 471.7279, 245.96094, 387.2696, 286.96042, 372.63376, 379.69473, 279.6396, 392.58847, 237.06358, 476.26135, 144.63646, 459.78723, 78.28794, 526.2081, -4.524684, 481.97876, -88.15106, 524.64594, -153.24292, 456.9908, -245.96123, 471.72775, -286.96066, 387.26938, -379.69498, 372.6335, -392.58868, 279.6393, -476.2615, 237.06326, -459.78732, 144.63615, -526.2082, 78.287605, -481.97876, -4.5249925, -524.64594, -88.151405, -456.99072, -153.24321, -471.7276, -245.96153, -387.26923, -286.9609, -372.63324, -379.69522, -279.64056, -392.58777, -237.06238, -476.26193, -229.79482, -263.99686, -205.90265, -102.4895, -349.16348, -24.183725, -218.0663, 73.123795, -263.9967, 229.79498, -102.48937, 205.90273, -24.184395, 349.16345, 73.124214, 218.06616, 229.79448, 263.99716, 205.90251, 102.48976, 349.16348, 24.184172, 218.06612, -73.12435, 263.997, -229.79465, 102.48963, -205.90259, 24.183949, -349.16348, -73.12366, -218.06635, -229.79482, -263.99686)
+polygon = PackedVector2Array(531.8597, 12.217643, 474.20776, 86.31917, 502.05246, 175.97533, 424.32687, 228.62785, 423.09964, 322.5069, 332.90756, 348.56354, 302.7365, 437.46384, 208.90015, 434.37854, 152.73375, 509.60416, 64.44361, 477.67252, -12.220013, 531.8596, -86.31404, 474.20868, -175.97757, 502.05167, -228.62975, 424.32587, -322.50232, 423.10312, -348.56503, 332.906, -437.46518, 302.73456, -434.3763, 208.90483, -509.60486, 152.73149, -477.67178, 64.44877, -531.8596, -12.222382, -474.2083, -86.316154, -502.0536, -175.97214, -424.32486, -228.63165, -423.10168, -322.5042, -332.9098, -348.56143, -302.7326, -437.46652, -208.90291, -434.37723, -152.72922, -509.60553, -64.44665, -477.6721, 12.216636, -531.85974, 86.31827, -474.20792, 175.97438, -502.05283, 228.62704, -424.32733, 322.5061, -423.10025, 348.5629, -332.90823, 437.4679, -302.73065, 434.37817, -208.90097, 509.60388, -152.73473, 477.67236, -64.44451, 531.8597, 12.217643, 326.3484, 126.478165, 229.93933, -5.282064, 320.19678, -141.32948, 158.85674, -166.3266, 126.47755, -326.34863, -5.2824993, -229.93933, -141.33092, -320.19614, -166.3273, -158.85599, -326.34918, -126.4761, -229.93932, 5.2835236, -320.19553, 141.33234, -158.85526, 166.32802, -126.47464, 326.34976, 5.281039, 229.93936, 141.32887, 320.19705, 166.3263, 158.85706, 326.3484, 126.478165)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1397,3 +1388,5 @@ mouse_filter = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=582492900]
 environment = SubResource("Environment_hwpts")
+
+[editable path="CanvasLayer/UI/LevelSelectionScreen"]
