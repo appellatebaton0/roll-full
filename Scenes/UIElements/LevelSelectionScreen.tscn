@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cnfljsla0enkg" path="res://Scenes/UIElements/RankingBar.tscn" id="8_7mpik"]
 [ext_resource type="Script" uid="uid://carfkn31m5052" path="res://Scripts/UI/LevelOverview.gd" id="8_8at3y"]
 [ext_resource type="Texture2D" uid="uid://dparj85pico7e" path="res://Assets/Textures/UIArrow.png" id="11_0kjg5"]
+[ext_resource type="Shader" uid="uid://w2l4bdrd4uom" path="res://Shaders/SpeedLabel.gdshader" id="11_eebbl"]
 
 [sub_resource type="Gradient" id="Gradient_vafqf"]
 offsets = PackedFloat32Array(0)
@@ -101,6 +102,16 @@ Button/styles/focus = SubResource("StyleBoxFlat_8at3y")
 Button/styles/hover = SubResource("StyleBoxFlat_0kjg5")
 Button/styles/normal = SubResource("StyleBoxFlat_eebbl")
 Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_du3wf"]
+shader = ExtResource("11_eebbl")
+shader_parameter/speed = 0.99
+shader_parameter/range = Vector2(0.912, 0.95)
+shader_parameter/colorA = Color(1, 1, 1, 1)
+shader_parameter/colorB = Color(0.05490196, 0.8901961, 0.8745098, 1)
+shader_parameter/wave_affect = 6.0
+shader_parameter/wave_density = 150.0
+shader_parameter/wave_drift = 3.0
 
 [sub_resource type="GDScript" id="GDScript_eebbl"]
 script/source = "extends TextureButton
@@ -969,12 +980,15 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 61
 text = "<"
 
-[node name="Speed" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=1195093939]
+[node name="Speed" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=715588176]
+material = SubResource("ShaderMaterial_du3wf")
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 52
+theme_override_colors/font_color = Color(0.68235296, 0.4392157, 1, 1)
+theme_override_font_sizes/font_size = 55
 text = "100%"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpeedUp" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=760811447]
 layout_mode = 2

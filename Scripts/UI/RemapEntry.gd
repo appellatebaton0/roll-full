@@ -1,7 +1,7 @@
 class_name RemapEntry extends BoxContainer
 
 @onready var input_label  := $HBoxContainer2/InputLabel
-@onready var reset_button := $HBoxContainer2/Button
+@onready var reset_button := $HBoxContainer2/MarginContainer/Button
 
 @export var action:String
 @export var label_override:String
@@ -56,7 +56,7 @@ func get_remap_button_from(control:Control) -> RemapButton:
 	
 	return null
 
-func _any_remapped() -> void: reset_button.visible = true
+func _any_remapped() -> void: reset_button.disabled = false
 func _reset_pressed() -> void:
 	
 	InputMap.action_erase_events(action)
@@ -68,6 +68,6 @@ func _reset_pressed() -> void:
 	
 	buttons[0].grab_focus()
 	
-	reset_button.visible = false
+	reset_button.disabled = true
 	
 	pass

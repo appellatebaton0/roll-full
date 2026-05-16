@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://b37kon8k6vbga" path="res://Scenes/UIElements/LevelSelectionScreen.tscn" id="10_346fj"]
 [ext_resource type="PackedScene" uid="uid://dvooy22gtyfrf" path="res://Scenes/UIElements/OptionsScreen.tscn" id="10_grg3l"]
 [ext_resource type="Shader" uid="uid://5um5rx0wnwre" path="res://Shaders/PauseTransition.gdshader" id="11_frkhe"]
-[ext_resource type="Shader" uid="uid://cglx6kovavtml" path="res://Shaders/OptionsTransition.gdshader" id="12_1p5hy"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
 [ext_resource type="PackedScene" uid="uid://pfc88xk4q0lc" path="res://Scenes/UIElements/PauseScreen.tscn" id="16_2w5on"]
@@ -18,48 +17,58 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frkhe"]
 bg_color = Color(0.11372549, 0.18039216, 0.2784314, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_346fj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p5hy"]
+content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
 border_width_bottom = 20
 border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
+corner_radius_top_left = 40
+corner_radius_bottom_right = 40
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
+border_width_bottom = 20
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 40
+corner_radius_bottom_right = 40
 corner_detail = 1
 shadow_size = 4
 shadow_offset = Vector2(10, 10)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
-bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
-border_width_bottom = 20
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
-corner_detail = 1
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erwvk"]
+content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
 border_width_bottom = 20
 border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
+corner_radius_top_left = 40
+corner_radius_bottom_right = 40
 corner_detail = 1
 shadow_size = 4
 shadow_offset = Vector2(10, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w5on"]
+content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color(0.41, 0.57399994, 0.82, 1)
 border_width_bottom = 10
 border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 50
-corner_radius_bottom_right = 50
+corner_radius_top_left = 40
+corner_radius_bottom_right = 40
 corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
 
 [sub_resource type="Theme" id="Theme_346fj"]
 Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_346fj")
+Button/styles/focus = SubResource("StyleBoxFlat_1p5hy")
 Button/styles/hover = SubResource("StyleBoxFlat_h1m7h")
 Button/styles/normal = SubResource("StyleBoxFlat_erwvk")
 Button/styles/pressed = SubResource("StyleBoxFlat_2w5on")
@@ -70,11 +79,6 @@ script/source = "extends Button
 # Called when the node enters the scene tree for the first time.
 func _pressed() -> void: get_tree().quit()
 "
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_frkhe"]
-shader = ExtResource("12_1p5hy")
-shader_parameter/threshold = 1.0
-shader_parameter/warp = Vector2(1, 0.65)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p5hy"]
 shader = ExtResource("11_frkhe")
@@ -1191,8 +1195,8 @@ text = "ROLL"
 layout_mode = 0
 offset_left = 53.0
 offset_top = 302.0
-offset_right = 353.0
-offset_bottom = 582.0
+offset_right = 379.0
+offset_bottom = 603.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = SubResource("Theme_346fj")
@@ -1260,7 +1264,7 @@ patch_margin_right = 64
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
 position = Vector2(1152, 432)
 color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(-531.9958, 2.1068401, -476.36063, -73.515526, -506.6091, -162.39209, -430.3283, -217.121, -431.63196, -310.99493, -342.17245, -339.47318, -314.4036, -429.15543, -220.5223, -428.59528, -166.39922, -505.30716, -77.28587, -475.76346, -2.1064997, -531.9958, 73.51582, -476.36063, 162.39243, -506.609, 217.12128, -430.3282, 310.99524, -431.63174, 339.47336, -342.1722, 429.1556, -314.40332, 428.59543, -220.52202, 505.30725, -166.3989, 475.76352, -77.285576, 531.99585, -2.1061592, 476.36057, 73.516136, 506.60925, 162.39177, 430.32846, 217.12074, 431.63214, 310.99466, 342.17264, 339.47293, 314.40387, 429.15524, 220.52257, 428.59512, 166.39952, 505.307, 77.28618, 475.76343, 2.1068337, 531.9958, -73.51553, 476.36063, -162.3921, 506.6091, -217.121, 430.3283, -310.99493, 431.63196, -339.47318, 342.17245, -429.15543, 314.4036, -428.59528, 220.5223, -505.30716, 166.39922, -475.7635, 77.285866, -531.9958, 2.1068401, -323.88568, 132.65773, -163.2774, 161.98917, -135.21846, 322.82498, -0.9108546, 229.99818, 132.65794, 323.8856, 161.98927, 163.27731, 322.8248, 135.21889, 229.99818, 0.9107074, 323.88574, -132.65752, 163.27719, -161.98936, 135.21867, -322.8249, 0.91056025, -229.9982, -132.65773, -323.88568, -161.98917, -163.2774, -322.82498, -135.21846, -229.99818, -0.9108519, -323.88568, 132.65773)
+polygon = PackedVector2Array(-237.06238, -476.26193, -144.63705, -459.78702, -78.286606, -526.2083, 4.5240674, -481.97876, 88.1524, -524.64575, 153.24234, -456.99103, 245.96242, -471.72714, 286.96014, -387.26978, 379.69592, -372.63254, 392.5883, -279.6398, 476.26117, -237.06387, 459.78714, -144.63675, 526.20807, -78.28828, 481.97876, 4.524376, 524.646, 88.15073, 456.9909, 153.24263, 471.7279, 245.96094, 387.2696, 286.96042, 372.63376, 379.69473, 279.6396, 392.58847, 237.06358, 476.26135, 144.63646, 459.78723, 78.28794, 526.2081, -4.524684, 481.97876, -88.15106, 524.64594, -153.24292, 456.9908, -245.96123, 471.72775, -286.96066, 387.26938, -379.69498, 372.6335, -392.58868, 279.6393, -476.2615, 237.06326, -459.78732, 144.63615, -526.2082, 78.287605, -481.97876, -4.5249925, -524.64594, -88.151405, -456.99072, -153.24321, -471.7276, -245.96153, -387.26923, -286.9609, -372.63324, -379.69522, -279.64056, -392.58777, -237.06238, -476.26193, -229.79482, -263.99686, -205.90265, -102.4895, -349.16348, -24.183725, -218.0663, 73.123795, -263.9967, 229.79498, -102.48937, 205.90273, -24.184395, 349.16345, 73.124214, 218.06616, 229.79448, 263.99716, 205.90251, 102.48976, 349.16348, 24.184172, 218.06612, -73.12435, 263.997, -229.79465, 102.48963, -205.90259, 24.183949, -349.16348, -73.12366, -218.06635, -229.79482, -263.99686)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1341,7 +1345,6 @@ layout_mode = 1
 
 [node name="OptionsScreen" parent="CanvasLayer/UI" unique_id=2145581008 instance=ExtResource("10_grg3l")]
 visible = false
-material = SubResource("ShaderMaterial_frkhe")
 layout_mode = 1
 focus_mode = 2
 

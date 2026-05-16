@@ -39,7 +39,7 @@ func _update():
 	update_overview()
 	update_attempt_box()
 	
-	this_speed.text = str(round(Global.default_time_scale * 100)) + "%"
+	this_speed.text = str(int(round(Global.default_time_scale * 100))) + "%"
 
 func _set_level_data(to:LevelData):
 	if level_data:
@@ -113,7 +113,7 @@ func update_overview(run:Variant = null) -> int:
 		time.text            = "Time: " + Global.seconds_as_timer(run.time)
 		score.text           = "Score: " + Global.digitize(run.score, 4)
 		score_threshold.text = "/" + Global.digitize(level_data.score_threshold, 4)
-		speed.text           = "Speed: " + str(round(run.speed * 100)) + "%"
+		speed.text           = "Speed: " + str(int(round(run.speed * 100))) + "%"
 		return 1
 	return -1
 
@@ -178,14 +178,22 @@ func _speed_up() -> void:
 	
 	Global.default_time_scale = clamp(Global.default_time_scale, speed_step, 2.)
 	
-	this_speed.text = str(round(Global.default_time_scale * 100)) + "%"
+	this_speed.text = str(int(round(Global.default_time_scale * 100))) + "%"
+	
+	print(Global.default_time_scale, " -> ", inv_lerp(speed_step, 2., Global.default_time_scale))
+	this_speed.material.set_shader_parameter("speed", inv_lerp(0., 2., Global.default_time_scale))
 func _speed_down() -> void:
 	Global.default_time_scale -= speed_step
 	
 	Global.default_time_scale = clamp(Global.default_time_scale, speed_step, 2.)
 	
-	this_speed.text = str(round(Global.default_time_scale * 100)) + "%"
+	this_speed.text = str(int(round(Global.default_time_scale * 100))) + "%"
+	
+	this_speed.material.set_shader_parameter("speed", inv_lerp(0., 2., Global.default_time_scale))
 
+
+func inv_lerp(a:float,b:float,t:float):
+	return (t - a) / (b - a)
 
 func _on_attempt_box_focus_entered() -> void:
 	for child in attempt_box.get_children(): if child is AttemptEntry:

@@ -12,13 +12,13 @@ const RemapEntryScene := preload("res://Scenes/UIElements/RemapEntry.tscn")
 
 func _ready() -> void:
 	
-	for input in reconfigurable_inputs:
+	for i in len(reconfigurable_inputs):
+		var input:String = reconfigurable_inputs.keys()[i]
 		var new:RemapEntry = RemapEntryScene.instantiate()
 		
 		new.action = input
 		new.label_override = reconfigurable_inputs[input]
 		
-		new.focus_neighbor_top = remap_box.get_node(remap_box.focus_neighbor_top).get_path()
 		
 		remap_box.add_child(new)
 	
@@ -36,9 +36,13 @@ func _ready() -> void:
 func _on_focused() -> void: $MarginContainer/VBoxContainer/VBoxContainer/Title/Button.grab_focus()
 
 func _on_scroll_focus(node:Control) -> void:
+	
+	# Ignore any focusing caused by the mouse.
+	if not node.has_focus(true): return
+	
 	scroll_cont.scroll_vertical -= scroll_cont.global_position.y - node.global_position.y + (scroll_cont.size.y / 2)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_visible_in_tree() and Input.is_action_just_pressed("ui_cancel"):
 		close()
 

@@ -3,6 +3,62 @@
 [ext_resource type="Script" uid="uid://bewhrg107j63j" path="res://Scripts/UI/RemapButton.gd" id="1_g1cjy"]
 [ext_resource type="Script" uid="uid://bplo7msib57yy" path="res://Scripts/UI/RemapEntry.gd" id="1_y47wx"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_y47wx"]
+color = Color(0.4509804, 0.654902, 0.9607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y47wx"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.052500006, 0.093125015, 0.15, 1)
+border_color = Color(0.025200002, 0.043119997, 0.07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n35v"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.18039216, 0.31764707, 0.50980395, 1)
+border_width_bottom = 5
+border_color = Color(0.14901961, 0.2509804, 0.4117647, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lu2cs"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.15294118, 0.26666668, 0.43137255, 1)
+border_width_bottom = 5
+border_color = Color(0.11764706, 0.20392157, 0.32941177, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4k8ld"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.21700002, 0.38491672, 0.62, 1)
+border_width_bottom = 4
+border_color = Color(0.1882353, 0.32156864, 0.52156866, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_2028h"]
+Button/styles/disabled = SubResource("StyleBoxFlat_y47wx")
+Button/styles/hover = SubResource("StyleBoxFlat_8n35v")
+Button/styles/normal = SubResource("StyleBoxFlat_lu2cs")
+Button/styles/pressed = SubResource("StyleBoxFlat_4k8ld")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lwhd"]
 bg_color = Color(0.5294118, 0.7019608, 0.9607843, 1)
 border_width_bottom = 5
@@ -109,6 +165,7 @@ template = NodePath("MarginContainer/VBoxContainer/HBoxContainer3")
 use_parent_material = true
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="InputLabel" type="Label" parent="HBoxContainer2" unique_id=399750534]
 use_parent_material = true
@@ -118,10 +175,26 @@ theme_override_font_sizes/font_size = 20
 text = "Combo Up"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer2" unique_id=1240229476]
-visible = false
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer2/InputLabel" unique_id=2136913037]
+use_parent_material = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 18.0
+offset_right = 83.0
+offset_bottom = 22.0
+theme_override_styles/separator = SubResource("StyleBoxLine_y47wx")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer2" unique_id=1517832062]
 use_parent_material = true
 layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="Button" type="Button" parent="HBoxContainer2/MarginContainer" unique_id=1240229476]
+use_parent_material = true
+layout_mode = 2
+theme = SubResource("Theme_2028h")
+disabled = true
 text = "R"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=673666887]
@@ -139,7 +212,7 @@ layout_mode = 2
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1340325178]
 use_parent_material = true
 layout_mode = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 0
 
 [node name="RemapButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=118556631 node_paths=PackedStringArray("unmap_button")]
 use_parent_material = true
@@ -157,8 +230,9 @@ metadata/_custom_type_script = "uid://bewhrg107j63j"
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=189750943]
 use_parent_material = true
+custom_minimum_size = Vector2(27, 0)
 layout_mode = 2
 theme = SubResource("Theme_b4bem")
 theme_override_font_sizes/font_size = 15
 text = "DEL"
-alignment = 0
+alignment = 2
