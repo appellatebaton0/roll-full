@@ -4,8 +4,10 @@
 [ext_resource type="Theme" uid="uid://csk0lolivrox1" path="res://Assets/Themes/MainTheme.tres" id="1_jw32o"]
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://csckywnxt55rb" path="res://Scenes/UIElements/HUD.tscn" id="2_bmxlf"]
+[ext_resource type="Theme" uid="uid://onsha2ax1uw7" path="res://Assets/Themes/Base.tres" id="4_1p5hy"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
 [ext_resource type="Script" uid="uid://rlqm8pmiwns4" path="res://Scripts/UI/OffsetVBoxContainer.gd" id="5_frkhe"]
+[ext_resource type="Theme" uid="uid://cqxcbbf58mbkn" path="res://Assets/Themes/High.tres" id="6_h1m7h"]
 [ext_resource type="Texture2D" uid="uid://bsqpjxa30vyhd" path="res://Assets/Textures/Bar.svg" id="6_vy5pj"]
 [ext_resource type="PackedScene" uid="uid://b37kon8k6vbga" path="res://Scenes/UIElements/LevelSelectionScreen.tscn" id="10_346fj"]
 [ext_resource type="PackedScene" uid="uid://dvooy22gtyfrf" path="res://Scenes/UIElements/OptionsScreen.tscn" id="10_grg3l"]
@@ -13,65 +15,6 @@
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="13_346fj"]
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="13_h1m7h"]
 [ext_resource type="PackedScene" uid="uid://pfc88xk4q0lc" path="res://Scenes/UIElements/PauseScreen.tscn" id="16_2w5on"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frkhe"]
-bg_color = Color(0.11372549, 0.18039216, 0.2784314, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p5hy"]
-content_margin_left = 5.0
-content_margin_right = 5.0
-bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
-border_width_bottom = 20
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 40
-corner_radius_bottom_right = 40
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
-content_margin_left = 5.0
-content_margin_right = 5.0
-bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
-border_width_bottom = 20
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 40
-corner_radius_bottom_right = 40
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erwvk"]
-content_margin_left = 5.0
-content_margin_right = 5.0
-bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-border_width_bottom = 20
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 40
-corner_radius_bottom_right = 40
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w5on"]
-content_margin_left = 5.0
-content_margin_right = 5.0
-bg_color = Color(0.41, 0.57399994, 0.82, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 40
-corner_radius_bottom_right = 40
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="Theme" id="Theme_346fj"]
-Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_1p5hy")
-Button/styles/hover = SubResource("StyleBoxFlat_h1m7h")
-Button/styles/normal = SubResource("StyleBoxFlat_erwvk")
-Button/styles/pressed = SubResource("StyleBoxFlat_2w5on")
 
 [sub_resource type="GDScript" id="GDScript_0sclb"]
 resource_name = "Quit"
@@ -1152,7 +1095,7 @@ focused = false
 [node name="SubViewport" parent="CanvasLayer/UI/LevelSelectionScreen/SubViewportContainer" parent_id_path=PackedInt32Array(17560446, 1174239960) index="0" unique_id=1258049184]
 render_target_update_mode = 0
 
-[node name="MainMenu" type="Panel" parent="CanvasLayer/UI" unique_id=49104739]
+[node name="MainMenu" type="Panel" parent="CanvasLayer/UI" unique_id=49104739 groups=["Themed"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1161,7 +1104,7 @@ offset_right = 0.0007324219
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 0)
-theme_override_styles/panel = SubResource("StyleBoxFlat_frkhe")
+theme = ExtResource("4_1p5hy")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/MainMenu" unique_id=253607873]
 layout_mode = 0
@@ -1178,6 +1121,7 @@ theme_override_constants/margin_bottom = 60
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme = ExtResource("4_1p5hy")
 theme_override_fonts/font = ExtResource("5_50glp")
 theme_override_font_sizes/font_size = 160
 text = "ROLL"
@@ -1190,7 +1134,7 @@ offset_right = 379.0
 offset_bottom = 603.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
-theme = SubResource("Theme_346fj")
+theme = ExtResource("6_h1m7h")
 theme_override_constants/separation = 23
 script = ExtResource("5_frkhe")
 
@@ -1251,11 +1195,12 @@ offset_bottom = 226.0
 texture = ExtResource("6_vy5pj")
 patch_margin_left = 64
 patch_margin_right = 64
+metadata/theme_id = "base_text"
 
-[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053]
+[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053 groups=["Themed"]]
+modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 position = Vector2(1152, 432)
-color = Color(0.5376, 0.70655996, 0.96, 1)
-polygon = PackedVector2Array(531.8597, 12.217643, 474.20776, 86.31917, 502.05246, 175.97533, 424.32687, 228.62785, 423.09964, 322.5069, 332.90756, 348.56354, 302.7365, 437.46384, 208.90015, 434.37854, 152.73375, 509.60416, 64.44361, 477.67252, -12.220013, 531.8596, -86.31404, 474.20868, -175.97757, 502.05167, -228.62975, 424.32587, -322.50232, 423.10312, -348.56503, 332.906, -437.46518, 302.73456, -434.3763, 208.90483, -509.60486, 152.73149, -477.67178, 64.44877, -531.8596, -12.222382, -474.2083, -86.316154, -502.0536, -175.97214, -424.32486, -228.63165, -423.10168, -322.5042, -332.9098, -348.56143, -302.7326, -437.46652, -208.90291, -434.37723, -152.72922, -509.60553, -64.44665, -477.6721, 12.216636, -531.85974, 86.31827, -474.20792, 175.97438, -502.05283, 228.62704, -424.32733, 322.5061, -423.10025, 348.5629, -332.90823, 437.4679, -302.73065, 434.37817, -208.90097, 509.60388, -152.73473, 477.67236, -64.44451, 531.8597, 12.217643, 326.3484, 126.478165, 229.93933, -5.282064, 320.19678, -141.32948, 158.85674, -166.3266, 126.47755, -326.34863, -5.2824993, -229.93933, -141.33092, -320.19614, -166.3273, -158.85599, -326.34918, -126.4761, -229.93932, 5.2835236, -320.19553, 141.33234, -158.85526, 166.32802, -126.47464, 326.34976, 5.281039, 229.93936, 141.32887, 320.19705, 166.3263, 158.85706, 326.3484, 126.478165)
+polygon = PackedVector2Array(-531.9215, -9.139212, -474.7002, -83.568634, -503.0632, -173.06476, -425.64255, -226.16898, -424.96164, -320.04938, -334.92014, -346.63022, -305.26187, -435.7054, -211.41338, -433.16092, -155.68085, -508.71158, -67.21192, -477.29083, 9.139299, -531.9215, 83.56872, -474.7002, 173.06483, -503.06317, 226.16884, -425.64264, 320.04935, -424.96167, 346.63022, -334.92014, 435.70544, -305.2618, 433.16095, -211.4133, 508.71158, -155.68077, 477.29086, -67.21184, 531.9215, 9.139385, 474.70023, 83.568565, 503.06323, 173.06468, 425.6426, 226.16891, 424.9616, 320.0494, 334.9201, 346.63025, 305.26175, 435.7055, 211.41324, 433.16098, 155.68092, 508.71155, 67.21199, 477.29083, -9.139218, 531.9215, -83.56864, 474.7002, -173.06476, 503.0632, -226.16899, 425.64255, -320.0495, 424.96152, -346.6303, 334.92004, -435.70554, 305.26166, -433.161, 211.41316, -508.71167, 155.68062, -477.2908, 67.21214, -531.9215, -9.139212, -325.61108, -128.36446, -229.96605, 3.951163, -321.0092, 139.47438, -159.81665, 165.40448, -128.36446, 325.61108, 3.9511878, 229.96605, 139.47444, 321.00916, 165.40448, 159.81665, 325.61108, 128.36444, 229.96605, -3.9511862, 321.00916, -139.47443, 159.81665, -165.40448, 128.36443, -325.61108, -3.9511805, -229.96605, -139.47443, -321.00916, -165.40448, -159.81665, -325.61108, -128.36446)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1270,15 +1215,18 @@ inner_radius_modifiers = Dictionary[int, float]({
 2: -120.0
 })
 metadata/_custom_type_script = "uid://2fyexmj0cjug"
+metadata/theme_id = "high"
 
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=599458090]
-color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=599458090 groups=["Themed"]]
+modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 polygon = PackedVector2Array(60, 0, -2.6226833e-06, 60, 0, 0)
+metadata/theme_id = "high"
 
-[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1705481192]
+[node name="Polygon2D2" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1705481192 groups=["Themed"]]
+modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 position = Vector2(0, 864)
-color = Color(0.5372549, 0.7058824, 0.95686275, 1)
 polygon = PackedVector2Array(60, 0, 0, -5.2453665e-06, 7.1549283e-07, -60)
+metadata/theme_id = "high"
 
 [node name="Countdown" type="Control" parent="CanvasLayer/UI" unique_id=633146946]
 visible = false
@@ -1360,17 +1308,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/UI" unique_id=371789246]
+[node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/UI" unique_id=371789246 groups=["Themed"]]
+modulate = Color(0.05882353, 0.09019608, 0.14117648, 1)
 position = Vector2(-864, 432)
 rotation = -0.92851514
-color = Color(0.05882353, 0.09019608, 0.14117648, 1)
 polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
+metadata/theme_id = "transition"
 
-[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/UI" unique_id=461649627]
+[node name="Polygon2D4" type="Polygon2D" parent="CanvasLayer/UI" unique_id=461649627 groups=["Themed"]]
+modulate = Color(0.05882353, 0.09019608, 0.14117648, 1)
 position = Vector2(2016, 432)
 rotation = 2.2130775
-color = Color(0.05882353, 0.09019608, 0.14117648, 1)
 polygon = PackedVector2Array(0, 0, 2144, 1072, 2144, -1072)
+metadata/theme_id = "transition"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI" unique_id=547379919]
 libraries/ = SubResource("AnimationLibrary_pbw6q")

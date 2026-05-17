@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://ltmet2vjlwaf"]
+
+[ext_resource type="Script" uid="uid://dprbso1x1uabw" path="res://Scripts/UI/Tooltip.gd" id="1_jphx2"]
+[ext_resource type="FontFile" uid="uid://cnakc81irxpb1" path="res://Assets/Fonts/humaroid.regular.otf" id="2_cogxk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83se2"]
+bg_color = Color(0.11372549, 0.18039216, 0.2784314, 1)
+skew = Vector2(0.1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+shadow_size = 3
+shadow_offset = Vector2(1, 1)
+
+[node name="FancyTooltip" type="MarginContainer" unique_id=1667009073]
+custom_minimum_size = Vector2(250, 0)
+offset_right = 250.0
+offset_bottom = 122.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_jphx2")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1718293435]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_83se2")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=118620922]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1249684792]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_cogxk")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+fit_content = true

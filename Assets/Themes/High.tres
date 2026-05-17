@@ -1,0 +1,62 @@
+[gd_resource type="Theme" format=3 uid="uid://cqxcbbf58mbkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8at3y"]
+bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
+border_width_bottom = 10
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kjg5"]
+bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
+border_width_bottom = 10
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eebbl"]
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+border_width_bottom = 10
+border_color = Color(0.23529412, 0.41568628, 0.6901961, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du3wf"]
+bg_color = Color(0.41, 0.57399994, 0.82, 1)
+border_width_bottom = 5
+border_color = Color(0.2516, 0.44695988, 0.74, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pdqk2"]
+color = Color(0.16470589, 0.32156864, 0.52156866, 1)
+thickness = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek4xw"]
+bg_color = Color(0.06666667, 0.07450981, 0.12941177, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvypi"]
+bg_color = Color(0.61960787, 0.6627451, 1, 1)
+
+[resource]
+Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_8at3y")
+Button/styles/hover = SubResource("StyleBoxFlat_0kjg5")
+Button/styles/normal = SubResource("StyleBoxFlat_eebbl")
+Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
+HSeparator/styles/separator = SubResource("StyleBoxLine_pdqk2")
+Label/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_eebbl")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_ek4xw")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_yvypi")

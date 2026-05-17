@@ -184,3 +184,14 @@ func merge_sort(array:Array, condition:Callable) -> Array:
 			li += 1
 	
 	return response
+
+## Custom Tooltip Functions
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	if for_text == "": return null
+	
+	var tooltip:Tooltip = preload("res://Scenes/UIElements/FancyTooltip.tscn").instantiate()
+	
+	tooltip.text = for_text
+	
+	return tooltip

@@ -157,4 +157,4 @@ func _sort_condition(a:String, b:String):
 		if index > len(a):
 			return false
 	
-	return av > bv
+	return av < bv

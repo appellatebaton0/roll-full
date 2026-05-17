@@ -31,8 +31,7 @@ func _on_runs_updated() -> void: if level_data:
 	ranking.text = level_data.best_run.ranking_as_string()  if level_data.best_run != null else "-"
 	bonused.modulate.a = (1.0 if level_data.best_run.bonused else 0.0) if level_data.best_run != null else 0.0
 
-func _ready() -> void:
-	if needs_update: _on_runs_updated()
+func _ready() -> void: if needs_update: _on_runs_updated()
 
 func _process(delta: float) -> void:
 	pivot_offset = Vector2(0, size.y / 2)

@@ -1,37 +1,17 @@
 [gd_scene format=3 uid="uid://dqduu8fu52dky"]
 
+[ext_resource type="Theme" uid="uid://ckc2k077yqkcs" path="res://Assets/Themes/LevelEntry.tres" id="1_587nv"]
 [ext_resource type="Script" uid="uid://nk2cc3fltn7v" path="res://Scripts/UI/LevelEntry.gd" id="1_x6mls"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_ys53a"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxhfk"]
-bg_color = Color(0, 0, 0, 0.32156864)
-draw_center = false
-border_width_left = 10
-border_width_right = 10
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ys53a"]
-bg_color = Color(0, 0, 0, 0.32156864)
-draw_center = false
-border_width_left = 15
-border_width_right = 15
-border_color = Color(0.36078432, 0.8509804, 1, 1)
-corner_radius_top_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 1
+[ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="3_dx067"]
+[ext_resource type="Theme" uid="uid://onsha2ax1uw7" path="res://Assets/Themes/Base.tres" id="4_dx067"]
 
 [node name="LevelEntry" type="Button" unique_id=959268396]
 custom_minimum_size = Vector2(350, 61.25)
 offset_right = 350.0
 offset_bottom = 61.25
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_jxhfk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jxhfk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jxhfk")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ys53a")
+theme = ExtResource("1_587nv")
 script = ExtResource("1_x6mls")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1174031395]
@@ -57,13 +37,13 @@ theme_override_constants/separation = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1451595998]
 use_parent_material = true
 layout_mode = 2
+theme = ExtResource("3_dx067")
 theme_override_constants/separation = 0
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1091232376]
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.41960785, 0.98039216, 1, 1)
 theme_override_fonts/font = ExtResource("2_ys53a")
 theme_override_font_sizes/font_size = 19
 text = "rnk"
@@ -79,7 +59,6 @@ theme_override_constants/separation = -1
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.41960785, 0.98039216, 1, 1)
 theme_override_fonts/font = ExtResource("2_ys53a")
 theme_override_font_sizes/font_size = 50
 text = "S"
@@ -89,7 +68,6 @@ vertical_alignment = 1
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.41960785, 0.98039216, 1, 1)
 theme_override_fonts/font = ExtResource("2_ys53a")
 theme_override_font_sizes/font_size = 19
 text = "+"
@@ -97,6 +75,7 @@ text = "+"
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=257249041]
 use_parent_material = true
 layout_mode = 2
+theme = ExtResource("4_dx067")
 theme_override_font_sizes/font_size = 41
 text = "//"
 
@@ -104,19 +83,6 @@ text = "//"
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("4_dx067")
 theme_override_font_sizes/font_size = 40
 text = "INTRODUCTION"
-
-[node name="BestTime" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1412126754]
-visible = false
-use_parent_material = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 27
-text = "00:00.00"
-
-[node name="BestScore" type="Label" parent="MarginContainer/HBoxContainer" unique_id=577645000]
-visible = false
-use_parent_material = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 27
-text = "0000000"

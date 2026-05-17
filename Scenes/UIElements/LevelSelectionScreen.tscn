@@ -2,16 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bnuqlqycywpqr" path="res://Scripts/MouseParallax.gd" id="1_ejtqn"]
 [ext_resource type="Script" uid="uid://ba52qhfqun6n2" path="res://Scripts/UI/LevelSelectionScreen.gd" id="1_vafqf"]
+[ext_resource type="Texture2D" uid="uid://b617cwcxgf8bk" path="res://Assets/Textures/Rocks2.png" id="3_dnu7h"]
 [ext_resource type="Script" uid="uid://w2o6j5cqphex" path="res://Scripts/UI/SpinContainer.gd" id="3_woile"]
 [ext_resource type="Script" uid="uid://bu7foox8xva0i" path="res://Scripts/UI/LevelSelector.gd" id="4_oneo4"]
+[ext_resource type="Texture2D" uid="uid://nw6kn7vanad6" path="res://Assets/Textures/Rocks1.png" id="4_vij0u"]
 [ext_resource type="Script" uid="uid://b46wol6nsuin7" path="res://Scripts/UI/CycleContainer.gd" id="4_woile"]
 [ext_resource type="Shader" uid="uid://bupwsrtj71q6r" path="res://Shaders/TextureAlpha.gdshader" id="5_ek4xw"]
+[ext_resource type="Theme" uid="uid://cqxcbbf58mbkn" path="res://Assets/Themes/High.tres" id="5_v6qwd"]
 [ext_resource type="PackedScene" uid="uid://dqduu8fu52dky" path="res://Scenes/UIElements/LevelEntry.tscn" id="6_q46ju"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="7_b2y8u"]
 [ext_resource type="PackedScene" uid="uid://cnfljsla0enkg" path="res://Scenes/UIElements/RankingBar.tscn" id="8_7mpik"]
 [ext_resource type="Script" uid="uid://carfkn31m5052" path="res://Scripts/UI/LevelOverview.gd" id="8_8at3y"]
 [ext_resource type="Texture2D" uid="uid://dparj85pico7e" path="res://Assets/Textures/UIArrow.png" id="11_0kjg5"]
 [ext_resource type="Shader" uid="uid://w2l4bdrd4uom" path="res://Shaders/SpeedLabel.gdshader" id="11_eebbl"]
+[ext_resource type="Theme" uid="uid://onsha2ax1uw7" path="res://Assets/Themes/Base.tres" id="12_bks1m"]
+[ext_resource type="Script" uid="uid://bos15vu7lspt4" path="res://Scripts/UI/UseTooltip.gd" id="15_bks1m"]
 
 [sub_resource type="Gradient" id="Gradient_vafqf"]
 offsets = PackedFloat32Array(0)
@@ -21,12 +26,6 @@ colors = PackedColorArray(0.07450981, 0.21960784, 0.4, 1)
 gradient = SubResource("Gradient_vafqf")
 width = 1
 height = 1
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_pdqk2"]
-color = Color(0.16470589, 0.32156864, 0.52156866, 1)
-grow_begin = 45.0
-grow_end = 0.0
-thickness = 5
 
 [sub_resource type="Gradient" id="Gradient_ek4xw"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -44,64 +43,6 @@ shader_parameter/alpha_texture = SubResource("GradientTexture2D_7mpik")
 _limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5031847, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mpik"]
-bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-border_width_bottom = 6
-border_color = Color(0.275, 0.30499998, 0.5, 1)
-corner_radius_top_left = 20
-corner_radius_bottom_right = 20
-corner_detail = 1
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_8at3y"]
-color = Color(0.27058825, 0.30588236, 0.5019608, 1)
-thickness = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8at3y"]
-bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kjg5"]
-bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eebbl"]
-bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du3wf"]
-bg_color = Color(0.41, 0.57399994, 0.82, 1)
-border_width_bottom = 5
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-
-[sub_resource type="Theme" id="Theme_dnu7h"]
-Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_8at3y")
-Button/styles/hover = SubResource("StyleBoxFlat_0kjg5")
-Button/styles/normal = SubResource("StyleBoxFlat_eebbl")
-Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_du3wf"]
 shader = ExtResource("11_eebbl")
@@ -156,7 +97,7 @@ size = Vector2i(1152, 864)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport" unique_id=1532557747]
-modulate = Color(0.92156863, 0.92156863, 0.92156863, 1)
+modulate = Color(0.89, 0.89, 0.89, 1)
 scale = Vector2(0.25, 0.25)
 scroll_scale = Vector2(0.8, 0.8)
 repeat_size = Vector2(2048, 2048)
@@ -165,176 +106,11 @@ ignore_camera_scroll = true
 script = ExtResource("1_ejtqn")
 metadata/_edit_lock_ = true
 
-[node name="Polygon2D3" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=920663632]
-position = Vector2(975, 1290)
-rotation = 0.53784955
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 17, -85, 86, -108, 178, -101, 232, 16, 165, 80, 49, 50)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D5" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=313815246]
-position = Vector2(1772.0001, 1812.0002)
-rotation = -0.35305274
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D7" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=388796266]
-position = Vector2(1449.9998, 155)
-rotation = 0.10132122
-scale = Vector2(0.99999994, 0.99999994)
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D9" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=662735307]
-position = Vector2(291, 1314)
-rotation = 1.2810777
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D11" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=235485121]
-position = Vector2(337, 1568.0001)
-rotation = 1.3737866
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D13" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1822209888]
-position = Vector2(571.99994, 2015)
-rotation = 2.0543072
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D15" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1536746177]
-position = Vector2(1247, 688)
-rotation = 2.8846192
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 52.325684, -22.957275, 64.3833, -113.99927, 29.427734, -184.87305, -40.122437, -218.38086, -109.3114, -143.64893, -71.83008, -35.69922)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D17" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1273633373]
-position = Vector2(1130, 1184)
-rotation = 2.8846192
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -88.2605, 139.13696, -192.78564, 198.52148, -353.0669, 194.65845, -393.12183, 55.92285, -331.58887, -99.54321, -198.45825, -157.6145, -58.120605, -129.00757)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D19" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1660239787]
-position = Vector2(1482.9999, 915.99976)
-rotation = -3.0561106
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(-26.047852, 12.268311, -81.24817, 129.40894, -194.74744, 175.26685, -333.77942, 133.98608, -370.47107, 33.75293, -331.58887, -99.54321, -200.12048, -133.40161, -73.98364, -102.0564)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D21" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=308928947]
-position = Vector2(288, 842.9995)
-rotation = -3.0561106
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -104.958984, 40.107666, -194.57153, -33.510254, -195.47998, -137.81348, -102.36279, -198.98706, 2.1956787, -161.77808, 27.272705, -56.534912)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D24" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1024848165]
-position = Vector2(1972.9064, 48.978516)
-rotation = 2.7005458
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -69.5199, 51.224854, -191.36584, 63.373047, -274.365, -6.770508, -308.36804, -145.56836, -238.40393, -256.29785, -143.06348, -313.02686, -33.23828, -243.48975, 6.763794, -136.14063)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D26" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=2130986576]
-position = Vector2(130, 1301)
-rotation = 2.7005458
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D28" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1956174763]
-position = Vector2(956.99994, 297.99997)
-rotation = 2.9206874
-scale = Vector2(0.99999994, 0.99999994)
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D30" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=966213043]
-position = Vector2(864.0001, 982.0002)
-rotation = 1.9295793
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D31" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=840257328]
-position = Vector2(1123.9998, 981.0001)
-rotation = 1.9295793
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D33" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=635922169]
-position = Vector2(119.999756, 745.99976)
-rotation = 1.4119656
-scale = Vector2(0.99999994, 0.99999994)
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D35" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1009539087]
-position = Vector2(654.9999, 268.99997)
-rotation = 2.5985875
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(23.26709, -44.358154, 98.39395, -114.650024, 228.99396, -149.12671, 331.94052, -101.01221, 353.65015, -7.317566, 288.05798, 89.75284, 186.48062, 109.04111, 74.42557, 68.27759)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D37" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1116226017]
-position = Vector2(1758.0002, 300)
-rotation = 0.6661963
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 10.763428, -104.30786, 95.438965, -158.0393, 223.98267, -193.72607, 331.96265, -113.74927, 304.53418, 43.54248, 210.63916, 97.24292, 89.198975, 84.90332)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D39" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1076870058]
-position = Vector2(372, 1869.0002)
-rotation = 0.6661963
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D41" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1433401483]
-position = Vector2(1248.7847, 520.0166)
-rotation = 0.46709356
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D43" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1377511241]
-position = Vector2(1850.2251, 1469.6265)
-rotation = -0.17426312
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -25.633545, 70.625244, 20.148682, 116.25415, 117.13623, 153.63623, 182.51758, 105.23926, 163.6521, 10.533936, 88.6228, -18.920898)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D45" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1173316214]
-position = Vector2(1711, 585.0005)
-rotation = -0.17426312
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D47" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1035667429]
-position = Vector2(1661, 638.0005)
-rotation = 2.1188674
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D49" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1282939028]
-position = Vector2(213.99976, 876)
-rotation = 1.6251549
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
-metadata/_edit_lock_ = true
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1959332705]
+modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
+position = Vector2(1024, 1024)
+scale = Vector2(2, 2)
+texture = ExtResource("3_dnu7h")
 
 [node name="Parallax2D2" type="Parallax2D" parent="SubViewportContainer/SubViewport" unique_id=1176181391]
 scale = Vector2(0.25, 0.25)
@@ -345,179 +121,17 @@ ignore_camera_scroll = true
 script = ExtResource("1_ejtqn")
 metadata/_edit_lock_ = true
 
-[node name="Polygon2D2" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=2090899148]
-position = Vector2(1517, 1202)
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 17, -85, 86, -108, 178, -101, 232, 16, 165, 80, 49, 50)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D4" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1078551786]
-position = Vector2(1074.0001, 1822)
-rotation = -0.35305274
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 17, -85, 86, -108, 178, -101, 232, 16, 165, 80, 49, 50)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D6" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=569773587]
-position = Vector2(1644.0001, 80)
-rotation = -0.79643464
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D8" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1745013879]
-position = Vector2(825, 1480.9998)
-rotation = 0.10132122
-scale = Vector2(0.99999994, 0.99999994)
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 7.942505, 140.40619, 81.52368, 215.47827, 183.11047, 234.79468, 242.6745, 171.48492, 217.49646, 25.793274, 182.6847, -64.83313, 46.279785, -73.53363)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D10" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=991589931]
-position = Vector2(1162, 201)
-rotation = 1.2810777
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D12" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=830419448]
-position = Vector2(980, 531.00024)
-rotation = 1.3737866
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -17.948242, -76.30762, 41.8396, -175.35498, 137.01001, -197.07178, 207.69482, -143.65186, 251.48901, -21.030273, 236.60486, 67.40283, 198.17822, 112.29614, 101.72754, 113.80469)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D14" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1857038522]
-position = Vector2(873.99994, 1086.0001)
-rotation = 2.0543072
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 52.325684, -22.957275, 64.3833, -113.99927, 29.427734, -184.87305, -40.122437, -218.38086, -109.3114, -143.64893, -71.83008, -35.69922)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D16" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1776095708]
-position = Vector2(416.99997, 760)
-rotation = 2.8846192
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -88.2605, 139.13696, -192.78564, 198.52148, -353.0669, 194.65845, -393.12183, 55.92285, -331.58887, -99.54321, -198.45825, -157.6145, -58.120605, -129.00757)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D18" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1554889588]
-position = Vector2(452.00003, 1441)
-rotation = 2.8846192
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -88.2605, 139.13696, -192.78564, 198.52148, -353.0669, 194.65845, -393.12183, 55.92285, -331.58887, -99.54321, -198.45825, -157.6145, -58.120605, -129.00757)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D20" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=616436879]
-position = Vector2(632, 1638)
-rotation = -3.0561106
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -104.958984, 40.107666, -194.57153, -33.510254, -195.47998, -137.81348, -102.36279, -198.98706, 2.1956787, -161.77808, 27.272705, -56.534912)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D22" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1868132925]
-position = Vector2(1519.9999, 1563)
-rotation = 2.2626138
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -98.38855, 30.490723, -228.92639, -3.2717285, -272.8717, -114.14917, -176.35559, -229.09961, -21.710327, -283.9253, 67.33313, -189.60547, 44.802124, -73.16943)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D25" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=241176179]
-position = Vector2(1470.979, 2010.6194)
-rotation = 2.7005458
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D27" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=702131955]
-position = Vector2(165, 515)
-rotation = -2.876967
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D29" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=670038637]
-position = Vector2(141, 1944)
-rotation = -2.8981295
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D50" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1595470475]
-position = Vector2(541.00006, 1083.9999)
-rotation = -2.5901363
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 69.035645, 85.66846, 34.457764, 158.91724, -49.43506, 167.97095, -154.03662, 92.05298, -132.89966, -1.9162598)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D32" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=878806603]
-position = Vector2(466.00003, 1248)
-rotation = 1.9295793
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D34" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=360428242]
-position = Vector2(1966.9785, 1317.6191)
-rotation = 1.4119656
-scale = Vector2(0.99999994, 0.99999994)
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 67.038086, 61.322266, 74.4126, 149.33716, 16.36084, 196.7395, -79.26172, 203.76318, -137.66602, 139.15723, -159.67139, 23.520752, -92.60742, -36.87329)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D36" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=742358518]
-position = Vector2(1360, 1349)
-rotation = 1.8253807
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 10.763428, -104.30786, 95.438965, -158.0393, 223.98267, -193.72607, 331.96265, -113.74927, 304.53418, 43.54248, 210.63916, 97.24292, 89.198975, 84.90332)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D38" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=957249284]
-position = Vector2(1027.0005, 1948.0005)
-rotation = 0.6661963
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 10.763428, -104.30786, 95.438965, -158.0393, 223.98267, -193.72607, 331.96265, -113.74927, 304.53418, 43.54248, 210.63916, 97.24292, 89.198975, 84.90332)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D40" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=723166963]
-position = Vector2(740, 420.9995)
-rotation = 0.46709356
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D42" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=537967136]
-position = Vector2(795.78467, 2038.0166)
-rotation = -0.17426312
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, 21.551025, -72.90796, 108.3042, -172.90234, 204.29272, -165.67871, 239.64014, -80.25903, 209.7229, 3.041504, 103.80762, 60.859863, 23.151611, 50.48755)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D44" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=489180176]
-position = Vector2(2027, 1634.0002)
-rotation = -0.17426312
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D46" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1276726863]
-position = Vector2(178, 643.0005)
-rotation = -0.17426312
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
-metadata/_edit_lock_ = true
-
-[node name="Polygon2D48" type="Polygon2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=20649781]
-position = Vector2(25.000488, 1004)
-rotation = 2.1188674
-color = Color(0.09397825, 0.26401964, 0.46555948, 1)
-polygon = PackedVector2Array(0, 0, -25.522705, 58.45996, 2.7680664, 111.16333, 79.13623, 156.08447, 140.59229, 141.51953, 192.47705, 94.80786, 190.42358, 31.492676, 65.27759, -18.969482)
-metadata/_edit_lock_ = true
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1385902966]
+modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
+position = Vector2(1024, 1024)
+scale = Vector2(2, 2)
+texture = ExtResource("4_vij0u")
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1242958731]
 position = Vector2(-1050, 432)
 color = Color(0.035999995, 0.12780006, 0.24, 1)
 polygon = PackedVector2Array(1200, 0, 1196.9426, 85.60702, 1187.7858, 170.7778, 1172.5763, 255.07834, 1151.3916, 338.07907, 1124.3397, 419.35703, 1091.5583, 498.49802, 1023, 486, 1028, -467, 1091.5585, -498.49792, 1124.3397, -419.3571, 1151.3915, -338.07928, 1172.5763, -255.0782, 1187.7858, -170.77782, 1196.9425, -85.60721)
+metadata/theme_id = "base"
 
 [node name="SpinContainer" type="Container" parent="." unique_id=344705815]
 layout_mode = 0
@@ -525,165 +139,166 @@ offset_left = -1050.0
 offset_top = 432.0
 offset_right = -1010.0
 offset_bottom = 472.0
+theme = ExtResource("5_v6qwd")
 script = ExtResource("3_woile")
 add_angle = 19.8
-radius = 800.0
+radius = 820.0
 
 [node name="HSeparator" type="HSeparator" parent="SpinContainer" unique_id=1307233007]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator2" type="HSeparator" parent="SpinContainer" unique_id=1393565708]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator3" type="HSeparator" parent="SpinContainer" unique_id=297790438]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator4" type="HSeparator" parent="SpinContainer" unique_id=1680157451]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator5" type="HSeparator" parent="SpinContainer" unique_id=1307855748]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator6" type="HSeparator" parent="SpinContainer" unique_id=1529474070]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator7" type="HSeparator" parent="SpinContainer" unique_id=1157358960]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator8" type="HSeparator" parent="SpinContainer" unique_id=1292592464]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator9" type="HSeparator" parent="SpinContainer" unique_id=1486165921]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator10" type="HSeparator" parent="SpinContainer" unique_id=1408740690]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator11" type="HSeparator" parent="SpinContainer" unique_id=264185936]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator12" type="HSeparator" parent="SpinContainer" unique_id=1322228382]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator13" type="HSeparator" parent="SpinContainer" unique_id=225093824]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator14" type="HSeparator" parent="SpinContainer" unique_id=987874]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator15" type="HSeparator" parent="SpinContainer" unique_id=1827828472]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator16" type="HSeparator" parent="SpinContainer" unique_id=1400128379]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator17" type="HSeparator" parent="SpinContainer" unique_id=1766709281]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator18" type="HSeparator" parent="SpinContainer" unique_id=1975768965]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator19" type="HSeparator" parent="SpinContainer" unique_id=1584514009]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator20" type="HSeparator" parent="SpinContainer" unique_id=2058061498]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator21" type="HSeparator" parent="SpinContainer" unique_id=686903803]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator22" type="HSeparator" parent="SpinContainer" unique_id=873658980]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator23" type="HSeparator" parent="SpinContainer" unique_id=271031120]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator24" type="HSeparator" parent="SpinContainer" unique_id=145072589]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator25" type="HSeparator" parent="SpinContainer" unique_id=917934995]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator26" type="HSeparator" parent="SpinContainer" unique_id=670690022]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator27" type="HSeparator" parent="SpinContainer" unique_id=1313946058]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator28" type="HSeparator" parent="SpinContainer" unique_id=1176882369]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator29" type="HSeparator" parent="SpinContainer" unique_id=595739987]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator38" type="HSeparator" parent="SpinContainer" unique_id=570528434]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator39" type="HSeparator" parent="SpinContainer" unique_id=140214428]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator30" type="HSeparator" parent="SpinContainer" unique_id=498138785]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator31" type="HSeparator" parent="SpinContainer" unique_id=684411363]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator32" type="HSeparator" parent="SpinContainer" unique_id=2088172696]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator33" type="HSeparator" parent="SpinContainer" unique_id=1942754392]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator34" type="HSeparator" parent="SpinContainer" unique_id=355198695]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator35" type="HSeparator" parent="SpinContainer" unique_id=886599808]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator36" type="HSeparator" parent="SpinContainer" unique_id=1543736089]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HSeparator37" type="HSeparator" parent="SpinContainer" unique_id=1676997256]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=652578163]
 layout_mode = 1
@@ -719,6 +334,7 @@ scroll_offset = -346.0
 [node name="LevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "{name}: "
 
 [node name="LevelEntry2" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=2062440854 instance=ExtResource("6_q46ju")]
 use_parent_material = true
@@ -743,6 +359,8 @@ layout_mode = 2
 [node name="LevelEntry7" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=941117780 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "aisdibhasue \\awet\\ uwet awteawe tanjnerbw \\awe\\
+"
 
 [node name="LevelEntry8" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1515945423 instance=ExtResource("6_q46ju")]
 use_parent_material = true
@@ -766,6 +384,7 @@ theme_override_constants/separation = 15
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1439104922]
 custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
+theme = ExtResource("12_bks1m")
 theme_override_constants/separation = 22
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1770714350]
@@ -886,11 +505,12 @@ layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=873029250]
 layout_mode = 2
+theme = ExtResource("12_bks1m")
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=132540109]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_7mpik")
+theme = ExtResource("5_v6qwd")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1013171180]
 layout_mode = 2
@@ -908,7 +528,6 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1451477949]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 theme_override_font_sizes/font_size = 27
 text = "Rank"
 horizontal_alignment = 1
@@ -916,7 +535,6 @@ horizontal_alignment = 1
 [node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1700668177]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 theme_override_font_sizes/font_size = 27
 text = "Run Number"
 horizontal_alignment = 1
@@ -924,7 +542,6 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1159152682]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 theme_override_font_sizes/font_size = 27
 text = "Time"
 horizontal_alignment = 1
@@ -932,7 +549,6 @@ horizontal_alignment = 1
 [node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1026971722]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 theme_override_font_sizes/font_size = 27
 text = "Score"
 horizontal_alignment = 1
@@ -940,14 +556,12 @@ horizontal_alignment = 1
 [node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=2089123089]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
 theme_override_font_sizes/font_size = 27
 text = "Speed"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1751233831]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_8at3y")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=556640604]
 layout_mode = 2
@@ -960,20 +574,23 @@ focus_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=798856563]
 layout_mode = 2
+theme = ExtResource("12_bks1m")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1097579893]
 custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
-theme = SubResource("Theme_dnu7h")
+theme = ExtResource("5_v6qwd")
 theme_override_constants/separation = 30
 
 [node name="Play" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=156681750]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Start the selected level."
 focus_neighbor_top = NodePath("../../PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox")
 focus_neighbor_right = NodePath("../HBoxContainer/SpeedDown")
 theme_override_font_sizes/font_size = 50
 text = "Play"
+script = ExtResource("15_bks1m")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=647771361]
 layout_mode = 2
@@ -982,24 +599,31 @@ size_flags_horizontal = 3
 [node name="SpeedDown" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=481681996]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Decrease the game speed by 10%"
 theme_override_font_sizes/font_size = 61
 text = "<"
+script = ExtResource("15_bks1m")
 
 [node name="Speed" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=715588176]
 material = SubResource("ShaderMaterial_du3wf")
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+tooltip_text = "The game speed of the next run; 100% being normal, 200% being twice as fast, etc."
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.654902, 0.3882353, 1, 1)
 theme_override_font_sizes/font_size = 55
 text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("15_bks1m")
 
 [node name="SpeedUp" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=760811447]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Increase the game speed by 10%"
 theme_override_font_sizes/font_size = 62
 text = ">"
+script = ExtResource("15_bks1m")
 
 [node name="BackToMain" type="TextureButton" parent="." unique_id=882931186]
 modulate = Color(0.57, 0.75633335, 1, 1)

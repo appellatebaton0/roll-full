@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cnfljsla0enkg"]
 
+[ext_resource type="Theme" uid="uid://onsha2ax1uw7" path="res://Assets/Themes/Base.tres" id="1_y4317"]
 [ext_resource type="Script" uid="uid://cnpq5p3sqerii" path="res://Scripts/UI/RankingBar.gd" id="1_yvypi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4317"]
@@ -9,17 +10,10 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek4xw"]
-bg_color = Color(0.06666667, 0.07450981, 0.12941177, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvypi"]
-bg_color = Color(0.61960787, 0.6627451, 1, 1)
-border_width_top = 3
-border_color = Color(0.48235294, 0.53333336, 0.9098039, 1)
-
 [node name="RankingBar" type="HBoxContainer" unique_id=1027662342]
 custom_minimum_size = Vector2(143, 325)
 size_flags_vertical = 3
+theme = ExtResource("1_y4317")
 theme_override_constants/separation = 13
 script = ExtResource("1_yvypi")
 
@@ -39,8 +33,6 @@ use_parent_material = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_ek4xw")
-theme_override_styles/fill = SubResource("StyleBoxFlat_yvypi")
 value = 3.94
 fill_mode = 3
 show_percentage = false

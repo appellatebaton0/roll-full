@@ -37,6 +37,7 @@ enabled=PackedStringArray("res://addons/godot-hackatime/plugin.cfg", "res://addo
 Main=""
 Player=""
 Level=""
+Themed=""
 
 [gui]
 

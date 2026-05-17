@@ -2,7 +2,11 @@
 
 [ext_resource type="FontFile" uid="uid://cnakc81irxpb1" path="res://Assets/Fonts/humaroid.regular.otf" id="1_uuho2"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuho2"]
+draw_center = false
+
 [resource]
 Button/fonts/font = ExtResource("1_uuho2")
 Label/font_sizes/font_size = 112
 Label/fonts/font = ExtResource("1_uuho2")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_uuho2")
