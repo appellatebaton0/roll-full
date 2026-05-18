@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cnfljsla0enkg"]
 
-[ext_resource type="Theme" uid="uid://onsha2ax1uw7" path="res://Assets/Themes/Base.tres" id="1_y4317"]
+[ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="1_y4317"]
 [ext_resource type="Script" uid="uid://cnpq5p3sqerii" path="res://Scripts/UI/RankingBar.gd" id="1_yvypi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4317"]

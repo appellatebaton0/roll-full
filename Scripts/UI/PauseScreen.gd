@@ -7,7 +7,7 @@ var paused := false
 @onready var animator := $Animator
 
 ## Level information
-@onready var ranking_box := $Popup/PanelContainer/MarginContainer/HBoxContainer/RankingBar
+@onready var ranking_bar := $Popup/PanelContainer/MarginContainer/HBoxContainer/RankingBar
 @onready var level_name   := $Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/LevelName
 @onready var options      := $Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Options
 
@@ -74,12 +74,14 @@ func _update_options() -> void:
 	attempt_dict[current_id] = current_run
 	options.add_icon_item(preload("res://Assets/Textures/NewRunIcon.png"), current_id, 0)
 	options.selected = 0
+	
+	_update_overview(options.selected)
 
 func _update_overview(index:int) -> void:
 	
 	var run := attempt_dict[options.get_item_text(index)]
 	
-	ranking_box.update(current_data, run)
+	ranking_bar.update(current_data, run)
 	
 	rank.text       = run.ranking_as_string()
 	bonused.visible = run.bonused

@@ -5,9 +5,9 @@
 [ext_resource type="Shader" uid="uid://5um5rx0wnwre" path="res://Shaders/PauseTransition.gdshader" id="3_xjtkk"]
 [ext_resource type="PackedScene" uid="uid://cnfljsla0enkg" path="res://Scenes/UIElements/RankingBar.tscn" id="3_xstt8"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="4_81p1y"]
-[ext_resource type="FontFile" uid="uid://cnakc81irxpb1" path="res://Assets/Fonts/humaroid.regular.otf" id="4_xjtkk"]
 [ext_resource type="Texture2D" uid="uid://dfjrboslahf8" path="res://Assets/Textures/BestRunIcon.png" id="5_oj4g4"]
 [ext_resource type="Texture2D" uid="uid://b6of2dxwmup5c" path="res://Assets/Textures/NewRunIcon.png" id="6_76ovi"]
+[ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="9_76ovi"]
 [ext_resource type="Texture2D" uid="uid://ddc4p1lpaaif5" path="res://Assets/Textures/OptionsIcon.png" id="9_oj4g4"]
 
 [sub_resource type="Animation" id="Animation_1p5hy"]
@@ -271,61 +271,11 @@ corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 corner_detail = 1
 
-[sub_resource type="Theme" id="Theme_ywlsq"]
-PopupMenu/constants/icon_max_width = 20
-PopupMenu/fonts/font = ExtResource("4_xjtkk")
-
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6yvgj"]
 color = Color(0.0825, 0.10725001, 0.15, 1)
 grow_begin = -5.0
 grow_end = -5.0
 thickness = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8at3y"]
-bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kjg5"]
-bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eebbl"]
-bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du3wf"]
-bg_color = Color(0.41, 0.57399994, 0.82, 1)
-border_width_bottom = 5
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-
-[sub_resource type="Theme" id="Theme_jrf4x"]
-Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_8at3y")
-Button/styles/hover = SubResource("StyleBoxFlat_0kjg5")
-Button/styles/normal = SubResource("StyleBoxFlat_eebbl")
-Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6yvgj"]
 frequency = 0.0341
@@ -376,7 +326,7 @@ theme_override_constants/margin_bottom = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="Popup" unique_id=1395565603]
 use_parent_material = true
-custom_minimum_size = Vector2(650, 460)
+custom_minimum_size = Vector2(858, 546.48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -388,9 +338,9 @@ use_parent_material = true
 custom_minimum_size = Vector2(575, 375)
 layout_mode = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 25
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Popup/PanelContainer/MarginContainer" unique_id=839684803]
 use_parent_material = true
@@ -416,8 +366,8 @@ theme_override_constants/separation = 5
 [node name="LevelName" type="Label" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1055462221]
 use_parent_material = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "[LEVEL NAME]"
+theme_override_font_sizes/font_size = 55
+text = "INTRODUCTION"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1066174120]
@@ -473,7 +423,7 @@ size_flags_horizontal = 3
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 42
 text = "Attempt"
 horizontal_alignment = 2
 
@@ -483,10 +433,12 @@ custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = SubResource("Theme_ywlsq")
-theme_override_constants/h_separation = 0
+theme = ExtResource("9_76ovi")
+theme_override_constants/h_separation = 17
 theme_override_constants/icon_max_width = 20
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 42
+theme_override_constants/arrow_margin = 15
+alignment = 1
 icon_alignment = 2
 expand_icon = true
 selected = 1
@@ -509,7 +461,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.41960785, 0.98039216, 1, 1)
 theme_override_fonts/font = ExtResource("4_81p1y")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "rnk"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -525,7 +477,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.41960785, 0.98039216, 1, 1)
 theme_override_fonts/font = ExtResource("4_81p1y")
-theme_override_font_sizes/font_size = 41
+theme_override_font_sizes/font_size = 46
 text = "S"
 vertical_alignment = 1
 
@@ -535,7 +487,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.41960785, 0.98039216, 1, 1)
 theme_override_fonts/font = ExtResource("4_81p1y")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 22
 text = "+"
 
 [node name="HSeparator" type="HSeparator" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer" unique_id=1056551078]
@@ -546,12 +498,12 @@ theme_override_styles/separator = SubResource("StyleBoxLine_6yvgj")
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer" unique_id=1478561241]
 use_parent_material = true
 layout_mode = 2
-theme_override_constants/separation = 26
+theme_override_constants/separation = 25
 
 [node name="Time" type="Label" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer/VBoxContainer" unique_id=852729717]
 use_parent_material = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 37
 text = "Time: 00:00.00"
 horizontal_alignment = 3
 
@@ -564,21 +516,21 @@ theme_override_constants/separation = 0
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 37
 text = "Score: 0000"
 horizontal_alignment = 3
 
 [node name="Threshold" type="Label" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1504458385]
 use_parent_material = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 24
 text = "/0000"
 horizontal_alignment = 3
 
 [node name="Speed" type="Label" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Cassette/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1291525252]
 use_parent_material = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 37
 text = "Speed: 100%"
 horizontal_alignment = 3
 
@@ -594,46 +546,46 @@ theme_override_styles/separator = SubResource("StyleBoxLine_ywlsq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=188720401]
 use_parent_material = true
-custom_minimum_size = Vector2(0, 65)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-theme = SubResource("Theme_jrf4x")
+theme = ExtResource("9_76ovi")
 
 [node name="Resume" type="Button" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=515399555]
 use_parent_material = true
-custom_minimum_size = Vector2(0, 55)
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_neighbor_right = NodePath("../Quit")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 40
 text = "Resume"
 
 [node name="Quit" type="Button" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1883811658]
 use_parent_material = true
-custom_minimum_size = Vector2(0, 55)
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../Resume")
 focus_neighbor_right = NodePath("../Options")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 40
 text = "Levels"
 
 [node name="Options" type="Button" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1595431615]
 use_parent_material = true
-custom_minimum_size = Vector2(80, 55)
+custom_minimum_size = Vector2(80, 65)
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../Quit")
 theme_override_constants/icon_max_width = 32
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 40
 icon_alignment = 1
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="Popup/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Options" unique_id=2039813250]
 modulate = Color(0.05490196, 0.08235294, 0.12941177, 1)
 use_parent_material = true
-custom_minimum_size = Vector2(27, 27)
+custom_minimum_size = Vector2(32.4, 32.4)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
