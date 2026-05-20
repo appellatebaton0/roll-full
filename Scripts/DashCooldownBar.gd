@@ -24,7 +24,7 @@ const COLOR_BANK:Array[Color] = [
 @onready var new_value:float = value
 @onready var goal_value:float = value
 var index:int
-func _process(delta: float) -> void: if is_visible_in_tree():
+func _process(_delta: float) -> void: if is_visible_in_tree():
 	
 	if index == null: 
 		index = get_color_index(goal_value)

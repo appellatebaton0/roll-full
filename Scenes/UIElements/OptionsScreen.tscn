@@ -199,7 +199,7 @@ modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 use_parent_material = true
 position = Vector2(-25, 742)
 color = Color(0.6901961, 0.6901961, 0.6901961, 0.7294118)
-polygon = PackedVector2Array(127.93225, 412.6225, 54.655, 378.0699, -5.836613, 431.96057, -64.850075, 376.45514, -139.03415, 409.0153, -178.00716, 337.9903, -258.62207, 346.03268, -273.73965, 266.4406, -352.89423, 249.17801, -342.6766, 168.80983, -412.6226, 127.932, -378.06992, 54.654755, -431.96057, -5.8368893, -376.4551, -64.85031, -409.0152, -139.03442, -337.99054, -178.00674, -346.03302, -258.62164, -266.44098, -273.73932, -249.17845, -352.89392, -168.81027, -342.67636, -127.932526, -412.62244, -54.65524, -378.06985, 5.836342, -431.96057, 64.84984, -376.4552, 139.03389, -409.01538, 178.00696, -337.99042, 258.62183, -346.03287, 273.7395, -266.4408, 352.89407, -249.1782, 342.67648, -168.81006, 412.6225, -127.93225, 378.0699, -54.654995, 431.96057, 5.836618, 376.45514, 64.85008, 409.0153, 139.03416, 337.9903, 178.00717, 346.03317, 258.6214, 266.4406, 273.73965, 249.17868, 352.89374, 168.80983, 342.6766, 127.93225, 412.6225, 22.98017, 248.94159, 79.21765, 150.41464, 192.27776, 159.7788, 162.37457, 50.34382, 248.94157, -22.980328, 150.41458, -79.21775, 159.77867, -192.27786, 50.34371, -162.3746, -22.980326, -248.94157, -79.21775, -150.41458, -192.27786, -159.77867, -162.3746, -50.343716, -248.9416, 22.98001, -150.41454, 79.21784, -159.77892, 192.27766, -50.34361, 162.37463, 22.98017, 248.94159)
+polygon = PackedVector2Array(389.75244, -186.32503, 366.17258, -108.81931, 428.2553, -56.75728, 381.87762, 9.667561, 424.83484, 78.35399, 360.20123, 127.19701, 379.83157, 205.79596, 303.2683, 232.27641, 297.6408, 313.1037, 216.64192, 314.62723, 186.32329, 389.7533, 108.81769, 366.17307, 56.76844, 428.2538, -9.669262, 381.8776, -78.35588, 424.8345, -127.198616, 360.20065, -205.79765, 379.83066, -232.27776, 303.26727, -313.10504, 297.63943, -314.62817, 216.6405, -389.75412, 186.32155, -366.17352, 108.816055, -428.2541, 56.766525, -381.87787, -9.659309, -424.83414, -78.35777, -360.2001, -127.20022, -379.82974, -205.79935, -303.26627, -232.2791, -297.64758, -313.09726, -216.6391, -314.62912, -186.31982, -389.75494, -108.81442, -366.17404, -56.76462, -428.25433, 9.661011, -381.8778, 78.346695, -424.8362, 127.20181, -360.19952, 205.80104, -379.8288, 232.28047, -303.2652, 313.0986, -297.6462, 314.6235, -216.64731, 389.75244, -186.32503, 185.93118, -167.12152, 73.31972, -153.37607, 13.299878, -249.64598, -56.608746, -160.298, -167.12234, -185.93044, -153.37416, -73.323715, -249.64563, -13.306385, -160.29947, 56.60457, -185.93478, 167.1175, -73.32304, 153.37448, -13.305273, 249.64569, 56.605286, 160.29922, 167.11833, 185.93404, 153.3748, 73.32235, 249.64592, 13.30099, 160.29826, -56.60803, 185.93118, -167.12152)
 script = ExtResource("2_yne6l")
 outer_rotation = 5.0
 inner_rotation = -5.0
@@ -221,7 +221,7 @@ modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 use_parent_material = true
 position = Vector2(1100, 248)
 color = Color(0.6901961, 0.6901961, 0.6901961, 0.7294118)
-polygon = PackedVector2Array(127.93225, 412.6225, 54.655, 378.0699, -5.836613, 431.96057, -64.850075, 376.45514, -139.03415, 409.0153, -178.00716, 337.9903, -258.62207, 346.03268, -273.73965, 266.4406, -352.89423, 249.17801, -342.6766, 168.80983, -412.6226, 127.932, -378.06992, 54.654755, -431.96057, -5.8368893, -376.4551, -64.85031, -409.0152, -139.03442, -337.99054, -178.00674, -346.03302, -258.62164, -266.44098, -273.73932, -249.17845, -352.89392, -168.81027, -342.67636, -127.932526, -412.62244, -54.65524, -378.06985, 5.836342, -431.96057, 64.84984, -376.4552, 139.03389, -409.01538, 178.00696, -337.99042, 258.62183, -346.03287, 273.7395, -266.4408, 352.89407, -249.1782, 342.67648, -168.81006, 412.6225, -127.93225, 378.0699, -54.654995, 431.96057, 5.836618, 376.45514, 64.85008, 409.0153, 139.03416, 337.9903, 178.00717, 346.03317, 258.6214, 266.4406, 273.73965, 249.17868, 352.89374, 168.80983, 342.6766, 127.93225, 412.6225, 22.98017, 248.94159, 79.21765, 150.41464, 192.27776, 159.7788, 162.37457, 50.34382, 248.94157, -22.980328, 150.41458, -79.21775, 159.77867, -192.27786, 50.34371, -162.3746, -22.980326, -248.94157, -79.21775, -150.41458, -192.27786, -159.77867, -162.3746, -50.343716, -248.9416, 22.98001, -150.41454, 79.21784, -159.77892, 192.27766, -50.34361, 162.37463, 22.98017, 248.94159)
+polygon = PackedVector2Array(389.75244, -186.32503, 366.17258, -108.81931, 428.2553, -56.75728, 381.87762, 9.667561, 424.83484, 78.35399, 360.20123, 127.19701, 379.83157, 205.79596, 303.2683, 232.27641, 297.6408, 313.1037, 216.64192, 314.62723, 186.32329, 389.7533, 108.81769, 366.17307, 56.76844, 428.2538, -9.669262, 381.8776, -78.35588, 424.8345, -127.198616, 360.20065, -205.79765, 379.83066, -232.27776, 303.26727, -313.10504, 297.63943, -314.62817, 216.6405, -389.75412, 186.32155, -366.17352, 108.816055, -428.2541, 56.766525, -381.87787, -9.659309, -424.83414, -78.35777, -360.2001, -127.20022, -379.82974, -205.79935, -303.26627, -232.2791, -297.64758, -313.09726, -216.6391, -314.62912, -186.31982, -389.75494, -108.81442, -366.17404, -56.76462, -428.25433, 9.661011, -381.8778, 78.346695, -424.8362, 127.20181, -360.19952, 205.80104, -379.8288, 232.28047, -303.2652, 313.0986, -297.6462, 314.6235, -216.64731, 389.75244, -186.32503, 185.93118, -167.12152, 73.31972, -153.37607, 13.299878, -249.64598, -56.608746, -160.298, -167.12234, -185.93044, -153.37416, -73.323715, -249.64563, -13.306385, -160.29947, 56.60457, -185.93478, 167.1175, -73.32304, 153.37448, -13.305273, 249.64569, 56.605286, 160.29922, 167.11833, 185.93404, 153.3748, 73.32235, 249.64592, 13.30099, 160.29826, -56.60803, 185.93118, -167.12152)
 script = ExtResource("2_yne6l")
 outer_rotation = 5.0
 inner_rotation = -5.0
@@ -347,7 +347,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "Window Mode"
 
-[node name="WindowMode" type="OptionButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=1589580690]
+[node name="WindowMode" type="OptionButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=1589580690 groups=["Saveable"]]
 use_parent_material = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../../HBoxContainer2/Control/CheckButton")
@@ -380,7 +380,7 @@ use_parent_material = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2/Control" unique_id=81087287]
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2/Control" unique_id=81087287 groups=["Saveable"]]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
@@ -443,7 +443,7 @@ use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer/HBoxContainer" unique_id=799030034 node_paths=PackedStringArray("value_display")]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer/HBoxContainer" unique_id=799030034 node_paths=PackedStringArray("value_display") groups=["Saveable"]]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -479,7 +479,7 @@ use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2/HBoxContainer" unique_id=1104637982 node_paths=PackedStringArray("value_display")]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2/HBoxContainer" unique_id=1104637982 node_paths=PackedStringArray("value_display") groups=["Saveable"]]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -514,7 +514,7 @@ use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3/HBoxContainer" unique_id=1293963727 node_paths=PackedStringArray("value_display")]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3/HBoxContainer" unique_id=1293963727 node_paths=PackedStringArray("value_display") groups=["Saveable"]]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3

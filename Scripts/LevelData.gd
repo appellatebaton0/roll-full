@@ -56,13 +56,15 @@ var runs:Array[Run]: ## Stores time:score runs, in seconds and points
 		## Update the best run.
 		best_run = _get_best_run()
 		
-		## Update the ranking and bonused.
-		ranking = best_run.ranking
-		bonused = best_run.bonused
+		if to.size() > 0:
+			## Update the ranking and bonused.
+			ranking = best_run.ranking
+			bonused = best_run.bonused
+			
+			## Update the best time/score
+			best_time  = _get_best_time()
+			best_score = _get_best_score()
 		
-		## Update the best time/score
-		best_time  = _get_best_time()
-		best_score = _get_best_score()
 		
 		runs_updated.emit()
 var best_run:Run ## The best run, overall.
@@ -168,6 +170,7 @@ func _is_bonused(score:int) -> bool: return score >= score_threshold
 
 ## Get the binary track speed for a given speed and score.
 func _get_track_state(for_speed:float, for_score:int) -> int:
+	# 1,3,7,15 -> 0001, 0011, 0111, 1111 in binary.
 	return [1,3,7,15][_get_track_rank(for_speed, for_score)]
 
 ## The rank, 0 - 3, of a set speed and score.

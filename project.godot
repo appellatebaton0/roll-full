@@ -38,6 +38,7 @@ Main=""
 Player=""
 Level=""
 Themed=""
+Saveable=""
 
 [gui]
 

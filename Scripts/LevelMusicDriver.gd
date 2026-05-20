@@ -114,6 +114,7 @@ func transition() -> void:
 			index *= 2
 
 func set_state(to:int): 
+	# If it's time to start the transition.
 	if floor(beat) > transition_start_beat and transition_start_beat >= 0:
 		## Note which bits have changed, since they'll need to be transitioned.
 		## Keep on any that still aren't done.
@@ -123,6 +124,8 @@ func set_state(to:int):
 		state = to
 		
 		transition_start_beat = -1
+	
+	# If this is the first attempt to set this beat.
 	else:
 		if transition_start_beat == -1:
 			transition_start_beat = ceil(beat)

@@ -13,12 +13,13 @@ var in_menu := true
 
 var level_drivers:Array[LevelMusicDriver]
 
+## Request the start of a level's music tracks.
 func _request_level_music(for_level:LevelData = Global.current_data) -> void:
 	
-	print("4:",for_level)
-	
+	# Transition out the menu music
 	in_menu = false
 	
+	# Load this level data to a LevelMusicDriver
 	var this_driver := _find_driver()
 	this_driver.reload(for_level)
 	
@@ -27,10 +28,12 @@ func _request_level_music(for_level:LevelData = Global.current_data) -> void:
 		if driver != this_driver:
 			driver.resolve()
 
+## Request the start of the menu music.
 func _resolve_to_menu() -> void:
 	# Transition out all the drivers.
 	for driver in level_drivers: driver.resolve()
 	
+	# Transition in the menu music.
 	in_menu = true
 
 func _ready() -> void:
