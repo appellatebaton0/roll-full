@@ -23,6 +23,8 @@ func save() -> void: if can_save:
 	
 	running = false
 	timer = 0.0
+	
+	Global._save()
 
 func reset() -> void:
 	running = true

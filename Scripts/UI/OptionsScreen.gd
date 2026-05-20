@@ -1,8 +1,17 @@
+#@tool
 class_name OptionsScreen extends Control
 ## Manages some of the happenings in the options screen.
 
 ## All the configurable inputs. Input Name : Display Name
 @export var reconfigurable_inputs:Dictionary[StringName, String]
+@export var reconfig_sane_defaults:Dictionary[StringName, Array]
+
+## Used to set up sane defaults.
+#@export_tool_button("LOAD") var lfs := func():
+	#InputMap.load_from_project_settings()
+	#
+	#for action in InputMap.get_actions(): if reconfigurable_inputs.has(action):
+		#reconfig_sane_defaults[action] = InputMap.action_get_events(action)
 
 @onready var remap_box := $MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ControlsBox/PanelContainer/MarginContainer2/RemapBox
 
@@ -12,13 +21,14 @@ const RemapEntryScene := preload("res://Scenes/UIElements/RemapEntry.tscn")
 
 func _ready() -> void:
 	
+
 	for i in len(reconfigurable_inputs):
 		var input:String = reconfigurable_inputs.keys()[i]
 		var new:RemapEntry = RemapEntryScene.instantiate()
 		
 		new.action = input
 		new.label_override = reconfigurable_inputs[input]
-		
+		new.sane_default = reconfig_sane_defaults[input]
 		
 		remap_box.add_child(new)
 	
@@ -49,4 +59,5 @@ func _process(_delta: float) -> void:
 # This is a function so a signal can call it.
 func close() -> void:
 	Global.request_animation.emit("CloseOptions")
+	Global._save()
 	if Global.return_focus: Global.return_focus.grab_focus()

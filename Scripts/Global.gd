@@ -402,8 +402,3 @@ func _load() -> void:
 				DisplayServer.window_set_mode(int(value) as DisplayServer.WindowMode)
 	
 	finished_loading.emit()
-	print("LOADED!")
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ComboDown"): _save()
-	if Input.is_action_just_pressed("ComboUp"): _load()

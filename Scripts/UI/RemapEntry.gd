@@ -14,8 +14,15 @@ var sane_default:Array[InputEvent]
 
 func _ready() -> void:
 	
-	if action:
-		sane_default = InputMap.action_get_events(action)
+	# The currently bound input isn't the default, allow resettng.
+	var c_events := InputMap.action_get_events(action)
+	for i in range(len(sane_default)):
+		var event_a = sane_default[i]
+		var event_b = c_events[i]
+		for property in ["physical_keycode", "axis", "axis_value", "button_index", "pressed", "pressure"]:
+			if event_a.get(property) != event_b.get(property):
+				reset_button.disabled = false
+				break
 	
 	input_label.text = action if not label_override else label_override
 	reset_button.pressed.connect(_reset_pressed)
