@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 ## The driver for the player's movement.
 
 signal dash_reset
+signal dashed
 
 const DEBUG := true
 
@@ -153,7 +154,14 @@ func _physics_process(delta: float) -> void:
 	dash_buffering = move_toward(dash_buffering, 0.0, delta)
 	if Input.is_action_just_pressed("Dash"): dash_buffering = DASH_BUFFER
 	
+	match input_type:
+		INPUT_TYPE.KEYBMOUSE:
+			dash_direction = get_global_mouse_position() - global_position
+		INPUT_TYPE.CONTROLLER:
+			dash_direction = Input.get_vector("JL", "JR", "JU", "JD")
+	
 	if dash_buffering > 0 and dash_cooldown_time <= 0:
+		
 		velocity = dash_direction * max(base_speed, mag(velocity) * 0.9)
 		
 		ray_node.target_position = Vector2.ZERO
@@ -161,6 +169,11 @@ func _physics_process(delta: float) -> void:
 		
 		dash_cooldown_time = dash_cooldown
 		dash_buffering = 0.0
+		
+		
+		var vec23 = func(a:Vector2): return Vector3(a.x, a.y, 0.0)
+		$DashEffectParticles.process_material.direction = -vec23.call(velocity.normalized())
+		dashed.emit()
 	
 	pointer.rotation = dash_direction.angle()
 	
@@ -168,14 +181,11 @@ func _physics_process(delta: float) -> void:
 	real_velocity = velocity + (last_normal * stick_force) 
 var real_velocity:Vector2
 
+enum INPUT_TYPE {KEYBMOUSE, CONTROLLER}
+var input_type := INPUT_TYPE.KEYBMOUSE
 func _input(event: InputEvent) -> void:
-	## Mouse control.
-	if event is InputEventMouse:
-		dash_direction = get_global_mouse_position() - global_position
-	
-	## Something something controller support.
-	elif event is InputEventJoypadMotion:
-		dash_direction = Input.get_vector("JL", "JR", "JU", "JD")
+	if event is InputEventMouse: input_type = INPUT_TYPE.KEYBMOUSE
+	elif event is InputEventJoypadMotion: input_type = INPUT_TYPE.CONTROLLER
 
 func _on_reset() -> void:
 	global_position = respawn_position

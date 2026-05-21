@@ -16,12 +16,12 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.8248588, 1, 1, 1, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5732"]
 radius = 32.0
 
-[sub_resource type="Gradient" id="Gradient_dewec"]
+[sub_resource type="Gradient" id="Gradient_5ixxa"]
 offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1.3532556, 0.15670925, 0.17196518, 1)
+colors = PackedColorArray(1, 0, 0, 0.46666667)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ixxa"]
-gradient = SubResource("Gradient_dewec")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nn08x"]
+gradient = SubResource("Gradient_5ixxa")
 width = 8
 height = 8
 
@@ -34,13 +34,45 @@ curve = SubResource("Curve_dewec")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nn08x"]
 particle_flag_disable_z = true
-emission_shape = 2
-emission_sphere_radius = 25.0
 spread = 180.0
 initial_velocity_min = 335.6
 initial_velocity_max = 367.35
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_5ixxa")
+
+[sub_resource type="Gradient" id="Gradient_dewec"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0, 0, 0.46666667)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ixxa"]
+gradient = SubResource("Gradient_dewec")
+width = 16
+height = 16
+
+[sub_resource type="Curve" id="Curve_52ee3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.17934783, 1), 0.0, 0.0, 0, 0, Vector2(0.625, 0.10126591), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bhhdu"]
+curve = SubResource("Curve_52ee3")
+
+[sub_resource type="Curve" id="Curve_megsn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.72282606, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yoq75"]
+curve = SubResource("Curve_megsn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ksbbd"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 642.24
+initial_velocity_max = 762.93
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_yoq75")
+alpha_curve = SubResource("CurveTexture_bhhdu")
 
 [node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "pointer", "ray_node") groups=["Player"]]
 z_index = 3
@@ -117,16 +149,27 @@ shape = SubResource("CircleShape2D_a5732")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1614047959]
 target_position = Vector2(0, -1)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=151603442]
+[node name="DashReloadParticles" type="GPUParticles2D" parent="." unique_id=151603442]
+modulate = Color(1.778, 1.778, 1.778, 1)
 emitting = false
 amount = 16
-texture = SubResource("GradientTexture2D_5ixxa")
+texture = SubResource("GradientTexture2D_nn08x")
 lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 use_fixed_seed = true
 seed = 3828252886
 process_material = SubResource("ParticleProcessMaterial_nn08x")
+
+[node name="DashEffectParticles" type="GPUParticles2D" parent="." unique_id=23877895]
+modulate = Color(2.117, 2.117, 2.117, 1)
+emitting = false
+amount = 16
+texture = SubResource("GradientTexture2D_5ixxa")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ksbbd")
 
 [node name="Pointer" type="Sprite2D" parent="." unique_id=1631365984]
 scale = Vector2(0.2856368, 0.2856368)
@@ -145,4 +188,5 @@ polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 
 color = Color(0.08900002, 0.3960499, 0.89, 0.7019608)
 polygon = PackedVector2Array(25, 0, 17.67767, 17.67767, -1.0927847e-06, 25, -17.67767, 17.67767, -25, -2.1855694e-06, -17.677671, -17.677668, 2.9812202e-07, -25, 17.677666, -17.677671, 25, 0, 20, 0, 14.142133, -14.142138, 2.3849762e-07, -20, -14.142137, -14.142134, -20, -1.7484556e-06, -14.142136, 14.142136, -8.742278e-07, 20, 14.142136, 14.142136, 20, 0)
 
-[connection signal="dash_reset" from="." to="GPUParticles2D" method="restart"]
+[connection signal="dash_reset" from="." to="DashReloadParticles" method="restart"]
+[connection signal="dashed" from="." to="DashEffectParticles" method="restart"]

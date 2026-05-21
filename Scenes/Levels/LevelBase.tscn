@@ -5,6 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bw16huunuc7lg" path="res://Scenes/Goal.tscn" id="3_ks63r"]
 [ext_resource type="Script" uid="uid://dv1k22hfa8h6v" path="res://Scripts/DeathBorder.gd" id="4_bybyf"]
 
+[sub_resource type="Environment" id="Environment_63row"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.1
+
 [node name="LevelBase" type="Node" unique_id=1260259211 groups=["Level"]]
 process_mode = 1
 
@@ -26,3 +31,6 @@ script = ExtResource("4_bybyf")
 width = 5000.0
 height = 5000.0
 metadata/_custom_type_script = "uid://dv1k22hfa8h6v"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=469043710]
+environment = SubResource("Environment_63row")
