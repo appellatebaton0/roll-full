@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://u8cgtukf5vcf"]
+
+[ext_resource type="Script" uid="uid://dv1k22hfa8h6v" path="res://Scripts/DeathBorder.gd" id="1_ejcil"]
+
+[node name="DeathBorder" type="Polygon2D" unique_id=556743190]
+z_index = 4
+color = Color(0.3019608, 0, 0, 1)
+invert_enabled = true
+invert_border = 3500.0
+polygon = PackedVector2Array(52, 44, 140, 121, 268, -15, 117, -62)
+script = ExtResource("1_ejcil")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=934352646]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=916517793]

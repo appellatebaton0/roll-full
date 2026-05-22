@@ -78,13 +78,8 @@ func _process(delta: float) -> void: if target:
 	if Global.spinning_camera:
 		var targ_angle := target.real_velocity.angle() + (0.5 * PI)
 		
-		print("--")
-		print(targ_angle, " -> ", rotation)
-		
 		while abs(targ_angle - rotation) > PI:
-			
 			targ_angle += PI *2 * sign(rotation - targ_angle)
-		print(targ_angle, " -> ", rotation)
 		
 		rotation = move_toward(rotation, targ_angle, abs(rotation - targ_angle) / 10)
 	else:

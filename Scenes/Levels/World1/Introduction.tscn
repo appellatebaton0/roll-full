@@ -17,10 +17,10 @@ position = Vector2(-1648, 0)
 [node name="Goal" parent="." index="5" unique_id=1338618760]
 position = Vector2(1798, -13069)
 
-[node name="DeathBorder" parent="." index="6" unique_id=1495088171]
-position = Vector2(1748, -8756)
-width = 8279.0
-height = 9434.0
+[node name="DeathBorder" parent="." index="6" unique_id=556743190]
+position = Vector2(1785, -9392)
+invert_border = 3500.0
+polygon = PackedVector2Array(-9601, 186, -6871, -5466, -1090, -8743, 6391, -7908, 8370, -4152, 9903, 1489, 9520, 10689, 6289, 12113, -6909, 11347, -9429, 6582)
 
 [node name="Spline2D" type="Line2D" parent="." index="7" unique_id=1008196265]
 position = Vector2(-1648, 0)
