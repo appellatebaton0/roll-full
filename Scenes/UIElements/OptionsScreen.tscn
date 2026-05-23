@@ -12,118 +12,18 @@ shader = ExtResource("1_dygke")
 shader_parameter/threshold = 1.0
 shader_parameter/warp = Vector2(1, 0.65)
 
-[sub_resource type="InputEventKey" id="InputEventKey_d2mda"]
-keycode = 4194309
-
-[sub_resource type="InputEventKey" id="InputEventKey_1w4wb"]
-keycode = 4194310
-
-[sub_resource type="InputEventKey" id="InputEventKey_utcym"]
-keycode = 32
-unicode = 32
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ddg51"]
-device = -1
-pressed = true
-
-[sub_resource type="InputEventKey" id="InputEventKey_nrtix"]
-keycode = 4194305
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_86pre"]
-device = -1
-button_index = 1
-pressed = true
-
-[sub_resource type="InputEventKey" id="InputEventKey_cyii1"]
-keycode = 4194319
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_tefsv"]
-device = -1
-button_index = 13
-
-[sub_resource type="InputEventKey" id="InputEventKey_gogyp"]
-device = -1
-physical_keycode = 65
-unicode = 97
-
-[sub_resource type="InputEventKey" id="InputEventKey_a5x2d"]
-keycode = 4194321
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_666yq"]
-device = -1
-button_index = 14
-
-[sub_resource type="InputEventKey" id="InputEventKey_sgi4c"]
-device = -1
-physical_keycode = 68
-unicode = 100
-
-[sub_resource type="InputEventKey" id="InputEventKey_u3ir3"]
-keycode = 4194320
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_xdglg"]
-device = -1
-button_index = 11
-
-[sub_resource type="InputEventKey" id="InputEventKey_oxig6"]
-device = -1
-physical_keycode = 87
-unicode = 119
-
-[sub_resource type="InputEventKey" id="InputEventKey_rhicf"]
-keycode = 4194322
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_pvgqi"]
-device = -1
-button_index = 12
-
-[sub_resource type="InputEventKey" id="InputEventKey_n0lk6"]
+[sub_resource type="InputEventKey" id="InputEventKey_6fhc5"]
 device = -1
 physical_keycode = 83
 unicode = 115
 
-[sub_resource type="InputEventKey" id="InputEventKey_sa0bp"]
+[sub_resource type="InputEventKey" id="InputEventKey_rcwji"]
 device = -1
-physical_keycode = 32
-unicode = 32
+physical_keycode = 4194322
 
-[sub_resource type="InputEventKey" id="InputEventKey_o3g3s"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_wcgkp"]
 device = -1
-physical_keycode = 81
-unicode = 113
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_gr8im"]
-device = -1
-pressed = true
-
-[sub_resource type="InputEventKey" id="InputEventKey_csn4q"]
-device = -1
-physical_keycode = 82
-unicode = 114
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_kewrn"]
-device = -1
-button_index = 4
-pressed = true
-
-[sub_resource type="InputEventKey" id="InputEventKey_w8ere"]
-device = -1
-physical_keycode = 80
-unicode = 112
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_tmscm"]
-device = -1
-button_index = 6
-pressed = true
-
-[sub_resource type="InputEventKey" id="InputEventKey_emgb5"]
-device = -1
-physical_keycode = 69
-unicode = 101
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_u7qw3"]
-device = -1
-button_index = 1
+button_index = 12
 pressed = true
 
 [sub_resource type="InputEventKey" id="InputEventKey_fr0m1"]
@@ -168,19 +68,119 @@ device = -1
 button_index = 11
 pressed = true
 
-[sub_resource type="InputEventKey" id="InputEventKey_6fhc5"]
+[sub_resource type="InputEventKey" id="InputEventKey_emgb5"]
+device = -1
+physical_keycode = 69
+unicode = 101
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_u7qw3"]
+device = -1
+button_index = 1
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_sa0bp"]
+device = -1
+physical_keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_o3g3s"]
+device = -1
+physical_keycode = 81
+unicode = 113
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_gr8im"]
+device = -1
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_w8ere"]
+device = -1
+physical_keycode = 80
+unicode = 112
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_tmscm"]
+device = -1
+button_index = 6
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_csn4q"]
+device = -1
+physical_keycode = 82
+unicode = 114
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_kewrn"]
+device = -1
+button_index = 4
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_d2mda"]
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_1w4wb"]
+keycode = 4194310
+
+[sub_resource type="InputEventKey" id="InputEventKey_utcym"]
+keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ddg51"]
+device = -1
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_nrtix"]
+keycode = 4194305
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_86pre"]
+device = -1
+button_index = 1
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_rhicf"]
+keycode = 4194322
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_pvgqi"]
+device = -1
+button_index = 12
+
+[sub_resource type="InputEventKey" id="InputEventKey_n0lk6"]
 device = -1
 physical_keycode = 83
 unicode = 115
 
-[sub_resource type="InputEventKey" id="InputEventKey_rcwji"]
-device = -1
-physical_keycode = 4194322
+[sub_resource type="InputEventKey" id="InputEventKey_cyii1"]
+keycode = 4194319
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_wcgkp"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_tefsv"]
 device = -1
-button_index = 12
-pressed = true
+button_index = 13
+
+[sub_resource type="InputEventKey" id="InputEventKey_gogyp"]
+device = -1
+physical_keycode = 65
+unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_a5x2d"]
+keycode = 4194321
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_666yq"]
+device = -1
+button_index = 14
+
+[sub_resource type="InputEventKey" id="InputEventKey_sgi4c"]
+device = -1
+physical_keycode = 68
+unicode = 100
+
+[sub_resource type="InputEventKey" id="InputEventKey_u3ir3"]
+keycode = 4194320
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_xdglg"]
+device = -1
+button_index = 11
+
+[sub_resource type="InputEventKey" id="InputEventKey_oxig6"]
+device = -1
+physical_keycode = 87
+unicode = 119
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gogyp"]
 bg_color = Color(0.07450981, 0.11764706, 0.19215687, 1)
@@ -386,8 +386,9 @@ modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 use_parent_material = true
 position = Vector2(-25, 742)
 color = Color(0.6901961, 0.6901961, 0.6901961, 0.7294118)
-polygon = PackedVector2Array(-431.96375, -5.5968933, -376.49094, -64.64186, -409.09238, -138.80714, -338.0887, -177.82022, -346.17618, -258.43, -266.59198, -273.59225, -249.37381, -352.75586, -168.99931, -342.58316, -128.16096, -412.5515, -54.863834, -378.03964, 5.59717, -431.96375, 64.642105, -376.4909, 138.80742, -409.0923, 177.81914, -338.08926, 258.4302, -346.17603, 273.5914, -266.59283, 352.75604, -249.37357, 342.5826, -169.00041, 412.55164, -128.1607, 378.03946, -54.865036, 431.96375, 5.5974464, 376.49112, 64.640915, 409.0922, 138.80768, 338.08917, 177.81935, 346.17584, 258.43042, 266.59265, 273.59158, 249.37334, 352.7562, 169.0002, 342.58273, 128.16043, 412.5517, 54.863354, 378.0397, -5.5960746, 431.96375, -64.64115, 376.49106, -138.80794, 409.0921, -177.82086, 338.08838, -258.42932, 346.17667, -273.59174, 266.5925, -352.75635, 249.37314, -342.5835, 168.99867, -412.5513, 128.16174, -378.03952, 54.86455, -431.96375, -5.5968933, -232.19023, -92.66981, -169.98573, 2.2024813, -229.71077, 98.65577, -118.64072, 121.75542, -92.67026, 232.19006, 2.2028034, 169.98572, 98.65504, 229.71109, 121.755486, 118.64064, 232.19012, 92.670105, 169.98572, -2.202912, 229.71103, -98.65519, 118.64056, -121.75557, 92.66996, -232.19017, -2.2023723, -169.98573, -98.65533, -229.71097, -121.75564, -118.64048, -232.19023, -92.66981)
+polygon = PackedVector2Array(156.18971, 402.77634, 80.696335, 373.3793, 24.080511, 431.32834, -38.633774, 380.04135, -110.38586, 417.6589, -154.18214, 349.50232, -234.04684, 363.10614, -254.63809, 284.75156, -334.7978, 273.00995, -330.1683, 192.12727, -402.77634, 156.18974, -373.3793, 80.69632, -431.32834, 24.080492, -380.04138, -38.633747, -417.6589, -110.38583, -349.5023, -154.18216, -363.10608, -234.0469, -284.75156, -254.63808, -273.0099, -334.79782, -192.12738, -330.16824, -156.18979, -402.7763, -80.69635, -373.3793, -24.080524, -431.32834, 38.63381, -380.04135, 110.385895, -417.6589, 154.18222, -349.5023, 234.04698, -363.10608, 254.63805, -284.7516, 334.79776, -273.01, 330.16827, -192.12732, 402.77634, -156.1897, 373.3793, -80.69628, 431.32834, -24.080454, 380.04135, 38.633873, 417.65894, 110.385765, 349.50232, 154.1821, 363.10614, 234.04684, 284.75156, 254.63809, 273.00995, 334.7978, 192.12727, 330.16833, 156.18971, 402.77634, 5.6917405, 249.9352, 68.6151, 155.53767, 180.75554, 172.7062, 158.49994, 61.463547, 249.9352, -5.691752, 155.53767, -68.6151, 172.7062, -180.75555, 61.463547, -158.49994, -5.6917486, -249.9352, -68.61512, -155.53766, -180.75555, -172.70619, -158.49994, -61.463547, -249.9352, 5.69173, -155.53767, 68.615105, -172.7062, 180.75555, -61.463543, 158.49994, 5.6917405, 249.9352)
 script = ExtResource("2_yne6l")
+processing = false
 outer_rotation = 5.0
 inner_rotation = -5.0
 outer_vertices = 40
@@ -408,8 +409,9 @@ modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 use_parent_material = true
 position = Vector2(1100, 248)
 color = Color(0.6901961, 0.6901961, 0.6901961, 0.7294118)
-polygon = PackedVector2Array(-431.96375, -5.5968933, -376.49094, -64.64186, -409.09238, -138.80714, -338.0887, -177.82022, -346.17618, -258.43, -266.59198, -273.59225, -249.37381, -352.75586, -168.99931, -342.58316, -128.16096, -412.5515, -54.863834, -378.03964, 5.59717, -431.96375, 64.642105, -376.4909, 138.80742, -409.0923, 177.81914, -338.08926, 258.4302, -346.17603, 273.5914, -266.59283, 352.75604, -249.37357, 342.5826, -169.00041, 412.55164, -128.1607, 378.03946, -54.865036, 431.96375, 5.5974464, 376.49112, 64.640915, 409.0922, 138.80768, 338.08917, 177.81935, 346.17584, 258.43042, 266.59265, 273.59158, 249.37334, 352.7562, 169.0002, 342.58273, 128.16043, 412.5517, 54.863354, 378.0397, -5.5960746, 431.96375, -64.64115, 376.49106, -138.80794, 409.0921, -177.82086, 338.08838, -258.42932, 346.17667, -273.59174, 266.5925, -352.75635, 249.37314, -342.5835, 168.99867, -412.5513, 128.16174, -378.03952, 54.86455, -431.96375, -5.5968933, -232.19023, -92.66981, -169.98573, 2.2024813, -229.71077, 98.65577, -118.64072, 121.75542, -92.67026, 232.19006, 2.2028034, 169.98572, 98.65504, 229.71109, 121.755486, 118.64064, 232.19012, 92.670105, 169.98572, -2.202912, 229.71103, -98.65519, 118.64056, -121.75557, 92.66996, -232.19017, -2.2023723, -169.98573, -98.65533, -229.71097, -121.75564, -118.64048, -232.19023, -92.66981)
+polygon = PackedVector2Array(156.18971, 402.77634, 80.696335, 373.3793, 24.080511, 431.32834, -38.633774, 380.04135, -110.38586, 417.6589, -154.18214, 349.50232, -234.04684, 363.10614, -254.63809, 284.75156, -334.7978, 273.00995, -330.1683, 192.12727, -402.77634, 156.18974, -373.3793, 80.69632, -431.32834, 24.080492, -380.04138, -38.633747, -417.6589, -110.38583, -349.5023, -154.18216, -363.10608, -234.0469, -284.75156, -254.63808, -273.0099, -334.79782, -192.12738, -330.16824, -156.18979, -402.7763, -80.69635, -373.3793, -24.080524, -431.32834, 38.63381, -380.04135, 110.385895, -417.6589, 154.18222, -349.5023, 234.04698, -363.10608, 254.63805, -284.7516, 334.79776, -273.01, 330.16827, -192.12732, 402.77634, -156.1897, 373.3793, -80.69628, 431.32834, -24.080454, 380.04135, 38.633873, 417.65894, 110.385765, 349.50232, 154.1821, 363.10614, 234.04684, 284.75156, 254.63809, 273.00995, 334.7978, 192.12727, 330.16833, 156.18971, 402.77634, 5.6917405, 249.9352, 68.6151, 155.53767, 180.75554, 172.7062, 158.49994, 61.463547, 249.9352, -5.691752, 155.53767, -68.6151, 172.7062, -180.75555, 61.463547, -158.49994, -5.6917486, -249.9352, -68.61512, -155.53766, -180.75555, -172.70619, -158.49994, -61.463547, -249.9352, 5.69173, -155.53767, 68.615105, -172.7062, 180.75555, -61.463543, 158.49994, 5.6917405, 249.9352)
 script = ExtResource("2_yne6l")
+processing = false
 outer_rotation = 5.0
 inner_rotation = -5.0
 outer_vertices = 40

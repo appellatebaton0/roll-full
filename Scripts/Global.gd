@@ -349,6 +349,8 @@ func _load() -> void:
 				if LEVEL_DATA.size() <= 0: LEVEL_DATA = get_level_data()
 				
 				for data in LEVEL_DATA:
+					if not value.has(data.name): continue # Nothing to load for this level.
+					
 					# Make a new array and set to that, so the setter only gets called once.
 					var new_runs:Array[LevelData.Run]
 					

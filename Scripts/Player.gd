@@ -238,6 +238,7 @@ func _draw() -> void: if DEBUG:
 	var jump_direction = get_wall_normal()
 	draw_line(Vector2.ZERO, jump_direction * mag(velocity) / 100, Color.BLUE, 15)
 	
-	draw_line(Vector2.ZERO, velocity, Color.GREEN, 15)
+	draw_line(Vector2.ZERO, velocity / 8., Color.GREEN, 15)
+	draw_line(Vector2.ZERO, real_velocity / 8., Color.LIGHT_SALMON, 12)
 	
 	draw_circle(ray_node.target_position, 10.0, Color.TEAL)

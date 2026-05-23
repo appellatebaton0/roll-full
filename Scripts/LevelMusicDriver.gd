@@ -1,7 +1,7 @@
 class_name LevelMusicDriver extends AudioStreamPlayer
 ## Handles the adaptive music for a level.
 
-@onready var player := get_tree().get_first_node_in_group("Player"):
+@onready var player:Player = get_tree().get_first_node_in_group("Player"):
 	get():
 		if not is_instance_valid(player) or not player:
 			player = get_tree().get_first_node_in_group("Player")
@@ -29,7 +29,7 @@ var level_data:LevelData
 
 var transition_start_beat := -1   # When the transition should start.
 var state_buffer:int              # What to transition to.
-@export var transition_beats := 4 # How many beats it takes to transition
+@export var transition_beats := 8 # How many beats it takes to transition
 
 ## Whether the current level has been complete, and this track should fade out.
 var resolving := false
@@ -41,7 +41,9 @@ func resolve() -> void:
 	resolving = true
 	state = 0
 
-func _ready() -> void: bus = &"Music"
+func _ready() -> void: 
+	bus = &"Music"
+	Global.reset_level.connect(func(): state = 1)
 
 func reload(from:LevelData):
 	level_data = from
@@ -75,8 +77,10 @@ func _process(_delta: float) -> void:
 	beat = (get_playback_position() +  AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency()) * bpm / 60
 	
 	# See if the state has changed, and so should make a transition to the new state.
-	if untransitioned == 0 and player and level_data:
+	if player and level_data: if player.is_on_wall():
 		var new_state := level_data._get_track_state(player.real_velocity.distance_to(Vector2.ZERO) / 100., Global.score)
+		#print(new_state, " vs ", state, "/", state_buffer)
+		
 		if new_state != state and new_state != state_buffer:
 			state = new_state
 	
@@ -115,6 +119,10 @@ func transition() -> void:
 
 func set_state(to:int): 
 	# If it's time to start the transition.
+	if transition_start_beat > ceil(beat):
+		transition_start_beat = ceil(beat)
+	
+	#print(floor(beat),"|", transition_start_beat,"|", transition_start_beat >= 0)
 	if floor(beat) > transition_start_beat and transition_start_beat >= 0:
 		## Note which bits have changed, since they'll need to be transitioned.
 		## Keep on any that still aren't done.

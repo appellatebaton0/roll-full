@@ -179,7 +179,7 @@ func _get_track_rank(for_speed:float, for_score:int) -> int:
 	# Get the speed rank (0-3).
 	var speed_rank := 0
 	for i in track_speeds:
-		if for_speed >= track_speeds[i]: speed_rank = i
+		if for_speed >= track_speeds[i]: speed_rank += 1
 	
 	# Get the score rank (0-2).
 	var score_rank := 0

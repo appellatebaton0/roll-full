@@ -14,3 +14,4 @@ script = ExtResource("1_ejcil")
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=916517793]
+visible = false

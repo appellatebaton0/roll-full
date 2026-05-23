@@ -58,6 +58,7 @@ func _find_driver() -> LevelMusicDriver:
 	
 	# If none exist, create a new one.
 	var new := LevelMusicDriver.new()
+	new.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(new)
 	level_drivers += [new]
 	

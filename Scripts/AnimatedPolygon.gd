@@ -27,6 +27,8 @@ var animation_timers:Dictionary[float, float]
 
 func _process(delta: float) -> void: if processing:
 	
+	print(self)
+	
 	if outer_rotation != 0 or inner_rotation != 0:
 		for key in animation_timers:
 			animation_timers[key] = move_toward(animation_timers[key], key, delta)
