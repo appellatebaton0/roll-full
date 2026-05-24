@@ -4,11 +4,7 @@
 [ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="2_jnsj8"]
 [ext_resource type="PackedScene" uid="uid://bw16huunuc7lg" path="res://Scenes/Goal.tscn" id="3_ks63r"]
 [ext_resource type="PackedScene" uid="uid://u8cgtukf5vcf" path="res://Scenes/DeathBorder.tscn" id="4_63row"]
-
-[sub_resource type="Environment" id="Environment_63row"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.1
+[ext_resource type="Environment" uid="uid://bol5ovnngau3v" path="res://Assets/Resources/Environment.tres" id="5_jnsj8"]
 
 [node name="LevelBase" type="Node" unique_id=1260259211 groups=["Level"]]
 process_mode = 1
@@ -29,5 +25,5 @@ r = 0.2
 
 [node name="Goal" parent="." unique_id=1338618760 instance=ExtResource("3_ks63r")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=469043710]
-environment = SubResource("Environment_63row")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1144806875]
+environment = ExtResource("5_jnsj8")

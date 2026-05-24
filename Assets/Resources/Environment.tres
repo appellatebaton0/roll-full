@@ -1,0 +1,6 @@
+[gd_resource type="Environment" format=3 uid="uid://bol5ovnngau3v"]
+
+[resource]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.1

@@ -1,7 +1,7 @@
 class_name Camera extends Camera2D
 ## Follows the player f a n c i l y
 
-const DEBUG := false
+const DEBUG := true
 
 ## Second-order-system time? Idk...
 
@@ -87,7 +87,7 @@ func _process(delta: float) -> void: if target:
 	
 	if DEBUG:
 		global_position = target.global_position
-		zoom = Vector2.ONE * 2.3
+		zoom = Vector2.ONE * 1.6
 		return
 	
 	global_position = target_position(delta) + applied_velocity

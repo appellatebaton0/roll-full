@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 signal dash_reset
 signal dashed
 
-const DEBUG := true
+const DEBUG := false
 
 ## VISUALS
 @export var sprite:Node2D
@@ -37,7 +37,9 @@ var dash_cooldown_time := 0.0:
 		
 		dash_cooldown_time = to
 var dash_direction:Vector2:
-	set(to): dash_direction = to.normalized()
+	set(to): 
+		dash_direction = to.normalized()
+		pointer.rotation = dash_direction.angle()
 
 const DASH_BUFFER := 0.1
 var dash_buffering := 0.0
@@ -78,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	jump_buffering = move_toward(jump_buffering, 0, delta)
 	if Input.is_action_just_pressed("Jump"): jump_buffering = JUMP_BUFFER
 	
-	# On hitting a wall...
+	# On-wall-hit velocity projection.
 	if not was_on_wall and on_wall and not ray_node.is_colliding():
 		var wn := get_wall_normal()
 		var wall_dir := Vector2(wn.y, -wn.x)
@@ -86,13 +88,14 @@ func _physics_process(delta: float) -> void:
 		var projection := velocity.project(wall_dir)
 		
 		slide_mag = projection.distance_to(Vector2.ZERO)
-	
-	
 	was_on_wall = on_wall
 	
 	# Control the ray target.
 	if on_wall and not ray_resetting: # If on wall, pierce the surface.
-		ray_node.target_position = Global.d_lerp(ray_node.target_position, -get_wall_normal() * ray_distance, 0.0001, delta)
+		var goal_pos := -get_wall_normal() * ray_distance
+		
+		ray_node.target_position = goal_pos
+		
 		ray_fall_time = 0.0
 	elif not ray_node.is_colliding(): # Otherwise, slowly return to Vector2.ZERO
 		ray_node.target_position = lerp(-last_normal * ray_distance, Vector2.ZERO, ease(ray_fall_time, ray_fallback))
@@ -111,13 +114,12 @@ func _physics_process(delta: float) -> void:
 		# Update the last normal.
 		last_normal = ray_node.get_collision_normal()
 		
-		
 		# Find the two vectors parallel to the rail.
-		var a = Vector2(-last_normal.y,  last_normal.x) ## 90* Counterclockwise
-		var b = Vector2( last_normal.y, -last_normal.x) ## 90* Clockwise
+		var a = Vector2(-last_normal.y,  last_normal.x).normalized() ## 90* Counterclockwise
+		var b = Vector2( last_normal.y, -last_normal.x).normalized() ## 90* Clockwise
 		
 		# Figure out which direction is closer to the current direction, and set to that.
-		direction = closest([a,b], direction)
+		direction = closest_vector(a, b, direction)
 		
 		## -- VELOCITY APPLICATION -- ##
 		
@@ -140,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	# Freefall
 	else:
 		
-		velocity += Vector2(0, 980) * delta * gravity_scale
+		velocity += Vector2(0, 980 * delta * gravity_scale)
 		
 		# Set the current direction to the velocity (automatically normalized).
 		direction = velocity
@@ -149,16 +151,21 @@ func _physics_process(delta: float) -> void:
 		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y * delta))
 	
 	
-	# Dashing
+	## -- Dashing -- ##
 	
 	dash_buffering = move_toward(dash_buffering, 0.0, delta)
 	if Input.is_action_just_pressed("Dash"): dash_buffering = DASH_BUFFER
 	
+	# Get the new dash direction.
+	var new_dash_direction:Vector2
 	match input_type:
 		INPUT_TYPE.KEYBMOUSE:
-			dash_direction = get_global_mouse_position() - global_position
+			new_dash_direction = get_global_mouse_position() - global_position
 		INPUT_TYPE.CONTROLLER:
-			dash_direction = Input.get_vector("JL", "JR", "JU", "JD")
+			new_dash_direction = Input.get_vector("JL", "JR", "JU", "JD")
+	
+	# Only update it if the direction has changed.
+	if dash_direction != new_dash_direction: dash_direction = new_dash_direction
 	
 	if dash_buffering > 0 and dash_cooldown_time <= 0:
 		
@@ -174,8 +181,6 @@ func _physics_process(delta: float) -> void:
 		var vec23 = func(a:Vector2): return Vector3(a.x, a.y, 0.0)
 		$DashEffectParticles.process_material.direction = -vec23.call(velocity.normalized())
 		dashed.emit()
-	
-	pointer.rotation = dash_direction.angle()
 	
 	move_and_slide()
 	real_velocity = velocity + (last_normal * stick_force) 
@@ -203,22 +208,15 @@ func _on_reset() -> void:
 	
 
 # Returns the Vector2 that is most similar to the comparator out of the given array.
-func closest(of:Array[Vector2], compared_to:Vector2):
-	var best:Vector2
-	var best_dot:float
+func closest_vector(a:Vector2, b:Vector2, compared_to:Vector2):
 	
-	for vec2 in of:
-		var vec_dot := vec2.normalized().dot(compared_to)
-		
-		# IF the best doesn't exist, or this is better than that.
-		if not best or vec_dot > best_dot:
-			best = vec2
-			best_dot = vec_dot
-			continue
+	var a_dot := a.dot(compared_to)
+	var b_dot := b.dot(compared_to)
 	
-	return best
+	if a_dot > b_dot: return a
+	return b
 
-func mag(of:Vector2): return sqrt(pow(of.x, 2) + pow(of.y, 2))
+func mag(of:Vector2): return of.distance_to(Vector2.ZERO)
 
 # DEBUG GRAPHICS
 func _process(_delta: float) -> void: if DEBUG: queue_redraw()
