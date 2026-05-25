@@ -13,13 +13,13 @@ name = "Wave"
 base_player_speed = 2660
 scene = ExtResource("1_bl2dy")
 ranking_maximums = Dictionary[int, float]({
-0: 7.0,
-1: 10.0,
-2: 14.0,
-3: 20.0,
-4: 25.0
+0: 70.0,
+1: 80.0,
+2: 90.0,
+3: 100.0,
+4: 120.0
 })
-score_threshold = 300
+score_threshold = 1000
 tracks = Dictionary[int, AudioStream]({
 0: ExtResource("3_bl2dy"),
 1: ExtResource("4_weiwl"),
@@ -27,7 +27,7 @@ tracks = Dictionary[int, AudioStream]({
 3: ExtResource("6_x5gtd")
 })
 track_speeds = Dictionary[int, float]({
-0: 25.01,
-1: 26.0,
-2: 27.0
+0: 28.0,
+1: 30.0,
+2: 35.0
 })

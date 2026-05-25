@@ -41,7 +41,7 @@ func update(level_data:LevelData = null, run:Variant = null):
 			
 			# Information
 			box.get_child(0).text = ['S','A','B','C','D'][i]
-			box.get_child(1).text = "<" + str(level_data.ranking_maximums[i])
+			box.get_child(1).text = "<" + Global.seconds_as_timer(level_data.ranking_maximums[i])
 			
 			# Position
 			box.position.y = lerp(0, 285, inv_lerp(s, d, level_data.ranking_maximums[i]))
@@ -52,7 +52,7 @@ func update(level_data:LevelData = null, run:Variant = null):
 			
 			# Information
 			box.get_child(0).text = ['S','A','B','C','D'][i]
-			box.get_child(1).text = "<--.-"
+			box.get_child(1).text = "<--:--"
 			
 			# Position
 			box.position.y = lerp(0, 285, float(i) / (len(LevelData.RANKINGS.keys()) - 1))

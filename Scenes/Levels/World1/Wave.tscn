@@ -16,7 +16,7 @@ position = Vector2(3150, -3448)
 polygon = PackedVector2Array(-8841, -44430, -11347, -19327, -2804, -14398, 6068, -25899, 17677, -32690, 27097, -34278, 29726, -27049, 17951, -26994, 13844, -24256, 13936, -7359, -10641.986, -5036.71, -11238, 8000, 18444, 7288, 26914, -9584, 51234, -12144, 52386, -40304, 38863, -40370, 28619.166, -44102.375)
 
 [node name="Player" parent="." index="4" unique_id=1267848784]
-position = Vector2(-6300, 2541)
+position = Vector2(-6388, 2809)
 
 [node name="Goal" parent="." index="6" unique_id=1338618760 node_paths=PackedStringArray("spins")]
 position = Vector2(-4486, -24480.867)
