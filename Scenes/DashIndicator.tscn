@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://i5l3dj5l2uvq"]
+
+[node name="DashIndicator" type="Polygon2D" unique_id=1894425035]
+modulate = Color(0.734, 1.56, 0.94, 1)
+polygon = PackedVector2Array(70, 0, -3.059797e-06, 70, -70, -6.119594e-06, 8.347416e-07, -70, 70, 0, 60, 0, 7.1549283e-07, -60, -60, -5.2453665e-06, -2.6226833e-06, 60, 60, 0)

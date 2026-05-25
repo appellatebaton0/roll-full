@@ -78,7 +78,7 @@ func _process(_delta: float) -> void:
 	
 	# See if the state has changed, and so should make a transition to the new state.
 	if player and level_data: if player.is_on_wall():
-		var new_state := level_data._get_track_state(player.real_velocity.distance_to(Vector2.ZERO) / 100., Global.score)
+		var new_state := level_data._get_track_state(player.velocity.distance_to(Vector2.ZERO) / 100., Global.score)
 		#print(new_state, " vs ", state, "/", state_buffer)
 		
 		if new_state != state and new_state != state_buffer:

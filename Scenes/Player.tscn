@@ -85,12 +85,9 @@ sprite = NodePath("Bearing")
 pointer = NodePath("Pointer")
 base_speed = 2500.0
 jump_height = 4.2
-stick_force = 300.0
-gravity_scale = null
 ray_node = NodePath("RayCast2D")
 ray_distance = 140.0
 ray_fallback = 1.4
-dash_cooldown = null
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1371172353]
 modulate = Color(0.65999997, 0.92066675, 1, 1)
@@ -190,15 +187,6 @@ polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 
 [node name="Ring" type="Polygon2D" parent="." unique_id=1801212948]
 color = Color(0.08900002, 0.3960499, 0.89, 0.7019608)
 polygon = PackedVector2Array(25, 0, 17.67767, 17.67767, -1.0927847e-06, 25, -17.67767, 17.67767, -25, -2.1855694e-06, -17.677671, -17.677668, 2.9812202e-07, -25, 17.677666, -17.677671, 25, 0, 20, 0, 14.142133, -14.142138, 2.3849762e-07, -20, -14.142137, -14.142134, -20, -1.7484556e-06, -14.142136, 14.142136, -8.742278e-07, 20, 14.142136, 14.142136, 20, 0)
-
-[node name="Label" type="Label" parent="." unique_id=1627993433]
-offset_left = -52.0
-offset_top = -129.0
-offset_right = 74.0
-offset_bottom = -17.0
-theme_override_font_sizes/font_size = 20
-text = "wetweruitweu hrtuiwehrti uert w"
-autowrap_mode = 2
 
 [connection signal="dash_reset" from="." to="DashReloadParticles" method="restart"]
 [connection signal="dashed" from="." to="DashEffectParticles" method="restart"]

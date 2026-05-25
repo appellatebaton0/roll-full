@@ -76,7 +76,7 @@ var applied_velocity := Vector2.ZERO
 func _process(delta: float) -> void: if target:
 	
 	if Global.spinning_camera:
-		var targ_angle := target.real_velocity.angle() + (0.5 * PI)
+		var targ_angle := target.velocity.angle() + (0.5 * PI)
 		
 		while abs(targ_angle - rotation) > PI:
 			targ_angle += PI *2 * sign(rotation - targ_angle)

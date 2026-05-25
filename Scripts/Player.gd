@@ -15,8 +15,6 @@ const DEBUG := true
 @export var base_speed := 1000.0
 @export var jump_height := 670.0
 
-@export var stick_force := 500.0
-
 @export var gravity_scale := 1.0
 
 @export_group("Raycast", "ray_")
@@ -114,8 +112,8 @@ func _physics_process(delta: float) -> void:
 		# Update the last normal.
 		last_normal = ray_node.get_collision_normal()
 		
-		# Update the target position.
-		ray_node.target_position = -last_normal * ray_distance
+		# Update the target position. Debatably necessary?
+		# ray_node.target_position = -last_normal * ray_distance
 		
 		# Wall sticking.
 		var collision_point := ray_node.get_collision_point() - global_position
@@ -130,7 +128,7 @@ func _physics_process(delta: float) -> void:
 		
 		## -- VELOCITY APPLICATION -- ##
 		
-		velocity = direction * max(base_speed, slide_mag) - (last_normal * stick_force) 
+		velocity = direction * max(base_speed, slide_mag)
 		
 		
 		## -- JUMPING -- ##
@@ -148,7 +146,6 @@ func _physics_process(delta: float) -> void:
 	
 	# Freefall
 	else:
-		print("!?")
 		velocity += Vector2(0, 980 * delta * gravity_scale)
 		
 		# Set the current direction to the velocity (automatically normalized).
@@ -156,9 +153,6 @@ func _physics_process(delta: float) -> void:
 	
 	if sprite:
 		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y * delta))
-	
-	print(last_normal, " / ", velocity.distance_to(Vector2.ZERO))
-	$Label.text = "LAST NORM:" + str(last_normal.angle()) + " / VELO: " + str(velocity.distance_to(Vector2.ZERO))
 	
 	## -- Dashing -- ##
 	
@@ -192,8 +186,6 @@ func _physics_process(delta: float) -> void:
 		dashed.emit()
 	
 	move_and_slide()
-	real_velocity = velocity + (last_normal * stick_force) 
-var real_velocity:Vector2
 
 enum INPUT_TYPE {KEYBMOUSE, CONTROLLER}
 var input_type := INPUT_TYPE.KEYBMOUSE
@@ -246,7 +238,7 @@ func _draw() -> void: if DEBUG:
 	draw_line(Vector2.ZERO, jump_direction * mag(velocity) / 100, Color.BLUE, 15)
 	
 	draw_line(Vector2.ZERO, velocity / 8., Color.GREEN, 15)
-	draw_line(Vector2.ZERO, real_velocity / 8., Color.LIGHT_SALMON, 12)
+	#draw_line(Vector2.ZERO, real_velocity / 8., Color.LIGHT_SALMON, 12)
 	
 	draw_circle(ray_node.target_position, 10.0, Color.TEAL)
 	

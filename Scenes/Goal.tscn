@@ -1,37 +1,131 @@
 [gd_scene format=3 uid="uid://bw16huunuc7lg"]
 
 [ext_resource type="Script" uid="uid://hnboj7u32fis" path="res://Scripts/Goal.gd" id="1_ugxcw"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_ugxcw"]
+[ext_resource type="Environment" uid="uid://bol5ovnngau3v" path="res://Assets/Resources/Environment.tres" id="3_kmleq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfw1b"]
 radius = 131.01526
 
-[node name="Goal" type="Area2D" unique_id=1338618760]
+[sub_resource type="Gradient" id="Gradient_ugxcw"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.100000024, 1, 0.70000005, 0.7294118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kmleq"]
+gradient = SubResource("Gradient_ugxcw")
+width = 4
+height = 4
+
+[sub_resource type="Curve" id="Curve_hlgd5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.14673914, 1), 0.0, 0.0, 0, 0, Vector2(0.19021739, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_fn8i1"]
+curve = SubResource("Curve_hlgd5")
+
+[sub_resource type="Curve" id="Curve_klp67"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.09782608, 1), 0.0, 0.0, 0, 0, Vector2(0.73913044, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_s5qqq"]
+curve = SubResource("Curve_klp67")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l2h7g"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 374.06
+emission_ring_inner_radius = 207.54
+emission_ring_cone_angle = 90.0
+radial_velocity_min = -344.84003
+radial_velocity_max = -94.84002
+scale_curve = SubResource("CurveTexture_s5qqq")
+alpha_curve = SubResource("CurveTexture_fn8i1")
+
+[node name="Goal" type="Area2D" unique_id=1338618760 node_paths=PackedStringArray("spins")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_ugxcw")
+spins = {
+NodePath("Sprite/AnimatedPolygon3"): 1.3,
+NodePath("Sprite/AnimatedPolygon2"): 0.7,
+NodePath("Sprite/AnimatedPolygon4"): -0.2,
+NodePath("Sprite/Polygon2D4"): -1.0,
+NodePath("Sprite/AnimatedPolygon5"): -1.1
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527626523]
 shape = SubResource("CircleShape2D_sfw1b")
 
 [node name="Sprite" type="Node2D" parent="." unique_id=765588126]
+rotation = 1.5525001
 
 [node name="AnimatedPolygon3" type="Polygon2D" parent="Sprite" unique_id=1504529992]
-color = Color(0.100000024, 1, 0.100000024, 0.7294118)
+modulate = Color(3.127, 3.127, 3.127, 0.165)
+rotation = 878.9204
+color = Color(0.101960786, 1, 0.45882353, 0.7294118)
 antialiased = true
-polygon = PackedVector2Array(120, 0, 138.58192, 57.40252, 84.85281, 84.85281, 57.402515, 138.58192, -5.2453665e-06, 120, -57.402508, 138.58194, -84.85281, 84.85281, -138.58192, 57.402523, -120, -1.0490733e-05, -138.58192, -57.402515, -84.85282, -84.852806, -57.402534, -138.58192, 1.4309857e-06, -120, 57.402542, -138.58191, 84.8528, -84.85283, 138.58194, -57.402515)
+polygon = PackedVector2Array(200, 0, -100.000015, 173.20508, -99.999985, -173.2051, 200, 0, 180, 0, -89.999985, -155.88458, -90.00001, 155.88457, 180, 0)
 uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("2_ugxcw")
+outer_radius = 200.0
+inner_radius = 180.0
+
+[node name="AnimatedPolygon5" type="Polygon2D" parent="Sprite" unique_id=1510191265]
+modulate = Color(3.127, 3.127, 3.127, 0.165)
+rotation = -365.83838
+color = Color(0.101960786, 1, 0.45882353, 0.7294118)
+antialiased = true
+polygon = PackedVector2Array(170, 0, -85.00001, 147.22432, -84.999985, -147.22432, 170, 0, 150, 0, -74.999985, -129.90382, -75.00001, 129.90381, 150, 0)
+uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("2_ugxcw")
+outer_radius = 170.0
+inner_radius = 150.0
 
 [node name="AnimatedPolygon2" type="Polygon2D" parent="Sprite" unique_id=1332664961]
-rotation = 0.38397244
-color = Color(0.100000024, 1, 0.100000024, 0.7294118)
+modulate = Color(3.127, 3.127, 3.127, 0.165)
+rotation = 404.12115
+color = Color(0.101960786, 1, 0.7019608, 0.7294118)
 antialiased = true
-polygon = PackedVector2Array(100, 0, 120.10433, 49.748848, 70.71068, 70.71068, 49.748844, 120.10433, -4.371139e-06, 100, -49.74884, 120.10434, -70.71068, 70.71068, -120.10433, 49.74885, -100, -8.742278e-06, -120.10433, -49.748844, -70.710686, -70.71067, -49.748863, -120.10433, 1.1924881e-06, -100, 49.748867, -120.104324, 70.71066, -70.710686, 120.10434, -49.748844)
+polygon = PackedVector2Array(150, 0, -75.00001, 129.90381, -74.999985, -129.90382, 150, 0, 140, 0, -69.999985, -121.24356, -70.00001, 121.24355, 140, 0)
 uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("2_ugxcw")
+outer_radius = 150.0
+inner_radius = 140.0
+
+[node name="AnimatedPolygon4" type="Polygon2D" parent="Sprite" unique_id=805624304]
+modulate = Color(3.127, 3.127, 3.127, 0.165)
+rotation = -115.1794
+color = Color(0.101960786, 1, 0.7019608, 0.7294118)
+antialiased = true
+polygon = PackedVector2Array(150, 0, -75.00001, 129.90381, -74.999985, -129.90382, 150, 0, 140, 0, -69.999985, -121.24356, -70.00001, 121.24355, 140, 0)
+uv = PackedVector2Array(-221.25, -85)
+script = ExtResource("2_ugxcw")
+outer_radius = 150.0
+inner_radius = 140.0
+
+[node name="Polygon2D4" type="Polygon2D" parent="Sprite" unique_id=225333695]
+rotation = -560.6724
+color = Color(0.9411765, 0.9411765, 0.9411765, 0.72156864)
+polygon = PackedVector2Array(60, 0, 48.29629, 12.940952, 51.961525, 30, 35.35534, 35.35534, 29.999998, 51.961525, 12.940953, 48.29629, -2.6226833e-06, 60, -12.940952, 48.29629, -30.000004, 51.961525, -35.35534, 35.35534, -51.961525, 30.000004, -48.29629, 12.940957, -60, -5.2453665e-06, -48.29629, -12.940953, -51.961525, -29.999998, -35.355343, -35.355335, -29.999994, -51.961525, -12.940949, -48.296295, 7.1549283e-07, -60, 12.94095, -48.29629, 29.999994, -51.961525, 35.35533, -35.355343, 51.96152, -30.000011, 48.296295, -12.940942)
+script = ExtResource("2_ugxcw")
+outer_vertices = 24
+outer_radius = 50.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: 10.0
+})
 
 [node name="Polygon2D3" type="Polygon2D" parent="Sprite" unique_id=2065614588]
+modulate = Color(1.8247963, 1.8247963, 1.8247963, 1)
 color = Color(0.9411765, 0.9411765, 0.9411765, 0.72156864)
 polygon = PackedVector2Array(28.19735, 0, 27.236547, 7.298011, 24.41962, 14.098675, 19.938538, 19.938538, 14.098674, 24.419622, 7.298012, 27.236547, -1.2325453e-06, 28.19735, -7.298011, 27.236547, -14.098677, 24.41962, -19.938538, 19.938538, -24.41962, 14.098677, -27.236547, 7.2980137, -28.19735, -2.4650906e-06, -27.236547, -7.298012, -24.41962, -14.098674, -19.938538, -19.938536, -14.098672, -24.419622, -7.2980094, -27.23655, 3.3625003e-07, -28.19735, 7.2980103, -27.236547, 14.098672, -24.419622, 19.938534, -19.93854, 24.419619, -14.09868, 27.23655, -7.298005)
 
-[node name="Polygon2D4" type="Polygon2D" parent="Sprite" unique_id=225333695]
-color = Color(0.9411765, 0.9411765, 0.9411765, 0.72156864)
-polygon = PackedVector2Array(59.431854, 0, 57.40676, 15.382095, 51.469494, 29.715927, 42.024666, 42.024666, 29.715925, 51.469498, 15.382097, 57.40676, -2.5978488e-06, 59.431854, -15.382095, 57.40676, -29.71593, 51.469494, -42.024666, 42.024666, -51.469494, 29.71593, -57.40676, 15.382101, -59.431854, -5.1956977e-06, -57.40676, -15.382097, -51.469494, -29.715925, -42.02467, -42.024662, -29.715921, -51.469498, -15.382092, -57.406765, 7.087178e-07, -59.431854, 15.382094, -57.40676, 29.715921, -51.469498, 42.02466, -42.024673, 51.46949, -29.715939, 57.406765, -15.382083)
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=757764067]
+amount = 21
+texture = SubResource("GradientTexture2D_kmleq")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_l2h7g")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1475371430]
+environment = ExtResource("3_kmleq")
