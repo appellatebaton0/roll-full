@@ -12,5 +12,5 @@ func _on_body_entered(body:Node2D) -> void:
 		Global.request_animation.emit("Game->Levels")
 
 func _process(delta: float) -> void: 
-	for spin in spins:
+	for spin in spins: if spin:
 		spin.rotate(spins[spin] * delta)

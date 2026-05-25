@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="3_gntrk"]
 [ext_resource type="Script" uid="uid://df3sty4wpm85y" path="res://Scripts/ComboDriver.gd" id="4_dewec"]
 [ext_resource type="Script" uid="uid://bbl15es03g582" path="res://Scripts/Trail.gd" id="5_5ixxa"]
+[ext_resource type="Environment" uid="uid://bol5ovnngau3v" path="res://Assets/Resources/Environment.tres" id="5_nn08x"]
 
 [sub_resource type="Curve" id="Curve_5ixxa"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.97310096, 0.0, 0, 0]
@@ -187,6 +188,9 @@ polygon = PackedVector2Array(32, 0, 31.385128, 6.2428904, 29.564144, 12.245871, 
 [node name="Ring" type="Polygon2D" parent="." unique_id=1801212948]
 color = Color(0.08900002, 0.3960499, 0.89, 0.7019608)
 polygon = PackedVector2Array(25, 0, 17.67767, 17.67767, -1.0927847e-06, 25, -17.67767, 17.67767, -25, -2.1855694e-06, -17.677671, -17.677668, 2.9812202e-07, -25, 17.677666, -17.677671, 25, 0, 20, 0, 14.142133, -14.142138, 2.3849762e-07, -20, -14.142137, -14.142134, -20, -1.7484556e-06, -14.142136, 14.142136, -8.742278e-07, 20, 14.142136, 14.142136, 20, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438125164]
+environment = ExtResource("5_nn08x")
 
 [connection signal="dash_reset" from="." to="DashReloadParticles" method="restart"]
 [connection signal="dashed" from="." to="DashEffectParticles" method="restart"]
