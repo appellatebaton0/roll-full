@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 signal dash_reset
 signal dashed
 
-const DEBUG := false
+const DEBUG := true
 
 ## VISUALS
 @export var sprite:Node2D
@@ -114,6 +114,13 @@ func _physics_process(delta: float) -> void:
 		# Update the last normal.
 		last_normal = ray_node.get_collision_normal()
 		
+		# Update the target position.
+		ray_node.target_position = -last_normal * ray_distance
+		
+		# Wall sticking.
+		var collision_point := ray_node.get_collision_point() - global_position
+		position += collision_point.normalized() * (collision_point.distance_to(Vector2.ZERO) - 32.)
+		
 		# Find the two vectors parallel to the rail.
 		var a = Vector2(-last_normal.y,  last_normal.x).normalized() ## 90* Counterclockwise
 		var b = Vector2( last_normal.y, -last_normal.x).normalized() ## 90* Clockwise
@@ -141,7 +148,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Freefall
 	else:
-		
+		print("!?")
 		velocity += Vector2(0, 980 * delta * gravity_scale)
 		
 		# Set the current direction to the velocity (automatically normalized).
@@ -150,6 +157,8 @@ func _physics_process(delta: float) -> void:
 	if sprite:
 		sprite.rotate(deg_to_rad(mag(velocity) * direction.rotated(-last_normal.angle()).y * delta))
 	
+	print(last_normal, " / ", velocity.distance_to(Vector2.ZERO))
+	$Label.text = "LAST NORM:" + str(last_normal.angle()) + " / VELO: " + str(velocity.distance_to(Vector2.ZERO))
 	
 	## -- Dashing -- ##
 	
@@ -240,3 +249,9 @@ func _draw() -> void: if DEBUG:
 	draw_line(Vector2.ZERO, real_velocity / 8., Color.LIGHT_SALMON, 12)
 	
 	draw_circle(ray_node.target_position, 10.0, Color.TEAL)
+	
+	var collision_point := ray_node.get_collision_point() - global_position
+	draw_circle(collision_point, 3.0, Color.GREEN_YELLOW, false, 1.2)
+	draw_line(collision_point, collision_point + ray_node.get_collision_normal() * 20., Color.GREEN_YELLOW, 1.2)
+	
+	draw_circle(collision_point.normalized() * (collision_point.distance_to(Vector2.ZERO) - 32.), 3.5, Color.DARK_GREEN, false, 1.2)

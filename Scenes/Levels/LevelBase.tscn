@@ -27,3 +27,6 @@ r = 0.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1144806875]
 environment = ExtResource("5_jnsj8")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=643993630]
+color = Color(0.83137256, 0.83137256, 0.83137256, 1)
