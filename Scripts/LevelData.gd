@@ -159,34 +159,3 @@ func _is_bonused(score:int) -> bool: return score >= score_threshold
 	2: null,
 	3: null,
 }
-
-## The speed thresholds for this level's music.
-@export var track_speeds:Dictionary[int, float] = {
-	0: 20.0,
-	1: 21.0,
-	2: 22.0,
-	3: 23.0,
-}
-
-## Get the binary track speed for a given speed and score.
-func _get_track_state(for_speed:float, for_score:int) -> int:
-	# 1,3,7,15 -> 0001, 0011, 0111, 1111 in binary.
-	
-	return [1,3,7,15][_get_track_rank(for_speed, for_score)]
-
-## The rank, 0 - 3, of a set speed and score.
-func _get_track_rank(for_speed:float, for_score:int) -> int:
-	
-	# Get the speed rank (0-3).
-	var speed_rank := 0
-	for i in track_speeds:
-		if for_speed >= track_speeds[i]: speed_rank += 1
-	
-	# Get the score rank (0-2).
-	var score_rank := 0
-	if for_score >= score_threshold * 0.5:
-		score_rank += 1
-	if for_score >= score_threshold:
-		score_rank += 1
-	
-	return clamp(speed_rank + score_rank, 0, 3)

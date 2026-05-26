@@ -1,11 +1,17 @@
 class_name LevelMusicDriver extends AudioStreamPlayer
 ## Handles the adaptive music for a level.
 
-@onready var player:Player = get_tree().get_first_node_in_group("Player"):
+## -- External Nodes -- ##
+@onready var player:Player                  = get_tree().get_first_node_in_group("Player"):
 	get():
 		if not is_instance_valid(player) or not player:
 			player = get_tree().get_first_node_in_group("Player")
 		return player
+@onready var music_sectioner:MusicSectioner = get_tree().get_first_node_in_group("MusicSectioner"):
+	get():
+		if not is_instance_valid(music_sectioner) or not music_sectioner:
+			music_sectioner = get_tree().get_first_node_in_group("MusicSectioner")
+		return music_sectioner
 
 ## -- BEAT INFORMATION -- ##
 
@@ -89,22 +95,11 @@ func _process(delta: float) -> void:
 	
 	# See if the state has changed, and so should make a transition to the new state.
 	if player and level_data and not resolving:
-		var muse := get_tree().get_first_node_in_group("Muse")
-		var rank := level_data._get_track_rank(player.velocity.distance_to(Vector2.ZERO) / 100., Global.score)
-		
-		print("--")
-		print(rank)
-		if muse:
-			rank += muse.closest_point()
-			print(muse.closest_point())
-		new_state = [1,3,7,15][clamp(rank,0,3)]
-		print(new_state)
+		new_state = _get_new_state()
 		
 		buffer_update_timer = move_toward(buffer_update_timer, 0.0, delta)
-		#print(buffer_update_timer)
 		
 		if new_state != state and new_state != state_buffer and buffer_update_timer <= 0.0:
-			#print("!")
 			state = new_state
 	
 	# If there's a waiting buffer, attempt to clear it.
@@ -161,3 +156,15 @@ func set_state(to:int):
 		if transition_start_beat == -1:
 			transition_start_beat = ceil(beat)
 		state_buffer = to
+
+## What the level wants to transition to.
+func _get_new_state() -> int: 
+	
+	var rank := 0
+	
+	if Global.score > Global.current_data.score_threshold: rank += 1
+	
+	if music_sectioner:
+		rank += music_sectioner.closest_point()
+	
+	return [1, 3, 7, 15][rank]
