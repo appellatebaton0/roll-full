@@ -93,5 +93,6 @@ func _process(delta: float) -> void: if target:
 	global_position = target_position(delta) + applied_velocity
 	
 	zoom = lerp(zoom, Vector2.ONE * clamp((0.7 - pow(target.mag(target.velocity) / 50000., 1./3.)), 0.05, 1.), 0.1)
+	zoom = zoom.clamp(Vector2.ONE * 0.25, Vector2.ONE * 2.0)
 	
 	applied_velocity = lerp(applied_velocity, target.velocity / 4, 0.1)

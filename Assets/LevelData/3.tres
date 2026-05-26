@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dkqgddi18206h"]
+
+[ext_resource type="PackedScene" uid="uid://dpbfq5sfrqh4b" path="res://Scenes/Levels/World1/Wave.tscn" id="1_8uby6"]
+[ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_rv4rp"]
+[ext_resource type="AudioStream" uid="uid://dqpqjqxvbyq4b" path="res://Assets/Music/Wave/Chords.mp3" id="3_7jgdr"]
+[ext_resource type="AudioStream" uid="uid://8cx5kpph3hcn" path="res://Assets/Music/Wave/Bass.mp3" id="4_t8ot7"]
+[ext_resource type="AudioStream" uid="uid://bny4qq2ivr8c1" path="res://Assets/Music/Wave/Drums.mp3" id="5_slhg5"]
+[ext_resource type="AudioStream" uid="uid://b8m27hem7esox" path="res://Assets/Music/Wave/Lead.mp3" id="6_5m1kp"]
+
+[resource]
+script = ExtResource("2_rv4rp")
+name = "Wave"
+base_player_speed = 2660
+scene = ExtResource("1_8uby6")
+ranking_maximums = Dictionary[int, float]({
+0: 70.0,
+1: 80.0,
+2: 90.0,
+3: 100.0,
+4: 120.0
+})
+score_threshold = 1000
+tracks = Dictionary[int, AudioStream]({
+0: ExtResource("3_7jgdr"),
+1: ExtResource("4_t8ot7"),
+2: ExtResource("5_slhg5"),
+3: ExtResource("6_5m1kp")
+})
