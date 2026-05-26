@@ -39,6 +39,7 @@ Player=""
 Level=""
 Themed=""
 Saveable=""
+Muse=""
 
 [gui]
 

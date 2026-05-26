@@ -29,11 +29,22 @@ var level_data:LevelData
 
 var transition_start_beat := -1   # When the transition should start.
 var state_buffer:int              # What to transition to.
-@export var transition_beats := 8 # How many beats it takes to transition
+@export var transition_beats := 16 # How many beats it takes to transition
+
+var new_state:int:
+	set(to):
+		if to != new_state:
+			buffer_update_timer = BUFFER_UPDATE_TIME
+		
+		new_state = to
+const BUFFER_UPDATE_TIME := 0.5 # The new state has to remain the same for 2s to start a transition.
+var buffer_update_timer := 0.0
 
 ## Whether the current level has been complete, and this track should fade out.
 var resolving := false
 func resolve() -> void:
+	
+	print(get_parent())
 	
 	# Already resolved.
 	if state == 0 and not level_data: return
@@ -71,17 +82,29 @@ func reload(from:LevelData):
 	# Start the playback.
 	play()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	
 	# Update the beat.
 	beat = (get_playback_position() +  AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency()) * bpm / 60
 	
 	# See if the state has changed, and so should make a transition to the new state.
-	if player and level_data: if player.is_on_wall():
-		var new_state := level_data._get_track_state(player.velocity.distance_to(Vector2.ZERO) / 100., Global.score)
-		#print(new_state, " vs ", state, "/", state_buffer)
+	if player and level_data and not resolving:
+		var muse := get_tree().get_first_node_in_group("Muse")
+		var rank := level_data._get_track_rank(player.velocity.distance_to(Vector2.ZERO) / 100., Global.score)
 		
-		if new_state != state and new_state != state_buffer:
+		print("--")
+		print(rank)
+		if muse:
+			rank += muse.closest_point()
+			print(muse.closest_point())
+		new_state = [1,3,7,15][clamp(rank,0,3)]
+		print(new_state)
+		
+		buffer_update_timer = move_toward(buffer_update_timer, 0.0, delta)
+		#print(buffer_update_timer)
+		
+		if new_state != state and new_state != state_buffer and buffer_update_timer <= 0.0:
+			#print("!")
 			state = new_state
 	
 	# If there's a waiting buffer, attempt to clear it.
@@ -91,7 +114,7 @@ func _process(_delta: float) -> void:
 	transition()
 	
 	# IF the state is everything off, and it's done making that transition, clear everything out.
-	if resolving and untransitioned == 0:
+	if resolving and untransitioned == 0 and state_buffer == state:
 		stream = null
 		level_data = null
 		resolving = false
@@ -106,7 +129,7 @@ func transition() -> void:
 		for i in range(31): 
 			if untransitioned & index:
 				
-				var new_value:float = move_toward(db_to_linear(stream.get_sync_stream_volume(i)), float((state & index) >> i), beat_delta / transition_beats)
+				var new_value:float = move_toward(db_to_linear(stream.get_sync_stream_volume(i)), float((state & index) >> i), beat_delta / (transition_beats if not resolving else int(transition_beats / 2.)) )
 				
 				stream.set_sync_stream_volume(i, linear_to_db(new_value))
 				

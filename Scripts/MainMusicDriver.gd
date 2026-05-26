@@ -29,7 +29,9 @@ func _request_level_music(for_level:LevelData = Global.current_data) -> void:
 			driver.resolve()
 
 ## Request the start of the menu music.
-func _resolve_to_menu() -> void:
+func _resolve_to_menu(anim_name:String, _optional_data:Variant = true) -> void: if anim_name == "Game->Levels":
+	print("!")
+	
 	# Transition out all the drivers.
 	for driver in level_drivers: driver.resolve()
 	
@@ -38,7 +40,7 @@ func _resolve_to_menu() -> void:
 
 func _ready() -> void:
 	Global.starting_level.connect(_request_level_music)
-	Global.level_complete.connect(_resolve_to_menu)
+	Global.request_animation.connect(_resolve_to_menu)
 	
 	if menu_player.stream:
 		menu_bpm = menu_player.stream.get("bpm")

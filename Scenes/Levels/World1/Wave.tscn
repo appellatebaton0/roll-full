@@ -9,6 +9,31 @@
 [ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="7_moi14"]
 [ext_resource type="PackedScene" uid="uid://dcpdetnw4fmcw" path="res://Scenes/JumpIndicator.tscn" id="8_15sbg"]
 
+[sub_resource type="GDScript" id="GDScript_yqydi"]
+script/source = "extends Line2D
+
+@onready var player:Player = get_tree().get_first_node_in_group(\"Player\")
+
+func _process(delta: float) -> void:
+	print(closest_point())
+
+func closest_point() -> int:
+	
+	var best := -1
+	var best_dist := INF
+	for point in points:
+		var global_posi := point + global_position
+		
+		var dist := global_posi.distance_to(player.global_position)
+		
+		if dist < best_dist:
+			best = points.find(point)
+			best_dist = dist
+	
+	return best
+		
+"
+
 [node name="Wave" unique_id=1260259211 instance=ExtResource("1_ddwab")]
 
 [node name="DeathBorder" parent="." index="3" unique_id=556743190]
@@ -16,7 +41,7 @@ position = Vector2(3150, -3448)
 polygon = PackedVector2Array(-8841, -44430, -11347, -19327, -2804, -14398, 6068, -25899, 17677, -32690, 27097, -34278, 29726, -27049, 17951, -26994, 13844, -24256, 13936, -7359, -10641.986, -5036.71, -11238, 8000, 18444, 7288, 26914, -9584, 51234, -12144, 52386, -40304, 38863, -40370, 28619.166, -44102.375)
 
 [node name="Player" parent="." index="4" unique_id=1267848784]
-position = Vector2(-6388, 2809)
+position = Vector2(-2932, -25607)
 
 [node name="Goal" parent="." index="6" unique_id=1338618760 node_paths=PackedStringArray("spins")]
 position = Vector2(-4486, -24480.867)
@@ -1127,3 +1152,8 @@ position = Vector2(6936, -45547)
 
 [node name="JumpIndicator13" parent="." index="148" unique_id=967358368 instance=ExtResource("8_15sbg")]
 position = Vector2(14055, -44166)
+
+[node name="PrototypeMuse" type="Line2D" parent="." index="149" unique_id=1248059240 groups=["Muse"]]
+points = PackedVector2Array(1752, -205, 25560, -15693, 47832, -38221, 7512, -38733)
+default_color = Color(1, 1, 1, 0)
+script = SubResource("GDScript_yqydi")

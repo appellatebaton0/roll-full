@@ -171,6 +171,7 @@ func _is_bonused(score:int) -> bool: return score >= score_threshold
 ## Get the binary track speed for a given speed and score.
 func _get_track_state(for_speed:float, for_score:int) -> int:
 	# 1,3,7,15 -> 0001, 0011, 0111, 1111 in binary.
+	
 	return [1,3,7,15][_get_track_rank(for_speed, for_score)]
 
 ## The rank, 0 - 3, of a set speed and score.
