@@ -373,11 +373,13 @@ offset_left = 64.0
 offset_top = 31.0
 offset_right = 222.0
 offset_bottom = 80.0
+tooltip_text = "Return to the previous screen."
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_gogyp")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_a5x2d")
 theme_override_styles/hover = SubResource("StyleBoxFlat_666yq")
 text = "Back"
+script = ExtResource("5_1w4wb")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=418689558]
 use_parent_material = true
@@ -677,6 +679,8 @@ theme_override_constants/separation = 77
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "The volume of the entire game."
+script = ExtResource("5_1w4wb")
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer" unique_id=1692982245]
 use_parent_material = true
@@ -713,6 +717,8 @@ text = "0.0"
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "The volume of the music."
+script = ExtResource("5_1w4wb")
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer2" unique_id=1451305750]
 use_parent_material = true
@@ -748,6 +754,8 @@ text = "0.0"
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "The volume of any sound effects."
+script = ExtResource("5_1w4wb")
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/AudioBox/VBoxContainer3" unique_id=1105966724]
 use_parent_material = true

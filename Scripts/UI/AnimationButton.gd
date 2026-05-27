@@ -40,3 +40,6 @@ func find_animator(with:Node = self, depth := 7) -> AnimationPlayer:
 		if child is AnimationPlayer: return child
 	
 	return find_animator(with.get_parent(), depth - 1)
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	return Global._make_custom_tooltip(for_text)
