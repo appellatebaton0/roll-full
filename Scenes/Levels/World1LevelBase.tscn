@@ -5,22 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://b617cwcxgf8bk" path="res://Assets/Textures/Rocks2.png" id="2_tltf1"]
 
 [sub_resource type="GDScript" id="GDScript_hjvo4"]
-script/source = "@tool extends Parallax2D
+script/source = "extends Parallax2D
 
-@export_tool_button(\"Run\") var run := _run
+@onready var default_parallax := scroll_scale
 
-func _run() -> void:
-	
-	for child in get_children(): if child is Polygon2D:
-		child.global_position.x = wrap(child.global_position.x, 0.0, 2048.)
-		child.global_position.y = wrap(child.global_position.y, 0.0, 2048.)
-		#
-		#var offset:Vector2 = child.polygon[0]
-		#var new:Array = Array(child.polygon.duplicate())
-		#for i in range(len(new)):
-			#new[i] = new[i] - offset
-		#child.polygon = new
-		#child.global_position += offset
+func _process(delta: float) -> void:
+	var new := default_parallax if Global.do_parallaxing else Vector2.ONE
+	print(new, \" v \", scroll_scale)
+	if scroll_scale != new:
+		scroll_scale = new
 "
 
 [sub_resource type="Gradient" id="Gradient_210hp"]
@@ -37,6 +30,7 @@ metadata/_edit_horizontal_guides_ = [2048.0]
 metadata/_edit_vertical_guides_ = [2048.0]
 
 [node name="Parallax2D3" type="Parallax2D" parent="." index="0" unique_id=1774043393]
+process_mode = 3
 modulate = Color(0.7019608, 0.7019608, 0.7019608, 1)
 scroll_scale = Vector2(0.7, 0.7)
 repeat_size = Vector2(2048, 2048)
@@ -55,6 +49,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_tltf1")
 
 [node name="Parallax2D" type="Parallax2D" parent="." index="1" unique_id=882957438]
+process_mode = 3
 modulate = Color(0.83137256, 0.83137256, 0.83137256, 1)
 scroll_scale = Vector2(0.8, 0.8)
 repeat_size = Vector2(2048, 2048)
@@ -69,6 +64,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_tltf1")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." index="2" unique_id=1896060384]
+process_mode = 3
 scroll_scale = Vector2(0.9, 0.9)
 repeat_size = Vector2(2048, 2048)
 repeat_times = 10
@@ -80,3 +76,10 @@ modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
 position = Vector2(1024, 1024)
 scale = Vector2(2, 2)
 texture = ExtResource("2_210hp")
+
+[node name="Goal" parent="." index="6" unique_id=1338618760 node_paths=PackedStringArray("spins")]
+spins = {
+NodePath("Sprite/AnimatedPolygon3"): 1.3,
+NodePath("Sprite/AnimatedPolygon2"): -0.7,
+NodePath("Sprite/Polygon2D4"): 1.0
+}

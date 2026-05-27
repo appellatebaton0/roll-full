@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://2fyexmj0cjug" path="res://Scripts/AnimatedPolygon.gd" id="2_yne6l"]
 [ext_resource type="Script" uid="uid://gyny8bxojorg" path="res://Scripts/UI/VolumeSlider.gd" id="3_8q2qo"]
 [ext_resource type="Script" uid="uid://dvamb3i8qn7gy" path="res://Scripts/UI/WindowModeSwitch.gd" id="3_yne6l"]
+[ext_resource type="Script" uid="uid://bos15vu7lspt4" path="res://Scripts/UI/UseTooltip.gd" id="5_1w4wb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_frkhe"]
 shader = ExtResource("1_dygke")
@@ -286,6 +287,16 @@ func _toggled(toggled_on: bool) -> void:
 	Global.spinning_camera = toggled_on
 "
 
+[sub_resource type="GDScript" id="GDScript_d2mda"]
+script/source = "extends CheckButton
+
+func _ready() -> void:
+	button_pressed = Global.do_parallaxing
+
+func _toggled(toggled_on: bool) -> void:
+	Global.do_parallaxing = toggled_on
+"
+
 [node name="OptionsScreen" type="PanelContainer" unique_id=217262157]
 material = SubResource("ShaderMaterial_frkhe")
 anchors_preset = 15
@@ -386,7 +397,7 @@ modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 use_parent_material = true
 position = Vector2(-25, 742)
 color = Color(0.6901961, 0.6901961, 0.6901961, 0.7294118)
-polygon = PackedVector2Array(156.18971, 402.77634, 80.696335, 373.3793, 24.080511, 431.32834, -38.633774, 380.04135, -110.38586, 417.6589, -154.18214, 349.50232, -234.04684, 363.10614, -254.63809, 284.75156, -334.7978, 273.00995, -330.1683, 192.12727, -402.77634, 156.18974, -373.3793, 80.69632, -431.32834, 24.080492, -380.04138, -38.633747, -417.6589, -110.38583, -349.5023, -154.18216, -363.10608, -234.0469, -284.75156, -254.63808, -273.0099, -334.79782, -192.12738, -330.16824, -156.18979, -402.7763, -80.69635, -373.3793, -24.080524, -431.32834, 38.63381, -380.04135, 110.385895, -417.6589, 154.18222, -349.5023, 234.04698, -363.10608, 254.63805, -284.7516, 334.79776, -273.01, 330.16827, -192.12732, 402.77634, -156.1897, 373.3793, -80.69628, 431.32834, -24.080454, 380.04135, 38.633873, 417.65894, 110.385765, 349.50232, 154.1821, 363.10614, 234.04684, 284.75156, 254.63809, 273.00995, 334.7978, 192.12727, 330.16833, 156.18971, 402.77634, 5.6917405, 249.9352, 68.6151, 155.53767, 180.75554, 172.7062, 158.49994, 61.463547, 249.9352, -5.691752, 155.53767, -68.6151, 172.7062, -180.75555, 61.463547, -158.49994, -5.6917486, -249.9352, -68.61512, -155.53766, -180.75555, -172.70619, -158.49994, -61.463547, -249.9352, 5.69173, -155.53767, 68.615105, -172.7062, 180.75555, -61.463543, 158.49994, 5.6917405, 249.9352)
+polygon = PackedVector2Array(432, 0, 377.29697, 59.75797, 410.8564, 133.49535, 340.3645, 173.42438, 349.49533, 253.92322, 270.11478, 270.11478, 253.92322, 349.49533, 173.42438, 340.3645, 133.49533, 410.8564, 59.757977, 377.29697, -1.888332e-05, 432, -59.757957, 377.29697, -133.49536, 410.85638, -173.42441, 340.36447, -253.9232, 349.49533, -270.11478, 270.11478, -349.49536, 253.9232, -340.36447, 173.42441, -410.85638, 133.49536, -377.29697, 59.757957, -432, -3.776664e-05, -377.29697, -59.75793, -410.8564, -133.49533, -340.3645, -173.4244, -349.49533, -253.92328, -270.1148, -270.11478, -253.92314, -349.4954, -173.42444, -340.36447, -133.49538, -410.85638, -59.757988, -377.29694, 5.1515485e-06, -432, 59.75799, -377.29694, 133.49539, -410.85638, 173.42444, -340.36444, 253.92314, -349.4954, 270.11475, -270.11484, 349.49533, -253.92325, 340.3645, -173.42438, 410.8564, -133.49532, 377.29697, -59.757923, 432, 0, 230.9699, -95.67086, 120.20813, -120.20817, 95.6709, -230.96986, 2.0272298e-06, -170, -95.67089, -230.96988, -120.20816, -120.20814, -230.96988, -95.67086, -170, -1.4861872e-05, -230.96988, 95.67087, -120.20815, 120.20815, -95.67085, 230.9699, -7.430936e-06, 170, 95.67086, 230.96988, 120.20815, 120.20815, 230.96988, 95.67086, 170, 0, 230.9699, -95.67086)
 script = ExtResource("2_yne6l")
 processing = false
 outer_rotation = 5.0
@@ -409,7 +420,7 @@ modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 use_parent_material = true
 position = Vector2(1100, 248)
 color = Color(0.6901961, 0.6901961, 0.6901961, 0.7294118)
-polygon = PackedVector2Array(156.18971, 402.77634, 80.696335, 373.3793, 24.080511, 431.32834, -38.633774, 380.04135, -110.38586, 417.6589, -154.18214, 349.50232, -234.04684, 363.10614, -254.63809, 284.75156, -334.7978, 273.00995, -330.1683, 192.12727, -402.77634, 156.18974, -373.3793, 80.69632, -431.32834, 24.080492, -380.04138, -38.633747, -417.6589, -110.38583, -349.5023, -154.18216, -363.10608, -234.0469, -284.75156, -254.63808, -273.0099, -334.79782, -192.12738, -330.16824, -156.18979, -402.7763, -80.69635, -373.3793, -24.080524, -431.32834, 38.63381, -380.04135, 110.385895, -417.6589, 154.18222, -349.5023, 234.04698, -363.10608, 254.63805, -284.7516, 334.79776, -273.01, 330.16827, -192.12732, 402.77634, -156.1897, 373.3793, -80.69628, 431.32834, -24.080454, 380.04135, 38.633873, 417.65894, 110.385765, 349.50232, 154.1821, 363.10614, 234.04684, 284.75156, 254.63809, 273.00995, 334.7978, 192.12727, 330.16833, 156.18971, 402.77634, 5.6917405, 249.9352, 68.6151, 155.53767, 180.75554, 172.7062, 158.49994, 61.463547, 249.9352, -5.691752, 155.53767, -68.6151, 172.7062, -180.75555, 61.463547, -158.49994, -5.6917486, -249.9352, -68.61512, -155.53766, -180.75555, -172.70619, -158.49994, -61.463547, -249.9352, 5.69173, -155.53767, 68.615105, -172.7062, 180.75555, -61.463543, 158.49994, 5.6917405, 249.9352)
+polygon = PackedVector2Array(432, 0, 377.29697, 59.75797, 410.8564, 133.49535, 340.3645, 173.42438, 349.49533, 253.92322, 270.11478, 270.11478, 253.92322, 349.49533, 173.42438, 340.3645, 133.49533, 410.8564, 59.757977, 377.29697, -1.888332e-05, 432, -59.757957, 377.29697, -133.49536, 410.85638, -173.42441, 340.36447, -253.9232, 349.49533, -270.11478, 270.11478, -349.49536, 253.9232, -340.36447, 173.42441, -410.85638, 133.49536, -377.29697, 59.757957, -432, -3.776664e-05, -377.29697, -59.75793, -410.8564, -133.49533, -340.3645, -173.4244, -349.49533, -253.92328, -270.1148, -270.11478, -253.92314, -349.4954, -173.42444, -340.36447, -133.49538, -410.85638, -59.757988, -377.29694, 5.1515485e-06, -432, 59.75799, -377.29694, 133.49539, -410.85638, 173.42444, -340.36444, 253.92314, -349.4954, 270.11475, -270.11484, 349.49533, -253.92325, 340.3645, -173.42438, 410.8564, -133.49532, 377.29697, -59.757923, 432, 0, 230.9699, -95.67086, 120.20813, -120.20817, 95.6709, -230.96986, 2.0272298e-06, -170, -95.67089, -230.96988, -120.20816, -120.20814, -230.96988, -95.67086, -170, -1.4861872e-05, -230.96988, 95.67087, -120.20815, 120.20815, -95.67085, 230.9699, -7.430936e-06, 170, 95.67086, 230.96988, 120.20815, 120.20815, 230.96988, 95.67086, 170, 0, 230.9699, -95.67086)
 script = ExtResource("2_yne6l")
 processing = false
 outer_rotation = 5.0
@@ -522,12 +533,15 @@ size_flags_horizontal = 4
 use_parent_material = true
 layout_mode = 2
 theme_override_constants/h_separation = 39
+theme_override_constants/v_separation = 30
 columns = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2" unique_id=58564526]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "The mode of the window the game is running in."
+script = ExtResource("5_1w4wb")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=289900007]
 use_parent_material = true
@@ -556,13 +570,15 @@ layout_mode = 2
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "When on, the camera will rotate with the direction, making the player appear to always be moving up. Not for the easily motion sick."
+script = ExtResource("5_1w4wb")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2" unique_id=2076918680]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
-text = "Camera Follows Velocity"
+text = "Camera Spinning"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2" unique_id=1849555092]
 use_parent_material = true
@@ -591,6 +607,48 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1w4wb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_utcym")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_utcym")
 script = SubResource("GDScript_yne6l")
+
+[node name="Parallax" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2" unique_id=988342380]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "When on, the background's layers move slower than each other, creating an illusion of depth."
+script = ExtResource("5_1w4wb")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/Parallax" unique_id=825175952]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Do Parallaxing"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/Parallax" unique_id=1909596066]
+use_parent_material = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/Parallax/Control" unique_id=1784795474 groups=["Saveable"]]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -18.5
+offset_right = 6.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+focus_neighbor_left = NodePath("../../../HBoxContainer/WindowMode")
+focus_neighbor_bottom = NodePath("../../../../AudioBox/VBoxContainer3/HBoxContainer/HSlider")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2mda")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1w4wb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_utcym")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_utcym")
+script = SubResource("GDScript_d2mda")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1901249204]
 use_parent_material = true

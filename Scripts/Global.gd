@@ -26,6 +26,7 @@ var run_timer:RunTimer
 var default_time_scale := 1.0
 
 var spinning_camera := false
+var do_parallaxing := true
 
 var return_focus:Control
 
@@ -315,6 +316,7 @@ func _save() -> void:
 	
 	## Other misc settings.
 	save_dict.call({"SpinningCamera":spinning_camera})
+	save_dict.call({"DoParallaxing":do_parallaxing})
 	save_dict.call({"WindowMode":DisplayServer.window_get_mode()})
 	
 	print("SAVED!")
@@ -400,6 +402,8 @@ func _load() -> void:
 			## Other misc settings.
 			"SpinningCamera":
 				spinning_camera = value
+			"DoParallaxing":
+				do_parallaxing = value
 			"WindowMode":
 				DisplayServer.window_set_mode(int(value) as DisplayServer.WindowMode)
 	

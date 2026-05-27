@@ -20,7 +20,7 @@ shadow_size = 3
 shadow_offset = Vector2(1, 1)
 
 [node name="FancyTooltip" type="MarginContainer" unique_id=1667009073]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(300, 0)
 offset_right = 250.0
 offset_bottom = 122.0
 theme_override_constants/margin_left = 10
@@ -44,10 +44,10 @@ theme_override_constants/margin_bottom = 15
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_cogxk")
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 23
+theme_override_font_sizes/bold_font_size = 23
+theme_override_font_sizes/bold_italics_font_size = 23
+theme_override_font_sizes/italics_font_size = 23
+theme_override_font_sizes/mono_font_size = 23
 bbcode_enabled = true
 fit_content = true
