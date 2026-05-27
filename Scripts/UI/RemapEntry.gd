@@ -15,6 +15,7 @@ var sane_default:Array[InputEvent]
 func _ready() -> void:
 	
 	# The currently bound input isn't the default, allow resettng.
+	# Used when loading from save with non-default bindings.
 	var c_events := InputMap.action_get_events(action)
 	for i in range(len(sane_default)):
 		var event_a = sane_default[i]
@@ -24,22 +25,28 @@ func _ready() -> void:
 				reset_button.disabled = false
 				break
 	
+	# Update the display label.
 	input_label.text = action if not label_override else label_override
+	# Wire up the reset-to-default button.
 	reset_button.pressed.connect(_reset_pressed)
 	
-	var trebut := get_remap_button_from(template)
-	if trebut: buttons.append(trebut)
+	# Create all the buttons.
+	var template_remap_button := get_remap_button_from(template)
+	if template_remap_button: buttons.append(template_remap_button)
 	
 	for i in range(button_count - 1):
 		var new := template.duplicate()
 		
 		template.add_sibling(new)
 		
-		var rebut := get_remap_button_from(new)
-		if rebut: 
-			rebut.action_event_index = button_count - 1 - i 
-			buttons.append(rebut)
+		var remap_button := get_remap_button_from(new)
+		if remap_button: 
+			remap_button.action_event_index = button_count - 1 - i 
+			buttons.append(remap_button)
 	
+	# This is a seperate loop because it's a nested loop.
+	# If this happened in the above loop, the buttons wouldn't all connect
+	# to each other.
 	for button in buttons:
 		button.action = action
 		button.remapped.connect(_any_remapped)

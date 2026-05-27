@@ -9,9 +9,9 @@ script/source = "extends Parallax2D
 
 @onready var default_parallax := scroll_scale
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var new := default_parallax if Global.do_parallaxing else Vector2.ONE
-	print(new, \" v \", scroll_scale)
+	
 	if scroll_scale != new:
 		scroll_scale = new
 "
