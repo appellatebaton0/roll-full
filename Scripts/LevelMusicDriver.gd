@@ -167,4 +167,4 @@ func _get_new_state() -> int:
 	if music_sectioner:
 		rank += music_sectioner.closest_point()
 	
-	return [1, 3, 7, 15][rank]
+	return [1, 3, 7, 15][clamp(rank, 0, 3)]

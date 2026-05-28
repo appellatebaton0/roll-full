@@ -1123,6 +1123,7 @@ position = Vector2(6936, -45547)
 position = Vector2(14055, -44166)
 
 [node name="MusicSectioner" parent="." index="147" unique_id=1466832369]
+visible = false
 position = Vector2(-1, 0)
 points = PackedVector2Array(14882, -885, 25707, -12350, 50636, -30711, -13, -42409)
 metadata/_custom_type_script = "uid://b8737dvbgvi4u"

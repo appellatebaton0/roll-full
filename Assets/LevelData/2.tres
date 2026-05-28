@@ -9,17 +9,17 @@
 
 [resource]
 script = ExtResource("2_dncip")
-name = "Disoriented"
+name = "Barrage"
 base_player_speed = 3100
 scene = ExtResource("1_bl2dy")
 ranking_maximums = Dictionary[int, float]({
-0: 70.0,
-1: 80.0,
-2: 90.0,
-3: 100.0,
-4: 120.0
+0: 40.0,
+1: 45.0,
+2: 50.0,
+3: 60.0,
+4: 70.0
 })
-score_threshold = 1000
+score_threshold = 1200
 tracks = Dictionary[int, AudioStream]({
 0: ExtResource("3_bl2dy"),
 1: ExtResource("4_weiwl"),

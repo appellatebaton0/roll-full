@@ -115,9 +115,7 @@ func _physics_process(delta: float) -> void:
 		# Update the target position. Debatably necessary?
 		# ray_node.target_position = -last_normal * ray_distance
 		
-		# Wall sticking.
-		var collision_point := ray_node.get_collision_point() - global_position
-		position += collision_point.normalized() * (collision_point.distance_to(Vector2.ZERO) - 32.)
+		
 		
 		# Find the two vectors parallel to the rail.
 		var a = Vector2(-last_normal.y,  last_normal.x).normalized() ## 90* Counterclockwise
@@ -143,6 +141,10 @@ func _physics_process(delta: float) -> void:
 			
 			# Clear the jump buffer so you don't spam jumps.
 			jump_buffering = 0.0
+		else:
+			# Wall sticking.
+			var collision_point := ray_node.get_collision_point() - global_position
+			position += collision_point.normalized() * (collision_point.distance_to(Vector2.ZERO) - 32.)
 	
 	# Freefall
 	else:
