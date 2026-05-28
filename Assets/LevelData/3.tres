@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("2_rv4rp")
 name = "Wave"
-base_player_speed = 2660
+base_player_speed = 3100
 scene = ExtResource("1_8uby6")
 ranking_maximums = Dictionary[int, float]({
 0: 70.0,

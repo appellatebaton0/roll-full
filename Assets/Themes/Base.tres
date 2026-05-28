@@ -1,6 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://cqeedrsmhh3g1"]
 
 [ext_resource type="FontFile" uid="uid://cnakc81irxpb1" path="res://Assets/Fonts/humaroid.regular.otf" id="1_7dnql"]
+[ext_resource type="Texture2D" uid="uid://lx4b31hpsi2a" path="res://Assets/Textures/ToggleButtonOn.svg" id="1_tn4sj"]
+[ext_resource type="Texture2D" uid="uid://c17ojtlf0j76e" path="res://Assets/Textures/ToggleButtonOff.svg" id="2_61p4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_666yq"]
 bg_color = Color(0.101960786, 0.16078432, 0.25882354, 1)
@@ -152,6 +154,8 @@ vertical = true
 Button/styles/hover = SubResource("StyleBoxFlat_666yq")
 Button/styles/normal = SubResource("StyleBoxFlat_gogyp")
 Button/styles/pressed = SubResource("StyleBoxFlat_a5x2d")
+CheckButton/icons/checked = ExtResource("1_tn4sj")
+CheckButton/icons/unchecked = ExtResource("2_61p4h")
 HSeparator/styles/separator = SubResource("StyleBoxLine_dygke")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_1w4wb")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_utcym")

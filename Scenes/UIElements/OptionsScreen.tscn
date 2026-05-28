@@ -238,44 +238,8 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2mda"]
-content_margin_left = 3.0
-content_margin_right = 3.0
-bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-border_color = Color(0.05490196, 0.09019608, 0.14117648, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 12
-shadow_size = 3
-shadow_offset = Vector2(3, 3)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w4wb"]
-content_margin_left = 3.0
-content_margin_right = 3.0
-bg_color = Color(0.39607844, 0.56078434, 0.8117647, 1)
-border_color = Color(0.05490196, 0.09019608, 0.14117648, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 12
-shadow_size = 3
-shadow_offset = Vector2(3, 3)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utcym"]
-content_margin_left = 3.0
-content_margin_right = 3.0
-bg_color = Color(0.63529414, 0.7647059, 0.9607843, 1)
-border_color = Color(0.05490196, 0.09019608, 0.14117648, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 12
-shadow_size = 3
-shadow_offset = Vector2(3, 3)
+draw_center = false
 
 [sub_resource type="GDScript" id="GDScript_yne6l"]
 script/source = "extends CheckButton
@@ -555,7 +519,7 @@ text = "Window Mode"
 [node name="WindowMode" type="OptionButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer" unique_id=1589580690 groups=["Saveable"]]
 use_parent_material = true
 layout_mode = 2
-focus_neighbor_right = NodePath("../../HBoxContainer2/Control/CheckButton")
+focus_neighbor_right = NodePath("../../HBoxContainer2/CheckButton")
 focus_neighbor_bottom = NodePath("../../../AudioBox/VBoxContainer/HBoxContainer/HSlider")
 theme_override_font_sizes/font_size = 22
 selected = 0
@@ -582,32 +546,15 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "Camera Spinning"
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2" unique_id=1849555092]
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2" unique_id=81087287 groups=["Saveable"]]
 use_parent_material = true
-custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/HBoxContainer2/Control" unique_id=81087287 groups=["Saveable"]]
-use_parent_material = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -18.5
-offset_right = 6.0
-offset_bottom = 5.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
-focus_neighbor_left = NodePath("../../../HBoxContainer/WindowMode")
-focus_neighbor_bottom = NodePath("../../../../AudioBox/VBoxContainer3/HBoxContainer/HSlider")
-theme_override_styles/normal = SubResource("StyleBoxFlat_d2mda")
+focus_neighbor_left = NodePath("../../HBoxContainer/WindowMode")
+focus_neighbor_bottom = NodePath("../../../AudioBox/VBoxContainer3/HBoxContainer/HSlider")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1w4wb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1w4wb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_utcym")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_utcym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1w4wb")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_1w4wb")
 script = SubResource("GDScript_yne6l")
 
 [node name="Parallax" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2" unique_id=988342380]
@@ -624,32 +571,17 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "Do Parallaxing"
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/Parallax" unique_id=1909596066]
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/Parallax" unique_id=1784795474 groups=["Saveable"]]
+texture_filter = 2
 use_parent_material = true
-custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/GraphicsBox2/Parallax/Control" unique_id=1784795474 groups=["Saveable"]]
-use_parent_material = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -18.5
-offset_right = 6.0
-offset_bottom = 5.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
-focus_neighbor_left = NodePath("../../../HBoxContainer/WindowMode")
-focus_neighbor_bottom = NodePath("../../../../AudioBox/VBoxContainer3/HBoxContainer/HSlider")
-theme_override_styles/normal = SubResource("StyleBoxFlat_d2mda")
+focus_neighbor_left = NodePath("../../HBoxContainer/WindowMode")
+focus_neighbor_bottom = NodePath("../../../AudioBox/VBoxContainer3/HBoxContainer/HSlider")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1w4wb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1w4wb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_utcym")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_utcym")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1w4wb")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_1w4wb")
+button_pressed = true
 script = SubResource("GDScript_d2mda")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1901249204]
@@ -698,7 +630,7 @@ theme_override_constants/separation = 15
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../../../../GraphicsBox2/HBoxContainer2/Control/CheckButton")
+focus_neighbor_top = NodePath("../../../../GraphicsBox2/HBoxContainer2/CheckButton")
 focus_neighbor_bottom = NodePath("../../../VBoxContainer2/HBoxContainer/HSlider")
 max_value = 1.5
 step = 0.01

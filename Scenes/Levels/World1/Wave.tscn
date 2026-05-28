@@ -1101,34 +1101,28 @@ sample_mesh = Array[Vector2]([Vector2(4226.9546, -42827.188), Vector2(4368.556, 
 seg = 30.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="DeathSpikeSmall" parent="." index="140" unique_id=2139363536 instance=ExtResource("4_7aaks")]
-position = Vector2(13310, -44855)
-
-[node name="DeathSpikeSmall7" parent="." index="141" unique_id=1249331488 instance=ExtResource("4_7aaks")]
+[node name="DeathSpikeSmall7" parent="." index="140" unique_id=1249331488 instance=ExtResource("4_7aaks")]
 position = Vector2(10021, -46499)
 
-[node name="DeathSpikeSmall8" parent="." index="142" unique_id=428670658 instance=ExtResource("4_7aaks")]
-position = Vector2(6211, -44936)
-
-[node name="DeathSpikeSmall9" parent="." index="143" unique_id=1660896125 instance=ExtResource("4_7aaks")]
+[node name="DeathSpikeSmall9" parent="." index="141" unique_id=1660896125 instance=ExtResource("4_7aaks")]
 position = Vector2(4208, -42836)
 
-[node name="JumpIndicator11" parent="." index="144" unique_id=2048069210 instance=ExtResource("8_15sbg")]
+[node name="JumpIndicator11" parent="." index="142" unique_id=2048069210 instance=ExtResource("8_15sbg")]
 position = Vector2(6936, -45547)
 
-[node name="JumpIndicator14" parent="." index="145" unique_id=1790382906 instance=ExtResource("8_15sbg")]
+[node name="JumpIndicator14" parent="." index="143" unique_id=1790382906 instance=ExtResource("8_15sbg")]
 position = Vector2(4758, -43633)
 
-[node name="JumpIndicator15" parent="." index="146" unique_id=1567059830 instance=ExtResource("8_15sbg")]
+[node name="JumpIndicator15" parent="." index="144" unique_id=1567059830 instance=ExtResource("8_15sbg")]
 position = Vector2(10905, -46312)
 
-[node name="JumpIndicator12" parent="." index="147" unique_id=1700540177 instance=ExtResource("8_15sbg")]
+[node name="JumpIndicator12" parent="." index="145" unique_id=1700540177 instance=ExtResource("8_15sbg")]
 position = Vector2(6936, -45547)
 
-[node name="JumpIndicator13" parent="." index="148" unique_id=967358368 instance=ExtResource("8_15sbg")]
+[node name="JumpIndicator13" parent="." index="146" unique_id=967358368 instance=ExtResource("8_15sbg")]
 position = Vector2(14055, -44166)
 
-[node name="MusicSectioner" parent="." index="149" unique_id=1466832369]
+[node name="MusicSectioner" parent="." index="147" unique_id=1466832369]
 position = Vector2(-1, 0)
 points = PackedVector2Array(14882, -885, 25707, -12350, 50636, -30711, -13, -42409)
 metadata/_custom_type_script = "uid://b8737dvbgvi4u"

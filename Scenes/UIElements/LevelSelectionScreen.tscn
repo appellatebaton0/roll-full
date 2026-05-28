@@ -376,6 +376,7 @@ custom_minimum_size = Vector2(0, 864)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme = ExtResource("12_bks1m")
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
@@ -408,6 +409,7 @@ layout_mode = 2
 
 [node name="Control" type="VSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1300587058]
 layout_mode = 2
+theme = ExtResource("12_bks1m")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=634307997]
 layout_mode = 2
@@ -475,6 +477,7 @@ text = "+"
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2008498746]
 layout_mode = 2
+theme = ExtResource("12_bks1m")
 
 [node name="Time" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=503668581]
 layout_mode = 2
