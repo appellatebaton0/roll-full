@@ -7,23 +7,6 @@ signal remapped
 
 @export var unmap_button:Button
 
-const CONTROLLER_LABELS := {
-	JoyButton.JOY_BUTTON_A: "A",
-	JoyButton.JOY_BUTTON_B: "B",
-	JoyButton.JOY_BUTTON_X: "X",
-	JoyButton.JOY_BUTTON_Y: "Y",
-	JoyButton.JOY_BUTTON_LEFT_SHOULDER: "LB",
-	JoyButton.JOY_BUTTON_RIGHT_SHOULDER: "RB",
-	JoyButton.JOY_BUTTON_LEFT_STICK: "L3",
-	JoyButton.JOY_BUTTON_RIGHT_STICK: "R3",
-	JoyButton.JOY_BUTTON_DPAD_UP: "↑",
-	JoyButton.JOY_BUTTON_DPAD_DOWN: "↓",
-	JoyButton.JOY_BUTTON_DPAD_RIGHT: "→",
-	JoyButton.JOY_BUTTON_DPAD_LEFT: "←",
-	JoyButton.JOY_BUTTON_START: "Start",
-	JoyButton.JOY_BUTTON_GUIDE: "Select",
-}
-
 func _ready() -> void: 
 	toggle_mode = true
 	_toggled(false)
@@ -60,22 +43,7 @@ func _toggled(toggled_on: bool = button_pressed) -> void:
 		text = ""
 		return
 	
-	var input := InputMap.action_get_events(action)[action_event_index]
-	if input is InputEventJoypadButton:
-		if CONTROLLER_LABELS.has(input.button_index):
-			text = CONTROLLER_LABELS.get(input.button_index)
-		else:
-			# None found in the constant D:
-			text = "Button " + str(input.button_index)
-		return
-	elif input is InputEventKey:
-		if input.physical_keycode != 0:
-			text = OS.get_keycode_string(input.physical_keycode)
-		else:
-			text = OS.get_keycode_string(input.keycode)
-		return
-	
-	text = ""
+	text = Global.input_as_string(InputMap.action_get_events(action)[action_event_index])
 
 func _input(event: InputEvent) -> void:
 	if !InputMap.has_action(action) or !is_pressed(): return

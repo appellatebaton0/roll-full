@@ -75,8 +75,9 @@ func create_particle() -> Particle:
 	var new := Particle.new(new_node)
 	particles.append(new)
 	
-	new_node.global_position.x = randf_range(viewport_bounds.position.x, viewport_bounds.size.x)
 	new_node.global_position.y = randf_range(viewport_bounds.position.y, viewport_bounds.size.y)
+	new_node.global_position.x = randf_range(viewport_bounds.position.x, viewport_bounds.size.x)
+	new_node.global_position.x = randf_range(viewport_bounds.position.x, viewport_bounds.size.x)
 	
 	new_node.scale.x = randf_range(0.9, 1.1)
 	new_node.scale.y = randf_range(0.9, 1.1)

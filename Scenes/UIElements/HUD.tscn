@@ -33,6 +33,28 @@ corner_radius_bottom_right = 7
 corner_detail = 1
 shadow_offset = Vector2(2, 0)
 
+[sub_resource type="GDScript" id="GDScript_vrcxl"]
+script/source = "extends Label
+
+func _ready() -> void:
+	Global.reset_level.connect(_update)
+	_update()
+
+func _update():
+	
+	var events_string:String = \"\"
+	var events :=  InputMap.action_get_events(\"Pause\")
+	events.resize(2)
+	for event in events:
+		if event == null: continue
+		
+		if events_string != \"\": events_string += \"/\"
+		
+		events_string += Global.input_as_string(event)
+	
+	text = \"Press \" + events_string + \" to Pause.\"
+"
+
 [node name="HUD" type="MarginContainer" unique_id=2030183849]
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,3 +186,11 @@ script = ExtResource("8_rvhig")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer3" unique_id=1234552491]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=900747680]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 24
+text = "Press P to Pause"
+script = SubResource("GDScript_vrcxl")
