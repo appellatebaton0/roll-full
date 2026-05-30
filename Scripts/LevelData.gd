@@ -137,7 +137,7 @@ func _get_ranking(time:float) -> int:
 	var current_max := 0.0
 
 	# From S to D, check if the time is under the time threshold.
-	for i in range(RANKINGS.size()):
+	for i in RANKINGS.size():
 		current_max = ranking_maximums[i]
 		
 		# It's under, so this is the rank.

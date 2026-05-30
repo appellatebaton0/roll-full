@@ -1,4 +1,4 @@
-class_name LevelSelectionScreen extends TextureRect
+class_name LevelSelectionScreen extends Control
 ## The script that manages the level selection screen.
 
 @export var focused := false:

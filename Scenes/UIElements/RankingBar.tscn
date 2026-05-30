@@ -11,6 +11,7 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 
 [node name="RankingBar" type="HBoxContainer" unique_id=1027662342]
+use_parent_material = true
 custom_minimum_size = Vector2(143, 325)
 size_flags_vertical = 3
 theme = ExtResource("1_y4317")
@@ -25,6 +26,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Panel" type="PanelContainer" parent="MarginContainer" unique_id=660358387]
 clip_children = 2
+use_parent_material = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y4317")
 
@@ -33,7 +35,7 @@ use_parent_material = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 1
-value = 3.94
+value = 50.0
 fill_mode = 3
 show_percentage = false
 

@@ -348,7 +348,6 @@ layout_mode = 2
 theme_override_constants/separation = 18
 
 [node name="RankingBar" parent="Popup/PanelContainer/MarginContainer/HBoxContainer" unique_id=1027662342 instance=ExtResource("3_xstt8")]
-use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 6
 

@@ -13,7 +13,7 @@ func closest_point(against:Vector2 = player.global_position) -> int:
 	var best := -1
 	var best_dist := INF
 	
-	for i in range(points.size()):
+	for i in points.size():
 		var dist := (points[i] + global_position).distance_to(against)
 		
 		if dist < best_dist:

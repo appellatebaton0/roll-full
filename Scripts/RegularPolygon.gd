@@ -66,7 +66,7 @@ func make_points_for(radius:float, vertices:int, modifiers:Dictionary[int, float
 	var points:Array[Vector2]
 	
 	# For each vertice.
-	for i in range(vertices):
+	for i in vertices:
 			# Get the angle of this point
 			var angle := deg_to_rad((360.0 / vertices) * i)
 			

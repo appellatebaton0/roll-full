@@ -66,7 +66,7 @@ func generate():
 func make_points(point_radius:float, toothed := true) -> Array[Vector2]:
 	var points:Array[Vector2]
 	
-	for i in range(vertices * 2):
+	for i in vertices * 2:
 		var angle := deg_to_rad((180.0 / vertices) * i)
 		
 		var new_point_a := Vector2.from_angle(angle) * point_radius

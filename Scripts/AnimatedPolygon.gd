@@ -83,7 +83,7 @@ func generate():
 func make_animated_points_for(radius:float, vertices:int, modifiers:Dictionary[int, float], wave_amounts:Dictionary[int, float], wave_intervals:Dictionary[int, float], added_rotation:float) -> Array[Vector2]:
 	var points:Array[Vector2]
 	
-	for i in range(vertices):
+	for i in vertices:
 			var angle := deg_to_rad((360.0 / vertices) * i + added_rotation)
 			
 			var distance := radius

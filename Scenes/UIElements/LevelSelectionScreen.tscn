@@ -10,6 +10,7 @@
 [ext_resource type="Shader" uid="uid://bupwsrtj71q6r" path="res://Shaders/TextureAlpha.gdshader" id="5_ek4xw"]
 [ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="5_v6qwd"]
 [ext_resource type="PackedScene" uid="uid://dqduu8fu52dky" path="res://Scenes/UIElements/LevelEntry.tscn" id="6_q46ju"]
+[ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="6_x4b3k"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="7_b2y8u"]
 [ext_resource type="PackedScene" uid="uid://cnfljsla0enkg" path="res://Scenes/UIElements/RankingBar.tscn" id="8_7mpik"]
 [ext_resource type="Script" uid="uid://carfkn31m5052" path="res://Scripts/UI/LevelOverview.gd" id="8_8at3y"]
@@ -17,15 +18,6 @@
 [ext_resource type="Shader" uid="uid://w2l4bdrd4uom" path="res://Shaders/SpeedLabel.gdshader" id="11_eebbl"]
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="12_bks1m"]
 [ext_resource type="Script" uid="uid://bos15vu7lspt4" path="res://Scripts/UI/UseTooltip.gd" id="15_bks1m"]
-
-[sub_resource type="Gradient" id="Gradient_vafqf"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.07450981, 0.21960784, 0.4, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pdqk2"]
-gradient = SubResource("Gradient_vafqf")
-width = 1
-height = 1
 
 [sub_resource type="Gradient" id="Gradient_ek4xw"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -44,6 +36,37 @@ _limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5031847, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_bks1m"]
+_limits = [0.85, 1.15, 0.0, 1.0]
+_data = [Vector2(0, 0.85), 0.0, 0.0, 0, 0, Vector2(0.45, 0.9), 1.0, 1.0, 0, 0, Vector2(0.5, 1.1), 0.0, 0.0, 0, 0, Vector2(0.55, 0.9), -1.0, -1.0, 0, 0, Vector2(1, 0.85), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bks1m"]
+bg_color = Color(0.07450981, 0.11764706, 0.1882353, 0.69411767)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4b3k"]
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+border_width_bottom = 10
+border_color = Color(0.23529412, 0.41568628, 0.6901961, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfwdu"]
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_du3wf"]
 shader = ExtResource("11_eebbl")
 shader_parameter/speed = 1.0
@@ -53,6 +76,14 @@ shader_parameter/colorB = Color(0.047058824, 0.78039217, 0.76862746, 1)
 shader_parameter/wave_affect = 6.0
 shader_parameter/wave_density = 150.0
 shader_parameter/wave_drift = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvfjj"]
+bg_color = Color(0.08627451, 0.14117648, 0.21960784, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
 
 [sub_resource type="GDScript" id="GDScript_eebbl"]
 script/source = "extends TextureButton
@@ -67,29 +98,28 @@ func _ready() -> void:
 	mouse_exited.connect(_unfocused)
 	pass
 
-func _focused()   -> void: modulate = Color(\"d1e5ffff\")
-func _unfocused() -> void: modulate = Color(\"91c1ff\")
+func _focused()   -> void: modulate = Color(\"223857ff\")
+func _unfocused() -> void: modulate = Color(\"162438\")
 
 func _make_custom_tooltip(for_text: String) -> Object:
 	return Global._make_custom_tooltip(for_text)
 "
 
-[node name="LevelSelectionScreen" type="TextureRect" unique_id=17560446 node_paths=PackedStringArray("focusees", "focus_pass")]
+[node name="LevelSelectionScreen" type="Panel" unique_id=868323181 node_paths=PackedStringArray("focusees", "focus_pass")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_pdqk2")
-expand_mode = 1
+theme = ExtResource("12_bks1m")
 script = ExtResource("1_vafqf")
 focused = true
 focusees = [NodePath("SubViewportContainer/SubViewport/Parallax2D"), NodePath("SubViewportContainer/SubViewport/Parallax2D2"), NodePath("HBoxContainer/MarginContainer2"), NodePath("HBoxContainer/MarginContainer")]
 focus_pass = NodePath("HBoxContainer/MarginContainer")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1174239960]
-layout_mode = 1
-anchors_preset = 15
+visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -99,7 +129,7 @@ grow_vertical = 2
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 864)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport" unique_id=1532557747]
 modulate = Color(0.89, 0.89, 0.89, 1)
@@ -134,17 +164,32 @@ texture = ExtResource("4_vij0u")
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1242958731]
 position = Vector2(-1050, 432)
-color = Color(0.035999995, 0.12780006, 0.24, 1)
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
 polygon = PackedVector2Array(1200, 0, 1196.9426, 85.60702, 1187.7858, 170.7778, 1172.5763, 255.07834, 1151.3916, 338.07907, 1124.3397, 419.35703, 1091.5583, 498.49802, 1023, 486, 1028, -467, 1091.5585, -498.49792, 1124.3397, -419.3571, 1151.3915, -338.07928, 1172.5763, -255.0782, 1187.7858, -170.77782, 1196.9425, -85.60721)
 metadata/theme_id = "base"
 
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=92878719]
+position = Vector2(456, 25)
+color = Color(0.08627451, 0.14117648, 0.21960784, 1)
+polygon = PackedVector2Array(0, 10, 10, 0, 80, 0, 100, 20, 100, 270, 90, 280, 70, 280, 0, 30)
+metadata/theme_id = "base"
+
+[node name="Polygon2D4" type="Polygon2D" parent="." unique_id=2142690357]
+position = Vector2(456, 839)
+scale = Vector2(1, -1)
+color = Color(0.08627451, 0.14117648, 0.21960784, 1)
+polygon = PackedVector2Array(0, 10, 10, 0, 80, 0, 100, 20, 100, 270, 90, 280, 70, 280, 0, 30)
+metadata/theme_id = "base"
+
 [node name="SpinContainer" type="Container" parent="." unique_id=344705815]
-layout_mode = 0
-offset_left = -1050.0
-offset_top = 432.0
-offset_right = -1010.0
-offset_bottom = 472.0
-theme = ExtResource("5_v6qwd")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -1036.0
+offset_right = -1036.0
+grow_vertical = 2
+theme = ExtResource("6_x4b3k")
 script = ExtResource("3_woile")
 add_angle = 19.8
 radius = 820.0
@@ -310,10 +355,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -117.0
-offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1957301097 node_paths=PackedStringArray("spin_container", "entry_container")]
 layout_mode = 2
@@ -332,8 +376,9 @@ material = SubResource("ShaderMaterial_7mpik")
 custom_minimum_size = Vector2(0, 1098)
 layout_mode = 2
 script = ExtResource("4_woile")
-seperation = 65
+seperation = 59
 distance_curve = SubResource("Curve_woile")
+scale_curve = SubResource("Curve_bks1m")
 scroll_offset = -346.0
 
 [node name="LevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
@@ -371,6 +416,13 @@ tooltip_text = "aisdibhasue \\awet\\ uwet awteawe tanjnerbw \\awe\\
 use_parent_material = true
 layout_mode = 2
 
+[node name="Control" type="VSeparator" parent="HBoxContainer" unique_id=987196611]
+visible = false
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("12_bks1m")
+
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1476397087]
 custom_minimum_size = Vector2(0, 864)
 layout_mode = 2
@@ -379,66 +431,80 @@ size_flags_vertical = 4
 theme = ExtResource("12_bks1m")
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 script = ExtResource("8_8at3y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2" unique_id=1832886100]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1439104922]
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1577223369]
+layout_mode = 2
+theme = ExtResource("5_v6qwd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bks1m")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2" unique_id=486596391]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer" unique_id=1439104922]
 custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
 theme = ExtResource("12_bks1m")
 theme_override_constants/separation = 22
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1770714350]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1770714350]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 9
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1045197404]
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1045197404]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Time -> Rank"
 horizontal_alignment = 1
 
-[node name="RankingBar" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1027662342 instance=ExtResource("8_7mpik")]
+[node name="RankingBar" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1027662342 instance=ExtResource("8_7mpik")]
 layout_mode = 2
 
-[node name="Control" type="VSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1300587058]
+[node name="Control" type="VSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1300587058]
 layout_mode = 2
 theme = ExtResource("12_bks1m")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=634307997]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=634307997]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_constants/separation = 22
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2115654904]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2115654904]
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=600170883]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=600170883]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1190458743]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1190458743]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ResetButton" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1314706164]
+[node name="ResetButton" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1314706164]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_bottom = NodePath("../../../../../../../../PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer/AttemptBox")
+theme = ExtResource("6_x4b3k")
 theme_override_font_sizes/font_size = 18
 text = "R"
 
-[node name="RunName" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1902601552]
+[node name="RunName" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1902601552]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -446,14 +512,14 @@ theme_override_font_sizes/font_size = 45
 text = "Run"
 horizontal_alignment = 1
 
-[node name="AttemptNum" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=116498969]
+[node name="AttemptNum" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=116498969]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 45
 text = "(000)"
 horizontal_alignment = 1
 
-[node name="Rank" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1936608507]
+[node name="Rank" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1936608507]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("7_b2y8u")
@@ -461,7 +527,7 @@ theme_override_font_sizes/font_size = 153
 text = "S"
 horizontal_alignment = 1
 
-[node name="Bonused" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Rank" unique_id=131339092]
+[node name="Bonused" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Rank" unique_id=131339092]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -475,43 +541,44 @@ theme_override_fonts/font = ExtResource("7_b2y8u")
 theme_override_font_sizes/font_size = 50
 text = "+"
 
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2008498746]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2008498746]
 layout_mode = 2
 theme = ExtResource("12_bks1m")
 
-[node name="Time" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=503668581]
+[node name="Time" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=503668581]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Time: 00:00.00"
 horizontal_alignment = 3
 
-[node name="VBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=419822650]
+[node name="VBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=419822650]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Score" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer2" unique_id=56503381]
+[node name="Score" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2" unique_id=56503381]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 35
 text = "Score: 00000"
 horizontal_alignment = 3
 
-[node name="ScoreThreshold" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer2" unique_id=1442309888]
+[node name="ScoreThreshold" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2" unique_id=1442309888]
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
 text = "/0000"
 horizontal_alignment = 2
 
-[node name="Speed" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=456478868]
+[node name="Speed" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=456478868]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "Speed: 100%"
 horizontal_alignment = 3
 
-[node name="Control2" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1512128186]
+[node name="Control2" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1512128186]
 layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=873029250]
+visible = false
 layout_mode = 2
 theme = ExtResource("12_bks1m")
 
@@ -519,13 +586,14 @@ theme = ExtResource("12_bks1m")
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_v6qwd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_x4b3k")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1013171180]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=460178144]
 layout_mode = 2
@@ -544,7 +612,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 27
-text = "Run Number"
+text = "Run #"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1159152682]
@@ -570,17 +638,28 @@ horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1751233831]
 layout_mode = 2
+theme_override_constants/separation = 14
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=556640604]
+[node name="Panel" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1700715898]
+clip_children = 2
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wfwdu")
 
-[node name="AttemptBox" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer" unique_id=426241695]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel" unique_id=556640604]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="AttemptBox" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer" unique_id=426241695]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=798856563]
+visible = false
 layout_mode = 2
 theme = ExtResource("12_bks1m")
 
@@ -594,8 +673,9 @@ theme_override_constants/separation = 30
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Start the selected level."
-focus_neighbor_top = NodePath("../../PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox")
+focus_neighbor_top = NodePath("../../PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer/AttemptBox")
 focus_neighbor_right = NodePath("../HBoxContainer/SpeedDown")
+focus_neighbor_bottom = NodePath(".")
 theme_override_font_sizes/font_size = 50
 text = "Play"
 script = ExtResource("15_bks1m")
@@ -608,6 +688,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Decrease the game speed by 10%"
+focus_neighbor_left = NodePath("../../Play")
+focus_neighbor_right = NodePath("../SpeedUp")
 theme_override_font_sizes/font_size = 61
 text = "<"
 script = ExtResource("15_bks1m")
@@ -629,20 +711,93 @@ script = ExtResource("15_bks1m")
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Increase the game speed by 10%"
+focus_neighbor_left = NodePath("../SpeedDown")
+focus_neighbor_right = NodePath(".")
 theme_override_font_sizes/font_size = 62
 text = ">"
 script = ExtResource("15_bks1m")
 
+[node name="Control2" type="Control" parent="HBoxContainer" unique_id=1868406566]
+custom_minimum_size = Vector2(40, 864)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Control2" unique_id=1138000903]
+custom_minimum_size = Vector2(864, 0)
+layout_mode = 0
+offset_right = 864.0
+offset_bottom = 40.0
+rotation = 1.5707964
+pivot_offset = Vector2(20, 20)
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=813216997]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=717982096]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
+[node name="Panel3" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=1771439989]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
+[node name="Panel4" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=1198891255]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
+[node name="Panel5" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=1665182532]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
+[node name="Panel6" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=1503875956]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
+[node name="Panel7" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=1428038823]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
+[node name="Panel8" type="Panel" parent="HBoxContainer/Control2/HBoxContainer" unique_id=748495865]
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
+
 [node name="BackToMain" type="TextureButton" parent="." unique_id=882931186]
-modulate = Color(0.57, 0.75633335, 1, 1)
+modulate = Color(0.08627451, 0.14117648, 0.21960784, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 6.0
-offset_top = -34.0
-offset_right = 50.0
-offset_bottom = 34.0
+offset_left = 13.0
+offset_top = -32.0
+offset_right = 77.0
+offset_bottom = 32.0
 grow_vertical = 2
 tooltip_text = "Return to the main menu."
 texture_normal = ExtResource("11_0kjg5")
@@ -651,8 +806,8 @@ stretch_mode = 4
 script = SubResource("GDScript_eebbl")
 
 [connection signal="selection_updated" from="HBoxContainer/MarginContainer" to="HBoxContainer/MarginContainer2" method="_set_level_data"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ResetButton" to="HBoxContainer/MarginContainer2" method="update_overview"]
-[connection signal="focus_entered" from="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox" to="HBoxContainer/MarginContainer2" method="_on_attempt_box_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ResetButton" to="HBoxContainer/MarginContainer2" method="update_overview"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer/AttemptBox" to="HBoxContainer/MarginContainer2" method="_on_attempt_box_focus_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Play" to="HBoxContainer/MarginContainer2" method="_on_play_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer/SpeedDown" to="HBoxContainer/MarginContainer2" method="_speed_down"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer/SpeedUp" to="HBoxContainer/MarginContainer2" method="_speed_up"]

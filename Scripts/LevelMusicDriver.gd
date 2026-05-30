@@ -74,7 +74,7 @@ func reload(from:LevelData):
 	new_stream.set_stream_count(track_count)
 	
 	# Create all the sync streams from the tracks.
-	for i in range(track_count):
+	for i in track_count:
 		new_stream.set_sync_stream(i, from.tracks[i])
 		new_stream.set_sync_stream_volume(i, linear_to_db(0))
 		
@@ -121,7 +121,7 @@ func transition() -> void:
 	if stream is AudioStreamSynchronized:
 		var index := 1
 		
-		for i in range(31): 
+		for i in 31: 
 			if untransitioned & index:
 				
 				var new_value:float = move_toward(db_to_linear(stream.get_sync_stream_volume(i)), float((state & index) >> i), beat_delta / (transition_beats if not resolving else int(transition_beats / 2.)) )

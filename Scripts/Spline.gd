@@ -58,12 +58,12 @@ func bezier(t := 0.0, with := points) -> Vector2:
 	
 	## Create all the segments
 	var segments:Array[Array]
-	for i in range(len(with)):
+	for i in with.size():
 		
 		if i % 3 == 0:
 			var segment:Array[Vector2]
-			for j in range(4):
-				if len(with) > i+j:
+			for j in 4:
+				if with.size() > i+j:
 					segment.append(with[i + j])
 			segments.append(segment)
 	
@@ -94,7 +94,7 @@ func spline(t := 0.0, with := points) -> Vector2:
 ## Regenerate the sample points.
 func regenerate_sample() -> void:
 	sample_points.clear()
-	for i in range(seg * ceil(len(points) / 3.0)):
+	for i in seg * ceil(points.size() / 3.0):
 		var t = i / seg
 		
 		var point = bezier(t)

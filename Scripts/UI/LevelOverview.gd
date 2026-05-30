@@ -8,22 +8,22 @@ class_name LevelOverview extends MarginContainer
 @onready var level_root := get_tree().get_first_node_in_group("Main")
 
 ## Run Overview (top half)
-@onready var ranking_bar:RankingBar = $VBoxContainer/HBoxContainer/VBoxContainer/RankingBar
+@onready var ranking_bar:RankingBar = $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/RankingBar
 
-@onready var reset_button := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ResetButton
-@onready var run_name := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/RunName
-@onready var attempt_number := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AttemptNum
+@onready var reset_button := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ResetButton
+@onready var run_name := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/RunName
+@onready var attempt_number := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AttemptNum
 
-@onready var rank := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Rank
-@onready var bonused := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Rank/Bonused
+@onready var rank := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Rank
+@onready var bonused := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Rank/Bonused
 
-@onready var time := $VBoxContainer/HBoxContainer/VBoxContainer2/Time
-@onready var score := $VBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer2/Score
-@onready var score_threshold := $VBoxContainer/HBoxContainer/VBoxContainer2/VBoxContainer2/ScoreThreshold
-@onready var speed := $VBoxContainer/HBoxContainer/VBoxContainer2/Speed
+@onready var time := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Time
+@onready var score := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2/Score
+@onready var score_threshold := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2/ScoreThreshold
+@onready var speed := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Speed
 
 ## Bottom half
-@onready var attempt_box := $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/ScrollContainer/AttemptBox
+@onready var attempt_box := $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer/AttemptBox
 @onready var play_button := $VBoxContainer/HBoxContainer2/Play
 @onready var this_speed := $VBoxContainer/HBoxContainer2/HBoxContainer/Speed
 
@@ -113,6 +113,10 @@ func update_overview(run:Variant = null) -> int:
 		score.text           = "Score: " + Global.digitize(run.score, 4)
 		score_threshold.text = "/" + Global.digitize(level_data.score_threshold, 4)
 		speed.text           = "Speed: " + str(int(round(run.speed * 100))) + "%"
+		
+		if is_showing_best and len(attempt_box.get_children()):
+			attempt_box.get_child(0).grab_focus()
+		
 		return 1
 	return -1
 
@@ -143,12 +147,14 @@ func update_attempt_box() -> bool:
 		len_dist = len(entries) - attempts
 	
 	
-	for i in range(len(entries)):
+	for i in len(entries):
 		var entry := entries[i]
 		if entry is AttemptEntry:
 			entry.update(level_data.runs[i], i)
 			
-			entry.focus_neighbor_bottom = play_button.get_path()
+			# Set up neighbors.
+			entry.focus_neighbor_bottom = play_button.get_path() if i == len(entries) - 1 else entries[i + 1].get_path()
+			entry.focus_neighbor_top = reset_button.get_path() if i == 0 else entries[i - 1].get_path()
 			
 			if not entry.requested.is_connected(update_overview):
 				entry.requested.connect(update_overview)
@@ -188,13 +194,10 @@ func update_speed_display() -> void:
 	
 	this_speed.material.set_shader_parameter("speed", inv_lerp(0., 2., Global.default_time_scale))
 
-
 func inv_lerp(a:float,b:float,t:float):
 	return (t - a) / (b - a)
 
 func _on_attempt_box_focus_entered() -> void:
 	for child in attempt_box.get_children(): if child is AttemptEntry:
-		child.grab_focus()
-		return
-	
-	
+		child.call_deferred("grab_focus")
+		break

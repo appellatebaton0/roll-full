@@ -17,7 +17,7 @@ func _ready() -> void:
 	# The currently bound input isn't the default, allow resettng.
 	# Used when loading from save with non-default bindings.
 	var c_events := InputMap.action_get_events(action)
-	for i in range(len(sane_default)):
+	for i in sane_default.size():
 		var event_a = sane_default[i]
 		var event_b = c_events[i]
 		for property in ["physical_keycode", "axis", "axis_value", "button_index", "pressed", "pressure"]:
@@ -34,7 +34,7 @@ func _ready() -> void:
 	var template_remap_button := get_remap_button_from(template)
 	if template_remap_button: buttons.append(template_remap_button)
 	
-	for i in range(button_count - 1):
+	for i in button_count - 1:
 		var new := template.duplicate()
 		
 		template.add_sibling(new)

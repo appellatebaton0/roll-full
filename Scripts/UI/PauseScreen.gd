@@ -55,7 +55,7 @@ func _update_options() -> void:
 	options.clear()
 	
 	# All the runs so far.
-	for i in range(len(current_data.runs)):
+	for i in current_data.runs.size():
 		var run := current_data.runs[i]
 		var id  := Global.digitize(i, 3)
 		

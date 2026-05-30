@@ -32,8 +32,3 @@ func _on_runs_updated() -> void: if level_data:
 	bonused.modulate.a = (1.0 if level_data.best_run.bonused else 0.0) if level_data.best_run != null else 0.0
 
 func _ready() -> void: if needs_update: _on_runs_updated()
-
-func _process(delta: float) -> void:
-	pivot_offset = Vector2(0, size.y / 2)
-	scale.x = move_toward(scale.x, 1.1 if selected else 1., delta * 2.)
-	scale.y = move_toward(scale.y, 1.1 if selected else 1., delta * 2.)

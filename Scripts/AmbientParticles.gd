@@ -41,8 +41,9 @@ func _ready() -> void:
 		#
 	#p.call(viewport_bounds.position + (viewport_bounds.size / 2), viewport_bounds.size)
 	
-	for i in range(particle_count):
+	for i in particle_count:
 		create_particle()
+	
 	template_particle.queue_free()
 
 func _process(delta: float) -> void:

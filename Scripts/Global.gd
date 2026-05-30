@@ -133,7 +133,7 @@ func digitize(value:int, digits:int) -> String:
 	var response := ""
 	var string = str(value)
 	
-	for i in range(digits - len(string)):
+	for i in digits - len(string):
 		response += "0"
 	response += string
 	

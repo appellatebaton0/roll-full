@@ -1,5 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://lckhbmjcxdg5"]
 
+[ext_resource type="FontFile" uid="uid://cnakc81irxpb1" path="res://Assets/Fonts/humaroid.regular.otf" id="1_cv68f"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8at3y"]
 bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
 border_width_bottom = 10
@@ -17,6 +19,8 @@ border_color = Color(0.2516, 0.44695988, 0.74, 1)
 corner_radius_top_left = 30
 corner_radius_bottom_right = 30
 corner_detail = 1
+shadow_size = 4
+shadow_offset = Vector2(10, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eebbl"]
 bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
@@ -29,7 +33,7 @@ shadow_size = 4
 shadow_offset = Vector2(10, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du3wf"]
-bg_color = Color(0.41, 0.57399994, 0.82, 1)
+bg_color = Color(0.4117647, 0.57254905, 0.81960785, 1)
 border_width_bottom = 5
 border_color = Color(0.2516, 0.44695988, 0.74, 1)
 corner_radius_top_left = 30
@@ -79,6 +83,36 @@ shadow_size = 3
 shadow_offset = Vector2(3, 3)
 anti_aliasing = false
 
+[sub_resource type="Gradient" id="Gradient_cv68f"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rd7et"]
+gradient = SubResource("Gradient_cv68f")
+width = 1
+height = 1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksbj0"]
+gradient = SubResource("Gradient_cv68f")
+width = 1
+height = 1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gexxu"]
+gradient = SubResource("Gradient_cv68f")
+width = 1
+height = 1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c8o5p"]
+gradient = SubResource("Gradient_cv68f")
+width = 1
+height = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65gn7"]
+bg_color = Color(0.1254902, 0.19607843, 0.32156864, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksbj0"]
+bg_color = Color(0.07450981, 0.11764706, 0.19215687, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ek4xw"]
 bg_color = Color(0.06666667, 0.07450981, 0.12941177, 1)
 
@@ -102,5 +136,15 @@ OptionButton/styles/hover = SubResource("StyleBoxFlat_num4j")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_cv68f")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_rd7et")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_eebbl")
+PopupMenu/constants/h_separation = 10
+PopupMenu/constants/icon_max_width = 20
+PopupMenu/font_sizes/font_size = 36
+PopupMenu/fonts/font = ExtResource("1_cv68f")
+PopupMenu/icons/radio_checked = SubResource("GradientTexture2D_rd7et")
+PopupMenu/icons/radio_checked_disabled = SubResource("GradientTexture2D_ksbj0")
+PopupMenu/icons/radio_unchecked = SubResource("GradientTexture2D_gexxu")
+PopupMenu/icons/radio_unchecked_disabled = SubResource("GradientTexture2D_c8o5p")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_65gn7")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_ksbj0")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_ek4xw")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_yvypi")

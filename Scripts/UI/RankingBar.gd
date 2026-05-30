@@ -9,7 +9,7 @@ var label_boxes:Dictionary[LevelData.RANKINGS, HBoxContainer]
 func _ready() -> void:
 	
 	# Create all the label boxes from the sample.
-	for i in range(len(LevelData.RANKINGS.keys())):
+	for i in LevelData.RANKINGS.keys().size():
 		var new = sample_label_box.duplicate()
 		label_boxes[i as LevelData.RANKINGS] = new
 		label_container.add_child(new)
@@ -36,7 +36,7 @@ func update(level_data:LevelData = null, run:Variant = null):
 		else: bar.value = -d
 		
 		# Label Boxes, has level data.
-		for i in range(len(LevelData.RANKINGS.keys())):
+		for i in LevelData.RANKINGS.keys().size():
 			var box := label_boxes[i as LevelData.RANKINGS]
 			
 			# Information
@@ -47,7 +47,7 @@ func update(level_data:LevelData = null, run:Variant = null):
 			box.position.y = lerp(0, 285, inv_lerp(s, d, level_data.ranking_maximums[i]))
 	else:
 		# Label Boxes, no level data.
-		for i in range(len(LevelData.RANKINGS.keys())):
+		for i in LevelData.RANKINGS.keys().size():
 			var box := label_boxes[i as LevelData.RANKINGS]
 			
 			# Information

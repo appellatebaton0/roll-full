@@ -141,7 +141,7 @@ shadow_offset = Vector2(3, 3)
 bg_color = Color(0.06666667, 0.07450981, 0.12941177, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvypi"]
-bg_color = Color(0.61960787, 0.6627451, 1, 1)
+bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_1w4wb"]
 color = Color(0.5372549, 0.7058824, 0.9607843, 1)

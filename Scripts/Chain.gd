@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 			last_points = points.duplicate()
 		
 		var changed_point:int
-		for i in range(len(points)):
+		for i in points.size():
 			if points[i] != last_points[i]:
 				changed_point = i
 				break

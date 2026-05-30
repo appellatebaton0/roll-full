@@ -112,8 +112,8 @@ func _draw() -> void: if Engine.is_editor_hint() and show_overlay:
 		SHAPE.CIRCLE: size = Vector2.ONE * 2 * radius / spacing
 		SHAPE.RECTANGLE: size = dimensions
 	
-	for i in range(size.x):
-		for j in range(size.y):
+	for i in size.x:
+		for j in size.y:
 			var point := Vector2(i - (size.x / 2.),j - (size.y / 2.)) * spacing
 			var slow :=  get_slow(Vector2.ZERO, point)
 			

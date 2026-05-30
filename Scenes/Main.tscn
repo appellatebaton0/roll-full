@@ -17,70 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://pfc88xk4q0lc" path="res://Scenes/UIElements/PauseScreen.tscn" id="16_2w5on"]
 [ext_resource type="Script" uid="uid://84ak8yxpq243" path="res://Scripts/MainMusicDriver.gd" id="16_erwvk"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_pdqk2"]
-color = Color(0.16470589, 0.32156864, 0.52156866, 1)
-grow_begin = 45.0
-grow_end = 0.0
-thickness = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mpik"]
-bg_color = Color(0.42745098, 0.4745098, 0.78039217, 1)
-border_width_bottom = 6
-border_color = Color(0.275, 0.30499998, 0.5, 1)
-corner_radius_top_left = 20
-corner_radius_bottom_right = 20
-corner_detail = 1
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_8at3y"]
-color = Color(0.27058825, 0.30588236, 0.5019608, 1)
-thickness = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8at3y"]
-bg_color = Color(0.75686276, 0.8392157, 0.9607843, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kjg5"]
-bg_color = Color(0.68235296, 0.7921569, 0.9607843, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eebbl"]
-bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-border_width_bottom = 10
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du3wf"]
-bg_color = Color(0.41, 0.57399994, 0.82, 1)
-border_width_bottom = 5
-border_color = Color(0.2516, 0.44695988, 0.74, 1)
-corner_radius_top_left = 30
-corner_radius_bottom_right = 30
-corner_detail = 1
-
-[sub_resource type="Theme" id="Theme_dnu7h"]
-Button/colors/font_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_focus_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_hover_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/colors/font_pressed_color = Color(0.05490196, 0.08235294, 0.12941177, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_8at3y")
-Button/styles/hover = SubResource("StyleBoxFlat_0kjg5")
-Button/styles/normal = SubResource("StyleBoxFlat_eebbl")
-Button/styles/pressed = SubResource("StyleBoxFlat_du3wf")
-
 [sub_resource type="GDScript" id="GDScript_0sclb"]
 resource_name = "Quit"
 script/source = "extends Button
@@ -1119,10 +1055,109 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwpts"]
 shader = SubResource("Shader_fq0cl")
-shader_parameter/warp_amount = 1.0000000475
+shader_parameter/warp_amount = 0.400000019
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.350000016625
+
+[sub_resource type="Shader" id="Shader_erwvk"]
+code = "shader_type canvas_item;
+
+uniform float shift_amount: hint_range(0.0, 360.0, 1.0) = 0.0;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+
+// Convert RGB color to HSV color space
+// Input: vec3 with components in range [0, 1]
+// Output: vec3 with h in [0, 360], s and v in [0, 1]
+vec3 rgb2hsv(vec3 rgb) {
+	float r = rgb.r;
+	float g = rgb.g;
+	float b = rgb.b;
+	
+	float max_val = max(r, max(g, b));
+	float min_val = min(r, min(g, b));
+	float delta = max_val - min_val;
+	
+	float h = 0.0;
+	float s = 0.0;
+	float v = max_val;
+	
+	if (delta > 0.0001) {
+		s = delta / max_val;
+		
+		if (abs(r - max_val) < 0.0001)      h = (g - b) / delta;
+		else if (abs(g - max_val) < 0.0001) h = 2.0 + (b - r) / delta;
+		else                                h = 4.0 + (r - g) / delta;
+		
+		h *= 60.0;
+		if (h < 0.0) h += 360.0;
+	}
+	
+	return vec3(h, s, v);
+}
+
+// Convert HSV color to RGB color space
+// Input: vec3 with h in [0, 360], s and v in [0, 1]
+// Output: vec3 with components in range [0, 1]
+vec3 hsv2rgb(vec3 hsv) {
+	float h = hsv.x;
+	float s = hsv.y;
+	float v = hsv.z;
+	
+	float c = v * s;
+	float x = c * (1.0 - abs(mod(h / 60.0, 2.0) - 1.0));
+	float m = v - c;
+	
+	vec3 rgb;
+	
+	if (h < 60.0)       rgb = vec3(c, x, 0.0);
+	else if (h < 120.0) rgb = vec3(x, c, 0.0);
+	else if (h < 180.0) rgb = vec3(0.0, c, x);
+	else if (h < 240.0) rgb = vec3(0.0, x, c);
+	else if (h < 300.0) rgb = vec3(x, 0.0, c);
+	else                rgb = vec3(c, 0.0, x);
+	
+	rgb += m;
+	return rgb;
+}
+
+void fragment() {
+	vec3 hsv_color = rgb2hsv(texture(SCREEN_TEXTURE, SCREEN_UV).rgb);
+	hsv_color.x = mod(hsv_color.x + shift_amount, 360.0);
+	COLOR.rgb = hsv2rgb(hsv_color);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2w5on"]
+shader = SubResource("Shader_erwvk")
+shader_parameter/shift_amount = 291.0
+
+[sub_resource type="Shader" id="Shader_2w5on"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture:hint_screen_texture;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	vec3 rgb = texture(screen_texture, SCREEN_UV).rgb;
+	float avg = (rgb.r + rgb.g + rgb.b)/3.;
+	
+	COLOR.rgb = vec3(avg);
+	
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_346fj"]
+shader = SubResource("Shader_2w5on")
 
 [node name="Main" type="Node" unique_id=1682853294 groups=["Main"]]
 
@@ -1147,230 +1182,6 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 focused = false
-
-[node name="SubViewport" parent="CanvasLayer/UI/LevelSelectionScreen/SubViewportContainer" parent_id_path=PackedInt32Array(17560446, 1174239960) index="0" unique_id=1258049184]
-render_target_update_mode = 0
-
-[node name="Parallax2D" parent="CanvasLayer/UI/LevelSelectionScreen/SubViewportContainer/SubViewport" index="0" unique_id=1532557747]
-modulate = Color(0.92156863, 0.92156863, 0.92156863, 1)
-
-[node name="SpinContainer" parent="CanvasLayer/UI/LevelSelectionScreen" index="2" unique_id=344705815]
-theme = null
-radius = 800.0
-
-[node name="HSeparator" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="0" unique_id=1307233007]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator2" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="1" unique_id=1393565708]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator3" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="2" unique_id=297790438]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator4" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="3" unique_id=1680157451]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator5" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="4" unique_id=1307855748]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator6" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="5" unique_id=1529474070]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator7" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="6" unique_id=1157358960]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator8" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="7" unique_id=1292592464]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator9" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="8" unique_id=1486165921]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator10" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="9" unique_id=1408740690]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator11" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="10" unique_id=264185936]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator12" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="11" unique_id=1322228382]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator13" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="12" unique_id=225093824]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator14" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="13" unique_id=987874]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator15" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="14" unique_id=1827828472]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator16" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="15" unique_id=1400128379]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator17" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="16" unique_id=1766709281]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator18" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="17" unique_id=1975768965]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator19" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="18" unique_id=1584514009]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator20" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="19" unique_id=2058061498]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator21" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="20" unique_id=686903803]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator22" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="21" unique_id=873658980]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator23" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="22" unique_id=271031120]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator24" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="23" unique_id=145072589]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator25" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="24" unique_id=917934995]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator26" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="25" unique_id=670690022]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator27" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="26" unique_id=1313946058]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator28" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="27" unique_id=1176882369]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator29" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="28" unique_id=595739987]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator38" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="29" unique_id=570528434]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator39" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="30" unique_id=140214428]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator30" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="31" unique_id=498138785]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator31" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="32" unique_id=684411363]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator32" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="33" unique_id=2088172696]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator33" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="34" unique_id=1942754392]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator34" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="35" unique_id=355198695]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator35" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="36" unique_id=886599808]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator36" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="37" unique_id=1543736089]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="HSeparator37" parent="CanvasLayer/UI/LevelSelectionScreen/SpinContainer" index="38" unique_id=1676997256]
-custom_minimum_size = Vector2(0, 0)
-theme_override_styles/separator = SubResource("StyleBoxLine_pdqk2")
-
-[node name="LevelEntry" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer/LevelEntryContainer" parent_id_path=PackedInt32Array(17560446, 2047304327) index="0" unique_id=959268396]
-tooltip_text = ""
-
-[node name="LevelEntry7" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer/LevelEntryContainer" parent_id_path=PackedInt32Array(17560446, 2047304327) index="6" unique_id=941117780]
-tooltip_text = ""
-
-[node name="HBoxContainer" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer" parent_id_path=PackedInt32Array(17560446, 1832886100) index="0" unique_id=1439104922]
-theme = null
-
-[node name="HSeparator" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer" parent_id_path=PackedInt32Array(17560446, 1832886100) index="1" unique_id=873029250]
-theme = null
-
-[node name="PanelContainer" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer" parent_id_path=PackedInt32Array(17560446, 1832886100) index="2" unique_id=132540109]
-theme = null
-theme_override_styles/panel = SubResource("StyleBoxFlat_7mpik")
-
-[node name="Label" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 171098986) index="0" unique_id=1451477949]
-theme_override_font_sizes/font_size = 20
-
-[node name="Label5" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 171098986) index="1" unique_id=1700668177]
-theme_override_font_sizes/font_size = 20
-
-[node name="Label2" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 171098986) index="2" unique_id=1159152682]
-theme_override_font_sizes/font_size = 20
-
-[node name="Label3" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 171098986) index="3" unique_id=1026971722]
-theme_override_font_sizes/font_size = 20
-
-[node name="Label4" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 171098986) index="4" unique_id=2089123089]
-theme_override_font_sizes/font_size = 20
-
-[node name="HSeparator" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" parent_id_path=PackedInt32Array(17560446, 460178144) index="1" unique_id=1751233831]
-theme_override_styles/separator = SubResource("StyleBoxLine_8at3y")
-
-[node name="HSeparator2" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer" parent_id_path=PackedInt32Array(17560446, 1832886100) index="3" unique_id=798856563]
-theme = null
-
-[node name="HBoxContainer2" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer" parent_id_path=PackedInt32Array(17560446, 1832886100) index="4" unique_id=1097579893]
-theme = SubResource("Theme_dnu7h")
-
-[node name="Play" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" index="0" unique_id=156681750]
-tooltip_text = ""
-script = null
-
-[node name="SpeedDown" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 647771361) index="0" unique_id=481681996]
-tooltip_text = ""
-script = null
-
-[node name="Speed" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 647771361) index="1" unique_id=715588176]
-tooltip_text = ""
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.68235296, 0.4392157, 1, 1)
-script = null
-
-[node name="SpeedUp" parent="CanvasLayer/UI/LevelSelectionScreen/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HBoxContainer" parent_id_path=PackedInt32Array(17560446, 647771361) index="2" unique_id=760811447]
-tooltip_text = ""
-script = null
 
 [node name="MainMenu" type="Panel" parent="CanvasLayer/UI" unique_id=49104739 groups=["Themed"]]
 layout_mode = 1
@@ -1480,7 +1291,7 @@ metadata/theme_id = "base_text"
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053 groups=["Themed"]]
 modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 position = Vector2(1152, 432)
-polygon = PackedVector2Array(-525.9555, -79.96741, -459.32288, -146.10442, -475.5021, -238.5828, -391.69324, -280.89218, -378.50357, -373.84363, -285.72226, -388.18396, -244.45418, -472.51047, -151.78252, -457.47794, -86.47591, -524.9247, -2.9852242, -481.99075, 79.96724, -525.9555, 146.10428, -459.3229, 238.58263, -475.50217, 280.89206, -391.69333, 373.84387, -378.50333, 388.18417, -285.722, 472.51062, -244.45389, 457.47806, -151.78223, 524.92474, -86.47556, 481.99075, -2.9853756, 525.95557, 79.96708, 459.32297, 146.10414, 475.50226, 238.58249, 391.6934, 280.89194, 378.50345, 373.84378, 285.72214, 388.18408, 244.45403, 472.51056, 151.78236, 457.478, 86.47573, 524.92474, 2.9850671, 481.99075, -79.967415, 525.9555, -146.10442, 459.32288, -238.5828, 475.5021, -280.89218, 391.69324, -373.84363, 378.50354, -388.18396, 285.72226, -472.51047, 244.45416, -457.47797, 151.78252, -524.9247, 86.4759, -481.99075, 2.9852185, -525.9555, -79.96741, -339.81693, -83.812035, -227.3868, 34.572376, -299.55093, 181.02277, -136.34044, 185.23305, -83.81204, 339.81693, 34.572376, 227.3868, 181.02275, 299.55093, 185.23308, 136.34041, 339.81693, 83.81199, 227.38681, -34.572304, 299.5509, -181.0228, 136.34038, -185.23311, 83.812096, -339.81693, -34.57223, -227.38681, -181.02269, -299.55096, -185.23305, -136.34044, -339.81693, -83.812035)
+polygon = PackedVector2Array(531.7595, -15.993368, 478.11774, 61.052795, 510.67618, 149.11026, 435.8498, 205.81287, 439.6031, 299.62164, 350.91934, 330.4234, 325.50076, 420.80072, 231.63603, 422.69226, 179.53307, 500.79126, 89.6816, 473.58337, 15.995057, 531.75946, -61.05492, 478.11743, -149.11252, 510.6755, -205.8115, 435.85046, -299.62024, 439.60403, -330.42496, 350.91788, -420.7997, 325.5021, -422.69153, 231.63736, -500.79068, 179.53467, -473.58377, 89.6795, -531.75946, 15.996745, -478.11765, -61.053406, -510.67596, -149.1109, -435.84955, -205.81343, -439.60498, -299.6188, -350.9189, -330.42383, -325.5002, -420.80112, -231.63548, -422.69257, -179.53625, -500.7901, -89.681, -473.5835, -15.994377, -531.7595, 61.05554, -478.11737, 149.10928, -510.67642, 205.81206, -435.85022, 299.6208, -439.60367, 330.4254, -350.91745, 420.8001, -325.5016, 422.69183, -231.63683, 500.7909, -179.53403, 473.5839, -89.67889, 531.7595, -15.993368, 327.23843, -124.15717, 167.45035, -157.67177, 143.59943, -319.1852, 6.9157443, -229.896, -124.15613, -327.23883, -157.67123, -167.45084, -319.18478, -143.60045, -229.89603, -6.9147205, -327.23828, 124.15759, -167.45013, 157.67197, -143.60146, 319.18433, -6.9154506, 229.89601, 124.156555, 327.23868, 157.67143, 167.45064, 319.18494, 143.60004, 229.89604, 6.914426, 327.23843, -124.15717)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 inner_rotation = -10.0
@@ -1606,9 +1417,29 @@ metadata/theme_id = "transition"
 libraries/ = SubResource("AnimationLibrary_pbw6q")
 script = ExtResource("1_r150o")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=707555593]
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=707555593]
 visible = false
 material = SubResource("ShaderMaterial_hwpts")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HUESHIFT" type="ColorRect" parent="CanvasLayer" unique_id=455800671]
+visible = false
+material = SubResource("ShaderMaterial_2w5on")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GRAYSCALE" type="ColorRect" parent="CanvasLayer" unique_id=635246396]
+visible = false
+material = SubResource("ShaderMaterial_346fj")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1622,5 +1453,3 @@ script = ExtResource("16_erwvk")
 menu_player = NodePath("MenuMusic")
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="MusicDriver" unique_id=501444833]
-
-[editable path="CanvasLayer/UI/LevelSelectionScreen"]

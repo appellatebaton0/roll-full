@@ -2,15 +2,31 @@
 
 [ext_resource type="Script" uid="uid://dhhjq4tl05eu2" path="res://Scripts/UI/AttemptEntry.gd" id="1_8va3k"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_4mh8l"]
+[ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="2_tvkg8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mh8l"]
 bg_color = Color(0.09411765, 0.105882354, 0.21960784, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvkg8"]
 bg_color = Color(0.15294118, 0.18431373, 0.4509804, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mal55"]
 bg_color = Color(0.15294118, 0.18431373, 0.4509804, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
 
 [node name="PanelContainer" type="Button" unique_id=2137061202]
 custom_minimum_size = Vector2(491, 40)
@@ -27,6 +43,7 @@ layout_mode = 0
 offset_right = 491.0
 offset_bottom = 40.0
 mouse_filter = 2
+theme = ExtResource("2_tvkg8")
 
 [node name="Rank" type="Label" parent="HBoxContainer" unique_id=1040446286]
 layout_mode = 2
