@@ -22,6 +22,8 @@ class_name LevelOverview extends MarginContainer
 @onready var score_threshold := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2/ScoreThreshold
 @onready var speed := $VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Speed
 
+@onready var sort_button_box := $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/SortButtons
+
 ## Bottom half
 @onready var attempt_box := $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer/AttemptBox
 @onready var play_button := $VBoxContainer/HBoxContainer2/Play
@@ -34,6 +36,9 @@ func _ready() -> void:
 	this_speed.text = str(Global.default_time_scale * 100) + "%"
 	
 	if level_data: _update()
+	
+	for button in sort_button_box.get_children(): if button is Button:
+		button.pressed.connect(_request_attempt_sort.bind(button.name))
 
 func _update():
 	update_overview()
@@ -159,7 +164,60 @@ func update_attempt_box() -> bool:
 			if not entry.requested.is_connected(update_overview):
 				entry.requested.connect(update_overview)
 	
+	_request_attempt_sort(current_attempt_sort_type)
+	
 	return true
+
+var reverse_attempt_sort := false
+var current_attempt_sort_type := "RunNumber"
+
+const SORT_INACTIVE_ICON := preload("res://Assets/Textures/SortInactive.svg")
+const SORT_ASCENDING_ICON := preload("res://Assets/Textures/SortAscending.svg")
+const SORT_DESCENDING_ICON := preload("res://Assets/Textures/SortDescending.svg")
+
+func _request_attempt_sort(type:String):
+	
+	# No level data? there won't be anything to sort.
+	if level_data == null: return
+	
+	# Allow sorting the array in reverse.
+	if current_attempt_sort_type == type: reverse_attempt_sort = !reverse_attempt_sort
+	else: reverse_attempt_sort = false
+	current_attempt_sort_type = type
+	
+	var entries:Array[AttemptEntry]
+	for child in attempt_box.get_children(): if child is AttemptEntry:
+		entries.append(child)
+	
+	var runs := level_data.runs.duplicate()
+	
+	# Sort the runs.
+	match type:
+		"Rank":
+			runs.assign(Global.merge_sort(runs, _sort_by_rank))
+		"RunNumber":
+			pass # they're sorted by runnumber by default
+		_: # All the others can be forced to lowercase and sorted by their property, no special function.
+			runs.assign(Global.merge_sort(runs, _sort_by_generic.bind(type.to_lower())))
+	
+	# If the order's supposedly reversed, do that.
+	if reverse_attempt_sort: runs.reverse()
+	
+	# Update each entry Control with its new run to display.
+	for i in entries.size():
+		entries[i].update(runs[i], level_data.runs.find(runs[i]))
+	
+	# Update the icons of every button.
+	for button in sort_button_box.get_children(): if button is Button:
+		if button.name == type:
+			button.icon = SORT_DESCENDING_ICON if reverse_attempt_sort else SORT_ASCENDING_ICON
+		else:
+			button.icon = SORT_INACTIVE_ICON
+
+func _sort_by_rank(a:LevelData.Run, b:LevelData.Run) -> bool:
+	return wrapi(a.ranking, 0, 6) > wrapi(b.ranking, 0, 6)
+func _sort_by_generic(a:LevelData.Run, b:LevelData.Run, property:StringName) -> bool:
+	return a.get(property) > b.get(property)
 
 ## Load the current level, play the opening animation.
 func _on_play_pressed() -> void: if focused:

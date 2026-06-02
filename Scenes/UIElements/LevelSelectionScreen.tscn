@@ -18,6 +18,7 @@
 [ext_resource type="Shader" uid="uid://w2l4bdrd4uom" path="res://Shaders/SpeedLabel.gdshader" id="11_eebbl"]
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="12_bks1m"]
 [ext_resource type="Script" uid="uid://bos15vu7lspt4" path="res://Scripts/UI/UseTooltip.gd" id="15_bks1m"]
+[ext_resource type="Texture2D" uid="uid://b8k3xp501r2ww" path="res://Assets/Textures/SortInactive.svg" id="16_wfwdu"]
 
 [sub_resource type="Gradient" id="Gradient_ek4xw"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -58,6 +59,14 @@ corner_radius_bottom_right = 30
 corner_detail = 1
 shadow_size = 4
 shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj5pj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0rgd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd3iy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7vb0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfwdu"]
 bg_color = Color(0.5372549, 0.7058824, 0.95686275, 1)
@@ -598,43 +607,79 @@ theme_override_constants/margin_bottom = 15
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=460178144]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=171098986]
+[node name="SortButtons" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=171098986]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1451477949]
+[node name="Rank" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/SortButtons" unique_id=2116896823]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 9
 theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj5pj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q0rgd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fd3iy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v7vb0")
 text = "Rank"
-horizontal_alignment = 1
+icon = ExtResource("16_wfwdu")
+flat = true
+icon_alignment = 2
 
-[node name="Label5" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1700668177]
+[node name="RunNumber" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/SortButtons" unique_id=818429479]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 9
 theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj5pj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q0rgd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fd3iy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v7vb0")
 text = "Run #"
-horizontal_alignment = 1
+icon = ExtResource("16_wfwdu")
+flat = true
+icon_alignment = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1159152682]
+[node name="Time" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/SortButtons" unique_id=344094908]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 9
 theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj5pj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q0rgd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fd3iy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v7vb0")
 text = "Time"
-horizontal_alignment = 1
+icon = ExtResource("16_wfwdu")
+flat = true
+icon_alignment = 2
 
-[node name="Label3" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1026971722]
+[node name="Score" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/SortButtons" unique_id=441874838]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 9
 theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj5pj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q0rgd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fd3iy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v7vb0")
 text = "Score"
-horizontal_alignment = 1
+icon = ExtResource("16_wfwdu")
+flat = true
+icon_alignment = 2
 
-[node name="Label4" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=2089123089]
+[node name="Speed" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/SortButtons" unique_id=1230014788]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 9
 theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj5pj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q0rgd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fd3iy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v7vb0")
 text = "Speed"
-horizontal_alignment = 1
+icon = ExtResource("16_wfwdu")
+flat = true
+icon_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2" unique_id=1751233831]
 layout_mode = 2
