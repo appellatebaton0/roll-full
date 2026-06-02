@@ -49,9 +49,6 @@ var buffer_update_timer := 0.0
 ## Whether the current level has been complete, and this track should fade out.
 var resolving := false
 func resolve() -> void:
-	
-	print(get_parent())
-	
 	# Already resolved.
 	if state == 0 and not level_data: return
 	

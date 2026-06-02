@@ -30,7 +30,6 @@ func _request_level_music(for_level:LevelData = Global.current_data) -> void:
 
 ## Request the start of the menu music.
 func _resolve_to_menu(anim_name:String, _optional_data:Variant = true) -> void: if anim_name == "Game->Levels":
-	print("!")
 	
 	# Transition out all the drivers.
 	for driver in level_drivers: driver.resolve()
@@ -45,7 +44,7 @@ func _ready() -> void:
 	if menu_player.stream:
 		menu_bpm = menu_player.stream.get("bpm")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	menu_beat = (menu_player.get_playback_position() +  AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency()) * menu_bpm / 60
 	
 	# Transition the menu volume to what it should be.

@@ -11,6 +11,8 @@ signal level_complete
 @warning_ignore("unused_signal")
 signal starting_level
 
+signal input_type_changed
+
 ## -- GAME STATE -- ##
 
 const PROGRESSION_OVERRIDE := false
@@ -239,6 +241,15 @@ func input_as_string(input:InputEvent) -> String:
 			return OS.get_keycode_string(input.keycode)
 	
 	return ""
+
+enum INPUT_TYPE {KEYBMOUSE, CONTROLLER}
+var input_type := INPUT_TYPE.KEYBMOUSE: ## The current type of input the player is using.
+	set(to):
+		input_type = to
+		input_type_changed.emit()
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouse or event is InputEventKey: input_type = INPUT_TYPE.KEYBMOUSE
+	elif event is InputEventJoypadMotion or event is InputEventJoypadButton: input_type = INPUT_TYPE.CONTROLLER
 
 ## -- MANAGING LEVEL DATA -- ##
 

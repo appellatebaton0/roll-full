@@ -1,6 +1,4 @@
 extends AnimationPlayer
+# Makes an animation player's speed independent of the timescale.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	speed_scale = 1. / Engine.time_scale
+func _process(_delta: float) -> void: speed_scale = 1. / Engine.time_scale

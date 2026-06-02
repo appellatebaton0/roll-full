@@ -1,5 +1,5 @@
 @tool
-extends Node
+class_name PlayerRecorder extends Node
 ## Records the player's gameplay, and allows for exporting it to an AnimationPlayer
 
 @export var frame_mod := 5
@@ -12,8 +12,7 @@ extends Node
 	# Set up the track.
 	var track_index := animation.add_track(0 as Animation.TrackType) if export_track_index < 0 else export_track_index
 	export_track_index = track_index
-	
-	animation.track_set_path(track_index, NodePath(String(owner.get_path_to(export_node)) + ":position"))
+	animation.track_set_path(track_index, NodePath(String(get_node(export_player.root_node).get_path_to(export_node)) + ":position"))
 	
 	# Remove existing keys
 	while animation.track_get_key_count(track_index):
@@ -30,9 +29,7 @@ extends Node
 @export var veclog:Dictionary[float, Vector2]
 @onready var player := get_tree().get_first_node_in_group("Player")
 
-func _ready() -> void: if not Engine.is_editor_hint():
-	export_player.play(export_animation)
-	veclog.clear()
+func _ready() -> void: if not Engine.is_editor_hint(): veclog.clear()
 
 var timer := 0.
 var frame := 0

@@ -163,10 +163,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Get the new dash direction.
 	var new_dash_direction:Vector2
-	match input_type:
-		INPUT_TYPE.KEYBMOUSE:
+	match Global.input_type:
+		Global.INPUT_TYPE.KEYBMOUSE:
 			new_dash_direction = get_global_mouse_position() - global_position
-		INPUT_TYPE.CONTROLLER:
+		Global.INPUT_TYPE.CONTROLLER:
 			new_dash_direction = Input.get_vector("JL", "JR", "JU", "JD")
 	
 	# Only update it if the direction has changed.
@@ -188,12 +188,6 @@ func _physics_process(delta: float) -> void:
 		dashed.emit()
 	
 	move_and_slide()
-
-enum INPUT_TYPE {KEYBMOUSE, CONTROLLER}
-var input_type := INPUT_TYPE.KEYBMOUSE
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouse: input_type = INPUT_TYPE.KEYBMOUSE
-	elif event is InputEventJoypadMotion: input_type = INPUT_TYPE.CONTROLLER
 
 func _on_reset() -> void:
 	global_position = respawn_position

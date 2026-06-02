@@ -27,7 +27,7 @@ enum SHAPE{CIRCLE, RECTANGLE}
 		easing = to
 		queue_redraw()
 
-@export var min_scale := 0.1:
+@export_range(0.0, 1.0, 0.0001) var min_scale := 0.1:
 	set(to):
 		min_scale = to
 		queue_redraw()
@@ -60,8 +60,7 @@ func _process(_delta: float) -> void:
 			Engine.time_scale = get_scale_for_dist(dist)
 			was_slowing = true
 			
-			var input := Input.is_action_pressed(input_disable) if InputMap.has_action(input_disable) else false
-			if input or should_disable():
+			if disable_condition():
 				disable_toggle = true
 		elif was_slowing:
 			# Reset the time_scale back to normal
@@ -70,6 +69,9 @@ func _process(_delta: float) -> void:
 		
 		if dist == -1.:
 			disable_toggle = false
+
+func disable_condition() -> bool:
+	return (Input.is_action_pressed(input_disable) if InputMap.has_action(input_disable) else false) or should_disable()
 
 func should_disable() -> bool:
 	match type_disable:
