@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://cwuinhvq766hk"]
 
-[ext_resource type="PackedScene" uid="uid://bil5t8vfdowre" path="res://Scenes/Levels/World1/New.tscn" id="1_trgkt"]
+[ext_resource type="PackedScene" uid="uid://bil5t8vfdowre" path="res://Scenes/Levels/World1/Flipside.tscn" id="1_trgkt"]
 [ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_umu5q"]
 [ext_resource type="AudioStream" uid="uid://dqpqjqxvbyq4b" path="res://Assets/Music/Wave/Chords.mp3" id="3_7xiut"]
 [ext_resource type="AudioStream" uid="uid://8cx5kpph3hcn" path="res://Assets/Music/Wave/Bass.mp3" id="4_27smf"]
@@ -9,17 +9,17 @@
 
 [resource]
 script = ExtResource("2_umu5q")
-name = "New"
+name = "Flipside"
 base_player_speed = 2600
 scene = ExtResource("1_trgkt")
 ranking_maximums = Dictionary[int, float]({
-0: 70.0,
+0: 75.0,
 1: 80.0,
 2: 90.0,
 3: 100.0,
 4: 120.0
 })
-score_threshold = 1000
+score_threshold = 1750
 tracks = Dictionary[int, AudioStream]({
 0: ExtResource("3_7xiut"),
 1: ExtResource("4_27smf"),

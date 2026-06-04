@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://ssdoakkwy4jq"]
 
-[ext_resource type="PackedScene" uid="uid://dpbfq5sfrqh4b" path="res://Scenes/Levels/World1/Wave.tscn" id="1_jfw05"]
+[ext_resource type="PackedScene" uid="uid://cwf3y8y2l41oy" path="res://Scenes/Levels/World1/Descent.tscn" id="1_jfw05"]
 [ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_45g8k"]
 [ext_resource type="AudioStream" uid="uid://dqpqjqxvbyq4b" path="res://Assets/Music/Wave/Chords.mp3" id="3_djp7g"]
 [ext_resource type="AudioStream" uid="uid://8cx5kpph3hcn" path="res://Assets/Music/Wave/Bass.mp3" id="4_wxgt5"]
@@ -9,8 +9,8 @@
 
 [resource]
 script = ExtResource("2_45g8k")
-name = "Wave"
-base_player_speed = 2660
+name = "Descent"
+base_player_speed = 2720
 scene = ExtResource("1_jfw05")
 ranking_maximums = Dictionary[int, float]({
 0: 70.0,
