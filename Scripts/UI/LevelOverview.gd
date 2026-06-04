@@ -204,7 +204,7 @@ func _request_attempt_sort(type:String):
 	if reverse_attempt_sort: runs.reverse()
 	
 	# Update each entry Control with its new run to display.
-	for i in entries.size():
+	for i in runs.size():
 		entries[i].update(runs[i], level_data.runs.find(runs[i]))
 	
 	# Update the icons of every button.
