@@ -130,7 +130,7 @@ func _get_best_score() -> int:
 func log_run(time:float, score:int):
 	var rank := _get_ranking(time) # Get the ranking.
 	# Append the new run to the list.
-	runs += [Run.new(time, score, rank, _is_bonused(score), Global.default_time_scale)]
+	runs += [Run.new(time, score, rank, _is_bonused(score), Global.time_scale_modifiers["Gamespeed"])]
 
 ## Figure out the ranking for a time.
 func _get_ranking(time:float) -> int:

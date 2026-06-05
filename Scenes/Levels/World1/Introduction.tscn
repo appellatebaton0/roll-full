@@ -7,13 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://dcpdetnw4fmcw" path="res://Scenes/JumpIndicator.tscn" id="4_6pk5d"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="5_fnxhk"]
 [ext_resource type="PackedScene" uid="uid://c7qjkmidxi07v" path="res://Scenes/DeathSpikeMedium.tscn" id="7_yi7mh"]
+[ext_resource type="Script" path="res://Scripts/DeathSpike.gd" id="8_arumk"]
 [ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="8_xemta"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="9_sy1xn"]
 [ext_resource type="PackedScene" uid="uid://i5l3dj5l2uvq" path="res://Scenes/DashIndicator.tscn" id="9_wfqcm"]
 [ext_resource type="PackedScene" uid="uid://ca4cv7gpmosy" path="res://Scenes/JoystickIndicator.tscn" id="10_wfqcm"]
 [ext_resource type="Texture2D" uid="uid://b8p4x6gi2mtwo" path="res://Assets/Textures/Cursor.svg" id="11_oo7f2"]
 [ext_resource type="Script" uid="uid://d4a1eo3stl8ag" path="res://Scripts/PlayerRecorder.gd" id="12_bkl8f"]
 [ext_resource type="Script" uid="uid://bsn2lmdbtkg2q" path="res://Scripts/TimelessAnimationPlayer.gd" id="13_ql5d1"]
 [ext_resource type="Script" uid="uid://bsof20dxvdhhd" path="res://Scripts/OrTimeSlow.gd" id="14_68fx3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pe2e4"]
+radius = 155.0
+height = 5802.0
 
 [sub_resource type="GDScript" id="GDScript_oo7f2"]
 script/source = "extends Node
@@ -171,7 +177,6 @@ offset_left = 1575.0
 offset_top = -723.0
 offset_right = 1635.0
 offset_bottom = -597.0
-button_pressed = false
 interval = 0.7
 input_name = &"Jump"
 
@@ -774,12 +779,11 @@ type_disable = 2
 metadata/_custom_type_script = "uid://bq5d8130qbdd4"
 
 [node name="TimeSlow3" type="Node2D" parent="." index="97" unique_id=1831091859]
-position = Vector2(28551, -4744)
+position = Vector2(28551, -4726)
 script = ExtResource("3_fnxhk")
-show_overlay = false
 shape = 1
-dimensions = Vector2(200, 50)
-max_dim = 200.0
+dimensions = Vector2(300, 75)
+max_dim = 300.0
 easing = 5.0
 min_scale = 0.001
 type_disable = 3
@@ -956,31 +960,471 @@ sample_points = Array[Vector2]([Vector2(28541, -13578), Vector2(28539.506, -1332
 sample_mesh = Array[Vector2]([Vector2(28521, -13578.117), Vector2(28519.506, -13322.554), Vector2(28518, -13065.097), Vector2(28516.482, -12805.747), Vector2(28514.955, -12544.503), Vector2(28513.416, -12281.366), Vector2(28511.865, -12016.337), Vector2(28510.305, -11749.413), Vector2(28508.73, -11480.597), Vector2(28507.148, -11209.886), Vector2(28505.555, -10937.283), Vector2(28503.95, -10662.786), Vector2(28502.332, -10386.3955), Vector2(28500.705, -10108.113), Vector2(28499.066, -9827.936), Vector2(28497.416, -9545.866), Vector2(28495.756, -9261.903), Vector2(28494.082, -8976.047), Vector2(28492.4, -8688.297), Vector2(28490.705, -8398.654), Vector2(28489, -8107.117), Vector2(28529, -8106.883), Vector2(28530.705, -8398.42), Vector2(28532.4, -8688.0625), Vector2(28534.082, -8975.8125), Vector2(28535.756, -9261.669), Vector2(28537.416, -9545.632), Vector2(28539.066, -9827.701), Vector2(28540.705, -10107.879), Vector2(28542.332, -10386.161), Vector2(28543.95, -10662.552), Vector2(28545.555, -10937.049), Vector2(28547.148, -11209.651), Vector2(28548.73, -11480.362), Vector2(28550.305, -11749.179), Vector2(28551.865, -12016.103), Vector2(28553.416, -12281.132), Vector2(28554.955, -12544.269), Vector2(28556.482, -12805.513), Vector2(28558, -13064.862), Vector2(28559.506, -13322.319), Vector2(28561, -13577.883)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="DeathSpikeLarge" parent="." index="118" unique_id=668612130 instance=ExtResource("8_xemta")]
+[node name="DeathSpikeLarge" type="Area2D" parent="." index="118" unique_id=668612130]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(29591, -8836)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("8_arumk")
 
-[node name="DeathSpikeLarge2" parent="." index="119" unique_id=1984024497 instance=ExtResource("8_xemta")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
-position = Vector2(29591, -8403)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathSpikeLarge" index="0" unique_id=245094717]
+shape = SubResource("CapsuleShape2D_pe2e4")
 
-[node name="DeathSpikeLarge3" parent="." index="120" unique_id=1077646720 instance=ExtResource("8_xemta")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
-position = Vector2(29591, -7942)
+[node name="Polygon" type="Polygon2D" parent="DeathSpikeLarge" index="1" unique_id=1382325132]
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
 
-[node name="DeathSpikeLarge4" parent="." index="121" unique_id=1624407209 instance=ExtResource("8_xemta")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
-position = Vector2(29591, -7513)
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon" index="0" unique_id=1268693204]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
 
-[node name="DeathSpikeLarge5" parent="." index="122" unique_id=1513941191 instance=ExtResource("8_xemta")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
-position = Vector2(29591, -7052)
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon/Polygon2" index="0" unique_id=2078218414]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
 
-[node name="DeathSpikeLarge6" parent="." index="123" unique_id=1415502458 instance=ExtResource("8_xemta")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
-position = Vector2(29591, -6576)
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge" index="2" unique_id=542954857]
+position = Vector2(0, -412)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
 
-[node name="Spline2D15" type="Line2D" parent="." index="124" unique_id=1861660646]
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon2" index="0" unique_id=1662525534]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon2/Polygon2" index="0" unique_id=1289532309]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge" index="3" unique_id=1129309909]
+position = Vector2(0, -824)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon3" index="0" unique_id=1134721985]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon3/Polygon2" index="0" unique_id=703852532]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon4" type="Polygon2D" parent="DeathSpikeLarge" index="4" unique_id=9560455]
+position = Vector2(0, -1281)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon4" index="0" unique_id=1741787639]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon4/Polygon2" index="0" unique_id=2117482937]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon5" type="Polygon2D" parent="DeathSpikeLarge" index="5" unique_id=2061388024]
+position = Vector2(0, -1720)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon5" index="0" unique_id=1150457337]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon5/Polygon2" index="0" unique_id=224115353]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon6" type="Polygon2D" parent="DeathSpikeLarge" index="6" unique_id=1076182090]
+position = Vector2(0, -2220)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon6" index="0" unique_id=276037991]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon6/Polygon2" index="0" unique_id=1006816023]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon7" type="Polygon2D" parent="DeathSpikeLarge" index="7" unique_id=715072441]
+position = Vector2(0, -2710)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon7" index="0" unique_id=1647694121]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon7/Polygon2" index="0" unique_id=1937863851]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon8" type="Polygon2D" parent="DeathSpikeLarge" index="8" unique_id=294612263]
+position = Vector2(0, 446)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon8" index="0" unique_id=1990541877]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon8/Polygon2" index="0" unique_id=1313201642]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon9" type="Polygon2D" parent="DeathSpikeLarge" index="9" unique_id=1904846831]
+position = Vector2(0, 921)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon9" index="0" unique_id=299849226]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon9/Polygon2" index="0" unique_id=529918151]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon10" type="Polygon2D" parent="DeathSpikeLarge" index="10" unique_id=779686385]
+position = Vector2(0, 1396)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon10" index="0" unique_id=1531265979]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon10/Polygon2" index="0" unique_id=1533863176]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon11" type="Polygon2D" parent="DeathSpikeLarge" index="11" unique_id=1032092194]
+position = Vector2(0, 1826)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon11" index="0" unique_id=419407872]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon11/Polygon2" index="0" unique_id=1036586324]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon12" type="Polygon2D" parent="DeathSpikeLarge" index="12" unique_id=1048067490]
+position = Vector2(0, 2274)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon12" index="0" unique_id=1617580386]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon12/Polygon2" index="0" unique_id=1608348082]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon13" type="Polygon2D" parent="DeathSpikeLarge" index="13" unique_id=1056110080]
+position = Vector2(0, 2740)
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="DeathSpikeLarge/Polygon13" index="0" unique_id=1984349862]
+rotation = 0.5239833
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(120, 0, 190.52559, 110, 59.999996, 103.92305, -9.616506e-06, 220, -60.000008, 103.92305, -190.52559, 110.000015, -120, -1.0490733e-05, -190.52559, -109.99999, -59.99999, -103.92305, 2.6234738e-06, -220, 59.99999, -103.92305, 190.52557, -110.00004)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 220.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="DeathSpikeLarge/Polygon13/Polygon2" index="0" unique_id=333878961]
+rotation = -1.0475821
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(60, 0, 51.961525, 30, 29.999998, 51.961525, -2.6226833e-06, 60, -30.000004, 51.961525, -51.961525, 30.000004, -60, -5.2453665e-06, -51.961525, -29.999998, -29.999994, -51.961525, 7.1549283e-07, -60, 29.999994, -51.961525, 51.96152, -30.000011)
+script = ExtResource("9_sy1xn")
+outer_vertices = 12
+outer_radius = 60.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Spline2D15" type="Line2D" parent="." index="119" unique_id=1861660646]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-1246, 0)
 points = PackedVector2Array(30907, -5642, 31127.988, -4389.37, 31445.85, -2587.626, 31706, -1113, 31423, 489, 32608, 939, 33183, 687, 34973, 687, 37261, 687, 38942, 687)
@@ -991,16 +1435,16 @@ sample_points = Array[Vector2]([Vector2(30907, -5642), Vector2(30945.09, -5426.0
 sample_mesh = Array[Vector2]([Vector2(30887.305, -5638.5254), Vector2(30925.395, -5422.62), Vector2(30963.682, -5205.605), Vector2(31002.162, -4987.48), Vector2(31040.838, -4768.2446), Vector2(31079.71, -4547.9), Vector2(31118.781, -4326.4443), Vector2(31158.045, -4103.8794), Vector2(31197.506, -3880.2043), Vector2(31237.162, -3655.4192), Vector2(31277.016, -3429.5244), Vector2(31317.06, -3202.5195), Vector2(31357.307, -2974.404), Vector2(31397.746, -2745.1797), Vector2(31438.38, -2514.8445), Vector2(31479.213, -2283.3994), Vector2(31520.24, -2050.8447), Vector2(31561.46, -1817.1797), Vector2(31602.879, -1582.4052), Vector2(31644.494, -1346.5201), Vector2(31686.318, -1109.448), Vector2(31719.494, -930.9526), Vector2(31757.035, -761.4577), Vector2(31798.912, -601.17035), Vector2(31845.13, -450.086), Vector2(31895.707, -308.20053), Vector2(31950.654, -175.5121), Vector2(32009.992, -52.021275), Vector2(32073.742, 62.266945), Vector2(32141.916, 167.342), Vector2(32214.54, 263.18668), Vector2(32291.623, 349.77475), Vector2(32373.178, 427.072), Vector2(32459.2, 495.03775), Vector2(32549.668, 553.6295), Vector2(32644.547, 602.8084), Vector2(32743.793, 642.5452), Vector2(32847.355, 672.82513), Vector2(32955.18, 693.6489), Vector2(33067.227, 705.0309), Vector2(33182.906, 706.99976), Vector2(33476.13, 707), Vector2(33768.71, 707), Vector2(34060.746, 707), Vector2(34352.24, 707), Vector2(34643.188, 707), Vector2(34933.59, 707), Vector2(35223.45, 707), Vector2(35512.758, 707), Vector2(35801.527, 707), Vector2(36089.75, 707), Vector2(36377.43, 707), Vector2(36664.563, 707), Vector2(36951.15, 707), Vector2(37237.188, 707), Vector2(37522.688, 707), Vector2(37807.64, 707), Vector2(38092.047, 707), Vector2(38375.91, 707), Vector2(38659.227, 707), Vector2(38942, 707), Vector2(38942, 667), Vector2(38659.227, 667), Vector2(38375.91, 667), Vector2(38092.047, 667), Vector2(37807.64, 667), Vector2(37522.688, 667), Vector2(37237.188, 667), Vector2(36951.15, 667), Vector2(36664.563, 667), Vector2(36377.43, 667), Vector2(36089.75, 667), Vector2(35801.527, 667), Vector2(35512.758, 667), Vector2(35223.45, 667), Vector2(34933.59, 667), Vector2(34643.188, 667), Vector2(34352.24, 667), Vector2(34060.746, 667), Vector2(33768.71, 667), Vector2(33476.13, 667), Vector2(33183.094, 667.00024), Vector2(33069.563, 665.099), Vector2(32960.977, 654.07104), Vector2(32856.754, 633.9449), Vector2(32756.848, 604.7348), Vector2(32661.203, 566.4416), Vector2(32569.773, 519.0504), Vector2(32482.512, 462.5322), Vector2(32399.38, 396.84805), Vector2(32320.365, 321.95535), Vector2(32245.46, 237.81332), Vector2(32174.674, 144.38786), Vector2(32108.02, 41.6531), Vector2(32045.516, -70.40872), Vector2(31987.186, -191.8079), Vector2(31933.043, -322.54947), Vector2(31883.111, -462.63397), Vector2(31837.4, -612.05963), Vector2(31795.922, -770.8223), Vector2(31758.693, -938.9174), Vector2(31725.682, -1116.552), Vector2(31683.885, -1353.4696), Vector2(31642.27, -1589.3546), Vector2(31600.852, -1824.1289), Vector2(31559.63, -2057.794), Vector2(31518.604, -2290.349), Vector2(31477.771, -2521.7937), Vector2(31437.137, -2752.129), Vector2(31396.697, -2981.3538), Vector2(31356.451, -3209.4688), Vector2(31316.406, -3436.4736), Vector2(31276.553, -3662.369), Vector2(31236.896, -3887.154), Vector2(31197.436, -4110.8286), Vector2(31158.172, -4333.3936), Vector2(31119.102, -4554.849), Vector2(31080.229, -4775.194), Vector2(31041.553, -4994.429), Vector2(31003.072, -5212.554), Vector2(30964.785, -5429.5693), Vector2(30926.695, -5645.4746)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="DashIndicator" parent="." index="125" unique_id=1894425035 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator" parent="." index="120" unique_id=1894425035 instance=ExtResource("9_wfqcm")]
 position = Vector2(28552, -4827)
 
-[node name="Button2" parent="." index="126" unique_id=665856990 instance=ExtResource("3_rxhu1")]
+[node name="Button2" parent="." index="121" unique_id=665856990 instance=ExtResource("3_rxhu1")]
 offset_left = 27944.0
 offset_top = -5528.0
 offset_right = 28004.0
 offset_bottom = -5402.0
 
-[node name="Spline2D16" type="Line2D" parent="." index="127" unique_id=121548991]
+[node name="Spline2D16" type="Line2D" parent="." index="122" unique_id=121548991]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-334, -453)
 points = PackedVector2Array(40357, 868, 40357, -1199.0869, 40357, -3737.66, 40357, -5466)
@@ -1011,10 +1455,10 @@ sample_points = Array[Vector2]([Vector2(40357, 868), Vector2(40357, 535.2095), V
 sample_mesh = Array[Vector2]([Vector2(40377, 868), Vector2(40377, 535.2095), Vector2(40377, 204.1128), Vector2(40377, -125.29022), Vector2(40377, -452.99954), Vector2(40377, -779.01514), Vector2(40377, -1103.337), Vector2(40377, -1425.9648), Vector2(40377, -1746.8992), Vector2(40377, -2066.14), Vector2(40377, -2383.6868), Vector2(40377, -2699.54), Vector2(40377, -3013.6995), Vector2(40377, -3326.1648), Vector2(40377, -3636.9365), Vector2(40377, -3946.015), Vector2(40377, -4253.4), Vector2(40377, -4559.0903), Vector2(40377, -4863.0874), Vector2(40377, -5165.3906), Vector2(40377, -5466), Vector2(40337, -5466), Vector2(40337, -5165.3906), Vector2(40337, -4863.0874), Vector2(40337, -4559.0903), Vector2(40337, -4253.4), Vector2(40337, -3946.015), Vector2(40337, -3636.9365), Vector2(40337, -3326.1648), Vector2(40337, -3013.6995), Vector2(40337, -2699.54), Vector2(40337, -2383.6868), Vector2(40337, -2066.14), Vector2(40337, -1746.8992), Vector2(40337, -1425.9648), Vector2(40337, -1103.337), Vector2(40337, -779.01514), Vector2(40337, -452.99954), Vector2(40337, -125.29022), Vector2(40337, 204.1128), Vector2(40337, 535.2095), Vector2(40337, 868)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="JoystickIndicator" parent="." index="128" unique_id=1905265682 instance=ExtResource("10_wfqcm")]
+[node name="JoystickIndicator" parent="." index="123" unique_id=1905265682 instance=ExtResource("10_wfqcm")]
 position = Vector2(28550, -5263)
 
-[node name="Label" type="Label" parent="." index="129" unique_id=103939270]
+[node name="Label" type="Label" parent="." index="124" unique_id=103939270]
 modulate = Color(1.25516, 1.25516, 1.25516, 1)
 offset_left = 28528.0
 offset_top = -5220.0
@@ -1022,27 +1466,27 @@ offset_right = 28577.0
 offset_bottom = -5108.0
 text = "+"
 
-[node name="Node2" type="Node" parent="." index="130" unique_id=255900438 node_paths=PackedStringArray("nodes")]
+[node name="Node2" type="Node" parent="." index="125" unique_id=255900438 node_paths=PackedStringArray("nodes")]
 script = SubResource("GDScript_oo7f2")
 nodes = {
 0: NodePath("../Cursor"),
 1: NodePath("../JoystickIndicator")
 }
 
-[node name="AnimationPlayer3" type="AnimationPlayer" parent="." index="131" unique_id=1260984602]
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="." index="126" unique_id=1260984602]
 process_mode = 3
 root_node = NodePath("../Cursor")
 libraries/ = SubResource("AnimationLibrary_68fx3")
 autoplay = &"swing"
 script = ExtResource("13_ql5d1")
 
-[node name="Cursor" type="Sprite2D" parent="." index="132" unique_id=103051662]
+[node name="Cursor" type="Sprite2D" parent="." index="127" unique_id=103051662]
 modulate = Color(0.928, 0.96, 1.249, 1)
 position = Vector2(28639.002, -5500)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("11_oo7f2")
 
-[node name="PlayerRecorder" type="Node" parent="." index="133" unique_id=904602398 node_paths=PackedStringArray("export_player", "export_node")]
+[node name="PlayerRecorder" type="Node" parent="." index="128" unique_id=904602398 node_paths=PackedStringArray("export_player", "export_node")]
 script = ExtResource("12_bkl8f")
 export_player = NodePath("../AnimationPlayer2")
 export_animation = &"animate"
@@ -1151,32 +1595,32 @@ veclog = Dictionary[float, Vector2]({
 })
 metadata/_custom_type_script = "uid://d4a1eo3stl8ag"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="134" unique_id=14224914]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="129" unique_id=14224914]
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_3khyg")
 script = ExtResource("13_ql5d1")
 
-[node name="Ghost1" type="Polygon2D" parent="." index="135" unique_id=2116872160]
+[node name="Ghost1" type="Polygon2D" parent="." index="130" unique_id=2116872160]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.928, 0.96, 1.249, 1)
 position = Vector2(1462.655, 165.93402)
 color = Color(0.9490196, 0.95686275, 1, 0.7294118)
 polygon = PackedVector2Array(32, 0, 30.43381, 9.888544, 25.888544, 18.809128, 18.809128, 25.888544, 9.888543, 30.43381, -1.3987644e-06, 32, -9.888545, 30.433807, -18.809126, 25.888544, -25.888546, 18.809126, -30.433807, 9.888545, -32, -2.7975289e-06, -30.43381, -9.888543, -25.888542, -18.809132, -18.809122, -25.888548, -9.888547, -30.433807, 3.8159618e-07, -32, 9.888548, -30.433807, 18.809122, -25.888548, 25.888542, -18.80913, 30.43381, -9.888542)
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="136" unique_id=769725277]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="131" unique_id=769725277]
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_3khyg")
 autoplay = &"animate"
 script = ExtResource("13_ql5d1")
 
-[node name="Ghost2" type="Polygon2D" parent="." index="137" unique_id=702406840]
+[node name="Ghost2" type="Polygon2D" parent="." index="132" unique_id=702406840]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.928, 0.96, 1.249, 1)
 position = Vector2(28611.354, -6782.989)
 color = Color(0.9490196, 0.95686275, 1, 0.7294118)
 polygon = PackedVector2Array(32, 0, 30.43381, 9.888544, 25.888544, 18.809128, 18.809128, 25.888544, 9.888543, 30.43381, -1.3987644e-06, 32, -9.888545, 30.433807, -18.809126, 25.888544, -25.888546, 18.809126, -30.433807, 9.888545, -32, -2.7975289e-06, -30.43381, -9.888543, -25.888542, -18.809132, -18.809122, -25.888548, -9.888547, -30.433807, 3.8159618e-07, -32, 9.888548, -30.433807, 18.809122, -25.888548, 25.888542, -18.80913, 30.43381, -9.888542)
 
-[node name="Spline2D17" type="Line2D" parent="." index="138" unique_id=892502687]
+[node name="Spline2D17" type="Line2D" parent="." index="133" unique_id=892502687]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 points = PackedVector2Array(40938, -6530, 43105, -6530, 45121, -6530, 46714, -6530)
 width = 40.0
@@ -1187,7 +1631,7 @@ sample_mesh = Array[Vector2]([Vector2(40938, -6510), Vector2(46714, -6510), Vect
 seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D18" type="Line2D" parent="." index="139" unique_id=1178613417]
+[node name="Spline2D18" type="Line2D" parent="." index="134" unique_id=1178613417]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-8911, 357)
 points = PackedVector2Array(55667, -7570, 55667.004, -8913.137, 55667.004, -13031.198, 55667, -15003)
@@ -1199,19 +1643,19 @@ sample_mesh = Array[Vector2]([Vector2(55687, -7570), Vector2(55687, -15003), Vec
 seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="DeathSpikeLarge7" parent="." index="140" unique_id=1658317202 instance=ExtResource("8_xemta")]
+[node name="DeathSpikeLarge7" parent="." index="135" unique_id=1658317202 instance=ExtResource("8_xemta")]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(46537, -7313)
 
-[node name="DeathSpikeLarge8" parent="." index="141" unique_id=248110678 instance=ExtResource("8_xemta")]
+[node name="DeathSpikeLarge8" parent="." index="136" unique_id=248110678 instance=ExtResource("8_xemta")]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(46234, -7646)
 
-[node name="DeathSpikeLarge9" parent="." index="142" unique_id=1272920935 instance=ExtResource("8_xemta")]
+[node name="DeathSpikeLarge9" parent="." index="137" unique_id=1272920935 instance=ExtResource("8_xemta")]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(45959, -7955)
 
-[node name="Spline2D19" type="Line2D" parent="." index="143" unique_id=1352266484]
+[node name="Spline2D19" type="Line2D" parent="." index="138" unique_id=1352266484]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-7295, 0)
 points = PackedVector2Array(54121, -15188, 55629, -15188.002, 57464, -15188.003, 58833, -15188, 60576, -15380, 63743, -14702, 62237, -11461, 62245.81, -9625.328, 62255.61, -7742.126, 62262, -6515)
@@ -1223,7 +1667,7 @@ sample_mesh = Array[Vector2]([Vector2(54121, -15168), Vector2(54282.543, -15168)
 seg = 30.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D20" type="Line2D" parent="." index="144" unique_id=1508318044]
+[node name="Spline2D20" type="Line2D" parent="." index="139" unique_id=1508318044]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-7295, 0)
 points = PackedVector2Array(62539, -6418, 66272, -6396, 68615.79, -6404.478, 72057, -6396, 73894, -5995, 75170, -6910, 74591, -8508, 74591.01, -10974.068, 74591.01, -13634.406, 74591, -15387)
@@ -1234,12 +1678,12 @@ sample_points = Array[Vector2]([Vector2(62539, -6418), Vector2(63028.758, -6416.
 sample_mesh = Array[Vector2]([Vector2(62538.93, -6398), Vector2(63028.688, -6396.258), Vector2(63516.996, -6394.583), Vector2(64003.836, -6392.976), Vector2(64489.227, -6391.4365), Vector2(64973.152, -6389.965), Vector2(65455.617, -6388.5605), Vector2(65936.625, -6387.2236), Vector2(66416.17, -6385.955), Vector2(66894.27, -6384.7534), Vector2(67370.9, -6383.6196), Vector2(67846.07, -6382.553), Vector2(68319.79, -6381.5547), Vector2(68792.05, -6380.624), Vector2(69262.836, -6379.7603), Vector2(69732.18, -6378.965), Vector2(70200.055, -6378.237), Vector2(70666.484, -6377.5757), Vector2(71131.44, -6376.983), Vector2(71594.94, -6376.4575), Vector2(72057.29, -6376.002), Vector2(72299.79, -6386.6914), Vector2(72530.125, -6407.4204), Vector2(72748.47, -6438.2065), Vector2(72954.83, -6479.065), Vector2(73149.2, -6530.0166), Vector2(73331.586, -6591.083), Vector2(73501.96, -6662.2856), Vector2(73660.305, -6743.6455), Vector2(73806.6, -6835.1772), Vector2(73940.805, -6936.8867), Vector2(74062.86, -7048.7656), Vector2(74172.734, -7170.791), Vector2(74270.375, -7302.9272), Vector2(74355.77, -7445.1284), Vector2(74428.9, -7597.3467), Vector2(74489.766, -7759.535), Vector2(74538.39, -7931.659), Vector2(74574.78, -8113.692), Vector2(74598.98, -8305.616), Vector2(74610.99, -8507.587), Vector2(74611, -8885.84), Vector2(74611, -9260.112), Vector2(74611, -9630.818), Vector2(74611, -9997.956), Vector2(74611, -10361.527), Vector2(74611, -10721.529), Vector2(74611, -11077.966), Vector2(74611, -11430.834), Vector2(74611, -11780.135), Vector2(74611, -12125.869), Vector2(74611, -12468.035), Vector2(74611, -12806.634), Vector2(74611, -13141.665), Vector2(74611, -13473.13), Vector2(74611, -13801.026), Vector2(74611, -14125.356), Vector2(74611, -14446.118), Vector2(74611, -14763.3125), Vector2(74611, -15076.939), Vector2(74611, -15387), Vector2(74571, -15387), Vector2(74571, -15076.939), Vector2(74571, -14763.3125), Vector2(74571, -14446.118), Vector2(74571, -14125.356), Vector2(74571, -13801.026), Vector2(74571, -13473.13), Vector2(74571, -13141.665), Vector2(74571, -12806.634), Vector2(74571, -12468.035), Vector2(74571, -12125.869), Vector2(74571, -11780.135), Vector2(74571, -11430.834), Vector2(74571, -11077.966), Vector2(74571, -10721.529), Vector2(74571, -10361.527), Vector2(74571, -9997.956), Vector2(74571, -9630.818), Vector2(74571, -9260.112), Vector2(74571, -8885.84), Vector2(74571.01, -8508.413), Vector2(74559.15, -8309.278), Vector2(74535.3, -8120.0884), Vector2(74499.5, -7940.995), Vector2(74451.75, -7771.9844), Vector2(74392.1, -7613.0283), Vector2(74320.555, -7464.0913), Vector2(74237.09, -7325.1274), Vector2(74141.75, -7196.089), Vector2(74034.45, -7076.9297), Vector2(73915.195, -6967.6133), Vector2(73783.914, -6868.1177), Vector2(73640.57, -6778.4346), Vector2(73485.12, -6698.569), Vector2(73317.54, -6628.537), Vector2(73137.8, -6568.3584), Vector2(72945.89, -6518.055), Vector2(72741.81, -6477.649), Vector2(72525.56, -6447.1597), Vector2(72297.13, -6426.6035), Vector2(72056.71, -6415.998), Vector2(71594.984, -6416.4575), Vector2(71131.484, -6416.983), Vector2(70666.53, -6417.5757), Vector2(70200.12, -6418.237), Vector2(69732.24, -6418.965), Vector2(69262.914, -6419.7603), Vector2(68792.125, -6420.624), Vector2(68319.87, -6421.5547), Vector2(67846.164, -6422.553), Vector2(67370.99, -6423.6196), Vector2(66894.37, -6424.7534), Vector2(66416.28, -6425.955), Vector2(65936.734, -6427.2236), Vector2(65455.734, -6428.5605), Vector2(64973.27, -6429.965), Vector2(64489.35, -6431.4365), Vector2(64003.97, -6432.976), Vector2(63517.13, -6434.583), Vector2(63028.83, -6436.258), Vector2(62539.07, -6438)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="DeathSpikeLarge10" parent="." index="145" unique_id=75886396 instance=ExtResource("8_xemta")]
+[node name="DeathSpikeLarge10" parent="." index="140" unique_id=75886396 instance=ExtResource("8_xemta")]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(67723.99, -15374)
 scale = Vector2(1.989528, 1.989528)
 
-[node name="Spline2D21" type="Line2D" parent="." index="146" unique_id=2046859615]
+[node name="Spline2D21" type="Line2D" parent="." index="141" unique_id=2046859615]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-7295, 0)
 points = PackedVector2Array(75429, -15373, 75429.01, -8928.794, 75429.01, 629.9697, 75429, 6558)
@@ -1251,7 +1695,7 @@ sample_mesh = Array[Vector2]([Vector2(75409, -15373), Vector2(75409, 6558), Vect
 seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D22" type="Line2D" parent="." index="147" unique_id=652572854]
+[node name="Spline2D22" type="Line2D" parent="." index="142" unique_id=652572854]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-6857, 0)
 points = PackedVector2Array(74479, -5369, 74479, -2413.3076, 74479, 4528.001, 74479, 9037, 73941, 12650, 75402, 14333, 79000, 13661, 81108.98, 13661.001, 84373.37, 13661.001, 85987, 13661, 87397, 13881, 87691, 13542, 87992, 12425)
@@ -1262,7 +1706,7 @@ sample_points = Array[Vector2]([Vector2(74479, -5369), Vector2(74479, -4722.482)
 sample_mesh = Array[Vector2]([Vector2(74459, -5369), Vector2(74459, -4722.482), Vector2(74459, -4068.1975), Vector2(74459, -3406.1465), Vector2(74459, -2736.3289), Vector2(74459, -2058.745), Vector2(74459, -1373.3943), Vector2(74459, -680.2776), Vector2(74459, 20.606445), Vector2(74459, 729.25635), Vector2(74459, 1445.6733), Vector2(74459, 2169.8564), Vector2(74459, 2901.8066), Vector2(74459, 3641.5222), Vector2(74459, 4389.005), Vector2(74459, 5144.255), Vector2(74459, 5907.2715), Vector2(74459, 6678.0537), Vector2(74459, 7456.6016), Vector2(74459, 8242.918), Vector2(74459.01, 9037.481), Vector2(74488.68, 9473.613), Vector2(74539.086, 9888.027), Vector2(74610.24, 10281.108), Vector2(74702.195, 10652.854), Vector2(74814.945, 11003.254), Vector2(74948.516, 11332.293), Vector2(75102.93, 11639.943), Vector2(75278.17, 11926.177), Vector2(75474.27, 12190.953), Vector2(75691.2, 12434.232), Vector2(75928.94, 12655.976), Vector2(76187.445, 12856.151), Vector2(76466.69, 13034.742), Vector2(76766.62, 13191.741), Vector2(77087.2, 13327.154), Vector2(77428.414, 13440.993), Vector2(77790.23, 13533.274), Vector2(78172.64, 13604.0205), Vector2(78575.64, 13653.251), Vector2(78999.305, 13680.988), Vector2(79372.875, 13681), Vector2(79743.28, 13681), Vector2(80111.2, 13681), Vector2(80476.66, 13681), Vector2(80839.625, 13681), Vector2(81200.125, 13681), Vector2(81558.14, 13681), Vector2(81913.69, 13681), Vector2(82266.75, 13681), Vector2(82617.336, 13681), Vector2(82965.445, 13681), Vector2(83311.08, 13681), Vector2(83654.24, 13681), Vector2(83994.92, 13681), Vector2(84333.125, 13681), Vector2(84668.85, 13681), Vector2(85002.1, 13681), Vector2(85332.88, 13681), Vector2(85661.18, 13681), Vector2(85986.93, 13681), Vector2(86140.15, 13682.706), Vector2(86288.46, 13677.697), Vector2(86431.3, 13665.952), Vector2(86568.64, 13647.461), Vector2(86700.516, 13622.213), Vector2(86826.9, 13590.197), Vector2(86947.77, 13551.402), Vector2(87063.13, 13505.82), Vector2(87172.97, 13453.444), Vector2(87277.24, 13394.275), Vector2(87375.945, 13328.314), Vector2(87469.055, 13255.571), Vector2(87556.54, 13176.06), Vector2(87638.39, 13089.797), Vector2(87714.6, 12996.806), Vector2(87785.15, 12897.1045), Vector2(87850.055, 12790.715), Vector2(87909.31, 12677.655), Vector2(87962.914, 12557.9375), Vector2(88010.695, 12432.099), Vector2(87973.305, 12417.901), Vector2(87925.945, 12542.676), Vector2(87873.31, 12660.204), Vector2(87815.24, 12771.02), Vector2(87751.73, 12875.136), Vector2(87682.77, 12972.569), Vector2(87608.39, 13063.342), Vector2(87528.555, 13147.476), Vector2(87443.27, 13224.989), Vector2(87352.51, 13295.9), Vector2(87256.26, 13360.225), Vector2(87154.484, 13417.97), Vector2(87047.18, 13469.141), Vector2(86934.32, 13513.732), Vector2(86815.88, 13551.742), Vector2(86691.86, 13583.162), Vector2(86562.234, 13607.979), Vector2(86427, 13626.183), Vector2(86286.164, 13637.764), Vector2(86139.71, 13642.708), Vector2(85987.07, 13641), Vector2(85661.18, 13641), Vector2(85332.88, 13641), Vector2(85002.1, 13641), Vector2(84668.85, 13641), Vector2(84333.125, 13641), Vector2(83994.92, 13641), Vector2(83654.24, 13641), Vector2(83311.08, 13641), Vector2(82965.445, 13641), Vector2(82617.336, 13641), Vector2(82266.75, 13641), Vector2(81913.69, 13641), Vector2(81558.14, 13641), Vector2(81200.125, 13641), Vector2(80839.625, 13641), Vector2(80476.66, 13641), Vector2(80111.2, 13641), Vector2(79743.28, 13641), Vector2(79372.875, 13641), Vector2(79000.695, 13641.012), Vector2(78579.34, 13613.423), Vector2(78178.69, 13564.4795), Vector2(77798.79, 13494.2), Vector2(77439.664, 13402.608), Vector2(77101.3, 13289.721), Vector2(76783.664, 13155.558), Vector2(76486.734, 13000.133), Vector2(76210.48, 12823.448), Vector2(75954.84, 12625.501), Vector2(75719.8, 12406.268), Vector2(75505.305, 12165.721), Vector2(75311.34, 11903.823), Vector2(75137.9, 11620.531), Vector2(74984.97, 11315.809), Vector2(74852.555, 10989.621), Vector2(74740.68, 10641.945), Vector2(74649.37, 10272.767), Vector2(74578.63, 9882.072), Vector2(74528.51, 9469.863), Vector2(74498.99, 9036.519), Vector2(74499, 8242.918), Vector2(74499, 7456.6016), Vector2(74499, 6678.0537), Vector2(74499, 5907.2715), Vector2(74499, 5144.255), Vector2(74499, 4389.005), Vector2(74499, 3641.5222), Vector2(74499, 2901.8066), Vector2(74499, 2169.8564), Vector2(74499, 1445.6733), Vector2(74499, 729.25635), Vector2(74499, 20.606445), Vector2(74499, -680.2776), Vector2(74499, -1373.3943), Vector2(74499, -2058.745), Vector2(74499, -2736.3289), Vector2(74499, -3406.1465), Vector2(74499, -4068.1975), Vector2(74499, -4722.482), Vector2(74499, -5369)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D23" type="Line2D" parent="." index="148" unique_id=741230575]
+[node name="Spline2D23" type="Line2D" parent="." index="143" unique_id=741230575]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-8961, 3434)
 points = PackedVector2Array(88821, 4262, 91129.95, 4287.6797, 94210.86, 4321.946, 97003, 4353, 97563, 4316, 97837, 4398, 97727, 5055, 97655, 5537, 97766, 5907, 98457, 5746, 100126.19, 5744.3745, 102677.33, 5741.89, 104618, 5740, 105327, 5382, 105832, 6137, 105576, 6760, 105418, 7353, 105730, 7839, 106565, 7688, 108365.12, 7696.281, 110921.695, 7708.041, 113304, 7719, 114175, 7574, 114635, 7968, 114417, 8955, 114291, 9793, 114594, 10572, 115437, 10223, 116674.63, 10248.398, 118345.875, 10282.695, 119920, 10315, 121585, 10008, 122697, 10660, 122114, 12263, 122114, 13194.936, 122114, 14130.858, 122114, 15019)
@@ -1273,7 +1717,7 @@ sample_points = Array[Vector2]([Vector2(88821, 4262), Vector2(89207.15, 4266.295
 sample_mesh = Array[Vector2]([Vector2(88820.78, 4281.9985), Vector2(89206.93, 4286.2935), Vector2(89595.5, 4290.6147), Vector2(89986.48, 4294.9634), Vector2(90379.87, 4299.3384), Vector2(90775.68, 4303.7407), Vector2(91173.914, 4308.17), Vector2(91574.555, 4312.626), Vector2(91977.62, 4317.109), Vector2(92383.09, 4321.618), Vector2(92790.984, 4326.155), Vector2(93201.29, 4330.7183), Vector2(93614.016, 4335.3086), Vector2(94029.16, 4339.926), Vector2(94446.71, 4344.57), Vector2(94866.69, 4349.2407), Vector2(95289.07, 4353.9385), Vector2(95713.875, 4358.663), Vector2(96141.09, 4363.4146), Vector2(96570.73, 4368.1934), Vector2(97002.72, 4372.998), Vector2(97069.86, 4375.101), Vector2(97133.39, 4380.6055), Vector2(97193.45, 4389.494), Vector2(97250.086, 4401.746), Vector2(97303.266, 4417.338), Vector2(97353.03, 4436.248), Vector2(97399.41, 4458.4585), Vector2(97442.42, 4483.96), Vector2(97482.13, 4512.7544), Vector2(97518.58, 4544.8584), Vector2(97551.8, 4580.303), Vector2(97581.83, 4619.1284), Vector2(97608.68, 4661.379), Vector2(97632.37, 4707.1006), Vector2(97652.875, 4756.3286), Vector2(97670.18, 4809.0938), Vector2(97684.27, 4865.4136), Vector2(97695.12, 4925.2974), Vector2(97702.71, 4988.752), Vector2(97707.016, 5055.6953), Vector2(97707.266, 5120.774), Vector2(97711.43, 5183.9453), Vector2(97719.51, 5244.017), Vector2(97731.53, 5300.9814), Vector2(97747.52, 5354.821), Vector2(97767.516, 5405.5063), Vector2(97791.516, 5452.9976), Vector2(97819.53, 5497.239), Vector2(97851.53, 5538.18), Vector2(97887.5, 5575.775), Vector2(97927.38, 5609.9844), Vector2(97971.13, 5640.7866), Vector2(98018.695, 5668.181), Vector2(98070.05, 5692.176), Vector2(98125.125, 5712.791), Vector2(98183.94, 5730.051), Vector2(98246.48, 5743.979), Vector2(98312.72, 5754.5986), Vector2(98382.68, 5761.9297), Vector2(98456.8, 5765.999), Vector2(98752.17, 5765.713), Vector2(99048.69, 5765.424), Vector2(99346.55, 5765.134), Vector2(99645.77, 5764.8423), Vector2(99946.36, 5764.55), Vector2(100248.305, 5764.2554), Vector2(100551.6, 5763.9604), Vector2(100856.26, 5763.6636), Vector2(101162.27, 5763.3657), Vector2(101469.64, 5763.0664), Vector2(101778.375, 5762.7656), Vector2(102088.46, 5762.4634), Vector2(102399.91, 5762.16), Vector2(102712.7, 5761.8555), Vector2(103026.86, 5761.55), Vector2(103342.38, 5761.242), Vector2(103659.25, 5760.934), Vector2(103977.48, 5760.624), Vector2(104297.07, 5760.313), Vector2(104617.805, 5759.999), Vector2(104710.24, 5764.346), Vector2(104797.95, 5773.528), Vector2(104880.74, 5787.5186), Vector2(104958.59, 5806.296), Vector2(105031.54, 5829.8345), Vector2(105099.59, 5858.112), Vector2(105162.78, 5891.1104), Vector2(105221.164, 5928.8237), Vector2(105274.77, 5971.2593), Vector2(105323.67, 6018.4424), Vector2(105367.9, 6070.409), Vector2(105407.47, 6127.209), Vector2(105442.414, 6188.8896), Vector2(105472.71, 6255.497), Vector2(105498.36, 6327.0684), Vector2(105519.336, 6403.6265), Vector2(105535.6, 6485.1885), Vector2(105547.16, 6571.7603), Vector2(105553.96, 6663.3413), Vector2(105556.01, 6760.4844), Vector2(105558.32, 6842.9307), Vector2(105565.695, 6922.2944), Vector2(105578.14, 6998.036), Vector2(105595.695, 7070.141), Vector2(105618.36, 7138.5854), Vector2(105646.164, 7203.3364), Vector2(105679.09, 7264.354), Vector2(105717.16, 7321.5947), Vector2(105760.32, 7375.016), Vector2(105808.56, 7424.5845), Vector2(105861.836, 7470.277), Vector2(105920.11, 7512.0815), Vector2(105983.33, 7550.0015), Vector2(106051.484, 7584.046), Vector2(106124.555, 7614.231), Vector2(106202.51, 7640.5757), Vector2(106285.34, 7663.1), Vector2(106373.055, 7681.821), Vector2(106465.664, 7696.7544), Vector2(106564.38, 7707.9907), Vector2(106874.2, 7709.423), Vector2(107186.414, 7710.859), Vector2(107501.52, 7712.3086), Vector2(107819.555, 7713.7715), Vector2(108140.5, 7715.248), Vector2(108464.34, 7716.738), Vector2(108791.11, 7718.2407), Vector2(109120.78, 7719.7573), Vector2(109453.37, 7721.287), Vector2(109788.86, 7722.8306), Vector2(110127.266, 7724.387), Vector2(110468.58, 7725.957), Vector2(110812.81, 7727.5405), Vector2(111159.945, 7729.1377), Vector2(111509.99, 7730.748), Vector2(111862.95, 7732.3716), Vector2(112218.83, 7734.0083), Vector2(112577.61, 7735.659), Vector2(112939.3, 7737.3228), Vector2(113303.586, 7738.9956), Vector2(113409.31, 7746.923), Vector2(113510.03, 7760.4487), Vector2(113605.195, 7779.5327), Vector2(113694.83, 7804.155), Vector2(113778.945, 7834.2925), Vector2(113857.56, 7869.9272), Vector2(113930.73, 7911.0483), Vector2(113998.47, 7957.6533), Vector2(114060.84, 8009.7573), Vector2(114117.89, 8067.384), Vector2(114169.63, 8130.571), Vector2(114216.11, 8199.361), Vector2(114257.3, 8273.8), Vector2(114293.23, 8353.927), Vector2(114323.87, 8439.768), Vector2(114349.195, 8531.347), Vector2(114369.19, 8628.677), Vector2(114383.83, 8731.764), Vector2(114393.11, 8840.608), Vector2(114397.016, 8955.756), Vector2(114402.016, 9076.047), Vector2(114411.91, 9190.824), Vector2(114426.71, 9299.757), Vector2(114446.44, 9402.845), Vector2(114471.09, 9500.092), Vector2(114500.72, 9591.491), Vector2(114535.305, 9677.034), Vector2(114574.914, 9756.703), Vector2(114619.52, 9830.465), Vector2(114669.164, 9898.286), Vector2(114723.83, 9960.121), Vector2(114783.49, 10015.926), Vector2(114848.13, 10065.66), Vector2(114917.69, 10109.294), Vector2(114992.13, 10146.8125), Vector2(115071.41, 10178.215), Vector2(115155.47, 10203.512), Vector2(115244.305, 10222.723), Vector2(115337.875, 10235.872), Vector2(115436.26, 10242.986), Vector2(115644.75, 10247.268), Vector2(115854.6, 10251.574), Vector2(116066.13, 10255.915), Vector2(116279.34, 10260.291), Vector2(116494.24, 10264.701), Vector2(116710.82, 10269.1455), Vector2(116929.086, 10273.625), Vector2(117149.03, 10278.139), Vector2(117370.66, 10282.6875), Vector2(117593.96, 10287.27), Vector2(117818.95, 10291.887), Vector2(118045.625, 10296.539), Vector2(118273.984, 10301.225), Vector2(118504.02, 10305.946), Vector2(118735.74, 10310.701), Vector2(118969.15, 10315.491), Vector2(119204.234, 10320.315), Vector2(119441, 10325.175), Vector2(119679.45, 10330.068), Vector2(119919.49, 10334.993), Vector2(120135.39, 10341.646), Vector2(120339.625, 10357.79), Vector2(120532.516, 10383.417), Vector2(120714.06, 10418.507), Vector2(120884.266, 10463.035), Vector2(121043.13, 10516.9795), Vector2(121190.67, 10580.31), Vector2(121326.92, 10653.007), Vector2(121451.92, 10735.057), Vector2(121565.72, 10826.456), Vector2(121668.37, 10927.222), Vector2(121759.914, 11037.386), Vector2(121840.38, 11156.999), Vector2(121909.83, 11286.117), Vector2(121968.234, 11424.792), Vector2(122015.586, 11573.071), Vector2(122051.87, 11730.986), Vector2(122077.04, 11898.562), Vector2(122091.1, 12075.806), Vector2(122094, 12263.178), Vector2(122094, 12402.88), Vector2(122094, 12542.541), Vector2(122094, 12681.983), Vector2(122094, 12821.207), Vector2(122094, 12960.212), Vector2(122094, 13098.997), Vector2(122094, 13237.563), Vector2(122094, 13375.911), Vector2(122094, 13514.039), Vector2(122094, 13651.949), Vector2(122094, 13789.639), Vector2(122094, 13927.11), Vector2(122094, 14064.363), Vector2(122094, 14201.396), Vector2(122094, 14338.211), Vector2(122094, 14474.808), Vector2(122094, 14611.185), Vector2(122094, 14747.341), Vector2(122094, 14883.28), Vector2(122094, 15019), Vector2(122134, 15019), Vector2(122134, 14883.28), Vector2(122134, 14747.341), Vector2(122134, 14611.185), Vector2(122134, 14474.808), Vector2(122134, 14338.211), Vector2(122134, 14201.396), Vector2(122134, 14064.363), Vector2(122134, 13927.11), Vector2(122134, 13789.639), Vector2(122134, 13651.949), Vector2(122134, 13514.039), Vector2(122134, 13375.911), Vector2(122134, 13237.563), Vector2(122134, 13098.997), Vector2(122134, 12960.212), Vector2(122134, 12821.207), Vector2(122134, 12681.983), Vector2(122134, 12542.541), Vector2(122134, 12402.88), Vector2(122134, 12262.822), Vector2(122131.055, 12073.944), Vector2(122116.79, 11894.038), Vector2(122091.18, 11723.564), Vector2(122054.18, 11562.53), Vector2(122005.766, 11410.958), Vector2(121945.92, 11268.883), Vector2(121874.65, 11136.351), Vector2(121791.93, 11013.413), Vector2(121697.79, 10900.13), Vector2(121592.28, 10796.544), Vector2(121475.44, 10702.693), Vector2(121347.31, 10618.593), Vector2(121207.97, 10544.239), Vector2(121057.43, 10479.622), Vector2(120895.734, 10424.715), Vector2(120722.89, 10379.493), Vector2(120538.92, 10343.933), Vector2(120343.81, 10318.009), Vector2(120137.56, 10301.705), Vector2(119920.51, 10295.007), Vector2(119680.28, 10290.076), Vector2(119441.83, 10285.183), Vector2(119205.06, 10280.323), Vector2(118969.98, 10275.499), Vector2(118736.57, 10270.709), Vector2(118504.85, 10265.954), Vector2(118274.81, 10261.232), Vector2(118046.45, 10256.547), Vector2(117819.78, 10251.895), Vector2(117594.79, 10247.277), Vector2(117371.484, 10242.695), Vector2(117149.86, 10238.146), Vector2(116929.914, 10233.633), Vector2(116711.65, 10229.153), Vector2(116495.07, 10224.709), Vector2(116280.17, 10220.299), Vector2(116066.96, 10215.923), Vector2(115855.43, 10211.582), Vector2(115645.58, 10207.275), Vector2(115437.74, 10203.014), Vector2(115342.08, 10196.093), Vector2(115251.29, 10183.338), Vector2(115165.44, 10164.773), Vector2(115084.516, 10140.426), Vector2(115008.49, 10110.3125), Vector2(114937.33, 10074.446), Vector2(114870.98, 10032.826), Vector2(114809.38, 9985.434), Vector2(114752.516, 9932.244), Vector2(114700.336, 9873.214), Vector2(114652.82, 9808.301), Vector2(114609.98, 9737.457), Vector2(114571.79, 9660.649), Vector2(114538.31, 9577.849), Vector2(114509.53, 9489.033), Vector2(114485.484, 9394.194), Vector2(114466.195, 9293.329), Vector2(114451.67, 9186.436), Vector2(114441.94, 9073.52), Vector2(114436.984, 8954.244), Vector2(114433.05, 8838.253), Vector2(114423.58, 8727.275), Vector2(114408.61, 8621.864), Vector2(114388.086, 8522.013), Vector2(114362.01, 8427.732), Vector2(114330.35, 8339.034), Vector2(114293.09, 8255.94), Vector2(114250.22, 8178.4785), Vector2(114201.73, 8106.689), Vector2(114147.61, 8040.616), Vector2(114087.91, 7980.303), Vector2(114022.64, 7925.786), Vector2(113951.87, 7877.0923), Vector2(113875.61, 7834.233), Vector2(113793.93, 7797.2075), Vector2(113706.86, 7766.0054), Vector2(113614.4, 7740.607), Vector2(113516.59, 7720.9917), Vector2(113413.44, 7707.1367), Vector2(113304.414, 7699.0044), Vector2(112939.484, 7697.3228), Vector2(112577.8, 7695.659), Vector2(112219.016, 7694.0083), Vector2(111863.14, 7692.3716), Vector2(111510.18, 7690.748), Vector2(111160.13, 7689.1377), Vector2(110813, 7687.5405), Vector2(110468.766, 7685.957), Vector2(110127.45, 7684.387), Vector2(109789.05, 7682.8306), Vector2(109453.555, 7681.287), Vector2(109120.97, 7679.7573), Vector2(108791.3, 7678.2407), Vector2(108464.53, 7676.738), Vector2(108140.69, 7675.248), Vector2(107819.74, 7673.7715), Vector2(107501.71, 7672.3086), Vector2(107186.6, 7670.859), Vector2(106874.39, 7669.423), Vector2(106565.62, 7668.0093), Vector2(106471.1, 7657.1255), Vector2(106380.4, 7642.4995), Vector2(106294.75, 7624.22), Vector2(106214.13, 7602.304), Vector2(106138.57, 7576.769), Vector2(106068.05, 7547.634), Vector2(106002.55, 7514.9185), Vector2(105942.05, 7478.638), Vector2(105886.52, 7438.803), Vector2(105835.94, 7395.4155), Vector2(105790.24, 7348.4634), Vector2(105749.41, 7297.926), Vector2(105713.39, 7243.766), Vector2(105682.18, 7185.944), Vector2(105655.766, 7124.4146), Vector2(105634.15, 7059.139), Vector2(105617.34, 6990.084), Vector2(105605.37, 6917.225), Vector2(105598.24, 6840.549), Vector2(105595.99, 6759.5156), Vector2(105593.914, 6661.4634), Vector2(105586.95, 6567.6597), Vector2(105575.07, 6478.6563), Vector2(105558.27, 6394.4536), Vector2(105536.516, 6315.0566), Vector2(105509.79, 6240.4834), Vector2(105478.07, 6170.755), Vector2(105441.33, 6105.911), Vector2(105399.586, 6045.996), Vector2(105352.83, 5991.0576), Vector2(105301.1, 5941.146), Vector2(105244.445, 5896.2964), Vector2(105182.89, 5856.535), Vector2(105116.516, 5821.8687), Vector2(105045.336, 5792.2905), Vector2(104969.41, 5767.784), Vector2(104888.74, 5748.326), Vector2(104803.34, 5733.892), Vector2(104713.24, 5724.4585), Vector2(104618.195, 5720.001), Vector2(104297.04, 5720.313), Vector2(103977.445, 5720.624), Vector2(103659.22, 5720.934), Vector2(103342.35, 5721.242), Vector2(103026.83, 5721.55), Vector2(102712.67, 5721.8555), Vector2(102399.875, 5722.16), Vector2(102088.43, 5722.4634), Vector2(101778.34, 5722.7656), Vector2(101469.61, 5723.0664), Vector2(101162.24, 5723.3657), Vector2(100856.23, 5723.6636), Vector2(100551.57, 5723.9604), Vector2(100248.27, 5724.2554), Vector2(99946.33, 5724.55), Vector2(99645.74, 5724.8423), Vector2(99346.516, 5725.134), Vector2(99048.66, 5725.424), Vector2(98752.14, 5725.713), Vector2(98457.2, 5726.001), Vector2(98385.836, 5722.0547), Vector2(98317.94, 5714.9414), Vector2(98253.96, 5704.686), Vector2(98193.89, 5691.3096), Vector2(98137.75, 5674.834), Vector2(98085.5, 5655.284), Vector2(98037.13, 5632.684), Vector2(97992.63, 5607.053), Vector2(97951.93, 5578.4014), Vector2(97915, 5546.725), Vector2(97881.78, 5512.0044), Vector2(97852.234, 5474.2007), Vector2(97826.31, 5433.268), Vector2(97804.016, 5389.154), Vector2(97785.35, 5341.804), Vector2(97770.31, 5291.1787), Vector2(97758.93, 5237.2476), Vector2(97751.23, 5179.995), Vector2(97747.25, 5119.4116), Vector2(97746.984, 5054.3047), Vector2(97742.54, 4985.118), Vector2(97734.68, 4919.3823), Vector2(97723.38, 4857.017), Vector2(97708.62, 4798.0264), Vector2(97690.375, 4742.4214), Vector2(97668.63, 4690.2197), Vector2(97643.37, 4641.451), Vector2(97614.58, 4596.152), Vector2(97582.25, 4554.3667), Vector2(97546.42, 4516.1416), Vector2(97507.12, 4481.515), Vector2(97464.375, 4450.5205), Vector2(97418.25, 4423.1714), Vector2(97368.766, 4399.4717), Vector2(97315.984, 4379.412), Vector2(97259.914, 4362.9736), Vector2(97200.59, 4350.1357), Vector2(97138.016, 4340.874), Vector2(97072.19, 4335.1685), Vector2(97003.28, 4333.002), Vector2(96571.164, 4328.1963), Vector2(96141.53, 4323.4175), Vector2(95714.31, 4318.666), Vector2(95289.51, 4313.9414), Vector2(94867.125, 4309.2437), Vector2(94447.15, 4304.5728), Vector2(94029.59, 4299.9287), Vector2(93614.45, 4295.3115), Vector2(93201.73, 4290.721), Vector2(92791.42, 4286.1577), Vector2(92383.53, 4281.621), Vector2(91978.055, 4277.112), Vector2(91574.99, 4272.629), Vector2(91174.35, 4268.173), Vector2(90776.12, 4263.7437), Vector2(90380.305, 4259.3413), Vector2(89986.914, 4254.9663), Vector2(89595.94, 4250.6177), Vector2(89207.37, 4246.2964), Vector2(88821.22, 4242.0015)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D24" type="Line2D" parent="." index="149" unique_id=1666445640]
+[node name="Spline2D24" type="Line2D" parent="." index="144" unique_id=1666445640]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-9060, 2217)
 points = PackedVector2Array(117481, 19348, 119726.59, 19348, 123354.32, 19348, 126675, 19348, 127528, 19591, 127631, 19179, 127964, 18912)
@@ -1284,7 +1728,7 @@ sample_points = Array[Vector2]([Vector2(117481, 19348), Vector2(117889.63, 19348
 sample_mesh = Array[Vector2]([Vector2(117481, 19368), Vector2(117889.63, 19368), Vector2(118303.65, 19368), Vector2(118723.02, 19368), Vector2(119147.78, 19368), Vector2(119577.92, 19368), Vector2(120013.43, 19368), Vector2(120454.32, 19368), Vector2(120900.58, 19368), Vector2(121352.22, 19368), Vector2(121809.23, 19368), Vector2(122271.62, 19368), Vector2(122739.38, 19368), Vector2(123212.516, 19368), Vector2(123691.03, 19368), Vector2(124174.92, 19368), Vector2(124664.19, 19368), Vector2(125158.83, 19368), Vector2(125658.84, 19368), Vector2(126164.234, 19368), Vector2(126674.92, 19368), Vector2(126763.88, 19370.424), Vector2(126851.02, 19370.299), Vector2(126935.61, 19367.602), Vector2(127017.62, 19362.334), Vector2(127097.07, 19354.49), Vector2(127173.96, 19344.064), Vector2(127248.29, 19331.053), Vector2(127320.07, 19315.45), Vector2(127389.266, 19297.248), Vector2(127455.91, 19276.445), Vector2(127519.98, 19253.035), Vector2(127581.46, 19227.012), Vector2(127640.38, 19198.371), Vector2(127696.69, 19167.11), Vector2(127750.4, 19133.229), Vector2(127801.49, 19096.729), Vector2(127849.96, 19057.61), Vector2(127895.805, 19015.879), Vector2(127938.99, 18971.545), Vector2(127979.13, 18925.072), Vector2(127948.87, 18898.928), Vector2(127909.51, 18944.506), Vector2(127868.01, 18987.121), Vector2(127823.93, 19027.242), Vector2(127777.305, 19064.873), Vector2(127728.1, 19100.021), Vector2(127676.31, 19132.691), Vector2(127621.93, 19162.879), Vector2(127564.93, 19190.59), Vector2(127505.32, 19215.816), Vector2(127443.09, 19238.555), Vector2(127378.234, 19258.803), Vector2(127310.74, 19276.55), Vector2(127240.6, 19291.799), Vector2(127167.836, 19304.537), Vector2(127092.43, 19314.76), Vector2(127014.38, 19322.467), Vector2(126933.7, 19327.648), Vector2(126850.37, 19330.303), Vector2(126764.414, 19330.428), Vector2(126675.08, 19328), Vector2(126164.234, 19328), Vector2(125658.84, 19328), Vector2(125158.83, 19328), Vector2(124664.19, 19328), Vector2(124174.92, 19328), Vector2(123691.03, 19328), Vector2(123212.516, 19328), Vector2(122739.38, 19328), Vector2(122271.62, 19328), Vector2(121809.23, 19328), Vector2(121352.22, 19328), Vector2(120900.58, 19328), Vector2(120454.32, 19328), Vector2(120013.43, 19328), Vector2(119577.92, 19328), Vector2(119147.78, 19328), Vector2(118723.02, 19328), Vector2(118303.65, 19328), Vector2(117889.63, 19328), Vector2(117481, 19328)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Spline2D25" type="Line2D" parent="." index="150" unique_id=748782910]
+[node name="Spline2D25" type="Line2D" parent="." index="145" unique_id=748782910]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-12844, 0)
 points = PackedVector2Array(133922, 21066, 134288, 21511, 134761, 21679, 136885, 21642, 138701.52, 21654.314, 141006.19, 21669.938, 142933, 21683, 143357, 21893, 144167, 21452, 143655, 20454, 143607, 19247, 143440, 19044, 143001, 18369, 142741, 17231, 141376, 16733, 139155, 17101)
@@ -1295,7 +1739,7 @@ sample_points = Array[Vector2]([Vector2(133922, 21066), Vector2(133986.64, 21117
 sample_mesh = Array[Vector2]([Vector2(133909.52, 21081.62), Vector2(133974.83, 21133.838), Vector2(134049.56, 21183.996), Vector2(134132.98, 21231.547), Vector2(134225.06, 21276.535), Vector2(134325.83, 21318.996), Vector2(134435.28, 21358.953), Vector2(134553.44, 21396.434), Vector2(134680.3, 21431.45), Vector2(134815.87, 21464.01), Vector2(134960.19, 21494.133), Vector2(135113.23, 21521.818), Vector2(135275.02, 21547.074), Vector2(135445.55, 21569.904), Vector2(135624.84, 21590.313), Vector2(135812.89, 21608.299), Vector2(136009.7, 21623.87), Vector2(136215.27, 21637.021), Vector2(136429.6, 21647.76), Vector2(136652.72, 21656.084), Vector2(136884.7, 21661.998), Vector2(137182.02, 21664.014), Vector2(137479.73, 21666.031), Vector2(137778, 21668.055), Vector2(138076.81, 21670.08), Vector2(138376.17, 21672.11), Vector2(138676.1, 21674.143), Vector2(138976.56, 21676.18), Vector2(139277.6, 21678.22), Vector2(139579.16, 21680.266), Vector2(139881.28, 21682.313), Vector2(140183.95, 21684.365), Vector2(140487.19, 21686.42), Vector2(140790.97, 21688.479), Vector2(141095.3, 21690.543), Vector2(141400.17, 21692.61), Vector2(141705.61, 21694.68), Vector2(142011.6, 21696.754), Vector2(142318.12, 21698.832), Vector2(142625.22, 21700.916), Vector2(142933.11, 21703), Vector2(143015.37, 21698.848), Vector2(143092.95, 21688.51), Vector2(143166, 21671.938), Vector2(143234.47, 21649.096), Vector2(143298.3, 21619.957), Vector2(143357.4, 21584.518), Vector2(143411.72, 21542.803), Vector2(143461.16, 21494.867), Vector2(143505.67, 21440.785), Vector2(143545.25, 21380.63), Vector2(143579.89, 21314.47), Vector2(143609.64, 21242.354), Vector2(143634.5, 21164.313), Vector2(143654.55, 21080.361), Vector2(143669.81, 20990.496), Vector2(143680.3, 20894.715), Vector2(143686.02, 20793.014), Vector2(143687.05, 20685.377), Vector2(143683.33, 20571.791), Vector2(143674.92, 20452.195), Vector2(143660.72, 20322.14), Vector2(143644.61, 20194.928), Vector2(143626.52, 20070.361), Vector2(143606.47, 19948.441), Vector2(143584.44, 19829.17), Vector2(143560.45, 19712.547), Vector2(143534.5, 19598.57), Vector2(143506.58, 19487.238), Vector2(143476.7, 19378.553), Vector2(143444.83, 19272.512), Vector2(143410.98, 19169.123), Vector2(143375.19, 19068.38), Vector2(143337.42, 18970.281), Vector2(143297.67, 18874.834), Vector2(143255.94, 18782.037), Vector2(143212.22, 18691.89), Vector2(143166.53, 18604.395), Vector2(143118.87, 18519.55), Vector2(143069.23, 18437.365), Vector2(143017.36, 18357.494), Vector2(142917.52, 18221.635), Vector2(142807.61, 18093.111), Vector2(142687.81, 17972.205), Vector2(142558.19, 17858.926), Vector2(142418.72, 17753.281), Vector2(142269.44, 17655.273), Vector2(142110.37, 17564.896), Vector2(141941.5, 17482.15), Vector2(141762.89, 17407.023), Vector2(141574.52, 17339.506), Vector2(141376.37, 17279.588), Vector2(141168.5, 17227.26), Vector2(140950.84, 17182.516), Vector2(140723.45, 17145.344), Vector2(140486.31, 17115.738), Vector2(140239.42, 17093.693), Vector2(139982.75, 17079.203), Vector2(139716.31, 17072.262), Vector2(139440.13, 17072.867), Vector2(139154.44, 17081.008), Vector2(139155.56, 17120.992), Vector2(139440.75, 17112.863), Vector2(139715.84, 17112.258), Vector2(139981.12, 17119.168), Vector2(140236.52, 17133.588), Vector2(140482.06, 17155.512), Vector2(140717.77, 17184.938), Vector2(140943.6, 17221.855), Vector2(141159.6, 17266.26), Vector2(141365.72, 17318.143), Vector2(141561.98, 17377.494), Vector2(141748.39, 17444.305), Vector2(141924.97, 17518.568), Vector2(142091.69, 17600.271), Vector2(142248.6, 17689.406), Vector2(142395.66, 17785.969), Vector2(142532.94, 17889.953), Vector2(142660.44, 18001.365), Vector2(142778.17, 18120.209), Vector2(142886.17, 18246.494), Vector2(142984.64, 18380.506), Vector2(143035.33, 18458.596), Vector2(143084.31, 18539.688), Vector2(143131.38, 18623.445), Vector2(143176.5, 18709.871), Vector2(143219.69, 18798.963), Vector2(143260.95, 18890.725), Vector2(143300.3, 18985.156), Vector2(143337.69, 19082.26), Vector2(143373.14, 19182.037), Vector2(143406.67, 19284.488), Vector2(143438.27, 19389.607), Vector2(143467.89, 19497.402), Vector2(143495.6, 19607.871), Vector2(143521.36, 19721.016), Vector2(143545.19, 19836.83), Vector2(143567.06, 19955.316), Vector2(143586.98, 20076.479), Vector2(143604.98, 20200.314), Vector2(143621, 20326.82), Vector2(143635.08, 20455.805), Vector2(143643.39, 20573.87), Vector2(143647.05, 20685.865), Vector2(143646.05, 20791.725), Vector2(143640.42, 20891.445), Vector2(143630.19, 20985.004), Vector2(143615.36, 21072.4), Vector2(143595.97, 21153.629), Vector2(143572.05, 21228.686), Vector2(143543.64, 21297.588), Vector2(143510.75, 21360.37), Vector2(143473.45, 21417.074), Vector2(143431.72, 21467.773), Vector2(143385.56, 21512.537), Vector2(143334.9, 21551.443), Vector2(143279.7, 21584.543), Vector2(143219.84, 21611.865), Vector2(143155.28, 21633.402), Vector2(143085.92, 21649.13), Vector2(143011.75, 21659.012), Vector2(142932.89, 21663), Vector2(142625.5, 21660.916), Vector2(142318.4, 21658.832), Vector2(142011.88, 21656.754), Vector2(141705.89, 21654.68), Vector2(141400.45, 21652.61), Vector2(141095.58, 21650.543), Vector2(140791.25, 21648.479), Vector2(140487.47, 21646.42), Vector2(140184.23, 21644.365), Vector2(139881.56, 21642.313), Vector2(139579.44, 21640.266), Vector2(139277.87, 21638.22), Vector2(138976.84, 21636.18), Vector2(138676.38, 21634.143), Vector2(138376.45, 21632.11), Vector2(138077.1, 21630.08), Vector2(137778.28, 21628.055), Vector2(137480.02, 21626.031), Vector2(137182.3, 21624.014), Vector2(136885.3, 21622.002), Vector2(136653.97, 21616.104), Vector2(136431.34, 21607.799), Vector2(136217.55, 21597.088), Vector2(136012.55, 21583.97), Vector2(135816.36, 21568.451), Vector2(135629, 21550.527), Vector2(135450.45, 21530.205), Vector2(135280.73, 21507.488), Vector2(135119.86, 21482.373), Vector2(134967.81, 21454.867), Vector2(134824.63, 21424.979), Vector2(134690.27, 21392.71), Vector2(134564.78, 21358.078), Vector2(134448.16, 21321.086), Vector2(134340.42, 21281.754), Vector2(134241.6, 21240.105), Vector2(134151.64, 21196.164), Vector2(134070.6, 21149.965), Vector2(133998.45, 21101.553), Vector2(133934.48, 21050.38)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
-[node name="Label2" type="Label" parent="." index="151" unique_id=571317698]
+[node name="Label2" type="Label" parent="." index="146" unique_id=571317698]
 offset_left = 119564.0
 offset_top = 19788.0
 offset_right = 119921.0
@@ -1303,7 +1747,7 @@ offset_bottom = 20124.0
 theme_override_font_sizes/font_size = 336
 text = "x 3"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="152" unique_id=587509715]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="147" unique_id=587509715]
 offset_left = 119150.0
 offset_top = 19611.0
 offset_right = 119548.0
@@ -1348,7 +1792,7 @@ layout_mode = 2
 text = "Quote Left"
 input_name = &"ComboRight"
 
-[node name="TimeSlow4" type="Node2D" parent="." index="153" unique_id=841903476]
+[node name="TimeSlow4" type="Node2D" parent="." index="148" unique_id=841903476]
 position = Vector2(119955, 19860)
 script = ExtResource("14_68fx3")
 shape = 1
@@ -1365,7 +1809,7 @@ disable_bank = Dictionary[String, bool]({
 })
 metadata/_custom_type_script = "uid://bsof20dxvdhhd"
 
-[node name="TimeSlow5" type="Node2D" parent="." index="154" unique_id=1608864986]
+[node name="TimeSlow5" type="Node2D" parent="." index="149" unique_id=1608864986]
 position = Vector2(113038, 21504)
 script = ExtResource("3_fnxhk")
 shape = 1
@@ -1376,61 +1820,61 @@ min_scale = 0.001
 type_disable = 3
 metadata/_custom_type_script = "uid://bq5d8130qbdd4"
 
-[node name="DashIndicator3" parent="." index="155" unique_id=2034024208 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator3" parent="." index="150" unique_id=2034024208 instance=ExtResource("9_wfqcm")]
 position = Vector2(39096, 1078)
 
-[node name="DashIndicator4" parent="." index="156" unique_id=780097794 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator4" parent="." index="151" unique_id=780097794 instance=ExtResource("9_wfqcm")]
 position = Vector2(39924, -6950)
 
-[node name="DashIndicator5" parent="." index="157" unique_id=87098332 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator5" parent="." index="152" unique_id=87098332 instance=ExtResource("9_wfqcm")]
 position = Vector2(47325, -7061.453)
 
-[node name="JumpIndicator7" parent="." index="158" unique_id=1296478250 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator7" parent="." index="153" unique_id=1296478250 instance=ExtResource("4_6pk5d")]
 position = Vector2(46640, -6639)
 
-[node name="JumpIndicator8" parent="." index="159" unique_id=1526283082 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator8" parent="." index="154" unique_id=1526283082 instance=ExtResource("4_6pk5d")]
 position = Vector2(46863, -14584)
 
-[node name="DashIndicator6" parent="." index="160" unique_id=1375746357 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator6" parent="." index="155" unique_id=1375746357 instance=ExtResource("9_wfqcm")]
 position = Vector2(54918, -5989.5317)
 
-[node name="DashIndicator7" parent="." index="161" unique_id=2049829434 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator7" parent="." index="156" unique_id=2049829434 instance=ExtResource("9_wfqcm")]
 position = Vector2(67422, -14547)
 
-[node name="DashIndicator8" parent="." index="162" unique_id=1478331241 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator8" parent="." index="157" unique_id=1478331241 instance=ExtResource("9_wfqcm")]
 position = Vector2(68026, -14547)
 
-[node name="JumpIndicator9" parent="." index="163" unique_id=1276548981 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator9" parent="." index="158" unique_id=1276548981 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, -5099)
 
-[node name="JumpIndicator10" parent="." index="164" unique_id=679184089 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator10" parent="." index="159" unique_id=679184089 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, -4137)
 
-[node name="JumpIndicator11" parent="." index="165" unique_id=643111450 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator11" parent="." index="160" unique_id=643111450 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, -3296)
 
-[node name="JumpIndicator12" parent="." index="166" unique_id=1615672442 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator12" parent="." index="161" unique_id=1615672442 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, -2220)
 
-[node name="JumpIndicator13" parent="." index="167" unique_id=2124956087 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator13" parent="." index="162" unique_id=2124956087 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, -1076)
 
-[node name="JumpIndicator14" parent="." index="168" unique_id=835943696 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator14" parent="." index="163" unique_id=835943696 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, 431)
 
-[node name="JumpIndicator15" parent="." index="169" unique_id=1054815790 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator15" parent="." index="164" unique_id=1054815790 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, 1777)
 
-[node name="JumpIndicator16" parent="." index="170" unique_id=482161073 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator16" parent="." index="165" unique_id=482161073 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, 3230)
 
-[node name="JumpIndicator17" parent="." index="171" unique_id=797005014 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator17" parent="." index="166" unique_id=797005014 instance=ExtResource("4_6pk5d")]
 position = Vector2(67875, 4542)
 
-[node name="JumpIndicator18" parent="." index="172" unique_id=745705729 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator18" parent="." index="167" unique_id=745705729 instance=ExtResource("4_6pk5d")]
 position = Vector2(68023, 5739)
 
-[node name="Button3" parent="." index="173" unique_id=511098225 instance=ExtResource("3_rxhu1")]
+[node name="Button3" parent="." index="168" unique_id=511098225 instance=ExtResource("3_rxhu1")]
 offset_left = 67272.0
 offset_top = -5118.0
 offset_right = 67332.0
@@ -1439,7 +1883,7 @@ button_pressed = false
 interval = 0.3
 input_name = &"Jump"
 
-[node name="Button4" parent="." index="174" unique_id=1327792238 instance=ExtResource("3_rxhu1")]
+[node name="Button4" parent="." index="169" unique_id=1327792238 instance=ExtResource("3_rxhu1")]
 offset_left = 67271.0
 offset_top = 699.0
 offset_right = 67331.0
@@ -1448,14 +1892,14 @@ button_pressed = false
 interval = 0.3
 input_name = &"Jump"
 
-[node name="JumpIndicator19" parent="." index="175" unique_id=1183101932 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator19" parent="." index="170" unique_id=1183101932 instance=ExtResource("4_6pk5d")]
 position = Vector2(87659, 7863)
 
-[node name="JumpIndicator20" parent="." index="176" unique_id=161823750 instance=ExtResource("4_6pk5d")]
+[node name="JumpIndicator20" parent="." index="171" unique_id=161823750 instance=ExtResource("4_6pk5d")]
 position = Vector2(93960, 9268)
 
-[node name="DashIndicator9" parent="." index="177" unique_id=1338737050 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator9" parent="." index="172" unique_id=1338737050 instance=ExtResource("9_wfqcm")]
 position = Vector2(96893, 11303)
 
-[node name="DashIndicator10" parent="." index="178" unique_id=1102668501 instance=ExtResource("9_wfqcm")]
+[node name="DashIndicator10" parent="." index="173" unique_id=1102668501 instance=ExtResource("9_wfqcm")]
 position = Vector2(113044, 21391)
