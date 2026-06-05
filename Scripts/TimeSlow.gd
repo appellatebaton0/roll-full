@@ -132,6 +132,7 @@ func _draw() -> void: if Engine.is_editor_hint() and show_overlay:
 func get_scale_for_dist(distance:float) -> float:
 	return lerp(min_scale, 1.0, ease(clamp(distance / radius, 0.0, 1.0), easing))
 
-func finish(anim_name:String) -> void: if anim_name == "Game->Levels":
+func finish(anim_name:String, ..._args:Array) -> void: if anim_name == "Game->Levels":
 	Global.set_timescale_modifier("Timeslow", 1.0)
+	
 	queue_free()

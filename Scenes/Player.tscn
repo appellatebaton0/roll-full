@@ -100,7 +100,6 @@ gradient = SubResource("Gradient_nn08x")
 joint_mode = 2
 script = ExtResource("5_5ixxa")
 trail_segments = 30
-lerp_weight = 0.6
 
 [node name="ComboDriver" type="Node2D" parent="." unique_id=1150365074 node_paths=PackedStringArray("player", "dir_sprites")]
 script = ExtResource("4_dewec")

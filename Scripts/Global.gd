@@ -41,8 +41,6 @@ func set_timescale_modifier(key:StringName, value:float):
 	for val in time_scale_modifiers.values():
 		new_time_scale *= val
 	
-	print("NTS ", new_time_scale, " F ", key)
-	
 	Engine.time_scale = new_time_scale
 
 var spinning_camera := false

@@ -6,7 +6,7 @@ class_name Trail extends Line2D
 	set(to):
 		points.resize(to)
 		trail_segments = to
-@export_range(0.0, 1.0, 0.05) var lerp_weight:float = 0.0
+@export var follow_speed:float = 40.0
 
 @onready var start_pos := global_position
 
@@ -19,7 +19,7 @@ func _ready() -> void:
 		Global.reset_level.connect(_on_reset)
 
 var last_position := Vector2.ZERO
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	
 	for i in trail_segments:
 		# print(to_local(followee.global_position))
@@ -30,9 +30,22 @@ func _process(_delta: float) -> void:
 			var additor := Vector2.ZERO
 			if global_position != last_position:
 				additor = (last_position - global_position)
-			set_point_position(i, lerp(get_point_position(i) + additor, get_point_position(i - 1), lerp_weight))
+			set_point_position(i, get_new_position(i, additor, delta))
 	
 	last_position = global_position
+
+func get_new_position(index:int, additor:Vector2, delta:float) -> Vector2:
+	var from := get_point_position(index) + additor
+	var to := get_point_position(index - 1)
+	
+	var amount := from.direction_to(to) * (from.distance_to(to) * delta * follow_speed)
+	
+	var result:Vector2
+	result.x = move_toward(from.x, to.x, abs(amount.x))
+	result.y = move_toward(from.y, to.y, abs(amount.y))
+	
+	return result
+	
 
 func _on_reset():
 	var new_points:Array[Vector2]
