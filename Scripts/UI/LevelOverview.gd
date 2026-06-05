@@ -33,7 +33,7 @@ var level_data:LevelData: set = _set_level_data
 		
 
 func _ready() -> void: 
-	this_speed.text = str(Global.default_time_scale * 100) + "%"
+	this_speed.text = str(Global.time_scale_modifiers["Gamespeed"] * 100) + "%"
 	
 	if level_data: _update()
 	
@@ -236,21 +236,19 @@ func _on_play_pressed() -> void: if focused:
 	Global.starting_level.emit()
 
 func _speed_up() -> void:
-	Global.default_time_scale += speed_step
-	Global.default_time_scale = clamp(Global.default_time_scale, speed_step, 2.)
+	Global.set_timescale_modifier("Gamespeed", clamp(Global.time_scale_modifiers["Gamespeed"] + speed_step, speed_step, 2.))
 	
 	update_speed_display()
 
 func _speed_down() -> void:
-	Global.default_time_scale -= speed_step
-	Global.default_time_scale = clamp(Global.default_time_scale, speed_step, 2.)
+	Global.set_timescale_modifier("Gamespeed", clamp(Global.time_scale_modifiers["Gamespeed"] - speed_step, speed_step, 2.))
 	
 	update_speed_display()
 
 func update_speed_display() -> void:
-	this_speed.text = str(int(round(Global.default_time_scale * 100))) + "%"
+	this_speed.text = str(int(round(Global.time_scale_modifiers["Gamespeed"] * 100))) + "%"
 	
-	this_speed.material.set_shader_parameter("speed", inv_lerp(0., 2., Global.default_time_scale))
+	this_speed.material.set_shader_parameter("speed", inv_lerp(0., 2., Global.time_scale_modifiers["Gamespeed"]))
 
 func inv_lerp(a:float,b:float,t:float):
 	return (t - a) / (b - a)

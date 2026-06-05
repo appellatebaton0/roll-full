@@ -39,7 +39,7 @@ var dist:float:
 		
 		## Player left the range.
 		if to == -1. and dist != -1.:
-			Engine.time_scale = Global.default_time_scale
+			Global.set_timescale_modifier("Timeslow", 1.0)
 			
 			for key in disable_bank:
 				disable_bank[key] = false	
@@ -58,7 +58,7 @@ func _process(_delta: float) -> void:
 		dist = get_slow()
 		
 		if dist != -1. and not disable_toggle:
-			Engine.time_scale = get_scale_for_dist(dist)
+			Global.set_timescale_modifier("Timeslow", get_scale_for_dist(dist))
 			was_slowing = true
 			
 			for key in disable_bank:
@@ -69,13 +69,13 @@ func _process(_delta: float) -> void:
 				disable_toggle = true
 		elif was_slowing:
 			# Reset the time_scale back to normal
-			Engine.time_scale = Global.default_time_scale
+			Global.set_timescale_modifier("Timeslow", 1.0)
 			was_slowing = false
 		
 		if dist == -1.:
 			disable_toggle = false
 			
-			
+	
 
 func disable_condition() -> bool:
 	# For each input in the bank
@@ -88,7 +88,6 @@ func disable_condition() -> bool:
 
 func get_slow(a := global_position, b := player.global_position if player else global_position) -> float:
 	
-	var multiplier := Global.default_time_scale if not Engine.is_editor_hint() else 1.0
 	var distance:float
 	match shape:
 		SHAPE.CIRCLE:
@@ -96,7 +95,7 @@ func get_slow(a := global_position, b := player.global_position if player else g
 			distance = a.distance_to(b)
 			
 			if distance < radius:
-				return multiplier * lerp(min_scale, 1.0, ease(clamp(distance / radius, 0.0, 1.0), easing))
+				return lerp(min_scale, 1.0, ease(clamp(distance / radius, 0.0, 1.0), easing))
 		SHAPE.RECTANGLE:
 			
 			# The distance between the two points
@@ -108,7 +107,7 @@ func get_slow(a := global_position, b := player.global_position if player else g
 			# If the distance is within the dimensions, return it. Spaghetti here.
 			if distance < 0:
 				distance = (1. - abs(distance / max_dim))# / 1.5
-				return multiplier * lerp(min_scale, 1.0, ease(clamp(distance, 0.0, 1.0), easing))
+				return lerp(min_scale, 1.0, ease(clamp(distance, 0.0, 1.0), easing))
 	
 	return -1.
 
@@ -140,5 +139,5 @@ func get_scale_for_dist(distance:float) -> float:
 	return lerp(min_scale, 1.0, ease(clamp(distance / radius, 0.0, 1.0), easing))
 
 func finish(anim_name:String) -> void: if anim_name == "Game->Levels":
-	Engine.time_scale = Global.default_time_scale
+	Global.set_timescale_modifier("Timeslow", 1.0)
 	queue_free()

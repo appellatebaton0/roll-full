@@ -68,7 +68,7 @@ func _update_options() -> void:
 			options.add_item(id, 0)
 		
 	# The current run.
-	var current_run := LevelData.Run.new(Global.run_timer.timer, Global.score, current_data._get_ranking(Global.run_timer.timer), current_data._is_bonused(Global.score), Global.default_time_scale)
+	var current_run := LevelData.Run.new(Global.run_timer.timer, Global.score, current_data._get_ranking(Global.run_timer.timer), current_data._is_bonused(Global.score), Global.time_scale_modifiers["Gamespeed"])
 	var current_id  := Global.digitize(len(current_data.runs), 3)
 	
 	attempt_dict[current_id] = current_run

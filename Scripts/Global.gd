@@ -25,7 +25,25 @@ var current_data :LevelData
 
 var run_timer:RunTimer
 
-var default_time_scale := 1.0
+var time_scale_modifiers:Dictionary[StringName, float] = {
+	"Gamespeed" = 1.0,
+	"Timeslow" = 1.0,
+	"Dashslow" = 1.0,
+}
+func set_timescale_modifier(key:StringName, value:float):
+	
+	# Set the value in the dict.
+	time_scale_modifiers[key] = value
+	
+	# Update the game's timescale.
+	var new_time_scale := 1.
+	
+	for val in time_scale_modifiers.values():
+		new_time_scale *= val
+	
+	print("NTS ", new_time_scale, " F ", key)
+	
+	Engine.time_scale = new_time_scale
 
 var spinning_camera := false
 var do_parallaxing := true
@@ -372,7 +390,7 @@ func _save() -> void:
 	save_dict.call({"DoParallaxing":do_parallaxing})
 	save_dict.call({"WindowMode":DisplayServer.window_get_mode()})
 	
-	print("SAVED!")
+	#print("SAVED!")
 
 func _load() -> void:
 	if not FileAccess.file_exists(SAVE_GAME_PATH):
