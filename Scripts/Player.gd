@@ -41,6 +41,8 @@ var dash_direction:Vector2:
 
 const DASH_BUFFER := 0.1
 var dash_buffering := 0.0
+var dash_slow_timer := 0.0
+@export var dash_slow_curve:Curve
 
 
 const JUMP_BUFFER := 0.1
@@ -158,8 +160,21 @@ func _physics_process(delta: float) -> void:
 	
 	## -- Dashing -- ##
 	
+	# Buffering
 	dash_buffering = move_toward(dash_buffering, 0.0, delta)
-	if Input.is_action_just_pressed("Dash"): dash_buffering = DASH_BUFFER
+	if Input.is_action_just_released("Dash"): dash_buffering = DASH_BUFFER
+	
+	# Time slowing
+	if Input.is_action_pressed("Dash"):
+		$Pointer.visible = true
+		
+		dash_slow_timer = move_toward(dash_slow_timer, dash_slow_curve.get_domain_range(), delta)
+		
+		Global.set_timescale_modifier("Dashslow", dash_slow_curve.sample(dash_slow_timer))
+	else:
+		dash_slow_timer = dash_slow_curve.min_domain
+		$Pointer.visible = false
+		Global.set_timescale_modifier("Dashslow", 1.0)
 	
 	# Get the new dash direction.
 	var new_dash_direction:Vector2

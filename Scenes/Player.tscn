@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://bbl15es03g582" path="res://Scripts/Trail.gd" id="5_5ixxa"]
 [ext_resource type="Environment" uid="uid://bol5ovnngau3v" path="res://Assets/Resources/Environment.tres" id="5_nn08x"]
 
+[sub_resource type="Curve" id="Curve_nn08x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.1, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [sub_resource type="Curve" id="Curve_5ixxa"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.97310096, 0.0, 0, 0]
 point_count = 2
@@ -89,6 +93,7 @@ jump_height = 4.2
 ray_node = NodePath("RayCast2D")
 ray_distance = 140.0
 ray_fallback = 1.4
+dash_slow_curve = SubResource("Curve_nn08x")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1371172353]
 modulate = Color(0.65999997, 0.92066675, 1, 1)

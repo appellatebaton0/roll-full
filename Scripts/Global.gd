@@ -32,6 +32,9 @@ var time_scale_modifiers:Dictionary[StringName, float] = {
 }
 func set_timescale_modifier(key:StringName, value:float):
 	
+	# This key already stores this value. Nothing will change, so don't bother.
+	if time_scale_modifiers[key] == value: return
+	
 	# Set the value in the dict.
 	time_scale_modifiers[key] = value
 	

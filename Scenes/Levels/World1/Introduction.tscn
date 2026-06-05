@@ -137,6 +137,8 @@ polygon = PackedVector2Array(-989, 1580, 15057, 1280, 19508, -2722, 21304, -1027
 
 [node name="Player" parent="." index="4" unique_id=1267848784]
 position = Vector2(-16, -78)
+gravity_scale = null
+dash_cooldown = null
 
 [node name="Goal" parent="." index="6" unique_id=1338618760 node_paths=PackedStringArray("spins")]
 position = Vector2(129968, 21531)
@@ -1443,6 +1445,7 @@ offset_left = 27944.0
 offset_top = -5528.0
 offset_right = 28004.0
 offset_bottom = -5402.0
+button_pressed = false
 
 [node name="Spline2D16" type="Line2D" parent="." index="122" unique_id=121548991]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
@@ -1756,6 +1759,7 @@ theme_override_constants/separation = 4
 
 [node name="Button3" parent="VBoxContainer" index="0" unique_id=1268956433 instance=ExtResource("3_rxhu1")]
 layout_mode = 2
+button_pressed = false
 text = "Quote Left"
 input_name = &"ComboUp"
 
@@ -1767,6 +1771,7 @@ horizontal_alignment = 1
 
 [node name="Button4" parent="VBoxContainer" index="2" unique_id=525346914 instance=ExtResource("3_rxhu1")]
 layout_mode = 2
+button_pressed = false
 text = "Quote Left"
 input_name = &"ComboLeft"
 
@@ -1778,6 +1783,7 @@ horizontal_alignment = 1
 
 [node name="Button5" parent="VBoxContainer" index="4" unique_id=500393951 instance=ExtResource("3_rxhu1")]
 layout_mode = 2
+button_pressed = false
 text = "Quote Left"
 input_name = &"ComboDown"
 
@@ -1789,6 +1795,7 @@ horizontal_alignment = 1
 
 [node name="Button6" parent="VBoxContainer" index="6" unique_id=1103221574 instance=ExtResource("3_rxhu1")]
 layout_mode = 2
+button_pressed = false
 text = "Quote Left"
 input_name = &"ComboRight"
 
