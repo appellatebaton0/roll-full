@@ -29,7 +29,7 @@ NodePath("Sprite/Polygon2D4"): 1.0
 
 [node name="MusicSectioner" parent="." index="9" unique_id=1466832369]
 visible = false
-points = PackedVector2Array(7500, -1654, 49065, 4746, 78505, 20746, 141097, 5898)
+points = PackedVector2Array(7500, -1654, 38958, 2867, 66998, 19267, 141097, 5898)
 
 [node name="Spline2D" type="Line2D" parent="." index="11" unique_id=30680889]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)

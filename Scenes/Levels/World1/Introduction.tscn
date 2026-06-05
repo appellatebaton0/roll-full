@@ -1435,6 +1435,7 @@ offset_left = 67272.0
 offset_top = -5118.0
 offset_right = 67332.0
 offset_bottom = -4992.0
+button_pressed = false
 interval = 0.3
 input_name = &"Jump"
 
@@ -1443,6 +1444,7 @@ offset_left = 67271.0
 offset_top = 699.0
 offset_right = 67331.0
 offset_bottom = 825.0
+button_pressed = false
 interval = 0.3
 input_name = &"Jump"
 

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bil5t8vfdowre" path="res://Scenes/Levels/World1/Flipside.tscn" id="1_trgkt"]
 [ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_umu5q"]
-[ext_resource type="AudioStream" uid="uid://dqpqjqxvbyq4b" path="res://Assets/Music/Wave/Chords.mp3" id="3_7xiut"]
-[ext_resource type="AudioStream" uid="uid://8cx5kpph3hcn" path="res://Assets/Music/Wave/Bass.mp3" id="4_27smf"]
-[ext_resource type="AudioStream" uid="uid://bny4qq2ivr8c1" path="res://Assets/Music/Wave/Drums.mp3" id="5_hy7jb"]
-[ext_resource type="AudioStream" uid="uid://b8m27hem7esox" path="res://Assets/Music/Wave/Lead.mp3" id="6_rv6wt"]
+[ext_resource type="AudioStream" uid="uid://bvmfeba2vf55b" path="res://Assets/Music/Flipside/Chords.mp3" id="3_trgkt"]
+[ext_resource type="AudioStream" uid="uid://brofjqmj41let" path="res://Assets/Music/Flipside/Bass.mp3" id="4_umu5q"]
+[ext_resource type="AudioStream" uid="uid://c5ebm4s1ncjej" path="res://Assets/Music/Flipside/Drums.mp3" id="5_7xiut"]
+[ext_resource type="AudioStream" uid="uid://ch8otfiyk3ah2" path="res://Assets/Music/Flipside/Lead.mp3" id="6_27smf"]
 
 [resource]
 script = ExtResource("2_umu5q")
@@ -21,8 +21,8 @@ ranking_maximums = Dictionary[int, float]({
 })
 score_threshold = 1750
 tracks = Dictionary[int, AudioStream]({
-0: ExtResource("3_7xiut"),
-1: ExtResource("4_27smf"),
-2: ExtResource("5_hy7jb"),
-3: ExtResource("6_rv6wt")
+0: ExtResource("3_trgkt"),
+1: ExtResource("4_umu5q"),
+2: ExtResource("5_7xiut"),
+3: ExtResource("6_27smf")
 })
