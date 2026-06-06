@@ -204,13 +204,9 @@ func merge_sort(array:Array, condition:Callable) -> Array:
 		
 		# Otherwise, append the next.
 		if condition.call(left[li], right[ri]): 
-			if right[ri] is LevelData.Run:
-				print(right[ri].ranking as LevelData.RANKINGS)
 			response.append(right[ri])
 			ri += 1
 		else:
-			if left[li] is LevelData.Run:
-				print(left[li].ranking as LevelData.RANKINGS)
 			response.append(left[li])
 			li += 1
 	

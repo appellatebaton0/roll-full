@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://ssdoakkwy4jq"]
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://bbmsd880rova"]
 
 [ext_resource type="PackedScene" uid="uid://cwf3y8y2l41oy" path="res://Scenes/Levels/World1/Descent.tscn" id="1_jfw05"]
 [ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_45g8k"]
@@ -13,13 +13,13 @@ name = "Descent"
 base_player_speed = 2720
 scene = ExtResource("1_jfw05")
 ranking_maximums = Dictionary[int, float]({
-0: 70.0,
-1: 80.0,
-2: 90.0,
-3: 100.0,
-4: 120.0
+0: 40.0,
+1: 45.0,
+2: 50.0,
+3: 60.0,
+4: 80.0
 })
-score_threshold = 1000
+score_threshold = 200
 tracks = Dictionary[int, AudioStream]({
 0: ExtResource("3_djp7g"),
 1: ExtResource("4_wxgt5"),

@@ -89,7 +89,37 @@ var best_score:int
 func _get_best_run() -> Run:
 	
 	var best:Run = null
-	for run in runs:
+	var viable_runs := runs.duplicate()
+	
+	## Cut the options down to the highest rank achieved thus far.
+	
+	# Get the best rank.
+	var best_rank := 5
+	for run in viable_runs:
+		best_rank = min(run.ranking, best_rank)
+	
+	# Filter to just those with that rank.
+	viable_runs = viable_runs.filter(func(a:Run) -> bool:
+		return a.ranking == best_rank
+		)
+	
+	## If any are bonused, filter to just bonused options.
+	
+	# Figure out if any are bonused.
+	var has_bonused := false
+	for run in viable_runs: if run.bonused: 
+		has_bonused = true
+		break
+	
+	# If any are, filter to just the bonused rankings.
+	if has_bonused:
+		viable_runs = viable_runs.filter(func(a:Run) -> bool:
+			return a.bonused
+			)
+	
+	## Return the run out of the remaining options with the best time.
+	
+	for run in viable_runs:
 		if best == null: 
 			best = run
 			continue
@@ -97,7 +127,6 @@ func _get_best_run() -> Run:
 		if best.time > run.time:
 			best = run
 	
-	## Return the run with the lowest time.
 	return best
 
 func _get_best_time() -> float:
