@@ -6,7 +6,6 @@ const DEBUG := false
 ## Second-order-system time? Idk...
 
 @onready var target:Player = get_tree().get_first_node_in_group("Player")
-@export var lerp_speed := 0.2
 
 var hijack_position:Vector2
 
@@ -21,11 +20,20 @@ var k1:float
 var k2:float
 var k3:float
 
-@export var f:float
-@export var z:float
-@export var r:float
+@export var f:float ## The follow speed.
+@export var z:float ## The bounce/overshoot.
+@export var r:float ## The follow-ahead.
+
+## How much the timescale affects the follow-ahead.
+@export var r_timescale_weight := 0.5
+## How much the timescale affects the zoom.
+@export var zoom_timescale_weight := 0.3
 
 func _ready() -> void:
+	Global.reset_level.connect(_on_reset)
+	_on_reset()
+
+func _on_reset() -> void:
 	# Compute constants
 	k1 = z / (PI * f)
 	k2 = 1 / ((2 * PI * f) *  (2 * PI * f))
@@ -37,14 +45,6 @@ func _ready() -> void:
 	y = x0
 	yd = Vector2.ZERO
 	
-	Global.reset_level.connect(_on_reset)
-	_on_reset()
-
-func _on_reset() -> void: if target: global_position = target.global_position
-
-#func _draw():
-	#draw_circle(Vector2.ZERO, 20.0, Color.RED)
-	#queue_redraw()
 
 func target_position(delta:float): 
 	
@@ -53,12 +53,14 @@ func target_position(delta:float):
 	if hijack_position:
 		target_pos = hijack_position
 	else:
-		target_pos = target.global_position
+		target_pos = target.global_position #+ (target.velocity / 3.)
+	
+	var te := scaled_timescale_effect(r_timescale_weight, 0.3, 1.2)
 	
 	# Compute constants
 	k1 = z / (PI * f)
 	k2 = 1 / ((2 * PI * f) *  (2 * PI * f))
-	k3 = r * z / (2 * PI * f)
+	k3 = (r * te) * z / (2 * PI * f)
 	
 	var xd:Vector2
 	var x = target_pos
@@ -96,9 +98,12 @@ func _process(delta: float) -> void: if target:
 		zoom = Vector2.ONE * 1.6
 		return
 	
-	global_position = target_position(delta) + applied_velocity
+	global_position = target_position(delta)
 	
-	zoom = lerp(zoom, Vector2.ONE * clamp((0.7 - pow(target.mag(target.velocity) / 50000., 1./3.)), 0.05, 1.), 0.1)
-	zoom = zoom.clamp(Vector2.ONE * 0.25, Vector2.ONE * 2.0)
+	var goal_zoom := 0.7 - pow(target.mag(target.velocity) / 50000., 1./3.) * scaled_timescale_effect(zoom_timescale_weight, 0.8, 1.1)
+	goal_zoom = clamp(goal_zoom, 0.25, 3.3)
 	
-	applied_velocity = lerp(applied_velocity, target.velocity / 4, 0.1)
+	zoom = lerp(zoom, Vector2.ONE * goal_zoom, 0.1)
+
+func scaled_timescale_effect(weight:float, min_value:float, max_value:float) -> float:
+	return clamp((weight * (Engine.time_scale - 1.)) + 1., min_value, max_value)

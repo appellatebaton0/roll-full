@@ -393,37 +393,50 @@ scroll_offset = -346.0
 [node name="LevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
-tooltip_text = "{name}: "
+tooltip_text = "
+"
 
 [node name="LevelEntry2" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=2062440854 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "
+"
 
 [node name="LevelEntry3" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=299551750 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "
+"
 
 [node name="LevelEntry4" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1402775686 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "
+"
 
 [node name="LevelEntry5" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1736211613 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "
+"
 
 [node name="LevelEntry6" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=304930703 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "
+"
 
 [node name="LevelEntry7" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=941117780 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
-tooltip_text = "aisdibhasue \\awet\\ uwet awteawe tanjnerbw \\awe\\
+tooltip_text = "
 "
 
 [node name="LevelEntry8" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1515945423 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
+tooltip_text = "
+"
 
 [node name="Control" type="VSeparator" parent="HBoxContainer" unique_id=987196611]
 visible = false

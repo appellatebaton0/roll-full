@@ -30,9 +30,10 @@ process_mode = 3
 ignore_rotation = false
 zoom = Vector2(0.3, 0.3)
 script = ExtResource("2_jnsj8")
-f = 1.0
-z = 0.8
-r = 0.2
+f = 0.75
+z = 2.0
+r = 2.15
+metadata/_edit_lock_ = true
 
 [node name="Goal" parent="." unique_id=1338618760 node_paths=PackedStringArray("spins") instance=ExtResource("3_ks63r")]
 spins = {

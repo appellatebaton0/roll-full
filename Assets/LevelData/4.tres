@@ -19,7 +19,7 @@ ranking_maximums = Dictionary[int, float]({
 3: 100.0,
 4: 120.0
 })
-score_threshold = 1750
+score_threshold = 500
 tracks = Dictionary[int, AudioStream]({
 0: ExtResource("3_trgkt"),
 1: ExtResource("4_umu5q"),

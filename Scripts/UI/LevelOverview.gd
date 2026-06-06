@@ -164,6 +164,7 @@ func update_attempt_box() -> bool:
 			if not entry.requested.is_connected(update_overview):
 				entry.requested.connect(update_overview)
 	
+	reverse_attempt_sort = !reverse_attempt_sort
 	_request_attempt_sort(current_attempt_sort_type)
 	
 	return true

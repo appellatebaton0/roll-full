@@ -94,9 +94,10 @@ func _get_best_run() -> Run:
 	## Cut the options down to the highest rank achieved thus far.
 	
 	# Get the best rank.
-	var best_rank := 5
+	var best_rank := 7
 	for run in viable_runs:
-		best_rank = min(run.ranking, best_rank)
+		var val:int = run.ranking if run.ranking != -1 else 5
+		best_rank = min(val, best_rank)
 	
 	# Filter to just those with that rank.
 	viable_runs = viable_runs.filter(func(a:Run) -> bool:

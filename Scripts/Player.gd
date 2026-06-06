@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 signal dash_reset
 signal dashed
 
-const DEBUG := true
+const DEBUG := false
 
 ## VISUALS
 @export var sprite:Node2D
