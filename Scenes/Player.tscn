@@ -209,6 +209,7 @@ environment = ExtResource("5_nn08x")
 [node name="ASP Jump" type="AudioStreamPlayer" parent="." unique_id=981136954]
 stream = SubResource("AudioStreamRandomizer_ksbbd")
 volume_db = 4.711
+bus = &"SFX"
 
 [connection signal="dash_reset" from="." to="DashReloadParticles" method="restart"]
 [connection signal="dashed" from="." to="DashEffectParticles" method="restart"]
