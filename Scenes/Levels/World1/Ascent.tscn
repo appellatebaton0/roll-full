@@ -6,12 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="4_06mmh"]
 [ext_resource type="PackedScene" uid="uid://c7qjkmidxi07v" path="res://Scenes/DeathSpikeMedium.tscn" id="5_pmjl2"]
 [ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="6_80a4t"]
+[ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="7_vb4t5"]
+[ext_resource type="PackedScene" uid="uid://dcpdetnw4fmcw" path="res://Scenes/JumpIndicator.tscn" id="8_cl2pp"]
+[ext_resource type="PackedScene" uid="uid://i5l3dj5l2uvq" path="res://Scenes/DashIndicator.tscn" id="9_wd4y7"]
+[ext_resource type="Script" uid="uid://bq5d8130qbdd4" path="res://Scripts/TimeSlow.gd" id="10_tgoi2"]
 
 [node name="Ascent" unique_id=1260259211 instance=ExtResource("1_8ynkv")]
 
 [node name="DeathBorder" parent="." index="3" unique_id=556743190]
 position = Vector2(7020, -9035)
-polygon = PackedVector2Array(-17442, -42631, -15450, 13391, 52798, 13703, 71268, -41424)
+polygon = PackedVector2Array(3940.5767, -33739.883, 2397, -32098, 2370.503, -29192.58, 3812, -25580, 4128.556, -19733.336, 4662.042, -18697.328, 7529, -17542, 8832, -15243, 8704, -12407, 7248, -11538, 5153, -10874, 2204, -10936, 927, -10518, -161, -8810, 67, -4735, -280, 2671, -1884, 7691, -3228, 8851, -4647, 8797, -6306.2, 7949.6426, -7210.1006, 8190.6455, -8632, 9871, -8162.531, 11906.379, -7285.576, 12674.652, -3396.979, 13360.508, -1913.7422, 12539.348, 8, 8760, 4740, -1526, 4625.212, -2966.4316, 3425.9902, -3925.8086, 2189, -5476, 2450.0527, -7043.591, 3952.8916, -7996.7314, 8443.15, -8171.7505, 9200.133, -7846.3984, 10256.633, -6462.8, 11725.907, -5932.636, 18583.168, -5962.606, 20626.15, -7285.495, 22802, -12223, 23909.414, -16984.281, 22844, -18148, 21313.514, -18751.844, 9883, -20370, 8073, -21810, 6962, -23826, 7250, -25801, 8896, -26994, 39338, -25792, 41192, -26905, 41223, -28852, 39183, -29996, 21006, -28945, 20172, -30274, 20728, -32933, 19152, -33705, 15782, -33118, 12598, -31480, 10403, -31603, 8796, -33180, 5994.003, -33802.457)
 
 [node name="Player" parent="." index="4" unique_id=1267848784]
 position = Vector2(-17, 398)
@@ -125,6 +129,7 @@ visible = false
 polygon = PackedVector2Array(1210.4, 0, 1204.5717, 118.63995, 1187.1425, 236.13733, 1158.2806, 351.3606, 1118.2638, 463.20007, 1067.4775, 570.5786, 1006.4108, 672.4622, 935.6519, 767.8696, 855.8821, 855.8821, 767.8696, 935.65186, 672.4622, 1006.4108, 570.5787, 1067.4775, 463.20004, 1118.2638, 351.36053, 1158.2806, 236.13737, 1187.1425, 118.63994, 1204.5717, -5.2908264e-05, 1210.4, -118.63991, 1204.5717, -236.13733, 1187.1425, -351.36063, 1158.2805, -463.19998, 1118.2638, -570.5785, 1067.4775, -672.46216, 1006.4109, -767.8696, 935.6519, -855.8821, 855.8821, -935.6519, 767.8696, -1006.4109, 672.46216, -1067.4775, 570.57874, -1118.2638, 463.2001, -1158.2806, 351.36063, -1187.1426, 236.13731, -1204.5717, 118.63989, -1210.4, -0.00010581653, -1204.5717, -118.63982, -1187.1426, -236.13724, -1158.2806, -351.36057, -1118.2638, -463.20004, -1067.4775, -570.5787, -1006.41077, -672.4623, -935.652, -767.86957, -855.88214, -855.88196, -767.8697, -935.65186, -672.46246, -1006.41064, -570.57855, -1067.4775, -463.2002, -1118.2638, -351.3604, -1158.2806, -236.1374, -1187.1425, -118.639694, -1204.5717, 1.4433876e-05, -1210.4, 118.639725, -1204.5717, 236.13744, -1187.1425, 351.36044, -1158.2806, 463.20026, -1118.2637, 570.5786, -1067.4775, 672.46204, -1006.41095, 767.8697, -935.65186, 855.8819, -855.8822, 935.652, -767.8695, 1006.4108, -672.4623, 1067.4777, -570.57837, 1118.2638, -463.20004, 1158.2805, -351.36078, 1187.1426, -236.13722, 1204.5717, -118.640076)
 
 [node name="Spline2D" type="Line2D" parent="." index="16" unique_id=125567948]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 points = PackedVector2Array(203, 464, 41, 491, -236, 589, -140, 713, -259, 861, -160, 1155, 210, 1070, 1023.2166, 1128.8359, 1938.719, 1195.072, 3002, 1272)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
@@ -134,6 +139,7 @@ sample_mesh = Array[Vector2]([Vector2(197.84604, 444.67548), Vector2(168.18242, 
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D2" type="Line2D" parent="." index="17" unique_id=679819098]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 points = PackedVector2Array(4498, 1396, 5036, 2533, 5367, 1762, 5762, -113, 6021, -1602, 6682, -2661, 6800, -3400)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
@@ -143,11 +149,13 @@ sample_mesh = Array[Vector2]([Vector2(4484.1035, 1410.3838), Vector2(4554.926, 1
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D3" type="Line2D" parent="." index="18" unique_id=1435701860]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_xvgtl")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D4" type="Line2D" parent="." index="19" unique_id=1669291759]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-122, -57)
 points = PackedVector2Array(6810, -1440, 7541.02, -3514.3784, 8414.322, -5992.5044, 8940, -7509)
 width = 40.0
@@ -159,15 +167,19 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="DeathSpikeLarge" parent="." index="20" unique_id=2139363536 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(6800, -3406)
 
 [node name="DeathSpikeLarge2" parent="." index="21" unique_id=1312271798 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(6662, -1420)
 
 [node name="DeathSpikeLarge3" parent="." index="22" unique_id=1637992497 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(8819, -7574)
 
 [node name="Spline2D5" type="Line2D" parent="." index="23" unique_id=1233010902]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(754, -1353)
 points = PackedVector2Array(8319, -6715, 8973.819, -7907.6924, 9524.764, -8906.409, 10197, -10125, 9378.285, -10597.937, 8506.537, -11101.508, 7995, -11397)
 width = 40.0
@@ -179,6 +191,7 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D6" type="Line2D" parent="." index="24" unique_id=939027340]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(0, -1177)
 points = PackedVector2Array(7865, -11238, 7865, -13211.76, 7865, -15389.537, 7865, -16916, 9277.458, -16916, 11336.053, -16916, 12984, -16916)
 width = 40.0
@@ -190,6 +203,7 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D7" type="Line2D" parent="." index="25" unique_id=516270697]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(0, -1404)
 points = PackedVector2Array(10958, -16341, 12989.812, -16341.001, 15139.852, -16341.001, 17513, -16341, 17513, -18032.629, 17513, -20733.283, 17513, -22896)
 width = 40.0
@@ -201,6 +215,7 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D8" type="Line2D" parent="." index="26" unique_id=706685663]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(244, -1404)
 points = PackedVector2Array(16805, -21651, 16805, -23066.846, 16805, -25046.457, 16805, -26371, 15207.209, -26616.93, 13780.95, -26836.459, 12569, -27023)
 width = 40.0
@@ -212,6 +227,7 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D9" type="Line2D" parent="." index="27" unique_id=2039098417]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(1194, -1404)
 points = PackedVector2Array(16805, -21651, 16805, -23066.846, 16805, -25046.457, 16805, -26371, 19364.838, -25990.777, 23986.129, -25304.361, 26897, -24872)
 width = 40.0
@@ -223,18 +239,23 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="DeathSpikeMedium" parent="." index="28" unique_id=1947108962 instance=ExtResource("5_pmjl2")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17060, -27741)
 
 [node name="DeathSpikeMedium2" parent="." index="29" unique_id=1438177821 instance=ExtResource("5_pmjl2")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17948, -27734)
 
 [node name="DeathSpikeLarge4" parent="." index="30" unique_id=1514042008 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17289, -27986)
 
 [node name="DeathSpikeLarge5" parent="." index="31" unique_id=407109152 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17703, -27986)
 
 [node name="Spline2D10" type="Line2D" parent="." index="32" unique_id=1894949580]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(134, -1332)
 points = PackedVector2Array(22898, -25650, 22898, -24325.285, 22898, -22444.238, 22898, -21043)
 width = 40.0
@@ -246,6 +267,7 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D11" type="Line2D" parent="." index="33" unique_id=1820100548]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(134, 5524)
 points = PackedVector2Array(22898, -25650, 22898, -24325.285, 22898, -22444.238, 22898, -21043)
 width = 40.0
@@ -257,37 +279,48 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="DeathSpikeLarge6" parent="." index="34" unique_id=403939571 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -22344)
 
 [node name="DeathSpikeLarge12" parent="." index="35" unique_id=375265554 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -23313)
 
 [node name="DeathSpikeLarge13" parent="." index="36" unique_id=1397871250 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -24337)
 
 [node name="DeathSpikeLarge14" parent="." index="37" unique_id=1313303996 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -25347)
 
 [node name="DeathSpikeLarge17" parent="." index="38" unique_id=1899378671 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(22187, -27947)
 scale = Vector2(1.4542842, 1.4542842)
 
 [node name="DeathSpikeLarge7" parent="." index="39" unique_id=2121540540 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23034, -20125)
 
 [node name="DeathSpikeLarge8" parent="." index="40" unique_id=369501450 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -19089)
 
 [node name="DeathSpikeLarge9" parent="." index="41" unique_id=366867907 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -18051)
 
 [node name="DeathSpikeLarge10" parent="." index="42" unique_id=657376386 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -16897)
 
 [node name="DeathSpikeLarge11" parent="." index="43" unique_id=5345640 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -15513)
 
 [node name="Spline2D12" type="Line2D" parent="." index="44" unique_id=1886854010]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(0, -1404)
 points = PackedVector2Array(27920, -21275, 29141, -20732, 30740, -21228, 30163, -23421, 30747, -25380, 29977, -26127, 27617, -25439)
 width = 40.0
@@ -298,12 +331,14 @@ sample_mesh = Array[Vector2]([Vector2(27917.72, -21255.13), Vector2(28115.924, -
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D13" type="Line2D" parent="." index="45" unique_id=1258466573]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(0, -1404)
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_xvgtl")
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D14" type="Line2D" parent="." index="46" unique_id=1112200731]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(0, -1404)
 points = PackedVector2Array(12902, -27624, 12902, -29436.33, 12902, -33853, 12902, -36010)
 width = 40.0
@@ -315,6 +350,7 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D15" type="Line2D" parent="." index="47" unique_id=322825324]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(-143, -4450)
 points = PackedVector2Array(14338, -33900, 14485, -33306, 15040, -33121, 16559, -33186, 17705, -33313, 18274, -33091, 18303, -32640, 18371, -32247, 18792, -31959, 19954, -32076, 21334.303, -32064.813, 22450.73, -32055.764, 23902, -32044)
 width = 40.0
@@ -325,16 +361,18 @@ sample_mesh = Array[Vector2]([Vector2(14321.498, -33888.7), Vector2(14367.914, -
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D16" type="Line2D" parent="." index="48" unique_id=738183970]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(0, -1404)
-points = PackedVector2Array(24854, -39652, 24854, -38719.79, 24854, -37267.938, 24854, -36184, 24622, -35231, 24990, -34889, 26165, -35068, 27302.158, -35068, 29318.035, -35067.996, 31235, -35068)
+points = PackedVector2Array(24854, -39652, 24854, -38719.79, 24854, -37267.938, 24854, -35817, 24622, -35231, 24990, -34889, 26165, -35068, 27302.158, -35068, 29318.035, -35067.996, 31235, -35068)
 width = 40.0
 default_color = Color(0, 0, 0, 0)
 script = ExtResource("2_xvgtl")
-sample_points = Array[Vector2]([Vector2(24854, -39652), Vector2(24854, -39485.81), Vector2(24854, -39318.855), Vector2(24854, -39151.145), Vector2(24854, -38982.676), Vector2(24854, -38813.445), Vector2(24854, -38643.46), Vector2(24854, -38472.72), Vector2(24854, -38301.215), Vector2(24854, -38128.95), Vector2(24854, -37955.93), Vector2(24854, -37782.152), Vector2(24854, -37607.613), Vector2(24854, -37432.316), Vector2(24854, -37256.26), Vector2(24854, -37079.45), Vector2(24854, -36901.88), Vector2(24854, -36723.543), Vector2(24854, -36544.457), Vector2(24854, -36364.605), Vector2(24854, -36184), Vector2(24852.719, -36074.43), Vector2(24858.47, -35970.52), Vector2(24871.258, -35872.27), Vector2(24891.08, -35779.68), Vector2(24917.938, -35692.75), Vector2(24951.83, -35611.48), Vector2(24992.758, -35535.867), Vector2(25040.719, -35465.92), Vector2(25095.717, -35401.63), Vector2(25157.75, -35343), Vector2(25226.818, -35290.03), Vector2(25302.92, -35242.72), Vector2(25386.057, -35201.07), Vector2(25476.23, -35165.08), Vector2(25573.438, -35134.75), Vector2(25677.68, -35110.08), Vector2(25788.957, -35091.07), Vector2(25907.27, -35077.723), Vector2(26032.617, -35070.03), Vector2(26165, -35068), Vector2(26381.459, -35068), Vector2(26601.816, -35068), Vector2(26826.074, -35068), Vector2(27054.23, -35068), Vector2(27286.285, -35068), Vector2(27522.242, -35068), Vector2(27762.094, -35068), Vector2(28005.846, -35068), Vector2(28253.498, -35068), Vector2(28505.047, -35068), Vector2(28760.498, -35068), Vector2(29019.848, -35068), Vector2(29283.094, -35068), Vector2(29550.24, -35068), Vector2(29821.285, -35068), Vector2(30096.23, -35068), Vector2(30375.074, -35068), Vector2(30657.816, -35068), Vector2(30944.459, -35068), Vector2(31235, -35068)])
-sample_mesh = Array[Vector2]([Vector2(24834, -39652), Vector2(24834, -39485.81), Vector2(24834, -39318.855), Vector2(24834, -39151.145), Vector2(24834, -38982.676), Vector2(24834, -38813.445), Vector2(24834, -38643.46), Vector2(24834, -38472.72), Vector2(24834, -38301.215), Vector2(24834, -38128.95), Vector2(24834, -37955.93), Vector2(24834, -37782.152), Vector2(24834, -37607.613), Vector2(24834, -37432.316), Vector2(24834, -37256.26), Vector2(24834, -37079.45), Vector2(24834, -36901.88), Vector2(24834, -36723.543), Vector2(24834, -36544.457), Vector2(24834, -36364.605), Vector2(24834, -36184.09), Vector2(24832.723, -36074.01), Vector2(24838.555, -35968.69), Vector2(24851.543, -35868.902), Vector2(24871.725, -35774.65), Vector2(24899.127, -35685.957), Vector2(24933.777, -35602.87), Vector2(24975.69, -35525.445), Vector2(25024.85, -35453.75), Vector2(25081.232, -35387.84), Vector2(25144.787, -35327.77), Vector2(25215.451, -35273.574), Vector2(25293.166, -35225.258), Vector2(25377.88, -35182.816), Vector2(25469.557, -35146.223), Vector2(25568.17, -35115.457), Vector2(25673.707, -35090.477), Vector2(25786.166, -35071.266), Vector2(25905.549, -35057.797), Vector2(26031.863, -35050.047), Vector2(26164.883, -35048), Vector2(26381.459, -35048), Vector2(26601.816, -35048), Vector2(26826.074, -35048), Vector2(27054.23, -35048), Vector2(27286.285, -35048), Vector2(27522.242, -35048), Vector2(27762.094, -35048), Vector2(28005.846, -35048), Vector2(28253.498, -35048), Vector2(28505.047, -35048), Vector2(28760.498, -35048), Vector2(29019.848, -35048), Vector2(29283.094, -35048), Vector2(29550.24, -35048), Vector2(29821.285, -35048), Vector2(30096.23, -35048), Vector2(30375.074, -35048), Vector2(30657.816, -35048), Vector2(30944.459, -35048), Vector2(31235, -35048), Vector2(31235, -35088), Vector2(30944.459, -35088), Vector2(30657.816, -35088), Vector2(30375.074, -35088), Vector2(30096.23, -35088), Vector2(29821.285, -35088), Vector2(29550.24, -35088), Vector2(29283.094, -35088), Vector2(29019.848, -35088), Vector2(28760.498, -35088), Vector2(28505.047, -35088), Vector2(28253.498, -35088), Vector2(28005.846, -35088), Vector2(27762.094, -35088), Vector2(27522.242, -35088), Vector2(27286.285, -35088), Vector2(27054.23, -35088), Vector2(26826.074, -35088), Vector2(26601.816, -35088), Vector2(26381.459, -35088), Vector2(26165.117, -35088), Vector2(26033.371, -35090.016), Vector2(25908.99, -35097.65), Vector2(25791.748, -35110.875), Vector2(25681.652, -35129.68), Vector2(25578.705, -35154.043), Vector2(25482.904, -35183.934), Vector2(25394.232, -35219.324), Vector2(25312.674, -35260.18), Vector2(25238.186, -35306.49), Vector2(25170.713, -35358.23), Vector2(25110.201, -35415.418), Vector2(25056.588, -35478.094), Vector2(25009.826, -35546.29), Vector2(24969.883, -35620.09), Vector2(24936.748, -35699.543), Vector2(24910.436, -35784.71), Vector2(24890.973, -35875.637), Vector2(24878.387, -35972.348), Vector2(24872.715, -36074.848), Vector2(24874, -36183.91), Vector2(24874, -36364.605), Vector2(24874, -36544.457), Vector2(24874, -36723.543), Vector2(24874, -36901.88), Vector2(24874, -37079.45), Vector2(24874, -37256.26), Vector2(24874, -37432.316), Vector2(24874, -37607.613), Vector2(24874, -37782.152), Vector2(24874, -37955.93), Vector2(24874, -38128.95), Vector2(24874, -38301.215), Vector2(24874, -38472.72), Vector2(24874, -38643.46), Vector2(24874, -38813.445), Vector2(24874, -38982.676), Vector2(24874, -39151.145), Vector2(24874, -39318.855), Vector2(24874, -39485.81), Vector2(24874, -39652)])
+sample_points = Array[Vector2]([Vector2(24854, -39652), Vector2(24854, -39484.89), Vector2(24854, -39315.184), Vector2(24854, -39142.887), Vector2(24854, -38967.996), Vector2(24854, -38790.508), Vector2(24854, -38610.434), Vector2(24854, -38427.76), Vector2(24854, -38242.496), Vector2(24854, -38054.633), Vector2(24854, -37864.18), Vector2(24854, -37671.137), Vector2(24854, -37475.492), Vector2(24854, -37277.26), Vector2(24854, -37076.434), Vector2(24854, -36873.01), Vector2(24854, -36666.996), Vector2(24854, -36458.387), Vector2(24854, -36247.188), Vector2(24854, -36033.39), Vector2(24854, -35817), Vector2(24852.719, -35743.21), Vector2(24858.47, -35673.25), Vector2(24871.258, -35607.113), Vector2(24891.08, -35544.8), Vector2(24917.938, -35486.313), Vector2(24951.83, -35431.65), Vector2(24992.758, -35380.813), Vector2(25040.719, -35333.8), Vector2(25095.717, -35290.613), Vector2(25157.75, -35251.25), Vector2(25226.818, -35215.71), Vector2(25302.92, -35184), Vector2(25386.057, -35156.113), Vector2(25476.23, -35132.05), Vector2(25573.438, -35111.813), Vector2(25677.68, -35095.4), Vector2(25788.957, -35082.813), Vector2(25907.27, -35074.05), Vector2(26032.617, -35069.113), Vector2(26165, -35068), Vector2(26381.459, -35068), Vector2(26601.816, -35068), Vector2(26826.074, -35068), Vector2(27054.23, -35068), Vector2(27286.285, -35068), Vector2(27522.242, -35068), Vector2(27762.094, -35068), Vector2(28005.846, -35068), Vector2(28253.498, -35068), Vector2(28505.047, -35068), Vector2(28760.498, -35068), Vector2(29019.848, -35068), Vector2(29283.094, -35068), Vector2(29550.24, -35068), Vector2(29821.285, -35068), Vector2(30096.23, -35068), Vector2(30375.074, -35068), Vector2(30657.816, -35068), Vector2(30944.459, -35068), Vector2(31235, -35068)])
+sample_mesh = Array[Vector2]([Vector2(24834, -39652), Vector2(24834, -39484.89), Vector2(24834, -39315.184), Vector2(24834, -39142.887), Vector2(24834, -38967.996), Vector2(24834, -38790.508), Vector2(24834, -38610.434), Vector2(24834, -38427.76), Vector2(24834, -38242.496), Vector2(24834, -38054.633), Vector2(24834, -37864.18), Vector2(24834, -37671.137), Vector2(24834, -37475.492), Vector2(24834, -37277.26), Vector2(24834, -37076.434), Vector2(24834, -36873.01), Vector2(24834, -36666.996), Vector2(24834, -36458.387), Vector2(24834, -36247.188), Vector2(24834, -36033.39), Vector2(24834, -35817.09), Vector2(24832.729, -35742.59), Vector2(24838.654, -35670.55), Vector2(24851.873, -35602.19), Vector2(24872.424, -35537.594), Vector2(24900.316, -35476.85), Vector2(24935.516, -35420.08), Vector2(24977.955, -35367.363), Vector2(25027.54, -35318.758), Vector2(25084.19, -35274.27), Vector2(25147.828, -35233.883), Vector2(25218.412, -35197.563), Vector2(25295.91, -35165.27), Vector2(25380.314, -35136.957), Vector2(25471.629, -35112.586), Vector2(25569.857, -35092.137), Vector2(25675.012, -35075.58), Vector2(25787.105, -35062.9), Vector2(25906.146, -35054.082), Vector2(26032.148, -35049.117), Vector2(26164.936, -35048), Vector2(26381.459, -35048), Vector2(26601.816, -35048), Vector2(26826.074, -35048), Vector2(27054.23, -35048), Vector2(27286.285, -35048), Vector2(27522.242, -35048), Vector2(27762.094, -35048), Vector2(28005.846, -35048), Vector2(28253.498, -35048), Vector2(28505.047, -35048), Vector2(28760.498, -35048), Vector2(29019.848, -35048), Vector2(29283.094, -35048), Vector2(29550.24, -35048), Vector2(29821.285, -35048), Vector2(30096.23, -35048), Vector2(30375.074, -35048), Vector2(30657.816, -35048), Vector2(30944.459, -35048), Vector2(31235, -35048), Vector2(31235, -35088), Vector2(30944.459, -35088), Vector2(30657.816, -35088), Vector2(30375.074, -35088), Vector2(30096.23, -35088), Vector2(29821.285, -35088), Vector2(29550.24, -35088), Vector2(29283.094, -35088), Vector2(29019.848, -35088), Vector2(28760.498, -35088), Vector2(28505.047, -35088), Vector2(28253.498, -35088), Vector2(28005.846, -35088), Vector2(27762.094, -35088), Vector2(27522.242, -35088), Vector2(27286.285, -35088), Vector2(27054.23, -35088), Vector2(26826.074, -35088), Vector2(26601.816, -35088), Vector2(26381.459, -35088), Vector2(26165.064, -35088), Vector2(26033.086, -35089.11), Vector2(25908.393, -35094.02), Vector2(25790.809, -35102.727), Vector2(25680.348, -35115.22), Vector2(25577.018, -35131.49), Vector2(25480.832, -35151.516), Vector2(25391.799, -35175.27), Vector2(25309.93, -35202.73), Vector2(25235.225, -35233.86), Vector2(25167.672, -35268.617), Vector2(25107.244, -35306.957), Vector2(25053.898, -35348.844), Vector2(25007.56, -35394.26), Vector2(24968.145, -35443.22), Vector2(24935.559, -35495.773), Vector2(24909.736, -35552.008), Vector2(24890.643, -35612.035), Vector2(24878.287, -35675.95), Vector2(24872.709, -35743.832), Vector2(24874, -35816.91), Vector2(24874, -36033.39), Vector2(24874, -36247.188), Vector2(24874, -36458.387), Vector2(24874, -36666.996), Vector2(24874, -36873.01), Vector2(24874, -37076.434), Vector2(24874, -37277.26), Vector2(24874, -37475.492), Vector2(24874, -37671.137), Vector2(24874, -37864.18), Vector2(24874, -38054.633), Vector2(24874, -38242.496), Vector2(24874, -38427.76), Vector2(24874, -38610.434), Vector2(24874, -38790.508), Vector2(24874, -38967.996), Vector2(24874, -39142.887), Vector2(24874, -39315.184), Vector2(24874, -39484.89), Vector2(24874, -39652)])
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D17" type="Line2D" parent="." index="49" unique_id=225535166]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(119, -1399)
 points = PackedVector2Array(24391, -38985, 23980, -40202, 24239, -40506, 24755, -40703, 25154, -41204, 25769, -40984, 25993, -40502, 26831, -40024, 26385, -39574, 25725, -38885)
 width = 40.0
@@ -345,6 +383,7 @@ sample_mesh = Array[Vector2]([Vector2(24410.64, -38988.777), Vector2(24384.855, 
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D18" type="Line2D" parent="." index="50" unique_id=1052062883]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(1605, -1138)
 points = PackedVector2Array(31293, -35872, 33593.13, -35872, 36298.555, -35872, 38706, -35872)
 width = 40.0
@@ -356,6 +395,7 @@ seg = 1.0
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="Spline2D19" type="Line2D" parent="." index="51" unique_id=943066503]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(8694, -2051)
 points = PackedVector2Array(31293, -35872, 33132, -35872, 35269, -35872, 36756, -35872, 38431, -35923, 39485, -35952, 38825, -34928, 39583, -33687, 37879, -33884, 36746, -34189)
 width = 40.0
@@ -366,70 +406,603 @@ sample_mesh = Array[Vector2]([Vector2(31293, -35852), Vector2(31582.87, -35852),
 metadata/_custom_type_script = "uid://bdxcdqki1luyk"
 
 [node name="DeathSpikeLarge15" parent="." index="52" unique_id=1353924319 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(7866, -18093.002)
 scale = Vector2(1.9821286, 1.9821286)
 
 [node name="DeathSpikeLarge18" parent="." index="53" unique_id=852157713 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17516, -17740)
 scale = Vector2(1.9821286, 1.9821286)
 
 [node name="DeathSpikeLarge19" parent="." index="54" unique_id=363260612 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(10951, -11477.001)
 scale = Vector2(1.3974775, 1.3974775)
 
 [node name="DeathSpikeSmall" parent="." index="55" unique_id=490663847 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -29089)
 
 [node name="DeathSpikeSmall2" parent="." index="56" unique_id=840963071 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -29740)
 
 [node name="DeathSpikeSmall3" parent="." index="57" unique_id=48802553 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -30379)
 
 [node name="DeathSpikeSmall4" parent="." index="58" unique_id=302266462 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -31030)
 
 [node name="DeathSpikeSmall5" parent="." index="59" unique_id=321751185 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -31724)
 
 [node name="DeathSpikeSmall7" parent="." index="60" unique_id=313631228 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -33407)
 
 [node name="DeathSpikeSmall8" parent="." index="61" unique_id=1248711583 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -34058)
 
 [node name="DeathSpikeSmall9" parent="." index="62" unique_id=1802366899 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -35250)
 
 [node name="DeathSpikeSmall13" parent="." index="63" unique_id=739268954 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -34622)
 
 [node name="DeathSpikeSmall10" parent="." index="64" unique_id=674847168 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -35901)
 
 [node name="DeathSpikeSmall11" parent="." index="65" unique_id=903558511 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -36540)
 
 [node name="DeathSpikeSmall12" parent="." index="66" unique_id=1145935018 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -37191)
 
 [node name="DeathSpikeLarge20" parent="." index="67" unique_id=1065364764 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12905, -32652)
 
 [node name="DeathSpikeSmall6" parent="." index="68" unique_id=79948296 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(13014, -18080)
 
 [node name="DeathSpikeSmall14" parent="." index="69" unique_id=74934041 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(10971, -17731)
 
 [node name="DeathSpikeLarge16" parent="." index="70" unique_id=2123105454 instance=ExtResource("4_06mmh")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23051, -26998)
 
 [node name="DeathSpikeSmall15" parent="." index="71" unique_id=1655492343 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(25646, -36420)
 
 [node name="DeathSpikeSmall16" parent="." index="72" unique_id=12965034 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(26273, -36379)
 
 [node name="DeathSpikeSmall17" parent="." index="73" unique_id=840037465 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(26891, -36379)
+
+[node name="Arrow40" type="Sprite2D" parent="." index="74" unique_id=1119705410]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(-82.99997, 1097)
+rotation = 0.5235988
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow41" type="Sprite2D" parent="." index="75" unique_id=927559651]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(3042.0002, 1507.0001)
+rotation = 0.7853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow42" type="Sprite2D" parent="." index="76" unique_id=1211136631]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(1895.0004, 2494.0002)
+rotation = 0.7853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow43" type="Sprite2D" parent="." index="77" unique_id=2024099783]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(3494, 2585.0002)
+rotation = 0.7853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow44" type="Sprite2D" parent="." index="78" unique_id=197106638]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(4796.0005, 1901.9999)
+rotation = -1.0471976
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow45" type="Sprite2D" parent="." index="79" unique_id=2057093367]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(6060.9995, -782.00037)
+rotation = -1.2477715
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow46" type="Sprite2D" parent="." index="80" unique_id=1496505534]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(6593, -2392)
+rotation = -0.7853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow47" type="Sprite2D" parent="." index="81" unique_id=1496647272]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(8047, -5599)
+rotation = -1.2146574
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow48" type="Sprite2D" parent="." index="82" unique_id=1016533269]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(8803.001, -8440)
+rotation = -0.5235988
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow49" type="Sprite2D" parent="." index="83" unique_id=1963096450]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(10244.001, -10776.001)
+rotation = -1.5707964
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow50" type="Sprite2D" parent="." index="84" unique_id=415879435]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(8807, -12609)
+rotation = -2.6179938
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow51" type="Sprite2D" parent="." index="85" unique_id=1530257546]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(7938.0005, -13370)
+rotation = -1.5707964
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow52" type="Sprite2D" parent="." index="86" unique_id=1442742589]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(7938.0005, -15618.001)
+rotation = -1.5707964
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow53" type="Sprite2D" parent="." index="87" unique_id=218810092]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(8172, -17021.002)
+rotation = -0.7853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow54" type="Sprite2D" parent="." index="88" unique_id=1231843560]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(9450, -18011)
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow55" type="Sprite2D" parent="." index="89" unique_id=1373585701]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(11898, -17911)
+rotation = 0.5235988
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow56" type="Sprite2D" parent="." index="90" unique_id=1244305901]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(14530, -17819.002)
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow57" type="Sprite2D" parent="." index="91" unique_id=1579094053]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(16654.002, -18062.002)
+rotation = -0.7853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow58" type="Sprite2D" parent="." index="92" unique_id=335119764]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17437.002, -19996.002)
+rotation = -1.5707964
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow59" type="Sprite2D" parent="." index="93" unique_id=373213460]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17437.002, -22535)
+rotation = -1.5707964
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow60" type="Sprite2D" parent="." index="94" unique_id=1460030523]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17281, -23587.002)
+rotation = -2.0943952
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow61" type="Sprite2D" parent="." index="95" unique_id=1149127371]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17786, -23597)
+rotation = -3.926991
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow95" type="Sprite2D" parent="." index="96" unique_id=1692173036]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17902.002, -26559)
+rotation = -4.712389
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow96" type="Sprite2D" parent="." index="97" unique_id=1213991922]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17249.998, -25816)
+rotation = -5.4977875
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow62" type="Sprite2D" parent="." index="98" unique_id=1265403946]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17706.002, -21242.002)
+rotation = -5.2359877
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow63" type="Sprite2D" parent="." index="99" unique_id=374310178]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(22200, -20237)
+rotation = -7.0685835
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow64" type="Sprite2D" parent="." index="100" unique_id=1153111160]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(23066.002, -21177.002)
+rotation = -7.0685835
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow65" type="Sprite2D" parent="." index="101" unique_id=2114690578]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(23776.002, -21910.002)
+rotation = -7.0685835
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow66" type="Sprite2D" parent="." index="102" unique_id=2003758403]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(19513, -18890.002)
+rotation = -6.021386
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow67" type="Sprite2D" parent="." index="103" unique_id=2023907092]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(25545, -23241)
+rotation = -6.544985
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow68" type="Sprite2D" parent="." index="104" unique_id=627253896]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(27580, -23033)
+rotation = -6.021386
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow69" type="Sprite2D" parent="." index="105" unique_id=582839049]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(29926.002, -24053.998)
+rotation = -7.5921826
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow70" type="Sprite2D" parent="." index="106" unique_id=1054517828]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(29008, -26674.002)
+rotation = -9.162979
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow71" type="Sprite2D" parent="." index="107" unique_id=48652699]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(27350, -26511.002)
+rotation = -9.312545
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow72" type="Sprite2D" parent="." index="108" unique_id=1118441495]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(23887, -27199)
+rotation = -8.63938
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow73" type="Sprite2D" parent="." index="109" unique_id=480344550]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(22925, -27510)
+rotation = -9.686578
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow74" type="Sprite2D" parent="." index="110" unique_id=1276856668]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(18693, -28020)
+rotation = -8.63938
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow75" type="Sprite2D" parent="." index="111" unique_id=1403133392]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(16732.002, -28330)
+rotation = -9.686578
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow76" type="Sprite2D" parent="." index="112" unique_id=337565510]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(12588, -28767.002)
+rotation = -7.3303833
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow77" type="Sprite2D" parent="." index="113" unique_id=1501144667]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(12803, -31031)
+rotation = -7.853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow78" type="Sprite2D" parent="." index="114" unique_id=1699196304]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(12803, -34598)
+rotation = -7.853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow80" type="Sprite2D" parent="." index="115" unique_id=1412701042]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(12803, -36433)
+rotation = -7.853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow81" type="Sprite2D" parent="." index="116" unique_id=1856326885]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(13262.001, -38128)
+rotation = -6.806784
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow82" type="Sprite2D" parent="." index="117" unique_id=1810035236]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(14246.999, -38750)
+rotation = -5.2359877
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow83" type="Sprite2D" parent="." index="118" unique_id=2038926585]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(17400, -37640)
+rotation = -6.021386
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow84" type="Sprite2D" parent="." index="119" unique_id=2055042586]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(22143, -36603)
+rotation = -6.2831855
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow85" type="Sprite2D" parent="." index="120" unique_id=1703927197]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(24104.002, -37032.004)
+rotation = -7.0685835
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow86" type="Sprite2D" parent="." index="121" unique_id=1561440583]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(24777.002, -38986)
+rotation = -7.853982
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow87" type="Sprite2D" parent="." index="122" unique_id=702473143]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(24680.998, -40629)
+rotation = -8.115781
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow88" type="Sprite2D" parent="." index="123" unique_id=1599670219]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(25258.002, -39808)
+rotation = -10.471975
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow89" type="Sprite2D" parent="." index="124" unique_id=794925687]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(27108.002, -36559)
+rotation = -12.566371
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow90" type="Sprite2D" parent="." index="125" unique_id=1993159864]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(30157, -36559)
+rotation = -12.566371
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow97" type="Sprite2D" parent="." index="126" unique_id=665858191]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(31274.002, -36683.004)
+rotation = -13.08997
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow91" type="Sprite2D" parent="." index="127" unique_id=2093166268]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(33637, -37095.004)
+rotation = -12.566371
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow92" type="Sprite2D" parent="." index="128" unique_id=1571982959]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(38394.004, -37095.004)
+rotation = -12.566371
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow93" type="Sprite2D" parent="." index="129" unique_id=270771871]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(40403, -37352)
+rotation = -13.08997
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow94" type="Sprite2D" parent="." index="130" unique_id=1121701207]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(43230.004, -37795)
+rotation = -12.566371
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="Arrow79" type="Sprite2D" parent="." index="131" unique_id=1432939584]
+modulate = Color(0.734, 1.56, 0.94, 1)
+position = Vector2(12440, -32866)
+rotation = -7.3303833
+scale = Vector2(0.583, 0.583)
+texture = ExtResource("7_vb4t5")
+
+[node name="DeathSpikeSmall18" parent="." index="132" unique_id=1513496343 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(31256, -36416.996)
+rotation = 0.2617994
+
+[node name="JumpIndicator" parent="." index="133" unique_id=373011309 instance=ExtResource("8_cl2pp")]
+position = Vector2(8389, -6697)
+
+[node name="DashIndicator" parent="." index="134" unique_id=1894425035 instance=ExtResource("9_wd4y7")]
+position = Vector2(8637, -8355)
+
+[node name="JumpIndicator2" parent="." index="135" unique_id=679092956 instance=ExtResource("8_cl2pp")]
+position = Vector2(10259, -10447)
+
+[node name="JumpIndicator3" parent="." index="136" unique_id=604573330 instance=ExtResource("8_cl2pp")]
+position = Vector2(7949, -16806)
+
+[node name="JumpIndicator4" parent="." index="137" unique_id=847532522 instance=ExtResource("8_cl2pp")]
+position = Vector2(16466, -17837)
+
+[node name="DashIndicator2" parent="." index="138" unique_id=1338983613 instance=ExtResource("9_wd4y7")]
+position = Vector2(17149, -25938)
+
+[node name="DashIndicator3" parent="." index="139" unique_id=1292781292 instance=ExtResource("9_wd4y7")]
+position = Vector2(17902, -26752)
+
+[node name="TimeSlow" type="Node2D" parent="." index="140" unique_id=1211104270]
+position = Vector2(17511, -27376)
+script = ExtResource("10_tgoi2")
+shape = 1
+dimensions = Vector2(550, 140)
+max_dim = 550.0
+easing = 4.0
+min_scale = 0.9
+input_disable = "Dash"
+type_disable = 2
+metadata/_custom_type_script = "uid://bq5d8130qbdd4"
+
+[node name="DeathSpikeSmall19" parent="." index="141" unique_id=305871812 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(16100, -27840)
+
+[node name="DeathSpikeSmall20" parent="." index="142" unique_id=779033246 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(15149, -27985)
+
+[node name="DeathSpikeSmall21" parent="." index="143" unique_id=1955124515 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(14265, -28113)
+
+[node name="DeathSpikeSmall22" parent="." index="144" unique_id=933392043 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(12831, -28324)
+
+[node name="DeathSpikeSmall23" parent="." index="145" unique_id=684813287 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(16955, -26812)
+
+[node name="DeathSpikeSmall24" parent="." index="146" unique_id=2026485413 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(16955, -25815)
+
+[node name="DeathSpikeSmall25" parent="." index="147" unique_id=832194062 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(16968, -24744)
+
+[node name="DeathSpikeSmall26" parent="." index="148" unique_id=1347226188 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(16955, -24744)
+
+[node name="DeathSpikeSmall27" parent="." index="149" unique_id=1815773812 instance=ExtResource("6_80a4t")]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(16955, -23099)
+
+[node name="JumpIndicator5" parent="." index="150" unique_id=789074961 instance=ExtResource("8_cl2pp")]
+position = Vector2(24072, -26979)
+
+[node name="DashIndicator4" parent="." index="151" unique_id=1148618263 instance=ExtResource("9_wd4y7")]
+position = Vector2(23214, -27580)
+
+[node name="JumpIndicator6" parent="." index="152" unique_id=1029691092 instance=ExtResource("8_cl2pp")]
+position = Vector2(18950, -27728)
+
+[node name="DashIndicator5" parent="." index="153" unique_id=1026888926 instance=ExtResource("9_wd4y7")]
+position = Vector2(16965, -28412)
+
+[node name="DashIndicator6" parent="." index="154" unique_id=1175595737 instance=ExtResource("9_wd4y7")]
+position = Vector2(12499, -28582)
+
+[node name="JumpIndicator7" parent="." index="155" unique_id=675474096 instance=ExtResource("8_cl2pp")]
+position = Vector2(12793, -31767)
+
+[node name="DashIndicator7" parent="." index="156" unique_id=176641968 instance=ExtResource("9_wd4y7")]
+position = Vector2(12343, -32681)
+
+[node name="DashIndicator8" parent="." index="157" unique_id=1858873625 instance=ExtResource("9_wd4y7")]
+position = Vector2(14139, -38962)
+
+[node name="JumpIndicator8" parent="." index="158" unique_id=2086823154 instance=ExtResource("8_cl2pp")]
+position = Vector2(23591, -36596)
+
+[node name="JumpIndicator9" parent="." index="159" unique_id=831986565 instance=ExtResource("8_cl2pp")]
+position = Vector2(31095, -36559)
+
+[node name="JumpIndicator10" parent="." index="160" unique_id=1189186913 instance=ExtResource("8_cl2pp")]
+position = Vector2(39970, -37097)

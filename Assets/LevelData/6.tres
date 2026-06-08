@@ -13,11 +13,11 @@ name = "Ascent"
 base_player_speed = 2800
 scene = ExtResource("1_ura13")
 ranking_maximums = Dictionary[int, float]({
-0: 70.0,
-1: 80.0,
-2: 90.0,
-3: 100.0,
-4: 120.0
+0: 45.0,
+1: 50.0,
+2: 55.0,
+3: 60.0,
+4: 80.0
 })
 score_threshold = 1000
 tracks = Dictionary[int, AudioStream]({
