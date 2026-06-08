@@ -1,8 +1,13 @@
 class_name Player extends CharacterBody2D
 ## The driver for the player's movement.
 
-signal dash_reset
-signal dashed
+signal dash_reset ## The dash cooldown just ran out.
+signal dashed ## The player just dashed.
+
+signal jumped ## The player just jumped.
+signal landed ## The player just landed.
+
+signal reset ## The player just reset (died). There's no distinction.
 
 const DEBUG := false
 
@@ -88,6 +93,8 @@ func _physics_process(delta: float) -> void:
 		var projection := velocity.project(wall_dir)
 		
 		slide_mag = projection.distance_to(Vector2.ZERO)
+		
+		landed.emit()
 	was_on_wall = on_wall
 	
 	# Control the ray target.
@@ -143,6 +150,8 @@ func _physics_process(delta: float) -> void:
 			
 			# Clear the jump buffer so you don't spam jumps.
 			jump_buffering = 0.0
+			
+			jumped.emit()
 		else:
 			# Wall sticking.
 			var collision_point := ray_node.get_collision_point() - global_position
@@ -217,6 +226,8 @@ func _on_reset() -> void:
 	## Reset buffers and cooldowns.
 	jump_buffering = 0.0
 	dash_cooldown_time = 0.0
+	
+	reset.emit()
 	
 
 # Returns the Vector2 that is most similar to the comparator out of the given array.

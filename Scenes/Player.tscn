@@ -79,6 +79,8 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_yoq75")
 alpha_curve = SubResource("CurveTexture_bhhdu")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5ixxa"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "pointer", "ray_node") groups=["Player"]]
 z_index = 3
 collision_layer = 2
@@ -195,6 +197,9 @@ polygon = PackedVector2Array(25, 0, 17.67767, 17.67767, -1.0927847e-06, 25, -17.
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438125164]
 environment = ExtResource("5_nn08x")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=981136954]
+stream = SubResource("AudioStreamRandomizer_5ixxa")
 
 [connection signal="dash_reset" from="." to="DashReloadParticles" method="restart"]
 [connection signal="dashed" from="." to="DashEffectParticles" method="restart"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c476jebf22eni"]
 
-[ext_resource type="Script" uid="uid://dh5osbuu612im" path="res://Scripts/DeathSpike.gd" id="1_mpevh"]
+[ext_resource type="Script" path="res://Scripts/DeathSpike.gd" id="1_mpevh"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_lssm5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvp3r"]
