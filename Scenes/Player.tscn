@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://df3sty4wpm85y" path="res://Scripts/ComboDriver.gd" id="4_dewec"]
 [ext_resource type="Script" uid="uid://bbl15es03g582" path="res://Scripts/Trail.gd" id="5_5ixxa"]
 [ext_resource type="Environment" uid="uid://bol5ovnngau3v" path="res://Assets/Resources/Environment.tres" id="5_nn08x"]
+[ext_resource type="AudioStream" uid="uid://duwaaockkn7rh" path="res://SFX/Jump-001.wav" id="6_bhhdu"]
+[ext_resource type="AudioStream" uid="uid://d2dhv3l6yesrs" path="res://SFX/Jump-002.wav" id="7_megsn"]
+[ext_resource type="AudioStream" uid="uid://cq808bsxdko83" path="res://SFX/Jump-003.wav" id="8_yoq75"]
 
 [sub_resource type="Curve" id="Curve_nn08x"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.1, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -79,7 +82,12 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_yoq75")
 alpha_curve = SubResource("CurveTexture_bhhdu")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5ixxa"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ksbbd"]
+random_pitch = 1.122462
+streams_count = 3
+stream_0/stream = ExtResource("6_bhhdu")
+stream_1/stream = ExtResource("7_megsn")
+stream_2/stream = ExtResource("8_yoq75")
 
 [node name="Player" type="CharacterBody2D" unique_id=1267848784 node_paths=PackedStringArray("sprite", "pointer", "ray_node") groups=["Player"]]
 z_index = 3
@@ -198,8 +206,10 @@ polygon = PackedVector2Array(25, 0, 17.67767, 17.67767, -1.0927847e-06, 25, -17.
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438125164]
 environment = ExtResource("5_nn08x")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=981136954]
-stream = SubResource("AudioStreamRandomizer_5ixxa")
+[node name="ASP Jump" type="AudioStreamPlayer" parent="." unique_id=981136954]
+stream = SubResource("AudioStreamRandomizer_ksbbd")
+volume_db = 4.711
 
 [connection signal="dash_reset" from="." to="DashReloadParticles" method="restart"]
 [connection signal="dashed" from="." to="DashEffectParticles" method="restart"]
+[connection signal="jumped" from="." to="ASP Jump" method="play"]
