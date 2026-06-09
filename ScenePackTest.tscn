@@ -13,6 +13,9 @@ var old_owners:Dictionary[Node,Node]
 @export var target_path:StringName = \"res://test.tscn\"
 @export_tool_button(\"PACK\") var pck := func():
 	
+	assure_user_directory(\"user://CustomLevelScenes\")
+	assure_user_directory(\"user://CustomLevelData\")
+	
 	if not is_instance_valid(target_node):
 		print(\"INVALID TARGET!\")
 		return
@@ -49,6 +52,11 @@ func reset_owners() -> void:
 	for node in old_owners:
 		node.owner = old_owners[node]
 	old_owners.clear()
+
+func assure_user_directory(path:StringName) -> Error:
+	if not DirAccess.dir_exists_absolute(path):
+		return DirAccess.make_dir_absolute(path)
+	return Error.OK
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_di3wb"]
@@ -56,6 +64,7 @@ func reset_owners() -> void:
 [node name="ScenePackTest" type="Node2D" unique_id=37017207 node_paths=PackedStringArray("target_node")]
 script = SubResource("GDScript_y4vsk")
 target_node = NodePath("AS2D")
+target_path = &"user://test_folder/test.tscn"
 
 [node name="AS2D" type="AnimatedSprite2D" parent="." unique_id=73560206]
 sprite_frames = SubResource("SpriteFrames_di3wb")
