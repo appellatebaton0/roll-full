@@ -16,6 +16,10 @@ var old_owners:Dictionary[Node,Node]
 	assure_user_directory(\"user://CustomLevelScenes\")
 	assure_user_directory(\"user://CustomLevelData\")
 	
+	## oooh... opens a folder in userspace in the user's file manager. Could be sick for 
+	## allowing custom music.
+	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(\"user://CustomLevelData\"))
+	
 	if not is_instance_valid(target_node):
 		print(\"INVALID TARGET!\")
 		return

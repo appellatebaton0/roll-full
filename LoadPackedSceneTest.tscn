@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://cvrojh68oxtgv"]
+
+[ext_resource type="PackedScene" uid="uid://drts765mrn5hg" path="res://TestPlaceholder.tscn" id="1_tpxhb"]
+
+[sub_resource type="GDScript" id="GDScript_h06sq"]
+script/source = "extends Area2D
+
+func _mouse_enter() -> void: print(\"I\")
+func _mouse_exit() -> void:  print(\"O\")
+
+func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	print(event)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yte3a"]
+size = Vector2(55.051666, 38.97744)
+
+[sub_resource type="Gradient" id="Gradient_3v8qa"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dnici"]
+gradient = SubResource("Gradient_3v8qa")
+
+[sub_resource type="Gradient" id="Gradient_h06sq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yte3a"]
+gradient = SubResource("Gradient_h06sq")
+width = 96
+height = 96
+
+[sub_resource type="GDScript" id="GDScript_3v8qa"]
+script/source = "extends TextureButton
+## Allow for a packed scene to be loaded into a subviewport.
+
+@export var viewport:SubViewport
+@export var scene:PackedScene
+@export var manip:Node
+
+func _pressed() -> void:
+	var instance := scene.instantiate()
+	
+	viewport.add_child(instance)
+	
+	
+	
+	
+	
+	#instance.position = Vector2.ONE * 200
+"
+
+[sub_resource type="GDScript" id="GDScript_tpxhb"]
+script/source = "extends Node
+# Allow everything user-made to have its size, rotation, and position manipulated?
+
+var selected:Node2D
+
+enum MODES {MOVE, SCALE, ROTATE}
+"
+
+[node name="LoadPackedSceneTest" type="Panel" unique_id=155312566]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1674604825]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1822692168]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer" unique_id=1571016968]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/SubViewportContainer" unique_id=63143033]
+disable_3d = true
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(964, 824)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Area2D" parent="MarginContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=1113028204]
+position = Vector2(351, 348)
+scale = Vector2(10.28125, 12.46875)
+script = SubResource("GDScript_h06sq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MarginContainer/HBoxContainer/SubViewportContainer/SubViewport/Sprite2D" unique_id=1590776574]
+position = Vector2(4.6686897, 2.0852146)
+shape = SubResource("RectangleShape2D_yte3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/HBoxContainer/SubViewportContainer/SubViewport/Sprite2D" unique_id=1888772137]
+position = Vector2(4.911854, 2.0050116)
+scale = Vector2(0.8525836, 0.6190475)
+texture = SubResource("GradientTexture2D_dnici")
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=972411137]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel" unique_id=1781765845]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer" unique_id=1361591230]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/GridContainer" unique_id=1558702315 node_paths=PackedStringArray("viewport")]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_yte3a")
+script = SubResource("GDScript_3v8qa")
+viewport = NodePath("../../../../SubViewportContainer/SubViewport")
+scene = ExtResource("1_tpxhb")
+
+[node name="ManipManager" type="Node" parent="." unique_id=1923888070]
+script = SubResource("GDScript_tpxhb")
