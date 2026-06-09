@@ -25,9 +25,6 @@ var collision_mesh:CollisionPolygon2D
 		regenerate_sample()
 		queue_redraw()
 
-#@export_tool_button("GenerateShape") var gen := generate
-func generate(): if collision_mesh:  collision_mesh.polygon = regenerate_mesh()
-
 func _draw() -> void: if Engine.is_editor_hint() and len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
 
 func _ready() -> void: 
@@ -49,7 +46,6 @@ var last_points:PackedVector2Array
 func _process(_delta: float) -> void: if points != last_points and Engine.is_editor_hint(): 
 		
 	regenerate_sample()
-	generate()
 	
 	last_points = points
 
@@ -174,4 +170,4 @@ func fabricate_collision() -> void:
 			
 			collision_mesh.modulate.a = 0.2
 	
-	generate()
+	regenerate_mesh()

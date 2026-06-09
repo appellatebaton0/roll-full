@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dud3ciy0cf7g6"]
+
+[ext_resource type="Script" uid="uid://p40c8qofbcq3" path="res://SplinePlaceholder.gd" id="1_6kb0u"]
+
+[node name="SplinePlaceholder" type="Node2D" unique_id=429917042]
+script = ExtResource("1_6kb0u")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1065962153]
+points = PackedVector2Array(-172, 85, -108, -110, 123, -116, 361, -15)
+
+[node name="DragArea" type="Area2D" parent="." unique_id=1088823853]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="DragArea" unique_id=1648451112]
+position = Vector2(18, -6.5)
