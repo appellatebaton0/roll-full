@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpvuh5hm72k1k"
+path="res://.godot/imported/Death No Tail.wav-c2924d05df8093ded5d09db9cbb0ad28.sample"
+
+[deps]
+
+source_file="res://SFX/Death No Tail.wav"
+dest_files=["res://.godot/imported/Death No Tail.wav-c2924d05df8093ded5d09db9cbb0ad28.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
