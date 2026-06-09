@@ -17,7 +17,7 @@ func _ready() -> void:
 	# The currently bound input isn't the default, allow resettng.
 	# Used when loading from save with non-default bindings.
 	var c_events := InputMap.action_get_events(action)
-	for i in sane_default.size():
+	for i in min(sane_default.size(), c_events.size()):
 		var event_a = sane_default[i]
 		var event_b = c_events[i]
 		for property in ["physical_keycode", "axis", "axis_value", "button_index", "pressed", "pressure"]:
