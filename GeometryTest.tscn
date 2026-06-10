@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bp7w4qyjj1ftf"]
+
+[sub_resource type="GDScript" id="GDScript_ywug1"]
+script/source = "@tool
+extends Line2D
+
+var colliders:Array[CollisionPolygon2D]
+
+
+@export var offset := 0.0:
+	set(to):
+		offset = to
+		regenerate.call()
+@export_tool_button(\"REGENERATE\", \"Line2D\") var regenerate = func():
+	
+	var polygons := Geometry2D.offset_polyline(points, offset, Geometry2D.JOIN_SQUARE, Geometry2D.END_BUTT)
+	
+	var fill:PackedVector2Array = PackedVector2Array([Vector2.INF])
+	var used_pass_points:Array[Vector2]
+	for i in polygons.size():
+		print(fill, \" ag \", polygons[i])
+		if fill == PackedVector2Array([Vector2.INF]): # First polygon's the fill
+			fill = polygons[i]
+			print(\"!\")
+			continue
+		print(\"O\")
+		# For all others, make them technically outside the fill with a placeholder point, then clip the polygon.
+		
+		var pass_point = Array(fill)#[0]
+		print(\"UPTP\")
+		print(used_pass_points)
+		var best_pair := Vector2i(-1, -1)
+		var best_dist = INF
+		
+		for i2 in fill.size():
+			for j2 in polygons[i].size():
+				
+				var try_dist := fill[i2].distance_to(polygons[i][j2])
+				
+				if try_dist < best_dist:
+					best_pair = Vector2i(i2, j2)
+					best_dist = try_dist
+		
+		var from = polygons[i][best_pair.y] # Polygon
+		var to = fill[best_pair.x] # Fill
+		to = from + (from.direction_to(to) * from.distance_to(to) * 1.3)
+		
+		pass_point = pass_point[0]
+		used_pass_points.append(pass_point)
+		
+		print(polygons[i], \" v \", fill)
+		
+		var new_polygon := polygons[i]
+		
+		#var outer_point = polygons[i][j] + (polygons[i][j].direction_to(pass_point) * polygons[i][j].distance_to(pass_point))
+		#var inner_point = new_polygon[j]
+		
+		new_polygon.insert(best_pair.y, to)
+		new_polygon.insert(best_pair.y, from + Vector2(0.1, 0.1).rotated(from.direction_to(to).angle()))
+		#+= PackedVector2Array([new_polygon[0] + Vector2(0.001, 0.001).rotated(polygons[i][0].angle_to(pass_point)), outer_point])
+		#
+		
+		print(new_polygon)
+		
+		print(\"CLIP\")
+		polygons[i] = new_polygon
+		print(\"C2 \", Geometry2D.clip_polygons(fill, new_polygon).size())
+		fill = Geometry2D.clip_polygons(fill, new_polygon)[0]
+	polygons[0] = fill
+	print(polygons)
+	
+	while colliders.size() < polygons.size():
+		var new := CollisionPolygon2D.new()
+		
+		new.owner = owner
+		
+		$StaticBody2D.add_child(new)
+		
+		colliders.append(new)
+	
+	for i in polygons.size():
+		colliders[i].polygon = polygons[i]
+		print(i, \" is \", Geometry2D.is_polygon_clockwise(polygons[i]))
+	
+	
+	#colliders[0].polygon = Geometry2D.exclude_polygons(fill, polygons)
+	
+	for collider in colliders:
+		collider.owner = self
+"
+
+[node name="GeometryTest" type="Line2D" unique_id=1678746970]
+points = PackedVector2Array(296, 165, 376.901, 26.553284, 559, -28, 689, 6, 716, 116, 542.0515, 176.62283, 415, -88, 683, -81, 471.8735, 142.54568, 462, 153, 689, 201, 520, -156)
+script = SubResource("GDScript_ywug1")
+offset = 5.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1891976590]
+
+[node name="@CollisionPolygon2D@65639" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=902938130]
+polygon = PackedVector2Array(557.1118, -89.28983, 686.3724, -85.91362, 688.86176, -79.92453, 627.7268, -15.193459, 691.5965, 1.5109024, 693.52783, 3.471672, 721.31683, 116.68614, 719.47156, 120.08508, 668.0328, 138.012, 655.687, 142.31464, 651.38385, 133.22444, 651.38385, 133.22443, 660.88086, 129.91463, 710.06006, 112.77518, 684.854, 10.083832, 619.8984, -6.904541, 604.05396, 9.871933, 660.75354, 129.8531, 651.37384, 133.20331, 596.6841, 17.6753, 513.5474, 105.70238, 541.9157, 164.78792, 553.6795, 167.2754, 651.33624, 133.3576, 655.6649, 142.32233, 572.59125, 171.27437, 680.1643, 194.0211, 655.81433, 142.37616, 665.1941, 139.02592, 694.84656, 201.66466, 691.0008, 206.53363, 554.3381, 177.63577, 541.89484, 181.9724, 538.3702, 180.50742, 535.0313, 173.5533, 458.10065, 157.28603, 456.35428, 151.69582, 468.23843, 139.11256, 475.50854, 145.97879, 471.75577, 149.95233, 529.5694, 162.17725, 506.19318, 113.48922, 475.50858, 145.9788, 475.50452, 145.83743, 468.2544, 139.09566, 501.55734, 103.83371, 455.63458, 8.185791, 465.22928, 5.311409, 466.48526, 7.9311523, 465.25107, 5.304878, 465.33255, 5.280472, 508.91156, 96.04687, 589.8806, 10.314949, 599.4614, 0.17057037, 608.86804, -9.789391, 592.75104, -14.004623, 599.32007, 0.17460632, 592.0809, 7.951332, 580.1238, -17.307114, 587.1665, -25.801552, 616.6965, -18.078323, 671.678, -76.29401, 561.9066, -79.16117, 587.0257, -25.788391, 580.09906, -17.313591, 559.09155, -22.807869, 465.20807, 5.2133713, 460.95074, -3.845909, 558.22406, -32.98709, 559.5996, -33.011353, 574.53925, -29.104057, 550.7042, -79.45377, 423.0488, -82.78805, 460.90277, -3.7128754, 465.1856, 5.220291, 452.7252, 9.057388, 380.22372, 30.777397, 300.317, 167.52261, 291.683, 162.47739, 373.0632, 23.210602, 374.55627, 22.036171, 451.25278, -0.94059753, 409.27887, -88.36385, 412.32727, -93.07152, 545.9094, -89.58243, 515.4808, -153.86066, 524.5192, -158.13934)
+
+[node name="@CollisionPolygon2D@65641" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1413078004]
+polygon = PackedVector2Array(572.59125, 171.27437, 680.1643, 194.0211, 655.81433, 142.37616, 668.0332, 138.01186, 655.687, 142.31464)
+
+[node name="@CollisionPolygon2D@69444" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=466807391]
+polygon = PackedVector2Array(513.5474, 105.70238, 541.9157, 164.78792, 553.6795, 167.2754, 651.33624, 133.3576, 656.97797, 145.04169, 651.38385, 133.22444, 596.6841, 17.6753)
+
+[node name="@CollisionPolygon2D@107114" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1496692178]
+polygon = PackedVector2Array(475.50858, 145.9788, 475.50452, 145.83743, 466.0574, 137.0527, 475.50854, 145.97879, 471.75577, 149.95233, 529.5694, 162.17725, 506.19318, 113.48922)
+
+[node name="@CollisionPolygon2D@117661" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1591704835]
+polygon = PackedVector2Array(604.05396, 9.87193, 660.75354, 129.8531, 648.5347, 134.21739, 660.88086, 129.91463, 710.06006, 112.77518, 684.854, 10.08383, 619.8984, -6.90454)
+
+[node name="@CollisionPolygon2D@117662" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=87017909]
+polygon = PackedVector2Array(465.20807, 5.213374, 452.7252, 9.057387, 465.33255, 5.28047, 508.91156, 96.04687, 592.09155, 7.97394, 580.1238, -17.30713, 559.09155, -22.80787)
+
+[node name="@CollisionPolygon2D@117663" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=386139912]
+polygon = PackedVector2Array(599.32007, 0.17460892, 589.8806, 10.314948, 599.4614, 0.17057, 608.86804, -9.78939, 592.75104, -14.00462)
+
+[node name="@CollisionPolygon2D@117664" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=95293645]
+polygon = PackedVector2Array(460.90277, -3.712874, 466.48526, 7.931155, 460.95074, -3.84591, 558.22406, -32.98709, 559.5996, -33.01135, 574.53925, -29.10406, 550.7042, -79.45377, 423.0488, -82.78805)
+
+[node name="@CollisionPolygon2D@117665" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1181987882]
+polygon = PackedVector2Array(587.0257, -25.788393, 578.011, -14.758803, 587.1665, -25.80155, 616.6965, -18.07832, 671.678, -76.29401, 561.9066, -79.16117)

@@ -168,8 +168,8 @@ func fabricate_collision() -> void:
 	add_child(static_body)
 	static_body.add_child(collision_mesh)
 	
-	static_body.owner = owner
-	collision_mesh.owner = owner
+	#static_body.owner = owner
+	#collision_mesh.owner = owner
 
 	static_body.collision_layer = collision_layer
 	static_body.collision_mask  = collision_mask
@@ -177,15 +177,6 @@ func fabricate_collision() -> void:
 	collision_mesh.modulate.a = 0.2
 
 	regenerate_mesh()
-	
-	for polygon in Geometry2D.offset_polyline(points, width / 2, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE):
-		var new_col := CollisionPolygon2D.new()
-		
-		static_body.add_child(new_col)
-		
-		new_col.owner = owner
-		
-		new_col.polygon = polygon
 	
 	#print("F: ", collision_mesh.polygon)
 	#print("T: ", Geometry2D.offset_polyline(points, width / 2, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE))
