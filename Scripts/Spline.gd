@@ -133,7 +133,7 @@ func regenerate_mesh() -> Array[Vector2]:
 	return sample_mesh
 
 func fabricate_collision() -> void:
-	if not collision_mesh:
+	if collision_mesh: return
 		
 		#if Engine.is_editor_hint():
 			#var unre := EditorInterface.get_editor_undo_redo()
@@ -156,18 +156,37 @@ func fabricate_collision() -> void:
 			#unre.add_undo_property(self, "collision_mesh", collision_mesh)
 			#
 			#unre.commit_action()
+			
 			#
 		#else:
-			
-			var static_body := StaticBody2D.new()
-			collision_mesh = CollisionPolygon2D.new()
 		
-			add_child(static_body)
-			static_body.add_child(collision_mesh)
-		
-			static_body.collision_layer = collision_layer
-			static_body.collision_mask  = collision_mask
 			
-			collision_mesh.modulate.a = 0.2
+	print('fabbd collision')
+	var static_body := StaticBody2D.new()
+	collision_mesh = CollisionPolygon2D.new()
+
+	add_child(static_body)
+	static_body.add_child(collision_mesh)
 	
+	static_body.owner = owner
+	collision_mesh.owner = owner
+
+	static_body.collision_layer = collision_layer
+	static_body.collision_mask  = collision_mask
+	
+	collision_mesh.modulate.a = 0.2
+
 	regenerate_mesh()
+	
+	for polygon in Geometry2D.offset_polyline(points, width / 2, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE):
+		var new_col := CollisionPolygon2D.new()
+		
+		static_body.add_child(new_col)
+		
+		new_col.owner = owner
+		
+		new_col.polygon = polygon
+	
+	#print("F: ", collision_mesh.polygon)
+	#print("T: ", Geometry2D.offset_polyline(points, width / 2, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE))
+	#collision_mesh.polygon = Geometry2D.offset_polyline(points, width / 2, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE)

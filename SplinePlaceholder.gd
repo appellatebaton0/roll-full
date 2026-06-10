@@ -2,7 +2,8 @@ class_name SplinePlaceholder extends ScenePlaceholder
 ## A placeholder for a spline, with all the usual customizability.
 
 @onready var line:Line2D = $Line2D
-@onready var drag_area_collider := $DragArea/CollisionShape2D
+@onready var spline_collider := $DragArea/CollisionShape2D
+@onready var line_collider   := $DragArea/CollisionShape2D2
 
 # The array of drag points. Index in this array = index of the point in the line's point array.
 var drag_points:Array[DragPoint]
@@ -26,7 +27,9 @@ var seg := 20.0:
 		regenerate_sample()
 		queue_redraw()
 
-func _draw() -> void: if len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
+func _draw() -> void: 
+	if len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
+	if len(line_collider.polygon) > 2: draw_polygon(line_collider.polygon, [Color.RED])
 
 func _ready() -> void: 
 	super._ready()
@@ -44,11 +47,15 @@ func _process(_delta: float) -> void:
 	
 	if line.points != last_points:
 		
-		print("!?")
+		print("wowza")
+		
+		update_drag_points()
 		
 		regenerate_sample()
 		
-		update_drag_points()
+		line_collider.polygon = regenerate_mesh(line.points, line.width * 2.3)
+		
+		#update_drag_points()
 		
 		last_points = line.points
 		
@@ -107,35 +114,36 @@ func regenerate_sample() -> void:
 	regenerate_mesh()
 
 ## Regenerate the mesh.
-func regenerate_mesh() -> Array[Vector2]:
+func regenerate_mesh(from_points := sample_points, width := line.width * 2) -> Array[Vector2]:
 	# Store the two sides of the line seperately.
 	var a:Array[Vector2]
 	var b:Array[Vector2]
 	
-	for i in len(sample_points):
+	for i in len(from_points):
 		
-		var point = sample_points[i]
+		var point = from_points[i]
 		
 		# Get the two line.points surrounding this one, and get the direction between them.
 		
-		var dir_a = sample_points[max(i - 1, 0)]
-		var dir_b = sample_points[min(i + 1, len(sample_points) - 1)]
+		var dir_a = from_points[max(i - 1, 0)]
+		var dir_b = from_points[min(i + 1, len(from_points) - 1)]
 		
 		var dir = dir_a.direction_to(dir_b)
 	
 		# Note that these numbers are usually divided by 2. Doubled for easier selection.
-		a.append(point + Vector2(-dir.y, dir.x) * line.width)
-		b.append(point + Vector2(dir.y, -dir.x) * line.width)
+		a.append(point + Vector2(-dir.y, dir.x) * width / 2)
+		b.append(point + Vector2(dir.y, -dir.x) * width / 2)
 	
 	# Reverse one side so they'll be continous.
 	b.reverse()
 	
 	# Set the sample mesh to the combined arrays.
-	sample_mesh = a + b
+	if from_points == sample_points:
+		sample_mesh = a + b
+		
+		spline_collider.polygon = sample_mesh
 	
-	drag_area_collider.polygon = sample_mesh
-	
-	return sample_mesh
+	return a + b
 
 ## -- Placeholder Functionality -- ##
 
@@ -144,7 +152,6 @@ const DRAG_POINT_SCENE := preload("res://DragPoint.tscn")
 func update_drag_points() -> void:
 	
 	# Shave off any extra points.
-	print(line.points.size(), " v ", drag_points.size())
 	while line.points.size() < drag_points.size():
 		var back:DragPoint = drag_points.pop_back()
 		if back: queue_free()
@@ -169,11 +176,33 @@ func update_point_position(i:int):
 # Adding new points between existing ones.
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	
-	if event is InputEventMouseButton: if event.double_click:
-		print("!!")
-		print("add a point between the two closest ones?")
-		
-	print("?")
-	super._input_event(_viewport, event, _shape_idx)
+	
+	#print(drag_area.shape_owner_get_owner(drag_area.shape_find_owner(_shape_idx)))
+	
+	#print(_shape_idx)
+	if event is InputEventMouseButton: 
+		match drag_area.shape_owner_get_owner(drag_area.shape_find_owner(_shape_idx)):
+			spline_collider:
+				if event.is_pressed():
+					hold_offset = get_local_mouse_position()
+					held = true
+					
+					# Move to the end of the child list. In other words, put on top.
+					get_parent().move_child(self, -1)
+					
+					get_viewport().set_input_as_handled()
+				elif held: 
+					held = false
+			
+					get_viewport().set_input_as_handled()
+			line_collider:
+				print("!?")
+				if event.double_click:
+					print("! @ ", to_local(event.position))
+					print("F: ", line.points)
+					line.points = line.points + PackedVector2Array([get_local_mouse_position()])
+					print("T: ", line.points)
+			_:
+				print("waht.")
 	
 	

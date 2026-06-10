@@ -10,7 +10,7 @@ class_name ScenePlaceholder extends Node2D
 ## Create the actual version of the scene.
 #@abstract func create_instance() -> Node
 
-@onready var drag_area := $DragArea
+@onready var drag_area:Area2D = $DragArea
 
 var held := false
 var hold_offset:Vector2
@@ -22,7 +22,6 @@ func _process(_delta: float) -> void:
 	if held: global_position = get_global_mouse_position() - hold_offset
 
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	print("!")
 	if event is InputEventMouseButton:
 			if event.is_pressed():
 				hold_offset = get_local_mouse_position()
