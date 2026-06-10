@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dawdyjjs3mn1f"
+path="res://.godot/imported/Portal Sound-004.wav-3fc0058d089a460df7aa34a263162a25.sample"
+
+[deps]
+
+source_file="res://SFX/Portal Sound-004.wav"
+dest_files=["res://.godot/imported/Portal Sound-004.wav-3fc0058d089a460df7aa34a263162a25.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
