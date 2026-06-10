@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://df3sty4wpm85y" path="res://Scripts/ComboDriver.gd" id="4_dewec"]
 [ext_resource type="Script" uid="uid://bbl15es03g582" path="res://Scripts/Trail.gd" id="5_5ixxa"]
 [ext_resource type="Environment" uid="uid://bol5ovnngau3v" path="res://Assets/Resources/Environment.tres" id="5_nn08x"]
-[ext_resource type="AudioStream" uid="uid://duwaaockkn7rh" path="res://SFX/Jump-001.wav" id="6_bhhdu"]
-[ext_resource type="AudioStream" uid="uid://d2dhv3l6yesrs" path="res://SFX/Jump-002.wav" id="7_megsn"]
-[ext_resource type="AudioStream" uid="uid://cq808bsxdko83" path="res://SFX/Jump-003.wav" id="8_yoq75"]
+[ext_resource type="AudioStream" uid="uid://duwaaockkn7rh" path="res://SFX/In-Game/Jump-001.wav" id="6_bhhdu"]
+[ext_resource type="AudioStream" uid="uid://d2dhv3l6yesrs" path="res://SFX/In-Game/Jump-002.wav" id="7_megsn"]
+[ext_resource type="AudioStream" uid="uid://cq808bsxdko83" path="res://SFX/In-Game/Jump-003.wav" id="8_yoq75"]
 
 [sub_resource type="Curve" id="Curve_nn08x"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.1, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]

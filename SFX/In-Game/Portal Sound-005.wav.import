@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b67nd82knlnhm"
-path="res://.godot/imported/Portal Sound-005.wav-5127ea6c473ea768d7f124cf330d242f.sample"
+path="res://.godot/imported/Portal Sound-005.wav-5769d7a32c1a709a6de3fc1ae4a7a869.sample"
 
 [deps]
 
-source_file="res://SFX/Portal Sound-005.wav"
-dest_files=["res://.godot/imported/Portal Sound-005.wav-5127ea6c473ea768d7f124cf330d242f.sample"]
+source_file="res://SFX/In-Game/Portal Sound-005.wav"
+dest_files=["res://.godot/imported/Portal Sound-005.wav-5769d7a32c1a709a6de3fc1ae4a7a869.sample"]
 
 [params]
 

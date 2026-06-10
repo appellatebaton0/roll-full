@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cr6jsoibghw0x"
-path="res://.godot/imported/Dash sped up with verb.wav-667645330c8f7ca16e110c375a39e07f.sample"
+path="res://.godot/imported/Dash sped up with verb.wav-4483da6ace76659f0145690ab2fe7487.sample"
 
 [deps]
 
-source_file="res://SFX/Dash sped up with verb.wav"
-dest_files=["res://.godot/imported/Dash sped up with verb.wav-667645330c8f7ca16e110c375a39e07f.sample"]
+source_file="res://SFX/In-Game/Dash sped up with verb.wav"
+dest_files=["res://.godot/imported/Dash sped up with verb.wav-4483da6ace76659f0145690ab2fe7487.sample"]
 
 [params]
 

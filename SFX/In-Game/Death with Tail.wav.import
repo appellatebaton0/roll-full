@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://djwpvpry2snsp"
-path="res://.godot/imported/Death with Tail.wav-6aae383177d1aad558e2d324dffc4941.sample"
+path="res://.godot/imported/Death with Tail.wav-91164d8ef23094fede740db550bd90b2.sample"
 
 [deps]
 
-source_file="res://SFX/Death with Tail.wav"
-dest_files=["res://.godot/imported/Death with Tail.wav-6aae383177d1aad558e2d324dffc4941.sample"]
+source_file="res://SFX/In-Game/Death with Tail.wav"
+dest_files=["res://.godot/imported/Death with Tail.wav-91164d8ef23094fede740db550bd90b2.sample"]
 
 [params]
 
