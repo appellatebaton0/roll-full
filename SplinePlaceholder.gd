@@ -18,7 +18,7 @@ var color := Color.WHITE:
 ## Amount depends on seg
 var sample_points:Array[Vector2]
 ## The current mesh based off sample_points and the line width.
-var sample_mesh:Array[Vector2]
+var sample_mesh:PackedVector2Array
 
 var seg := 20.0:
 	set(to):
@@ -114,36 +114,23 @@ func regenerate_sample() -> void:
 	regenerate_mesh()
 
 ## Regenerate the mesh.
-func regenerate_mesh(from_points := sample_points, width := line.width * 2) -> Array[Vector2]:
+func regenerate_mesh(from_points := sample_points, width := line.width * 2) -> PackedVector2Array:
 	# Store the two sides of the line seperately.
-	var a:Array[Vector2]
-	var b:Array[Vector2]
-	
-	for i in len(from_points):
-		
-		var point = from_points[i]
-		
-		# Get the two line.points surrounding this one, and get the direction between them.
-		
-		var dir_a = from_points[max(i - 1, 0)]
-		var dir_b = from_points[min(i + 1, len(from_points) - 1)]
-		
-		var dir = dir_a.direction_to(dir_b)
-	
-		# Note that these numbers are usually divided by 2. Doubled for easier selection.
-		a.append(point + Vector2(-dir.y, dir.x) * width / 2)
-		b.append(point + Vector2(dir.y, -dir.x) * width / 2)
-	
-	# Reverse one side so they'll be continous.
-	b.reverse()
-	
 	# Set the sample mesh to the combined arrays.
-	if from_points == sample_points:
-		sample_mesh = a + b
-		
+	if from_points.size() < 2:
+		# If you try to make the mesh with not-enough points, it crashes everything.
+		sample_mesh = []
+	else:
+		print("MESH UPDATED!")
+		sample_mesh = Geometry2D.offset_polyline(from_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0]
+	
+	if spline_collider and from_points == sample_points:  
+		print("COL UPDATED!")
 		spline_collider.polygon = sample_mesh
 	
-	return a + b
+	print(sample_points)
+	
+	return sample_mesh
 
 ## -- Placeholder Functionality -- ##
 

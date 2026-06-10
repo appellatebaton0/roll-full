@@ -16,7 +16,7 @@ var collision_mesh:CollisionPolygon2D
 ## Amount depends on seg
 @export_storage var sample_points:Array[Vector2]
 ## The current mesh based off sample_points and width.
-@export_storage var sample_mesh:Array[Vector2]
+@export_storage var sample_mesh:PackedVector2Array
 
 @export_range(1, 100, 1.0) var seg := 20.0:
 	set(to):
@@ -100,33 +100,14 @@ func regenerate_sample() -> void:
 	regenerate_mesh()
 
 ## Regenerate the mesh.
-func regenerate_mesh() -> Array[Vector2]:
-	# Store the two sides of the line seperately.
-	var a:Array[Vector2]
-	var b:Array[Vector2]
-	
-	for i in len(sample_points):
-		
-		var point = sample_points[i]
-		
-		# Get the two points surrounding this one, and get the direction between them.
-		
-		var dir_a = sample_points[max(i - 1, 0)]
-		var dir_b = sample_points[min(i + 1, len(sample_points) - 1)]
-		
-		var dir = dir_a.direction_to(dir_b)
-		
-		# Place the mesh points at (width/2) distance from this 
-		# point, perpendicular to the above direction.
-	#
-		a.append(point + Vector2(-dir.y, dir.x) * width / 2)
-		b.append(point + Vector2(dir.y, -dir.x) * width / 2)
-	
-	# Reverse one side so they'll be continous.
-	b.reverse()
+func regenerate_mesh() -> PackedVector2Array:
 	
 	# Set the sample mesh to the combined arrays.
-	sample_mesh = a + b
+	if sample_points.size() < 2:
+		# If you try to make the mesh with not-enough points, it crashes everything.
+		sample_mesh = []
+	else:
+		sample_mesh = Geometry2D.offset_polyline(sample_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0]
 	
 	if collision_mesh:  collision_mesh.polygon = sample_mesh
 	

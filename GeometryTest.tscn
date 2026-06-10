@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://bp7w4qyjj1ftf"]
 
+[ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="1_eilp2"]
+
 [sub_resource type="GDScript" id="GDScript_ywug1"]
 script/source = "@tool
 extends Line2D
 
-var colliders:Array[CollisionPolygon2D]
-
+@export var collider:CollisionPolygon2D
+@export var attempt_holes := false
 
 @export var offset := 0.0:
 	set(to):
@@ -13,112 +15,88 @@ var colliders:Array[CollisionPolygon2D]
 		regenerate.call()
 @export_tool_button(\"REGENERATE\", \"Line2D\") var regenerate = func():
 	
-	var polygons := Geometry2D.offset_polyline(points, offset, Geometry2D.JOIN_SQUARE, Geometry2D.END_BUTT)
+	if not collider: return
 	
-	var fill:PackedVector2Array = PackedVector2Array([Vector2.INF])
-	var used_pass_points:Array[Vector2]
-	for i in polygons.size():
-		print(fill, \" ag \", polygons[i])
-		if fill == PackedVector2Array([Vector2.INF]): # First polygon's the fill
-			fill = polygons[i]
-			print(\"!\")
-			continue
-		print(\"O\")
-		# For all others, make them technically outside the fill with a placeholder point, then clip the polygon.
-		
-		var pass_point = Array(fill)#[0]
-		print(\"UPTP\")
-		print(used_pass_points)
-		var best_pair := Vector2i(-1, -1)
-		var best_dist = INF
-		
-		for i2 in fill.size():
-			for j2 in polygons[i].size():
-				
-				var try_dist := fill[i2].distance_to(polygons[i][j2])
-				
-				if try_dist < best_dist:
-					best_pair = Vector2i(i2, j2)
-					best_dist = try_dist
-		
-		var from = polygons[i][best_pair.y] # Polygon
-		var to = fill[best_pair.x] # Fill
-		to = from + (from.direction_to(to) * from.distance_to(to) * 1.3)
-		
-		pass_point = pass_point[0]
-		used_pass_points.append(pass_point)
-		
-		print(polygons[i], \" v \", fill)
-		
-		var new_polygon := polygons[i]
-		
-		#var outer_point = polygons[i][j] + (polygons[i][j].direction_to(pass_point) * polygons[i][j].distance_to(pass_point))
-		#var inner_point = new_polygon[j]
-		
-		new_polygon.insert(best_pair.y, to)
-		new_polygon.insert(best_pair.y, from + Vector2(0.1, 0.1).rotated(from.direction_to(to).angle()))
-		#+= PackedVector2Array([new_polygon[0] + Vector2(0.001, 0.001).rotated(polygons[i][0].angle_to(pass_point)), outer_point])
-		#
-		
-		print(new_polygon)
-		
-		print(\"CLIP\")
-		polygons[i] = new_polygon
-		print(\"C2 \", Geometry2D.clip_polygons(fill, new_polygon).size())
-		fill = Geometry2D.clip_polygons(fill, new_polygon)[0]
-	polygons[0] = fill
-	print(polygons)
+	if points.size() < 2: 
+		collider.polygon = []
+		return
 	
-	while colliders.size() < polygons.size():
-		var new := CollisionPolygon2D.new()
+	if attempt_holes:
+		var fill:PackedVector2Array = PackedVector2Array([Vector2.INF])
 		
-		new.owner = owner
+		# Figure out what the polygon should be. Make a filled-in outline and cut holes out of it.
+		for polygon in Geometry2D.offset_polyline(points, offset, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT):
+			
+			# First polygon's the fill
+			if fill == PackedVector2Array([Vector2.INF]): 
+				fill = polygon
+				continue
+			
+			
+			# For all others, make them technically outside the fill 
+			# with a placeholder point, then clip the polygon.
+			
+			# Get the pair of points from the hole and fill 
+			# that are closest to each other
+			var best_pair := Vector2i(-1, -1)
+			var best_dist = INF
+			
+			for i2 in fill.size():
+				for j2 in polygon.size():
+					
+					var try_dist := fill[i2].distance_to(polygon[j2])
+					
+					# If this pairs' distance is better, use it instead.
+					if try_dist < best_dist:
+						best_pair = Vector2i(i2, j2)
+						best_dist = try_dist
+			
+			var from := polygon[best_pair.y] # Hole point
+			var to   := fill[best_pair.x]    # Fill point
+			
+			# Push the 'to' point away from the hole point (from), 
+			# so it cuts all the way through.
+			to = from + (from.direction_to(to) * from.distance_to(to) * 1.3)
+			
+			# Add a minor vector to the from, since it'll get skipped if it's 
+			# the same as the point it's copying.
+			from += Vector2(0.001, 0.001).rotated(from.direction_to(to).angle())
+			
+			# Insert the outside point. This functions as a linear cut through the mesh.
+			# This can fail, in which case the space is still filled, but this is an edge case anyway
+			polygon.insert(best_pair.y, to)
+			polygon.insert(best_pair.y, from)
+			
+			# Clip the current hole out of the fill.
+			fill = Geometry2D.clip_polygons(fill, polygon)[0]
 		
-		$StaticBody2D.add_child(new)
-		
-		colliders.append(new)
-	
-	for i in polygons.size():
-		colliders[i].polygon = polygons[i]
-		print(i, \" is \", Geometry2D.is_polygon_clockwise(polygons[i]))
-	
-	
-	#colliders[0].polygon = Geometry2D.exclude_polygons(fill, polygons)
-	
-	for collider in colliders:
-		collider.owner = self
+		collider.polygon = fill
+	else:
+		collider.polygon = Geometry2D.offset_polyline(points, offset, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0]
+
+var lp:PackedVector2Array
+func _process(delta: float) -> void:
+	if lp != points:
+		regenerate.call()
+		lp = points
 "
 
-[node name="GeometryTest" type="Line2D" unique_id=1678746970]
-points = PackedVector2Array(296, 165, 376.901, 26.553284, 559, -28, 689, 6, 716, 116, 542.0515, 176.62283, 415, -88, 683, -81, 471.8735, 142.54568, 462, 153, 689, 201, 520, -156)
+[node name="GeometryTest" type="Line2D" unique_id=1678746970 node_paths=PackedStringArray("collider")]
+points = PackedVector2Array(434.56503, 140.85779, 266.3832, 192.67596, 396.87473, 154.80733, 331.83777, 248.1305, 676.3832, 278.1305, 446.3832, 168.1305, 597.2923, 323.58505, 638.2014, -4.5967636, 441.83777, -21.869484, 891.8377, 137.2214, 360.92865, 316.31232)
 script = SubResource("GDScript_ywug1")
+collider = NodePath("StaticBody2D/@CollisionPolygon2D@65639")
 offset = 5.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1891976590]
 
 [node name="@CollisionPolygon2D@65639" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=902938130]
-polygon = PackedVector2Array(557.1118, -89.28983, 686.3724, -85.91362, 688.86176, -79.92453, 627.7268, -15.193459, 691.5965, 1.5109024, 693.52783, 3.471672, 721.31683, 116.68614, 719.47156, 120.08508, 668.0328, 138.012, 655.687, 142.31464, 651.38385, 133.22444, 651.38385, 133.22443, 660.88086, 129.91463, 710.06006, 112.77518, 684.854, 10.083832, 619.8984, -6.904541, 604.05396, 9.871933, 660.75354, 129.8531, 651.37384, 133.20331, 596.6841, 17.6753, 513.5474, 105.70238, 541.9157, 164.78792, 553.6795, 167.2754, 651.33624, 133.3576, 655.6649, 142.32233, 572.59125, 171.27437, 680.1643, 194.0211, 655.81433, 142.37616, 665.1941, 139.02592, 694.84656, 201.66466, 691.0008, 206.53363, 554.3381, 177.63577, 541.89484, 181.9724, 538.3702, 180.50742, 535.0313, 173.5533, 458.10065, 157.28603, 456.35428, 151.69582, 468.23843, 139.11256, 475.50854, 145.97879, 471.75577, 149.95233, 529.5694, 162.17725, 506.19318, 113.48922, 475.50858, 145.9788, 475.50452, 145.83743, 468.2544, 139.09566, 501.55734, 103.83371, 455.63458, 8.185791, 465.22928, 5.311409, 466.48526, 7.9311523, 465.25107, 5.304878, 465.33255, 5.280472, 508.91156, 96.04687, 589.8806, 10.314949, 599.4614, 0.17057037, 608.86804, -9.789391, 592.75104, -14.004623, 599.32007, 0.17460632, 592.0809, 7.951332, 580.1238, -17.307114, 587.1665, -25.801552, 616.6965, -18.078323, 671.678, -76.29401, 561.9066, -79.16117, 587.0257, -25.788391, 580.09906, -17.313591, 559.09155, -22.807869, 465.20807, 5.2133713, 460.95074, -3.845909, 558.22406, -32.98709, 559.5996, -33.011353, 574.53925, -29.104057, 550.7042, -79.45377, 423.0488, -82.78805, 460.90277, -3.7128754, 465.1856, 5.220291, 452.7252, 9.057388, 380.22372, 30.777397, 300.317, 167.52261, 291.683, 162.47739, 373.0632, 23.210602, 374.55627, 22.036171, 451.25278, -0.94059753, 409.27887, -88.36385, 412.32727, -93.07152, 545.9094, -89.58243, 515.4808, -153.86066, 524.5192, -158.13934)
+polygon = PackedVector2Array(643.8044, -9.12322, 637.43445, 41.97759, 896.86334, 133.69489, 896.81177, 140.82031, 613.1871, 236.49509, 612.4967, 242.03368, 682.30585, 275.42065, 680.1076, 283.4737, 608.1124, 277.205, 601.8646, 327.32635, 595.8967, 329.32578, 539.5005, 271.23087, 516.2226, 269.204, 362.52682, 321.05002, 359.33047, 311.57462, 491.35538, 267.0388, 322.79443, 252.36198, 384.68726, 163.55042, 265.4391, 198.15622, 263.02585, 198.89915, 260.16, 189.3186, 262.5934, 188.61168, 433.0928, 136.07945, 436.03726, 145.63612, 402.0738, 156.09207, 340.8811, 243.89899, 515.0072, 259.06036, 524.5582, 255.83853, 439.8808, 168.61057, 444.7653, 161.8143, 593.05145, 232.73378, 604.04065, 229.02682, 626.51605, 48.72409, 436.01675, -18.62415, 437.88644, -27.23636)
 
-[node name="@CollisionPolygon2D@65641" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1413078004]
-polygon = PackedVector2Array(572.59125, 171.27437, 680.1643, 194.0211, 655.81433, 142.37616, 668.0332, 138.01186, 655.687, 142.31464)
-
-[node name="@CollisionPolygon2D@69444" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=466807391]
-polygon = PackedVector2Array(513.5474, 105.70238, 541.9157, 164.78792, 553.6795, 167.2754, 651.33624, 133.3576, 656.97797, 145.04169, 651.38385, 133.22444, 596.6841, 17.6753)
-
-[node name="@CollisionPolygon2D@107114" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1496692178]
-polygon = PackedVector2Array(475.50858, 145.9788, 475.50452, 145.83743, 466.0574, 137.0527, 475.50854, 145.97879, 471.75577, 149.95233, 529.5694, 162.17725, 506.19318, 113.48922)
-
-[node name="@CollisionPolygon2D@117661" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1591704835]
-polygon = PackedVector2Array(604.05396, 9.87193, 660.75354, 129.8531, 648.5347, 134.21739, 660.88086, 129.91463, 710.06006, 112.77518, 684.854, 10.08383, 619.8984, -6.90454)
-
-[node name="@CollisionPolygon2D@117662" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=87017909]
-polygon = PackedVector2Array(465.20807, 5.213374, 452.7252, 9.057387, 465.33255, 5.28047, 508.91156, 96.04687, 592.09155, 7.97394, 580.1238, -17.30713, 559.09155, -22.80787)
-
-[node name="@CollisionPolygon2D@117663" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=386139912]
-polygon = PackedVector2Array(599.32007, 0.17460892, 589.8806, 10.314948, 599.4614, 0.17057, 608.86804, -9.78939, 592.75104, -14.00462)
-
-[node name="@CollisionPolygon2D@117664" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=95293645]
-polygon = PackedVector2Array(460.90277, -3.712874, 466.48526, 7.931155, 460.95074, -3.84591, 558.22406, -32.98709, 559.5996, -33.01135, 574.53925, -29.10406, 550.7042, -79.45377, 423.0488, -82.78805)
-
-[node name="@CollisionPolygon2D@117665" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1181987882]
-polygon = PackedVector2Array(587.0257, -25.788393, 578.011, -14.758803, 587.1665, -25.80155, 616.6965, -18.07832, 671.678, -76.29401, 561.9066, -79.16117)
+[node name="Spline2D" type="Line2D" parent="." unique_id=193054614]
+position = Vector2(-769.82385, -20.936615)
+points = PackedVector2Array(787.2923, -21.869484, 692.7468, 117.22141, 836.3832, 186.31232, 985.47406, 142.67596, 951.83777, 327.2214, 818.2014, 302.67593, 660.5471, 273.50232)
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("1_eilp2")
+sample_points = Array[Vector2]([Vector2(787.2923, -21.869484), Vector2(785.62866, -4.9626675), Vector2(785.1832, 11.030514), Vector2(785.95593, 26.11006), Vector2(787.94684, 40.275967), Vector2(791.15594, 53.528236), Vector2(795.5832, 65.866875), Vector2(801.22864, 77.29187), Vector2(808.0923, 87.80324), Vector2(816.1741, 97.400955), Vector2(825.47406, 106.08505), Vector2(835.9923, 113.8555), Vector2(847.72864, 120.712326), Vector2(860.68317, 126.6555), Vector2(874.8559, 131.68506), Vector2(890.2468, 135.80096), Vector2(906.8559, 139.00323), Vector2(924.68317, 141.29187), Vector2(943.7286, 142.66687), Vector2(963.99225, 143.12823), Vector2(985.47406, 142.67596), Vector2(975.1185, 159.36893), Vector2(964.14294, 174.99332), Vector2(952.5473, 189.5491), Vector2(940.33154, 203.03629), Vector2(927.4957, 215.45486), Vector2(914.0398, 226.80487), Vector2(899.96375, 237.08629), Vector2(885.2676, 246.29909), Vector2(869.95135, 254.4433), Vector2(854.0151, 261.5189), Vector2(837.45874, 267.5259), Vector2(820.2822, 272.46436), Vector2(802.48566, 276.33417), Vector2(784.069, 279.1354), Vector2(765.0322, 280.86804), Vector2(745.37537, 281.5321), Vector2(725.09845, 281.12753), Vector2(704.2014, 279.6544), Vector2(682.6843, 277.11267), Vector2(660.5471, 273.50232)])
+sample_mesh = PackedVector2Array(792.26825, -21.37984, 790.6218, -4.64779, 790.18677, 10.97204, 790.93805, 25.63326, 792.8641, 39.33741, 795.9525, 52.09138, 800.1927, 63.90866, 805.57874, 74.80867, 812.1127, 84.8151, 819.80566, 93.95112, 828.67633, 102.23432, 838.7469, 109.67403, 850.0378, 116.27064, 862.5655, 122.01799, 876.3402, 126.90629, 891.3674, 130.92493, 907.64825, 134.0639, 925.18195, 136.31487, 943.96576, 137.67097, 963.99646, 138.12703, 988.34344, 137.61444, 991.2913, 142.78345, 979.29205, 162.12611, 968.14764, 177.9908, 956.35944, 192.78833, 943.9267, 206.51508, 930.84985, 219.16687, 917.13, 230.73946, 902.7697, 241.22852, 887.77234, 250.63013, 872.14233, 258.9412, 855.8845, 266.15955, 839.00397, 272.28418, 821.50555, 277.3152, 803.3937, 281.25357, 784.67206, 284.1012, 765.3435, 285.86038, 745.4099, 286.53378, 724.8726, 286.12402, 703.73206, 284.6337, 681.9883, 282.06522, 659.7423, 278.43713, 661.3519, 268.5675, 683.38025, 272.1601, 704.6709, 274.67508, 725.3241, 276.13104, 745.3409, 276.5304, 764.72095, 275.8757, 783.4658, 274.16962, 801.5776, 271.41476, 819.05896, 267.6135, 835.9135, 262.7676, 852.1456, 256.87823, 867.7603, 249.94542, 882.7628, 241.96803, 897.1578, 232.94408, 910.9496, 222.87027, 924.14154, 211.7429, 936.73645, 199.55743, 948.7351, 186.3099, 960.1382, 171.9959, 970.94507, 156.61163, 976.3687, 147.86876, 963.988, 148.12943, 943.4915, 147.66277, 924.18445, 146.26888, 906.0635, 143.94254, 889.1263, 140.677, 873.3716, 136.46382, 858.80084, 131.29303, 845.41943, 125.154, 833.23773, 118.03697, 822.2718, 109.93578, 812.5425, 100.85083, 804.0719, 90.79136, 796.87854, 79.77507, 790.9737, 67.8251, 786.3594, 54.96505, 783.0296, 41.21454, 780.9738, 26.58686, 780.1797, 11.08894, 780.6355, -5.27748, 782.31635, -22.35912)
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
