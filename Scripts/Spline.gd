@@ -1,6 +1,11 @@
 @tool
 class_name Spline2D extends Line2D
 
+@export_tool_button("Force Regenerate") var freg := func():
+	regenerate_sample()
+	
+	print("Coll for ", self, " is ", collision_mesh)
+
 @export var color := Color.WHITE:
 	set(to):
 		color = to
@@ -107,50 +112,50 @@ func regenerate_mesh() -> PackedVector2Array:
 		# If you try to make the mesh with not-enough points, it crashes everything.
 		sample_mesh = []
 	else:
-		sample_mesh = Geometry2D.offset_polyline(sample_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0]
+		sample_mesh = remove_duplicates(Geometry2D.offset_polyline(sample_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0])
 	
 	if collision_mesh:  collision_mesh.polygon = sample_mesh
 	
 	return sample_mesh
 
+func remove_duplicates(array:PackedVector2Array) -> PackedVector2Array:
+	var dict:Dictionary[Vector2, bool]
+	for item in array: dict[item] = false
+	return PackedVector2Array(dict.keys())
+
 func fabricate_collision() -> void:
-	if collision_mesh: return
+	# First, look for any already existing ones.
+	for child in get_children(): if child is StaticBody2D:
+		for grand in child.get_children(): if grand is CollisionPolygon2D:
+			if collision_mesh:
+				grand.queue_free()
+			else:
+				collision_mesh = grand
+	
+	for child in get_children(): if child is StaticBody2D:
+		if collision_mesh.get_parent() != child:
+			child.queue_free()
+	
+	if collision_mesh: 
 		
-		#if Engine.is_editor_hint():
-			#var unre := EditorInterface.get_editor_undo_redo()
-			#unre.create_action("Fabricate Collision")
-			#
-			#var static_body := StaticBody2D.new()
-			#var new_collider = CollisionPolygon2D.new()
-			#new_collider.z_index = -1
-			#
-			#unre.add_do_method(self, "add_child", static_body)
-			#unre.add_undo_method(self, "remove_child", static_body)
-			#
-			#unre.add_do_method(static_body, "add_child", new_collider)
-			#unre.add_undo_method(static_body, "remove_child", new_collider)
-			#
-			#unre.add_do_property(static_body, "collision_layer", collision_layer)
-			#unre.add_do_property(static_body, "collision_mask", collision_mask)
-			#
-			#unre.add_do_property(self, "collision_mesh", new_collider)
-			#unre.add_undo_property(self, "collision_mesh", collision_mesh)
-			#
-			#unre.commit_action()
-			
-			#
-		#else:
+		collision_mesh.owner = owner
+		collision_mesh.get_parent().owner = owner
 		
-			
-	print('fabbd collision')
+		collision_mesh.name = "CM"
+		collision_mesh.get_parent().name = "SB"
+		
+		
+		
+		return
+	
 	var static_body := StaticBody2D.new()
 	collision_mesh = CollisionPolygon2D.new()
 
 	add_child(static_body)
 	static_body.add_child(collision_mesh)
 	
-	#static_body.owner = owner
-	#collision_mesh.owner = owner
+	static_body.owner = owner
+	collision_mesh.owner = owner
 
 	static_body.collision_layer = collision_layer
 	static_body.collision_mask  = collision_mask
