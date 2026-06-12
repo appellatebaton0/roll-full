@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://rc6mnc48buv3"]
 
+[ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="1_ix0ds"]
+
 [sub_resource type="Gradient" id="Gradient_8to7m"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 1, 1, 1)
@@ -37,10 +39,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 23
 current_tab = 0
-tab_count = 3
+tab_count = 2
 tab_0/title = "Layout"
-tab_1/title = "Music"
-tab_2/title = "Thresholds"
+tab_1/title = "Settings"
 
 [node name="TextEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1672414591]
 layout_mode = 2
@@ -80,134 +81,136 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
-size = Vector2i(938, 784)
+size = Vector2i(842, 784)
 render_target_update_mode = 4
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout" unique_id=2056732920]
+[node name="Panels" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout" unique_id=2056732920]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Zoom" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2" unique_id=739645308]
+[node name="Zoom" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=739645308]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Zoom" unique_id=908599643]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom" unique_id=908599643]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Zoom/MarginContainer" unique_id=265242257]
+[node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer" unique_id=265242257]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Zoom/MarginContainer/HBoxContainer2" unique_id=535317424]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer/HBoxContainer2" unique_id=535317424]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Zoom/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=610934334]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=610934334]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Zoom"
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Zoom/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=1603775598]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=1603775598]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Zoom/MarginContainer/HBoxContainer2" unique_id=266113659]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer/HBoxContainer2" unique_id=266113659]
 layout_mode = 2
 
-[node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2" unique_id=1914108937]
+[node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1914108937]
+visible = false
 custom_minimum_size = Vector2(82, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs" unique_id=371956867]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs" unique_id=371956867]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer" unique_id=33763690]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer" unique_id=33763690]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2" unique_id=925573446]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2" unique_id=925573446]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Prefabs"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2" unique_id=2116694890]
+[node name="VBoxContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2" unique_id=2116694890]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="TextureRect" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=908550186]
+[node name="TextureRect" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=908550186]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_ix0ds")
 
-[node name="TextureRect2" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=199696258]
+[node name="TextureRect2" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=199696258]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_ix0ds")
 
-[node name="TextureRect3" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1479894801]
+[node name="TextureRect3" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1479894801]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_ix0ds")
 
-[node name="TextureRect4" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1675332113]
+[node name="TextureRect4" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1675332113]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_ix0ds")
 
-[node name="TextureRect5" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=467468938]
+[node name="TextureRect5" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=467468938]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_ix0ds")
 
-[node name="TextureRect6" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1475714807]
+[node name="TextureRect6" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1475714807]
 layout_mode = 2
 texture_normal = SubResource("GradientTexture2D_ix0ds")
 
-[node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2" unique_id=490619007]
+[node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=490619007]
+visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection" unique_id=415208082]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection" unique_id=415208082]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer" unique_id=914008861]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer" unique_id=914008861]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer" unique_id=513759067]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=513759067]
 layout_mode = 2
 theme_override_font_sizes/font_size = 17
 text = "Currently Selected"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer" unique_id=471882614]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=471882614]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Spike"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer" unique_id=49980051]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=49980051]
 layout_mode = 2
 
-[node name="Scale" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer" unique_id=705369110]
+[node name="Scale" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=705369110]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer/Scale" unique_id=1275629880]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Scale" unique_id=1275629880]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Scale"
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer/Scale" unique_id=704061358]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Scale" unique_id=704061358]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 0.05
@@ -216,48 +219,49 @@ step = 0.01
 value = 1.0
 alignment = 2
 
-[node name="Rotation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer" unique_id=1931287104]
+[node name="Rotation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=1931287104]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer/Rotation" unique_id=298384468]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Rotation" unique_id=298384468]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Angle"
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer/Rotation" unique_id=1778107834]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Rotation" unique_id=1778107834]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 360.0
 step = 0.01
 alignment = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Selection/MarginContainer/HBoxContainer" unique_id=500896786]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=500896786]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Delete"
 
-[node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2" unique_id=1482672068]
+[node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
+visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Speed" unique_id=9279519]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Speed/MarginContainer" unique_id=1790650457]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer" unique_id=1790650457]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Speed/MarginContainer/VBoxContainer" unique_id=799089367]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=799089367]
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
 text = "Base Player Speed"
 horizontal_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/Speed/MarginContainer/VBoxContainer" unique_id=1335665211]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=1335665211]
 layout_mode = 2
 max_value = 64.0
 step = 0.2
@@ -265,28 +269,348 @@ value = 24.0
 alignment = 1
 suffix = "m/s"
 
-[node name="UndoRedo" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2" unique_id=64704977]
+[node name="UndoRedo" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=64704977]
+visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/UndoRedo" unique_id=1625892893]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo" unique_id=1625892893]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/UndoRedo/MarginContainer" unique_id=407217953]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer" unique_id=407217953]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/UndoRedo/MarginContainer/HBoxContainer2" unique_id=1394859605]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2" unique_id=1394859605]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Undo"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/VBoxContainer2/UndoRedo/MarginContainer/HBoxContainer2" unique_id=522207802]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2" unique_id=522207802]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Redo
 "
+
+[node name="MusicTracks" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=304241974]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks" unique_id=1473798126]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer" unique_id=350661940]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=131529554]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer" unique_id=686288387]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Music Tracks"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1945204972]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "?"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=90644755]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=10204013]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=989121498]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1: "
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=487422225]
+layout_mode = 2
+size_flags_horizontal = 3
+text_overrun_behavior = 5
+selected = 0
+item_count = 1
+popup/item_0/id = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=1372678659]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=543231664]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "2: "
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=953858157]
+layout_mode = 2
+size_flags_horizontal = 3
+text_overrun_behavior = 5
+selected = 0
+item_count = 1
+popup/item_0/id = 0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=534713035]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1622910852]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "3: "
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1163461189]
+layout_mode = 2
+size_flags_horizontal = 3
+text_overrun_behavior = 5
+selected = 0
+item_count = 1
+popup/item_0/id = 0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=99927042]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1632506088]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "4: "
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1550953492]
+layout_mode = 2
+size_flags_horizontal = 3
+text_overrun_behavior = 5
+selected = 0
+item_count = 1
+popup/item_0/id = 0
+
+[node name="CustomMusic" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1139733357]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic" unique_id=895334028]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer" unique_id=1313823357]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer" unique_id=1440927242]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1992483244]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Add Custom Music"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer/HBoxContainer" unique_id=468462906]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "R"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1629078384]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "?"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer" unique_id=883712596]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer" unique_id=2053295959]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "OPEN MUSIC FOLDER"
+
+[node name="Ranking" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=655966081]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking" unique_id=1077199505]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer" unique_id=1477051922]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=1475534944]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1893349352]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Rank Thresholds"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer" unique_id=4679710]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "?"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=963545738]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=1021044302]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1020790459]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ix0ds")
+theme_override_font_sizes/font_size = 30
+text = "S:"
+
+[node name="OptionButton" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1689865699]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 3.0
+prefix = "<"
+suffix = "sec"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=1678454090]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=704384851]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ix0ds")
+theme_override_font_sizes/font_size = 30
+text = "A:"
+
+[node name="OptionButton" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=2058928537]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 3.0
+prefix = "<"
+suffix = "sec"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=644461921]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1530593918]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ix0ds")
+theme_override_font_sizes/font_size = 30
+text = "B:"
+
+[node name="OptionButton" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=526874933]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 3.0
+prefix = "<"
+suffix = "sec"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=649974703]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=394793745]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ix0ds")
+theme_override_font_sizes/font_size = 30
+text = "C:"
+
+[node name="OptionButton" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=846236001]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 3.0
+prefix = "<"
+suffix = "sec"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=1633416417]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=777765158]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ix0ds")
+theme_override_font_sizes/font_size = 30
+text = "D:"
+
+[node name="OptionButton" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=1950091627]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 3.0
+prefix = "<"
+suffix = "sec"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=179323260]
+custom_minimum_size = Vector2(250, 31)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer7" unique_id=125916954]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ix0ds")
+theme_override_font_sizes/font_size = 30
+text = "F:"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer7" unique_id=1978388422]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "> 3 sec"
+
+[node name="Score" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=457436277]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score" unique_id=1666018760]
+custom_minimum_size = Vector2(0, 91)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer" unique_id=766424164]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer/VBoxContainer" unique_id=246116924]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer/VBoxContainer/HBoxContainer" unique_id=598675470]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Score Threshold"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer/VBoxContainer/HBoxContainer" unique_id=681039389]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "?"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer/VBoxContainer" unique_id=240259196]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer/VBoxContainer" unique_id=1491025411]
+layout_mode = 2
+max_value = 3000.0
+value = 1000.0
+alignment = 1
