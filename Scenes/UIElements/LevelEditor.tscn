@@ -214,7 +214,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
-size = Vector2i(832, 773)
+size = Vector2i(832, 879)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1063531865]
@@ -304,10 +304,17 @@ text = "Zoom"
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=1603775598]
 layout_mode = 2
 size_flags_horizontal = 3
+min_value = 0.01
+max_value = 3.0
+step = 0.01
+value = 1.64
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer/HBoxContainer2" unique_id=266113659]
 layout_mode = 2
-value = 50.0
+min_value = 0.01
+max_value = 3.0
+step = 0.01
+value = 1.64
 
 [node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1914108937]
 visible = false
@@ -444,7 +451,6 @@ theme_override_font_sizes/font_size = 24
 text = "Delete"
 
 [node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
