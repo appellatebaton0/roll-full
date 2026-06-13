@@ -2,7 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="1_klpvh"]
 [ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="2_f4itv"]
+[ext_resource type="Script" uid="uid://4wvdj0psapvi" path="res://Scripts/UI/LevelEditor.gd" id="2_mxptv"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_n0a1l"]
+[ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="3_mxptv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4itv"]
 bg_color = Color(0.047058824, 0.07450981, 0.12156863, 1)
@@ -56,21 +58,6 @@ colors = PackedColorArray(0.1312, 0.15008003, 0.32, 1)
 gradient = SubResource("Gradient_f4itv")
 width = 4096
 height = 4096
-
-[sub_resource type="GDScript" id="GDScript_n0a1l"]
-script/source = "extends Camera
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	global_position += Vector2.LEFT * 20 / zoom 
-	zoom = Vector2.ONE * clamp(sin(global_position.x / 20 * delta), 0.01, 2.0)
-"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23bdm"]
 content_margin_left = 3.0
@@ -138,6 +125,7 @@ offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_klpvh")
+script = ExtResource("2_mxptv")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=685802339]
 layout_mode = 2
@@ -164,7 +152,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/tab_separation = 7
 theme_override_font_sizes/font_size = 23
-current_tab = 0
+current_tab = 1
 clip_tabs = false
 tab_count = 2
 tab_0/title = "Layout"
@@ -226,7 +214,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
-size = Vector2i(928, 773)
+size = Vector2i(832, 773)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1063531865]
@@ -240,8 +228,8 @@ position = Vector2(4954, 2984)
 texture = SubResource("GradientTexture2D_mxptv")
 
 [node name="Camera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1743064898]
-zoom = Vector2(0.01, 0.01)
-script = SubResource("GDScript_n0a1l")
+zoom = Vector2(2, 2)
+script = ExtResource("3_mxptv")
 metadata/_custom_type_script = "uid://c26v4q7ayojpm"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2" unique_id=253778851]
@@ -322,6 +310,7 @@ layout_mode = 2
 value = 50.0
 
 [node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1914108937]
+visible = false
 custom_minimum_size = Vector2(82, 0)
 layout_mode = 2
 
@@ -386,6 +375,7 @@ texture_normal = ExtResource("2_f4itv")
 stretch_mode = 5
 
 [node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=490619007]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection" unique_id=415208082]
@@ -454,6 +444,7 @@ theme_override_font_sizes/font_size = 24
 text = "Delete"
 
 [node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
@@ -485,6 +476,7 @@ alignment = 1
 suffix = "m/s"
 
 [node name="UndoRedo" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=64704977]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
@@ -513,7 +505,6 @@ text = "Redo
 "
 
 [node name="MusicTracks" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=304241974]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks" unique_id=1473798126]
@@ -617,7 +608,6 @@ item_count = 1
 popup/item_0/id = 0
 
 [node name="CustomMusic" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1139733357]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic" unique_id=895334028]
@@ -660,7 +650,6 @@ theme_override_font_sizes/font_size = 20
 text = "OPEN MUSIC FOLDER"
 
 [node name="Ranking" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=655966081]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking" unique_id=1077199505]
@@ -808,7 +797,6 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="Score" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=457436277]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score" unique_id=1666018760]
