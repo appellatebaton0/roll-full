@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvrojh68oxtgv"]
 
-[ext_resource type="PackedScene" uid="uid://drts765mrn5hg" path="res://TestPlaceholder.tscn" id="1_tpxhb"]
-[ext_resource type="PackedScene" uid="uid://dud3ciy0cf7g6" path="res://SplinePlaceholder.tscn" id="2_h06sq"]
+[ext_resource type="PackedScene" uid="uid://drts765mrn5hg" path="res://Scenes/Placeholders/SpikePlaceholder.tscn" id="1_tpxhb"]
+[ext_resource type="PackedScene" uid="uid://dud3ciy0cf7g6" path="res://Scenes/Placeholders/SplinePlaceholder.tscn" id="2_h06sq"]
 
 [sub_resource type="Gradient" id="Gradient_h06sq"]
 

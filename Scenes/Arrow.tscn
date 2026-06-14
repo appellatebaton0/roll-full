@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://g06uppw7h0ok"]
+
+[ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="1_5mg4u"]
+
+[node name="Arrow" type="Sprite2D" unique_id=1166528215]
+modulate = Color(0.734, 1.56, 0.94, 1)
+texture = ExtResource("1_5mg4u")

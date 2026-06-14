@@ -54,7 +54,7 @@ var working_data:LevelData:
 @onready var f_rank_label := $MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer7/Label2
 
 ## Custom Music Folder Module
-@onready var open_music_folder_button := $MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer/Button
+@onready var open_music_folder_button := $MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/Button
 
 
 func _ready() -> void:
@@ -74,7 +74,7 @@ func _ready() -> void:
 	## Hook up the zoom module to update the camera and itself.
 	zoom_slider  .value_changed.connect(update_zoom_to)
 	zoom_spin_box.value_changed.connect(update_zoom_to)
-	update_zoom_to(viewport_camera.zoom.x)
+	update_zoom_to(0.4)
 	
 	## Change the base speed w/ the spinbox.
 	player_speed_spin_box.value_changed.connect(func(to:float):
@@ -136,6 +136,10 @@ func _viewport_gui_input(event: InputEvent) -> void:
 				MOUSE_BUTTON_WHEEL_RIGHT: direction = Vector2.RIGHT
 				_: return
 			
+			if event.ctrl_pressed:
+				zoom_slider.value -= direction.y * 0.03
+				return
+			
 			if event.shift_pressed: direction = direction.rotated(PI / 2)
 			
 			viewport_camera.position += direction * 15 / viewport_camera.zoom
@@ -144,3 +148,14 @@ func update_zoom_to(value:float):
 	viewport_camera.zoom = Vector2.ONE * value
 	if zoom_slider.value   != value: zoom_slider.value   = value
 	if zoom_spin_box.value != value: zoom_spin_box.value = value
+
+
+func _on_prefab_button_pressed(scene_path: StringName) -> void:
+	
+	print(scene_path)
+	var new:ScenePlaceholder = load(scene_path).instantiate()
+	
+	print(" -> ", new)
+	
+	viewport.add_child(new)
+	new.position = viewport_camera.position

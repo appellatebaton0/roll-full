@@ -20,6 +20,8 @@ var sample_points:Array[Vector2]
 ## The current mesh based off sample_points and the line width.
 var sample_mesh:PackedVector2Array
 
+@export var width := 40.0
+
 var seg := 20.0:
 	set(to):
 		seg = to
@@ -27,14 +29,15 @@ var seg := 20.0:
 		regenerate_sample()
 		queue_redraw()
 
-func _draw() -> void: 
-	if len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
-	if len(line_collider.polygon) > 2: draw_polygon(line_collider.polygon, [Color.RED])
+func _draw() -> void:
+	print(sample_mesh, color)
+	if len(sample_mesh) > 2: 
+		print("WE DRAWING A GON W THIS ONE")
+		draw_polygon(sample_mesh, [color])
+	#if len(line_collider.polygon) > 2: draw_polygon(line_collider.polygon, [Color.RED])
 
 func _ready() -> void: 
 	super._ready()
-	
-	line.default_color = Color(0.17, 0.17, 0.17)
 	
 	regenerate_sample()
 	queue_redraw()
@@ -47,13 +50,11 @@ func _process(_delta: float) -> void:
 	
 	if line.points != last_points:
 		
-		print("wowza")
-		
 		update_drag_points()
 		
 		regenerate_sample()
 		
-		line_collider.polygon = regenerate_mesh(line.points, line.width * 2.3)
+		line_collider.polygon = regenerate_mesh(line.points, line.width)
 		
 		#update_drag_points()
 		
@@ -111,26 +112,29 @@ func regenerate_sample() -> void:
 		
 		if not sample_points.has(point): sample_points.append(point)
 	
+	print("P\n",sample_points,"\n")
+	
 	regenerate_mesh()
 
 ## Regenerate the mesh.
-func regenerate_mesh(from_points := sample_points, width := line.width * 2) -> PackedVector2Array:
+func regenerate_mesh(from_points := sample_points, mesh_width := width) -> PackedVector2Array:
 	# Store the two sides of the line seperately.
 	# Set the sample mesh to the combined arrays.
+	var result:PackedVector2Array
+	
 	if from_points.size() < 2:
 		# If you try to make the mesh with not-enough points, it crashes everything.
-		sample_mesh = []
+		result = []
 	else:
-		print("MESH UPDATED!")
-		sample_mesh = Geometry2D.offset_polyline(from_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0]
+		result = Geometry2D.offset_polyline(from_points, mesh_width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0]
 	
-	if spline_collider and from_points == sample_points:  
-		print("COL UPDATED!")
-		spline_collider.polygon = sample_mesh
+	if from_points == sample_points:  
+		if spline_collider:
+			spline_collider.polygon = result
+		
+		sample_mesh = result
 	
-	print(sample_points)
-	
-	return sample_mesh
+	return result
 
 ## -- Placeholder Functionality -- ##
 
@@ -163,10 +167,6 @@ func update_point_position(i:int):
 # Adding new points between existing ones.
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	
-	
-	#print(drag_area.shape_owner_get_owner(drag_area.shape_find_owner(_shape_idx)))
-	
-	#print(_shape_idx)
 	if event is InputEventMouseButton: 
 		match drag_area.shape_owner_get_owner(drag_area.shape_find_owner(_shape_idx)):
 			spline_collider:
@@ -182,14 +182,14 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 					held = false
 			
 					get_viewport().set_input_as_handled()
-			line_collider:
-				print("!?")
-				if event.double_click:
-					print("! @ ", to_local(event.position))
-					print("F: ", line.points)
-					line.points = line.points + PackedVector2Array([get_local_mouse_position()])
-					print("T: ", line.points)
-			_:
-				print("waht.")
+			#line_collider:
+				##print("!?")
+				#if event.double_click:
+					##print("! @ ", to_local(event.position))
+					##print("F: ", line.points)
+					#line.points = line.points + PackedVector2Array([get_local_mouse_position()])
+					##print("T: ", line.points)
+			#_: pass
+				##print("waht.")
 	
 	

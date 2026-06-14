@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b0t8bey7yj02y"]
 
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="1_klpvh"]
-[ext_resource type="Texture2D" uid="uid://ceyt378pk3fg5" path="res://Assets/Textures/Ring.png" id="2_f4itv"]
 [ext_resource type="Script" uid="uid://4wvdj0psapvi" path="res://Scripts/UI/LevelEditor.gd" id="2_mxptv"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_n0a1l"]
 [ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="3_mxptv"]
@@ -48,7 +47,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0a1l"]
 shader = SubResource("Shader_klpvh")
 shader_parameter/color = Color(0.09411765, 0.10980392, 0.23921569, 1)
-shader_parameter/multiplier = 300.0
+shader_parameter/multiplier = 75.0
 
 [sub_resource type="Gradient" id="Gradient_f4itv"]
 offsets = PackedFloat32Array(1)
@@ -116,12 +115,15 @@ Button/styles/pressed = SubResource("StyleBoxFlat_tc5c5")
 HSeparator/styles/separator = SubResource("StyleBoxLine_mwymk")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_w7vm6")
 
+[sub_resource type="Gradient" id="Gradient_mxptv"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_23bdm"]
+gradient = SubResource("Gradient_mxptv")
+
 [node name="LevelEditor" type="PanelContainer" unique_id=1351889632]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_klpvh")
@@ -214,7 +216,8 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
-size = Vector2i(832, 879)
+physics_object_picking = true
+size = Vector2i(935, 773)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1063531865]
@@ -224,11 +227,11 @@ repeat_times = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport/Parallax2D" unique_id=996162394]
 material = SubResource("ShaderMaterial_n0a1l")
-position = Vector2(4954, 2984)
+position = Vector2(4986, 2962)
 texture = SubResource("GradientTexture2D_mxptv")
 
 [node name="Camera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1743064898]
-zoom = Vector2(2, 2)
+zoom = Vector2(0.4, 0.4)
 script = ExtResource("3_mxptv")
 metadata/_custom_type_script = "uid://c26v4q7ayojpm"
 
@@ -279,7 +282,6 @@ theme_override_constants/separation = 10
 [node name="Zoom" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=739645308]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom" unique_id=908599643]
 layout_mode = 2
@@ -305,28 +307,27 @@ text = "Zoom"
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 0.01
-max_value = 3.0
+max_value = 1.0
 step = 0.01
-value = 1.64
+value = 1.0
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Layout/Panels/Zoom/MarginContainer/HBoxContainer2" unique_id=266113659]
 layout_mode = 2
 min_value = 0.01
-max_value = 3.0
+max_value = 1.0
 step = 0.01
-value = 1.64
+value = 0.75
 
 [node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1914108937]
-visible = false
 custom_minimum_size = Vector2(82, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs" unique_id=371956867]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer" unique_id=33763690]
 layout_mode = 2
@@ -341,49 +342,50 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2" unique_id=2116694890]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
 columns = 2
 
 [node name="TextureRect" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=908550186]
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("2_f4itv")
+texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
+metadata/ScenePath = &""
 
 [node name="TextureRect2" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=199696258]
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("2_f4itv")
+texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
 
 [node name="TextureRect3" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1479894801]
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("2_f4itv")
+texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
 
 [node name="TextureRect4" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1675332113]
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("2_f4itv")
+texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
 
 [node name="TextureRect5" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=467468938]
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("2_f4itv")
+texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
 
 [node name="TextureRect6" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1475714807]
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("2_f4itv")
+texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
 
 [node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=490619007]
-visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection" unique_id=415208082]
 layout_mode = 2
@@ -411,16 +413,20 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=49980051]
 layout_mode = 2
 
-[node name="Scale" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=705369110]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=245534447]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scale" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer" unique_id=705369110]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Scale" unique_id=1275629880]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer/Scale" unique_id=1275629880]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Scale"
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Scale" unique_id=704061358]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer/Scale" unique_id=704061358]
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 0.05
@@ -429,16 +435,16 @@ step = 0.01
 value = 1.0
 alignment = 2
 
-[node name="Rotation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=1931287104]
+[node name="Rotation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1931287104]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Rotation" unique_id=298384468]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer/Rotation" unique_id=298384468]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Angle"
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Rotation" unique_id=1778107834]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer/Rotation" unique_id=1778107834]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 360.0
@@ -450,39 +456,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Delete"
 
-[node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer" unique_id=1790650457]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=799089367]
-layout_mode = 2
-theme_override_font_sizes/font_size = 23
-text = "Base Player Speed"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=1472964826]
-layout_mode = 2
-
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=1335665211]
-layout_mode = 2
-max_value = 64.0
-step = 0.2
-value = 24.0
-alignment = 1
-suffix = "m/s"
-
 [node name="UndoRedo" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=64704977]
-visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
@@ -510,7 +484,40 @@ theme_override_font_sizes/font_size = 24
 text = "Redo
 "
 
+[node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer" unique_id=1790650457]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=799089367]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Base Player Speed"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=1472964826]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed/MarginContainer/VBoxContainer" unique_id=1335665211]
+layout_mode = 2
+max_value = 64.0
+step = 0.2
+value = 24.0
+alignment = 1
+suffix = "m/s"
+
 [node name="MusicTracks" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=304241974]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks" unique_id=1473798126]
@@ -522,7 +529,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer" unique_id=350661940]
 layout_mode = 2
-theme_override_constants/separation = 9
+theme_override_constants/separation = 7
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=131529554]
 layout_mode = 2
@@ -536,22 +543,31 @@ text = "Music Tracks"
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1945204972]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+text = "R"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1746761103]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
 text = "?"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=90644755]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=10204013]
-custom_minimum_size = Vector2(250, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=825440239]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=10204013]
+custom_minimum_size = Vector2(250, 26)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=989121498]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=989121498]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "1: "
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=487422225]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=487422225]
 layout_mode = 2
 size_flags_horizontal = 3
 text_overrun_behavior = 5
@@ -559,17 +575,17 @@ selected = 0
 item_count = 1
 popup/item_0/id = 0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=1372678659]
-custom_minimum_size = Vector2(250, 0)
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1372678659]
+custom_minimum_size = Vector2(250, 26)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=543231664]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=543231664]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "2: "
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=953858157]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=953858157]
 layout_mode = 2
 size_flags_horizontal = 3
 text_overrun_behavior = 5
@@ -577,17 +593,17 @@ selected = 0
 item_count = 1
 popup/item_0/id = 0
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=534713035]
-custom_minimum_size = Vector2(250, 0)
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=534713035]
+custom_minimum_size = Vector2(250, 26)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1622910852]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4" unique_id=1622910852]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "3: "
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1163461189]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4" unique_id=1163461189]
 layout_mode = 2
 size_flags_horizontal = 3
 text_overrun_behavior = 5
@@ -595,17 +611,17 @@ selected = 0
 item_count = 1
 popup/item_0/id = 0
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=99927042]
-custom_minimum_size = Vector2(250, 0)
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=99927042]
+custom_minimum_size = Vector2(250, 26)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1632506088]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=1632506088]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "4: "
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1550953492]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=1550953492]
 layout_mode = 2
 size_flags_horizontal = 3
 text_overrun_behavior = 5
@@ -613,49 +629,14 @@ selected = 0
 item_count = 1
 popup/item_0/id = 0
 
-[node name="CustomMusic" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1139733357]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic" unique_id=895334028]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer" unique_id=1313823357]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer" unique_id=1440927242]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1992483244]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 23
-text = "Add Custom Music"
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer/HBoxContainer" unique_id=468462906]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-text = "R"
-
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1629078384]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-text = "?"
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer" unique_id=883712596]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/CustomMusic/MarginContainer/VBoxContainer" unique_id=2053295959]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=2053295959]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "OPEN MUSIC FOLDER"
 
 [node name="Ranking" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=655966081]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking" unique_id=1077199505]
@@ -667,7 +648,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer" unique_id=1477051922]
 layout_mode = 2
-theme_override_constants/separation = 11
+theme_override_constants/separation = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer" unique_id=1475534944]
 layout_mode = 2
@@ -803,6 +784,7 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="Score" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=457436277]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score" unique_id=1666018760]
@@ -815,7 +797,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer" unique_id=766424164]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score/MarginContainer/VBoxContainer" unique_id=246116924]
 layout_mode = 2
@@ -840,3 +822,10 @@ max_value = 3000.0
 value = 1000.0
 alignment = 1
 custom_arrow_step = 20.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SplinePlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect2" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SpikePlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect3" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/CirclePlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect4" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/JumpIndPlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect5" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/DashIndPlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect6" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/ArrowPlaceholder.tscn"]]

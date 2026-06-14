@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b6x32bb8w1ibc"]
+
+[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://ScenePlaceholder.gd" id="1_2mpe1"]
+[ext_resource type="PackedScene" uid="uid://g06uppw7h0ok" path="res://Scenes/Arrow.tscn" id="2_awx86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jx0q"]
+size = Vector2(257, 161)
+
+[node name="ArrowPlaceholder" type="Node2D" unique_id=1371647314]
+script = ExtResource("1_2mpe1")
+placeholds = ExtResource("2_awx86")
+
+[node name="Arrow" parent="." unique_id=1166528215 instance=ExtResource("2_awx86")]
+
+[node name="DragArea" type="Area2D" parent="." unique_id=573750134]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea" unique_id=245094717]
+shape = SubResource("RectangleShape2D_5jx0q")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)

@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://drts765mrn5hg"]
 
 [ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://ScenePlaceholder.gd" id="1_27n5c"]
+[ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="2_4txyq"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_xuilb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]
-radius = 65.27634
+radius = 78.025635
 
-[node name="TestPlaceholder" type="Node2D" unique_id=1371647314]
+[node name="SpikePlaceholder" type="Node2D" unique_id=1371647314]
 script = ExtResource("1_27n5c")
+placeholds = ExtResource("2_4txyq")
 
 [node name="Polygon4" type="Polygon2D" parent="." unique_id=568561115]
 rotation = 1.0471976
