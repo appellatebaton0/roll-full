@@ -6,8 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6q6fe"]
 radius = 501.62335
 
-[node name="CirclePlaceholder" type="Node2D" unique_id=1604085614]
+[node name="Circle" type="Node2D" unique_id=1604085614]
 script = ExtResource("1_wjfep")
+display_name = "Circle"
 
 [node name="RegularPolygon9" type="Polygon2D" parent="." unique_id=85827448]
 modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)

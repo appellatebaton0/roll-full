@@ -154,7 +154,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/tab_separation = 7
 theme_override_font_sizes/font_size = 23
-current_tab = 1
+current_tab = 0
 clip_tabs = false
 tab_count = 2
 tab_0/title = "Layout"
@@ -407,7 +407,7 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=471882614]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Spike"
+text = "None"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=49980051]
@@ -430,10 +430,11 @@ text = "Scale"
 layout_mode = 2
 size_flags_horizontal = 3
 min_value = 0.05
-max_value = 20.0
+max_value = 10.0
 step = 0.01
 value = 1.0
 alignment = 2
+editable = false
 
 [node name="Rotation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1931287104]
 layout_mode = 2
@@ -449,7 +450,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 360.0
 step = 0.01
+value = 1.0
 alignment = 2
+editable = false
+
+[node name="SplineButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=1321378849]
+layout_mode = 2
+
+[node name="SplineButton" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons" unique_id=762228250]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Add Segment"
+
+[node name="SplineButton2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons" unique_id=8247401]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Delete Segment"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=193165554]
+layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=500896786]
 layout_mode = 2

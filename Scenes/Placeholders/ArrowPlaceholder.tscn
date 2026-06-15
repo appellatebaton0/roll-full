@@ -6,8 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jx0q"]
 size = Vector2(257, 161)
 
-[node name="ArrowPlaceholder" type="Node2D" unique_id=1371647314]
+[node name="Arrow" type="Node2D" unique_id=1371647314]
 script = ExtResource("1_2mpe1")
+display_name = "Arrow"
 placeholds = ExtResource("2_awx86")
 
 [node name="Arrow" parent="." unique_id=1166528215 instance=ExtResource("2_awx86")]

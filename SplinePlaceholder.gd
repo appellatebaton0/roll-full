@@ -3,7 +3,6 @@ class_name SplinePlaceholder extends ScenePlaceholder
 
 @onready var line:Line2D = $Line2D
 @onready var spline_collider := $DragArea/CollisionShape2D
-@onready var line_collider   := $DragArea/CollisionShape2D2
 
 # The array of drag points. Index in this array = index of the point in the line's point array.
 var drag_points:Array[DragPoint]
@@ -30,10 +29,9 @@ var seg := 20.0:
 		queue_redraw()
 
 func _draw() -> void:
-	print(sample_mesh, color)
-	if len(sample_mesh) > 2: 
-		print("WE DRAWING A GON W THIS ONE")
-		draw_polygon(sample_mesh, [color])
+	if len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
+	draw_line(Vector2.UP * 20,   Vector2.DOWN * 20, Color.ORANGE, 5.0)
+	draw_line(Vector2.LEFT * 20, Vector2.RIGHT * 20, Color.ORANGE, 5.0)
 	#if len(line_collider.polygon) > 2: draw_polygon(line_collider.polygon, [Color.RED])
 
 func _ready() -> void: 
@@ -53,8 +51,6 @@ func _process(_delta: float) -> void:
 		update_drag_points()
 		
 		regenerate_sample()
-		
-		line_collider.polygon = regenerate_mesh(line.points, line.width)
 		
 		#update_drag_points()
 		
@@ -112,8 +108,6 @@ func regenerate_sample() -> void:
 		
 		if not sample_points.has(point): sample_points.append(point)
 	
-	print("P\n",sample_points,"\n")
-	
 	regenerate_mesh()
 
 ## Regenerate the mesh.
@@ -155,6 +149,10 @@ func update_drag_points() -> void:
 		
 		drag_points.append(new)
 		
+		new.selected.connect(selected.emit)
+		holdability_changed.connect(func(to:bool): new.can_be_held = to)
+		new.can_be_held = can_be_held
+		
 		new.position_changed.connect(update_point_position.bind(drag_points.size() - 1))
 	
 	# Fix all the positions of the drag points.
@@ -166,30 +164,13 @@ func update_point_position(i:int):
 
 # Adding new points between existing ones.
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	
+	if held and event is InputEventMouse: held = event.button_mask
 	if event is InputEventMouseButton: 
-		match drag_area.shape_owner_get_owner(drag_area.shape_find_owner(_shape_idx)):
-			spline_collider:
-				if event.is_pressed():
-					hold_offset = get_local_mouse_position()
-					held = true
-					
-					# Move to the end of the child list. In other words, put on top.
-					get_parent().move_child(self, -1)
-					
-					get_viewport().set_input_as_handled()
-				elif held: 
-					held = false
+		if event.is_pressed():
+			start_hold()
 			
-					get_viewport().set_input_as_handled()
-			#line_collider:
-				##print("!?")
-				#if event.double_click:
-					##print("! @ ", to_local(event.position))
-					##print("F: ", line.points)
-					#line.points = line.points + PackedVector2Array([get_local_mouse_position()])
-					##print("T: ", line.points)
-			#_: pass
-				##print("waht.")
-	
-	
+			get_viewport().set_input_as_handled()
+		elif held: 
+			held = false
+			
+			get_viewport().set_input_as_handled()

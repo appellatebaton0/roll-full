@@ -7,8 +7,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]
 radius = 78.025635
 
-[node name="SpikePlaceholder" type="Node2D" unique_id=1371647314]
+[node name="Spike" type="Node2D" unique_id=1371647314]
 script = ExtResource("1_27n5c")
+display_name = "Spike"
 placeholds = ExtResource("2_4txyq")
 
 [node name="Polygon4" type="Polygon2D" parent="." unique_id=568561115]

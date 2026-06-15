@@ -6,8 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]
 radius = 72.06247
 
-[node name="JumpIndPlaceholder" type="Node2D" unique_id=1371647314]
+[node name="Jump Indicator" type="Node2D" unique_id=1371647314]
 script = ExtResource("1_gf6qm")
+display_name = "Jump Indicator"
 placeholds = ExtResource("2_1gewx")
 
 [node name="JumpIndicator" parent="." unique_id=373011309 instance=ExtResource("2_1gewx")]

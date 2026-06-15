@@ -4,6 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://lx4b31hpsi2a" path="res://Assets/Textures/ToggleButtonOn.svg" id="1_tn4sj"]
 [ext_resource type="Texture2D" uid="uid://c17ojtlf0j76e" path="res://Assets/Textures/ToggleButtonOff.svg" id="2_61p4h"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5pkj"]
+bg_color = Color(0.05882353, 0.09019608, 0.14901961, 1)
+border_width_bottom = 4
+border_color = Color(0.03529412, 0.05882353, 0.09019608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+anti_aliasing = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_666yq"]
 bg_color = Color(0.08627451, 0.13333334, 0.21960784, 1)
 border_width_bottom = 4
@@ -83,6 +96,20 @@ content_margin_bottom = 5.0
 bg_color = Color(0.05882353, 0.09019608, 0.14901961, 1)
 border_width_bottom = 3
 border_color = Color(0.03137255, 0.050980393, 0.078431375, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od7ci"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.05882353, 0.09019608, 0.14901961, 1)
+border_width_top = 3
+border_color = Color(0.03137255, 0.050980393, 0.078431375, 0)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -193,6 +220,7 @@ thickness = 5
 vertical = true
 
 [resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_a5pkj")
 Button/styles/hover = SubResource("StyleBoxFlat_666yq")
 Button/styles/normal = SubResource("StyleBoxFlat_gogyp")
 Button/styles/pressed = SubResource("StyleBoxFlat_a5x2d")
@@ -206,6 +234,7 @@ Label/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/font_sizes/font_size = 21
 LineEdit/fonts/font = ExtResource("1_7dnql")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_61p4h")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_od7ci")
 OptionButton/colors/font_color = Color(0.05882353, 0.078431375, 0.10980392, 1)
 OptionButton/colors/font_focus_color = Color(0.14509805, 0.19215687, 0.27058825, 1)
 OptionButton/colors/font_hover_color = Color(0.14509805, 0.19215687, 0.27058825, 1)
