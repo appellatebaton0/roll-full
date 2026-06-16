@@ -23,6 +23,9 @@ var working_data:LevelData:
 			## Level Name
 			level_name_edit.text = working_data.name
 
+## The UndoRedo used for... undoing and redoing, duh.
+@onready var undo_redo := UndoRedo.new()
+
 ## Level Name
 @onready var level_name_edit := $MarginContainer/VBoxContainer/HBoxContainer/TextEdit
 
@@ -66,6 +69,10 @@ var working_data:LevelData:
 @onready var spline_delete_segment_button := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons/SplineButton2
 @onready var spline_button_box            := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons
 
+## Undo Redo Module
+@onready var undo := $MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2/Undo
+@onready var redo := $MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2/Redo
+
 ## Tabs
 @onready var tabs := $MarginContainer/VBoxContainer/HBoxContainer/TabBar
 @onready var modules:Dictionary[String, PanelContainer] = {
@@ -80,28 +87,32 @@ var working_data:LevelData:
 }
 
 var selected :ScenePlaceholder: set = _set_selection
+var sel_from_undo_redo := false
 func _set_selection(to:ScenePlaceholder):
+	
 	selected = to
 	
 	## Update the module display.
 	if selected:
 		selection_name_lab.text = selected.display_name
 		
-		selection_scale_spin   .value = selected.scale.x
-		selection_rotation_spin.value = selected.rotation_degrees
+		_set_selection_scale   (selected.scale.x,          false)
+		_set_selection_rotation(selected.rotation_degrees, false)
 		
 		selection_scale_spin   .editable = true
 		selection_rotation_spin.editable = true
 	else:
 		selection_name_lab.text = "None"
 		
-		selection_scale_spin   .value = 1.0
-		selection_rotation_spin.value = 1.0
+		_set_selection_scale   (1.0, false)
+		_set_selection_rotation(1.0, false)
 		
 		selection_scale_spin   .editable = false
 		selection_rotation_spin.editable = false
 	
 	spline_button_box.visible = selected is SplinePlaceholder
+
+
 
 func _ready() -> void:
 	# NOTE: For debugging.
@@ -167,18 +178,13 @@ func _ready() -> void:
 		OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://Music"))
 	)
 	
-	## Change placeholder properties w/ the spins.
-	selection_scale_spin.value_changed.connect(func(to):
-		if selected:
-			selected.scale = Vector2.ONE * to
-		)
-	selection_rotation_spin.value_changed.connect(func(to):
-		if selected:
-			selected.rotation_degrees = to
-		)
+	selection_rotation_spin.value_changed.connect(_set_selection_rotation.bind(true))
+	selection_scale_spin.value_changed.connect(_set_selection_scale.bind(true))
+	
 	# Delete prefabs w/ the button.
 	selection_delete_button.pressed.connect(func():
 		if selected:
+			print("?!")
 			prefabs.erase(selected)
 			selected.queue_free()
 			
@@ -186,18 +192,33 @@ func _ready() -> void:
 		
 		)
 	# Add segments to a spline
+	var add_segment := func(onto:SplinePlaceholder):
+		var offset:Vector2 = 150 * (onto.line.points[onto.line.points.size() - 1] - onto.line.points[onto.line.points.size() - 2]).normalized()
+		for i in 3:
+			onto.line.add_point(onto.line.points[onto.line.points.size() - 1] + offset)
+	var del_segment := func(onto:SplinePlaceholder):
+		if onto.line.points.size() > 4:
+			for i in 3:
+				print("DEL ", onto.line.points.size() - 1)
+				onto.line.remove_point(onto.line.points.size() - 1)
+	
 	spline_add_segment_button.pressed.connect(func():
 		
 		if selected is SplinePlaceholder:
-			var offset:Vector2 = 150 * (selected.line.points[selected.line.points.size() - 1] - selected.line.points[selected.line.points.size() - 2]).normalized()
-			for i in 3:
-				selected.line.add_point(selected.line.points[selected.line.points.size() - 1] + offset)
+			add_segment.call(selected)
+			#undo_redo.create_action("Add Segment")
+			#undo_redo.add_do_method(add_segment.bind(selected))
+			#undo_redo.add_undo_method(del_segment.bind(selected))
+			#undo_redo.commit_action()
 		
 		)
 	spline_delete_segment_button.pressed.connect(func():
-		if selected is SplinePlaceholder: if selected.line.points.size() > 4:
-			for i in 3:
-				selected.line.remove_point(selected.line.get_point_count() - 1)
+		if selected is SplinePlaceholder: 
+			del_segment.call(selected)
+			#undo_redo.create_action("Delete Segment")
+			#undo_redo.add_do_method(del_segment.bind(selected))
+			#undo_redo.add_undo_method(add_segment.bind(selected))
+			#undo_redo.commit_action()
 			
 		
 		)
@@ -220,8 +241,55 @@ func _ready() -> void:
 		
 		)
 	tabs.current_tab = 0
+	
+	## Connect the undo and redo buttons to the UndoRedo.
+	undo.pressed.connect(func(): 
+		undo_redo.undo()
+		_update_undo_redo_buttons()
+	)
+	redo.pressed.connect(func(): 
+		undo_redo.redo()
+		_update_undo_redo_buttons()
+	)
+	# Update the buttons' disabled states when the version changes
+	undo_redo.version_changed.connect(_update_undo_redo_buttons)
+	_update_undo_redo_buttons()
 
+func _update_undo_redo_buttons() -> void:
+	
+	print("-")
+	for i in undo_redo.get_history_count():
+		print(undo_redo.get_action_name(i))
+		
+	undo.disabled = not undo_redo.has_undo()
+	redo.disabled = not undo_redo.has_redo()
 
+# UndoRedo-supporting wrappers for setting the selection's scale & rotation
+func _set_selection_scale(to:float, via_undo_redo := true):
+	if selected:
+		if via_undo_redo:
+			undo_redo.create_action("Set Selection Scale")
+			undo_redo.add_do_property(selection_scale_spin, "value", to)
+			undo_redo.add_do_property(selected, "scale", Vector2.ONE * to)
+			undo_redo.add_undo_method(selection_scale_spin.set_value_no_signal.bind(selected.scale.x))
+			undo_redo.add_undo_property(selected, "scale", selected.scale)
+			undo_redo.commit_action()
+		else:
+			selection_scale_spin.set_value_no_signal(to)
+			selected.scale = Vector2.ONE * to
+func _set_selection_rotation(to:float, via_undo_redo := true):
+	if selected:
+		if via_undo_redo:
+			undo_redo.create_action("Set Selection Rotation")
+			undo_redo.add_do_property(selection_rotation_spin, "value", to)
+			undo_redo.add_do_property(selected, "rotation_degrees", to)
+			undo_redo.add_undo_method(selection_rotation_spin.set_value_no_signal.bind(selected.rotation_degrees))
+			undo_redo.add_undo_property(selected, "rotation_degrees", selected.rotation_degrees)
+			undo_redo.commit_action()
+		else:
+			selection_rotation_spin.set_value_no_signal(to)
+			selected.rotation_degrees = to
+		
 # Catch inputs into the viewport for camera scrolling and zooming.
 func _viewport_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -249,10 +317,32 @@ func update_zoom_to(value:float):
 	if zoom_spin_box.value != value: zoom_spin_box.value = value
 
 var prefabs:Array[ScenePlaceholder]
+var soft_delete_buffer:Array[ScenePlaceholder]
 func _on_prefab_button_pressed(scene_path: StringName) -> void:
 	
-	var new:ScenePlaceholder = load(scene_path).instantiate()
+	var delete_prefab := func(prefab:ScenePlaceholder):
+		prefabs.erase(prefab)
+		soft_delete_buffer.push_back(prefab)
+		prefab.hide()
+		#prefab.queue_free()
 	
+	create_prefab(scene_path)
+	
+	undo_redo.create_action("Create Prefab")
+	undo_redo.add_do_method(soft_create_prefab)
+	undo_redo.add_undo_method(func(): delete_prefab.call(prefabs.back()))
+	undo_redo.commit_action(false)
+
+func soft_create_prefab():
+	var new := soft_delete_buffer.pop_back() as ScenePlaceholder
+	
+	new.show()
+	prefabs.append(new)
+
+func create_prefab(scene_path) -> ScenePlaceholder:
+	
+	var new := load(scene_path).instantiate() as ScenePlaceholder
+		
 	viewport.add_child(new)
 	new.position = viewport_camera.position
 	
@@ -260,3 +350,27 @@ func _on_prefab_button_pressed(scene_path: StringName) -> void:
 	selected = new
 	
 	new.selected.connect(_set_selection.bind(new))
+	
+	new.drag_ended.connect(func(from:Vector2, to:Vector2):
+		# Plug drags into the UR
+		
+		undo_redo.create_action("Moved Prefab")
+		undo_redo.add_do_property  (new, "global_position", to)
+		undo_redo.add_undo_property(new, "global_position", from)
+		undo_redo.commit_action()
+		
+		)
+	
+	# Hook spline line changes up to the UndoRedo
+	if new is SplinePlaceholder:
+		print("!")
+		new.points_changed.connect(func(from:PackedVector2Array, to:PackedVector2Array):
+			print(":D")
+			undo_redo.create_action("Moved Spline Points")
+			undo_redo.add_do_property(new.line, "points", to)
+			undo_redo.add_undo_property(new.line, "points", from)
+			undo_redo.commit_action(false)
+			
+			)
+	
+	return new

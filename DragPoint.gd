@@ -5,6 +5,9 @@ class_name DragPoint extends Area2D
 signal position_changed()
 signal selected
 
+signal drag_started
+signal drag_ended
+
 signal holdability_changed(to:bool)
 
 var can_be_held := true:
@@ -23,7 +26,11 @@ func _process(_delta: float) -> void:
 			position_changed.emit()
 
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if held and event is InputEventMouse: held = event.button_mask
+	if held and event is InputEventMouse: 
+		held = event.button_mask
+		
+		if not held:
+			drag_ended.emit()
 	if event is InputEventMouseButton:
 		if event.is_pressed(): if can_be_held:
 			hold_offset = get_local_mouse_position()
@@ -34,8 +41,12 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 			
 			selected.emit()
 			
+			drag_started.emit()
+			
 			get_viewport().set_input_as_handled()
 		elif held: 
 			held = false
+			
+			drag_ended.emit()
 	
 			get_viewport().set_input_as_handled()

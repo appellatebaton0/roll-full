@@ -1,6 +1,8 @@
 class_name SplinePlaceholder extends ScenePlaceholder
 ## A placeholder for a spline, with all the usual customizability.
 
+signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
+
 @onready var line:Line2D = $Line2D
 @onready var spline_collider := $DragArea/CollisionShape2D
 
@@ -47,12 +49,9 @@ func _process(_delta: float) -> void:
 	super._process(_delta)
 	
 	if line.points != last_points:
-		
 		update_drag_points()
 		
 		regenerate_sample()
-		
-		#update_drag_points()
 		
 		last_points = line.points
 		
@@ -153,6 +152,10 @@ func update_drag_points() -> void:
 		holdability_changed.connect(func(to:bool): new.can_be_held = to)
 		new.can_be_held = can_be_held
 		
+		print("CM")
+		new.drag_started.connect(_drag_started)
+		new.drag_ended.connect(_drag_ended)
+		
 		new.position_changed.connect(update_point_position.bind(drag_points.size() - 1))
 	
 	# Fix all the positions of the drag points.
@@ -162,9 +165,21 @@ func update_drag_points() -> void:
 func update_point_position(i:int):
 	line.points[i] = drag_points[i].position
 
+var drag_start_points:PackedVector2Array
+func _drag_started() -> void: 
+	print("_drag_started")
+	drag_start_points = line.points
+func _drag_ended() -> void: 
+	print("_drag_ended -> ", drag_start_points, "/", line.points)
+	points_changed.emit(drag_start_points, line.points)
+
 # Adding new points between existing ones.
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if held and event is InputEventMouse: held = event.button_mask
+	if held and event is InputEventMouse: 
+		held = event.button_mask
+		
+		if not held:
+			drag_ended.emit(drag_start_pos, global_position)
 	if event is InputEventMouseButton: 
 		if event.is_pressed():
 			start_hold()
@@ -172,5 +187,7 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 			get_viewport().set_input_as_handled()
 		elif held: 
 			held = false
+			
+			drag_ended.emit(drag_start_pos, global_position)
 			
 			get_viewport().set_input_as_handled()

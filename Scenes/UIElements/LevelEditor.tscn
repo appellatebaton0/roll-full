@@ -490,13 +490,13 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer" unique_id=407217953]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2" unique_id=1394859605]
+[node name="Undo" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2" unique_id=1394859605]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Undo"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2" unique_id=522207802]
+[node name="Redo" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2" unique_id=522207802]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
