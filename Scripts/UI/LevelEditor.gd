@@ -56,9 +56,6 @@ var working_data:LevelData:
 }
 @onready var f_rank_label := $MarginContainer/VBoxContainer/Layout/Panels/Ranking/MarginContainer/VBoxContainer/HBoxContainer7/Label2
 
-## Custom Music Folder Module
-@onready var open_music_folder_button := $MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/Button
-
 ## Selection Module
 @onready var selection_name_lab      := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Label2
 @onready var selection_scale_spin    := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer/Scale/SpinBox
@@ -73,6 +70,19 @@ var working_data:LevelData:
 @onready var undo := $MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2/Undo
 @onready var redo := $MarginContainer/VBoxContainer/Layout/Panels/UndoRedo/MarginContainer/HBoxContainer2/Redo
 
+## Music Tracks Module
+@onready var music_track_buttons:Array[Button] = [
+	$MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Button,
+	$MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/Button,
+	$MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4/Button,
+	$MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5/Button
+]
+@onready var open_music_folder_button := $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Button2
+@onready var refresh_music_button := $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button
+@onready var music_panel := $PanelContainer
+@onready var built_in_music_tree := $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Tree
+@onready var custom_music_tree   := $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer2/Tree
+
 ## Tabs
 @onready var tabs := $MarginContainer/VBoxContainer/HBoxContainer/TabBar
 @onready var modules:Dictionary[String, PanelContainer] = {
@@ -85,6 +95,7 @@ var working_data:LevelData:
 	"Ranking":     $MarginContainer/VBoxContainer/Layout/Panels/Ranking,
 	"Score":       $MarginContainer/VBoxContainer/Layout/Panels/Score
 }
+
 
 var selected :ScenePlaceholder: set = _set_selection
 var sel_from_undo_redo := false
@@ -177,6 +188,9 @@ func _ready() -> void:
 		# Open that there folder.
 		OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://Music"))
 	)
+	refresh_music_button.pressed.connect(_update_music_track_options)
+	
+	_update_music_track_options()
 	
 	selection_rotation_spin.value_changed.connect(_set_selection_rotation.bind(true))
 	selection_scale_spin.value_changed.connect(_set_selection_scale.bind(true))
@@ -184,7 +198,6 @@ func _ready() -> void:
 	# Delete prefabs w/ the button.
 	selection_delete_button.pressed.connect(func():
 		if selected:
-			print("?!")
 			prefabs.erase(selected)
 			selected.queue_free()
 			
@@ -199,26 +212,23 @@ func _ready() -> void:
 	var del_segment := func(onto:SplinePlaceholder):
 		if onto.line.points.size() > 4:
 			for i in 3:
-				print("DEL ", onto.line.points.size() - 1)
 				onto.line.remove_point(onto.line.points.size() - 1)
 	
 	spline_add_segment_button.pressed.connect(func():
 		
 		if selected is SplinePlaceholder:
-			add_segment.call(selected)
-			#undo_redo.create_action("Add Segment")
-			#undo_redo.add_do_method(add_segment.bind(selected))
-			#undo_redo.add_undo_method(del_segment.bind(selected))
-			#undo_redo.commit_action()
+			undo_redo.create_action("Add Segment")
+			undo_redo.add_do_method(add_segment.bind(selected))
+			undo_redo.add_undo_method(del_segment.bind(selected))
+			undo_redo.commit_action()
 		
 		)
 	spline_delete_segment_button.pressed.connect(func():
-		if selected is SplinePlaceholder: 
-			del_segment.call(selected)
-			#undo_redo.create_action("Delete Segment")
-			#undo_redo.add_do_method(del_segment.bind(selected))
-			#undo_redo.add_undo_method(add_segment.bind(selected))
-			#undo_redo.commit_action()
+		if selected is SplinePlaceholder:
+			undo_redo.create_action("Delete Segment")
+			undo_redo.add_do_method(del_segment.bind(selected))
+			undo_redo.add_undo_method(add_segment.bind(selected))
+			undo_redo.commit_action()
 			
 		
 		)
@@ -257,12 +267,79 @@ func _ready() -> void:
 
 func _update_undo_redo_buttons() -> void:
 	
-	print("-")
-	for i in undo_redo.get_history_count():
-		print(undo_redo.get_action_name(i))
+	#print("# -- VERSION HISTORY -- #")
+	#for i in undo_redo.get_history_count():
+		#print(undo_redo.get_action_name(i))
 		
 	undo.disabled = not undo_redo.has_undo()
 	redo.disabled = not undo_redo.has_redo()
+
+## Update the list of available music tracks
+func _update_music_track_options() -> void:
+	
+	var path_dictionary:Dictionary[TreeItem, StringName]
+	
+	## Built-in Music
+	built_in_music_tree.clear()
+	# Make the root
+	built_in_music_tree.create_item()
+	built_in_music_tree.hide_root = true
+	# Fill the tree
+	path_dictionary.merge(dir_to_tree(built_in_music_tree.get_root(), "res://Assets/Music/"))
+	
+	## Custom Music
+	custom_music_tree.clear()
+	# Make the root
+	custom_music_tree.create_item()
+	custom_music_tree.hide_root = true
+	# Fill the tree
+	path_dictionary.merge(dir_to_tree(custom_music_tree.get_root(), "user://Music/"))
+	
+	
+
+
+func dir_to_tree(item:TreeItem, path:String) -> Dictionary[TreeItem, StringName]:
+		
+		var path_dictionary:Dictionary[TreeItem, StringName]
+		
+		var dir = DirAccess.open(path)
+		
+		if dir:
+			dir.list_dir_begin()
+			var file_name = dir.get_next()
+			while file_name != "":
+				if dir.current_is_dir():
+					# Make an item for the new directory.
+					var dir_item := item.create_child()
+					
+					dir_item.set_text(0, file_name)
+					
+					# Add it to the pathdict
+					path_dictionary[dir_item] = path + file_name + "/"
+					
+					# Search down the rest of the directory.
+					path_dictionary.merge(dir_to_tree(dir_item, path + file_name + "/"))
+				else:
+					# If the file is an AudioStream, load it to the tree.
+					if file_name.contains(".import"): 
+						file_name = dir.get_next()
+						continue
+					var file := ResourceLoader.load(ProjectSettings.globalize_path(path + file_name))
+					print(path + file_name)
+					
+					if file and file is AudioStream:
+						print(" -> ", file.get_class())
+						var file_item := item.create_child()
+						
+						file_item.set_text(0, file_name)
+						
+						path_dictionary[file_item] = path + file_name
+					
+				file_name = dir.get_next()
+		else:
+			print("An error occurred when trying to access the path.")
+		
+		return path_dictionary
 
 # UndoRedo-supporting wrappers for setting the selection's scale & rotation
 func _set_selection_scale(to:float, via_undo_redo := true):

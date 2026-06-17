@@ -120,6 +120,14 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_w7vm6")
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_23bdm"]
 gradient = SubResource("Gradient_mxptv")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwymk"]
+bg_color = Color(0.21568628, 0.3372549, 0.5294118, 0.83137256)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 1
+
 [node name="LevelEditor" type="PanelContainer" unique_id=1351889632]
 anchors_preset = 15
 anchor_right = 1.0
@@ -217,7 +225,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(935, 773)
+size = Vector2i(832, 773)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1063531865]
@@ -319,6 +327,7 @@ step = 0.01
 value = 0.75
 
 [node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1914108937]
+visible = false
 custom_minimum_size = Vector2(82, 0)
 layout_mode = 2
 
@@ -384,6 +393,7 @@ texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
 
 [node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=490619007]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -476,6 +486,7 @@ theme_override_font_sizes/font_size = 24
 text = "Delete"
 
 [node name="UndoRedo" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=64704977]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
@@ -504,7 +515,6 @@ text = "Redo
 "
 
 [node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
@@ -536,7 +546,6 @@ alignment = 1
 suffix = "m/s"
 
 [node name="MusicTracks" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=304241974]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks" unique_id=1473798126]
@@ -584,69 +593,61 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=989121498]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "1: "
+text = "1:"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=487422225]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1430902320]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Select Music Track"
 text_overrun_behavior = 5
-selected = 0
-item_count = 1
-popup/item_0/id = 0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1372678659]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1156336256]
 custom_minimum_size = Vector2(250, 26)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=543231664]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1263507235]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "2: "
+text = "2:"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=953858157]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=110914683]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Select Music Track"
 text_overrun_behavior = 5
-selected = 0
-item_count = 1
-popup/item_0/id = 0
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=534713035]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=654284113]
 custom_minimum_size = Vector2(250, 26)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4" unique_id=1622910852]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4" unique_id=827910430]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "3: "
+text = "3:"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4" unique_id=1163461189]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4" unique_id=1521094175]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Select Music Track"
 text_overrun_behavior = 5
-selected = 0
-item_count = 1
-popup/item_0/id = 0
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=99927042]
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1596203270]
 custom_minimum_size = Vector2(250, 26)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=1632506088]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=204048162]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "4: "
+text = "4:"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=1550953492]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5" unique_id=873302560]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Select Music Track"
 text_overrun_behavior = 5
-selected = 0
-item_count = 1
-popup/item_0/id = 0
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=2053295959]
 custom_minimum_size = Vector2(0, 30)
@@ -655,7 +656,6 @@ theme_override_font_sizes/font_size = 20
 text = "OPEN MUSIC FOLDER"
 
 [node name="Ranking" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=655966081]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking" unique_id=1077199505]
@@ -803,7 +803,6 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="Score" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=457436277]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score" unique_id=1666018760]
@@ -841,6 +840,115 @@ max_value = 3000.0
 value = 1000.0
 alignment = 1
 custom_arrow_step = 20.0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1088896154]
+custom_minimum_size = Vector2(864, 648)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_su28g")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mwymk")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1900522755]
+layout_mode = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer" unique_id=1885195543]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 34
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1390400522]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=272000334]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Music Selector"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1797787587]
+custom_minimum_size = Vector2(400, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2100995665]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=401510847]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "Built-In Music"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1599368593]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Tracks from the game's prebuilt levels."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1720034681]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tree" type="Tree" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1877307416]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1995880809]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1084621620]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Custom Music"
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1560149029]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+text = "RE"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=669710994]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "Music added by you for your own level."
+horizontal_alignment = 2
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1238853979]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tree" type="Tree" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer2" unique_id=1222197230]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=559538178]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=330912294]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Select Track"
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=828529886]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Open Custom Music Folder"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SplinePlaceholder.tscn"]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect2" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SpikePlaceholder.tscn"]]

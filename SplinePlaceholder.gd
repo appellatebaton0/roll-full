@@ -138,7 +138,7 @@ func update_drag_points() -> void:
 	# Shave off any extra points.
 	while line.points.size() < drag_points.size():
 		var back:DragPoint = drag_points.pop_back()
-		if back: queue_free()
+		if back: back.queue_free()
 	
 	# Add any new ones.
 	while line.points.size() > drag_points.size():
