@@ -77,11 +77,24 @@ var working_data:LevelData:
 	$MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4/Button,
 	$MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5/Button
 ]
+@onready var bpm_spin_box := $MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer3/SpinBox
+# Music panel
+var mp_from_button:Button # The button used to open the panel.
+var selected_track_path:String: # The path to the file of the selected track in the panel.
+	set(to):
+		if to == null:
+			select_track_button.text = "Select Track"
+		else:
+			select_track_button.text = "Select Track (%s)" % (to.split("/") as Array[String]).back()
+		
+		selected_track_path = to
+
+@onready var music_panel              := $PanelContainer
+@onready var select_track_button      := $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Button
 @onready var open_music_folder_button := $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Button2
-@onready var refresh_music_button := $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button
-@onready var music_panel := $PanelContainer
-@onready var built_in_music_tree := $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Tree
-@onready var custom_music_tree   := $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer2/Tree
+@onready var built_in_music_tree      := $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/Tree
+@onready var custom_music_tree        := $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer2/Tree
+@onready var refresh_music_button     := $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button
 
 ## Tabs
 @onready var tabs := $MarginContainer/VBoxContainer/HBoxContainer/TabBar
@@ -122,8 +135,6 @@ func _set_selection(to:ScenePlaceholder):
 		selection_rotation_spin.editable = false
 	
 	spline_button_box.visible = selected is SplinePlaceholder
-
-
 
 func _ready() -> void:
 	# NOTE: For debugging.
@@ -178,6 +189,42 @@ func _ready() -> void:
 	for spin_box in rank_threshold_spin_boxes:
 		spin_box.value_changed.connect(rank_threshold_update.bind(rank_threshold_spin_boxes[spin_box]))
 	
+	
+	## BPM Spinbox
+	bpm_spin_box.value_changed.connect(func(to:float):
+		if working_data: working_data.override_bpm = to
+		
+		for i in working_data.tracks.size():
+			print(i, ": ", working_data.tracks[i])
+		print("bpm ", working_data.override_bpm)
+		
+		)
+	
+	## Music Track Selecting.
+	select_track_button.pressed.connect(func(): if working_data:
+		
+		if selected_track_path != null:
+			var file := load_music(selected_track_path)
+			var track_index := music_track_buttons.find(mp_from_button)
+			
+			working_data.tracks[track_index] = file
+			
+			mp_from_button.text = (selected_track_path.split("/") as Array[String]).back()
+		
+		_toggle_music_panel(false)
+		
+		)
+	
+	## Music Panel Opening
+	var open_mp := func(button:Button):
+		mp_from_button = button
+		_toggle_music_panel(true)
+	for button in music_track_buttons:
+		button.pressed.connect(open_mp.bind(button))
+	
+	## Music Track Selecting
+	for tree:Tree in [built_in_music_tree, custom_music_tree]:
+		tree.item_selected.connect(_update_track_selection.bind(tree))
 	
 	## Custom Music Folder opening.
 	open_music_folder_button.pressed.connect(func():
@@ -275,9 +322,8 @@ func _update_undo_redo_buttons() -> void:
 	redo.disabled = not undo_redo.has_redo()
 
 ## Update the list of available music tracks
+var music_path_dictionary:Dictionary[TreeItem, StringName]
 func _update_music_track_options() -> void:
-	
-	var path_dictionary:Dictionary[TreeItem, StringName]
 	
 	## Built-in Music
 	built_in_music_tree.clear()
@@ -285,7 +331,7 @@ func _update_music_track_options() -> void:
 	built_in_music_tree.create_item()
 	built_in_music_tree.hide_root = true
 	# Fill the tree
-	path_dictionary.merge(dir_to_tree(built_in_music_tree.get_root(), "res://Assets/Music/"))
+	music_path_dictionary.merge(dir_to_tree(built_in_music_tree.get_root(), "res://Assets/Music/"))
 	
 	## Custom Music
 	custom_music_tree.clear()
@@ -293,10 +339,38 @@ func _update_music_track_options() -> void:
 	custom_music_tree.create_item()
 	custom_music_tree.hide_root = true
 	# Fill the tree
-	path_dictionary.merge(dir_to_tree(custom_music_tree.get_root(), "user://Music/"))
-	
-	
+	music_path_dictionary.merge(dir_to_tree(custom_music_tree.get_root(), "user://Music/"))
 
+var music_panel_tween:Tween
+func _toggle_music_panel(to_state:bool = !music_panel.visible):
+	if to_state == music_panel.visible: return
+	
+	if music_panel_tween and music_panel_tween.is_running(): music_panel_tween.kill()
+	
+	if to_state:
+		music_panel.modulate.a = 0.0
+		
+		music_panel_tween = music_panel.create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+		music_panel_tween.tween_callback(music_panel.show)
+		music_panel_tween.tween_property(music_panel, "modulate:a", 1.0, 0.1)
+	else:
+		music_panel.modulate.a = 1.0
+		
+		music_panel_tween = music_panel.create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+		music_panel_tween.tween_property(music_panel, "modulate:a", 0.0, 0.1)
+		music_panel_tween.tween_callback(music_panel.hide)
+
+func _update_track_selection(from:Tree):
+	var item := from.get_selected()
+	var path := music_path_dictionary[item]
+	
+	# Deselect the other tree's selection.
+	for tree:Tree in [custom_music_tree, built_in_music_tree]:
+		if tree != from: tree.deselect_all()
+	
+	# If the selected item is actually a music file, and not a directory,
+	# make it the current selection.
+	if path_is_music_file(path): selected_track_path = path
 
 func dir_to_tree(item:TreeItem, path:String) -> Dictionary[TreeItem, StringName]:
 		
@@ -313,6 +387,7 @@ func dir_to_tree(item:TreeItem, path:String) -> Dictionary[TreeItem, StringName]
 					var dir_item := item.create_child()
 					
 					dir_item.set_text(0, file_name)
+					dir_item.set_tooltip_text(0, "")
 					
 					# Add it to the pathdict
 					path_dictionary[dir_item] = path + file_name + "/"
@@ -320,18 +395,12 @@ func dir_to_tree(item:TreeItem, path:String) -> Dictionary[TreeItem, StringName]
 					# Search down the rest of the directory.
 					path_dictionary.merge(dir_to_tree(dir_item, path + file_name + "/"))
 				else:
-					# If the file is an AudioStream, load it to the tree.
-					if file_name.contains(".import"): 
-						file_name = dir.get_next()
-						continue
-					var file := ResourceLoader.load(ProjectSettings.globalize_path(path + file_name))
-					print(path + file_name)
 					
-					if file and file is AudioStream:
-						print(" -> ", file.get_class())
+					if path_is_music_file(file_name):
 						var file_item := item.create_child()
 						
 						file_item.set_text(0, file_name)
+						file_item.set_tooltip_text(0, "")
 						
 						path_dictionary[file_item] = path + file_name
 					
@@ -340,6 +409,28 @@ func dir_to_tree(item:TreeItem, path:String) -> Dictionary[TreeItem, StringName]
 			print("An error occurred when trying to access the path.")
 		
 		return path_dictionary
+
+func path_is_music_file(path:String) -> bool:
+	return (path.contains(".ogg") or path.contains(".mp3") or path.contains(".wav")) and not path.contains(".import")
+
+func load_music(path:String) -> AudioStream:
+	var file:AudioStream
+	
+	# In userspace, needs special loading.
+	if path.contains("user://"):
+		
+		if path.contains(".ogg"):
+			file = AudioStreamOggVorbis.load_from_file(path)
+		elif path.contains(".mp3"):
+			file = AudioStreamMP3.load_from_file(path)
+		elif path.contains(".wav"):
+			file = AudioStreamWAV.load_from_file(path)
+		
+	# Otherwise, just use load()
+	else:
+		file = load(path)
+	
+	return file
 
 # UndoRedo-supporting wrappers for setting the selection's scale & rotation
 func _set_selection_scale(to:float, via_undo_redo := true):
@@ -440,14 +531,11 @@ func create_prefab(scene_path) -> ScenePlaceholder:
 	
 	# Hook spline line changes up to the UndoRedo
 	if new is SplinePlaceholder:
-		print("!")
 		new.points_changed.connect(func(from:PackedVector2Array, to:PackedVector2Array):
-			print(":D")
 			undo_redo.create_action("Moved Spline Points")
 			undo_redo.add_do_property(new.line, "points", to)
 			undo_redo.add_undo_property(new.line, "points", from)
 			undo_redo.commit_action(false)
-			
 			)
 	
 	return new

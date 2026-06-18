@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://4wvdj0psapvi" path="res://Scripts/UI/LevelEditor.gd" id="2_mxptv"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_n0a1l"]
 [ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="3_mxptv"]
+[ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="5_mxptv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4itv"]
 bg_color = Color(0.047058824, 0.07450981, 0.12156863, 1)
@@ -108,12 +109,18 @@ corner_detail = 1
 shadow_size = 1
 shadow_offset = Vector2(4, 4)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_f4itv"]
+color = Color(0.047058824, 0.07450981, 0.12156863, 1)
+thickness = 2
+vertical = true
+
 [sub_resource type="Theme" id="Theme_su28g"]
 Button/styles/hover = SubResource("StyleBoxFlat_23bdm")
 Button/styles/normal = SubResource("StyleBoxFlat_p34jd")
 Button/styles/pressed = SubResource("StyleBoxFlat_tc5c5")
 HSeparator/styles/separator = SubResource("StyleBoxLine_mwymk")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_w7vm6")
+VSeparator/styles/separator = SubResource("StyleBoxLine_f4itv")
 
 [sub_resource type="Gradient" id="Gradient_mxptv"]
 
@@ -121,7 +128,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_w7vm6")
 gradient = SubResource("Gradient_mxptv")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwymk"]
-bg_color = Color(0.21568628, 0.3372549, 0.5294118, 0.83137256)
+bg_color = Color(0.0585, 0.09052499, 0.15, 0.8901961)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -225,7 +232,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(832, 773)
+size = Vector2i(832, 774)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1063531865]
@@ -649,11 +656,19 @@ size_flags_horizontal = 3
 text = "Select Music Track"
 text_overrun_behavior = 5
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=2053295959]
-custom_minimum_size = Vector2(0, 30)
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer" unique_id=2100999685]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1717393182]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
-text = "OPEN MUSIC FOLDER"
+text = "BPM:"
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=100930130]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
 
 [node name="Ranking" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=655966081]
 layout_mode = 2
@@ -846,34 +861,31 @@ custom_minimum_size = Vector2(864, 648)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = SubResource("Theme_su28g")
+theme = ExtResource("1_klpvh")
 theme_override_styles/panel = SubResource("StyleBoxFlat_mwymk")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1900522755]
 layout_mode = 2
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 35
-theme_override_constants/margin_right = 35
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 35
-
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer" unique_id=1885195543]
-custom_minimum_size = Vector2(45, 45)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 34
-text = "X"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1390400522]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=272000334]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1627659878]
 layout_mode = 2
+theme_override_constants/separation = -9
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=272000334]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 42
 text = "Music Selector"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1797787587]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1797787587]
 custom_minimum_size = Vector2(400, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -902,8 +914,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1244127668]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1995880809]
 layout_mode = 2
+theme_override_constants/separation = 38
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1084621620]
 layout_mode = 2
@@ -913,6 +930,8 @@ text = "Custom Music"
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1560149029]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
+tooltip_text = "Refresh the options from the folder. Do this after adding new music to the folder."
+theme = ExtResource("5_mxptv")
 theme_override_font_sizes/font_size = 27
 text = "RE"
 
@@ -920,7 +939,7 @@ text = "RE"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
-text = "Music added by you for your own level."
+text = "Music added by you for your own levels (WAV/OGG/MP3)."
 horizontal_alignment = 2
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1238853979]
@@ -934,21 +953,37 @@ size_flags_vertical = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=559538178]
 layout_mode = 2
+theme = ExtResource("5_mxptv")
 theme_override_constants/separation = 30
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=330912294]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 26
+tooltip_text = "Select a track, then click this to lock it in as the track for the selected index."
+theme = ExtResource("5_mxptv")
+theme_override_font_sizes/font_size = 28
 text = "Select Track"
+autowrap_mode = 2
 
 [node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=828529886]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 26
+tooltip_text = "Open the folder for custom music in your file explorer. Supports subfolders."
+theme = ExtResource("5_mxptv")
+theme_override_font_sizes/font_size = 28
 text = "Open Custom Music Folder"
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer" unique_id=1885195543]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("5_mxptv")
+theme_override_font_sizes/font_size = 34
+text = "X"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SplinePlaceholder.tscn"]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect2" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SpikePlaceholder.tscn"]]
@@ -956,3 +991,4 @@ text = "Open Custom Music Folder"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect4" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/JumpIndPlaceholder.tscn"]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect5" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/DashIndPlaceholder.tscn"]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect6" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/ArrowPlaceholder.tscn"]]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Button" to="." method="_toggle_music_panel" binds= [false]]

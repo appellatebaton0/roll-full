@@ -65,7 +65,7 @@ func reload(from:LevelData):
 	## Create the stream.
 	var new_stream := AudioStreamSynchronized.new()
 	var track_count:int = len(from.tracks)
-	bpm = -1
+	bpm = from.override_bpm
 	
 	# Update the stream count.,
 	new_stream.set_stream_count(track_count)
