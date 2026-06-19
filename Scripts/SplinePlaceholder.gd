@@ -152,10 +152,11 @@ func update_drag_points() -> void:
 		holdability_changed.connect(func(to:bool): new.can_be_held = to)
 		new.can_be_held = can_be_held
 		
-		print("CM")
+		# Wire up so that the signal for dragging is fired correctly.
 		new.drag_started.connect(_drag_started)
 		new.drag_ended.connect(_drag_ended)
 		
+		# Update the actual spline when this point moves.
 		new.position_changed.connect(update_point_position.bind(drag_points.size() - 1))
 	
 	# Fix all the positions of the drag points.
@@ -166,12 +167,8 @@ func update_point_position(i:int):
 	line.points[i] = drag_points[i].position
 
 var drag_start_points:PackedVector2Array
-func _drag_started() -> void: 
-	print("_drag_started")
-	drag_start_points = line.points
-func _drag_ended() -> void: 
-	print("_drag_ended -> ", drag_start_points, "/", line.points)
-	points_changed.emit(drag_start_points, line.points)
+func _drag_started() -> void: drag_start_points = line.points
+func _drag_ended() -> void:   points_changed.emit(drag_start_points, line.points)
 
 # Adding new points between existing ones.
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

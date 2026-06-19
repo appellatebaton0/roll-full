@@ -30,7 +30,6 @@ func _notification(what):
 		for i in len(children):
 			var child:Control = children[i]
 			
-			
 			# Get the new size and position.
 			var new_size = Vector2(size.x, (size.y / len(children) - seperation))
 			var new_pos  = Vector2(0, (i * size.y / len(children)) + seperation/2. + scroll_offset)

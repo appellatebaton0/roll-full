@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6x32bb8w1ibc"]
 
-[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://ScenePlaceholder.gd" id="1_2mpe1"]
+[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://Scripts/ScenePlaceholder.gd" id="1_2mpe1"]
 [ext_resource type="PackedScene" uid="uid://g06uppw7h0ok" path="res://Scenes/Arrow.tscn" id="2_awx86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jx0q"]

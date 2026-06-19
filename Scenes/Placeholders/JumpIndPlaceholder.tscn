@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vnwd1xlo3n2b"]
 
-[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://ScenePlaceholder.gd" id="1_gf6qm"]
+[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://Scripts/ScenePlaceholder.gd" id="1_gf6qm"]
 [ext_resource type="PackedScene" uid="uid://dcpdetnw4fmcw" path="res://Scenes/JumpIndicator.tscn" id="2_1gewx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]

@@ -21,6 +21,9 @@ var can_be_held := true:
 ## The properties that will be passed to the actual scene.
 @export var passover_properties:Array[String]
 
+## Whether this placeholder can be deleted.
+@export var deletable := false
+
 @onready var drag_area:Area2D = $DragArea
 
 var held := false
@@ -28,7 +31,7 @@ var hold_offset:Vector2
 var drag_start_pos:Vector2
 
 func _ready() -> void:
-	drag_area.input_event.connect(_input_event)
+	if drag_area: drag_area.input_event.connect(_input_event)
 
 func _process(_delta: float) -> void:
 	if held: global_position = get_global_mouse_position() - hold_offset
@@ -47,7 +50,6 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 		elif held: 
 			held = false
 			
-			print("DEMIT")
 			drag_ended.emit(drag_start_pos, global_position)
 	
 			get_viewport().set_input_as_handled()

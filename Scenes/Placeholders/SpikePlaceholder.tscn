@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drts765mrn5hg"]
 
-[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://ScenePlaceholder.gd" id="1_27n5c"]
+[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://Scripts/ScenePlaceholder.gd" id="1_27n5c"]
 [ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="2_4txyq"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_xuilb"]
 

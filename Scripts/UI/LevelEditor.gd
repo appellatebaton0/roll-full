@@ -134,12 +134,16 @@ func _set_selection(to:ScenePlaceholder):
 		selection_scale_spin   .editable = false
 		selection_rotation_spin.editable = false
 	
+	selection_delete_button.disabled = not (selected and selected.deletable)
+	
 	spline_button_box.visible = selected is SplinePlaceholder
 
 func _ready() -> void:
 	# NOTE: For debugging.
 	working_data = LevelData.new()
 	
+	for prefab in viewport.get_children(): if prefab is ScenePlaceholder:
+		prefab.selected.connect(_set_selection.bind(prefab))
 	
 	## Connect the input detection from the viewport for scrolling.
 	viewport_container.gui_input.connect(_viewport_gui_input)
@@ -244,7 +248,7 @@ func _ready() -> void:
 	
 	# Delete prefabs w/ the button.
 	selection_delete_button.pressed.connect(func():
-		if selected:
+		if selected and selected.deletable:
 			prefabs.erase(selected)
 			selected.queue_free()
 			
@@ -515,6 +519,7 @@ func create_prefab(scene_path) -> ScenePlaceholder:
 	new.position = viewport_camera.position
 	
 	prefabs.append(new)
+	new.deletable = true
 	selected = new
 	
 	new.selected.connect(_set_selection.bind(new))

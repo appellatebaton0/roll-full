@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://4wvdj0psapvi" path="res://Scripts/UI/LevelEditor.gd" id="2_mxptv"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_n0a1l"]
 [ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="3_mxptv"]
+[ext_resource type="PackedScene" uid="uid://bno1ab82l8err" path="res://Scenes/Placeholders/GoalPlaceholder.tscn" id="4_p34jd"]
 [ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="5_mxptv"]
+[ext_resource type="PackedScene" uid="uid://c7mrr0snf4fg5" path="res://Scenes/Placeholders/PlayerPlaceholder.tscn" id="5_tc5c5"]
+[ext_resource type="PackedScene" uid="uid://dgb0aq4s5dymc" path="res://Scenes/Placeholders/DeathBorderPlaceholder.tscn" id="6_tc5c5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4itv"]
 bg_color = Color(0.047058824, 0.07450981, 0.12156863, 1)
@@ -249,6 +252,13 @@ texture = SubResource("GradientTexture2D_mxptv")
 zoom = Vector2(0.4, 0.4)
 script = ExtResource("3_mxptv")
 metadata/_custom_type_script = "uid://c26v4q7ayojpm"
+
+[node name="GoalPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=809300250 instance=ExtResource("4_p34jd")]
+
+[node name="PlayerPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1714767970 instance=ExtResource("5_tc5c5")]
+position = Vector2(165, 272)
+
+[node name="DeathBorderPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=345576127 instance=ExtResource("6_tc5c5")]
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2" unique_id=253778851]
 layout_mode = 2
@@ -857,6 +867,7 @@ alignment = 1
 custom_arrow_step = 20.0
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1088896154]
+visible = false
 custom_minimum_size = Vector2(864, 648)
 layout_mode = 2
 size_flags_horizontal = 4
