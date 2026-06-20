@@ -6,7 +6,7 @@
 
 [node name="DeathBorderPlaceholder" type="Node2D" unique_id=345576127]
 script = ExtResource("1_uadfp")
-drag_area_offset = 40.0
+drag_area_offset = 100.0
 display_name = "Death Border"
 placeholds = ExtResource("2_ndt54")
 metadata/_custom_type_script = "uid://dbxh6goq23t5n"
@@ -22,7 +22,7 @@ invert_border = 3500.0
 polygon = PackedVector2Array(-415, 306, -822, -996, -179, -1867, 1278, -1843, 3020, -1444, 3280, 412, 2019, 982, -41, 746)
 
 [node name="HintCircle" type="Polygon2D" parent="." unique_id=1748966282]
-color = Color(1, 0.6862745, 0.2509804, 0.7294118)
+color = Color(0.29803923, 1, 0.2509804, 0.7294118)
 polygon = PackedVector2Array(14, 0, 13.522962, 3.6234665, 12.124355, 7, 9.899495, 9.899495, 6.9999995, 12.124356, 3.623467, 13.522962, -6.119594e-07, 14, -3.6234665, 13.522962, -7.000001, 12.124355, -9.899495, 9.899495, -12.124355, 7.000001, -13.522962, 3.623468, -14, -1.2239188e-06, -13.522962, -3.623467, -12.124355, -6.9999995, -9.899496, -9.899494, -6.9999986, -12.124356, -3.6234658, -13.522963, 1.6694833e-07, -14, 3.6234663, -13.522962, 6.9999986, -12.124356, 9.899493, -9.899496, 12.124354, -7.0000024, 13.522963, -3.6234636)
 script = ExtResource("3_3cv3c")
 outer_vertices = 24

@@ -5,7 +5,7 @@ signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
 
 @export var drag_area_offset := 10.0
 
-@onready var polygon  := $Polygon2D
+@onready var polygon  := $Polygon2D as Polygon2D
 @onready var collider := $DragArea/CollisionShape2D
 
 @onready var hint_circle := $HintCircle
@@ -85,15 +85,22 @@ func update_drag_points() -> void:
 		new.selected.connect(selected.emit)
 		holdability_changed.connect(func(to:bool): new.can_be_held = to)
 		new.can_be_held = can_be_held
+		new.deletable = true
 		
 		new.drag_started.connect(_drag_started)
 		new.drag_ended.connect(_drag_ended)
 		
 		new.position_changed.connect(update_point_position.bind(drag_points.size() - 1))
+		new.request_deletion.connect(request_deletion.bind(drag_points.size() - 1))
 	
-	# Fix all the positions of the drag polygon.
+	# Fix all the positions of the drag polygon.s
 	for i in polygon.polygon.size():
 		drag_points[i].position = polygon.polygon[i]
+
+func request_deletion(i:int):
+	var new_poly := polygon.polygon as PackedVector2Array
+	new_poly.remove_at(i)
+	polygon.polygon = new_poly
 
 func update_point_position(i:int):
 	polygon.polygon[i] = drag_points[i].position
@@ -107,14 +114,73 @@ func _mouse_exited () -> void: hint_circle.hide()
 
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	
+	print(event)
 	
 	if event is InputEventMouse:
-		var local_pos := get_local_mouse_position()
-		hint_circle.position = local_pos
-	
-		if event is InputEventMouseButton and event.is_pressed():
-			print("PRESSED!")
-			# Something something figure out which line the press was along.
+		
+		var c := get_local_mouse_position()
+		
+		for point:Vector2 in polygon.polygon:
+			# Too close to existing point, no making new ones.
+			if point.distance_to(c) < 20: 
+				hint_circle.hide()
+				return
+		
+		hint_circle.show()
+		
+		var current_intercept_position := Vector2.ZERO # The position to snap to
+		var current_intercept_distance := INF          # How far away it is.
+		var between_points:Vector2i # The points this point'll be placed between.
+		# For every segment (adjacent points)
+		for i in polygon.polygon.size():
+			var j = wrap(i + 1, 0, polygon.polygon.size())
+			
+			var p1 := polygon.polygon[i] as Vector2
+			var p2 := polygon.polygon[j] as Vector2
+			
+			# Turn into slope-intercept (y=mx+b) form.
+			var m := (p1.y - p2.y) / (p1.x - p2.x) if not p1.x == p2.x else INF
+			var b := p1.y - (m * p1.x)
+			
+			# Figure out where the click point would snap to the line.
+			var interception_point := Vector2.ZERO
+			# The line is vertical - the x coord is from one of the points (they have
+			# the same x), and the y coord is from the click point.
+			if m == INF:
+				interception_point.x = p1.x
+				interception_point.y = c.y
+			
+			# Turn the click point into point-slope form, with a slope parallel 
+			# to the line, and solve for the interception point. This is
+			# pre-simplified into one formula.
+			else:
+				interception_point.x = ((c.x / m) + c.y - b) / (m + (1/m))
+				interception_point.y = (m * interception_point.x) + b
+			
+			# If this is closer than any previous attempt, do it.
+			var point_travel := c.distance_to(interception_point)
+			if point_travel < current_intercept_distance:
+				current_intercept_position = interception_point
+				current_intercept_distance = point_travel
+				between_points = Vector2i(i,j)
+		
+		hint_circle.position = current_intercept_position
+		
+		if event is InputEventMouseButton and event.is_pressed() and event.button_mask == 1:
+			
+			var poly:Array[Vector2]
+			poly.assign(Array(polygon.polygon))
+			
+			# Make the new point at the snapped position, between the two points given.
+			if abs(between_points.x - between_points.y) > 1:
+				# This is the first and last points. Append to the end.
+				poly.append(current_intercept_position)
+			else:
+				# It's not. Append 
+				poly.insert(between_points.y, current_intercept_position)
+			
+			polygon.polygon = PackedVector2Array(poly)
+			
 			pass
 	
 	pass
