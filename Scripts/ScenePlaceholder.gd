@@ -23,6 +23,10 @@ var can_be_held := true:
 
 ## Whether this placeholder can be deleted.
 @export var deletable := false
+## Whether this placeholder can be scaled
+@export var scalable := true
+## Whether this placeholder can be rotated.
+@export var rotatable := true
 
 @onready var drag_area:Area2D = $DragArea
 

@@ -10,6 +10,7 @@ radius = 142.28493
 script = ExtResource("1_r1bi2")
 display_name = "Goal"
 placeholds = ExtResource("2_24mde")
+rotatable = false
 metadata/_custom_type_script = "uid://dbxh6goq23t5n"
 
 [node name="Sprite" type="Node2D" parent="." unique_id=1397287499]

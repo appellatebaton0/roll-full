@@ -31,7 +31,7 @@ var working_data:LevelData:
 
 ## Viewport variables
 @onready var viewport_container := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer
-@onready var viewport_camera    := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport/Camera
+@onready var viewport_camera    := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport/LECamera
 @onready var viewport           := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport
 
 ## -- Module Variables -- ##
@@ -60,7 +60,8 @@ var working_data:LevelData:
 @onready var selection_name_lab      := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Label2
 @onready var selection_scale_spin    := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer/Scale/SpinBox
 @onready var selection_rotation_spin := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/VBoxContainer/Rotation/SpinBox
-@onready var selection_delete_button := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Button
+@onready var selection_delete_button := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Button2
+@onready var selection_dupe_button   := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/Button
 
 @onready var spline_add_segment_button    := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons/SplineButton
 @onready var spline_delete_segment_button := $MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons/SplineButton2
@@ -123,8 +124,8 @@ func _set_selection(to:ScenePlaceholder):
 		_set_selection_scale   (selected.scale.x,          false)
 		_set_selection_rotation(selected.rotation_degrees, false)
 		
-		selection_scale_spin   .editable = true
-		selection_rotation_spin.editable = true
+		selection_scale_spin   .editable = selected.scalable
+		selection_rotation_spin.editable = selected.rotatable
 	else:
 		selection_name_lab.text = "None"
 		
@@ -134,6 +135,7 @@ func _set_selection(to:ScenePlaceholder):
 		selection_scale_spin   .editable = false
 		selection_rotation_spin.editable = false
 	
+	selection_dupe_button.disabled   = not (selected and prefabs.has(selected))
 	selection_delete_button.disabled = not (selected and selected.deletable)
 	
 	spline_button_box.visible = selected is SplinePlaceholder
@@ -144,6 +146,25 @@ func _ready() -> void:
 	
 	for prefab in viewport.get_children(): if prefab is ScenePlaceholder:
 		prefab.selected.connect(_set_selection.bind(prefab))
+		
+		prefab.drag_ended.connect(func(from:Vector2, to:Vector2):
+			# Plug drags into the UR
+			
+			undo_redo.create_action("Moved Prefab")
+			undo_redo.add_do_property  (prefab, "global_position", to)
+			undo_redo.add_undo_property(prefab, "global_position", from)
+			undo_redo.commit_action()
+		
+		)
+		
+		if prefab is DeathBorderPlaceholder:
+			prefab.points_changed.connect(func(from:PackedVector2Array, to:PackedVector2Array):
+				
+				undo_redo.create_action("Moved DeathBorder Points")
+				undo_redo.add_do_property(prefab.polygon, "polygon", to)
+				undo_redo.add_undo_property(prefab.polygon, "polygon", from)
+				undo_redo.commit_action(false)
+			)
 	
 	## Connect the input detection from the viewport for scrolling.
 	viewport_container.gui_input.connect(_viewport_gui_input)
@@ -198,9 +219,9 @@ func _ready() -> void:
 	bpm_spin_box.value_changed.connect(func(to:float):
 		if working_data: working_data.override_bpm = to
 		
-		for i in working_data.tracks.size():
-			print(i, ": ", working_data.tracks[i])
-		print("bpm ", working_data.override_bpm)
+		#for i in working_data.tracks.size():
+			#print(i, ": ", working_data.tracks[i])
+		#print("bpm ", working_data.override_bpm)
 		
 		)
 	
@@ -249,12 +270,26 @@ func _ready() -> void:
 	# Delete prefabs w/ the button.
 	selection_delete_button.pressed.connect(func():
 		if selected and selected.deletable:
-			prefabs.erase(selected)
-			selected.queue_free()
 			
-			selected = null
+			# Wire up adding/deleting to the undo_redo.
+			undo_redo.create_action("Delete Prefab")
+			undo_redo.add_do_method(soft_delete_prefab)
+			undo_redo.add_undo_method(soft_create_prefab)
+			undo_redo.commit_action()
 		
 		)
+	
+	# Duplicate prefabs w/ the button.
+	selection_dupe_button.pressed.connect(func():
+		
+		if selected and prefabs.has(selected):
+			var new := create_prefab("", selected.duplicate() as ScenePlaceholder)
+			new.position = selected.position + Vector2.ONE * 40
+			
+			selected = new
+		
+		)
+	
 	# Add segments to a spline
 	var add_segment := func(onto:SplinePlaceholder):
 		var offset:Vector2 = 150 * (onto.line.points[onto.line.points.size() - 1] - onto.line.points[onto.line.points.size() - 2]).normalized()
@@ -492,31 +527,32 @@ var prefabs:Array[ScenePlaceholder]
 var soft_delete_buffer:Array[ScenePlaceholder]
 func _on_prefab_button_pressed(scene_path: StringName) -> void:
 	
-	var delete_prefab := func(prefab:ScenePlaceholder):
-		prefabs.erase(prefab)
-		soft_delete_buffer.push_back(prefab)
-		prefab.hide()
-		#prefab.queue_free()
-	
 	create_prefab(scene_path)
-	
-	undo_redo.create_action("Create Prefab")
-	undo_redo.add_do_method(soft_create_prefab)
-	undo_redo.add_undo_method(func(): delete_prefab.call(prefabs.back()))
-	undo_redo.commit_action(false)
 
+func soft_delete_prefab(prefab:ScenePlaceholder = prefabs.back()):
+	if not prefab: return
+	
+	prefabs.erase(prefab)
+	soft_delete_buffer.push_back(prefab)
+	prefab.hide()
+	selected = null
 func soft_create_prefab():
+	# 'new'. Already exists.
 	var new := soft_delete_buffer.pop_back() as ScenePlaceholder
 	
 	new.show()
 	prefabs.append(new)
-
-func create_prefab(scene_path) -> ScenePlaceholder:
 	
-	var new := load(scene_path).instantiate() as ScenePlaceholder
+	selected = new
+
+func create_prefab(scene_path:String = "", override_for_hookup:ScenePlaceholder = null) -> ScenePlaceholder:
+	
+	var new := override_for_hookup if override_for_hookup else load(scene_path).instantiate() as ScenePlaceholder
 		
 	viewport.add_child(new)
-	new.position = viewport_camera.position
+	
+	if not override_for_hookup:
+		new.position = viewport_camera.position
 	
 	prefabs.append(new)
 	new.deletable = true
@@ -542,5 +578,11 @@ func create_prefab(scene_path) -> ScenePlaceholder:
 			undo_redo.add_undo_property(new.line, "points", from)
 			undo_redo.commit_action(false)
 			)
+	
+	# Wire up adding/deleting via the undo_redo to the undo_redo.
+	undo_redo.create_action("Create Prefab")
+	undo_redo.add_do_method(soft_create_prefab)
+	undo_redo.add_undo_method(soft_delete_prefab)
+	undo_redo.commit_action(false)
 	
 	return new

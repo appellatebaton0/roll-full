@@ -135,6 +135,8 @@ func regenerate_mesh(from_points := sample_points, mesh_width := width) -> Packe
 const DRAG_POINT_SCENE := preload("res://DragPoint.tscn")
 func update_drag_points() -> void:
 	
+	if not is_node_ready(): await ready
+	
 	# Shave off any extra points.
 	while line.points.size() < drag_points.size():
 		var back:DragPoint = drag_points.pop_back()
@@ -162,6 +164,8 @@ func update_drag_points() -> void:
 	# Fix all the positions of the drag points.
 	for i in line.points.size():
 		drag_points[i].position = line.points[i]
+	
+	print(self, "-> ", drag_points)
 
 func update_point_position(i:int):
 	line.points[i] = drag_points[i].position

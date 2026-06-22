@@ -62,6 +62,18 @@ gradient = SubResource("Gradient_f4itv")
 width = 4096
 height = 4096
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_su28g"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.031199997, 0.04827999, 0.08, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23bdm"]
 content_margin_left = 3.0
 content_margin_top = 3.0
@@ -118,6 +130,7 @@ thickness = 2
 vertical = true
 
 [sub_resource type="Theme" id="Theme_su28g"]
+Button/styles/disabled = SubResource("StyleBoxFlat_su28g")
 Button/styles/hover = SubResource("StyleBoxFlat_23bdm")
 Button/styles/normal = SubResource("StyleBoxFlat_p34jd")
 Button/styles/pressed = SubResource("StyleBoxFlat_tc5c5")
@@ -235,7 +248,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(832, 774)
+size = Vector2i(935, 773)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1063531865]
@@ -248,8 +261,7 @@ material = SubResource("ShaderMaterial_n0a1l")
 position = Vector2(4986, 2962)
 texture = SubResource("GradientTexture2D_mxptv")
 
-[node name="Camera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1743064898]
-zoom = Vector2(0.4, 0.4)
+[node name="LECamera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=613005442]
 script = ExtResource("3_mxptv")
 metadata/_custom_type_script = "uid://c26v4q7ayojpm"
 
@@ -344,7 +356,6 @@ step = 0.01
 value = 0.75
 
 [node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1914108937]
-visible = false
 custom_minimum_size = Vector2(82, 0)
 layout_mode = 2
 
@@ -410,7 +421,6 @@ texture_normal = SubResource("GradientTexture2D_23bdm")
 stretch_mode = 5
 
 [node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=490619007]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -494,16 +504,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Delete Segment"
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=193165554]
-layout_mode = 2
-
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=500896786]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Duplicate"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=467751321]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Delete"
 
 [node name="UndoRedo" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=64704977]
-visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
@@ -532,6 +543,7 @@ text = "Redo
 "
 
 [node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
@@ -563,6 +575,7 @@ alignment = 1
 suffix = "m/s"
 
 [node name="MusicTracks" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=304241974]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks" unique_id=1473798126]
@@ -681,6 +694,7 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="Ranking" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=655966081]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking" unique_id=1077199505]
@@ -828,6 +842,7 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="Score" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=457436277]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score" unique_id=1666018760]

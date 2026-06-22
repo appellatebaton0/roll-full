@@ -10,6 +10,8 @@ radius = 32.06244
 script = ExtResource("1_i1tmt")
 display_name = "Player"
 placeholds = ExtResource("2_3hyqt")
+scalable = false
+rotatable = false
 metadata/_custom_type_script = "uid://dbxh6goq23t5n"
 
 [node name="Background" type="Polygon2D" parent="." unique_id=37768220]

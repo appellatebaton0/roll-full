@@ -26,6 +26,16 @@ func _process(_delta: float) -> void:
 		if global_position != new_position:
 			global_position = new_position
 			position_changed.emit()
+	
+	global_scale = Vector2.ONE / get_viewport().get_camera_2d().zoom
+	
+	var any_connected := false
+	for signa:Signal in [position_changed,request_deletion,selected,drag_started,drag_ended]:
+		if signa.has_connections(): 
+			any_connected = true
+			break
+	# Nobody's listening. Stop talking.
+	if not any_connected: queue_free()
 
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if held and event is InputEventMouse: 

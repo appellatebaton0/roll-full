@@ -10,6 +10,8 @@ signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
 
 @onready var hint_circle := $HintCircle
 
+@onready var cam := get_viewport().get_camera_2d()
+
 func _ready() -> void:
 	super()
 	
@@ -27,6 +29,8 @@ func _process(_delta: float) -> void:
 		
 		last_points = polygon.polygon
 	
+	hint_circle.global_scale = Vector2.ONE / cam.zoom
+	
 
 # Regenerate the drag area collider to match the new polygon.
 func regenerate_collider() -> void:
@@ -34,7 +38,7 @@ func regenerate_collider() -> void:
 	var looped_line := polygon.polygon as PackedVector2Array
 	looped_line.append(polygon.polygon[0])
 	
-	var gons := Geometry2D.offset_polyline(looped_line, 5.0)
+	var gons := Geometry2D.offset_polyline(looped_line, drag_area_offset / cam.zoom.x) 
 	
 	var outer:Array[Vector2]
 	outer.assign(Array(gons[0]))
@@ -114,15 +118,13 @@ func _mouse_exited () -> void: hint_circle.hide()
 
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	
-	print(event)
-	
 	if event is InputEventMouse:
 		
 		var c := get_local_mouse_position()
 		
 		for point:Vector2 in polygon.polygon:
 			# Too close to existing point, no making new ones.
-			if point.distance_to(c) < 20: 
+			if point.distance_to(c) < 15. / cam.zoom.x: 
 				hint_circle.hide()
 				return
 		
@@ -176,8 +178,11 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 				# This is the first and last points. Append to the end.
 				poly.append(current_intercept_position)
 			else:
-				# It's not. Append 
+				# It's not. Append after both points.
 				poly.insert(between_points.y, current_intercept_position)
+			
+			# Tell the undo_redo 'bout the change.
+			points_changed.emit(polygon.polygon, PackedVector2Array(poly))
 			
 			polygon.polygon = PackedVector2Array(poly)
 			
