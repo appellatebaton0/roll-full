@@ -19,7 +19,9 @@ var can_be_held := true:
 ## The scene this node is a placeholder for.
 @export var placeholds:PackedScene
 ## The properties that will be passed to the actual scene.
-@export var passover_properties:Array[String]
+@export var passover_properties:Array[String] = [
+	"position", "scale", "rotation"
+]
 
 ## Whether this placeholder can be deleted.
 @export var deletable := false
@@ -68,3 +70,16 @@ func start_hold() -> void: if can_be_held:
 	get_parent().move_child(self, -1)
 	
 	selected.emit()
+
+# Get a fresh instance of what this is a placeholder for.
+func get_instance() -> Node:
+	
+	var new := placeholds.instantiate() if placeholds else null
+	
+	if not new: print(new)
+	else:
+	
+		for property in passover_properties:
+			new.set(property, get(property))
+	
+	return new

@@ -7,7 +7,6 @@ func _ready() -> void:
 
 func _on_animation_requested(anim_name:String, optional_data:Variant = true):
 	if has_animation(anim_name) and not is_playing():
-		play(anim_name, -1, 1.0 / Engine.time_scale)
 		
 		match anim_name:
 			"Levels->Game":
@@ -15,14 +14,20 @@ func _on_animation_requested(anim_name:String, optional_data:Variant = true):
 			"Countdown":
 				get_tree().paused = true
 			"Game->Levels":
+				# Only allow if a level was entered.
+				if not Global.current_level: return
+				
 				get_tree().paused = true
 				
 				if optional_data:
 					Global.level_complete.emit()
-				
 			"ResetIn":
+				# Only allow if a level was entered.
+				if not Global.current_level: return
+				
 				get_tree().paused = true
-				#Global.update
+		
+		play(anim_name, -1, 1.0 / Engine.time_scale)
 
 func _on_animation_finished(anim_name:String) -> void:
 	match anim_name:

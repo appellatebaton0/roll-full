@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://4fa863glxx7y"]
+
+[ext_resource type="Script" uid="uid://dr0gl5uvd6qow" path="res://Scripts/AmbientParticles.gd" id="1_4k2nv"]
+
+[sub_resource type="Gradient" id="Gradient_j6j3i"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.2516, 0.44695988, 0.74, 0.41960785)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b072a"]
+gradient = SubResource("Gradient_j6j3i")
+width = 16
+height = 16
+
+[node name="AmbientParticles" type="Node" unique_id=1391339889]
+process_mode = 3
+script = ExtResource("1_4k2nv")
+particle_count = 24
+texture_size = Vector2i(16, 16)
+min_velocity = Vector2(-300, -300)
+max_velocity = Vector2(300, 300)
+min_spin = -40.0
+max_spin = 40.0
+scale_out = 5.0
+
+[node name="TemplateParticle" type="Sprite2D" parent="." unique_id=1521596480]
+z_index = 4
+position = Vector2(1, 2)
+texture = SubResource("GradientTexture2D_b072a")

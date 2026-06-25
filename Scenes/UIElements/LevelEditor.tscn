@@ -3,11 +3,19 @@
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="1_klpvh"]
 [ext_resource type="Script" uid="uid://4wvdj0psapvi" path="res://Scripts/UI/LevelEditor.gd" id="2_mxptv"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_n0a1l"]
-[ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="3_mxptv"]
 [ext_resource type="PackedScene" uid="uid://bno1ab82l8err" path="res://Scenes/Placeholders/GoalPlaceholder.tscn" id="4_p34jd"]
 [ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="5_mxptv"]
 [ext_resource type="PackedScene" uid="uid://c7mrr0snf4fg5" path="res://Scenes/Placeholders/PlayerPlaceholder.tscn" id="5_tc5c5"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="6_4bv08"]
 [ext_resource type="PackedScene" uid="uid://dgb0aq4s5dymc" path="res://Scenes/Placeholders/DeathBorderPlaceholder.tscn" id="6_tc5c5"]
+[ext_resource type="Shader" uid="uid://5um5rx0wnwre" path="res://Shaders/PauseTransition.gdshader" id="7_padjw"]
+[ext_resource type="Texture2D" uid="uid://5lm341hko6yn" path="res://Assets/Textures/SplineIcon.svg" id="7_w7vm6"]
+[ext_resource type="Script" uid="uid://b2eoa1wdpesh3" path="res://Scripts/UI/LevelEditorAnimator.gd" id="8_4bv08"]
+[ext_resource type="Texture2D" uid="uid://qfobvspft3ay" path="res://Assets/Textures/SpikeIcon.svg" id="8_su28g"]
+[ext_resource type="Texture2D" uid="uid://dtpy8gmf2xm64" path="res://Assets/Textures/CircleIcon.png" id="9_kv1jn"]
+[ext_resource type="Texture2D" uid="uid://dn5aeau54s3ww" path="res://Assets/Textures/JumpIcon.svg" id="10_2udws"]
+[ext_resource type="Texture2D" uid="uid://l6ybiblm2in2" path="res://Assets/Textures/DashIcon.svg" id="11_4bv08"]
+[ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="12_padjw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4itv"]
 bg_color = Color(0.047058824, 0.07450981, 0.12156863, 1)
@@ -61,6 +69,239 @@ colors = PackedColorArray(0.1312, 0.15008003, 0.32, 1)
 gradient = SubResource("Gradient_f4itv")
 width = 4096
 height = 4096
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bv08"]
+shader = ExtResource("7_padjw")
+shader_parameter/multipli = 50.0
+shader_parameter/threshold = 0.0
+shader_parameter/inverted = false
+
+[sub_resource type="Animation" id="Animation_4kpch"]
+resource_name = "Countdown"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Countdown/RegularPolygon/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6667, 1.3333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["3", "2", "1", ""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Countdown:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Countdown/RegularPolygon:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.11197586, 0.17840078, 0.5457516, 0.5737964, 0.6782713, 0.75413334, 0.8333333, 1.2008137, 1.2288584, 1.3333333, 1.4091954, 1.4666667, 1.8595718, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Countdown/RegularPolygon:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.11197586, 0.16788399, 0.5429713, 0.5763046, 0.75413334, 0.8333333, 1.1921707, 1.2313665, 1.4091954, 1.4626279, 1.8514942, 1.8999602, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-3.1415927, 0.0, 0.0, 0.0, 0.0, 6.283185307179586, 6.283185307179586, 6.283185307179586, 6.283185307179586, 0.0, 0.0, 0.0, 0.0, 6.283185307179586]
+}
+
+[sub_resource type="Animation" id="Animation_padjw"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ResetLevel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ResetLevel/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ResetLevel:material:shader_parameter/inverted")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ResetLevel:material:shader_parameter/threshold")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Countdown:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_grg3l"]
+resource_name = "ResetIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ResetLevel/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ResetLevel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ResetLevel:material:shader_parameter/threshold")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.33333337, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ResetLevel:material:shader_parameter/inverted")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_frkhe"]
+resource_name = "ResetOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ResetLevel/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ResetLevel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ResetLevel:material:shader_parameter/threshold")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ResetLevel:material:shader_parameter/inverted")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jnecx"]
+_data = {
+&"Countdown": SubResource("Animation_4kpch"),
+&"RESET": SubResource("Animation_padjw"),
+&"ResetIn": SubResource("Animation_grg3l"),
+&"ResetOut": SubResource("Animation_frkhe")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_su28g"]
 content_margin_left = 3.0
@@ -138,11 +379,6 @@ HSeparator/styles/separator = SubResource("StyleBoxLine_mwymk")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_w7vm6")
 VSeparator/styles/separator = SubResource("StyleBoxLine_f4itv")
 
-[sub_resource type="Gradient" id="Gradient_mxptv"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_23bdm"]
-gradient = SubResource("Gradient_mxptv")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwymk"]
 bg_color = Color(0.0585, 0.09052499, 0.15, 0.8901961)
 corner_radius_top_left = 40
@@ -196,7 +432,7 @@ custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_font_sizes/font_size = 30
-placeholder_text = "[Level Name]"
+placeholder_text = "Level Name"
 alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1955376380]
@@ -207,12 +443,15 @@ alignment = 2
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=471736748]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 23
+toggle_mode = true
 text = "  TEST  "
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=1727932437]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 23
 text = "  FINISH  "
 
@@ -245,32 +484,123 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
+[node name="BuildViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(935, 773)
 render_target_update_mode = 4
 
-[node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1063531865]
+[node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=1063531865]
 scroll_offset = Vector2(-2547, -2318)
 repeat_size = Vector2(4040, 4040)
 repeat_times = 25
 
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport/Parallax2D" unique_id=996162394]
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport/Parallax2D" unique_id=996162394]
 material = SubResource("ShaderMaterial_n0a1l")
 position = Vector2(4986, 2962)
 texture = SubResource("GradientTexture2D_mxptv")
 
-[node name="LECamera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=613005442]
-script = ExtResource("3_mxptv")
-metadata/_custom_type_script = "uid://c26v4q7ayojpm"
+[node name="GoalPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=809300250 instance=ExtResource("4_p34jd")]
 
-[node name="GoalPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=809300250 instance=ExtResource("4_p34jd")]
-
-[node name="PlayerPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1714767970 instance=ExtResource("5_tc5c5")]
+[node name="PlayerPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=1714767970 instance=ExtResource("5_tc5c5")]
 position = Vector2(165, 272)
 
-[node name="DeathBorderPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=345576127 instance=ExtResource("6_tc5c5")]
+[node name="DeathBorderPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=345576127 instance=ExtResource("6_tc5c5")]
+
+[node name="LECamera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=1737903844]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer" unique_id=1032804232]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="TestViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2" unique_id=1444626738]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(935, 773)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport" unique_id=1017081695]
+
+[node name="Countdown" type="Control" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer" unique_id=778204118]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RegularPolygon" type="Polygon2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer/Countdown" unique_id=680008945]
+position = Vector2(467.5, 386.5)
+rotation = -3.1415927
+scale = Vector2(1e-05, 1e-05)
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+antialiased = true
+polygon = PackedVector2Array(200, 0, 285.31696, 92.7051, 161.8034, 117.55705, 176.33557, 242.7051, 61.803394, 190.2113, -1.3113417e-05, 300, -61.803406, 190.2113, -176.33556, 242.7051, -161.8034, 117.55704, -285.31696, 92.70511, -200, -1.7484555e-05, -285.31696, -92.70509, -161.80339, -117.557076, -176.33553, -242.70514, -61.803417, -190.2113, 3.5774642e-06, -300, 61.803425, -190.2113, 176.33553, -242.70514, 161.80339, -117.55706, 285.31696, -92.705086)
+script = ExtResource("6_4bv08")
+outer_vertices = 20
+outer_radius = 300.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -100.0
+})
+
+[node name="RegularPolygon2" type="Polygon2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer/Countdown/RegularPolygon" unique_id=579473262]
+color = Color(0.2509804, 0.44705883, 0.7411765, 1)
+antialiased = true
+polygon = PackedVector2Array(140, 0, 190.2113, 61.803402, 113.26238, 82.28993, 117.55705, 161.8034, 43.262375, 133.14792, -8.742278e-06, 200, -43.262386, 133.1479, -117.55704, 161.8034, -113.26239, 82.289925, -190.2113, 61.803406, -140, -1.2239188e-05, -190.2113, -61.803394, -113.262375, -82.28995, -117.557014, -161.80342, -43.262394, -133.1479, 2.3849761e-06, -200, 43.262398, -133.1479, 117.557014, -161.80342, 113.262375, -82.28994, 190.2113, -61.80339)
+script = ExtResource("6_4bv08")
+outer_vertices = 20
+outer_radius = 200.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -60.0
+})
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer/Countdown/RegularPolygon" unique_id=1164419204]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -270.0
+offset_right = 118.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 280
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetLevel" type="Control" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer" unique_id=1380114414]
+visible = false
+material = SubResource("ShaderMaterial_4bv08")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer/ResetLevel" unique_id=2040208482]
+visible = false
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer" unique_id=1240985734]
+process_mode = 3
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_jnecx")
+script = ExtResource("8_4bv08")
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2" unique_id=253778851]
 layout_mode = 2
@@ -383,41 +713,144 @@ theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 columns = 2
 
-[node name="TextureRect" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=908550186]
+[node name="PrefabButton" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1618581411]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_23bdm")
-stretch_mode = 5
 metadata/ScenePath = &""
 
-[node name="TextureRect2" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=199696258]
-custom_minimum_size = Vector2(64, 64)
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton" unique_id=1537845408]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton/MarginContainer" unique_id=618917085]
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_23bdm")
+mouse_filter = 2
+texture = ExtResource("7_w7vm6")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1479894801]
+[node name="PrefabButton2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=977045141]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_23bdm")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton2" unique_id=1483583197]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton2/MarginContainer2" unique_id=1889165712]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_su28g")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect4" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1675332113]
+[node name="PrefabButton3" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1152913048]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_23bdm")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton3" unique_id=955113590]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton3/MarginContainer3" unique_id=1537416278]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_kv1jn")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect5" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=467468938]
+[node name="PrefabButton4" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1327229059]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_23bdm")
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton4" unique_id=1204298072]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton4/MarginContainer4" unique_id=735980898]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("10_2udws")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect6" type="TextureButton" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1475714807]
+[node name="PrefabButton5" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1677564422]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_23bdm")
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton5" unique_id=104301509]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton5/MarginContainer5" unique_id=261969847]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("11_4bv08")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PrefabButton6" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=410416694]
+modulate = Color(0.76862746, 0.972549, 0.8627451, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton6" unique_id=1878652331]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton6/MarginContainer" unique_id=1488365976]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("12_padjw")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=490619007]
@@ -433,7 +866,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer" unique_id=914008861]
 layout_mode = 2
-theme_override_constants/separation = 11
+theme_override_constants/separation = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=513759067]
 layout_mode = 2
@@ -493,16 +926,22 @@ editable = false
 
 [node name="SplineButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=1321378849]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="SplineButton" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons" unique_id=762228250]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "Add Segment"
 
 [node name="SplineButton2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons" unique_id=8247401]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "Delete Segment"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer/SplineButtons" unique_id=1390711087]
+layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/Selection/MarginContainer/HBoxContainer" unique_id=500896786]
 layout_mode = 2
@@ -1011,10 +1450,11 @@ theme = ExtResource("5_mxptv")
 theme_override_font_sizes/font_size = 34
 text = "X"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SplinePlaceholder.tscn"]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect2" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SpikePlaceholder.tscn"]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect3" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/CirclePlaceholder.tscn"]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect4" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/JumpIndPlaceholder.tscn"]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect5" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/DashIndPlaceholder.tscn"]]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/TextureRect6" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/ArrowPlaceholder.tscn"]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Button" to="." method="_on_demo_button_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SplinePlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton2" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/SpikePlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton3" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/CirclePlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton4" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/JumpIndPlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton5" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/DashIndPlaceholder.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton6" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/ArrowPlaceholder.tscn"]]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Button" to="." method="_toggle_music_panel" binds= [false]]

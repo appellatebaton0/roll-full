@@ -31,8 +31,13 @@ var working_data:LevelData:
 
 ## Viewport variables
 @onready var viewport_container := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer
-@onready var viewport_camera    := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport/LECamera
-@onready var viewport           := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/SubViewport
+@onready var viewport_camera    := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport/LECamera
+@onready var viewport           := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport
+@onready var demo_container     := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2
+@onready var demo_viewport      := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport
+
+## Testing button.
+@onready var test_button := $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Button
 
 ## -- Module Variables -- ##
 
@@ -332,7 +337,8 @@ func _ready() -> void:
 		for module in modules:
 				modules[module].visible = tab_modules[index].has(module)
 		
-		for prefab in prefabs:
+		# Update all the prefabs; added and existing.
+		for prefab in viewport.get_children().filter(func(a): return a is ScenePlaceholder):
 			prefab.can_be_held = not index
 		
 		)
@@ -360,6 +366,8 @@ func _update_undo_redo_buttons() -> void:
 	undo.disabled = not undo_redo.has_undo()
 	redo.disabled = not undo_redo.has_redo()
 
+## -- Music Functions -- ##
+
 ## Update the list of available music tracks
 var music_path_dictionary:Dictionary[TreeItem, StringName]
 func _update_music_track_options() -> void:
@@ -380,6 +388,7 @@ func _update_music_track_options() -> void:
 	# Fill the tree
 	music_path_dictionary.merge(dir_to_tree(custom_music_tree.get_root(), "user://Music/"))
 
+## Toggle the visibility of the music panel
 var music_panel_tween:Tween
 func _toggle_music_panel(to_state:bool = !music_panel.visible):
 	if to_state == music_panel.visible: return
@@ -471,6 +480,8 @@ func load_music(path:String) -> AudioStream:
 	
 	return file
 
+## -- Selection Property Setters -- ##
+
 # UndoRedo-supporting wrappers for setting the selection's scale & rotation
 func _set_selection_scale(to:float, via_undo_redo := true):
 	if selected:
@@ -496,7 +507,9 @@ func _set_selection_rotation(to:float, via_undo_redo := true):
 		else:
 			selection_rotation_spin.set_value_no_signal(to)
 			selected.rotation_degrees = to
-		
+
+## -- Camera Control -- ##
+
 # Catch inputs into the viewport for camera scrolling and zooming.
 func _viewport_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -511,7 +524,14 @@ func _viewport_gui_input(event: InputEvent) -> void:
 				_: return
 			
 			if event.ctrl_pressed:
+				
+				# Zoom in/out, relative to the mouse position.
+				# This gets slid a bit sometimes because of the step, but that's alr.
+				var mouse_pos :Vector2= viewport_camera.get_global_mouse_position()
 				zoom_slider.value -= direction.y * 0.03
+				var new_mouse_pos :Vector2= viewport_camera.get_global_mouse_position()
+				viewport_camera.position += mouse_pos - new_mouse_pos
+
 				return
 			
 			if event.shift_pressed: direction = direction.rotated(PI / 2)
@@ -523,28 +543,11 @@ func update_zoom_to(value:float):
 	if zoom_slider.value   != value: zoom_slider.value   = value
 	if zoom_spin_box.value != value: zoom_spin_box.value = value
 
+
+## -- Prefab Creation / Destruction -- ##
+
 var prefabs:Array[ScenePlaceholder]
-var soft_delete_buffer:Array[ScenePlaceholder]
-func _on_prefab_button_pressed(scene_path: StringName) -> void:
-	
-	create_prefab(scene_path)
-
-func soft_delete_prefab(prefab:ScenePlaceholder = prefabs.back()):
-	if not prefab: return
-	
-	prefabs.erase(prefab)
-	soft_delete_buffer.push_back(prefab)
-	prefab.hide()
-	selected = null
-func soft_create_prefab():
-	# 'new'. Already exists.
-	var new := soft_delete_buffer.pop_back() as ScenePlaceholder
-	
-	new.show()
-	prefabs.append(new)
-	
-	selected = new
-
+func _on_prefab_button_pressed(scene_path: StringName) -> void: create_prefab(scene_path)
 func create_prefab(scene_path:String = "", override_for_hookup:ScenePlaceholder = null) -> ScenePlaceholder:
 	
 	var new := override_for_hookup if override_for_hookup else load(scene_path).instantiate() as ScenePlaceholder
@@ -586,3 +589,84 @@ func create_prefab(scene_path:String = "", override_for_hookup:ScenePlaceholder 
 	undo_redo.commit_action(false)
 	
 	return new
+
+var soft_delete_buffer:Array[ScenePlaceholder]
+func soft_delete_prefab(prefab:ScenePlaceholder = prefabs.back()):
+	if not prefab: return
+	
+	prefabs.erase(prefab)
+	soft_delete_buffer.push_back(prefab)
+	prefab.hide()
+	selected = null
+func soft_create_prefab():
+	# 'new'. Already exists.
+	var new := soft_delete_buffer.pop_back() as ScenePlaceholder
+	
+	new.show()
+	prefabs.append(new)
+	
+	selected = new
+
+## -- Real Scene Loading -- ## (stuff for turning the placeholders into the actual level.)
+
+# Load and unload the demo w/ the press of a button.
+func _on_demo_button_toggled(toggled_on: bool) -> void:
+	
+	test_button.text = "STOP" if toggled_on else "TEST"
+	
+	if toggled_on:
+		_load_to_viewport()
+		
+		demo_container.show()
+	
+	else:
+		_unload_from_viewport()
+		
+		demo_container.hide()
+	
+	
+	pass # Replace with function body.
+
+var loaded_in_demo:Array[Node]
+
+# Loads the currently-being-edited-on scene into the demo viewport.
+func _load_to_viewport():
+	
+	var child_queue:Array[Node] # All the nodes to add to the view.
+	
+	# Background parallax thingy
+	child_queue.append(preload('res://Scenes/RockBackground.tscn').instantiate())
+	
+	# Camera
+	child_queue.append(Camera.new())
+	
+	# Modulate
+	var canv_modu := CanvasModulate.new()
+	canv_modu.color = Color("d4d4d4")
+	child_queue.append(canv_modu)
+	
+	# Environment
+	var world_env := WorldEnvironment.new()
+	world_env.environment = preload("res://Assets/Resources/Environment.tres")
+	child_queue.append(world_env)
+	
+	# Ambient Particles
+	child_queue.append(preload("res://Scenes/AmbientParticles.tscn").instantiate())
+	
+	# Add all the prefab placeholders.
+	for prefab:ScenePlaceholder in viewport.get_children().filter(func(a): return a is ScenePlaceholder):
+		child_queue.append(prefab.get_instance())
+	
+	# Add everything to the demo viewport.
+	for node in child_queue:
+		demo_viewport.add_child(node)
+	loaded_in_demo += child_queue
+
+# Unloads all the nodes in the demo viewport.
+func _unload_from_viewport():
+	for child in loaded_in_demo:
+		child.queue_free()
+	loaded_in_demo.clear()
+	
+	# Reset the viewport freeze if the player is mid-countdown/reset anim.
+	get_tree().paused = false

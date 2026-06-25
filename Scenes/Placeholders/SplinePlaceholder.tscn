@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://dud3ciy0cf7g6"]
 
 [ext_resource type="Script" uid="uid://p40c8qofbcq3" path="res://Scripts/SplinePlaceholder.gd" id="1_6kb0u"]
-[ext_resource type="PackedScene" uid="uid://14faqfrlp8vj" path="res://Scenes/Spline.tscn" id="2_vqyjr"]
 
 [node name="Spline" type="Node2D" unique_id=429917042]
 script = ExtResource("1_6kb0u")
 display_name = "Spline"
-placeholds = ExtResource("2_vqyjr")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1065962153]
 points = PackedVector2Array(-100, 100, -100, -100, 100, -100, 100, 100)

@@ -48,6 +48,8 @@ func _process(_delta: float) -> void:
 	
 	super._process(_delta)
 	
+	line.width = 15. / get_viewport().get_camera_2d().zoom.x
+	
 	if line.points != last_points:
 		update_drag_points()
 		
@@ -165,10 +167,11 @@ func update_drag_points() -> void:
 	for i in line.points.size():
 		drag_points[i].position = line.points[i]
 	
-	print(self, "-> ", drag_points)
 
 func update_point_position(i:int):
-	line.points[i] = drag_points[i].position
+	var new_line := line.points
+	new_line.set(i, drag_points[i].position)
+	line.points = new_line
 
 var drag_start_points:PackedVector2Array
 func _drag_started() -> void: drag_start_points = line.points
@@ -192,3 +195,21 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 			drag_ended.emit(drag_start_pos, global_position)
 			
 			get_viewport().set_input_as_handled()
+
+# Get a fresh instance of what this is a placeholder for.
+func get_instance() -> Node:
+	
+	var new := Spline2D.new()
+	
+	for property in passover_properties:
+		new.set(property, get(property))
+	
+	new.points = line.points
+	new.width = 40.
+	
+	new.regenerate_sample()
+	
+	
+	print(new, " -> ", new.points)
+	
+	return new

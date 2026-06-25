@@ -107,7 +107,10 @@ func request_deletion(i:int):
 	polygon.polygon = new_poly
 
 func update_point_position(i:int):
-	polygon.polygon[i] = drag_points[i].position
+	if i > polygon.polygon.size() -1: return
+	var new_poly := polygon.polygon
+	new_poly.set(i, drag_points[i].position)
+	polygon.polygon = new_poly
 
 var drag_start_points:PackedVector2Array
 func _drag_started() -> void: drag_start_points = polygon.polygon
@@ -146,11 +149,18 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 			
 			# Figure out where the click point would snap to the line.
 			var interception_point := Vector2.ZERO
+			
 			# The line is vertical - the x coord is from one of the points (they have
 			# the same x), and the y coord is from the click point.
 			if m == INF:
 				interception_point.x = p1.x
 				interception_point.y = c.y
+			
+			# The line is horizontal; use the mouse's x coord
+			# and the line's y coord.
+			elif m == 0:
+				interception_point.x = c.x
+				interception_point.y = p1.y
 			
 			# Turn the click point into point-slope form, with a slope parallel 
 			# to the line, and solve for the interception point. This is
@@ -165,6 +175,17 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 				current_intercept_position = interception_point
 				current_intercept_distance = point_travel
 				between_points = Vector2i(i,j)
+			# If it's the same distance, it's almost guarenteed along the same
+			# line, and there's an unmoved point on the line. check distances of the
+			# surrounding points to make a decision.
+			# NOTE: Unreliable with multiple overlapping segments, but better than nothing.
+			elif point_travel == current_intercept_distance:
+				var this_dist := p1.distance_to(c) + p2.distance_to(c)
+				var last_dist := polygon.polygon[between_points.x].distance_to(c) + polygon.polygon[between_points.y].distance_to(c)
+				if this_dist < last_dist:
+					current_intercept_position = interception_point
+					current_intercept_distance = point_travel
+					between_points = Vector2i(i,j)
 		
 		hint_circle.position = current_intercept_position
 		
@@ -187,5 +208,15 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 			polygon.polygon = PackedVector2Array(poly)
 			
 			pass
+
+# Get a fresh instance of what this is a placeholder for.
+func get_instance() -> Node:
 	
-	pass
+	var new:DeathBorder = placeholds.instantiate() if placeholds else null
+	
+	for property in passover_properties:
+		new.set(property, get(property))
+	
+	new.polygon = polygon.polygon
+	
+	return new
