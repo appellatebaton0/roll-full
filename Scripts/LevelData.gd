@@ -9,6 +9,7 @@ signal runs_updated
 @export_range(0, 6400, 20) var base_player_speed := 2500
 
 @export var scene:PackedScene ## The scene containing this level.
+@export var editor_scene:PackedScene ## The scene containing the placeholder representation of this level.
 
 class Run:
 	var time:float
