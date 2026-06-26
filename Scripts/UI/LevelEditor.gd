@@ -146,8 +146,6 @@ func _set_selection(to:ScenePlaceholder):
 	spline_button_box.visible = selected is SplinePlaceholder
 
 func _ready() -> void:
-	# NOTE: For debugging.
-	working_data = LevelData.new()
 	
 	for prefab in viewport.get_children(): if prefab is ScenePlaceholder:
 		prefab.selected.connect(_set_selection.bind(prefab))
@@ -231,15 +229,17 @@ func _ready() -> void:
 		)
 	
 	## Music Track Selecting.
-	select_track_button.pressed.connect(func(): if working_data:
+	select_track_button.pressed.connect(func(): 
 		
-		if selected_track_path != null:
-			var file := load_music(selected_track_path)
-			var track_index := music_track_buttons.find(mp_from_button)
-			
-			working_data.tracks[track_index] = file
-			
-			mp_from_button.text = (selected_track_path.split("/") as Array[String]).back()
+		if working_data:
+		
+			if selected_track_path != null:
+				var file := load_music(selected_track_path)
+				var track_index := music_track_buttons.find(mp_from_button)
+				
+				working_data.tracks[track_index] = file
+				
+				mp_from_button.text = (selected_track_path.split("/") as Array[String]).back()
 		
 		_toggle_music_panel(false)
 		
@@ -358,11 +358,6 @@ func _ready() -> void:
 	_update_undo_redo_buttons()
 
 func _update_undo_redo_buttons() -> void:
-	
-	#print("# -- VERSION HISTORY -- #")
-	#for i in undo_redo.get_history_count():
-		#print(undo_redo.get_action_name(i))
-		
 	undo.disabled = not undo_redo.has_undo()
 	redo.disabled = not undo_redo.has_redo()
 

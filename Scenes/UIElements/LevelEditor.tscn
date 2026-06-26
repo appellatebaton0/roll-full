@@ -510,6 +510,7 @@ position = Vector2(165, 272)
 [node name="LECamera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=1737903844]
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer" unique_id=1032804232]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
