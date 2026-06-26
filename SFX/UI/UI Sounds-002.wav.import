@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwbq4mlxvp4np"
+path="res://.godot/imported/UI Sounds-002.wav-17ffd52e222fd57a16c3a09a9be8b035.sample"
+
+[deps]
+
+source_file="res://SFX/UI/UI Sounds-002.wav"
+dest_files=["res://.godot/imported/UI Sounds-002.wav-17ffd52e222fd57a16c3a09a9be8b035.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkmt2nwx3axux"
+path="res://.godot/imported/UI Level Cycle-003.wav-cce6cbd2a013174d9d0ef7120630f999.sample"
+
+[deps]
+
+source_file="res://SFX/UI/UI Level Cycle-003.wav"
+dest_files=["res://.godot/imported/UI Level Cycle-003.wav-cce6cbd2a013174d9d0ef7120630f999.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

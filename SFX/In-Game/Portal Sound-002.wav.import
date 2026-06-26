@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ejlgvkr37sxm"
+path="res://.godot/imported/Portal Sound-002.wav-dbe5f85e1b41c9e77e2c5383641dd415.sample"
+
+[deps]
+
+source_file="res://SFX/In-Game/Portal Sound-002.wav"
+dest_files=["res://.godot/imported/Portal Sound-002.wav-dbe5f85e1b41c9e77e2c5383641dd415.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

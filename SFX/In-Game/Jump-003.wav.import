@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bpvuh5hm72k1k"
-path="res://.godot/imported/Death No Tail.wav-c2924d05df8093ded5d09db9cbb0ad28.sample"
+uid="uid://cq808bsxdko83"
+path="res://.godot/imported/Jump-003.wav-185b2f155a454ef434ac6a1c2fe2c6e1.sample"
 
 [deps]
 
-source_file="res://SFX/Death No Tail.wav"
-dest_files=["res://.godot/imported/Death No Tail.wav-c2924d05df8093ded5d09db9cbb0ad28.sample"]
+source_file="res://SFX/In-Game/Jump-003.wav"
+dest_files=["res://.godot/imported/Jump-003.wav-185b2f155a454ef434ac6a1c2fe2c6e1.sample"]
 
 [params]
 
