@@ -430,7 +430,7 @@ tracks/5/keys = {
 tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("MainMenu/OptionContainer/Button")
+tracks/6/path = NodePath("MainMenu/OptionContainer/Play")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1222,23 +1222,26 @@ layout_mode = 0
 offset_left = 53.0
 offset_top = 302.0
 offset_right = 379.0
-offset_bottom = 603.0
+offset_bottom = 694.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = ExtResource("6_h1m7h")
 theme_override_constants/separation = 23
 script = ExtResource("5_frkhe")
+starting_offset = -450.0
+slide_in_time = 0.4
 
-[node name="Button" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=346110339]
+[node name="Play" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=346110339]
 layout_mode = 2
 size_flags_vertical = 3
+offset_transform_enabled = true
 tooltip_text = "Move on to the level selection screen."
-focus_neighbor_left = NodePath("../Button3")
-focus_neighbor_top = NodePath("../Button3")
-focus_neighbor_right = NodePath("../Button2")
-focus_neighbor_bottom = NodePath("../Button2")
-focus_next = NodePath("../Button2")
-focus_previous = NodePath("../Button3")
+focus_neighbor_left = NodePath("../Quit")
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_right = NodePath("../Create")
+focus_neighbor_bottom = NodePath("../Create")
+focus_next = NodePath("../Create")
+focus_previous = NodePath("../Quit")
 theme_override_font_sizes/font_size = 57
 text = "PLAY"
 script = ExtResource("1_idj7w")
@@ -1246,17 +1249,37 @@ animation_name = "Main->Levels"
 use_global = true
 starts_with_focus = true
 
-[node name="Button2" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=887973936]
+[node name="Create" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=887973936]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 3
+offset_transform_enabled = true
 tooltip_text = "Open the options menu."
-focus_neighbor_left = NodePath("../Button")
-focus_neighbor_top = NodePath("../Button")
-focus_neighbor_right = NodePath("../Button3")
-focus_neighbor_bottom = NodePath("../Button3")
-focus_next = NodePath("../Button3")
-focus_previous = NodePath("../Button")
+focus_neighbor_left = NodePath("../Play")
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_right = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Options")
+focus_next = NodePath("../Options")
+focus_previous = NodePath("../Play")
+theme_override_font_sizes/font_size = 57
+text = "CREATE"
+script = ExtResource("1_idj7w")
+animation_name = "Main->LevelEditor"
+use_global = true
+returns_focus = true
+
+[node name="Options" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=1204444420]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+tooltip_text = "Open the options menu."
+focus_neighbor_left = NodePath("../Create")
+focus_neighbor_top = NodePath("../Create")
+focus_neighbor_right = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Create")
 theme_override_font_sizes/font_size = 57
 text = "OPTIONS"
 script = ExtResource("1_idj7w")
@@ -1264,17 +1287,18 @@ animation_name = "OpenOptions"
 use_global = true
 returns_focus = true
 
-[node name="Button3" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=144337488]
+[node name="Quit" type="Button" parent="CanvasLayer/UI/MainMenu/OptionContainer" unique_id=144337488]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 3
+offset_transform_enabled = true
 tooltip_text = "Close the game window."
-focus_neighbor_left = NodePath("../Button2")
-focus_neighbor_top = NodePath("../Button2")
-focus_neighbor_right = NodePath("../Button")
-focus_neighbor_bottom = NodePath("../Button")
-focus_next = NodePath("../Button")
-focus_previous = NodePath("../Button2")
+focus_neighbor_left = NodePath("../Options")
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_right = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Play")
+focus_next = NodePath("../Play")
+focus_previous = NodePath("../Options")
 theme_override_font_sizes/font_size = 57
 text = "QUIT
 "
@@ -1291,21 +1315,29 @@ patch_margin_left = 64
 patch_margin_right = 64
 metadata/theme_id = "base_text"
 
-[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053 groups=["Themed"]]
+[node name="AnimatedPolygon2" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=167574588 groups=["Themed"]]
 modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 position = Vector2(1152, 432)
-polygon = PackedVector2Array(400.94476, 349.66742, 309.23053, 369.73026, 273.26788, 456.45224, 179.84271, 447.1919, 118.84162, 518.55634, 32.850628, 480.87924, -47.217686, 529.90045, -117.35712, 467.49472, -208.655, 489.37418, -256.0771, 408.3485, -349.6677, 400.94452, -369.73047, 309.2303, -456.45218, 273.268, -447.19183, 179.84285, -518.5563, 118.84179, -480.87924, 32.85078, -529.90045, -47.217518, -467.49475, -117.356964, -489.37424, -208.65483, -408.3486, -256.07697, -400.94464, -349.66754, -309.2304, -369.73038, -273.26773, -456.45233, -179.84256, -447.19196, -118.84146, -518.5564, -32.85047, -480.87924, 47.21786, -529.90045, 117.35726, -467.4947, 208.65515, -489.3741, 256.07724, -408.34845, 349.66782, -400.9444, 369.7306, -309.23016, 456.45255, -273.26746, 447.19208, -179.84229, 518.5562, -118.84212, 480.8792, -32.85108, 529.9005, 47.217186, 467.4948, 117.35667, 489.37436, 208.65454, 408.34875, 256.07672, 400.94476, 349.66742, 313.47736, 155.6661, 229.4652, 15.675538, 331.7346, -111.5892, 173.34077, -151.17201, 155.6661, -313.47736, 15.675652, -229.4652, -111.5892, -331.7346, -151.17201, -173.34077, -313.47733, -155.66621, -229.4652, -15.675613, -331.73453, 111.58941, -173.34068, 151.17212, -155.6663, 313.4773, -15.675686, 229.4652, 111.5893, 331.7346, 151.17206, 173.34073, 313.47736, 155.6661)
+polygon = PackedVector2Array(-273.34595, 456.40552, -309.2938, 369.67737, -401.00455, 349.59885, -408.3925, 256.007, -489.41, 208.57097, -467.51483, 117.27683, -529.9085, 47.127193, -480.8736, -32.932747, -518.5361, -118.930176, -447.1612, -179.91907, -456.4056, -273.34583, -369.67746, -309.29367, -349.59897, -401.00446, -256.0071, -408.39243, -208.5711, -489.40994, -117.27698, -467.51483, -47.126858, -529.9085, 32.933056, -480.8736, 118.930504, -518.53595, 179.91936, -447.16107, 273.34613, -456.40543, 309.29355, -369.67758, 401.00433, -349.5991, 408.39233, -256.00723, 489.40988, -208.57126, 467.5148, -117.27712, 529.9085, -47.127026, 480.8736, 32.932903, 518.53595, 118.930336, 447.16113, 179.91924, 456.40552, 273.34595, 369.67737, 309.2938, 349.59885, 401.00455, 256.00696, 408.3925, 208.57095, 489.41, 117.276825, 467.51486, 47.12719, 529.9085, -32.932755, 480.8736, -118.93018, 518.5361, -179.91908, 447.1612)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
-inner_rotation = -10.0
 outer_vertices = 40
 outer_radius = 482.0
 outer_radius_modifiers = Dictionary[int, float]({
 2: 50.0
 })
-inner_vertices = 16
-inner_radius = 350.0
-inner_radius_modifiers = Dictionary[int, float]({
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+metadata/theme_id = "high"
+
+[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053 groups=["Themed"]]
+modulate = Color(0.11372549, 0.18039216, 0.2784314, 1)
+position = Vector2(1152, 432)
+polygon = PackedVector2Array(-69.47498, 219.25607, -225.35765, 267.7946, -204.16367, 105.91126, -348.71127, 30.007414, -219.25607, -69.47496, -267.7946, -225.35764, -105.91123, -204.16368, -30.007357, -348.71127, 69.474945, -219.25609, 225.35767, -267.79456, 204.1637, -105.911194, 348.71127, -30.007467, 219.25607, 69.47498, 267.79453, 225.35771, 105.911255, 204.16367, 30.00741, 348.71127)
+script = ExtResource("13_h1m7h")
+outer_rotation = -10.0
+outer_vertices = 16
+outer_radius = 350.0
+outer_radius_modifiers = Dictionary[int, float]({
 2: -120.0
 })
 metadata/_custom_type_script = "uid://2fyexmj0cjug"

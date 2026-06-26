@@ -19,6 +19,7 @@
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="12_bks1m"]
 [ext_resource type="Script" uid="uid://bos15vu7lspt4" path="res://Scripts/UI/UseTooltip.gd" id="15_bks1m"]
 [ext_resource type="Texture2D" uid="uid://b8k3xp501r2ww" path="res://Assets/Textures/SortInactive.svg" id="16_wfwdu"]
+[ext_resource type="Shader" uid="uid://5um5rx0wnwre" path="res://Shaders/PauseTransition.gdshader" id="17_qvfjj"]
 
 [sub_resource type="Gradient" id="Gradient_ek4xw"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -75,6 +76,15 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_erwvk"]
+shader = ExtResource("17_qvfjj")
+shader_parameter/multipli = 50.0
+shader_parameter/threshold = 0.0
+shader_parameter/inverted = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w5on"]
+bg_color = Color(0.08627451, 0.14117648, 0.21960784, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_du3wf"]
 shader = ExtResource("11_eebbl")
@@ -715,6 +725,12 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
+
+[node name="Panel2" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel" unique_id=1924270630]
+material = SubResource("ShaderMaterial_erwvk")
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2w5on")
 
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=798856563]
 visible = false

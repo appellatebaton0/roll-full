@@ -1,34 +1,53 @@
 @tool
 class_name OffsetVBoxContainer extends VBoxContainer
+# Does fancy offset stuff for the main-menu buttons.
 
-@export var offset := 30.0
+@export var selection_offset := 30.
+@export var starting_offset := -170.
+@export var slide_in_time     := 0.2
+@export var slide_in_interval := 0.1
 
-func _process(_delta: float) -> void:
-	
-	var best := _best_option()
-	
-	for child in get_children(): if child is Control:
-		child.position.x = offset if child.has_focus(true) else 0.0
-	
-	if best: if not best.has_focus(): best.grab_focus()
+var buttons:Array[BaseButton]
+var tweens:Dictionary[BaseButton, Tween]
 
-func _best_option() -> Control:
+func _ready() -> void:
+	# Get all the buttons
+	for child in get_children():
+		if child is BaseButton:
+			buttons.append(child)
 	
-	var best:Control = null
-	for child in get_children(): if child is Control:
-		var selection_rank := _selected(child)
+	# Tween 'em in.
+	for i in buttons.size():
+		var button := buttons[i] 
+		var tween := create_tween().set_parallel().set_trans(Tween.TRANS_QUAD)
+		tweens[button] = tween
 		
-		## If it's focused, it'll be chosen if nothing is hovered.
-		if selection_rank == 1 and best == null:
-			best = child
-		## If it's hovered, it's chosen.
-		elif selection_rank == 2: return child
+		button.offset_transform_enabled = true
+		button.offset_transform_position.x = starting_offset
+		
+		tween.tween_property(button, "offset_transform_position:x", 0.0, slide_in_time).set_delay(i * slide_in_interval)
+		
+		button.mouse_entered.connect(_selected.bind(button))
+		button.focus_entered.connect(_selected.bind(button))
+		button.mouse_exited.connect(_unselected.bind(button))
+		button.focus_exited.connect(_unselected.bind(button))
 	
-	return best
-
-func _selected(child:Control) -> int:
-	if child.has_focus(): return 1
 	
-	#if child is BaseButton: if child.is_hovered(): return 2
+func _selected(button:BaseButton):
+	var tween := tweens[button]
 	
-	return 0
+	if tween and tween.is_running(): tween.kill()
+	
+	tween = create_tween().set_parallel().set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(button, "offset_transform_position:x", selection_offset, 0.1)
+	
+	tweens[button] = tween
+func _unselected(button:BaseButton):
+	var tween := tweens[button]
+	
+	if tween and tween.is_running(): tween.kill()
+	
+	tween = create_tween().set_parallel().set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(button, "offset_transform_position:x", 0.0, 0.1)
+	
+	tweens[button] = tween

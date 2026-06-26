@@ -26,6 +26,7 @@ class_name LevelOverview extends MarginContainer
 
 ## Bottom half
 @onready var attempt_box := $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer/AttemptBox
+@onready var box_overlay := $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel/Panel2
 @onready var play_button := $VBoxContainer/HBoxContainer2/Play
 @onready var this_speed := $VBoxContainer/HBoxContainer2/HBoxContainer/Speed
 
@@ -125,47 +126,61 @@ func update_overview(run:Variant = null) -> int:
 		return 1
 	return -1
 
+var box_overlay_tween:Tween
 func update_attempt_box() -> bool:
 	if not level_data: return false
 	
-	# Update the attempt entries.
-	var entries:Array[AttemptEntry]
+	if box_overlay_tween and box_overlay_tween.is_running(): box_overlay_tween.kill()
 	
-	for child in attempt_box.get_children(): if child is AttemptEntry:
-		entries.append(child)
+	box_overlay_tween = create_tween().set_trans(Tween.TRANS_QUAD)
 	
-	var attempts = len(level_data.runs)
+	var tween_threshold := func(value:float):
+		(box_overlay.material as ShaderMaterial).set_shader_parameter("threshold", value)
 	
-	# Make sure the amount of entries is correct, but use existing ones.
-	var len_dist:int = len(entries) - attempts
-	while len_dist != 0:
-		# If extra, get rid of them.
-		if   len_dist > 0: entries.pop_back().queue_free()
-		# If missing some, make more.
-		elif len_dist < 0: 
-			var entry:AttemptEntry = preload("res://Scenes/UIElements/AttemptEntry.tscn").instantiate()
+	box_overlay_tween.tween_method(tween_threshold, (box_overlay.material as ShaderMaterial).get_shader_parameter("threshold"), 1.0, 0.1)
+	box_overlay_tween.tween_callback(
+		func():
+			# Update the attempt entries.
+			var entries:Array[AttemptEntry]
 			
-			attempt_box.add_child(entry)
-			entries.append(entry)
-		
-		# Update the check.
-		len_dist = len(entries) - attempts
-	
-	
-	for i in len(entries):
-		var entry := entries[i]
-		if entry is AttemptEntry:
-			entry.update(level_data.runs[i], i)
+			for child in attempt_box.get_children(): if child is AttemptEntry:
+				entries.append(child)
 			
-			# Set up neighbors.
-			entry.focus_neighbor_bottom = play_button.get_path() if i == len(entries) - 1 else entries[i + 1].get_path()
-			entry.focus_neighbor_top = reset_button.get_path() if i == 0 else entries[i - 1].get_path()
+			var attempts = len(level_data.runs)
 			
-			if not entry.requested.is_connected(update_overview):
-				entry.requested.connect(update_overview)
+			# Make sure the amount of entries is correct, but use existing ones.
+			var len_dist:int = len(entries) - attempts
+			while len_dist != 0:
+				# If extra, get rid of them.
+				if   len_dist > 0: entries.pop_back().queue_free()
+				# If missing some, make more.
+				elif len_dist < 0: 
+					var entry:AttemptEntry = preload("res://Scenes/UIElements/AttemptEntry.tscn").instantiate()
+					
+					attempt_box.add_child(entry)
+					entries.append(entry)
+				
+				# Update the check.
+				len_dist = len(entries) - attempts
+			
+			
+			for i in len(entries):
+				var entry := entries[i]
+				if entry is AttemptEntry:
+					entry.update(level_data.runs[i], i)
+					
+					# Set up neighbors.
+					entry.focus_neighbor_bottom = play_button.get_path() if i == len(entries) - 1 else entries[i + 1].get_path()
+					entry.focus_neighbor_top = reset_button.get_path() if i == 0 else entries[i - 1].get_path()
+					
+					if not entry.requested.is_connected(update_overview):
+						entry.requested.connect(update_overview)
+			
+			reverse_attempt_sort = !reverse_attempt_sort
+			_request_attempt_sort(current_attempt_sort_type)
+	)
+	box_overlay_tween.tween_method(tween_threshold, 1.0, 0.0, 0.15)
 	
-	reverse_attempt_sort = !reverse_attempt_sort
-	_request_attempt_sort(current_attempt_sort_type)
 	
 	return true
 
