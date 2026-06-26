@@ -520,7 +520,7 @@ stretch = true
 handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(935, 773)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport" unique_id=1017081695]
 

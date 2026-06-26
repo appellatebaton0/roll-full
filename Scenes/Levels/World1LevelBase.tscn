@@ -1,83 +1,15 @@
 [gd_scene format=3 uid="uid://fnicrh43rd6"]
 
 [ext_resource type="PackedScene" uid="uid://sf5p3xylkovv" path="res://Scenes/Levels/LevelBase.tscn" id="1_hjvo4"]
-[ext_resource type="Texture2D" uid="uid://nw6kn7vanad6" path="res://Assets/Textures/Rocks1.png" id="2_210hp"]
-[ext_resource type="Texture2D" uid="uid://b617cwcxgf8bk" path="res://Assets/Textures/Rocks2.png" id="2_tltf1"]
-
-[sub_resource type="GDScript" id="GDScript_hjvo4"]
-script/source = "extends Parallax2D
-
-@onready var default_parallax := scroll_scale
-
-func _process(_delta: float) -> void:
-	var new := default_parallax if Global.do_parallaxing else Vector2.ONE
-	
-	if scroll_scale != new:
-		scroll_scale = new
-"
-
-[sub_resource type="Gradient" id="Gradient_210hp"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.07450981, 0.21960784, 0.4, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_tltf1"]
-gradient = SubResource("Gradient_210hp")
-width = 2048
-height = 2048
+[ext_resource type="PackedScene" uid="uid://dnvxjconjhp6r" path="res://Scenes/RockBackground.tscn" id="2_210hp"]
 
 [node name="World1LevelBase" unique_id=1260259211 instance=ExtResource("1_hjvo4")]
 metadata/_edit_horizontal_guides_ = [2048.0]
 metadata/_edit_vertical_guides_ = [2048.0]
 
-[node name="Parallax2D3" type="Parallax2D" parent="." index="0" unique_id=1774043393]
-process_mode = 3
-modulate = Color(0.7019608, 0.7019608, 0.7019608, 1)
-scroll_scale = Vector2(0.7, 0.7)
-repeat_size = Vector2(2048, 2048)
-repeat_times = 10
-script = SubResource("GDScript_hjvo4")
-metadata/_edit_lock_ = true
+[node name="RockBackground" parent="." index="0" unique_id=248748168 instance=ExtResource("2_210hp")]
 
-[node name="Backdrop" type="Sprite2D" parent="Parallax2D3" index="0" unique_id=931023183]
-texture = SubResource("GradientTexture2D_tltf1")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D3" index="1" unique_id=1231769556]
-modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
-position = Vector2(378, 1544)
-scale = Vector2(2, 2)
-texture = ExtResource("2_tltf1")
-
-[node name="Parallax2D" type="Parallax2D" parent="." index="1" unique_id=882957438]
-process_mode = 3
-modulate = Color(0.83137256, 0.83137256, 0.83137256, 1)
-scroll_scale = Vector2(0.8, 0.8)
-repeat_size = Vector2(2048, 2048)
-repeat_times = 10
-script = SubResource("GDScript_hjvo4")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" index="0" unique_id=1959852298]
-modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
-position = Vector2(1024, 1024)
-scale = Vector2(2, 2)
-texture = ExtResource("2_tltf1")
-
-[node name="Parallax2D2" type="Parallax2D" parent="." index="2" unique_id=1896060384]
-process_mode = 3
-scroll_scale = Vector2(0.9, 0.9)
-repeat_size = Vector2(2048, 2048)
-repeat_times = 10
-script = SubResource("GDScript_hjvo4")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" index="0" unique_id=1662377499]
-modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
-position = Vector2(1024, 1024)
-scale = Vector2(2, 2)
-texture = ExtResource("2_210hp")
-
-[node name="Goal" parent="." index="6" unique_id=1338618760 node_paths=PackedStringArray("spins")]
+[node name="Goal" parent="." index="4" unique_id=1338618760 node_paths=PackedStringArray("spins")]
 spins = {
 NodePath("Sprite/AnimatedPolygon3"): 1.3,
 NodePath("Sprite/AnimatedPolygon2"): -0.7,

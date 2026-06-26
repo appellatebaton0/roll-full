@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://vnwd1xlo3n2b"]
+
+[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://Scripts/ScenePlaceholder.gd" id="1_gf6qm"]
+[ext_resource type="PackedScene" uid="uid://dcpdetnw4fmcw" path="res://Scenes/JumpIndicator.tscn" id="2_1gewx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]
+radius = 72.06247
+
+[node name="Jump Indicator" type="Node2D" unique_id=1371647314]
+script = ExtResource("1_gf6qm")
+display_name = "Jump Indicator"
+placeholds = ExtResource("2_1gewx")
+
+[node name="JumpIndicator" parent="." unique_id=373011309 instance=ExtResource("2_1gewx")]
+
+[node name="DragArea" type="Area2D" parent="." unique_id=573750134]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea" unique_id=245094717]
+shape = SubResource("CircleShape2D_hbmwc")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)

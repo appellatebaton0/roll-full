@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dud3ciy0cf7g6"]
+
+[ext_resource type="Script" uid="uid://p40c8qofbcq3" path="res://Scripts/SplinePlaceholder.gd" id="1_6kb0u"]
+
+[node name="Spline" type="Node2D" unique_id=429917042]
+script = ExtResource("1_6kb0u")
+display_name = "Spline"
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1065962153]
+points = PackedVector2Array(-100, 100, -100, -100, 100, -100, 100, 100)
+width = 25.0
+default_color = Color(1, 0.34901962, 0, 0.13725491)
+
+[node name="DragArea" type="Area2D" parent="." unique_id=1088823853]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="DragArea" unique_id=1648451112]

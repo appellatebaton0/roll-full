@@ -20,9 +20,9 @@ var k1:float
 var k2:float
 var k3:float
 
-@export var f:float ## The follow speed.
-@export var z:float ## The bounce/overshoot.
-@export var r:float ## The follow-ahead.
+@export var f := 0.75 ## The follow speed.
+@export var z := 2.0 ## The bounce/overshoot.
+@export var r := 2.15 ## The follow-ahead.
 
 ## How much the timescale affects the follow-ahead.
 @export var r_timescale_weight := 0.5
@@ -32,6 +32,8 @@ var k3:float
 func _ready() -> void:
 	Global.reset_level.connect(_on_reset)
 	_on_reset()
+	
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_reset() -> void:
 	# Compute constants
@@ -75,7 +77,16 @@ func target_position(delta:float):
 
 var applied_velocity := Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void: if target:
+func _process(delta: float) -> void: 
+
+	if not target:
+		target = get_tree().get_first_node_in_group("Player")
+		
+		global_position = target.global_position
+		
+		_on_reset()
+		
+		return
 	
 	if Global.spinning_camera:
 		# The angle of the rotation, rotated 90 degrees

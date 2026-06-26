@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dgb0aq4s5dymc"]
+
+[ext_resource type="Script" uid="uid://g5h84e5lbq1q" path="res://Scripts/DeathBorderPlaceholder.gd" id="1_uadfp"]
+[ext_resource type="PackedScene" uid="uid://u8cgtukf5vcf" path="res://Scenes/DeathBorder.tscn" id="2_ndt54"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="3_3cv3c"]
+
+[node name="DeathBorderPlaceholder" type="Node2D" unique_id=345576127]
+script = ExtResource("1_uadfp")
+display_name = "Death Border"
+placeholds = ExtResource("2_ndt54")
+scalable = false
+rotatable = false
+metadata/_custom_type_script = "uid://dbxh6goq23t5n"
+
+[node name="DragArea" type="Area2D" parent="." unique_id=84969884]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="DragArea" unique_id=2130449937]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1368239886]
+color = Color(0.3019608, 0, 0, 1)
+invert_enabled = true
+invert_border = 3500.0
+polygon = PackedVector2Array(-3000, -3000, 3000, -3000, 3000, 3000, -3000, 3000)
+
+[node name="HintCircle" type="Polygon2D" parent="." unique_id=1748966282]
+color = Color(0.22745098, 0.9098039, 0.31764707, 0.7294118)
+polygon = PackedVector2Array(7, 0, 6.761481, 1.8117332, 6.0621777, 3.5, 4.9497476, 4.9497476, 3.4999998, 6.062178, 1.8117335, 6.761481, -3.059797e-07, 7, -1.8117332, 6.761481, -3.5000005, 6.0621777, -4.9497476, 4.9497476, -6.0621777, 3.5000005, -6.761481, 1.811734, -7, -6.119594e-07, -6.761481, -1.8117335, -6.0621777, -3.4999998, -4.949748, -4.949747, -3.4999993, -6.062178, -1.8117329, -6.7614813, 8.347416e-08, -7, 1.8117331, -6.761481, 3.4999993, -6.062178, 4.9497466, -4.949748, 6.062177, -3.5000012, 6.7614813, -1.8117318)
+script = ExtResource("3_3cv3c")
+outer_vertices = 24
+outer_radius = 7.0
+
+[node name="Border" type="Polygon2D" parent="HintCircle" unique_id=1357633159]
+color = Color(0.91, 0.91, 0.91, 0.7294118)
+polygon = PackedVector2Array(8, 0, 7.7274065, 2.0705523, 6.928203, 4, 5.656854, 5.656854, 3.9999998, 6.9282036, 2.0705526, 7.7274065, -3.496911e-07, 8, -2.0705523, 7.7274065, -4.0000005, 6.928203, -5.656854, 5.656854, -6.928203, 4.0000005, -7.7274065, 2.070553, -8, -6.993822e-07, -7.7274065, -2.0705526, -6.928203, -3.9999998, -5.6568546, -5.6568537, -3.9999993, -6.9282036, -2.0705519, -7.727407, 9.5399045e-08, -8, 2.070552, -7.7274065, 3.9999993, -6.9282036, 5.656853, -5.656855, 6.9282026, -4.0000014, 7.727407, -2.0705507, 8, 0, 7, 0, 6.7614813, -1.8117318, 6.062177, -3.5000012, 4.9497466, -4.949748, 3.4999993, -6.062178, 1.8117331, -6.761481, 8.347416e-08, -7, -1.8117329, -6.7614813, -3.4999993, -6.062178, -4.949748, -4.949747, -6.0621777, -3.4999998, -6.761481, -1.8117335, -7, -6.119594e-07, -6.761481, 1.811734, -6.0621777, 3.5000005, -4.9497476, 4.9497476, -3.5000005, 6.0621777, -1.8117332, 6.761481, -3.059797e-07, 7, 1.8117335, 6.761481, 3.4999998, 6.062178, 4.9497476, 4.9497476, 6.0621777, 3.5, 6.761481, 1.8117332, 7, 0)
+script = ExtResource("3_3cv3c")
+outer_vertices = 24
+outer_radius = 8.0
+inner_vertices = 24
+inner_radius = 7.0

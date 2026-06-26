@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://drts765mrn5hg"]
+
+[ext_resource type="Script" uid="uid://dbxh6goq23t5n" path="res://Scripts/ScenePlaceholder.gd" id="1_27n5c"]
+[ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="2_4txyq"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_xuilb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]
+radius = 78.025635
+
+[node name="Spike" type="Node2D" unique_id=1371647314]
+script = ExtResource("1_27n5c")
+display_name = "Spike"
+placeholds = ExtResource("2_4txyq")
+
+[node name="Polygon4" type="Polygon2D" parent="." unique_id=568561115]
+rotation = 1.0471976
+color = Color(0, 0.6, 0.7019608, 0.41960785)
+polygon = PackedVector2Array(65.28, 0, 63.055637, 16.895706, 56.534138, 32.64, 46.159927, 46.159927, 32.639996, 56.53414, 16.895708, 63.055637, -2.8534794e-06, 65.28, -16.895706, 63.055637, -32.640003, 56.534138, -46.159927, 46.159927, -56.534138, 32.640003, -63.055637, 16.895712, -65.28, -5.7069587e-06, -63.055637, -16.895708, -56.534138, -32.639996, -46.15993, -46.159924, -32.63999, -56.53414, -16.895702, -63.05564, 7.784562e-07, -65.28, 16.895704, -63.055637, 32.63999, -56.53414, 46.15992, -46.159935, 56.534134, -32.64001, 63.05564, -16.895693)
+script = ExtResource("2_xuilb")
+outer_vertices = 24
+outer_radius = 65.28
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon" type="Polygon2D" parent="." unique_id=1382325132]
+rotation = 1.0471976
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(40, 0, 69.28203, 40, 19.999998, 34.641018, -3.4969112e-06, 80, -20.000002, 34.641014, -69.28203, 40.000004, -40, -3.4969112e-06, -69.28203, -39.999996, -19.999996, -34.641018, 9.539905e-07, -80, 19.999996, -34.641018, 69.28203, -40.000015)
+script = ExtResource("2_xuilb")
+outer_vertices = 12
+outer_radius = 80.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -40.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon2" type="Polygon2D" parent="." unique_id=1268693204]
+rotation = 1.5711809
+color = Color(0.94, 0.27918, 0.2444, 0.7490196)
+polygon = PackedVector2Array(40, 0, 69.28203, 40, 19.999998, 34.641018, -3.4969112e-06, 80, -20.000002, 34.641014, -69.28203, 40.000004, -40, -3.4969112e-06, -69.28203, -39.999996, -19.999996, -34.641018, 9.539905e-07, -80, 19.999996, -34.641018, 69.28203, -40.000015)
+script = ExtResource("2_xuilb")
+outer_vertices = 12
+outer_radius = 80.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -40.0
+})
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="Polygon3" type="Polygon2D" parent="." unique_id=2078218414]
+rotation = 0.5235988
+color = Color(0.94, 0.6721, 0.658, 0.7490196)
+polygon = PackedVector2Array(20, 0, 17.320507, 10, 9.999999, 17.320509, -8.742278e-07, 20, -10.000001, 17.320507, -17.320507, 10.000001, -20, -1.7484556e-06, -17.320507, -9.999999, -9.999998, -17.320509, 2.3849762e-07, -20, 9.999998, -17.320509, 17.320507, -10.000004)
+script = ExtResource("2_xuilb")
+outer_vertices = 12
+outer_radius = 20.0
+metadata/_custom_type_script = "uid://johp6kal78ik"
+
+[node name="DragArea" type="Area2D" parent="." unique_id=573750134]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea" unique_id=245094717]
+shape = SubResource("CircleShape2D_hbmwc")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)

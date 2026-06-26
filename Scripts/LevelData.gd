@@ -183,6 +183,9 @@ func _is_bonused(score:int) -> bool: return score >= score_threshold
 
 ## -- MUSIC INFORMATION -- ##
 
+## An override for the bpm, otherwise it'll be looked for in the tracks.
+@export var override_bpm:float = -1.
+
 ## The tracks that make up this level's song. There should be 4.
 @export var tracks:Dictionary[int, AudioStream] = {
 	0: null,

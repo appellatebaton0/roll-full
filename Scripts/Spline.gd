@@ -1,6 +1,11 @@
 @tool
 class_name Spline2D extends Line2D
 
+@export_tool_button("Force Regenerate") var freg := func():
+	regenerate_sample()
+	
+	print("Coll for ", self, " is ", collision_mesh)
+
 @export var color := Color.WHITE:
 	set(to):
 		color = to
@@ -16,7 +21,7 @@ var collision_mesh:CollisionPolygon2D
 ## Amount depends on seg
 @export_storage var sample_points:Array[Vector2]
 ## The current mesh based off sample_points and width.
-@export_storage var sample_mesh:Array[Vector2]
+@export_storage var sample_mesh:PackedVector2Array
 
 @export_range(1, 100, 1.0) var seg := 20.0:
 	set(to):
@@ -24,9 +29,6 @@ var collision_mesh:CollisionPolygon2D
 		
 		regenerate_sample()
 		queue_redraw()
-
-#@export_tool_button("GenerateShape") var gen := generate
-func generate(): if collision_mesh:  collision_mesh.polygon = regenerate_mesh()
 
 func _draw() -> void: if Engine.is_editor_hint() and len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
 
@@ -49,7 +51,6 @@ var last_points:PackedVector2Array
 func _process(_delta: float) -> void: if points != last_points and Engine.is_editor_hint(): 
 		
 	regenerate_sample()
-	generate()
 	
 	last_points = points
 
@@ -104,74 +105,65 @@ func regenerate_sample() -> void:
 	regenerate_mesh()
 
 ## Regenerate the mesh.
-func regenerate_mesh() -> Array[Vector2]:
-	# Store the two sides of the line seperately.
-	var a:Array[Vector2]
-	var b:Array[Vector2]
-	
-	for i in len(sample_points):
-		
-		var point = sample_points[i]
-		
-		# Get the two points surrounding this one, and get the direction between them.
-		
-		var dir_a = sample_points[max(i - 1, 0)]
-		var dir_b = sample_points[min(i + 1, len(sample_points) - 1)]
-		
-		var dir = dir_a.direction_to(dir_b)
-		
-		# Place the mesh points at (width/2) distance from this 
-		# point, perpendicular to the above direction.
-	#
-		a.append(point + Vector2(-dir.y, dir.x) * width / 2)
-		b.append(point + Vector2(dir.y, -dir.x) * width / 2)
-	
-	# Reverse one side so they'll be continous.
-	b.reverse()
+func regenerate_mesh() -> PackedVector2Array:
 	
 	# Set the sample mesh to the combined arrays.
-	sample_mesh = a + b
+	if sample_points.size() < 2:
+		# If you try to make the mesh with not-enough points, it crashes everything.
+		sample_mesh = []
+	else:
+		sample_mesh = remove_duplicates(Geometry2D.offset_polyline(sample_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0])
 	
 	if collision_mesh:  collision_mesh.polygon = sample_mesh
 	
 	return sample_mesh
 
+func remove_duplicates(array:PackedVector2Array) -> PackedVector2Array:
+	var dict:Dictionary[Vector2, bool]
+	for item in array: dict[item] = false
+	return PackedVector2Array(dict.keys())
+
 func fabricate_collision() -> void:
-	if not collision_mesh:
-		
-		#if Engine.is_editor_hint():
-			#var unre := EditorInterface.get_editor_undo_redo()
-			#unre.create_action("Fabricate Collision")
-			#
-			#var static_body := StaticBody2D.new()
-			#var new_collider = CollisionPolygon2D.new()
-			#new_collider.z_index = -1
-			#
-			#unre.add_do_method(self, "add_child", static_body)
-			#unre.add_undo_method(self, "remove_child", static_body)
-			#
-			#unre.add_do_method(static_body, "add_child", new_collider)
-			#unre.add_undo_method(static_body, "remove_child", new_collider)
-			#
-			#unre.add_do_property(static_body, "collision_layer", collision_layer)
-			#unre.add_do_property(static_body, "collision_mask", collision_mask)
-			#
-			#unre.add_do_property(self, "collision_mesh", new_collider)
-			#unre.add_undo_property(self, "collision_mesh", collision_mesh)
-			#
-			#unre.commit_action()
-			#
-		#else:
-			
-			var static_body := StaticBody2D.new()
-			collision_mesh = CollisionPolygon2D.new()
-		
-			add_child(static_body)
-			static_body.add_child(collision_mesh)
-		
-			static_body.collision_layer = collision_layer
-			static_body.collision_mask  = collision_mask
-			
-			collision_mesh.modulate.a = 0.2
+	# First, look for any already existing ones.
+	for child in get_children(): if child is StaticBody2D:
+		for grand in child.get_children(): if grand is CollisionPolygon2D:
+			if collision_mesh:
+				grand.queue_free()
+			else:
+				collision_mesh = grand
 	
-	generate()
+	for child in get_children(): if child is StaticBody2D:
+		if collision_mesh.get_parent() != child:
+			child.queue_free()
+	
+	if collision_mesh: 
+		
+		collision_mesh.owner = owner
+		collision_mesh.get_parent().owner = owner
+		
+		collision_mesh.name = "CM"
+		collision_mesh.get_parent().name = "SB"
+		
+		
+		
+		return
+	
+	var static_body := StaticBody2D.new()
+	collision_mesh = CollisionPolygon2D.new()
+
+	add_child(static_body)
+	static_body.add_child(collision_mesh)
+	
+	static_body.owner = owner
+	collision_mesh.owner = owner
+
+	static_body.collision_layer = collision_layer
+	static_body.collision_mask  = collision_mask
+	
+	collision_mesh.modulate.a = 0.2
+
+	regenerate_mesh()
+	
+	#print("F: ", collision_mesh.polygon)
+	#print("T: ", Geometry2D.offset_polyline(points, width / 2, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE))
+	#collision_mesh.polygon = Geometry2D.offset_polyline(points, width / 2, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE)
