@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://b37kon8k6vbga"]
 
-[ext_resource type="Script" uid="uid://bnuqlqycywpqr" path="res://Scripts/MouseParallax.gd" id="1_ejtqn"]
 [ext_resource type="Script" uid="uid://ba52qhfqun6n2" path="res://Scripts/UI/LevelSelectionScreen.gd" id="1_vafqf"]
-[ext_resource type="Texture2D" uid="uid://b617cwcxgf8bk" path="res://Assets/Textures/Rocks2.png" id="3_dnu7h"]
 [ext_resource type="Script" uid="uid://w2o6j5cqphex" path="res://Scripts/UI/SpinContainer.gd" id="3_woile"]
 [ext_resource type="Script" uid="uid://bu7foox8xva0i" path="res://Scripts/UI/LevelSelector.gd" id="4_oneo4"]
-[ext_resource type="Texture2D" uid="uid://nw6kn7vanad6" path="res://Assets/Textures/Rocks1.png" id="4_vij0u"]
 [ext_resource type="Script" uid="uid://b46wol6nsuin7" path="res://Scripts/UI/CycleContainer.gd" id="4_woile"]
 [ext_resource type="Shader" uid="uid://bupwsrtj71q6r" path="res://Shaders/TextureAlpha.gdshader" id="5_ek4xw"]
 [ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="5_v6qwd"]
@@ -133,67 +130,22 @@ grow_vertical = 2
 theme = ExtResource("12_bks1m")
 script = ExtResource("1_vafqf")
 focused = true
-focusees = [NodePath("SubViewportContainer/SubViewport/Parallax2D"), NodePath("SubViewportContainer/SubViewport/Parallax2D2"), NodePath("HBoxContainer/MarginContainer2"), NodePath("HBoxContainer/MarginContainer")]
+focusees = [NodePath("HBoxContainer/MarginContainer2"), NodePath("HBoxContainer/MarginContainer")]
 focus_pass = NodePath("HBoxContainer/MarginContainer")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1174239960]
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1258049184]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1152, 864)
-render_target_update_mode = 0
-
-[node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport" unique_id=1532557747]
-modulate = Color(0.89, 0.89, 0.89, 1)
-scale = Vector2(0.25, 0.25)
-scroll_scale = Vector2(0.8, 0.8)
-repeat_size = Vector2(2048, 2048)
-repeat_times = 5
-ignore_camera_scroll = true
-script = ExtResource("1_ejtqn")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D" unique_id=1959332705]
-modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
-position = Vector2(1024, 1024)
-scale = Vector2(2, 2)
-texture = ExtResource("3_dnu7h")
-
-[node name="Parallax2D2" type="Parallax2D" parent="SubViewportContainer/SubViewport" unique_id=1176181391]
-scale = Vector2(0.25, 0.25)
-scroll_scale = Vector2(0.9, 0.9)
-repeat_size = Vector2(2048, 2048)
-repeat_times = 5
-ignore_camera_scroll = true
-script = ExtResource("1_ejtqn")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D2" unique_id=1385902966]
-modulate = Color(0.09411765, 0.2627451, 0.46666667, 1)
-position = Vector2(1024, 1024)
-scale = Vector2(2, 2)
-texture = ExtResource("4_vij0u")
-
-[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1242958731]
+[node name="Dial" type="Polygon2D" parent="." unique_id=1242958731]
 position = Vector2(-1050, 432)
 color = Color(0.5372549, 0.7058824, 0.95686275, 1)
 polygon = PackedVector2Array(1200, 0, 1196.9426, 85.60702, 1187.7858, 170.7778, 1172.5763, 255.07834, 1151.3916, 338.07907, 1124.3397, 419.35703, 1091.5583, 498.49802, 1023, 486, 1028, -467, 1091.5585, -498.49792, 1124.3397, -419.3571, 1151.3915, -338.07928, 1172.5763, -255.0782, 1187.7858, -170.77782, 1196.9425, -85.60721)
 metadata/theme_id = "base"
 
-[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=92878719]
+[node name="Bumper" type="Polygon2D" parent="." unique_id=92878719]
 position = Vector2(456, 25)
 color = Color(0.08627451, 0.14117648, 0.21960784, 1)
 polygon = PackedVector2Array(0, 10, 10, 0, 80, 0, 100, 20, 100, 270, 90, 280, 70, 280, 0, 30)
 metadata/theme_id = "base"
 
-[node name="Polygon2D4" type="Polygon2D" parent="." unique_id=2142690357]
+[node name="Bumper2" type="Polygon2D" parent="." unique_id=2142690357]
 position = Vector2(456, 839)
 scale = Vector2(1, -1)
 color = Color(0.08627451, 0.14117648, 0.21960784, 1)
@@ -210,8 +162,7 @@ offset_right = -1036.0
 grow_vertical = 2
 theme = ExtResource("6_x4b3k")
 script = ExtResource("3_woile")
-add_angle = 19.8
-radius = 820.0
+radius = 1160.0
 
 [node name="HSeparator" type="HSeparator" parent="SpinContainer" unique_id=1307233007]
 custom_minimum_size = Vector2(50, 0)
@@ -398,7 +349,7 @@ script = ExtResource("4_woile")
 seperation = 59
 distance_curve = SubResource("Curve_woile")
 scale_curve = SubResource("Curve_bks1m")
-scroll_offset = -346.0
+item_seperation = 120.0
 
 [node name="LevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
 use_parent_material = true
@@ -431,6 +382,42 @@ tooltip_text = "
 "
 
 [node name="LevelEntry6" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=304930703 instance=ExtResource("6_q46ju")]
+use_parent_material = true
+layout_mode = 2
+tooltip_text = "
+"
+
+[node name="LevelEntry9" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1055029284 instance=ExtResource("6_q46ju")]
+use_parent_material = true
+layout_mode = 2
+tooltip_text = "
+"
+
+[node name="LevelEntry10" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=526187739 instance=ExtResource("6_q46ju")]
+use_parent_material = true
+layout_mode = 2
+tooltip_text = "
+"
+
+[node name="LevelEntry11" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1204301489 instance=ExtResource("6_q46ju")]
+use_parent_material = true
+layout_mode = 2
+tooltip_text = "
+"
+
+[node name="LevelEntry12" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1188425015 instance=ExtResource("6_q46ju")]
+use_parent_material = true
+layout_mode = 2
+tooltip_text = "
+"
+
+[node name="LevelEntry13" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1584559564 instance=ExtResource("6_q46ju")]
+use_parent_material = true
+layout_mode = 2
+tooltip_text = "
+"
+
+[node name="LevelEntry14" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=2138875083 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "

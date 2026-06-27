@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dqduu8fu52dky"]
 
-[ext_resource type="Theme" uid="uid://ckc2k077yqkcs" path="res://Assets/Themes/LevelEntry.tres" id="1_587nv"]
+[ext_resource type="Theme" uid="uid://dlhi846ax63gu" path="res://Assets/Themes/LevelEntry.tres" id="1_587nv"]
 [ext_resource type="Script" uid="uid://nk2cc3fltn7v" path="res://Scripts/UI/LevelEntry.gd" id="1_x6mls"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_ys53a"]
 [ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="3_dx067"]
-[ext_resource type="Theme" uid="uid://onsha2ax1uw7" path="res://Assets/Themes/Base.tres" id="4_dx067"]
+[ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="4_dx067"]
 
 [node name="LevelEntry" type="Button" unique_id=959268396]
 custom_minimum_size = Vector2(350, 61.25)

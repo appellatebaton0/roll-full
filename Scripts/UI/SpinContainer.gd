@@ -19,5 +19,6 @@ func _notification(what):
 			
 			var angle = deg_to_rad(360. / len(children) * i + add_angle)
 			
-			fit_child_in_rect(child, Rect2(Vector2.ONE.rotated(angle) * radius, Vector2(0,0)))
-			child.rotation = Vector2.ONE.rotated(angle).direction_to(Vector2.ZERO).angle()
+			
+			fit_child_in_rect(child, Rect2(Vector2.from_angle(angle) * radius, Vector2(0,0)))
+			child.rotation = Vector2.from_angle(angle).direction_to(Vector2.ZERO).angle()

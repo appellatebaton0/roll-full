@@ -15,12 +15,15 @@ var level_entries:Array[LevelEntry]
 var selected:LevelEntry:
 	set(to):
 		if selected: selected.selected = false
+		
 		selected = to
-		if selected: selected.selected = true
+		if selected: 
+			selected.selected = true
 		
 		selection_updated.emit(to.level_data)
 		
 		_on_focused()
+		tween_spin()
 
 func _ready() -> void:
 	create_level_entries()
@@ -33,21 +36,30 @@ func _ready() -> void:
 
 	focus_entered.connect(_on_focused)
 
-func _on_focused(node:Node = self) -> void: if node != selected: selected.grab_focus()
+func _on_focused(node:Node = self) -> void: if node != selected: 
+	selected.grab_focus()
 
-func _process(delta: float) -> void: if focused:
+var spin_tween:Tween
+## Tween the Spin/CycleContainers to show the selection accurately.
+func tween_spin():
+	if not selected: return
 	
-	## Per entry, move 137 units on the cycle, 9.23u on the spin.
+	var a := wrapf(-entry_container.scroll_offset / entry_container.item_seperation, 0, level_entries.size())
+	var b := level_entries.find(selected) as float
 	
-	## Scroll the cycle and spin containers to center on the selected entry.
-	if selected:
-		var selected_center_y := selected.global_position.y + (selected.size.y * selected.scale.y / 2)
-		if abs(selected_center_y - 432) > 1:
-			entry_container.scroll_offset += (432 - selected_center_y) * 10 * delta
-			
-		elif abs(selected_center_y - 432) > 0.2:
-			entry_container.scroll_offset += (432 - selected_center_y)
-	spin_container.add_angle = 19.8 + (entry_container.scroll_offset * (9.23 / 137.))
+	var dist := wrapf(b-a, ceil(-level_entries.size() / 2.), floor(level_entries.size() / 2.))
+	
+	if spin_tween and spin_tween.is_running(): spin_tween.kill()
+	
+	spin_tween = create_tween().set_parallel().set_trans(Tween.TRANS_SINE)
+	
+	# Tween the entry container
+	spin_tween.tween_property(entry_container, "scroll_offset", entry_container.scroll_offset -(dist * entry_container.item_seperation), 0.3)
+	# Tween the spin container
+	spin_tween.tween_property(spin_container, "add_angle", spin_container.add_angle - (dist * 360. / spin_container.get_child_count()), 0.3)
+
+
+func _process(_delta: float) -> void: if focused:
 	
 	## Allow for using Up/Down inputs to move the selection.
 	if selected.has_focus():
@@ -60,20 +72,24 @@ func _process(delta: float) -> void: if focused:
 
 ## Make a index or node the selected level entry
 func select(target:Variant):
-	if target is int: selected = level_entries[target]
-	if target is LevelEntry: if level_entries.has(target): selected = target
+	if target is int: 
+		selected = level_entries[target]
+	if target is LevelEntry: if level_entries.has(target): 
+		selected = target
 
 ## Creates all the needed level_entries, and adds them to the entry_container.
 func create_level_entries() -> void:
 	
 	var level_data := Global.LEVEL_DATA
 	
+	level_data += level_data # Make two copies to allow wrapping.
+	
 	var entries:Array[LevelEntry]
 	for node in entry_container.get_children(): 
 		if node is LevelEntry: entries.append(node)
 	
 	# Make sure the amount of entries is correct, but use existing ones.
-	var len_dist := len(entries) - len(level_data)
+	var len_dist := entries.size() - level_data.size()
 	while len_dist != 0:
 		# If extra, get rid of them.
 		if   len_dist > 0: entries.pop_back().queue_free()
@@ -81,13 +97,11 @@ func create_level_entries() -> void:
 		elif len_dist < 0: 
 			var new:LevelEntry = LEVEL_ENTRY_SCENE.instantiate()
 			
-			new.focus_mode = Control.FOCUS_NONE
-			
 			entry_container.add_child(new)
 			entries.append(new)
 		
 		# Update the check.
-		len_dist = len(entries) != len(level_data)
+		len_dist = entries.size() - level_data.size()
 	
 	# Set each entry's level data.
 	for i in len(level_data): entries[i].level_data = level_data[i]

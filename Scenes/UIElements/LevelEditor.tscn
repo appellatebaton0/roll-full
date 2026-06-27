@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b0t8bey7yj02y"]
 
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="1_klpvh"]
-[ext_resource type="Script" uid="uid://4wvdj0psapvi" path="res://Scripts/UI/LevelEditor.gd" id="2_mxptv"]
+[ext_resource type="Script" uid="uid://c82410yhvm36q" path="res://Scripts/UI/LevelEditor.gd" id="2_mxptv"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_n0a1l"]
 [ext_resource type="PackedScene" uid="uid://bno1ab82l8err" path="res://Scenes/Placeholders/GoalPlaceholder.tscn" id="4_p34jd"]
 [ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="5_mxptv"]
@@ -487,7 +487,7 @@ stretch = true
 [node name="BuildViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer" unique_id=1136024559]
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(935, 773)
+size = Vector2i(832, 774)
 render_target_update_mode = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=1063531865]
@@ -519,8 +519,8 @@ stretch = true
 [node name="TestViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2" unique_id=1444626738]
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(935, 773)
-render_target_update_mode = 4
+size = Vector2i(2, 2)
+render_target_update_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport" unique_id=1017081695]
 
@@ -687,6 +687,7 @@ step = 0.01
 value = 0.75
 
 [node name="Prefabs" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1914108937]
+visible = false
 custom_minimum_size = Vector2(82, 0)
 layout_mode = 2
 
@@ -855,6 +856,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=490619007]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -955,6 +957,7 @@ theme_override_font_sizes/font_size = 24
 text = "Delete"
 
 [node name="UndoRedo" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=64704977]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
@@ -983,7 +986,6 @@ text = "Redo
 "
 
 [node name="Speed" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=1482672068]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Speed" unique_id=9279519]
@@ -1015,7 +1017,6 @@ alignment = 1
 suffix = "m/s"
 
 [node name="MusicTracks" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=304241974]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks" unique_id=1473798126]
@@ -1134,7 +1135,6 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="Ranking" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=655966081]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Ranking" unique_id=1077199505]
@@ -1282,7 +1282,6 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="Score" type="PanelContainer" parent="MarginContainer/VBoxContainer/Layout/Panels" unique_id=457436277]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Layout/Panels/Score" unique_id=1666018760]
