@@ -3,16 +3,18 @@ class_name LevelSelector extends Control
 
 signal selection_updated(to:LevelData)
 
-const LEVEL_ENTRY_SCENE := preload("res://Scenes/UIElements/LevelEntry.tscn")
+@onready var data := Global.LEVEL_DATA
+
+@export var entry_scene := preload("res://Scenes/UIElements/LevelEntry.tscn")
 
 @export var focused := false
 
 @export var spin_container :SpinContainer
 @export var entry_container:CycleContainer
-var level_entries:Array[LevelEntry]
+var level_entries:Array[Control]
 
 ## The currently selected level entry.
-var selected:LevelEntry:
+var selected:Control:
 	set(to):
 		if selected: selected.selected = false
 		
@@ -56,7 +58,7 @@ func tween_spin():
 	# Tween the entry container
 	spin_tween.tween_property(entry_container, "scroll_offset", entry_container.scroll_offset -(dist * entry_container.item_seperation), 0.3)
 	# Tween the spin container
-	spin_tween.tween_property(spin_container, "add_angle", spin_container.add_angle - (dist * 360. / spin_container.get_child_count()), 0.3)
+	spin_tween.tween_property(spin_container, "add_angle", spin_container.add_angle - (dist * 360. / spin_container.get_children().filter(func(l):return l is Control).size()), 0.3)
 
 
 func _process(_delta: float) -> void: if focused:
@@ -74,19 +76,17 @@ func _process(_delta: float) -> void: if focused:
 func select(target:Variant):
 	if target is int: 
 		selected = level_entries[target]
-	if target is LevelEntry: if level_entries.has(target): 
+	if target is Control: if level_entries.has(target): 
 		selected = target
 
 ## Creates all the needed level_entries, and adds them to the entry_container.
-func create_level_entries() -> void:
-	
-	var level_data := Global.LEVEL_DATA
+func create_level_entries(level_data:Array[LevelData] = data) -> void:
 	
 	level_data += level_data # Make two copies to allow wrapping.
 	
-	var entries:Array[LevelEntry]
+	var entries:Array[Control]
 	for node in entry_container.get_children(): 
-		if node is LevelEntry: entries.append(node)
+		if node is Control: entries.append(node)
 	
 	# Make sure the amount of entries is correct, but use existing ones.
 	var len_dist := entries.size() - level_data.size()
@@ -95,7 +95,7 @@ func create_level_entries() -> void:
 		if   len_dist > 0: entries.pop_back().queue_free()
 		# If missing some, make more.
 		elif len_dist < 0: 
-			var new:LevelEntry = LEVEL_ENTRY_SCENE.instantiate()
+			var new:Control = entry_scene.instantiate()
 			
 			entry_container.add_child(new)
 			entries.append(new)
@@ -120,3 +120,8 @@ func create_level_entries() -> void:
 	level_entries = entries
 	
 	select(0)
+
+func find_entry_for_data(ldata:LevelData):
+	for entry in level_entries:
+		if entry.get("level_data") == ldata: return entry
+	return null

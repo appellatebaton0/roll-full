@@ -1,6 +1,9 @@
 class_name LevelEditor extends PanelContainer
 ## Manages most if not all of the functionality for the LevelEditor.
 
+## Emitted when the level is done being edited, and the working data is all up-to-date.
+signal finished_editing
+
 ## The LevelData currently being worked on. Should be set by the selection screen.
 var working_data:LevelData:
 	set(to):
@@ -28,6 +31,7 @@ var working_data:LevelData:
 
 ## Level Name
 @onready var level_name_edit := $MarginContainer/VBoxContainer/HBoxContainer/TextEdit
+var old_name:String
 
 ## Viewport variables
 @onready var viewport_container := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer
@@ -116,7 +120,7 @@ var selected_track_path:String: # The path to the file of the selected track in 
 }
 
 
-var selected :ScenePlaceholder: set = _set_selection
+var selected:ScenePlaceholder: set = _set_selection
 var sel_from_undo_redo := false
 func _set_selection(to:ScenePlaceholder):
 	
@@ -173,9 +177,17 @@ func _ready() -> void:
 	viewport_container.gui_input.connect(_viewport_gui_input)
 	
 	## Level Name Change
-	level_name_edit.text_changed.connect(func(to):
-		if working_data:
-			working_data.name = to
+	## Level Name Change
+	level_name_edit.editing_toggled.connect(func(to):
+		if working_data and not to:
+			
+			if level_name_edit.text == "" or LevelCreationScreen.name_exists(level_name_edit.text):
+				working_data.name    = old_name
+				level_name_edit.text = old_name
+			else:
+				working_data.name = level_name_edit.text
+				old_name = level_name_edit.text
+			
 	)
 	
 	## Hook up the zoom module to update the camera and itself.
@@ -602,7 +614,7 @@ func soft_create_prefab():
 	
 	selected = new
 
-## -- Real Scene Loading -- ## (stuff for turning the placeholders into the actual level.)
+## -- Real Scene Loading/Save -- ## (stuff for turning the placeholders into the actual level, and back.)
 
 # Load and unload the demo w/ the press of a button.
 func _on_demo_button_toggled(toggled_on: bool) -> void:
@@ -618,14 +630,11 @@ func _on_demo_button_toggled(toggled_on: bool) -> void:
 		_unload_from_viewport()
 		
 		demo_container.hide()
-	
-	
-	pass # Replace with function body.
 
 var loaded_in_demo:Array[Node]
 
 # Loads the currently-being-edited-on scene into the demo viewport.
-func _load_to_viewport():
+func _load_to_viewport() -> void:
 	
 	var child_queue:Array[Node] # All the nodes to add to the view.
 	
@@ -658,10 +667,51 @@ func _load_to_viewport():
 	loaded_in_demo += child_queue
 
 # Unloads all the nodes in the demo viewport.
-func _unload_from_viewport():
+func _unload_from_viewport() -> void:
 	for child in loaded_in_demo:
 		child.queue_free()
 	loaded_in_demo.clear()
 	
 	# Reset the viewport freeze if the player is mid-countdown/reset anim.
 	get_tree().paused = false
+
+# Saves the placeholder version of the level into a 
+# PackedScene, and gives it to the working data.
+func _save_placeholder() -> void: working_data.editor_scene = recur_pack(viewport, Node.new())
+
+# Saves the real version of the level into a 
+# PackedScene, and gives it to the working data.
+func _save_level() -> void: 
+	# Make sure the level is loaded in the demo viewport.
+	if not loaded_in_demo.size():
+		_load_to_viewport()
+	
+	working_data.scene = recur_pack(demo_viewport, Node.new())
+	
+	# Unload the demo.
+	_unload_from_viewport()
+
+## Packs a node's children into a PackedSceen with [to] as the root,
+## without disturbing the original node at all.
+func recur_pack(children_of:Node, to:Node) -> PackedScene:
+	
+	# Move all the children to the target temporarily.
+	recur_assign_owner(children_of, to)
+	
+	var scene := PackedScene.new()
+	scene.pack(to)
+	
+	# Move all the children back and reassign the owner.
+	recur_assign_owner(to, children_of)
+	
+	# Return the complete scene.
+	return scene
+
+## Assign a node's children (and their children and so on)'s owner.
+func recur_assign_owner(parent:Node, to:Node, first_iter := true):
+	for child in parent.get_children():
+		if first_iter: child.reparent(to)
+		
+		child.owner = to.owner if to.owner else to
+		
+		recur_assign_owner(child, to, false)

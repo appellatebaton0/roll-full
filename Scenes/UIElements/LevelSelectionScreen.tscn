@@ -31,7 +31,7 @@ shader = ExtResource("5_ek4xw")
 shader_parameter/alpha_texture = SubResource("GradientTexture2D_7mpik")
 
 [sub_resource type="Curve" id="Curve_woile"]
-_limits = [0.0, 100.0, 0.0, 1.0]
+_limits = [0.0, 80.0, 0.0, 1.0]
 _data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5, 80), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
 point_count = 3
 

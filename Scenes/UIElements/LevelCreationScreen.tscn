@@ -5,10 +5,12 @@
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="3_jvmom"]
 [ext_resource type="Script" uid="uid://w2o6j5cqphex" path="res://Scripts/UI/SpinContainer.gd" id="4_vc212"]
 [ext_resource type="Shader" uid="uid://bupwsrtj71q6r" path="res://Shaders/TextureAlpha.gdshader" id="5_wqrks"]
+[ext_resource type="Script" uid="uid://bu7foox8xva0i" path="res://Scripts/UI/LevelSelector.gd" id="5_xnjkx"]
 [ext_resource type="Script" uid="uid://b46wol6nsuin7" path="res://Scripts/UI/CycleContainer.gd" id="6_51cue"]
 [ext_resource type="PackedScene" uid="uid://462hxbvniu1e" path="res://Scenes/UIElements/CustomLevelEntry.tscn" id="7_bxnsm"]
 [ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="8_36xf4"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="9_2nyu2"]
+[ext_resource type="PackedScene" uid="uid://b0t8bey7yj02y" path="res://Scenes/UIElements/LevelEditor.tscn" id="9_jvmom"]
 [ext_resource type="Texture2D" uid="uid://dparj85pico7e" path="res://Assets/Textures/UIArrow.png" id="10_4qmft"]
 
 [sub_resource type="Gradient" id="Gradient_ek4xw"]
@@ -23,9 +25,9 @@ fill_to = Vector2(0, 1)
 shader = ExtResource("5_wqrks")
 shader_parameter/alpha_texture = SubResource("GradientTexture2D_7mpik")
 
-[sub_resource type="Curve" id="Curve_woile"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5031847, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_xnjkx"]
+_limits = [0.0, 80.0, 0.0, 1.0]
+_data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5, 80), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_bks1m"]
@@ -83,43 +85,216 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	return Global._make_custom_tooltip(for_text)
 "
 
+[sub_resource type="Animation" id="Animation_vc212"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1036, 432)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackToMain:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 400)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bumper:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bumper2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelEditor:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wqrks"]
+resource_name = "ToEditorIn"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinContainer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1036, 432), Vector2(154, 432)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackToMain:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 400), Vector2(-66, 400)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LevelEditor:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_51cue"]
+resource_name = "ToEditorOut"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinContainer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(154, 432), Vector2(-1185, 432)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackToMain:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-66, 400)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bumper:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bumper2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelEditor:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bxnsm"]
+_data = {
+&"RESET": SubResource("Animation_vc212"),
+&"ToEditorIn": SubResource("Animation_wqrks"),
+&"ToEditorOut": SubResource("Animation_51cue")
+}
+
 [node name="LevelCreationScreen" type="Panel" unique_id=868323181]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Edit")
+focus_neighbor_right = NodePath("HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Edit")
+focus_mode = 2
+mouse_filter = 1
 theme = ExtResource("1_td7u6")
 script = ExtResource("2_xnjkx")
-
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2010592248]
-position = Vector2(-1036, 432)
-color = Color(0.08627451, 0.14117648, 0.21960784, 1)
-polygon = PackedVector2Array(1185, 0, 1169.342, 115.17014, 1162.2305, 231.18204, 1124.4049, 341.0845, 1094.7972, 453.4799, 1036.2576, 553.8911, 985.29144, 658.35077, 908.28735, 745.4121, 837.9215, 837.9215, 745.4121, 908.28723, 658.35077, 985.29144, 553.89124, 1036.2574, 453.47986, 1094.7972, 341.08444, 1124.4049, 231.18207, 1162.2305, 115.170135, 1169.342, -5.1797993e-05, 1185, -115.1701, 1169.342, -231.18204, 1162.2305, -341.08456, 1124.4048, -453.47983, 1094.7972, -553.89105, 1036.2576, -658.35065, 985.29156, -745.4121, 908.28735, -837.9215, 837.9215, -908.28735, 745.4121, -985.29156, 658.35065, -1036.2574, 553.8913, -1094.7972, 453.47992, -1124.4049, 341.08456, -1162.2306, 231.18202, -1169.342, 115.17009, -1185, -0.00010359599, -1169.342, -115.17001, -1162.2306, -231.18195, -1124.4049, -341.08447, -1094.7972, -453.47986, -1036.2574, -553.89124, -985.2914, -658.3508, -908.2874, -745.41205, -837.9216, -837.92145, -745.4122, -908.28723, -658.35095, -985.2913, -553.8911, -1036.2576, -453.48004, -1094.7972, -341.08435, -1124.4049, -231.1821, -1162.2305, -115.1699, -1169.342, 1.4130984e-05, -1185, 115.16992, -1169.342, 231.18214, -1162.2305, 341.08438, -1124.4049, 453.48007, -1094.7971, 553.8911, -1036.2576, 658.3505, -985.2916, 745.4122, -908.28723, 837.9214, -837.9217, 908.2874, -745.412, 985.29144, -658.3508, 1036.2576, -553.8909, 1094.7972, -453.47986, 1124.4048, -341.0847, 1162.2306, -231.18193, 1169.342, -115.170265)
-script = ExtResource("3_jvmom")
-outer_vertices = 64
-outer_radius = 1175.0
-outer_radius_modifiers = Dictionary[int, float]({
-2: 10.0
-})
-
-[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1913010020]
-position = Vector2(-1036, 432)
-color = Color(0.11372549, 0.18039216, 0.2784314, 1)
-polygon = PackedVector2Array(1090, 0, 1074.7994, 105.85851, 1069.0559, 212.64845, 1033.4956, 313.50748, 1007.0287, 417.12497, 952.475, 509.10846, 906.3019, 605.5716, 834.8513, 685.1447, 770.7464, 770.7464, 685.1447, 834.85126, 605.5716, 906.3019, 509.10852, 952.4749, 417.12494, 1007.0287, 313.50742, 1033.4956, 212.64848, 1069.0559, 105.858505, 1074.7994, -4.764541e-05, 1090, -105.858475, 1074.7994, -212.64845, 1069.0559, -313.5075, 1033.4955, -417.1249, 1007.02875, -509.10837, 952.475, -605.5715, 906.30194, -685.1447, 834.8513, -770.7464, 770.7464, -834.8513, 685.1447, -906.30194, 605.5715, -952.4749, 509.10858, -1007.0287, 417.125, -1033.4956, 313.5075, -1069.056, 212.64844, -1074.7994, 105.85847, -1090, -9.529082e-05, -1074.7994, -105.85839, -1069.056, -212.64838, -1033.4956, -313.50745, -1007.0287, -417.12494, -952.4749, -509.10852, -906.3018, -605.57166, -834.8514, -685.14465, -770.74646, -770.74634, -685.1448, -834.85126, -605.5718, -906.30176, -509.10843, -952.475, -417.1251, -1007.0287, -313.5073, -1033.4956, -212.64851, -1069.0559, -105.858284, -1074.7994, 1.299812e-05, -1090, 105.858315, -1074.7994, 212.64854, -1069.0559, 313.50735, -1033.4956, 417.12512, -1007.02856, 509.10846, -952.475, 605.57135, -906.302, 685.1448, -834.85126, 770.7463, -770.7465, 834.8514, -685.1446, 906.3019, -605.57166, 952.47504, -509.10825, 1007.02875, -417.12494, 1033.4955, -313.50763, 1069.056, -212.64836, 1074.7994, -105.85863)
-script = ExtResource("3_jvmom")
-outer_vertices = 64
-outer_radius = 1080.0
-outer_radius_modifiers = Dictionary[int, float]({
-2: 10.0
-})
-
-[node name="Dial" type="Polygon2D" parent="." unique_id=1242958731]
-visible = false
-position = Vector2(-1050, 432)
-color = Color(0.5372549, 0.7058824, 0.95686275, 1)
-polygon = PackedVector2Array(1200, 0, 1196.9426, 85.60702, 1187.7858, 170.7778, 1172.5763, 255.07834, 1151.3916, 338.07907, 1124.3397, 419.35703, 1091.5583, 498.49802, 1023, 486, 1028, -467, 1091.5585, -498.49792, 1124.3397, -419.3571, 1151.3915, -338.07928, 1172.5763, -255.0782, 1187.7858, -170.77782, 1196.9425, -85.60721)
-metadata/theme_id = "base"
 
 [node name="Bumper" type="Polygon2D" parent="." unique_id=92878719]
 position = Vector2(456, 25)
@@ -142,175 +317,6 @@ color = Color(0.08627451, 0.14117648, 0.21960784, 1)
 polygon = PackedVector2Array(0, 10, 10, 0, 80, 0, 100, 20, 100, 270, 90, 280, 70, 280, 0, 30)
 metadata/theme_id = "base"
 
-[node name="SpinContainer" type="Container" parent="." unique_id=344705815]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -1036.0
-offset_right = -1036.0
-grow_vertical = 2
-theme = ExtResource("1_td7u6")
-script = ExtResource("4_vc212")
-add_angle = 19.8
-radius = 1160.0
-
-[node name="HSeparator" type="HSeparator" parent="SpinContainer" unique_id=1307233007]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="SpinContainer" unique_id=1393565708]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator3" type="HSeparator" parent="SpinContainer" unique_id=297790438]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator4" type="HSeparator" parent="SpinContainer" unique_id=1680157451]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator5" type="HSeparator" parent="SpinContainer" unique_id=1307855748]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator6" type="HSeparator" parent="SpinContainer" unique_id=1529474070]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator7" type="HSeparator" parent="SpinContainer" unique_id=1157358960]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator8" type="HSeparator" parent="SpinContainer" unique_id=1292592464]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator9" type="HSeparator" parent="SpinContainer" unique_id=1486165921]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator10" type="HSeparator" parent="SpinContainer" unique_id=1408740690]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator11" type="HSeparator" parent="SpinContainer" unique_id=264185936]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator12" type="HSeparator" parent="SpinContainer" unique_id=1322228382]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator13" type="HSeparator" parent="SpinContainer" unique_id=225093824]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator14" type="HSeparator" parent="SpinContainer" unique_id=987874]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator15" type="HSeparator" parent="SpinContainer" unique_id=1827828472]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator16" type="HSeparator" parent="SpinContainer" unique_id=1400128379]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator17" type="HSeparator" parent="SpinContainer" unique_id=1766709281]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator18" type="HSeparator" parent="SpinContainer" unique_id=1975768965]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator19" type="HSeparator" parent="SpinContainer" unique_id=1584514009]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator20" type="HSeparator" parent="SpinContainer" unique_id=2058061498]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator21" type="HSeparator" parent="SpinContainer" unique_id=686903803]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator22" type="HSeparator" parent="SpinContainer" unique_id=873658980]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator23" type="HSeparator" parent="SpinContainer" unique_id=271031120]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator24" type="HSeparator" parent="SpinContainer" unique_id=145072589]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator25" type="HSeparator" parent="SpinContainer" unique_id=917934995]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator26" type="HSeparator" parent="SpinContainer" unique_id=670690022]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator27" type="HSeparator" parent="SpinContainer" unique_id=1313946058]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator28" type="HSeparator" parent="SpinContainer" unique_id=1176882369]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator29" type="HSeparator" parent="SpinContainer" unique_id=595739987]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator38" type="HSeparator" parent="SpinContainer" unique_id=570528434]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator39" type="HSeparator" parent="SpinContainer" unique_id=140214428]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator30" type="HSeparator" parent="SpinContainer" unique_id=498138785]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator31" type="HSeparator" parent="SpinContainer" unique_id=684411363]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator32" type="HSeparator" parent="SpinContainer" unique_id=2088172696]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator33" type="HSeparator" parent="SpinContainer" unique_id=1942754392]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator34" type="HSeparator" parent="SpinContainer" unique_id=355198695]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator35" type="HSeparator" parent="SpinContainer" unique_id=886599808]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator36" type="HSeparator" parent="SpinContainer" unique_id=1543736089]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="HSeparator37" type="HSeparator" parent="SpinContainer" unique_id=1676997256]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=652578163]
 layout_mode = 1
 anchors_preset = 15
@@ -320,25 +326,34 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1957301097]
+[node name="Selector" type="MarginContainer" parent="HBoxContainer" unique_id=1957301097 node_paths=PackedStringArray("spin_container", "entry_container")]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../../BackToMain")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../MarginContainer2/VBoxContainer/HBoxContainer2/Edit")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../MarginContainer2/VBoxContainer/HBoxContainer2/Edit")
+focus_previous = NodePath("../../BackToMain")
 focus_mode = 2
-theme_override_constants/margin_left = 67
-theme_override_constants/margin_right = 179
+theme_override_constants/margin_left = 88
+script = ExtResource("5_xnjkx")
+entry_scene = ExtResource("7_bxnsm")
+focused = true
+spin_container = NodePath("../../SpinContainer")
+entry_container = NodePath("LevelEntryContainer")
 
-[node name="LevelEntryContainer" type="Container" parent="HBoxContainer/MarginContainer" unique_id=2047304327]
+[node name="LevelEntryContainer" type="Container" parent="HBoxContainer/Selector" unique_id=2047304327]
 material = SubResource("ShaderMaterial_7mpik")
 use_parent_material = true
 layout_mode = 2
 script = ExtResource("6_51cue")
 seperation = 59
-distance_curve = SubResource("Curve_woile")
+distance_curve = SubResource("Curve_xnjkx")
 scale_curve = SubResource("Curve_bks1m")
 item_seperation = 100.0
 
-[node name="CustomLevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=713741964 instance=ExtResource("7_bxnsm")]
+[node name="CustomLevelEntry" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=713741964 instance=ExtResource("7_bxnsm")]
 layout_mode = 2
 
 [node name="Control" type="VSeparator" parent="HBoxContainer" unique_id=987196611]
@@ -632,6 +647,7 @@ theme_override_font_sizes/font_size = 23
 text = "Score Threshold"
 
 [node name="SpinBox" type="SpinBox" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/Score/MarginContainer/VBoxContainer" unique_id=1501335232]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -651,19 +667,20 @@ layout_mode = 2
 theme = ExtResource("1_td7u6")
 theme_override_constants/separation = 30
 
-[node name="Button" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=1197853601]
+[node name="Edit" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=1197853601]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../../../Selector")
 theme_override_font_sizes/font_size = 38
 text = "EDIT"
 
-[node name="Button2" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=621154424]
+[node name="Delete" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=621154424]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 38
 text = "DELETE"
 
-[node name="Mask" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Button2" unique_id=518795352]
+[node name="Mask" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Delete" unique_id=518795352]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 15
@@ -674,7 +691,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8bnby")
 
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Button2/Mask" unique_id=1572323595]
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Delete/Mask" unique_id=1572323595]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 2
@@ -683,7 +700,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0apbi")
 fill_mode = 3
 show_percentage = false
 
-[node name="Button3" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=459084303]
+[node name="New" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=459084303]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 38
@@ -760,15 +777,305 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
 
+[node name="LevelEditor" parent="." unique_id=1351889632 node_paths=PackedStringArray("creation_screen") instance=ExtResource("9_jvmom")]
+visible = false
+layout_mode = 1
+creation_screen = NodePath("..")
+
+[node name="SpinContainer" type="Container" parent="." unique_id=344705815]
+layout_mode = 0
+offset_left = -1036.0
+offset_top = 432.0
+offset_right = -1036.0
+offset_bottom = 1296.0
+theme = ExtResource("1_td7u6")
+script = ExtResource("4_vc212")
+radius = 1160.0
+
+[node name="Polygon2D" type="Polygon2D" parent="SpinContainer" unique_id=2010592248]
+color = Color(0.08627451, 0.14117648, 0.21960784, 1)
+polygon = PackedVector2Array(1185, 0, 1169.342, 115.17014, 1162.2305, 231.18204, 1124.4049, 341.0845, 1094.7972, 453.4799, 1036.2576, 553.8911, 985.29144, 658.35077, 908.28735, 745.4121, 837.9215, 837.9215, 745.4121, 908.28723, 658.35077, 985.29144, 553.89124, 1036.2574, 453.47986, 1094.7972, 341.08444, 1124.4049, 231.18207, 1162.2305, 115.170135, 1169.342, -5.1797993e-05, 1185, -115.1701, 1169.342, -231.18204, 1162.2305, -341.08456, 1124.4048, -453.47983, 1094.7972, -553.89105, 1036.2576, -658.35065, 985.29156, -745.4121, 908.28735, -837.9215, 837.9215, -908.28735, 745.4121, -985.29156, 658.35065, -1036.2574, 553.8913, -1094.7972, 453.47992, -1124.4049, 341.08456, -1162.2306, 231.18202, -1169.342, 115.17009, -1185, -0.00010359599, -1169.342, -115.17001, -1162.2306, -231.18195, -1124.4049, -341.08447, -1094.7972, -453.47986, -1036.2574, -553.89124, -985.2914, -658.3508, -908.2874, -745.41205, -837.9216, -837.92145, -745.4122, -908.28723, -658.35095, -985.2913, -553.8911, -1036.2576, -453.48004, -1094.7972, -341.08435, -1124.4049, -231.1821, -1162.2305, -115.1699, -1169.342, 1.4130984e-05, -1185, 115.16992, -1169.342, 231.18214, -1162.2305, 341.08438, -1124.4049, 453.48007, -1094.7971, 553.8911, -1036.2576, 658.3505, -985.2916, 745.4122, -908.28723, 837.9214, -837.9217, 908.2874, -745.412, 985.29144, -658.3508, 1036.2576, -553.8909, 1094.7972, -453.47986, 1124.4048, -341.0847, 1162.2306, -231.18193, 1169.342, -115.170265)
+script = ExtResource("3_jvmom")
+outer_vertices = 64
+outer_radius = 1175.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: 10.0
+})
+
+[node name="Polygon2D2" type="Polygon2D" parent="SpinContainer" unique_id=1913010020]
+color = Color(0.11372549, 0.18039216, 0.2784314, 1)
+polygon = PackedVector2Array(1090, 0, 1074.7994, 105.85851, 1069.0559, 212.64845, 1033.4956, 313.50748, 1007.0287, 417.12497, 952.475, 509.10846, 906.3019, 605.5716, 834.8513, 685.1447, 770.7464, 770.7464, 685.1447, 834.85126, 605.5716, 906.3019, 509.10852, 952.4749, 417.12494, 1007.0287, 313.50742, 1033.4956, 212.64848, 1069.0559, 105.858505, 1074.7994, -4.764541e-05, 1090, -105.858475, 1074.7994, -212.64845, 1069.0559, -313.5075, 1033.4955, -417.1249, 1007.02875, -509.10837, 952.475, -605.5715, 906.30194, -685.1447, 834.8513, -770.7464, 770.7464, -834.8513, 685.1447, -906.30194, 605.5715, -952.4749, 509.10858, -1007.0287, 417.125, -1033.4956, 313.5075, -1069.056, 212.64844, -1074.7994, 105.85847, -1090, -9.529082e-05, -1074.7994, -105.85839, -1069.056, -212.64838, -1033.4956, -313.50745, -1007.0287, -417.12494, -952.4749, -509.10852, -906.3018, -605.57166, -834.8514, -685.14465, -770.74646, -770.74634, -685.1448, -834.85126, -605.5718, -906.30176, -509.10843, -952.475, -417.1251, -1007.0287, -313.5073, -1033.4956, -212.64851, -1069.0559, -105.858284, -1074.7994, 1.299812e-05, -1090, 105.858315, -1074.7994, 212.64854, -1069.0559, 313.50735, -1033.4956, 417.12512, -1007.02856, 509.10846, -952.475, 605.57135, -906.302, 685.1448, -834.85126, 770.7463, -770.7465, 834.8514, -685.1446, 906.3019, -605.57166, 952.47504, -509.10825, 1007.02875, -417.12494, 1033.4955, -313.50763, 1069.056, -212.64836, 1074.7994, -105.85863)
+script = ExtResource("3_jvmom")
+outer_vertices = 64
+outer_radius = 1080.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: 10.0
+})
+
+[node name="HSeparator12" type="HSeparator" parent="SpinContainer" unique_id=1322228382]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator13" type="HSeparator" parent="SpinContainer" unique_id=225093824]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator14" type="HSeparator" parent="SpinContainer" unique_id=987874]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator15" type="HSeparator" parent="SpinContainer" unique_id=1827828472]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator16" type="HSeparator" parent="SpinContainer" unique_id=1400128379]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator17" type="HSeparator" parent="SpinContainer" unique_id=1766709281]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator18" type="HSeparator" parent="SpinContainer" unique_id=1975768965]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator19" type="HSeparator" parent="SpinContainer" unique_id=1584514009]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator20" type="HSeparator" parent="SpinContainer" unique_id=2058061498]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator21" type="HSeparator" parent="SpinContainer" unique_id=686903803]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator22" type="HSeparator" parent="SpinContainer" unique_id=873658980]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator23" type="HSeparator" parent="SpinContainer" unique_id=271031120]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator24" type="HSeparator" parent="SpinContainer" unique_id=145072589]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator40" type="HSeparator" parent="SpinContainer" unique_id=264630694]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator41" type="HSeparator" parent="SpinContainer" unique_id=998588294]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator42" type="HSeparator" parent="SpinContainer" unique_id=1515641429]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator43" type="HSeparator" parent="SpinContainer" unique_id=1997802503]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator25" type="HSeparator" parent="SpinContainer" unique_id=917934995]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator26" type="HSeparator" parent="SpinContainer" unique_id=670690022]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator27" type="HSeparator" parent="SpinContainer" unique_id=1313946058]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator28" type="HSeparator" parent="SpinContainer" unique_id=1176882369]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator29" type="HSeparator" parent="SpinContainer" unique_id=595739987]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator38" type="HSeparator" parent="SpinContainer" unique_id=570528434]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator39" type="HSeparator" parent="SpinContainer" unique_id=140214428]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator30" type="HSeparator" parent="SpinContainer" unique_id=498138785]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator31" type="HSeparator" parent="SpinContainer" unique_id=684411363]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator32" type="HSeparator" parent="SpinContainer" unique_id=2088172696]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator33" type="HSeparator" parent="SpinContainer" unique_id=1942754392]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator34" type="HSeparator" parent="SpinContainer" unique_id=355198695]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator35" type="HSeparator" parent="SpinContainer" unique_id=886599808]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator36" type="HSeparator" parent="SpinContainer" unique_id=1543736089]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator37" type="HSeparator" parent="SpinContainer" unique_id=1676997256]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator44" type="HSeparator" parent="SpinContainer" unique_id=1924399560]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator45" type="HSeparator" parent="SpinContainer" unique_id=346696331]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator46" type="HSeparator" parent="SpinContainer" unique_id=93985143]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator47" type="HSeparator" parent="SpinContainer" unique_id=1095871079]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator48" type="HSeparator" parent="SpinContainer" unique_id=637906543]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator49" type="HSeparator" parent="SpinContainer" unique_id=750624104]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator50" type="HSeparator" parent="SpinContainer" unique_id=1473952830]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator51" type="HSeparator" parent="SpinContainer" unique_id=1945612081]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator52" type="HSeparator" parent="SpinContainer" unique_id=1108415638]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator53" type="HSeparator" parent="SpinContainer" unique_id=320748446]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator54" type="HSeparator" parent="SpinContainer" unique_id=285197815]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator55" type="HSeparator" parent="SpinContainer" unique_id=146323090]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator56" type="HSeparator" parent="SpinContainer" unique_id=740973253]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator57" type="HSeparator" parent="SpinContainer" unique_id=697542575]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator58" type="HSeparator" parent="SpinContainer" unique_id=1207776365]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator59" type="HSeparator" parent="SpinContainer" unique_id=357789901]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator60" type="HSeparator" parent="SpinContainer" unique_id=832828868]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator61" type="HSeparator" parent="SpinContainer" unique_id=1497231282]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator62" type="HSeparator" parent="SpinContainer" unique_id=258842510]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator63" type="HSeparator" parent="SpinContainer" unique_id=1316963649]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator64" type="HSeparator" parent="SpinContainer" unique_id=1317018780]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator65" type="HSeparator" parent="SpinContainer" unique_id=1388753451]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator66" type="HSeparator" parent="SpinContainer" unique_id=714322795]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator67" type="HSeparator" parent="SpinContainer" unique_id=1087015716]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator68" type="HSeparator" parent="SpinContainer" unique_id=1999735718]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator69" type="HSeparator" parent="SpinContainer" unique_id=1400727646]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator70" type="HSeparator" parent="SpinContainer" unique_id=1051096164]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator71" type="HSeparator" parent="SpinContainer" unique_id=790191415]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator72" type="HSeparator" parent="SpinContainer" unique_id=1263471198]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator73" type="HSeparator" parent="SpinContainer" unique_id=1438142933]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator74" type="HSeparator" parent="SpinContainer" unique_id=141553073]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HSeparator75" type="HSeparator" parent="SpinContainer" unique_id=748476841]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="BackToMain" type="TextureButton" parent="." unique_id=882931186]
 modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 2.0
 offset_top = -32.0
-offset_right = 66.0
+offset_right = 64.0
 offset_bottom = 32.0
 grow_vertical = 2
 tooltip_text = "Return to the main menu."
@@ -776,3 +1083,9 @@ texture_normal = ExtResource("10_4qmft")
 ignore_texture_size = true
 stretch_mode = 4
 script = SubResource("GDScript_4bv08")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1443601653]
+libraries/ = SubResource("AnimationLibrary_bxnsm")
+
+[connection signal="selection_updated" from="HBoxContainer/Selector" to="." method="set_working_data"]
+[connection signal="pressed" from="BackToMain" to="." method="update_custom_level_files"]

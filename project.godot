@@ -36,6 +36,17 @@ project/assembly_name="roll-full"
 
 enabled=PackedStringArray("res://addons/godot-hackatime/plugin.cfg", "res://addons/godot-hackatime/tracker/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Builds/": "yellow",
+"res://SFX/": "purple",
+"res://Scenes/": "green",
+"res://Scripts/": "orange",
+"res://Shaders/": "pink"
+}
+
 [global_group]
 
 Main=""
