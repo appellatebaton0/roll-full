@@ -272,14 +272,15 @@ func _input(event: InputEvent) -> void:
 
 ## -- MANAGING LEVEL DATA -- ##
 
-const LEVEL_DATA_FOLDER := "res://Assets/LevelData/"
+const LEVEL_DATA_FOLDER := "res://Assets/LevelData"
 @onready var LEVEL_DATA := get_level_data()
 
-func get_level_data() -> Array[LevelData]:
+func get_level_data(override_path := LEVEL_DATA_FOLDER) -> Array[LevelData]:
 	
 	var file_names:Array[StringName]
 	
-	var dir = DirAccess.open(LEVEL_DATA_FOLDER)
+	var dir = DirAccess.open(override_path)
+	
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
@@ -288,10 +289,10 @@ func get_level_data() -> Array[LevelData]:
 			file_name = file_name.replace(".remap", "")
 			
 			if not dir.current_is_dir():
-				file_names.append(LEVEL_DATA_FOLDER + "/" + file_name)
+				file_names.append(override_path + "/" + file_name)
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path; ", LEVEL_DATA_FOLDER)
+		print("An error occurred when trying to access the path; ", override_path)
 	
 	# Sort numerically
 	file_names.assign(merge_sort(file_names, func(a,b): return int(a) > int(b)))

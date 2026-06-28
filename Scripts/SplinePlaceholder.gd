@@ -134,7 +134,7 @@ func regenerate_mesh(from_points := sample_points, mesh_width := width) -> Packe
 ## -- Placeholder Functionality -- ##
 
 # Update the positions of the drag points, and make more (or less) if necessary.
-const DRAG_POINT_SCENE := preload("res://DragPoint.tscn")
+const DRAG_POINT_SCENE := preload("res://Scenes/DragPoint.tscn")
 func update_drag_points() -> void:
 	
 	if not is_node_ready(): await ready

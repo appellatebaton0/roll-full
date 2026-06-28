@@ -1,23 +1,16 @@
-class_name LevelEntry extends Button
+class_name CustomLevelEntry extends Button
 ## Provides an interface into a level.
 
-@onready var level_name := $MarginContainer/HBoxContainer/ScrollContainer/LevelName
-@onready var ranking := $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Rank
-@onready var bonused := $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Bonused
+@onready var level_name:Label           = $MarginContainer/HBoxContainer/ScrollContainer/LevelName
+@onready var scroll_container:ScrollContainer = $MarginContainer/HBoxContainer/ScrollContainer
+@onready var scroll_h := scroll_container.get_h_scroll_bar()
 
-@onready var scroll_container := $MarginContainer/HBoxContainer/ScrollContainer
-@onready var scroll_h := scroll_container.get_h_scroll_bar() as HScrollBar
 var scroll_tween:Tween
 
 @export var level_data:LevelData:
 	set(to):
-		if level_data:
-			level_data.runs_updated.disconnect(_on_runs_updated)
-		
 		level_data = to
 		
-		if level_data:
-			level_data.runs_updated.connect(_on_runs_updated)
 		_on_runs_updated()
 
 @export var selected := false:
@@ -43,8 +36,8 @@ var scroll_tween:Tween
 			
 			# Looping scroll back-n-forth.
 			scroll_tween = create_tween().set_loops()
-			scroll_tween.tween_property(scroll_h, "value", maxValueCorrected, 4.)
-			scroll_tween.tween_interval(1.0)
+			scroll_tween.tween_property(scroll_h, "value", maxValueCorrected, 2.5)
+			scroll_tween.tween_interval(1.7)
 			scroll_tween.tween_property(scroll_h, "value", 0, 2.)
 			scroll_tween.tween_interval(1.2)
 			
@@ -57,11 +50,9 @@ var scroll_tween:Tween
 			await scroll_h.changed
 			scroll_h.value = 0
 
+
 func _on_runs_updated() -> void: if level_data:
 	
 	if not is_node_ready(): await ready
 	
 	level_name.text = level_data.name
-	
-	ranking.text = level_data.best_run.ranking_as_string()  if level_data.best_run != null else "-"
-	bonused.modulate.a = (1.0 if level_data.best_run.bonused else 0.0) if level_data.best_run != null else 0.0

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://462hxbvniu1e"]
+
+[ext_resource type="Theme" uid="uid://dlhi846ax63gu" path="res://Assets/Themes/LevelEntry.tres" id="1_x5al1"]
+[ext_resource type="Script" uid="uid://3qesx2v366qw" path="res://Scripts/UI/CustomLevelEntry.gd" id="2_ue8b4"]
+[ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="3_iibss"]
+
+[node name="CustomLevelEntry" type="Button" unique_id=713741964]
+use_parent_material = true
+custom_minimum_size = Vector2(350, 61.25)
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "
+"
+theme = ExtResource("1_x5al1")
+script = ExtResource("2_ue8b4")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=817889222]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1632476167]
+use_parent_material = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1453864914]
+use_parent_material = true
+layout_mode = 2
+theme = ExtResource("3_iibss")
+theme_override_font_sizes/font_size = 41
+text = "\\\\"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer" unique_id=352984123]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="LevelName" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer" unique_id=638365749]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_iibss")
+theme_override_font_sizes/font_size = 40
+text = "Custom Level Name"
+vertical_alignment = 1
+text_overrun_behavior = 5

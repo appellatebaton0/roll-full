@@ -28,6 +28,9 @@ class_name CycleContainer extends Container
 
 
 func _notification(what):
+	
+	if not is_node_ready(): await ready
+	
 	if what == NOTIFICATION_SORT_CHILDREN:
 		# Must re-sort the children
 		# See Godot's page on making custom containers.
@@ -47,15 +50,17 @@ func _notification(what):
 			
 			#print(children.size() - i)
 			var j := floori(size.y / 2 / item_seperation) + 1
-			var wrap_point := midpoint + (children.size() - j) * item_seperation
-			# Wrap the Y.
-			new_pos.y = wrap(new_pos.y, midpoint - (j * item_seperation), wrap_point)#midpoint - ((children.size() - i) * item_seperation)
+			if children.size() > j:
+				var wrap_point := midpoint + (children.size() - j) * item_seperation
+				# Wrap the Y.
+				new_pos.y = wrap(new_pos.y, midpoint - (j * item_seperation), wrap_point)
+			
 			# Apply the distance according to the curve.
 			new_pos.x = distance_curve.sample(wrap((new_pos.y) / size.y,0.0, 1.0))
 			
-
+			
 			# Apply the scaling according to the curve
-			var new_scale := Vector2.ONE * scale_curve.sample(wrap((new_pos.y) / size.y,0.0, 1.0))
+			var new_scale := Vector2.ONE * scale_curve.sample(wrap((new_pos.y) / size.y, 0.0, 1.0))
 			
 			new_pos.y -= ((child.size.y * child.scale.y) / 2.)
 			

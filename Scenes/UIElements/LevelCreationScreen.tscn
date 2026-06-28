@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://2hqc2bwxwsyu"]
 
-[ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="1_nfcek"]
-[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_nfcek"]
-[ext_resource type="Script" uid="uid://w2o6j5cqphex" path="res://Scripts/UI/SpinContainer.gd" id="3_aah8n"]
-[ext_resource type="Shader" uid="uid://bupwsrtj71q6r" path="res://Shaders/TextureAlpha.gdshader" id="4_vyqo0"]
-[ext_resource type="Script" uid="uid://b46wol6nsuin7" path="res://Scripts/UI/CycleContainer.gd" id="5_vydik"]
-[ext_resource type="PackedScene" uid="uid://dqduu8fu52dky" path="res://Scenes/UIElements/LevelEntry.tscn" id="6_510sg"]
-[ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="8_0e1qq"]
-[ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="9_3bb11"]
-[ext_resource type="Texture2D" uid="uid://dparj85pico7e" path="res://Assets/Textures/UIArrow.png" id="11_fe5xq"]
+[ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="1_td7u6"]
+[ext_resource type="Script" uid="uid://bcuxnvsdkifkg" path="res://Scripts/UI/LevelCreationScreen.gd" id="2_xnjkx"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="3_jvmom"]
+[ext_resource type="Script" uid="uid://w2o6j5cqphex" path="res://Scripts/UI/SpinContainer.gd" id="4_vc212"]
+[ext_resource type="Shader" uid="uid://bupwsrtj71q6r" path="res://Shaders/TextureAlpha.gdshader" id="5_wqrks"]
+[ext_resource type="Script" uid="uid://b46wol6nsuin7" path="res://Scripts/UI/CycleContainer.gd" id="6_51cue"]
+[ext_resource type="PackedScene" uid="uid://462hxbvniu1e" path="res://Scenes/UIElements/CustomLevelEntry.tscn" id="7_bxnsm"]
+[ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="8_36xf4"]
+[ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="9_2nyu2"]
+[ext_resource type="Texture2D" uid="uid://dparj85pico7e" path="res://Assets/Textures/UIArrow.png" id="10_4qmft"]
 
 [sub_resource type="Gradient" id="Gradient_ek4xw"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -19,7 +20,7 @@ gradient = SubResource("Gradient_ek4xw")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7mpik"]
-shader = ExtResource("4_vyqo0")
+shader = ExtResource("5_wqrks")
 shader_parameter/alpha_texture = SubResource("GradientTexture2D_7mpik")
 
 [sub_resource type="Curve" id="Curve_woile"]
@@ -39,6 +40,20 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bnby"]
+border_width_bottom = 4
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ficod"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0apbi"]
+bg_color = Color(0.5372549, 0.7058824, 0.9607843, 0.5058824)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvfjj"]
 bg_color = Color(0.08627451, 0.14117648, 0.21960784, 1)
@@ -68,19 +83,20 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	return Global._make_custom_tooltip(for_text)
 "
 
-[node name="LevelSelectionScreen" type="Panel" unique_id=868323181]
+[node name="LevelCreationScreen" type="Panel" unique_id=868323181]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
+script = ExtResource("2_xnjkx")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2010592248]
 position = Vector2(-1036, 432)
 color = Color(0.08627451, 0.14117648, 0.21960784, 1)
 polygon = PackedVector2Array(1185, 0, 1169.342, 115.17014, 1162.2305, 231.18204, 1124.4049, 341.0845, 1094.7972, 453.4799, 1036.2576, 553.8911, 985.29144, 658.35077, 908.28735, 745.4121, 837.9215, 837.9215, 745.4121, 908.28723, 658.35077, 985.29144, 553.89124, 1036.2574, 453.47986, 1094.7972, 341.08444, 1124.4049, 231.18207, 1162.2305, 115.170135, 1169.342, -5.1797993e-05, 1185, -115.1701, 1169.342, -231.18204, 1162.2305, -341.08456, 1124.4048, -453.47983, 1094.7972, -553.89105, 1036.2576, -658.35065, 985.29156, -745.4121, 908.28735, -837.9215, 837.9215, -908.28735, 745.4121, -985.29156, 658.35065, -1036.2574, 553.8913, -1094.7972, 453.47992, -1124.4049, 341.08456, -1162.2306, 231.18202, -1169.342, 115.17009, -1185, -0.00010359599, -1169.342, -115.17001, -1162.2306, -231.18195, -1124.4049, -341.08447, -1094.7972, -453.47986, -1036.2574, -553.89124, -985.2914, -658.3508, -908.2874, -745.41205, -837.9216, -837.92145, -745.4122, -908.28723, -658.35095, -985.2913, -553.8911, -1036.2576, -453.48004, -1094.7972, -341.08435, -1124.4049, -231.1821, -1162.2305, -115.1699, -1169.342, 1.4130984e-05, -1185, 115.16992, -1169.342, 231.18214, -1162.2305, 341.08438, -1124.4049, 453.48007, -1094.7971, 553.8911, -1036.2576, 658.3505, -985.2916, 745.4122, -908.28723, 837.9214, -837.9217, 908.2874, -745.412, 985.29144, -658.3508, 1036.2576, -553.8909, 1094.7972, -453.47986, 1124.4048, -341.0847, 1162.2306, -231.18193, 1169.342, -115.170265)
-script = ExtResource("2_nfcek")
+script = ExtResource("3_jvmom")
 outer_vertices = 64
 outer_radius = 1175.0
 outer_radius_modifiers = Dictionary[int, float]({
@@ -91,7 +107,7 @@ outer_radius_modifiers = Dictionary[int, float]({
 position = Vector2(-1036, 432)
 color = Color(0.11372549, 0.18039216, 0.2784314, 1)
 polygon = PackedVector2Array(1090, 0, 1074.7994, 105.85851, 1069.0559, 212.64845, 1033.4956, 313.50748, 1007.0287, 417.12497, 952.475, 509.10846, 906.3019, 605.5716, 834.8513, 685.1447, 770.7464, 770.7464, 685.1447, 834.85126, 605.5716, 906.3019, 509.10852, 952.4749, 417.12494, 1007.0287, 313.50742, 1033.4956, 212.64848, 1069.0559, 105.858505, 1074.7994, -4.764541e-05, 1090, -105.858475, 1074.7994, -212.64845, 1069.0559, -313.5075, 1033.4955, -417.1249, 1007.02875, -509.10837, 952.475, -605.5715, 906.30194, -685.1447, 834.8513, -770.7464, 770.7464, -834.8513, 685.1447, -906.30194, 605.5715, -952.4749, 509.10858, -1007.0287, 417.125, -1033.4956, 313.5075, -1069.056, 212.64844, -1074.7994, 105.85847, -1090, -9.529082e-05, -1074.7994, -105.85839, -1069.056, -212.64838, -1033.4956, -313.50745, -1007.0287, -417.12494, -952.4749, -509.10852, -906.3018, -605.57166, -834.8514, -685.14465, -770.74646, -770.74634, -685.1448, -834.85126, -605.5718, -906.30176, -509.10843, -952.475, -417.1251, -1007.0287, -313.5073, -1033.4956, -212.64851, -1069.0559, -105.858284, -1074.7994, 1.299812e-05, -1090, 105.858315, -1074.7994, 212.64854, -1069.0559, 313.50735, -1033.4956, 417.12512, -1007.02856, 509.10846, -952.475, 605.57135, -906.302, 685.1448, -834.85126, 770.7463, -770.7465, 834.8514, -685.1446, 906.3019, -605.57166, 952.47504, -509.10825, 1007.02875, -417.12494, 1033.4955, -313.50763, 1069.056, -212.64836, 1074.7994, -105.85863)
-script = ExtResource("2_nfcek")
+script = ExtResource("3_jvmom")
 outer_vertices = 64
 outer_radius = 1080.0
 outer_radius_modifiers = Dictionary[int, float]({
@@ -111,6 +127,14 @@ color = Color(0.08627451, 0.14117648, 0.21960784, 1)
 polygon = PackedVector2Array(0, 10, 10, 0, 80, 0, 100, 20, 100, 270, 90, 280, 70, 280, 0, 30)
 metadata/theme_id = "base"
 
+[node name="Button" type="Button" parent="Bumper" unique_id=1010333315]
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 78.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 37
+text = "R"
+
 [node name="Bumper2" type="Polygon2D" parent="." unique_id=2142690357]
 position = Vector2(456, 839)
 scale = Vector2(1, -1)
@@ -126,10 +150,10 @@ anchor_bottom = 0.5
 offset_left = -1036.0
 offset_right = -1036.0
 grow_vertical = 2
-theme = ExtResource("1_nfcek")
-script = ExtResource("3_aah8n")
+theme = ExtResource("1_td7u6")
+script = ExtResource("4_vc212")
 add_angle = 19.8
-radius = 820.0
+radius = 1160.0
 
 [node name="HSeparator" type="HSeparator" parent="SpinContainer" unique_id=1307233007]
 custom_minimum_size = Vector2(50, 0)
@@ -308,193 +332,28 @@ theme_override_constants/margin_right = 179
 material = SubResource("ShaderMaterial_7mpik")
 use_parent_material = true
 layout_mode = 2
-script = ExtResource("5_vydik")
+script = ExtResource("6_51cue")
 seperation = 59
 distance_curve = SubResource("Curve_woile")
 scale_curve = SubResource("Curve_bks1m")
 item_seperation = 100.0
 
-[node name="LevelEntry4" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1949814971 instance=ExtResource("6_510sg")]
-use_parent_material = true
+[node name="CustomLevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=713741964 instance=ExtResource("7_bxnsm")]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry5" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry9" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=222862230 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry10" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=66773386 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry8" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1515945423 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry11" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=256287484 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry15" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=746773850 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry16" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=44793610 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry12" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=225872299 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry13" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1187799305 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry14" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=2030726991 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry17" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1730376489 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry18" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=574120363 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry19" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1684722634 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry22" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=887186620 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry23" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=108558725 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry24" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1500908767 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry25" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1318142855 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry26" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=730193165 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry20" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=146371921 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
-
-[node name="LevelEntry21" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=153101271 instance=ExtResource("6_510sg")]
-use_parent_material = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-tooltip_text = "
-"
 
 [node name="Control" type="VSeparator" parent="HBoxContainer" unique_id=987196611]
 visible = false
 custom_minimum_size = Vector2(0, 800)
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1476397087]
 custom_minimum_size = Vector2(0, 864)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_bottom = 25
@@ -505,7 +364,7 @@ theme_override_constants/separation = 15
 
 [node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1577223369]
 layout_mode = 2
-theme = ExtResource("8_0e1qq")
+theme = ExtResource("8_36xf4")
 theme_override_styles/panel = SubResource("StyleBoxFlat_bks1m")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2" unique_id=486596391]
@@ -517,7 +376,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer" unique_id=2102145128]
 layout_mode = 2
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1439372861]
 layout_mode = 2
@@ -542,7 +401,7 @@ autowrap_mode = 2
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=873029250]
 visible = false
 layout_mode = 2
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
 
 [node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=959307520]
 layout_mode = 2
@@ -558,7 +417,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer" unique_id=1958745254]
 layout_mode = 2
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
 theme_override_constants/separation = 10
 
 [node name="Label" type="LineEdit" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer" unique_id=29616800]
@@ -642,7 +501,7 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/Ranking/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2022595377]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_3bb11")
+theme_override_fonts/font = ExtResource("9_2nyu2")
 theme_override_font_sizes/font_size = 30
 text = "S:"
 
@@ -661,7 +520,7 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/Ranking/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=747467084]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_3bb11")
+theme_override_fonts/font = ExtResource("9_2nyu2")
 theme_override_font_sizes/font_size = 30
 text = "A:"
 
@@ -680,7 +539,7 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/Ranking/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=454097270]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_3bb11")
+theme_override_fonts/font = ExtResource("9_2nyu2")
 theme_override_font_sizes/font_size = 30
 text = "B:"
 
@@ -699,7 +558,7 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/Ranking/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=2076398795]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_3bb11")
+theme_override_fonts/font = ExtResource("9_2nyu2")
 theme_override_font_sizes/font_size = 30
 text = "C:"
 
@@ -718,7 +577,7 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/Ranking/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=913834952]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_3bb11")
+theme_override_fonts/font = ExtResource("9_2nyu2")
 theme_override_font_sizes/font_size = 30
 text = "D:"
 
@@ -737,7 +596,7 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/Ranking/MarginContainer/VBoxContainer/HBoxContainer7" unique_id=517412904]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_3bb11")
+theme_override_fonts/font = ExtResource("9_2nyu2")
 theme_override_font_sizes/font_size = 30
 text = "F:"
 
@@ -784,12 +643,12 @@ custom_arrow_step = 20.0
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=798856563]
 visible = false
 layout_mode = 2
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1097579893]
 custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
-theme = ExtResource("1_nfcek")
+theme = ExtResource("1_td7u6")
 theme_override_constants/separation = 30
 
 [node name="Button" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=1197853601]
@@ -803,6 +662,26 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 38
 text = "DELETE"
+
+[node name="Mask" type="PanelContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Button2" unique_id=518795352]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8bnby")
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Button2/Mask" unique_id=1572323595]
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ficod")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0apbi")
+fill_mode = 3
+show_percentage = false
 
 [node name="Button3" type="Button" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2" unique_id=459084303]
 layout_mode = 2
@@ -893,7 +772,7 @@ offset_right = 66.0
 offset_bottom = 32.0
 grow_vertical = 2
 tooltip_text = "Return to the main menu."
-texture_normal = ExtResource("11_fe5xq")
+texture_normal = ExtResource("10_4qmft")
 ignore_texture_size = true
 stretch_mode = 4
 script = SubResource("GDScript_4bv08")

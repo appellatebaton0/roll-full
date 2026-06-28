@@ -70,7 +70,7 @@ func regenerate_collider() -> void:
 var drag_points:Array[DragPoint]
 
 # Update the positions of the drag polygon, and make more (or less) if necessary.
-const DRAG_POINT_SCENE := preload("res://DragPoint.tscn")
+const DRAG_POINT_SCENE := preload("res://Scenes/DragPoint.tscn")
 func update_drag_points() -> void:
 	
 	# Shave off any extra polygon.

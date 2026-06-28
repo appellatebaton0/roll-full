@@ -32,7 +32,7 @@ shader_parameter/alpha_texture = SubResource("GradientTexture2D_7mpik")
 
 [sub_resource type="Curve" id="Curve_woile"]
 _limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5031847, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
+_data = [Vector2(0, 0.679718), 0.0, 230.08928, 0, 0, Vector2(0.5, 80), 0.0, 0.0, 0, 0, Vector2(1, 0), -274.6146, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_bks1m"]
@@ -335,15 +335,14 @@ size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../../BackToMain")
 focus_neighbor_right = NodePath("../MarginContainer2/VBoxContainer/HBoxContainer2/Play")
 focus_mode = 2
-theme_override_constants/margin_left = 67
-theme_override_constants/margin_right = 179
+theme_override_constants/margin_left = 88
 script = ExtResource("4_oneo4")
 spin_container = NodePath("../../SpinContainer")
 entry_container = NodePath("LevelEntryContainer")
 
 [node name="LevelEntryContainer" type="Container" parent="HBoxContainer/MarginContainer" unique_id=2047304327]
 material = SubResource("ShaderMaterial_7mpik")
-custom_minimum_size = Vector2(0, 1098)
+custom_minimum_size = Vector2(310, 864)
 layout_mode = 2
 script = ExtResource("4_woile")
 seperation = 59

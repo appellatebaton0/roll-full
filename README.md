@@ -13,4 +13,3 @@ Default Bindings;
 - Q / Space to Jump
 - E / Right Click to Dash
 - WASD / DPad / Arrow keys -> Perform combos while midair
-

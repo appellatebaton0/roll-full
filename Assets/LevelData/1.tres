@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("2_rv4rp")
-name = "Introduction"
+name = "Introduction To The Snow"
 base_player_speed = 1760
 scene = ExtResource("1_8uby6")
 ranking_maximums = Dictionary[int, float]({

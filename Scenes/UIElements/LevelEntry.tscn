@@ -79,10 +79,17 @@ theme = ExtResource("4_dx067")
 theme_override_font_sizes/font_size = 41
 text = "//"
 
-[node name="LevelName" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1983134325]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer" unique_id=2138156056]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="LevelName" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer" unique_id=1983134325]
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 6
 theme = ExtResource("4_dx067")
 theme_override_font_sizes/font_size = 40
 text = "INTRODUCTION"
