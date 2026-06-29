@@ -36,6 +36,10 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_reset() -> void:
+	
+	if target:
+		global_position = target.global_position
+	
 	# Compute constants
 	k1 = z / (PI * f)
 	k2 = 1 / ((2 * PI * f) *  (2 * PI * f))
@@ -46,6 +50,8 @@ func _on_reset() -> void:
 	xp = x0
 	y = x0
 	yd = Vector2.ZERO
+	
+	
 	
 
 func target_position(delta:float): 

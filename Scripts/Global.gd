@@ -316,7 +316,8 @@ func _save() -> void:
 	## Save all the levels' runs.
 	
 	var level_dict := {}
-	for data in LEVEL_DATA:
+	for data in (LEVEL_DATA + LevelCreationScreen.level_data):
+		print('saving ', data.name)
 		var run_array := []
 		
 		for run in data.runs:
@@ -329,6 +330,7 @@ func _save() -> void:
 		
 		level_dict[data.name] = run_array
 	
+	print("LEVELS: \n", level_dict)
 	save_dict.call({"Levels":level_dict})
 	
 	# Save all the settings.
@@ -418,8 +420,9 @@ func _load() -> void:
 			"Levels": ## LevelData.
 				# Make sure there's LevelData to load these into.
 				if LEVEL_DATA.size() <= 0: LEVEL_DATA = get_level_data()
+				if LevelCreationScreen.level_data.size() <= 0: LevelCreationScreen.level_data = get_level_data(LevelCreationScreen.CUSTOM_DATA_PATH)
 				
-				for data in LEVEL_DATA:
+				for data in (LEVEL_DATA + LevelCreationScreen.level_data):
 					if not value.has(data.name): continue # Nothing to load for this level.
 					
 					# Make a new array and set to that, so the setter only gets called once.

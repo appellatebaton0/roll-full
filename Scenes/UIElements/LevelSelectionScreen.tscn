@@ -130,8 +130,8 @@ grow_vertical = 2
 theme = ExtResource("12_bks1m")
 script = ExtResource("1_vafqf")
 focused = true
-focusees = [NodePath("HBoxContainer/MarginContainer2"), NodePath("HBoxContainer/MarginContainer")]
-focus_pass = NodePath("HBoxContainer/MarginContainer")
+focusees = [NodePath("HBoxContainer/MarginContainer2"), NodePath("HBoxContainer/Selector")]
+focus_pass = NodePath("HBoxContainer/Selector")
 
 [node name="Dial" type="Polygon2D" parent="." unique_id=1242958731]
 position = Vector2(-1050, 432)
@@ -329,7 +329,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1957301097 node_paths=PackedStringArray("spin_container", "entry_container")]
+[node name="Selector" type="MarginContainer" parent="HBoxContainer" unique_id=1957301097 node_paths=PackedStringArray("spin_container", "entry_container")]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../../BackToMain")
@@ -340,7 +340,7 @@ script = ExtResource("4_oneo4")
 spin_container = NodePath("../../SpinContainer")
 entry_container = NodePath("LevelEntryContainer")
 
-[node name="LevelEntryContainer" type="Container" parent="HBoxContainer/MarginContainer" unique_id=2047304327]
+[node name="LevelEntryContainer" type="Container" parent="HBoxContainer/Selector" unique_id=2047304327]
 material = SubResource("ShaderMaterial_7mpik")
 custom_minimum_size = Vector2(310, 864)
 layout_mode = 2
@@ -350,85 +350,85 @@ distance_curve = SubResource("Curve_woile")
 scale_curve = SubResource("Curve_bks1m")
 item_seperation = 120.0
 
-[node name="LevelEntry" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=959268396 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry2" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=2062440854 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry2" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=2062440854 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry3" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=299551750 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry3" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=299551750 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry4" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1402775686 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry4" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=1402775686 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry5" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1736211613 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry5" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=1736211613 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry6" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=304930703 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry6" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=304930703 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry9" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1055029284 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry9" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=1055029284 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry10" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=526187739 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry10" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=526187739 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry11" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1204301489 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry11" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=1204301489 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry12" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1188425015 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry12" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=1188425015 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry13" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1584559564 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry13" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=1584559564 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry14" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=2138875083 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry14" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=2138875083 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry7" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=941117780 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry7" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=941117780 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
 "
 
-[node name="LevelEntry8" parent="HBoxContainer/MarginContainer/LevelEntryContainer" unique_id=1515945423 instance=ExtResource("6_q46ju")]
+[node name="LevelEntry8" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=1515945423 instance=ExtResource("6_q46ju")]
 use_parent_material = true
 layout_mode = 2
 tooltip_text = "
@@ -865,7 +865,7 @@ ignore_texture_size = true
 stretch_mode = 4
 script = SubResource("GDScript_eebbl")
 
-[connection signal="selection_updated" from="HBoxContainer/MarginContainer" to="HBoxContainer/MarginContainer2" method="_set_level_data"]
+[connection signal="selection_updated" from="HBoxContainer/Selector" to="HBoxContainer/MarginContainer2" method="_set_level_data"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer/HBoxContainer/ResetButton" to="HBoxContainer/MarginContainer2" method="update_overview"]
 [connection signal="focus_entered" from="HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer2/Panel/ScrollContainer/AttemptBox" to="HBoxContainer/MarginContainer2" method="_on_attempt_box_focus_entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Play" to="HBoxContainer/MarginContainer2" method="_on_play_pressed"]

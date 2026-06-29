@@ -32,7 +32,7 @@ var working_data:LevelData:
 			old_name = working_data.name
 			
 			## Music Track Names
-			for i in working_data.tracks: 
+			for i in working_data.tracks: if working_data.tracks[i]: if working_data.tracks[i].resource_path: 
 				
 				# Turn the path into just the filename -> 'res://some/path/file.ogg' -> 'file.ogg'
 				var filename := Array(working_data.tracks[i].resource_path.split("/")).back() as String
@@ -746,7 +746,10 @@ func _save_level() -> void: if working_data:
 	if not loaded_in_demo.size():
 		_load_to_viewport()
 	
-	working_data.scene = recur_pack(demo_viewport, Node.new(), func(a): return loaded_in_demo.has(a))
+	var node := Node.new()
+	node.add_to_group(&"Level", true)
+	
+	working_data.scene = recur_pack(demo_viewport, node, func(a): return loaded_in_demo.has(a))
 	
 	# Unload the demo that was loaded for packing.
 	_unload_from_viewport()

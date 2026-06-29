@@ -1,31 +1,69 @@
 class_name LevelCreationScreen extends Panel
 ## Manages the level creation screen.
 
-const CUSTOM_DATA_PATH := "user://CustomLevelData"
+@export var focused := false:
+	set(to):
+		if not is_node_ready(): await ready
+		
+		selector.focused = to
+		focused = to
+		
+		if to: _on_focused()
+
+@export var focus_pass:Control
+func _on_focused() -> void: 
+	if focus_pass: focus_pass.grab_focus()
+	level_data = Global.get_level_data(CUSTOM_DATA_PATH)
+	selector.create_level_entries(level_data)
+
+const CUSTOM_DATA_PATH := "user://CustomLevels"
 const ENTRY_SCENE      := preload("res://Scenes/UIElements/CustomLevelEntry.tscn")
 const EDITOR_SCENE     := preload("res://Scenes/UIElements/LevelEditor.tscn")
 
 static var working_data:LevelData: set = set_working_data
 func set_working_data(to:LevelData):
 	working_data = to
-
+	
+	if not is_node_ready(): await ready
+	
 	# Reset all the modules to their correct base values.
 	if working_data:
 		
-		if not is_node_ready(): await ready
-		
 		## Rank Threshold
+		
 		for spin_box in rank_threshold_spin_boxes:
 			spin_box.set_value_no_signal(working_data.ranking_maximums[rank_threshold_spin_boxes[spin_box]])
+			spin_box.editable = true
 		f_rank_label.text = "> %s sec" % int(working_data.ranking_maximums[LevelData.RANKINGS.D])
 		
 		## Score and Base Speed
 		score_spin_box       .value = working_data.score_threshold
+		score_spin_box       .editable = true
 		player_speed_spin_box.value = working_data.base_player_speed
+		player_speed_spin_box.editable = true
 		
 		## Level Name
 		level_name_edit.text = working_data.name
+		level_name_edit.editable = true
 		old_name = working_data.name
+	else:
+		## Rank Threshold
+		
+		for spin_box in rank_threshold_spin_boxes:
+			spin_box.set_value_no_signal(0)
+			spin_box.editable = false
+		f_rank_label.text = "> 0 sec"
+		
+		## Score and Base Speed
+		score_spin_box       .value = 0
+		score_spin_box       .editable = false
+		player_speed_spin_box.value = 0
+		player_speed_spin_box.editable = false
+		
+		## Level Name
+		level_name_edit.text = ""
+		level_name_edit.editable = false
+		old_name = ""
 
 static var level_data:Array[LevelData]
 var entries:Array[CustomLevelEntry]
@@ -61,10 +99,14 @@ var old_name := ""
 @onready var del_button  := $HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Delete
 @onready var new_button  := $HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/New
 
+@onready var del_progress := $HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/Delete/Mask/ProgressBar
+
 func _ready() -> void:
 	
 	# Make sure the level data folder exists.
-	assure_user_directory("user://CustomLevelData")
+	assure_user_directory(CUSTOM_DATA_PATH)
+	
+	focus_entered.connect(_on_focused)
 	
 	# Load the custom levels that already exist into the array.
 	level_data = Global.get_level_data(CUSTOM_DATA_PATH)
@@ -91,6 +133,32 @@ func _ready() -> void:
 	
 		)
 	
+	new_button.pressed.connect(func():
+		
+		var new := LevelData.new()
+		
+		var level_index := 1
+		while name_exists("Level " + str(level_index)):
+			level_index += 1
+		new.name = "Level " + str(level_index)
+		
+		level_data.append(new)
+		
+		selector.create_level_entries(level_data)
+		
+		selector.select(selector.find_entry_for_data(new))
+		
+		)
+	
+	selector.selection_updated.connect(func(to):
+		
+		del_button .disabled = not to
+		edit_button.disabled = not to
+		
+		
+		
+		)
+	
 	#region Right-Side Settings
 	
 	## Level Name Change
@@ -104,7 +172,7 @@ func _ready() -> void:
 				working_data.name = level_name_edit.text
 				old_name = level_name_edit.text
 				
-			selector.find_entry_for_data(working_data)._on_runs_updated()
+			for entry in selector.level_entries: entry._on_runs_updated()
 		
 		)
 	
@@ -153,11 +221,24 @@ func _on_editor_finished():
 	
 	animator.play("FromEditorOut")
 
+func _process(delta: float) -> void:
+	
+	del_progress.value = move_toward(del_progress.value, del_button.button_pressed as int, delta)
+	
+	if del_progress.value >= 1.:
+		level_data.erase(working_data)
+		var select_index:int = selector.level_entries.find(selector.find_entry_for_data(working_data)) - 1
+		
+		selector.create_level_entries(level_data)
+		selector.selected = null
+		selector.select(select_index)
+		
+		del_progress.value = 0.
+
 ## Update the contents of CUSTOM_DATA_PATH to reflect any changes to the files.
 # Ran when the player clicks to go back to the main menu.
 func update_custom_level_files() -> void:
 	
-	print("REMOVIN'")
 	#region Remove all the existing files.
 	
 	# Get all the paths to existing files.
@@ -182,10 +263,12 @@ func update_custom_level_files() -> void:
 	
 	#endregion
 	
-	print("SAVIN'")
 	## Save the level_data currently loaded into CUSTOM_DATA_PATH.
-	for data in level_data:
-		print("saving ", data, "\t to ", CUSTOM_DATA_PATH + "/" + data.name + ".tres")
+	for data in level_data: 
+		
+		print(data.name, " -> ", data.scene)
+		if not data.scene: continue # Skip those w/o a playable scene. Ya fool.
+		
 		ResourceSaver.save(data, CUSTOM_DATA_PATH + "/" + data.name + ".tres")
 
 ## Make sure a directory exists. If not, make it.

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ba1qawjs4v33e" path="res://Scripts/UI/MainAnimator.gd" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://csckywnxt55rb" path="res://Scenes/UIElements/HUD.tscn" id="2_bmxlf"]
 [ext_resource type="Theme" uid="uid://cqeedrsmhh3g1" path="res://Assets/Themes/Base.tres" id="4_1p5hy"]
+[ext_resource type="PackedScene" uid="uid://2hqc2bwxwsyu" path="res://Scenes/UIElements/LevelCreationScreen.tscn" id="4_2w5on"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="5_50glp"]
 [ext_resource type="Script" uid="uid://rlqm8pmiwns4" path="res://Scripts/UI/OffsetVBoxContainer.gd" id="5_frkhe"]
 [ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="6_h1m7h"]
@@ -159,6 +160,96 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2w5on"]
+resource_name = "Editor->Main"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D3:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.92851514, -0.92851514]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D4:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.070108, 2.2130775]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainMenu/OptionContainer/Play")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelCreationScreen:focused")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LevelCreationScreen:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
@@ -440,6 +531,96 @@ tracks/6/keys = {
 "args": [false],
 "method": &"grab_focus"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_346fj"]
+resource_name = "Main->Editor"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D3:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.92851514, 0.92851514]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D4:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.2130775, 4.070108]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LevelCreationScreen")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_focused"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LevelCreationScreen:focused")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LevelCreationScreen:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_rgh2o"]
@@ -864,6 +1045,30 @@ tracks/21/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("LevelCreationScreen:focused")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("LevelCreationScreen:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_grg3l"]
 resource_name = "ResetIn"
@@ -973,9 +1178,11 @@ tracks/3/keys = {
 _data = {
 &"CloseOptions": SubResource("Animation_erwvk"),
 &"Countdown": SubResource("Animation_4kpch"),
+&"Editor->Main": SubResource("Animation_2w5on"),
 &"Game->Levels": SubResource("Animation_bmxlf"),
 &"Levels->Game": SubResource("Animation_50glp"),
 &"Levels->Main": SubResource("Animation_1p5hy"),
+&"Main->Editor": SubResource("Animation_346fj"),
 &"Main->Levels": SubResource("Animation_rgh2o"),
 &"OpenOptions": SubResource("Animation_h1m7h"),
 &"RESET": SubResource("Animation_vy5pj"),
@@ -1186,6 +1393,10 @@ visible = false
 layout_mode = 1
 focused = false
 
+[node name="LevelCreationScreen" parent="CanvasLayer/UI" unique_id=868323181 instance=ExtResource("4_2w5on")]
+visible = false
+layout_mode = 1
+
 [node name="MainMenu" type="Panel" parent="CanvasLayer/UI" unique_id=49104739 groups=["Themed"]]
 layout_mode = 1
 anchors_preset = 15
@@ -1264,7 +1475,7 @@ focus_previous = NodePath("../Play")
 theme_override_font_sizes/font_size = 57
 text = "CREATE"
 script = ExtResource("1_idj7w")
-animation_name = "Main->LevelEditor"
+animation_name = "Main->Editor"
 use_global = true
 returns_focus = true
 
@@ -1318,7 +1529,7 @@ metadata/theme_id = "base_text"
 [node name="AnimatedPolygon2" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=167574588 groups=["Themed"]]
 modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 position = Vector2(1152, 432)
-polygon = PackedVector2Array(-273.34595, 456.40552, -309.2938, 369.67737, -401.00455, 349.59885, -408.3925, 256.007, -489.41, 208.57097, -467.51483, 117.27683, -529.9085, 47.127193, -480.8736, -32.932747, -518.5361, -118.930176, -447.1612, -179.91907, -456.4056, -273.34583, -369.67746, -309.29367, -349.59897, -401.00446, -256.0071, -408.39243, -208.5711, -489.40994, -117.27698, -467.51483, -47.126858, -529.9085, 32.933056, -480.8736, 118.930504, -518.53595, 179.91936, -447.16107, 273.34613, -456.40543, 309.29355, -369.67758, 401.00433, -349.5991, 408.39233, -256.00723, 489.40988, -208.57126, 467.5148, -117.27712, 529.9085, -47.127026, 480.8736, 32.932903, 518.53595, 118.930336, 447.16113, 179.91924, 456.40552, 273.34595, 369.67737, 309.2938, 349.59885, 401.00455, 256.00696, 408.3925, 208.57095, 489.41, 117.276825, 467.51486, 47.12719, 529.9085, -32.932755, 480.8736, -118.93018, 518.5361, -179.91908, 447.1612)
+polygon = PackedVector2Array(390.86655, 360.89798, 298.62238, 378.34995, 260.21072, 464.0198, 167.08842, 452.1122, 104.08305, 521.719, 19.198273, 481.6175, -62.225193, 528.3484, -130.57118, 463.97757, -222.45021, 483.25967, -267.55298, 400.9232, -360.89972, 390.86496, -378.35126, 298.6207, -464.017, 260.21573, -452.11298, 167.08641, -521.7179, 104.08869, -481.61758, 19.196127, -528.34814, -62.227547, -463.97897, -130.56616, -483.2587, -222.45236, -400.922, -267.55478, -390.86884, -360.8955, -298.61902, -378.3526, -260.21368, -464.01816, -167.0844, -452.1137, -104.08637, -521.7183, -19.201332, -481.61737, 62.2299, -528.34784, 130.56824, -463.97836, 222.44714, -483.26105, 267.55655, -400.9208, 360.89725, -390.86722, 378.3539, -298.6173, 464.01932, -260.2116, 452.1119, -167.08928, 521.7188, -104.084045, 481.61746, -19.199186, 528.3485, 62.22419, 463.97778, 130.5703, 483.26007, 222.4493, 400.92368, 267.55225)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 outer_vertices = 40
@@ -1332,7 +1543,7 @@ metadata/theme_id = "high"
 [node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053 groups=["Themed"]]
 modulate = Color(0.11372549, 0.18039216, 0.2784314, 1)
 position = Vector2(1152, 432)
-polygon = PackedVector2Array(-69.47498, 219.25607, -225.35765, 267.7946, -204.16367, 105.91126, -348.71127, 30.007414, -219.25607, -69.47496, -267.7946, -225.35764, -105.91123, -204.16368, -30.007357, -348.71127, 69.474945, -219.25609, 225.35767, -267.79456, 204.1637, -105.911194, 348.71127, -30.007467, 219.25607, 69.47498, 267.79453, 225.35771, 105.911255, 204.16367, 30.00741, 348.71127)
+polygon = PackedVector2Array(168.98366, -156.02731, 328.4365, -120.95234, 229.81744, 9.1620245, 317.76556, 146.71417, 156.02657, 168.98434, 120.95087, 328.43704, -9.163049, 229.81741, -146.71074, 317.76715, -168.98267, 156.0284, -328.43573, 120.95442, -229.8175, -9.160565, -317.76648, -146.71214, -156.02763, -168.98337, -120.95295, -328.43628, 9.16159, -229.81746, 146.71356, -317.76584)
 script = ExtResource("13_h1m7h")
 outer_rotation = -10.0
 outer_vertices = 16

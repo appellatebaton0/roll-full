@@ -31,7 +31,7 @@ point_count = 3
 
 [sub_resource type="Curve" id="Curve_bks1m"]
 _limits = [0.85, 1.15, 0.0, 1.0]
-_data = [Vector2(0, 0.85), 0.0, 0.0, 0, 0, Vector2(0.45, 0.9), 1.0, 1.0, 0, 0, Vector2(0.5, 1.1), 0.0, 0.0, 0, 0, Vector2(0.55, 0.9), -1.0, -1.0, 0, 0, Vector2(1, 0.85), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.85), 0.0, 0.0, 0, 0, Vector2(0.45, 0.9), 1.0, 1.0, 0, 0, Vector2(0.5, 1.05), 0.0, 0.0, 0, 0, Vector2(0.55, 0.9), -1.0, -1.0, 0, 0, Vector2(1, 0.85), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bks1m"]
@@ -86,7 +86,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 
 [sub_resource type="Animation" id="Animation_xnjkx"]
 resource_name = "FromEditorIn"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -150,7 +150,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_jvmom"]
 resource_name = "FromEditorOut"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -173,7 +173,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-66, 400), Vector2(0, 400)]
+"values": [Vector2(-66, 400), Vector2(13, 400)]
 }
 
 [sub_resource type="Animation" id="Animation_vc212"]
@@ -200,7 +200,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 400)]
+"values": [Vector2(13, 400)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -241,7 +241,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_wqrks"]
 resource_name = "ToEditorIn"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -264,12 +264,12 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 400), Vector2(-66, 400)]
+"values": [Vector2(13, 400), Vector2(-66, 400)]
 }
 
 [sub_resource type="Animation" id="Animation_51cue"]
 resource_name = "ToEditorOut"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -340,7 +340,7 @@ _data = {
 &"ToEditorOut": SubResource("Animation_51cue")
 }
 
-[node name="LevelCreationScreen" type="Panel" unique_id=868323181]
+[node name="LevelCreationScreen" type="Panel" unique_id=868323181 node_paths=PackedStringArray("focus_pass")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -352,20 +352,13 @@ focus_mode = 2
 mouse_filter = 1
 theme = ExtResource("1_td7u6")
 script = ExtResource("2_xnjkx")
+focus_pass = NodePath("HBoxContainer/Selector")
 
 [node name="Bumper" type="Polygon2D" parent="." unique_id=92878719]
 position = Vector2(456, 25)
 color = Color(0.08627451, 0.14117648, 0.21960784, 1)
 polygon = PackedVector2Array(0, 10, 10, 0, 80, 0, 100, 20, 100, 270, 90, 280, 70, 280, 0, 30)
 metadata/theme_id = "base"
-
-[node name="Button" type="Button" parent="Bumper" unique_id=1010333315]
-offset_left = 30.0
-offset_top = 22.0
-offset_right = 78.0
-offset_bottom = 70.0
-theme_override_font_sizes/font_size = 37
-text = "R"
 
 [node name="Bumper2" type="Polygon2D" parent="." unique_id=2142690357]
 position = Vector2(456, 839)
@@ -393,7 +386,7 @@ focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath("../MarginContainer2/VBoxContainer/HBoxContainer2/Edit")
 focus_previous = NodePath("../../BackToMain")
 focus_mode = 2
-theme_override_constants/margin_left = 88
+theme_override_constants/margin_left = 105
 script = ExtResource("5_xnjkx")
 entry_scene = ExtResource("7_bxnsm")
 focused = true
@@ -403,6 +396,7 @@ entry_container = NodePath("LevelEntryContainer")
 [node name="LevelEntryContainer" type="Container" parent="HBoxContainer/Selector" unique_id=2047304327]
 material = SubResource("ShaderMaterial_7mpik")
 use_parent_material = true
+custom_minimum_size = Vector2(451, 864)
 layout_mode = 2
 script = ExtResource("6_51cue")
 seperation = 59
@@ -411,6 +405,12 @@ scale_curve = SubResource("Curve_bks1m")
 item_seperation = 100.0
 
 [node name="CustomLevelEntry" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=713741964 instance=ExtResource("7_bxnsm")]
+layout_mode = 2
+
+[node name="CustomLevelEntry2" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=725791658 instance=ExtResource("7_bxnsm")]
+layout_mode = 2
+
+[node name="CustomLevelEntry3" parent="HBoxContainer/Selector/LevelEntryContainer" unique_id=2093194571 instance=ExtResource("7_bxnsm")]
 layout_mode = 2
 
 [node name="Control" type="VSeparator" parent="HBoxContainer" unique_id=987196611]
@@ -754,6 +754,8 @@ size_flags_vertical = 1
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_ficod")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0apbi")
+max_value = 1.0
+value = 0.09
 fill_mode = 3
 show_percentage = false
 
@@ -851,24 +853,24 @@ offset_right = -1036.0
 offset_bottom = 1296.0
 theme = ExtResource("1_td7u6")
 script = ExtResource("4_vc212")
-radius = 1160.0
+radius = 1185.0
 
 [node name="Polygon2D" type="Polygon2D" parent="SpinContainer" unique_id=2010592248]
 color = Color(0.08627451, 0.14117648, 0.21960784, 1)
-polygon = PackedVector2Array(1185, 0, 1169.342, 115.17014, 1162.2305, 231.18204, 1124.4049, 341.0845, 1094.7972, 453.4799, 1036.2576, 553.8911, 985.29144, 658.35077, 908.28735, 745.4121, 837.9215, 837.9215, 745.4121, 908.28723, 658.35077, 985.29144, 553.89124, 1036.2574, 453.47986, 1094.7972, 341.08444, 1124.4049, 231.18207, 1162.2305, 115.170135, 1169.342, -5.1797993e-05, 1185, -115.1701, 1169.342, -231.18204, 1162.2305, -341.08456, 1124.4048, -453.47983, 1094.7972, -553.89105, 1036.2576, -658.35065, 985.29156, -745.4121, 908.28735, -837.9215, 837.9215, -908.28735, 745.4121, -985.29156, 658.35065, -1036.2574, 553.8913, -1094.7972, 453.47992, -1124.4049, 341.08456, -1162.2306, 231.18202, -1169.342, 115.17009, -1185, -0.00010359599, -1169.342, -115.17001, -1162.2306, -231.18195, -1124.4049, -341.08447, -1094.7972, -453.47986, -1036.2574, -553.89124, -985.2914, -658.3508, -908.2874, -745.41205, -837.9216, -837.92145, -745.4122, -908.28723, -658.35095, -985.2913, -553.8911, -1036.2576, -453.48004, -1094.7972, -341.08435, -1124.4049, -231.1821, -1162.2305, -115.1699, -1169.342, 1.4130984e-05, -1185, 115.16992, -1169.342, 231.18214, -1162.2305, 341.08438, -1124.4049, 453.48007, -1094.7971, 553.8911, -1036.2576, 658.3505, -985.2916, 745.4122, -908.28723, 837.9214, -837.9217, 908.2874, -745.412, 985.29144, -658.3508, 1036.2576, -553.8909, 1094.7972, -453.47986, 1124.4048, -341.0847, 1162.2306, -231.18193, 1169.342, -115.170265)
+polygon = PackedVector2Array(1210, 0, 1194.2217, 117.62057, 1186.7501, 236.0593, 1148.3284, 348.34164, 1117.8942, 463.04697, 1058.3055, 565.6761, 1006.0782, 672.24, 927.6126, 761.2719, 855.5992, 855.5992, 761.2719, 927.61255, 672.24, 1006.0782, 565.67615, 1058.3054, 463.04694, 1117.8942, 348.34155, 1148.3284, 236.05933, 1186.7501, 117.62056, 1194.2217, -5.289078e-05, 1210, -117.62052, 1194.2217, -236.0593, 1186.7501, -348.34167, 1148.3284, -463.0469, 1117.8943, -565.67596, 1058.3055, -672.2399, 1006.0783, -761.2719, 927.6126, -855.5992, 855.5992, -927.6126, 761.2719, -1006.0783, 672.2399, -1058.3054, 565.6762, -1117.8942, 463.04703, -1148.3284, 348.34167, -1186.7502, 236.05928, -1194.2217, 117.620514, -1210, -0.00010578156, -1194.2217, -117.62044, -1186.7502, -236.0592, -1148.3284, -348.34158, -1117.8942, -463.04694, -1058.3054, -565.67615, -1006.0781, -672.24005, -927.6127, -761.27185, -855.59924, -855.5991, -761.272, -927.61255, -672.24023, -1006.07806, -565.676, -1058.3055, -463.04712, -1117.8942, -348.34146, -1148.3284, -236.05936, -1186.7501, -117.620316, -1194.2217, 1.4429105e-05, -1210, 117.620346, -1194.2217, 236.0594, -1186.7501, 348.3415, -1148.3284, 463.04715, -1117.8942, 565.6761, -1058.3055, 672.2398, -1006.07837, 761.272, -927.61255, 855.59906, -855.59937, 927.6127, -761.2718, 1006.0782, -672.24005, 1058.3057, -565.67584, 1117.8943, -463.04694, 1148.3284, -348.3418, 1186.7502, -236.05919, 1194.2217, -117.6207)
 script = ExtResource("3_jvmom")
 outer_vertices = 64
-outer_radius = 1175.0
+outer_radius = 1200.0
 outer_radius_modifiers = Dictionary[int, float]({
 2: 10.0
 })
 
 [node name="Polygon2D2" type="Polygon2D" parent="SpinContainer" unique_id=1913010020]
 color = Color(0.11372549, 0.18039216, 0.2784314, 1)
-polygon = PackedVector2Array(1090, 0, 1074.7994, 105.85851, 1069.0559, 212.64845, 1033.4956, 313.50748, 1007.0287, 417.12497, 952.475, 509.10846, 906.3019, 605.5716, 834.8513, 685.1447, 770.7464, 770.7464, 685.1447, 834.85126, 605.5716, 906.3019, 509.10852, 952.4749, 417.12494, 1007.0287, 313.50742, 1033.4956, 212.64848, 1069.0559, 105.858505, 1074.7994, -4.764541e-05, 1090, -105.858475, 1074.7994, -212.64845, 1069.0559, -313.5075, 1033.4955, -417.1249, 1007.02875, -509.10837, 952.475, -605.5715, 906.30194, -685.1447, 834.8513, -770.7464, 770.7464, -834.8513, 685.1447, -906.30194, 605.5715, -952.4749, 509.10858, -1007.0287, 417.125, -1033.4956, 313.5075, -1069.056, 212.64844, -1074.7994, 105.85847, -1090, -9.529082e-05, -1074.7994, -105.85839, -1069.056, -212.64838, -1033.4956, -313.50745, -1007.0287, -417.12494, -952.4749, -509.10852, -906.3018, -605.57166, -834.8514, -685.14465, -770.74646, -770.74634, -685.1448, -834.85126, -605.5718, -906.30176, -509.10843, -952.475, -417.1251, -1007.0287, -313.5073, -1033.4956, -212.64851, -1069.0559, -105.858284, -1074.7994, 1.299812e-05, -1090, 105.858315, -1074.7994, 212.64854, -1069.0559, 313.50735, -1033.4956, 417.12512, -1007.02856, 509.10846, -952.475, 605.57135, -906.302, 685.1448, -834.85126, 770.7463, -770.7465, 834.8514, -685.1446, 906.3019, -605.57166, 952.47504, -509.10825, 1007.02875, -417.12494, 1033.4955, -313.50763, 1069.056, -212.64836, 1074.7994, -105.85863)
+polygon = PackedVector2Array(1120, 0, 1104.655, 108.79903, 1098.4795, 218.50116, 1062.2037, 322.216, 1034.745, 428.60547, 978.9326, 523.25037, 931.246, 622.23865, 858.0416, 704.1765, 791.9596, 791.9596, 704.1765, 858.04156, 622.23865, 931.246, 523.2504, 978.93256, 428.60544, 1034.745, 322.21594, 1062.2037, 218.50119, 1098.4795, 108.79902, 1104.655, -4.8956754e-05, 1120, -108.79899, 1104.655, -218.50116, 1098.4795, -322.21603, 1062.2037, -428.6054, 1034.7451, -523.25024, 978.9326, -622.2386, 931.24603, -704.1765, 858.0416, -791.9596, 791.9596, -858.0416, 704.1765, -931.24603, 622.2386, -978.93256, 523.2505, -1034.745, 428.6055, -1062.2037, 322.21603, -1098.4795, 218.50114, -1104.655, 108.79898, -1120, -9.791351e-05, -1104.655, -108.798904, -1098.4795, -218.50108, -1062.2037, -322.21597, -1034.745, -428.60544, -978.93256, -523.2504, -931.24585, -622.2388, -858.0417, -704.17645, -791.95966, -791.95953, -704.1766, -858.04156, -622.2389, -931.2458, -523.2503, -978.9326, -428.6056, -1034.745, -322.21585, -1062.2037, -218.50124, -1098.4795, -108.7988, -1104.655, 1.3355866e-05, -1120, 108.79882, -1104.655, 218.50127, -1098.4795, 322.21588, -1062.2037, 428.60565, -1034.745, 523.25037, -978.9326, 622.23846, -931.2461, 704.1766, -858.04156, 791.9595, -791.9597, 858.0417, -704.1764, 931.246, -622.2388, 978.9327, -523.2502, 1034.7451, -428.60544, 1062.2037, -322.2162, 1098.4795, -218.50107, 1104.655, -108.79914)
 script = ExtResource("3_jvmom")
 outer_vertices = 64
-outer_radius = 1080.0
+outer_radius = 1110.0
 outer_radius_modifiers = Dictionary[int, float]({
 2: 10.0
 })
@@ -1135,8 +1137,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = 13.0
 offset_top = -32.0
-offset_right = 64.0
+offset_right = 77.0
 offset_bottom = 32.0
 grow_vertical = 2
 tooltip_text = "Return to the main menu."

@@ -72,13 +72,13 @@ var best_run:Run ## The best run, overall.
 
 enum RANKINGS {S, A, B, C, D}
 @export var ranking_maximums:Dictionary[RANKINGS, float] = {
-	RANKINGS.S: 0,
-	RANKINGS.A: 0,
-	RANKINGS.B: 0,
-	RANKINGS.C: 0,
-	RANKINGS.D: 0,
+	RANKINGS.S: 70,
+	RANKINGS.A: 80,
+	RANKINGS.B: 90,
+	RANKINGS.C: 100,
+	RANKINGS.D: 120,
 }
-@export var score_threshold:int
+@export var score_threshold:int = 1000
 
 ## The current letter ranking for this level.
 var ranking:int
@@ -95,6 +95,8 @@ func _get_best_run() -> Run:
 	## Cut the options down to the highest rank achieved thus far.
 	
 	# Get the best rank.
+	#for i in RANKINGS.size():
+	
 	var best_rank := 7
 	for run in viable_runs:
 		var val:int = run.ranking if run.ranking != -1 else 5
@@ -102,7 +104,7 @@ func _get_best_run() -> Run:
 	
 	# Filter to just those with that rank.
 	viable_runs = viable_runs.filter(func(a:Run) -> bool:
-		return a.ranking == best_rank
+		return (a.ranking if a.ranking != -1 else 5) == best_rank
 		)
 	
 	## If any are bonused, filter to just bonused options.

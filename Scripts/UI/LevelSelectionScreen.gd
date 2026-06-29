@@ -1,6 +1,8 @@
 class_name LevelSelectionScreen extends Control
 ## The script that manages the level selection screen.
 
+@onready var selector := $HBoxContainer/Selector
+
 @export var focused := false:
 	set(to):
 		for node in focusees:
@@ -15,3 +17,5 @@ func _ready() -> void:
 @export var focus_pass:Control
 func _on_focused() -> void: 
 	if focus_pass: focus_pass.grab_focus()
+	
+	selector.create_level_entries(Global.LEVEL_DATA + LevelCreationScreen.level_data)

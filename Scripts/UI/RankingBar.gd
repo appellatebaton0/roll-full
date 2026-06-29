@@ -30,6 +30,30 @@ func update(level_data:LevelData = null, run:Variant = null):
 		var d := level_data.ranking_maximums[LevelData.RANKINGS.D]
 		var s := level_data.ranking_maximums[LevelData.RANKINGS.S]
 		
+		## Failsafe for bad rankings; ie if the range is 0 - 0, so everything is F.
+		if d == s:
+			
+			tween_value_to(bar.max_value)
+			
+			# Label Boxes with no position data, just times.
+			for i in LevelData.RANKINGS.keys().size():
+				var box := label_boxes[i as LevelData.RANKINGS]
+				
+				# Information
+				box.get_child(0).text = ['S','A','B','C','D'][i]
+				box.get_child(1).text = "<" + Global.seconds_as_timer(level_data.ranking_maximums[i], false)
+				
+				# Tween the new position
+				var label_tween := label_tweens[box] if label_tweens.has(box) else null
+				
+				if label_tween and label_tween.is_running(): label_tween.kill()
+				
+				label_tween = create_tween().set_trans(Tween.TRANS_QUAD)
+				label_tween.tween_property(box, "position:y", lerp(0, 285, float(i) / (len(LevelData.RANKINGS.keys()) - 1)), 0.1)
+				
+				label_tweens[box] = label_tween
+			return
+		
 		var from_value:float = lerp(-d, -s, inv_lerp(bar.min_value, bar.max_value, bar.value))
 		
 		# Bar

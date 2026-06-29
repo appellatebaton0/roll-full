@@ -58,9 +58,9 @@ func _notification(what):
 			# Apply the distance according to the curve.
 			new_pos.x = distance_curve.sample(wrap((new_pos.y) / size.y,0.0, 1.0))
 			
-			
 			# Apply the scaling according to the curve
 			var new_scale := Vector2.ONE * scale_curve.sample(wrap((new_pos.y) / size.y, 0.0, 1.0))
+			
 			
 			new_pos.y -= ((child.size.y * child.scale.y) / 2.)
 			

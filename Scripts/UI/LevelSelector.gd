@@ -22,7 +22,7 @@ var selected:Control:
 		if selected: 
 			selected.selected = true
 		
-		selection_updated.emit(to.level_data)
+		selection_updated.emit(to.level_data if to else null)
 		
 		_on_focused()
 		tween_spin()
@@ -38,7 +38,7 @@ func _ready() -> void:
 
 	focus_entered.connect(_on_focused)
 
-func _on_focused(node:Node = self) -> void: if node != selected: 
+func _on_focused(node:Node = self) -> void: if node != selected and selected:
 	selected.grab_focus()
 
 var spin_tween:Tween
@@ -61,7 +61,7 @@ func tween_spin():
 	spin_tween.tween_property(spin_container, "add_angle", spin_container.add_angle - (dist * 360. / spin_container.get_children().filter(func(l):return l is Control).size()), 0.3)
 
 
-func _process(_delta: float) -> void: if focused:
+func _process(_delta: float) -> void: if focused and selected:
 	
 	## Allow for using Up/Down inputs to move the selection.
 	if selected.has_focus():
@@ -74,15 +74,24 @@ func _process(_delta: float) -> void: if focused:
 
 ## Make a index or node the selected level entry
 func select(target:Variant):
-	if target is int: 
-		selected = level_entries[target]
-	if target is Control: if level_entries.has(target): 
+	if target is int:
+		target = wrap(target, 0, level_entries.size())
+		if level_entries.size() > target:
+			selected = level_entries[target]
+		return
+	if target is Control and level_entries.has(target): 
 		selected = target
+		return
+	
+	selected = null
 
 ## Creates all the needed level_entries, and adds them to the entry_container.
 func create_level_entries(level_data:Array[LevelData] = data) -> void:
 	
-	level_data += level_data # Make two copies to allow wrapping.
+	# Make copies to allow wrapping.
+	if level_data.size() > 0:
+		while level_data.size() * entry_container.item_seperation < entry_container.size.y + (2 * entry_container.item_seperation):
+			level_data += level_data # Double the array.
 	
 	var entries:Array[Control]
 	for node in entry_container.get_children(): 
@@ -116,6 +125,8 @@ func create_level_entries(level_data:Array[LevelData] = data) -> void:
 		# Inherit this node's neighbors for the remaining sides.
 		entry.focus_neighbor_right = get_node(focus_neighbor_right).get_path()
 		entry.focus_neighbor_left  = get_node(focus_neighbor_left).get_path()
+	
+	print("E: ", entries)
 	
 	level_entries = entries
 	
