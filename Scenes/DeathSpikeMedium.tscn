@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://c7qjkmidxi07v"]
 
-[ext_resource type="Script" uid="uid://dh5osbuu612im" path="res://Scripts/DeathSpike.gd" id="1_odeew"]
+[ext_resource type="Script" path="res://Scripts/DeathSpike.gd" id="1_odeew"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_g2vya"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_odeew"]
 radius = 128.0
 
 [node name="DeathSpikeMedium" type="Area2D" unique_id=2139363536]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_odeew")

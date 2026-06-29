@@ -17,7 +17,7 @@ const DEBUG := false
 
 ## MOVEMENT 
 
-@export var base_speed := 1000.0
+@export var base_speed := 2500.0
 @export var jump_height := 670.0
 
 @export var gravity_scale := 1.0
@@ -68,7 +68,7 @@ func _ready() -> void:
 	Global.reset_level.connect(_on_reset)
 	
 	## Allows for a custom base speed on a level-by-level basis.
-	if Global.current_data: 
+	if Global.current_data and base_speed == 2500: 
 		base_speed = Global.current_data.base_player_speed
 
 ## The last direction, normalized, of the surface intersected by the raycast.

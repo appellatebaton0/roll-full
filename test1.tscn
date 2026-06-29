@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://pexj04ubvx08"]
+
+[ext_resource type="PackedScene" uid="uid://dnvxjconjhp6r" path="res://Scenes/RockBackground.tscn" id="1_7dp4h"]
+[ext_resource type="Script" uid="uid://c26v4q7ayojpm" path="res://Scripts/Camera.gd" id="2_pbexi"]
+[ext_resource type="Environment" uid="uid://bol5ovnngau3v" path="res://Assets/Resources/Environment.tres" id="3_xteoi"]
+[ext_resource type="PackedScene" uid="uid://4fa863glxx7y" path="res://Scenes/AmbientParticles.tscn" id="4_dfqyl"]
+[ext_resource type="PackedScene" uid="uid://bw16huunuc7lg" path="res://Scenes/Goal.tscn" id="6_cn1t4"]
+[ext_resource type="PackedScene" uid="uid://no1j6n5wfkgq" path="res://Scenes/Player.tscn" id="8_y426j"]
+[ext_resource type="PackedScene" uid="uid://u8cgtukf5vcf" path="res://Scenes/DeathBorder.tscn" id="10_wu0s3"]
+[ext_resource type="PackedScene" uid="uid://2xr535uwy4al" path="res://Scenes/Circle.tscn" id="12_bve71"]
+
+[sub_resource type="Curve" id="Curve_nn08x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.1, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="Node2" type="Node" unique_id=1635855603]
+
+[node name="RockBackground" parent="." unique_id=248748168 instance=ExtResource("1_7dp4h")]
+
+[node name="@Camera2D@120" type="Camera2D" parent="." unique_id=1737461764]
+process_mode = 3
+script = ExtResource("2_pbexi")
+
+[node name="@CanvasModulate@121" type="CanvasModulate" parent="." unique_id=873415556]
+color = Color(0.83137256, 0.83137256, 0.83137256, 1)
+
+[node name="@WorldEnvironment@122" type="WorldEnvironment" parent="." unique_id=1566675352]
+environment = ExtResource("3_xteoi")
+
+[node name="AmbientParticles" parent="." unique_id=1391339889 instance=ExtResource("4_dfqyl")]
+min_spin = -0.6981317007977318
+max_spin = 0.6981317007977318
+
+[node name="Goal" parent="." unique_id=1338618760 node_paths=PackedStringArray("spins") instance=ExtResource("6_cn1t4")]
+spins = {
+NodePath("Sprite/AnimatedPolygon3"): 1.3,
+NodePath("Sprite/AnimatedPolygon2"): -0.7,
+NodePath("Sprite/Polygon2D4"): 1.0
+}
+
+[node name="Player" parent="." unique_id=1267848784 instance=ExtResource("8_y426j")]
+position = Vector2(165, 272)
+base_speed = 64.0
+dash_slow_curve = SubResource("Curve_nn08x")
+
+[node name="DeathBorder" parent="." unique_id=556743190 instance=ExtResource("10_wu0s3")]
+polygon = PackedVector2Array(-3000, -3000, 3000, -3000, 3000, 3000, -3000, 3000)
+
+[node name="Circle" parent="." unique_id=1155260481 instance=ExtResource("12_bve71")]
+position = Vector2(147.99066, 851.4905)
+
+[node name="@Polygon2D@147" parent="." unique_id=1150091344 instance=ExtResource("12_bve71")]
+position = Vector2(1277.0762, 833.1204)

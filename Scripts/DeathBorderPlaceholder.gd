@@ -10,10 +10,12 @@ signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
 
 @onready var hint_circle := $HintCircle
 
-@onready var cam := get_viewport().get_camera_2d()
+@export_storage var initial_poly:PackedVector2Array # A copy of polygon.polygon for initial setting when this gets packed.
 
 func _ready() -> void:
 	super()
+	
+	polygon.polygon = initial_poly if initial_poly else polygon.polygon
 	
 	drag_area.mouse_entered.connect(_mouse_entered)
 	drag_area.mouse_exited.connect(_mouse_exited)
@@ -28,9 +30,16 @@ func _process(_delta: float) -> void:
 		regenerate_collider()
 		
 		last_points = polygon.polygon
+		initial_poly = last_points
 	
-	hint_circle.global_scale = Vector2.ONE / cam.zoom
-	
+	hint_circle.global_scale = Vector2.ONE / get_viewport().get_camera_2d().zoom
+
+func _set_holdability(to) -> void:
+	can_be_held = to
+	for point in drag_points:
+		point.can_be_held = to
+		point.modulate = Color(1.0, 1.0, 1.0, 1.0) if to else Color(0.56, 0.56, 0.56, 0.69)
+	holdability_changed.emit(to)
 
 # Regenerate the drag area collider to match the new polygon.
 func regenerate_collider() -> void:
@@ -38,7 +47,7 @@ func regenerate_collider() -> void:
 	var looped_line := polygon.polygon as PackedVector2Array
 	looped_line.append(polygon.polygon[0])
 	
-	var gons := Geometry2D.offset_polyline(looped_line, drag_area_offset / cam.zoom.x) 
+	var gons := Geometry2D.offset_polyline(looped_line, drag_area_offset / get_viewport().get_camera_2d().zoom.x) 
 	
 	var outer:Array[Vector2]
 	outer.assign(Array(gons[0]))
@@ -127,7 +136,7 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 		
 		for point:Vector2 in polygon.polygon:
 			# Too close to existing point, no making new ones.
-			if point.distance_to(c) < 15. / cam.zoom.x: 
+			if point.distance_to(c) < 15. / get_viewport().get_camera_2d().zoom.x: 
 				hint_circle.hide()
 				return
 		

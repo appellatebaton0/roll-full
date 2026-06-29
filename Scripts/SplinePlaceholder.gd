@@ -6,6 +6,8 @@ signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
 @onready var line:Line2D = $Line2D
 @onready var spline_collider := $DragArea/CollisionShape2D
 
+@export_storage var initial_points:PackedVector2Array # A copy of line.points for initial setting when this gets packed.
+
 # The array of drag points. Index in this array = index of the point in the line's point array.
 var drag_points:Array[DragPoint]
 
@@ -30,6 +32,13 @@ var seg := 20.0:
 		regenerate_sample()
 		queue_redraw()
 
+func _set_holdability(to) -> void:
+	can_be_held = to
+	for point in drag_points:
+		point.can_be_held = to
+		point.modulate = Color(1.0, 1.0, 1.0, 1.0) if to else Color(0.56, 0.56, 0.56, 0.69)
+	holdability_changed.emit(to)
+
 func _draw() -> void:
 	if len(sample_mesh) > 2: draw_polygon(sample_mesh, [color])
 	draw_line(Vector2.UP * 20,   Vector2.DOWN * 20, Color.ORANGE, 5.0)
@@ -38,6 +47,8 @@ func _draw() -> void:
 
 func _ready() -> void: 
 	super._ready()
+	
+	line.points = initial_points if initial_points else line.points
 	
 	regenerate_sample()
 	queue_redraw()
@@ -56,6 +67,7 @@ func _process(_delta: float) -> void:
 		regenerate_sample()
 		
 		last_points = line.points
+		initial_points = last_points
 		
 		queue_redraw()
 

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bs1kc2krjvtej"]
+
+[ext_resource type="PackedScene" uid="uid://bno1ab82l8err" path="res://Scenes/Placeholders/GoalPlaceholder.tscn" id="1_bmjtd"]
+[ext_resource type="PackedScene" uid="uid://c7mrr0snf4fg5" path="res://Scenes/Placeholders/PlayerPlaceholder.tscn" id="4_oip1d"]
+[ext_resource type="PackedScene" uid="uid://dgb0aq4s5dymc" path="res://Scenes/Placeholders/DeathBorderPlaceholder.tscn" id="6_n0ie2"]
+[ext_resource type="PackedScene" uid="uid://beysom2aervu" path="res://Scenes/Placeholders/CirclePlaceholder.tscn" id="9_6dmkw"]
+
+[node name="Node" type="Node" unique_id=771693101]
+
+[node name="GoalPlaceholder" parent="." unique_id=809300250 instance=ExtResource("1_bmjtd")]
+
+[node name="PlayerPlaceholder" parent="." unique_id=1714767970 instance=ExtResource("4_oip1d")]
+position = Vector2(165, 272)
+
+[node name="DeathBorderPlaceholder" parent="." unique_id=345576127 instance=ExtResource("6_n0ie2")]
+initial_poly = PackedVector2Array(-3000, -3000, 3000, -3000, 3000, 3000, -3000, 3000)
+
+[node name="Circle" parent="." unique_id=1604085614 instance=ExtResource("9_6dmkw")]
+position = Vector2(147.99066, 851.4905)
+deletable = true
+
+[node name="@Node2D@119" parent="." unique_id=715693728 instance=ExtResource("9_6dmkw")]
+position = Vector2(1277.0762, 833.1204)
+deletable = true

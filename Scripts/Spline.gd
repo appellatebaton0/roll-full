@@ -41,6 +41,7 @@ func _ready() -> void:
 	
 	if not Engine.is_editor_hint():
 		default_color = color
+		modulate = Color(1.437, 1.437, 1.437)
 		points = sample_points
 	
 	## Create the collision nodes.

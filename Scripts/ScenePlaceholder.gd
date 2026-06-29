@@ -8,11 +8,10 @@ signal holdability_changed(to:bool)
 
 signal drag_ended(from:Vector2, to:Vector2)
 
-var can_be_held := true:
-	set(to):
-		can_be_held = to
-		holdability_changed.emit(to)
-	
+var can_be_held := true: set = _set_holdability
+func _set_holdability(to) -> void:
+	can_be_held = to
+	holdability_changed.emit(to)
 
 @export var display_name:String
 

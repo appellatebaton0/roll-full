@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://462hxbvniu1e" path="res://Scenes/UIElements/CustomLevelEntry.tscn" id="7_bxnsm"]
 [ext_resource type="Theme" uid="uid://lckhbmjcxdg5" path="res://Assets/Themes/High.tres" id="8_36xf4"]
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="9_2nyu2"]
-[ext_resource type="PackedScene" uid="uid://b0t8bey7yj02y" path="res://Scenes/UIElements/LevelEditor.tscn" id="9_jvmom"]
 [ext_resource type="Texture2D" uid="uid://dparj85pico7e" path="res://Assets/Textures/UIArrow.png" id="10_4qmft"]
 
 [sub_resource type="Gradient" id="Gradient_ek4xw"]
@@ -85,6 +84,98 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	return Global._make_custom_tooltip(for_text)
 "
 
+[sub_resource type="Animation" id="Animation_xnjkx"]
+resource_name = "FromEditorIn"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinContainer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1186, 432), Vector2(154, 432)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackToMain:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-66, 400)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bumper:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bumper2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jvmom"]
+resource_name = "FromEditorOut"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinContainer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(154, 432), Vector2(-1036, 432)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackToMain:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-66, 400), Vector2(0, 400)]
+}
+
 [sub_resource type="Animation" id="Animation_vc212"]
 length = 0.001
 tracks/0/type = "value"
@@ -147,18 +238,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("LevelEditor:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_wqrks"]
 resource_name = "ToEditorIn"
@@ -186,18 +265,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 400), Vector2(-66, 400)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LevelEditor:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_51cue"]
@@ -263,21 +330,11 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("LevelEditor:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bxnsm"]
 _data = {
+&"FromEditorIn": SubResource("Animation_xnjkx"),
+&"FromEditorOut": SubResource("Animation_jvmom"),
 &"RESET": SubResource("Animation_vc212"),
 &"ToEditorIn": SubResource("Animation_wqrks"),
 &"ToEditorOut": SubResource("Animation_51cue")
@@ -777,10 +834,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_qvfjj")
 
-[node name="LevelEditor" parent="." unique_id=1351889632 node_paths=PackedStringArray("creation_screen") instance=ExtResource("9_jvmom")]
-visible = false
+[node name="EditorContainer" type="MarginContainer" parent="." unique_id=1616766838]
 layout_mode = 1
-creation_screen = NodePath("..")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="SpinContainer" type="Container" parent="." unique_id=344705815]
 layout_mode = 0

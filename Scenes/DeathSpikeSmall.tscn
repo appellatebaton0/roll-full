@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://08144s3h56jf"]
 
-[ext_resource type="Script" uid="uid://dh5osbuu612im" path="res://Scripts/DeathSpike.gd" id="1_hbmwc"]
+[ext_resource type="Script" path="res://Scripts/DeathSpike.gd" id="1_hbmwc"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="2_hbmwc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbmwc"]
 radius = 65.27634
 
 [node name="DeathSpikeSmall" type="Area2D" unique_id=2139363536]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_hbmwc")

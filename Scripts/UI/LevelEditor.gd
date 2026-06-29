@@ -9,8 +9,12 @@ var working_data:LevelData:
 	set(to):
 		working_data = to
 		
-		# Reset all the modules to their correct base values.
+		
 		if working_data:
+			
+			if not is_node_ready(): await ready
+			
+			## Reset all the modules to their correct base values.
 			
 			update_zoom_to(1.0)
 			
@@ -25,6 +29,18 @@ var working_data:LevelData:
 			
 			## Level Name
 			level_name_edit.text = working_data.name
+			old_name = working_data.name
+			
+			## Music Track Names
+			for i in working_data.tracks: 
+				
+				# Turn the path into just the filename -> 'res://some/path/file.ogg' -> 'file.ogg'
+				var filename := Array(working_data.tracks[i].resource_path.split("/")).back() as String
+				
+				music_track_buttons[i].text = filename
+			
+			## Load the editor_scene into the editor, if there is one.
+			_load_editor_scene()
 
 ## The UndoRedo used for... undoing and redoing, duh.
 @onready var undo_redo := UndoRedo.new()
@@ -35,13 +51,16 @@ var old_name:String
 
 ## Viewport variables
 @onready var viewport_container := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer
-@onready var viewport_camera    := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport/LECamera
 @onready var viewport           := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport
+@onready var viewport_camera    := (func() -> Camera2D:
+	for child in viewport.get_children(): if child is Camera2D: return child
+	return null).call() as Camera2D # Gets the camera live from the build viewport.
 @onready var demo_container     := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2
 @onready var demo_viewport      := $MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport
 
-## Testing button.
+## Top Right Buttons
 @onready var test_button := $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Button
+@onready var fini_button := $MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Button2
 
 ## -- Module Variables -- ##
 
@@ -177,7 +196,6 @@ func _ready() -> void:
 	viewport_container.gui_input.connect(_viewport_gui_input)
 	
 	## Level Name Change
-	## Level Name Change
 	level_name_edit.editing_toggled.connect(func(to):
 		if working_data and not to:
 			
@@ -187,8 +205,18 @@ func _ready() -> void:
 			else:
 				working_data.name = level_name_edit.text
 				old_name = level_name_edit.text
-			
 	)
+	
+	## Finishing editing.
+	fini_button.pressed.connect(func():
+		
+		# Save the placeholder and regular versions of the level to PackedScenes.
+		_save_placeholder()
+		_save_level()
+		
+		finished_editing.emit()
+		
+		)
 	
 	## Hook up the zoom module to update the camera and itself.
 	zoom_slider  .value_changed.connect(update_zoom_to)
@@ -485,6 +513,9 @@ func load_music(path:String) -> AudioStream:
 	else:
 		file = load(path)
 	
+	if not file.resource_path:
+		file.resource_path = path
+	
 	return file
 
 ## -- Selection Property Setters -- ##
@@ -534,7 +565,7 @@ func _viewport_gui_input(event: InputEvent) -> void:
 				
 				# Zoom in/out, relative to the mouse position.
 				# This gets slid a bit sometimes because of the step, but that's alr.
-				var mouse_pos :Vector2= viewport_camera.get_global_mouse_position()
+				var mouse_pos:Vector2 = viewport_camera.get_global_mouse_position()
 				zoom_slider.value -= direction.y * 0.03
 				var new_mouse_pos :Vector2= viewport_camera.get_global_mouse_position()
 				viewport_camera.position += mouse_pos - new_mouse_pos
@@ -546,6 +577,9 @@ func _viewport_gui_input(event: InputEvent) -> void:
 			viewport_camera.position += direction * 15 / viewport_camera.zoom
 
 func update_zoom_to(value:float):
+	
+	if not is_node_ready(): await ready
+	
 	viewport_camera.zoom = Vector2.ONE * value
 	if zoom_slider.value   != value: zoom_slider.value   = value
 	if zoom_spin_box.value != value: zoom_spin_box.value = value
@@ -658,8 +692,12 @@ func _load_to_viewport() -> void:
 	child_queue.append(preload("res://Scenes/AmbientParticles.tscn").instantiate())
 	
 	# Add all the prefab placeholders.
-	for prefab:ScenePlaceholder in viewport.get_children().filter(func(a): return a is ScenePlaceholder):
-		child_queue.append(prefab.get_instance())
+	for prefab:ScenePlaceholder in viewport.get_children().filter(func(a): return a is ScenePlaceholder and a.visible):
+		var instance := prefab.get_instance()
+		
+		if instance is Player: instance.base_speed = working_data.base_player_speed
+		
+		child_queue.append(instance)
 	
 	# Add everything to the demo viewport.
 	for node in child_queue:
@@ -675,43 +713,80 @@ func _unload_from_viewport() -> void:
 	# Reset the viewport freeze if the player is mid-countdown/reset anim.
 	get_tree().paused = false
 
+# Load the working_data.editor_scene into the editor viewport.
+func _load_editor_scene() -> void:
+	
+	if not (working_data and working_data.editor_scene): return
+	
+	# Free *ALL* the viewport's children, since the editor_scene saves all.
+	for child in viewport.get_children(): if child is ScenePlaceholder: child.queue_free()
+	
+	# Load in the editor_scene and give it to the viewport.
+	var instance := working_data.editor_scene.instantiate()
+	
+	var resassigns := recur_assign_owner(instance)
+	for child in instance.get_children():
+		child.owner = null
+		child.reparent(viewport)
+	for node in resassigns:
+		node.owner = viewport
+	
+	pass
+
 # Saves the placeholder version of the level into a 
 # PackedScene, and gives it to the working data.
-func _save_placeholder() -> void: working_data.editor_scene = recur_pack(viewport, Node.new())
+func _save_placeholder() -> void: if working_data:
+	
+	working_data.editor_scene = recur_pack(viewport, Node.new(), func(a): return a is ScenePlaceholder)
 
 # Saves the real version of the level into a 
 # PackedScene, and gives it to the working data.
-func _save_level() -> void: 
+func _save_level() -> void: if working_data:
 	# Make sure the level is loaded in the demo viewport.
 	if not loaded_in_demo.size():
 		_load_to_viewport()
 	
-	working_data.scene = recur_pack(demo_viewport, Node.new())
+	working_data.scene = recur_pack(demo_viewport, Node.new(), func(a): return loaded_in_demo.has(a))
 	
-	# Unload the demo.
+	# Unload the demo that was loaded for packing.
 	_unload_from_viewport()
 
 ## Packs a node's children into a PackedSceen with [to] as the root,
 ## without disturbing the original node at all.
-func recur_pack(children_of:Node, to:Node) -> PackedScene:
+func recur_pack(children_of:Node, to:Node, filter_function:Callable = func(_a):return true) -> PackedScene:
 	
 	# Move all the children to the target temporarily.
-	recur_assign_owner(children_of, to)
+	var reassigns := recur_assign_owner(children_of)
+	for child in children_of.get_children(): child.reparent(to)
+	
+	if filter_function: reassigns = reassigns.filter(filter_function)
+	
+	for node in reassigns: node.owner = to
 	
 	var scene := PackedScene.new()
 	scene.pack(to)
 	
 	# Move all the children back and reassign the owner.
-	recur_assign_owner(to, children_of)
+	for child in to.get_children(): 
+		child.owner = null
+		child.reparent(children_of)
+	
+	for node in reassigns: node.owner = children_of
 	
 	# Return the complete scene.
 	return scene
 
-## Assign a node's children (and their children and so on)'s owner.
-func recur_assign_owner(parent:Node, to:Node, first_iter := true):
+## Get the nodes to assign a new owner to.
+func recur_assign_owner(parent:Node, allowed_owners:Array[Node] = []) -> Array[Node]:
+	var response:Array[Node] = []
+	
 	for child in parent.get_children():
-		if first_iter: child.reparent(to)
+		allowed_owners += [child]
 		
-		child.owner = to.owner if to.owner else to
 		
-		recur_assign_owner(child, to, false)
+		if not allowed_owners.has(child.owner):
+			response += [child]
+		
+		response += recur_assign_owner(child, allowed_owners)
+	
+	return response

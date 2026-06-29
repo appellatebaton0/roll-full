@@ -4,7 +4,11 @@ class_name Trail extends Line2D
 
 @export var trail_segments:int = 2:
 	set(to):
-		points.resize(to)
+		# Clip [points] to [to] items
+		var new_points = points.duplicate()
+		new_points.resize(to)
+		points = new_points
+		
 		trail_segments = to
 @export var follow_speed:float = 40.0
 

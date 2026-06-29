@@ -2,7 +2,8 @@ class_name LevelCreationScreen extends Panel
 ## Manages the level creation screen.
 
 const CUSTOM_DATA_PATH := "user://CustomLevelData"
-const ENTRY_SCENE := preload("res://Scenes/UIElements/CustomLevelEntry.tscn")
+const ENTRY_SCENE      := preload("res://Scenes/UIElements/CustomLevelEntry.tscn")
+const EDITOR_SCENE     := preload("res://Scenes/UIElements/LevelEditor.tscn")
 
 static var working_data:LevelData: set = set_working_data
 func set_working_data(to:LevelData):
@@ -31,7 +32,7 @@ var entries:Array[CustomLevelEntry]
 
 @onready var selector := $HBoxContainer/Selector
 @onready var animator := $AnimationPlayer
-@onready var editor   := $LevelEditor
+var editor:LevelEditor
 
 #region Right-Side Controls.
 ## Level Name
@@ -74,11 +75,17 @@ func _ready() -> void:
 	## Command Buttons
 	edit_button.pressed.connect(func(): if working_data:
 		
+		# Make the editor.
+		editor = EDITOR_SCENE.instantiate()
+		editor.hide()
+		editor.working_data = working_data
+		editor.finished_editing.connect(_on_editor_finished)
+		$EditorContainer.add_child(editor)
+		
 		animator.play("ToEditorIn")
 		
 		await animator.animation_finished
-		
-		
+		editor.show()
 		
 		animator.play("ToEditorOut")
 	
@@ -134,6 +141,17 @@ func _ready() -> void:
 		spin_box.value_changed.connect(rank_threshold_update.bind(rank_threshold_spin_boxes[spin_box]))
 	
 	#endregion
+
+func _on_editor_finished():
+	animator.play("FromEditorIn")
+	
+	await animator.animation_finished
+	editor.queue_free()
+	editor = null
+	
+	set_working_data(working_data)
+	
+	animator.play("FromEditorOut")
 
 ## Update the contents of CUSTOM_DATA_PATH to reflect any changes to the files.
 # Ran when the player clicks to go back to the main menu.
