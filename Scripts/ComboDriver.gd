@@ -33,14 +33,14 @@ func _process(delta: float) -> void:
 	else: Global.end_trick_sequence()
 
 	for dir in Global.DIR.values():
-		dir_sprites[dir as int].self_modulate.a = move_toward(dir_sprites[dir as int].self_modulate.a, 0.0, delta * 3.5)
+		dir_sprites[dir].self_modulate.a = move_toward(dir_sprites[dir].self_modulate.a, 0.0, delta * 3.5)
 
 func _on_combo_input(input:Global.DIR) -> void:
-	dir_sprites[input as int].self_modulate.a = 1.0
-	dir_sprites[input as int].scale = Vector2.ONE
+	dir_sprites[input].self_modulate.a = 1.0
+	dir_sprites[input].scale = Vector2.ONE
 	
 	Global.push_direction(input)
 
 func _on_reset() -> void:
 	for dir in Global.DIR.values():
-		dir_sprites[dir as int].self_modulate.a = 0.0
+		dir_sprites[dir].self_modulate.a = 0.0

@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/SortAscending.svg-a6fa29c7a327cdc148b8e9e6cde
 base_scale=0.25
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

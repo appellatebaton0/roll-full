@@ -379,7 +379,7 @@ func _ready() -> void:
 		
 		# Update all the prefabs; added and existing.
 		for prefab in viewport.get_children().filter(func(a): return a is ScenePlaceholder):
-			prefab.can_be_held = not index
+			prefab.can_be_held = (not index) != (prefab is MusicSectionerPlaceholder)
 		
 		)
 	tabs.current_tab = 0

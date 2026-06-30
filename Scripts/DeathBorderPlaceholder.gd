@@ -15,6 +15,8 @@ signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
 func _ready() -> void:
 	super()
 	
+	_set_holdability(can_be_held)
+	
 	polygon.polygon = initial_poly if initial_poly else polygon.polygon
 	
 	drag_area.mouse_entered.connect(_mouse_entered)
@@ -38,7 +40,7 @@ func _set_holdability(to) -> void:
 	can_be_held = to
 	for point in drag_points:
 		point.can_be_held = to
-		point.modulate = Color(1.0, 1.0, 1.0, 1.0) if to else Color(0.56, 0.56, 0.56, 0.69)
+		point.visible = to
 	holdability_changed.emit(to)
 
 # Regenerate the drag area collider to match the new polygon.

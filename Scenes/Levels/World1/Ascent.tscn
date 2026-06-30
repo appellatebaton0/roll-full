@@ -38,6 +38,9 @@ NodePath("Sprite/AnimatedPolygon2"): -0.7,
 NodePath("Sprite/Polygon2D4"): 1.0
 }
 
+[node name="MusicSectioner" parent="." index="7" unique_id=1466832369]
+points = PackedVector2Array(1383, 1974, 11965, -11870, 26596, -25653, 27975, -31272)
+
 [node name="Node" type="Node" parent="." index="8" unique_id=781181034]
 process_mode = 3
 script = ExtResource("2_cl2pp")
@@ -221,15 +224,12 @@ modulate = Color(1, 1, 1, 0.2)
 polygon = PackedVector2Array(8958.871, -7502.377, 6828.8716, -1433.3768, 6791.1284, -1446.6232, 8921.129, -7515.623)
 
 [node name="DeathSpikeLarge" parent="." index="18" unique_id=2139363536 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(6800, -3406)
 
 [node name="DeathSpikeLarge2" parent="." index="19" unique_id=1312271798 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(6662, -1420)
 
 [node name="DeathSpikeLarge3" parent="." index="20" unique_id=1637992497 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(8819, -7574)
 
 [node name="Spline2D5" type="Line2D" parent="." index="21" unique_id=1233010902]
@@ -328,19 +328,15 @@ modulate = Color(1, 1, 1, 0.2)
 polygon = PackedVector2Array(26899.938, -24891.783, 26894.063, -24852.217, 16825, -26347.81, 16825, -21651, 16785, -21651, 16785, -26394.19)
 
 [node name="DeathSpikeMedium" parent="." index="26" unique_id=1947108962 instance=ExtResource("5_pmjl2")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17060, -27741)
 
 [node name="DeathSpikeMedium2" parent="." index="27" unique_id=1438177821 instance=ExtResource("5_pmjl2")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17948, -27734)
 
 [node name="DeathSpikeLarge4" parent="." index="28" unique_id=1514042008 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17289, -27986)
 
 [node name="DeathSpikeLarge5" parent="." index="29" unique_id=407109152 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17703, -27986)
 
 [node name="Spline2D10" type="Line2D" parent="." index="30" unique_id=1894949580]
@@ -382,44 +378,34 @@ modulate = Color(1, 1, 1, 0.2)
 polygon = PackedVector2Array(22918, -21043, 22878, -21043, 22878, -25650, 22918, -25650)
 
 [node name="DeathSpikeLarge6" parent="." index="32" unique_id=403939571 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -22344)
 
 [node name="DeathSpikeLarge12" parent="." index="33" unique_id=375265554 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -23313)
 
 [node name="DeathSpikeLarge13" parent="." index="34" unique_id=1397871250 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -24337)
 
 [node name="DeathSpikeLarge14" parent="." index="35" unique_id=1313303996 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23032, -25347)
 
 [node name="DeathSpikeLarge17" parent="." index="36" unique_id=1899378671 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(22187, -27947)
 scale = Vector2(1.4542842, 1.4542842)
 
 [node name="DeathSpikeLarge7" parent="." index="37" unique_id=2121540540 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23034, -20125)
 
 [node name="DeathSpikeLarge8" parent="." index="38" unique_id=369501450 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -19089)
 
 [node name="DeathSpikeLarge9" parent="." index="39" unique_id=366867907 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -18051)
 
 [node name="DeathSpikeLarge10" parent="." index="40" unique_id=657376386 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -16897)
 
 [node name="DeathSpikeLarge11" parent="." index="41" unique_id=5345640 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23030, -15513)
 
 [node name="Spline2D12" type="Line2D" parent="." index="42" unique_id=1886854010]
@@ -564,94 +550,72 @@ modulate = Color(1, 1, 1, 0.2)
 polygon = PackedVector2Array(37173.484, -35894.348, 37365.105, -35887.438, 37545.13, -35875.13, 37713.57, -35857.41, 37870.44, -35834.266, 38015.766, -35805.684, 38149.55, -35771.625, 38271.82, -35732.063, 38382.59, -35686.95, 38481.848, -35636.223, 38569.57, -35579.81, 38645.7, -35517.645, 38710.12, -35449.7, 38762.7, -35375.977, 38803.29, -35296.58, 38831.785, -35211.656, 38848.168, -35121.4, 38852.496, -35025.957, 38844.902, -34925.973, 38830.586, -34814.098, 38806.535, -34709.414, 38772.75, -34612.34, 38729.19, -34522.95, 38675.848, -34441.35, 38612.77, -34367.66, 38540.043, -34301.96, 38457.77, -34244.316, 38366.06, -34194.723, 38264.98, -34153.145, 38154.594, -34119.535, 38034.914, -34093.848, 37905.94, -34076.035, 37767.676, -34066.05, 37620.1, -34063.87, 37463.2, -34069.47, 37296.957, -34082.832, 37121.355, -34103.945, 36936.38, -34132.805, 36742.3, -34169.344, 36749.7, -34208.656, 36943.16, -34172.227, 37126.824, -34143.58, 37300.95, -34122.637, 37465.52, -34109.414, 37620.523, -34103.88, 37765.94, -34106.027, 37901.76, -34115.84, 38027.97, -34133.27, 38144.555, -34158.293, 38251.52, -34190.855, 38348.887, -34230.91, 38436.707, -34278.402, 38515.066, -34333.305, 38584.05, -34395.62, 38643.777, -34465.4, 38694.332, -34542.73, 38735.75, -34627.73, 38768.043, -34720.5, 38791.156, -34821.13, 38805.098, -34930.027, 38812.426, -35026.566, 38808.332, -35116.9, 38792.94, -35201.67, 38766.313, -35281.023, 38728.426, -35355.15, 38679.176, -35424.2, 38618.426, -35488.277, 38546.03, -35547.395, 38461.88, -35601.504, 38365.91, -35650.55, 38258.1, -35694.46, 38138.45, -35733.17, 38006.965, -35766.645, 37863.66, -35794.836, 37708.555, -35817.715, 37541.668, -35835.27, 37363.02, -35847.484, 37172.617, -35854.355, 36970.47, -35855.863, 36756.18, -35852, 31293, -35852, 31293, -35892, 36755.82, -35892, 36970.258, -35895.863)
 
 [node name="DeathSpikeLarge15" parent="." index="50" unique_id=1353924319 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(7866, -18093.002)
 scale = Vector2(1.9821286, 1.9821286)
 
 [node name="DeathSpikeLarge18" parent="." index="51" unique_id=852157713 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(17516, -17740)
 scale = Vector2(1.9821286, 1.9821286)
 
 [node name="DeathSpikeLarge19" parent="." index="52" unique_id=363260612 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(10951, -11477.001)
 scale = Vector2(1.3974775, 1.3974775)
 
 [node name="DeathSpikeSmall" parent="." index="53" unique_id=490663847 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -29089)
 
 [node name="DeathSpikeSmall2" parent="." index="54" unique_id=840963071 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -29740)
 
 [node name="DeathSpikeSmall3" parent="." index="55" unique_id=48802553 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -30379)
 
 [node name="DeathSpikeSmall4" parent="." index="56" unique_id=302266462 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -31030)
 
 [node name="DeathSpikeSmall5" parent="." index="57" unique_id=321751185 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -31724)
 
 [node name="DeathSpikeSmall7" parent="." index="58" unique_id=313631228 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -33407)
 
 [node name="DeathSpikeSmall8" parent="." index="59" unique_id=1248711583 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -34058)
 
 [node name="DeathSpikeSmall9" parent="." index="60" unique_id=1802366899 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -35250)
 
 [node name="DeathSpikeSmall13" parent="." index="61" unique_id=739268954 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -34622)
 
 [node name="DeathSpikeSmall10" parent="." index="62" unique_id=674847168 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -35901)
 
 [node name="DeathSpikeSmall11" parent="." index="63" unique_id=903558511 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -36540)
 
 [node name="DeathSpikeSmall12" parent="." index="64" unique_id=1145935018 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12992, -37191)
 
 [node name="DeathSpikeLarge20" parent="." index="65" unique_id=1065364764 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12905, -32652)
 
 [node name="DeathSpikeSmall6" parent="." index="66" unique_id=79948296 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(13014, -18080)
 
 [node name="DeathSpikeSmall14" parent="." index="67" unique_id=74934041 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(10971, -17731)
 
 [node name="DeathSpikeLarge16" parent="." index="68" unique_id=2123105454 instance=ExtResource("4_06mmh")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(23051, -26998)
 
 [node name="DeathSpikeSmall15" parent="." index="69" unique_id=1655492343 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(25646, -36420)
 
 [node name="DeathSpikeSmall16" parent="." index="70" unique_id=12965034 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(26273, -36379)
 
 [node name="DeathSpikeSmall17" parent="." index="71" unique_id=840037465 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(26891, -36379)
 
 [node name="Arrow40" type="Sprite2D" parent="." index="72" unique_id=1119705410]
@@ -1059,7 +1023,6 @@ scale = Vector2(0.583, 0.583)
 texture = ExtResource("7_vb4t5")
 
 [node name="DeathSpikeSmall18" parent="." index="130" unique_id=1513496343 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(31256, -36416.996)
 rotation = 0.2617994
 
@@ -1097,39 +1060,30 @@ type_disable = 2
 metadata/_custom_type_script = "uid://bq5d8130qbdd4"
 
 [node name="DeathSpikeSmall19" parent="." index="139" unique_id=305871812 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(16100, -27840)
 
 [node name="DeathSpikeSmall20" parent="." index="140" unique_id=779033246 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(15149, -27985)
 
 [node name="DeathSpikeSmall21" parent="." index="141" unique_id=1955124515 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(14265, -28113)
 
 [node name="DeathSpikeSmall22" parent="." index="142" unique_id=933392043 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(12831, -28324)
 
 [node name="DeathSpikeSmall23" parent="." index="143" unique_id=684813287 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(16955, -26812)
 
 [node name="DeathSpikeSmall24" parent="." index="144" unique_id=2026485413 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(16955, -25815)
 
 [node name="DeathSpikeSmall25" parent="." index="145" unique_id=832194062 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(16968, -24744)
 
 [node name="DeathSpikeSmall26" parent="." index="146" unique_id=1347226188 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(16955, -24744)
 
 [node name="DeathSpikeSmall27" parent="." index="147" unique_id=1815773812 instance=ExtResource("6_80a4t")]
-modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
 position = Vector2(16955, -23099)
 
 [node name="JumpIndicator5" parent="." index="148" unique_id=789074961 instance=ExtResource("8_cl2pp")]

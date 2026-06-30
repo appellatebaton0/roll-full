@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/SortInactive.svg-b850ed0000ecdb98931a1e322bca
 base_scale=0.25
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

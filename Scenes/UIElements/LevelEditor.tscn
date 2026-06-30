@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cnm0y7oxjuw8a" path="res://Assets/Fonts/saiba-45.regular.otf" id="2_n0a1l"]
 [ext_resource type="PackedScene" uid="uid://bno1ab82l8err" path="res://Scenes/Placeholders/GoalPlaceholder.tscn" id="4_p34jd"]
 [ext_resource type="Theme" uid="uid://q60cada21bm1" path="res://Assets/Themes/BaseHigh.tres" id="5_mxptv"]
+[ext_resource type="PackedScene" uid="uid://bwy1rerilqxlg" path="res://Scenes/Placeholders/MusicSectionerPlaceholder.tscn" id="5_padjw"]
 [ext_resource type="PackedScene" uid="uid://c7mrr0snf4fg5" path="res://Scenes/Placeholders/PlayerPlaceholder.tscn" id="5_tc5c5"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="6_4bv08"]
 [ext_resource type="PackedScene" uid="uid://dgb0aq4s5dymc" path="res://Scenes/Placeholders/DeathBorderPlaceholder.tscn" id="6_tc5c5"]
@@ -499,6 +500,8 @@ repeat_times = 25
 material = SubResource("ShaderMaterial_n0a1l")
 position = Vector2(4986, 2962)
 texture = SubResource("GradientTexture2D_mxptv")
+
+[node name="MusicSectioner" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=429917042 instance=ExtResource("5_padjw")]
 
 [node name="GoalPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=809300250 instance=ExtResource("4_p34jd")]
 
