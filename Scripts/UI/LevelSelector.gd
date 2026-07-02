@@ -126,8 +126,6 @@ func create_level_entries(level_data:Array[LevelData] = data) -> void:
 		entry.focus_neighbor_right = get_node(focus_neighbor_right).get_path()
 		entry.focus_neighbor_left  = get_node(focus_neighbor_left).get_path()
 	
-	print("E: ", entries)
-	
 	level_entries = entries
 	
 	select(0)

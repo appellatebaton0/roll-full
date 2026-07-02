@@ -502,13 +502,17 @@ position = Vector2(4986, 2962)
 texture = SubResource("GradientTexture2D_mxptv")
 
 [node name="MusicSectioner" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=429917042 instance=ExtResource("5_padjw")]
+metadata/StaticPrefab = true
 
 [node name="GoalPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=809300250 instance=ExtResource("4_p34jd")]
+metadata/StaticPrefab = true
 
 [node name="PlayerPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=1714767970 instance=ExtResource("5_tc5c5")]
 position = Vector2(165, 272)
+metadata/StaticPrefab = true
 
 [node name="DeathBorderPlaceholder" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=345576127 instance=ExtResource("6_tc5c5")]
+metadata/StaticPrefab = true
 
 [node name="LECamera" type="Camera2D" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer/BuildViewport" unique_id=1737903844]
 

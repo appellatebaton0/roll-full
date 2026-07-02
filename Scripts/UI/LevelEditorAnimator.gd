@@ -7,7 +7,7 @@ func _ready() -> void:
 	animation_finished.connect(_on_animation_finished)
 
 func _on_animation_requested(anim_name:String, _optional_data:Variant = true):
-	print(anim_name)
+	#print(anim_name)
 	if has_animation(anim_name) and not is_playing():
 		
 		match anim_name:

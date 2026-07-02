@@ -7,6 +7,7 @@
 radius = 9.0
 
 [node name="DragPoint" type="Area2D" unique_id=1582345748]
+z_index = 1
 script = ExtResource("1_eeayj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129115178]

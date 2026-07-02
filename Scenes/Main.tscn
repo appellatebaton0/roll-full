@@ -204,7 +204,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/3/path = NodePath("MainMenu/AnimatedPolygon2/AnimatedPolygon:processing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -485,7 +485,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/3/path = NodePath("MainMenu/AnimatedPolygon2/AnimatedPolygon:processing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -575,7 +575,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/3/path = NodePath("MainMenu/AnimatedPolygon2/AnimatedPolygon:processing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -665,7 +665,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/3/path = NodePath("MainMenu/AnimatedPolygon2/AnimatedPolygon:processing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -904,7 +904,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("MainMenu/AnimatedPolygon:processing")
+tracks/10/path = NodePath("MainMenu/AnimatedPolygon2/AnimatedPolygon:processing")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1527,9 +1527,10 @@ patch_margin_right = 64
 metadata/theme_id = "base_text"
 
 [node name="AnimatedPolygon2" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=167574588 groups=["Themed"]]
-modulate = Color(0.5372549, 0.7058824, 0.95686275, 1)
 position = Vector2(1152, 432)
-polygon = PackedVector2Array(-150.0578, 510.39853, -206.62064, 435.46747, -300.43533, 439.0474, -331.07477, 350.30487, -421.4041, 324.7192, -423.12103, 230.85191, -501.12292, 178.60521, -473.74918, 88.801575, -531.78827, 15.008086, -478.00342, -61.941288, -510.3984, -150.05814, -435.46732, -206.6209, -439.04718, -300.43564, -350.30463, -331.075, -324.71933, -421.40402, -230.85205, -423.12094, -178.60538, -501.12286, -88.80173, -473.74915, -15.008253, -531.78827, 61.941135, -478.00345, 150.05798, -510.3985, 206.62077, -435.46738, 300.43546, -439.04727, 331.0749, -350.30475, 421.40424, -324.7191, 423.1211, -230.85179, 501.12296, -178.60506, 473.7492, -88.80142, 531.78827, -15.00842, 478.00348, 61.940994, 510.39853, 150.05782, 435.46747, 206.62064, 439.0474, 300.43533, 350.30487, 331.0748, 324.7192, 421.4041, 230.85191, 423.12103, 178.60521, 501.12292, 88.80157, 473.74918, 15.00808, 531.78827, -61.941296, 478.00342)
+rotation = 1202.9126
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+polygon = PackedVector2Array(-169.0074, 504.44077, -222.73427, 427.44992, -316.61804, 427.52426, -343.9235, 337.699, -433.2328, 308.761, -431.44464, 214.89423, -507.44186, 159.77086, -476.73447, 71.05096, -531.97784, -4.855085, -475.35767, -79.743835, -504.44, -169.00964, -427.44894, -222.73618, -427.5253, -316.6167, -337.7001, -343.92242, -308.75906, -433.23416, -214.8923, -431.4456, -159.77248, -507.44138, -71.05246, -476.73425, 4.8574543, -531.97784, 79.74595, -475.35733, 169.00804, -504.44055, 222.73482, -427.44965, 316.6186, -427.52386, 343.92392, -337.69858, 433.2332, -308.76044, 431.44492, -214.89368, 507.4421, -159.7702, 476.73456, -71.05035, 531.97784, 4.855766, 475.35757, 79.74444, 504.43982, 169.0103, 427.45035, 222.73346, 427.52487, 316.61722, 337.69968, 343.92288, 308.7585, 433.23456, 214.89503, 431.44424, 159.77182, 507.4416, 71.05185, 476.73434, -4.858135, 531.9778, -79.742935, 475.35785)
 script = ExtResource("13_h1m7h")
 outer_rotation = 10.0
 outer_vertices = 40
@@ -1540,12 +1541,12 @@ outer_radius_modifiers = Dictionary[int, float]({
 metadata/_custom_type_script = "uid://2fyexmj0cjug"
 metadata/theme_id = "high"
 
-[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu" unique_id=1086706053 groups=["Themed"]]
-modulate = Color(0.11372549, 0.18039216, 0.2784314, 1)
-position = Vector2(1152, 432)
-polygon = PackedVector2Array(-64.87462, -220.66101, 37.293125, -348.0075, 110.157585, -201.90419, 272.44867, -219.70828, 220.661, -64.87469, 348.0075, 37.293182, 201.90424, 110.157524, 219.70824, 272.44867, 64.87465, 220.66101, -37.293076, 348.0075, -110.157555, 201.9042, -272.44867, 219.70825, -220.66098, 64.87472, -348.0075, -37.29313, -201.90422, -110.15754, -219.70828, -272.44867)
+[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/MainMenu/AnimatedPolygon2" unique_id=1086706053 groups=["Themed"]]
+rotation = -2063.0547
+color = Color(0.11372549, 0.18039216, 0.2784314, 1)
+polygon = PackedVector2Array(-73.06711, -218.0853, 24.273155, -349.1573, 102.54224, -205.8764, 264.05573, -229.72717, 218.08507, -73.067795, 349.1572, 24.27471, 205.87593, 102.54315, 229.72803, 264.055, 73.06849, 218.08484, -24.273602, 349.15726, -102.5425, 205.87627, -264.056, 229.72685, -218.08516, 73.06753, -349.15714, -24.275156, -205.87659, -102.54184, -229.72768, -264.05527)
 script = ExtResource("13_h1m7h")
-outer_rotation = -10.0
+outer_rotation = -20.0
 outer_vertices = 16
 outer_radius = 350.0
 outer_radius_modifiers = Dictionary[int, float]({
@@ -1618,7 +1619,6 @@ vertical_alignment = 1
 
 [node name="PauseScreen" parent="CanvasLayer/UI" unique_id=538197376 instance=ExtResource("16_2w5on")]
 layout_mode = 1
-can_pause = false
 
 [node name="OptionsScreen" parent="CanvasLayer/UI" unique_id=2145581008 instance=ExtResource("10_grg3l")]
 visible = false
@@ -1645,6 +1645,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="SplashScreen" type="ColorRect" parent="CanvasLayer/UI" unique_id=362103157]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11372549, 0.18039216, 0.2784314, 1)
+
+[node name="AnimatedPolygon2" type="Polygon2D" parent="CanvasLayer/UI/SplashScreen" unique_id=294152113 groups=["Themed"]]
+position = Vector2(576, 864)
+rotation = 1052.0297
+color = Color(0.5372549, 0.7058824, 0.95686275, 1)
+polygon = PackedVector2Array(82.37501, -596.33746, 157.83672, -455.42462, 304.31363, -519.42004, 320.10596, -360.35562, 479.9223, -363.42618, 433.64133, -210.42625, 582.4678, -152.10304, 481.15894, -28.461555, 596.3374, 82.3754, 455.4245, 157.83702, 519.41986, 304.31396, 360.35602, 320.1055, 363.42587, 479.92252, 210.426, 433.64145, 152.10378, 582.4675, 28.461248, 481.15897, -82.37577, 596.33734, -157.83731, 455.4244, -304.3133, 519.4203, -320.10574, 360.35583, -479.92276, 363.42557, -433.64117, 210.42653, -582.46765, 152.10341, -481.159, 28.460941, -596.33746, -82.375015, -455.42462, -157.83673, -519.42004, -304.31363, -360.35562, -320.106, -363.42618, -479.9223, -210.42625, -433.64133, -152.10304, -582.4678, -28.46155, -481.15894)
+script = ExtResource("13_h1m7h")
+outer_rotation = 10.0
+outer_vertices = 32
+outer_radius = 482.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: 120.0
+})
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+metadata/theme_id = "high"
+
+[node name="AnimatedPolygon" type="Polygon2D" parent="CanvasLayer/UI/SplashScreen/AnimatedPolygon2" unique_id=1589356497 groups=["Themed"]]
+rotation = -2063.751
+color = Color(0.11372549, 0.18039216, 0.2784314, 1)
+polygon = PackedVector2Array(-195.19508, -139.6384, -190.34998, -305.55997, -39.284874, -236.76295, 81.466545, -350.66107, 139.63853, -195.19498, 305.5601, -190.34976, 236.76299, -39.284725, 350.6612, 81.4661, 195.19516, 139.63828, 190.34958, 305.5602, 39.28457, 236.76302, -81.466324, 350.66116, -139.63803, 195.19534, -305.56033, 190.34938, -236.76295, 39.28487, -350.66107, -81.46655)
+script = ExtResource("13_h1m7h")
+outer_rotation = -20.0
+outer_vertices = 16
+outer_radius = 360.0
+outer_radius_modifiers = Dictionary[int, float]({
+2: -120.0
+})
+metadata/_custom_type_script = "uid://2fyexmj0cjug"
+metadata/theme_id = "high"
 
 [node name="Polygon2D3" type="Polygon2D" parent="CanvasLayer/UI" unique_id=371789246 groups=["Themed"]]
 modulate = Color(0.05882353, 0.09019608, 0.14117648, 1)

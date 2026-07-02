@@ -56,12 +56,11 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhcmq"]
 shader = SubResource("Shader_ncx8q")
-shader_parameter/points = PackedVector2Array(0, 0, 1, 0, 0.5, 0.5, 0.5, 0.73)
+shader_parameter/points = Array[Vector2]([Vector2(0.40851873, 0.7328743), Vector2(0.3823168, 0.34282258), Vector2(0.7471179, 0.29340369), Vector2(0.8019082, 0.64773214)])
 shader_parameter/colors = PackedColorArray(1, 0, 0, 0.3, 1, 0.735357, 0, 0.3, 1, 1, 0, 0.3, 0, 1, 0, 0.3)
 
 [node name="MusicSectioner" type="Node2D" unique_id=429917042 node_paths=PackedStringArray("shader_rect")]
 script = ExtResource("1_gbpbm")
-shader_mat = SubResource("ShaderMaterial_dhcmq")
 shader_rect = NodePath("ColorRect")
 display_name = "Music Sectionerr"
 
@@ -79,10 +78,11 @@ material = SubResource("ShaderMaterial_dhcmq")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1396.0
+offset_bottom = 968.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1777887816]
 offset_right = 40.0

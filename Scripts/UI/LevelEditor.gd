@@ -25,7 +25,7 @@ var working_data:LevelData:
 			
 			## Score and Base Speed
 			score_spin_box       .value = working_data.score_threshold
-			player_speed_spin_box.value = working_data.base_player_speed
+			player_speed_spin_box.value = working_data.base_player_speed / 100.
 			
 			## Level Name
 			level_name_edit.text = working_data.name
@@ -170,27 +170,7 @@ func _set_selection(to:ScenePlaceholder):
 
 func _ready() -> void:
 	
-	for prefab in viewport.get_children(): if prefab is ScenePlaceholder:
-		prefab.selected.connect(_set_selection.bind(prefab))
-		
-		prefab.drag_ended.connect(func(from:Vector2, to:Vector2):
-			# Plug drags into the UR
-			
-			undo_redo.create_action("Moved Prefab")
-			undo_redo.add_do_property  (prefab, "global_position", to)
-			undo_redo.add_undo_property(prefab, "global_position", from)
-			undo_redo.commit_action()
-		
-		)
-		
-		if prefab is DeathBorderPlaceholder:
-			prefab.points_changed.connect(func(from:PackedVector2Array, to:PackedVector2Array):
-				
-				undo_redo.create_action("Moved DeathBorder Points")
-				undo_redo.add_do_property(prefab.polygon, "polygon", to)
-				undo_redo.add_undo_property(prefab.polygon, "polygon", from)
-				undo_redo.commit_action(false)
-			)
+	initialize_prefabs(viewport.get_children())
 	
 	## Connect the input detection from the viewport for scrolling.
 	viewport_container.gui_input.connect(_viewport_gui_input)
@@ -226,7 +206,7 @@ func _ready() -> void:
 	## Change the base speed w/ the spinbox.
 	player_speed_spin_box.value_changed.connect(func(to:float):
 		if working_data:
-			working_data.base_player_speed = int(to)
+			working_data.base_player_speed = int(to * 100)
 	)
 	
 	
@@ -600,6 +580,7 @@ func create_prefab(scene_path:String = "", override_for_hookup:ScenePlaceholder 
 	
 	prefabs.append(new)
 	new.deletable = true
+	new.can_be_held = true
 	selected = new
 	
 	new.selected.connect(_set_selection.bind(new))
@@ -731,7 +712,51 @@ func _load_editor_scene() -> void:
 	for node in resassigns:
 		node.owner = viewport
 	
-	pass
+	# Connect up all da signals.
+	initialize_prefabs(viewport.get_children())
+
+func initialize_prefabs(array:Array[Node]):
+	for prefab in array: if prefab is ScenePlaceholder:
+		if not prefab.selected.is_connected(_set_selection):
+			prefab.selected.connect(_set_selection.bind(prefab))
+		
+		prefab.drag_ended.connect(func(from:Vector2, to:Vector2):
+			# Plug drags into the UR
+			
+			undo_redo.create_action("Moved Prefab")
+			undo_redo.add_do_property  (prefab, "global_position", to)
+			undo_redo.add_undo_property(prefab, "global_position", from)
+			undo_redo.commit_action()
+		
+		)
+		
+		prefab.can_be_held = prefab is not MusicSectionerPlaceholder
+		
+		if prefab is DeathBorderPlaceholder:
+			prefab.points_changed.connect(func(from:PackedVector2Array, to:PackedVector2Array):
+				
+				undo_redo.create_action("Moved DeathBorder Points")
+				undo_redo.add_do_property(prefab.polygon, "polygon", to)
+				undo_redo.add_undo_property(prefab.polygon, "polygon", from)
+				undo_redo.commit_action(false)
+			)
+		
+		# Extra stuff for non-static prefabs.
+		if not prefab.has_meta("StaticPrefab"):
+			# Hook spline line changes up to the UndoRedo
+			if prefab is SplinePlaceholder:
+				prefab.points_changed.connect(func(from:PackedVector2Array, to:PackedVector2Array):
+					undo_redo.create_action("Moved Spline Points")
+					undo_redo.add_do_property(prefab.line, "points", to)
+					undo_redo.add_undo_property(prefab.line, "points", from)
+					undo_redo.commit_action(false)
+					)
+			
+			# Wire up adding/deleting via the undo_redo to the undo_redo.
+			undo_redo.create_action("Create Prefab")
+			undo_redo.add_do_method(soft_create_prefab)
+			undo_redo.add_undo_method(soft_delete_prefab)
+			undo_redo.commit_action(false)
 
 # Saves the placeholder version of the level into a 
 # PackedScene, and gives it to the working data.

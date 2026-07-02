@@ -6,7 +6,6 @@ signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
 @export var drag_area_offset := 10.0
 
 @onready var polygon  := $Polygon2D as Polygon2D
-@onready var collider := $DragArea/CollisionShape2D
 
 @onready var hint_circle := $HintCircle
 
@@ -14,6 +13,10 @@ signal points_changed(from:PackedVector2Array, to:PackedVector2Array)
 
 func _ready() -> void:
 	super()
+	
+	# Clear any existing colliders; they'll be regenerated.
+	for child in drag_area.get_children(): child.queue_free()
+	colliders.clear()
 	
 	_set_holdability(can_be_held)
 	
@@ -34,7 +37,8 @@ func _process(_delta: float) -> void:
 		last_points = polygon.polygon
 		initial_poly = last_points
 	
-	hint_circle.global_scale = Vector2.ONE / get_viewport().get_camera_2d().zoom
+	if not Engine.is_editor_hint():
+		hint_circle.global_scale = Vector2.ONE / get_viewport().get_camera_2d().zoom
 
 func _set_holdability(to) -> void:
 	can_be_held = to
@@ -43,38 +47,40 @@ func _set_holdability(to) -> void:
 		point.visible = to
 	holdability_changed.emit(to)
 
+@export var sim_zoom := 1.0:
+	set(to):
+		sim_zoom = to
+		regenerate_collider()
+
+var colliders:Array[CollisionPolygon2D]
 # Regenerate the drag area collider to match the new polygon.
 func regenerate_collider() -> void:
 	
-	var looped_line := polygon.polygon as PackedVector2Array
-	looped_line.append(polygon.polygon[0])
+	if not polygon: return
 	
-	var gons := Geometry2D.offset_polyline(looped_line, drag_area_offset / get_viewport().get_camera_2d().zoom.x) 
+	# Ensure the correct amount of colliders.
+	while true:
+		var dist := signi(colliders.size() - polygon.polygon.size())
+		match dist:
+			0: break # Correct amount. Stop.
+			-1: # Create more.
+				var new := CollisionPolygon2D.new()
+				
+				drag_area.add_child(new)
+				
+				colliders.append(new)
+			1: # Delete extra.
+				colliders.pop_front().queue_free()
 	
-	var outer:Array[Vector2]
-	outer.assign(Array(gons[0]))
-	
-	var inner:Array[Vector2]
-	inner.assign(Array(gons[1]))
-	var inner_point:Vector2 = inner.back()
-	
-	var outer_point:Vector2
-	for point in outer:
+	# For every line segment in the polygon;
+	for i in polygon.polygon.size():
+		var j = wrapi(i + 1, 0, polygon.polygon.size())
 		
-		if outer_point == null:
-			outer_point = point
-			continue
+		# Create a collider polygon for it, and assign it to a collider.
+		var collider := colliders[i]
 		
-		if point.distance_to(inner_point) < outer_point.distance_to(inner_point):
-			outer_point = point
-	
-	outer_point += inner_point.direction_to(outer_point) * 1.01
-	inner_point += inner_point.direction_to(inner.front()) * 0.01
-	
-	inner.push_back(outer_point)
-	inner.push_back(inner_point)
-	
-	collider.polygon = Geometry2D.clip_polygons(outer, inner)[0]
+		collider.polygon = Geometry2D.offset_polyline([polygon.polygon[i], polygon.polygon[j]], drag_area_offset / get_viewport().get_camera_2d().zoom.x, Geometry2D.JOIN_ROUND, Geometry2D.END_ROUND)[0]
+
 
 
 # The array of drag points. Index in this array = index of the point in the line's point array.
@@ -130,7 +136,7 @@ func _drag_ended() -> void:   points_changed.emit(drag_start_points, polygon.pol
 func _mouse_entered() -> void: hint_circle.show()
 func _mouse_exited () -> void: hint_circle.hide()
 
-func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+func _input_event(_viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	
 	if event is InputEventMouse:
 		
@@ -144,59 +150,90 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 		
 		hint_circle.show()
 		
-		var current_intercept_position := Vector2.ZERO # The position to snap to
-		var current_intercept_distance := INF          # How far away it is.
-		var between_points:Vector2i # The points this point'll be placed between.
-		# For every segment (adjacent points)
-		for i in polygon.polygon.size():
-			var j = wrap(i + 1, 0, polygon.polygon.size())
-			
-			var p1 := polygon.polygon[i] as Vector2
-			var p2 := polygon.polygon[j] as Vector2
-			
-			# Turn into slope-intercept (y=mx+b) form.
-			var m := (p1.y - p2.y) / (p1.x - p2.x) if not p1.x == p2.x else INF
-			var b := p1.y - (m * p1.x)
-			
-			# Figure out where the click point would snap to the line.
-			var interception_point := Vector2.ZERO
-			
-			# The line is vertical - the x coord is from one of the points (they have
-			# the same x), and the y coord is from the click point.
-			if m == INF:
-				interception_point.x = p1.x
-				interception_point.y = c.y
-			
-			# The line is horizontal; use the mouse's x coord
-			# and the line's y coord.
-			elif m == 0:
-				interception_point.x = c.x
-				interception_point.y = p1.y
-			
-			# Turn the click point into point-slope form, with a slope parallel 
-			# to the line, and solve for the interception point. This is
-			# pre-simplified into one formula.
-			else:
-				interception_point.x = ((c.x / m) + c.y - b) / (m + (1/m))
-				interception_point.y = (m * interception_point.x) + b
-			
-			# If this is closer than any previous attempt, do it.
-			var point_travel := c.distance_to(interception_point)
-			if point_travel < current_intercept_distance:
-				current_intercept_position = interception_point
-				current_intercept_distance = point_travel
-				between_points = Vector2i(i,j)
-			# If it's the same distance, it's almost guarenteed along the same
-			# line, and there's an unmoved point on the line. check distances of the
-			# surrounding points to make a decision.
-			# NOTE: Unreliable with multiple overlapping segments, but better than nothing.
-			elif point_travel == current_intercept_distance:
-				var this_dist := p1.distance_to(c) + p2.distance_to(c)
-				var last_dist := polygon.polygon[between_points.x].distance_to(c) + polygon.polygon[between_points.y].distance_to(c)
-				if this_dist < last_dist:
-					current_intercept_position = interception_point
-					current_intercept_distance = point_travel
-					between_points = Vector2i(i,j)
+		var current_intercept_position := Vector2.ZERO # The position to snap to.
+		var between_points:Vector2i = Vector2(shape_idx, wrapi(shape_idx + 1, 0, polygon.polygon.size())) # The points this point'll be placed between.
+		#region Old Solving Code
+		#var current_intercept_distance := INF          # How far away it is.
+		## For every segment (adjacent points)
+		#for i in polygon.polygon.size():
+			#var j = wrap(i + 1, 0, polygon.polygon.size())
+			#
+			#var p1 := polygon.polygon[i] as Vector2
+			#var p2 := polygon.polygon[j] as Vector2
+			#
+			## Turn into slope-intercept (y=mx+b) form.
+			#var m := (p1.y - p2.y) / (p1.x - p2.x) if not p1.x == p2.x else INF
+			#var b := p1.y - (m * p1.x)
+			#
+			## Figure out where the click point would snap to the line.
+			#var interception_point := Vector2.ZERO
+			#
+			## The line is vertical - the x coord is from one of the points (they have
+			## the same x), and the y coord is from the click point.
+			#if m == INF:
+				#interception_point.x = p1.x
+				#interception_point.y = c.y
+			#
+			## The line is horizontal; use the mouse's x coord
+			## and the line's y coord.
+			#elif m == 0:
+				#interception_point.x = c.x
+				#interception_point.y = p1.y
+			#
+			## Turn the click point into point-slope form, with a slope parallel 
+			## to the line, and solve for the interception point. This is
+			## pre-simplified into one formula.
+			#else:
+				#interception_point.x = ((c.x / m) + c.y - b) / (m + (1/m))
+				#interception_point.y = (m * interception_point.x) + b
+			#
+			## If this is closer than any previous attempt, do it.
+			#var point_travel := c.distance_to(interception_point)
+			#if point_travel < current_intercept_distance:
+				#current_intercept_position = interception_point
+				#current_intercept_distance = point_travel
+				#between_points = Vector2i(i,j)
+			## If it's the same distance, it's almost guarenteed along the same
+			## line, and there's an unmoved point on the line. check distances of the
+			## surrounding points to make a decision.
+			## NOTE: Unreliable with multiple overlapping segments, but better than nothing.
+			#elif point_travel == current_intercept_distance:
+				#var this_dist := p1.distance_to(c) + p2.distance_to(c)
+				#var last_dist := polygon.polygon[between_points.x].distance_to(c) + polygon.polygon[between_points.y].distance_to(c)
+				#if this_dist < last_dist:
+					#current_intercept_position = interception_point
+					#current_intercept_distance = point_travel
+					#between_points = Vector2i(i,j)
+		#endregion
+		
+		## Snap the mouse position to the line segment using point-slope solving.
+		var p1 := polygon.polygon[between_points.x] as Vector2
+		var p2 := polygon.polygon[between_points.y] as Vector2
+		
+		# Turn into slope-intercept (y=mx+b) form.
+		var m := (p1.y - p2.y) / (p1.x - p2.x) if not p1.x == p2.x else INF
+		var b := p1.y - (m * p1.x)
+		
+		# The line is vertical - the x coord is from one of the points (they have
+		# the same x), and the y coord is from the click point.
+		if m == INF:
+			current_intercept_position.x = p1.x
+			current_intercept_position.y = c.y
+		
+		# The line is horizontal; use the mouse's x coord
+		# and the line's y coord.
+		elif m == 0:
+			current_intercept_position.x = c.x
+			current_intercept_position.y = p1.y
+		
+		# Turn the click point into point-slope form, with a slope parallel 
+		# to the line, and solve for the interception point. This is
+		# pre-simplified into one formula.
+		else:
+			current_intercept_position.x = ((c.x / m) + c.y - b) / (m + (1/m))
+			current_intercept_position.y = (m * current_intercept_position.x) + b
+		
+		
 		
 		hint_circle.position = current_intercept_position
 		

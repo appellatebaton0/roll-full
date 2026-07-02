@@ -15,8 +15,8 @@ const SECTOR_SIZE := 50
 
 @export_storage var initial_points:PackedVector2Array # A copy of line.points for initial setting when this gets packed.
 
-@export var shader_mat:ShaderMaterial # The material for the shader used to render sectors.
 @export var shader_rect:ColorRect # The control used to render the shader.
+@onready var shader_mat:ShaderMaterial = shader_rect.material # The material for the shader used to render sectors.
 
 # The array of drag points. Index in this array = index of the point in the line's point array.
 var drag_points:Array[DragPoint]
@@ -41,7 +41,8 @@ func _set_holdability(to) -> void:
 		point.can_be_held = to
 		point.visible = to
 	holdability_changed.emit(to)
-	shader_rect.visible = to;
+	shader_rect.visible = to
+	_update_shader()
 
 func _ready() -> void: 
 	super._ready()
@@ -76,8 +77,7 @@ func _process(_delta: float) -> void:
 		_update_shader()
 
 ## Update the pointset passed to the shader for drawing sectors.
-func _update_shader() -> void:
-	
+func _update_shader() -> void: if can_be_held:
 	
 	var cam_rect := Rect2(cam.global_position, get_viewport_rect().size / cam.zoom)
 	var pass_points:Array[Vector2]
@@ -133,7 +133,9 @@ func update_drag_points() -> void:
 		
 		new.selected.connect(selected.emit)
 		holdability_changed.connect(func(to:bool): new.can_be_held = to)
+		
 		new.can_be_held = can_be_held
+		new.visible = can_be_held
 		
 		# Wire up so that the signal for dragging is fired correctly.
 		new.drag_started.connect(_drag_started)
@@ -181,5 +183,8 @@ func get_instance() -> Node:
 	
 	for property in passover_properties:
 		new.set(property, get(property))
+	
+	new.visible = false
+	new.points = line.points
 	
 	return new

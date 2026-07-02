@@ -716,6 +716,7 @@ focus_mode = 2
 material = SubResource("ShaderMaterial_erwvk")
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w5on")
 
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer" unique_id=798856563]

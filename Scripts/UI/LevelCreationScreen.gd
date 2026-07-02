@@ -266,7 +266,7 @@ func update_custom_level_files() -> void:
 	## Save the level_data currently loaded into CUSTOM_DATA_PATH.
 	for data in level_data: 
 		
-		print(data.name, " -> ", data.scene)
+		#print(data.name, " -> ", data.scene)
 		if not data.scene: continue # Skip those w/o a playable scene. Ya fool.
 		
 		ResourceSaver.save(data, CUSTOM_DATA_PATH + "/" + data.name + ".tres")
