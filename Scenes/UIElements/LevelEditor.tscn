@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c7mrr0snf4fg5" path="res://Scenes/Placeholders/PlayerPlaceholder.tscn" id="5_tc5c5"]
 [ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="6_4bv08"]
 [ext_resource type="PackedScene" uid="uid://dgb0aq4s5dymc" path="res://Scenes/Placeholders/DeathBorderPlaceholder.tscn" id="6_tc5c5"]
+[ext_resource type="PackedScene" uid="uid://csckywnxt55rb" path="res://Scenes/UIElements/HUD.tscn" id="7_bt22j"]
 [ext_resource type="Shader" uid="uid://5um5rx0wnwre" path="res://Shaders/PauseTransition.gdshader" id="7_padjw"]
 [ext_resource type="Texture2D" uid="uid://5lm341hko6yn" path="res://Assets/Textures/SplineIcon.svg" id="7_w7vm6"]
 [ext_resource type="Script" uid="uid://b2eoa1wdpesh3" path="res://Scripts/UI/LevelEditorAnimator.gd" id="8_4bv08"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dn5aeau54s3ww" path="res://Assets/Textures/JumpIcon.svg" id="10_2udws"]
 [ext_resource type="Texture2D" uid="uid://l6ybiblm2in2" path="res://Assets/Textures/DashIcon.svg" id="11_4bv08"]
 [ext_resource type="Texture2D" uid="uid://cdd21hrj8jv0" path="res://Assets/Textures/Arrow.png" id="12_padjw"]
+[ext_resource type="Texture2D" uid="uid://dlmnrp4jaiqe8" path="res://Assets/Textures/Refresh.svg" id="19_112pr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4itv"]
 bg_color = Color(0.047058824, 0.07450981, 0.12156863, 1)
@@ -524,12 +526,22 @@ size_flags_vertical = 3
 stretch = true
 
 [node name="TestViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2" unique_id=1444626738]
+process_mode = 1
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(2, 2)
+size = Vector2i(832, 774)
 render_target_update_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport" unique_id=1017081695]
+
+[node name="HUD" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer" unique_id=2030183849 instance=ExtResource("7_bt22j")]
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 17
+theme_override_constants/margin_bottom = 17
+
+[node name="Label" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer/HUD" index="3" unique_id=900747680]
+visible = false
 
 [node name="Countdown" type="Control" parent="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer" unique_id=778204118]
 visible = false
@@ -1046,11 +1058,6 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 23
 text = "Music Tracks"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1945204972]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-text = "R"
-
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/Layout/Panels/MusicTracks/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1746761103]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -1404,8 +1411,27 @@ custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 tooltip_text = "Refresh the options from the folder. Do this after adding new music to the folder."
 theme = ExtResource("5_mxptv")
-theme_override_font_sizes/font_size = 27
-text = "RE"
+theme_override_font_sizes/font_size = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button" unique_id=558316167]
+modulate = Color(0.047058824, 0.07450981, 0.12156863, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.5
+offset_right = 11.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("19_112pr")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=669710994]
 layout_mode = 2
@@ -1465,3 +1491,5 @@ text = "X"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton5" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/DashIndPlaceholder.tscn"]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Layout/Panels/Prefabs/MarginContainer/VBoxContainer2/VBoxContainer/PrefabButton6" to="." method="_on_prefab_button_pressed" binds= [&"res://Scenes/Placeholders/ArrowPlaceholder.tscn"]]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Button" to="." method="_toggle_music_panel" binds= [false]]
+
+[editable path="MarginContainer/VBoxContainer/Layout/PanelContainer2/MarginContainer/PanelContainer/SubViewportContainer2/TestViewport/CanvasLayer/HUD"]

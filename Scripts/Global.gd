@@ -53,7 +53,12 @@ var return_focus:Control
 
 ## -- COMBO MANAGEMENT -- ##
 
+## When WASD (or other combo inputs) are pressed while midair.
+## Does not fire for the final input in a combo. Combine w/ finished_combo.
+signal combo_input
+## When a combo is finished, ie the last input in the train of 3 is pressed.
 signal finished_combo(combo:Combo)
+## When the player lands after performing at least 1 combo midair.
 signal trick_ended
 
 const COMBO_LENGTH := 3
@@ -95,6 +100,8 @@ func push_direction(direction:DIR):
 	
 	## IF this is the final action in the combo, finish the combo.
 	if len(combo_buffer) >= COMBO_LENGTH: complete_combo()
+	else: combo_input.emit()
+	
 
 ## Figure out what the current combo is, and complete it.
 func complete_combo() -> void:
@@ -126,7 +133,7 @@ func end_trick_sequence() -> void:
 		score += score_buffer
 		score_buffer = 0
 		
-	trick_ended.emit()
+		trick_ended.emit()
 
 func _ready() -> void: 
 	_load()

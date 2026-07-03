@@ -8,7 +8,7 @@ class_name MusicSectioner extends Line2D
 
 const SECTOR_SIZE := 200
 
-func _ready() -> void: print("MS:",points)
+#func _ready() -> void: print("MS:",points)
 
 func closest_point(against:Vector2 = player.global_position) -> int:
 	

@@ -39,7 +39,7 @@ func set_working_data(to:LevelData):
 		## Score and Base Speed
 		score_spin_box       .value = working_data.score_threshold
 		score_spin_box       .editable = true
-		player_speed_spin_box.value = working_data.base_player_speed
+		player_speed_spin_box.value = working_data.base_player_speed / 100.
 		player_speed_spin_box.editable = true
 		
 		## Level Name
@@ -186,7 +186,7 @@ func _ready() -> void:
 	## Change the base speed w/ the spinbox.
 	player_speed_spin_box.value_changed.connect(func(to:float):
 		if working_data:
-			working_data.base_player_speed = int(to)
+			working_data.base_player_speed = int(to * 100)
 	)
 	
 	## Change rank thresholds w/ their spinboxes.
@@ -272,7 +272,7 @@ func update_custom_level_files() -> void:
 		ResourceSaver.save(data, CUSTOM_DATA_PATH + "/" + data.name + ".tres")
 
 ## Make sure a directory exists. If not, make it.
-func assure_user_directory(path:StringName) -> Error:
+static func assure_user_directory(path:StringName) -> Error:
 	if not DirAccess.dir_exists_absolute(path):
 		return DirAccess.make_dir_absolute(path)
 	return Error.OK

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bewhrg107j63j" path="res://Scripts/UI/RemapButton.gd" id="1_g1cjy"]
 [ext_resource type="Script" uid="uid://bplo7msib57yy" path="res://Scripts/UI/RemapEntry.gd" id="1_y47wx"]
-[ext_resource type="Texture2D" uid="uid://daqhtur6h7fyq" path="res://Assets/Textures/ResetIcon.svg" id="2_8lwhd"]
+[ext_resource type="Texture2D" uid="uid://dlmnrp4jaiqe8" path="res://Assets/Textures/Refresh.svg" id="2_8lwhd"]
 [ext_resource type="Texture2D" uid="uid://dog21d3x324ub" path="res://Assets/Textures/DeleteIcon.svg" id="4_0txid"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_y47wx"]
@@ -198,7 +198,7 @@ custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
 theme = SubResource("Theme_2028h")
 disabled = true
-text = "R"
+icon = ExtResource("2_8lwhd")
 expand_icon = true
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer2/MarginContainer/Button" unique_id=676515702]
@@ -212,7 +212,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8lwhd")
 expand_mode = 1
 stretch_mode = 5
 

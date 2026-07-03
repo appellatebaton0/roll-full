@@ -38,7 +38,7 @@ func _ready() -> void:
 func _on_reset() -> void:
 	
 	if target:
-		global_position = target.global_position
+		global_position = target.respawn_position
 	
 	# Compute constants
 	k1 = z / (PI * f)

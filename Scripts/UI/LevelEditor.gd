@@ -279,8 +279,7 @@ func _ready() -> void:
 	## Custom Music Folder opening.
 	open_music_folder_button.pressed.connect(func():
 		# Make the folder if it don't exist.
-		if not DirAccess.dir_exists_absolute("user://Music"):
-			DirAccess.make_dir_absolute("user://Music")
+		LevelCreationScreen.assure_user_directory("user://Music")
 		
 		# Open that there folder.
 		OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://Music"))
@@ -396,6 +395,8 @@ func _update_music_track_options() -> void:
 	music_path_dictionary.merge(dir_to_tree(built_in_music_tree.get_root(), "res://Assets/Music/"))
 	
 	## Custom Music
+	# Make sure the directory exists, first, so there's no error.
+	LevelCreationScreen.assure_user_directory("user://Music/")
 	custom_music_tree.clear()
 	# Make the root
 	custom_music_tree.create_item()
@@ -469,7 +470,7 @@ func dir_to_tree(item:TreeItem, path:String) -> Dictionary[TreeItem, StringName]
 					
 				file_name = dir.get_next()
 		else:
-			print("An error occurred when trying to access the path.")
+			print("An error occurred when trying to access the path: ", path)
 		
 		return path_dictionary
 
@@ -680,6 +681,9 @@ func _load_to_viewport() -> void:
 		
 		child_queue.append(instance)
 	
+	# Reset the runtimer, among other things.
+	Global.reset_level.emit()
+	
 	# Add everything to the demo viewport.
 	for node in child_queue:
 		demo_viewport.add_child(node)
@@ -767,9 +771,13 @@ func _save_placeholder() -> void: if working_data:
 # Saves the real version of the level into a 
 # PackedScene, and gives it to the working data.
 func _save_level() -> void: if working_data:
-	# Make sure the level is loaded in the demo viewport.
-	if not loaded_in_demo.size():
-		_load_to_viewport()
+	# Make sure the level is freshly loaded in the demo viewport. If it already is it needs to be reloaded.
+	if loaded_in_demo.size():
+		_unload_from_viewport()
+		
+		demo_container.hide()
+	
+	_load_to_viewport()
 	
 	var node := Node.new()
 	node.add_to_group(&"Level", true)
