@@ -6,7 +6,7 @@ class_name LevelData extends Resource
 signal runs_updated
 
 @export var name:String ## The name of the level.
-@export_range(0, 6400, 20) var base_player_speed := 2500
+@export_range(0, 6400, 1) var base_player_speed := 2500
 
 @export var scene:PackedScene ## The scene containing this level.
 @export var editor_scene:PackedScene ## The scene containing the placeholder representation of this level.

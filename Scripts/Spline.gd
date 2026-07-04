@@ -1,9 +1,11 @@
 @tool
 class_name Spline2D extends Line2D
 ## Turns a Line2D into a Bezier spline.
-# All I know about splines and how they work (as well as the theory behind
-# my implementation) was learned from Continuity of Splines by Freya Holmér
-# -> https://www.youtube.com/watch?v=jvPPXbo87ds
+
+## -- NOTE: --
+## All I know about splines and how they work (including the theory behind
+## my implementation) was learned from Continuity of Splines by Freya Holmér
+## -> https://www.youtube.com/watch?v=jvPPXbo87ds
 
 ## Force the spline to regenerate in-editor if something's gone wrong.
 @export_tool_button("Force Regenerate") var freg := func():
@@ -122,25 +124,30 @@ func bezier(t := 0.0, with := points) -> Vector2:
 # 
 # This happens for every value of T to create a final spline, where A and C
 # are the end points, and the curve is influenced by B & D. The spline function
-# does this all recursively by itself, and can handle any number of points; I just chose 4.
+# does this all recursively by itself, and can handle any number of points; 
+# I just chose 4 to make cubic splines. 
 # Visual Representation -> https://youtu.be/jvPPXbo87ds?t=140
 func spline(t := 0.0, with := points) -> Vector2:
-	
-	#print(with)
 	match len(with):
-		0: return Vector2.ZERO
+		0: return Vector2.ZERO # Should never happen unless the initial array was empty. Return ZERO.
 		1: return with[0]
 		2: return lerp(with[0], with[1], t)
 		_: 
+			# Cut the points in half.
 			@warning_ignore("integer_division")
 			var left = with.slice(0, len(with) / 2)
 			@warning_ignore("integer_division")
 			var right = with.slice(len(with)/2, len(with))
 			
-			
+			# Get the final value of cutting each half over and over;
+			# If two points are reached after a cut, lerp between those two
+			# If one point is reached, return that.
 			var left_spline  = spline(t, left)
 			var right_spline = spline(t, right)
 			
+			# Lerp between the two halves' final values.
+			# [A,B,C,D] -> [A,B] & [C,D], where it lerps A&B -> E and C&D -> F.
+			# Then it's [E,F], which are again lerped to get the final point.
 			return lerp(left_spline, right_spline, t)
 
 ## Regenerate the sample points.

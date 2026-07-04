@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://s0tlcm6xshxc"]
+
+[ext_resource type="PackedScene" uid="uid://hufn4rwxytqy" path="res://Scenes/Levels/World1/Aperture.tscn" id="1_0qch0"]
+[ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_v3iv7"]
+[ext_resource type="AudioStream" uid="uid://dqpqjqxvbyq4b" path="res://Assets/Music/Wave/Chords.mp3" id="3_i0oe3"]
+[ext_resource type="AudioStream" uid="uid://8cx5kpph3hcn" path="res://Assets/Music/Wave/Bass.mp3" id="4_wjjbj"]
+[ext_resource type="AudioStream" uid="uid://bny4qq2ivr8c1" path="res://Assets/Music/Wave/Drums.mp3" id="5_1amp5"]
+[ext_resource type="AudioStream" uid="uid://b8m27hem7esox" path="res://Assets/Music/Wave/Lead.mp3" id="6_c18pn"]
+
+[resource]
+script = ExtResource("2_v3iv7")
+name = "Aperture"
+base_player_speed = 2760
+scene = ExtResource("1_0qch0")
+tracks = Dictionary[int, AudioStream]({
+0: ExtResource("3_i0oe3"),
+1: ExtResource("4_wjjbj"),
+2: ExtResource("5_1amp5"),
+3: ExtResource("6_c18pn")
+})

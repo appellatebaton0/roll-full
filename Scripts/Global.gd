@@ -324,7 +324,7 @@ func _save() -> void:
 	
 	var level_dict := {}
 	for data in (LEVEL_DATA + LevelCreationScreen.level_data):
-		print('saving ', data.name)
+		#print('saving ', data.name)
 		var run_array := []
 		
 		for run in data.runs:
@@ -337,7 +337,7 @@ func _save() -> void:
 		
 		level_dict[data.name] = run_array
 	
-	print("LEVELS: \n", level_dict)
+	#print("LEVELS: \n", level_dict)
 	save_dict.call({"Levels":level_dict})
 	
 	# Save all the settings.
