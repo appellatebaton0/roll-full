@@ -1,5 +1,14 @@
 class_name ComboDriver extends Node2D
 
+
+## When WASD (or other combo inputs) are pressed while midair.
+## Does not fire for the final input in a combo. Combine w/ finished_combo.
+@warning_ignore("unused_signal") signal combo_input
+## When a combo is finished, ie the last input in the train of 3 is pressed.
+@warning_ignore("unused_signal") signal finished_combo
+## When the player lands after performing at least 1 combo midair.
+@warning_ignore("unused_signal") signal trick_ended
+
 @export var player:Player
 
 @export var dir_sprites:Dictionary[Global.DIR, Node2D] = {
@@ -14,6 +23,11 @@ var cooldown_time := 0.0
 
 func _ready() -> void:
 	Global.reset_level.connect(_on_reset)
+	
+	# Move all the relevant Global signals out into signals from this, for SFX.
+	for signal_name in ["combo_input", "finished_combo", "trick_ended"]:
+		# Uses func(..._args) to ignore finished_combo's argument.
+		Global.connect(signal_name, func(..._args:Array): get(signal_name).emit())
 
 func _process(delta: float) -> void:
 	

@@ -15,8 +15,6 @@ polygon = PackedVector2Array(-412, 5452, 5, 4965, 56, 556, 2387, 505, 3586, 2009
 
 [node name="Player" parent="." index="2" unique_id=1267848784]
 position = Vector2(-3283, 4895)
-gravity_scale = null
-dash_cooldown = null
 
 [node name="Goal" parent="." index="4" unique_id=1338618760 node_paths=PackedStringArray("spins")]
 position = Vector2(57380, -22799)

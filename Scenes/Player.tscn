@@ -98,7 +98,6 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_rpqav")
 sprite = NodePath("Bearing")
 pointer = NodePath("Pointer")
-base_speed = 2500.0
 jump_height = 4.2
 ray_node = NodePath("RayCast2D")
 ray_distance = 140.0

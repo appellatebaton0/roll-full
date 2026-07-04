@@ -1,6 +1,7 @@
 class_name LevelSelector extends Control
 ## Manages the LevelSelection nodes.
 
+signal entry_passed ## Emitted whenever an entry is passed while scrolling, including when moving 1 step.
 signal selection_updated(to:LevelData)
 
 @onready var data := Global.LEVEL_DATA
@@ -60,8 +61,14 @@ func tween_spin():
 	# Tween the spin container
 	spin_tween.tween_property(spin_container, "add_angle", spin_container.add_angle - (dist * 360. / spin_container.get_children().filter(func(l):return l is Control).size()), 0.3)
 
-
+var entry_index:int:
+	set(to): if entry_index != to: # Skip everything if the index hasn't changed.
+		print(to)
+		if entry_index == null: entry_passed.emit() # Skip the signal if this is the first set.
+		entry_index = to
 func _process(_delta: float) -> void: if focused and selected:
+	
+	entry_index = floori(wrapf(-entry_container.scroll_offset / entry_container.item_seperation, 0, level_entries.size()))
 	
 	## Allow for using Up/Down inputs to move the selection.
 	if selected.has_focus():

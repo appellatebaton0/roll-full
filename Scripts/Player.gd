@@ -9,14 +9,13 @@ signal landed ## The player just landed.
 
 signal reset ## The player just reset (died). There's no distinction.
 
-const DEBUG := false
+const DEBUG := true
 
-## VISUALS
+## Visuals Variables
 @export var sprite:Node2D
 @export var pointer:Node2D
 
-## MOVEMENT 
-
+#region Movement Variable
 @export var base_speed := 2500.0
 @export var jump_height := 670.0
 
@@ -49,10 +48,10 @@ var dash_buffering := 0.0
 var dash_slow_timer := 0.0
 @export var dash_slow_curve:Curve
 
-
 const JUMP_BUFFER := 0.1
 var jump_buffering := 0.0
 var jumping := false
+#endregion
 
 @onready var respawn_position := global_position
 
@@ -75,10 +74,9 @@ func _ready() -> void:
 var last_normal:Vector2
 func _physics_process(delta: float) -> void:
 	
-	var on_wall := is_on_wall()
+	var on_wall := is_on_wall() # Gets reused, so might as well call it once.
 	
-	
-	# For the line debugging.
+	# When debugging, draw the debug lines and update em every frame.
 	if DEBUG: queue_redraw()
 	
 	# Buffer the jump input.
@@ -120,10 +118,6 @@ func _physics_process(delta: float) -> void:
 		
 		# Update the last normal.
 		last_normal = ray_node.get_collision_normal()
-		
-		# Update the target position. Debatably necessary?
-		# ray_node.target_position = -last_normal * ray_distance
-		
 		
 		
 		# Find the two vectors parallel to the rail.
