@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("2_v3iv7")
 name = "Aperture"
-base_player_speed = 2760
+base_player_speed = 3200
 scene = ExtResource("1_0qch0")
 tracks = Dictionary[int, AudioStream]({
 0: ExtResource("3_i0oe3"),

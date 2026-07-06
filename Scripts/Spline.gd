@@ -158,10 +158,11 @@ func spline(t := 0.0, with := points) -> Vector2:
 # sample from it to get, say, [(0,0), (1,1)] that is. That's what this is doing.
 func regenerate_sample() -> void:
 	sample_points.clear()
-	for i in seg * ceil(points.size() / 3.0):
+	var use_points := points + PackedVector2Array([points[0]]) if closed else points
+	for i in seg * ceil(use_points.size() / 3.0):
 		var t = i / seg
 		
-		var point = bezier(t)
+		var point = bezier(t, use_points)
 		
 		if not sample_points.has(point): sample_points.append(point)
 	
@@ -177,7 +178,10 @@ func regenerate_mesh() -> PackedVector2Array:
 	else:
 		# offset_polyline extends a line out into a mesh. I was doing this manually before this,
 		# and that method was super cool, but this is just cleaner and safer.
-		sample_mesh = remove_duplicates(Geometry2D.offset_polyline(sample_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0])
+		if closed:
+			sample_mesh = Geometry2D.offset_polygon(sample_points, width / 2, Geometry2D.JOIN_MITER)[0]
+		else:
+			sample_mesh = remove_duplicates(Geometry2D.offset_polyline(sample_points, width / 2, Geometry2D.JOIN_MITER, Geometry2D.END_BUTT)[0])
 	
 	# Set the collider's mesh to this newly generated one.
 	if collision_mesh:  collision_mesh.polygon = sample_mesh

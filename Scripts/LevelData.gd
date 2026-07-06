@@ -9,7 +9,7 @@ signal runs_updated
 @export_range(0, 6400, 1) var base_player_speed := 2500
 
 @export var scene:PackedScene ## The scene containing this level.
-@export var editor_scene:PackedScene ## The scene containing the placeholder representation of this level.
+@export_storage var editor_scene:PackedScene ## The scene containing the placeholder representation of this level.
 
 class Run:
 	var time:float
@@ -186,7 +186,7 @@ func _is_bonused(score:int) -> bool: return score >= score_threshold
 ## -- MUSIC INFORMATION -- ##
 
 ## An override for the bpm, otherwise it'll be looked for in the tracks.
-@export var override_bpm:float = -1.
+@export_storage var override_bpm:float = -1.
 
 ## The tracks that make up this level's song. There should be 4.
 @export var tracks:Dictionary[int, AudioStream] = {

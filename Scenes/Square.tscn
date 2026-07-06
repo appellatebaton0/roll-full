@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cmxtgpoqcna7l"]
+
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="1_864l2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhcmq"]
+size = Vector2(707, 707)
+
+[node name="Square" type="Polygon2D" unique_id=1155260481]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+rotation = 0.7853982
+polygon = PackedVector2Array(500, 0, -2.1855694e-05, 500, -500, -4.371139e-05, 5.9624404e-06, -500, 500, 0, 128.908, 0, 215.4469, -215.44698, 1.5372126e-06, -128.908, -215.44696, -215.44691, -128.908, -1.1269496e-05, -215.44695, 215.44695, -5.634748e-06, 128.908, 215.44695, 215.44695, 128.908, 0)
+script = ExtResource("1_864l2")
+outer_vertices = 4
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 304.688
+inner_radius_modifiers = Dictionary[int, float]({
+2: -175.78
+})
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1033742461]
+rotation = 0.7853982
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1749557958]
+shape = SubResource("RectangleShape2D_dhcmq")
