@@ -1,0 +1,1180 @@
+[gd_scene format=3 uid="uid://df11jps82hhv2"]
+
+[ext_resource type="PackedScene" uid="uid://fnicrh43rd6" path="res://Scenes/Levels/World1LevelBase.tscn" id="1_a8nbd"]
+[ext_resource type="PackedScene" uid="uid://cmxtgpoqcna7l" path="res://Scenes/Square.tscn" id="2_jtkwe"]
+[ext_resource type="PackedScene" uid="uid://2xr535uwy4al" path="res://Scenes/Circle.tscn" id="3_eok7y"]
+[ext_resource type="Script" uid="uid://johp6kal78ik" path="res://Scripts/RegularPolygon.gd" id="4_yt7eg"]
+[ext_resource type="PackedScene" uid="uid://c476jebf22eni" path="res://Scenes/DeathSpikeLarge.tscn" id="5_dgjqn"]
+[ext_resource type="Script" uid="uid://bdxcdqki1luyk" path="res://Scripts/Spline.gd" id="6_rpsvi"]
+[ext_resource type="PackedScene" uid="uid://c7qjkmidxi07v" path="res://Scenes/DeathSpikeMedium.tscn" id="7_o1gqc"]
+[ext_resource type="PackedScene" uid="uid://08144s3h56jf" path="res://Scenes/DeathSpikeSmall.tscn" id="8_tyn4s"]
+[ext_resource type="PackedScene" uid="uid://g06uppw7h0ok" path="res://Scenes/Arrow.tscn" id="9_dgjqn"]
+[ext_resource type="PackedScene" uid="uid://i5l3dj5l2uvq" path="res://Scenes/DashIndicator.tscn" id="10_rpsvi"]
+[ext_resource type="PackedScene" uid="uid://dcpdetnw4fmcw" path="res://Scenes/JumpIndicator.tscn" id="11_o1gqc"]
+[ext_resource type="PackedScene" uid="uid://vnwd1xlo3n2b" path="res://Scenes/Placeholders/JumpIndPlaceholder.tscn" id="12_tyn4s"]
+
+[node name="Geometric" unique_id=1260259211 instance=ExtResource("1_a8nbd")]
+
+[node name="DeathBorder" parent="." index="1" unique_id=556743190]
+position = Vector2(2540, -2897)
+polygon = PackedVector2Array(9371.914, -18009.352, 7091, -14274, 1160, -974, -733.18066, 552.8198, -5031.726, 2171.707, -6235, 4652, -5412.839, 8672.669, -2915.9922, 10468.986, 14477.895, 13407.682, 18163.305, 12309.873, 20555.754, 9694.871, 21784.418, 9236.885, 23509.871, 9581.975, 24330.496, 10391.492, 25381.016, 13543.053, 26330.697, 14269.59, 32433.727, 14310.613, 34124.87, 13056.02, 38607.914, 300.14404, 38526.223, -2481.7378, 33814, -14227, 27738, -20173, 26428.574, -20720.73, 25007, -20545, 21802.053, -19535.46, 20153.188, -19439.963, 16321.051, -20485.16, 15582.208, -20506.227, 10975.774, -19146.951)
+
+[node name="Player" parent="." index="2" unique_id=1267848784]
+position = Vector2(-493, -130)
+
+[node name="Goal" parent="." index="4" unique_id=1338618760 node_paths=PackedStringArray("spins")]
+position = Vector2(11840, -17697)
+spins = {
+NodePath("Sprite/AnimatedPolygon3"): 1.3,
+NodePath("Sprite/AnimatedPolygon2"): 0.7,
+NodePath("Sprite/Polygon2D4"): -1.0
+}
+
+[node name="MusicSectioner" parent="." index="7" unique_id=1466832369]
+position = Vector2(-1, 0)
+points = PackedVector2Array(-2050, -3550, 24121, 940, 35514, -5536, 29135, -18190)
+metadata/_custom_type_script = "uid://b8737dvbgvi4u"
+
+[node name="Square" parent="." index="9" unique_id=1155260481 instance=ExtResource("2_jtkwe")]
+position = Vector2(-601.00006, 830.0001)
+rotation = 0.0
+scale = Vector2(1.805587, 1.805587)
+
+[node name="Square2" parent="." index="10" unique_id=918493737 instance=ExtResource("2_jtkwe")]
+position = Vector2(3065, 3214)
+rotation = -0.7853982
+scale = Vector2(2.565952, 2.565952)
+
+[node name="Square4" parent="." index="11" unique_id=1077322534 instance=ExtResource("2_jtkwe")]
+position = Vector2(6477.0005, -1716.0001)
+rotation = -0.9158249
+scale = Vector2(2.3220694, 2.3220694)
+
+[node name="Square5" parent="." index="12" unique_id=1375422276 instance=ExtResource("2_jtkwe")]
+position = Vector2(9800, -431.999)
+rotation = -0.7853982
+scale = Vector2(2.3220694, 2.3220694)
+
+[node name="Square6" parent="." index="13" unique_id=1124220631 instance=ExtResource("2_jtkwe")]
+position = Vector2(14195.035, 2509.0347)
+rotation = 0.0
+scale = Vector2(2.3220694, 2.3220694)
+
+[node name="Square7" parent="." index="14" unique_id=1093395224 instance=ExtResource("2_jtkwe")]
+position = Vector2(16195.035, 4509.0347)
+rotation = 0.0
+scale = Vector2(2.3220694, 2.3220694)
+
+[node name="Square3" parent="." index="15" unique_id=803207761 instance=ExtResource("2_jtkwe")]
+position = Vector2(5720.9995, 5362)
+rotation = -0.7853982
+scale = Vector2(1.2607787, 1.2607787)
+
+[node name="Circle" parent="." index="16" unique_id=66214656 instance=ExtResource("3_eok7y")]
+position = Vector2(7536, 6516)
+scale = Vector2(2.7668557, 2.7668557)
+
+[node name="Circle9" parent="." index="17" unique_id=1111364597 instance=ExtResource("3_eok7y")]
+position = Vector2(19259, 2538.999)
+rotation = 0.7853982
+scale = Vector2(2.2377455, 2.2377455)
+
+[node name="Circle12" parent="." index="18" unique_id=92031404 instance=ExtResource("3_eok7y")]
+position = Vector2(19745, -2416.0012)
+rotation = 0.7853982
+scale = Vector2(2.1624517, 2.1624517)
+
+[node name="Circle14" parent="." index="19" unique_id=446146554 instance=ExtResource("3_eok7y")]
+position = Vector2(32063.098, 8782.263)
+rotation = 0.7853982
+scale = Vector2(4.1030693, 4.1030693)
+polygon = PackedVector2Array(500, 0, 499.01337, 31.39526, 496.05737, 62.66662, 491.14362, 93.69066, 484.2916, 124.344955, 475.52826, 154.5085, 464.88824, 184.06227, 452.41354, 212.88965, 438.15332, 240.87685, 422.16397, 267.9134, 404.5085, 293.8926, 385.25662, 318.712, 364.4843, 342.27356, 342.27356, 364.4843, 318.712, 385.25662, 293.8926, 404.5085, 267.91336, 422.16397, 240.87685, 438.15332, 212.88966, 452.41354, 184.06227, 464.88824, 154.50848, 475.52826, 124.34498, 484.2916, 93.690674, 491.14362, 62.66662, 496.05737, 31.395248, 499.01337, -2.1855694e-05, 500, -31.395235, 499.01337, -62.666603, 496.05737, -93.69066, 491.14362, -124.34496, 484.2916, -154.50851, 475.52823, -184.06226, 464.88824, -212.88968, 452.4135, -240.8768, 438.15335, -267.91336, 422.164, -293.89258, 404.5085, -318.712, 385.25662, -342.27356, 364.4843, -364.4843, 342.27353, 342.2735, -364.48438, 364.48428, -342.2736, 385.2566, -318.71204, 404.50848, -293.89264, 422.16394, -267.91342, 438.15332, -240.87685, 452.41354, -212.88965, 464.88824, -184.06227, 475.52826, -154.50847, 484.2916, -124.34491, 491.14365, -93.69061, 496.05737, -62.666557, 499.01337, -31.395185)
+script = null
+
+[node name="Circle11" parent="." index="20" unique_id=322714115 instance=ExtResource("3_eok7y")]
+position = Vector2(20959, 4238.999)
+rotation = 0.7853982
+scale = Vector2(1.2635396, 1.2635396)
+
+[node name="Circle10" parent="." index="21" unique_id=1546769851 instance=ExtResource("3_eok7y")]
+position = Vector2(16250, -810.99976)
+rotation = 0.7853982
+scale = Vector2(1.2134374, 1.2134374)
+
+[node name="Circle13" type="Polygon2D" parent="." index="22" unique_id=521359569]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(17821, -1501)
+rotation = 1.5707964
+scale = Vector2(1.0911715, 1.0911715)
+polygon = PackedVector2Array(500, 0, 499.01337, 31.39526, 496.05737, 62.66662, 491.14362, 93.69066, 484.2916, 124.344955, 475.52826, 154.5085, 464.88824, 184.06227, 452.41354, 212.88965, 438.15332, 240.87685, 422.16397, 267.9134, 404.5085, 293.8926, 385.25662, 318.712, 364.4843, 342.27356, 342.27356, 364.4843, 318.712, 385.25662, 293.8926, 404.5085, 267.91336, 422.16397, 240.87685, 438.15332, 212.88966, 452.41354, 184.06227, 464.88824, 154.50848, 475.52826, 124.34498, 484.2916, 93.690674, 491.14362, 62.66662, 496.05737, 31.395248, 499.01337, -2.1855694e-05, 500, -31.395235, 499.01337, -62.666603, 496.05737, -93.69066, 491.14362, -124.34496, 484.2916, -154.50851, 475.52823, -184.06226, 464.88824, -212.88968, 452.4135, -240.8768, 438.15335, -267.91336, 422.164, -293.89258, 404.5085, -318.712, 385.25662, -342.27356, 364.4843, -364.4843, 342.27353, -385.25665, 318.71198, -404.50854, 293.89258, -422.164, 267.91333, -438.15332, 240.87688, -452.4135, 212.88968, -464.88824, 184.0623, -475.52823, 154.50851, -484.2916, 124.344955, -491.14362, 93.69065, -496.05737, 62.666603, -499.01337, 31.395231, -500, -4.371139e-05, -499.01337, -31.395317, -496.05737, -62.666565, -491.14365, -93.69062, -484.2916, -124.344925, -475.52826, -154.50848, -464.88824, -184.06227, -452.41354, -212.88966, -438.15332, -240.87685, -422.16394, -267.91342, -404.50848, -293.89267, -385.25665, -318.71198, -364.48434, -342.27353, -342.27356, -364.48428, -318.7119, -385.25668, -293.89255, -404.50858, -267.91348, -422.1639, -240.87692, -438.1533, -212.88971, -452.4135, -184.06235, -464.8882, -154.50854, -475.52823, -124.344986, -484.2916, -93.69069, -491.14362, -62.66664, -496.05737, -31.395267, -499.01337, 5.9624404e-06, -500, 31.395279, -499.01337, 62.66665, -496.05737, 93.690704, -491.14362, 124.34499, -484.29156, 154.50856, -475.52823, 184.06235, -464.8882, 212.88972, -452.4135, 240.87692, -438.1533, 267.9133, -422.16403, 293.89255, -404.50858, 318.71194, -385.25668, 342.2735, -364.48438, 364.48428, -342.2736, 385.2566, -318.71204, 404.50848, -293.89264, 422.16394, -267.91342, 438.15332, -240.87685, 452.41354, -212.88965, 464.88824, -184.06227, 475.52826, -154.50847, 484.2916, -124.34491, 491.14365, -93.69061, 496.05737, -62.666557, 499.01337, -31.395185, 500, 0, 171.875, 0, 287.2621, -287.26218, 2.0495888e-06, -171.875, -287.26215, -287.26212, -171.875, -1.502579e-05, -287.26212, 287.26212, -7.512895e-06, 171.875, 287.26212, 287.26212, 171.875, 0)
+script = ExtResource("4_yt7eg")
+outer_vertices = 100
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 406.25
+inner_radius_modifiers = Dictionary[int, float]({
+2: -234.375
+})
+
+[node name="Circle2" parent="." index="23" unique_id=1098682791 instance=ExtResource("3_eok7y")]
+position = Vector2(5611, 717)
+scale = Vector2(1.7348756, 1.7348756)
+
+[node name="Circle3" parent="." index="24" unique_id=485095594 instance=ExtResource("3_eok7y")]
+position = Vector2(8167, -2675)
+scale = Vector2(1.3928858, 1.3928858)
+
+[node name="DeathSpikeLarge" parent="." index="25" unique_id=2139363536 instance=ExtResource("5_dgjqn")]
+position = Vector2(7534, 2606)
+scale = Vector2(4.648714, 4.648714)
+
+[node name="Spline2D3" type="Line2D" parent="." index="26" unique_id=644392508]
+points = PackedVector2Array(20147, 1930, 20425.389, 2446.4956, 20682.598, 2811.8184, 21453, 3915)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(20147, 1930), Vector2(21453, 3915)])
+sample_mesh = PackedVector2Array(21486.416, 3893.0144, 21419.584, 3936.9856, 20113.584, 1951.9856, 20180.416, 1908.0144)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D3" index="0" unique_id=1471579783]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D3/SB" index="0" unique_id=1681547559]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(21486.416, 3893.0144, 21419.584, 3936.9856, 20113.584, 1951.9856, 20180.416, 1908.0144)
+
+[node name="Spline2D5" type="Line2D" parent="." index="27" unique_id=1844666738]
+points = PackedVector2Array(16367, -257, 17411.45, -554.6112, 18240.664, -824.588, 20030, -1419)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(16367, -257), Vector2(20030, -1419)])
+sample_mesh = PackedVector2Array(20042.096, -1380.8724, 16379.095, -218.87247, 16354.905, -295.12753, 20017.904, -1457.1276)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D5" index="0" unique_id=897782066]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D5/SB" index="0" unique_id=1421498340]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(20042.096, -1380.8724, 16379.095, -218.87247, 16354.905, -295.12753, 20017.904, -1457.1276)
+
+[node name="Spline2D6" type="Line2D" parent="." index="28" unique_id=1408992028]
+points = PackedVector2Array(15957, -1294, 17257.332, -2104.5447, 17750.02, -2397.7449, 19181, -3287)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(15957, -1294), Vector2(19181, -3287)])
+sample_mesh = PackedVector2Array(19202.033, -3252.976, 15978.033, -1259.9761, 15935.967, -1328.0239, 19159.967, -3321.024)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D6" index="0" unique_id=1889131513]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D6/SB" index="0" unique_id=1936348262]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(19202.033, -3252.976, 15978.033, -1259.9761, 15935.967, -1328.0239, 19159.967, -3321.024)
+
+[node name="Spline2D4" type="Line2D" parent="." index="29" unique_id=1688435411]
+points = PackedVector2Array(18580, 3377, 19143.994, 3711.365, 19695.645, 4068.75, 20645, 4737)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(18580, 3377), Vector2(20645, 4737)])
+sample_mesh = PackedVector2Array(20667.002, 4703.594, 20622.998, 4770.406, 18557.998, 3410.406, 18602.002, 3343.594)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D4" index="0" unique_id=1804622342]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D4/SB" index="0" unique_id=538633426]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(20667.002, 4703.594, 20622.998, 4770.406, 18557.998, 3410.406, 18602.002, 3343.594)
+
+[node name="Square8" parent="." index="30" unique_id=565515062 instance=ExtResource("2_jtkwe")]
+position = Vector2(21785.002, 332.00018)
+scale = Vector2(2.5641253, 2.5641253)
+
+[node name="Square9" parent="." index="31" unique_id=491713123 instance=ExtResource("2_jtkwe")]
+position = Vector2(20323, -5274.0005)
+rotation = 0.5235988
+scale = Vector2(3.1097553, 3.1097553)
+
+[node name="Square10" parent="." index="32" unique_id=1260009984 instance=ExtResource("2_jtkwe")]
+position = Vector2(23472.002, -6022.9995)
+scale = Vector2(3.1367788, 3.1367788)
+
+[node name="Square11" parent="." index="33" unique_id=474846342 instance=ExtResource("2_jtkwe")]
+position = Vector2(26301, -4432.001)
+scale = Vector2(3.0786424, 3.0786424)
+
+[node name="Square12" parent="." index="34" unique_id=1058613382 instance=ExtResource("2_jtkwe")]
+position = Vector2(32063.098, 6732.0977)
+scale = Vector2(5.799828, 5.799828)
+
+[node name="Square13" parent="." index="35" unique_id=943564755 instance=ExtResource("2_jtkwe")]
+position = Vector2(35986.004, 3235.999)
+scale = Vector2(2.9722366, 2.9722366)
+
+[node name="Square14" parent="." index="36" unique_id=1752430718 instance=ExtResource("2_jtkwe")]
+position = Vector2(33441, 1786.0016)
+rotation = 0.5235988
+scale = Vector2(2.513309, 2.513309)
+
+[node name="Square15" parent="." index="37" unique_id=1231776401 instance=ExtResource("2_jtkwe")]
+position = Vector2(33894, -815.0001)
+rotation = 1.4790937
+scale = Vector2(2.3733113, 2.3733113)
+
+[node name="Square16" parent="." index="38" unique_id=540543876 instance=ExtResource("2_jtkwe")]
+position = Vector2(37131.004, -1873.9996)
+scale = Vector2(4.775327, 4.775327)
+
+[node name="Spline2D7" type="Line2D" parent="." index="39" unique_id=11568870]
+position = Vector2(-3058, 0)
+points = PackedVector2Array(25968, -3036, 27343.8, -1522.0273, 29516.04, 868.3672, 31773, 3352)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(25968, -3036), Vector2(31773, 3352)])
+sample_mesh = PackedVector2Array(31787.8, 3338.5493, 31758.2, 3365.4507, 25953.2, -3022.5493, 25982.8, -3049.4507)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D7" index="0" unique_id=1463563320]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D7/SB" index="0" unique_id=749692066]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(31787.8, 3338.5493, 31758.2, 3365.4507, 25953.2, -3022.5493, 25982.8, -3049.4507)
+
+[node name="Spline2D8" type="Line2D" parent="." index="40" unique_id=569292929]
+points = PackedVector2Array(35045, -2787, 35044.996, -4255.375, 35044.996, -5525.0576, 35045, -6188)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(35045, -2787), Vector2(35045, -6188)])
+sample_mesh = PackedVector2Array(35065, -2787, 35025, -2787, 35025, -6188, 35065, -6188)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D8" index="0" unique_id=967082682]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D8/SB" index="0" unique_id=2049789508]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(35065, -2787, 35025, -2787, 35025, -6188, 35065, -6188)
+
+[node name="DeathSpikeMedium" parent="." index="41" unique_id=681382300 instance=ExtResource("7_o1gqc")]
+position = Vector2(35047, -2816)
+
+[node name="DeathSpikeMedium2" parent="." index="42" unique_id=1007598730 instance=ExtResource("7_o1gqc")]
+position = Vector2(35047, -7348)
+
+[node name="Spline2D9" type="Line2D" parent="." index="43" unique_id=539084383]
+points = PackedVector2Array(35045, -2787, 35044.996, -4255.375, 35044.996, -7702, 35045, -11371)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(35045, -2787), Vector2(35045, -11371)])
+sample_mesh = PackedVector2Array(35065, -2787, 35025, -2787, 35025, -11371, 35065, -11371)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D9" index="0" unique_id=814220457]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D9/SB" index="0" unique_id=35990412]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(35065, -2787, 35025, -2787, 35025, -11371, 35065, -11371)
+
+[node name="DeathSpikeMedium3" parent="." index="44" unique_id=1064783648 instance=ExtResource("7_o1gqc")]
+position = Vector2(35047, -2816)
+
+[node name="DeathSpikeMedium4" parent="." index="45" unique_id=997960967 instance=ExtResource("7_o1gqc")]
+position = Vector2(35047, -11417)
+
+[node name="Spline2D10" type="Line2D" parent="." index="46" unique_id=704556337]
+position = Vector2(365.0039, -2165)
+points = PackedVector2Array(35045, -2787, 35044.996, -4255.375, 35044.996, -5525.0576, 35045, -11019)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(35045, -2787), Vector2(35045, -11019)])
+sample_mesh = PackedVector2Array(35065, -2787, 35025, -2787, 35025, -11019, 35065, -11019)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D10" index="0" unique_id=1429221134]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D10/SB" index="0" unique_id=870919495]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(35065, -2787, 35025, -2787, 35025, -11019, 35065, -11019)
+
+[node name="DeathSpikeMedium5" parent="." index="47" unique_id=1046418073 instance=ExtResource("7_o1gqc")]
+position = Vector2(35412.004, -4981)
+
+[node name="DeathSpikeMedium7" parent="." index="48" unique_id=1330482054 instance=ExtResource("7_o1gqc")]
+position = Vector2(35412.004, -9182)
+
+[node name="DeathSpikeMedium6" parent="." index="49" unique_id=1903989456 instance=ExtResource("7_o1gqc")]
+position = Vector2(35412.004, -13175)
+
+[node name="Circle4" parent="." index="50" unique_id=577640866 instance=ExtResource("3_eok7y")]
+position = Vector2(11689, 3205)
+rotation = 0.7853982
+scale = Vector2(2.2377453, 2.2377453)
+
+[node name="Circle6" type="Polygon2D" parent="." index="51" unique_id=177761155]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(13939, 5455)
+rotation = 1.5707964
+scale = Vector2(1.6949745, 1.6949745)
+polygon = PackedVector2Array(500, 0, 499.01337, 31.39526, 496.05737, 62.66662, 491.14362, 93.69066, 484.2916, 124.344955, 475.52826, 154.5085, 464.88824, 184.06227, 452.41354, 212.88965, 438.15332, 240.87685, 422.16397, 267.9134, 404.5085, 293.8926, 385.25662, 318.712, 364.4843, 342.27356, 342.27356, 364.4843, 318.712, 385.25662, 293.8926, 404.5085, 267.91336, 422.16397, 240.87685, 438.15332, 212.88966, 452.41354, 184.06227, 464.88824, 154.50848, 475.52826, 124.34498, 484.2916, 93.690674, 491.14362, 62.66662, 496.05737, 31.395248, 499.01337, -2.1855694e-05, 500, -31.395235, 499.01337, -62.666603, 496.05737, -93.69066, 491.14362, -124.34496, 484.2916, -154.50851, 475.52823, -184.06226, 464.88824, -212.88968, 452.4135, -240.8768, 438.15335, -267.91336, 422.164, -293.89258, 404.5085, -318.712, 385.25662, -342.27356, 364.4843, -364.4843, 342.27353, -385.25665, 318.71198, -404.50854, 293.89258, -422.164, 267.91333, -438.15332, 240.87688, -452.4135, 212.88968, -464.88824, 184.0623, -475.52823, 154.50851, -484.2916, 124.344955, -491.14362, 93.69065, -496.05737, 62.666603, -499.01337, 31.395231, -500, -4.371139e-05, -499.01337, -31.395317, -496.05737, -62.666565, -491.14365, -93.69062, -484.2916, -124.344925, -475.52826, -154.50848, -464.88824, -184.06227, -452.41354, -212.88966, -438.15332, -240.87685, -422.16394, -267.91342, -404.50848, -293.89267, -385.25665, -318.71198, -364.48434, -342.27353, -342.27356, -364.48428, -318.7119, -385.25668, -293.89255, -404.50858, -267.91348, -422.1639, -240.87692, -438.1533, -212.88971, -452.4135, -184.06235, -464.8882, -154.50854, -475.52823, -124.344986, -484.2916, -93.69069, -491.14362, -62.66664, -496.05737, -31.395267, -499.01337, 5.9624404e-06, -500, 31.395279, -499.01337, 62.66665, -496.05737, 93.690704, -491.14362, 124.34499, -484.29156, 154.50856, -475.52823, 184.06235, -464.8882, 212.88972, -452.4135, 240.87692, -438.1533, 267.9133, -422.16403, 293.89255, -404.50858, 318.71194, -385.25668, 342.2735, -364.48438, 364.48428, -342.2736, 385.2566, -318.71204, 404.50848, -293.89264, 422.16394, -267.91342, 438.15332, -240.87685, 452.41354, -212.88965, 464.88824, -184.06227, 475.52826, -154.50847, 484.2916, -124.34491, 491.14365, -93.69061, 496.05737, -62.666557, 499.01337, -31.395185, 500, 0, 171.875, 0, 287.2621, -287.26218, 2.0495888e-06, -171.875, -287.26215, -287.26212, -171.875, -1.502579e-05, -287.26212, 287.26212, -7.512895e-06, 171.875, 287.26212, 287.26212, 171.875, 0)
+script = ExtResource("4_yt7eg")
+outer_vertices = 100
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 406.25
+inner_radius_modifiers = Dictionary[int, float]({
+2: -234.375
+})
+
+[node name="Circle7" type="Polygon2D" parent="." index="52" unique_id=1589074812]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(14964, 6480)
+rotation = 2.3561945
+scale = Vector2(0.9101588, 0.9101588)
+polygon = PackedVector2Array(500, 0, 496.05737, 62.66662, 484.2916, 124.344955, 464.88824, 184.06227, 438.15332, 240.87685, 404.5085, 293.8926, 364.4843, 342.27356, 318.712, 385.25662, 267.91336, 422.16397, 212.88966, 452.41354, 154.50848, 475.52826, 93.690674, 491.14362, 31.395248, 499.01337, -31.395235, 499.01337, -93.69066, 491.14362, -154.50851, 475.52823, -212.88968, 452.4135, -267.91336, 422.164, -318.712, 385.25662, -364.4843, 342.27353, -404.50854, 293.89258, -438.15332, 240.87688, -464.88824, 184.0623, -484.2916, 124.344955, -496.05737, 62.666603, -500, -4.371139e-05, -496.05737, -62.666565, -484.2916, -124.344925, -464.88824, -184.06227, -438.15332, -240.87685, -404.50848, -293.89267, -364.48434, -342.27353, -318.7119, -385.25668, -267.91348, -422.1639, -212.88971, -452.4135, -154.50854, -475.52823, -93.69069, -491.14362, -31.395267, -499.01337, 31.395279, -499.01337, 93.690704, -491.14362, 154.50856, -475.52823, 212.88972, -452.4135, 267.9133, -422.16403, 318.71194, -385.25668, 364.48428, -342.2736, 404.50848, -293.89264, 438.15332, -240.87685, 464.88824, -184.06227, 484.2916, -124.34491, 496.05737, -62.666557, 500, 0, 171.875, 0, 287.2621, -287.26218, 2.0495888e-06, -171.875, -287.26215, -287.26212, -171.875, -1.502579e-05, -287.26212, 287.26212, -7.512895e-06, 171.875, 287.26212, 287.26212, 171.875, 0)
+script = ExtResource("4_yt7eg")
+outer_vertices = 50
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 406.25
+inner_radius_modifiers = Dictionary[int, float]({
+2: -234.375
+})
+
+[node name="Circle8" type="Polygon2D" parent="." index="53" unique_id=1735948605]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(12914, 4430)
+rotation = 2.3561945
+scale = Vector2(0.9101588, 0.9101588)
+polygon = PackedVector2Array(500, 0, 496.05737, 62.66662, 484.2916, 124.344955, 464.88824, 184.06227, 438.15332, 240.87685, 404.5085, 293.8926, 364.4843, 342.27356, 318.712, 385.25662, 267.91336, 422.16397, 212.88966, 452.41354, 154.50848, 475.52826, 93.690674, 491.14362, 31.395248, 499.01337, -31.395235, 499.01337, -93.69066, 491.14362, -154.50851, 475.52823, -212.88968, 452.4135, -267.91336, 422.164, -318.712, 385.25662, -364.4843, 342.27353, -404.50854, 293.89258, -438.15332, 240.87688, -464.88824, 184.0623, -484.2916, 124.344955, -496.05737, 62.666603, -500, -4.371139e-05, -496.05737, -62.666565, -484.2916, -124.344925, -464.88824, -184.06227, -438.15332, -240.87685, -404.50848, -293.89267, -364.48434, -342.27353, -318.7119, -385.25668, -267.91348, -422.1639, -212.88971, -452.4135, -154.50854, -475.52823, -93.69069, -491.14362, -31.395267, -499.01337, 31.395279, -499.01337, 93.690704, -491.14362, 154.50856, -475.52823, 212.88972, -452.4135, 267.9133, -422.16403, 318.71194, -385.25668, 364.48428, -342.2736, 404.50848, -293.89264, 438.15332, -240.87685, 464.88824, -184.06227, 484.2916, -124.34491, 496.05737, -62.666557, 500, 0, 171.875, 0, 287.2621, -287.26218, 2.0495888e-06, -171.875, -287.26215, -287.26212, -171.875, -1.502579e-05, -287.26212, 287.26212, -7.512895e-06, 171.875, 287.26212, 287.26212, 171.875, 0)
+script = ExtResource("4_yt7eg")
+outer_vertices = 50
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 406.25
+inner_radius_modifiers = Dictionary[int, float]({
+2: -234.375
+})
+
+[node name="Circle5" parent="." index="54" unique_id=1427934244 instance=ExtResource("3_eok7y")]
+position = Vector2(16189, 7705)
+rotation = 0.7853982
+scale = Vector2(2.2377453, 2.2377453)
+
+[node name="Spline2D" type="Line2D" parent="." index="55" unique_id=107493571]
+position = Vector2(-11, -20)
+points = PackedVector2Array(12462, 2462, 13693.048, 3710.34, 14289.057, 4296.8545, 16936, 6941)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(12462, 2462), Vector2(16936, 6941)])
+sample_mesh = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D" index="0" unique_id=313035151]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D/SB" index="0" unique_id=613984941]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+
+[node name="Spline2D2" type="Line2D" parent="." index="56" unique_id=555343936]
+position = Vector2(-1521, 1511)
+points = PackedVector2Array(12462, 2462, 13693.048, 3710.34, 14289.057, 4296.8545, 16936, 6941)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(12462, 2462), Vector2(16936, 6941)])
+sample_mesh = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D2" index="0" unique_id=1206186330]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D2/SB" index="0" unique_id=1533819437]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+
+[node name="Circle15" parent="." index="57" unique_id=758694477 instance=ExtResource("3_eok7y")]
+position = Vector2(30543.451, -17699.549)
+rotation = 0.6704625
+scale = Vector2(1.8954633, 1.8954633)
+
+[node name="Circle16" type="Polygon2D" parent="." index="58" unique_id=566583976]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(32655.29, -16024.847)
+rotation = 1.4558607
+scale = Vector2(1.4357139, 1.4357139)
+polygon = PackedVector2Array(500, 0, 499.01337, 31.39526, 496.05737, 62.66662, 491.14362, 93.69066, 484.2916, 124.344955, 475.52826, 154.5085, 464.88824, 184.06227, 452.41354, 212.88965, 438.15332, 240.87685, 422.16397, 267.9134, 404.5085, 293.8926, 385.25662, 318.712, 364.4843, 342.27356, 342.27356, 364.4843, 318.712, 385.25662, 293.8926, 404.5085, 267.91336, 422.16397, 240.87685, 438.15332, 212.88966, 452.41354, 184.06227, 464.88824, 154.50848, 475.52826, 124.34498, 484.2916, 93.690674, 491.14362, 62.66662, 496.05737, 31.395248, 499.01337, -2.1855694e-05, 500, -31.395235, 499.01337, -62.666603, 496.05737, -93.69066, 491.14362, -124.34496, 484.2916, -154.50851, 475.52823, -184.06226, 464.88824, -212.88968, 452.4135, -240.8768, 438.15335, -267.91336, 422.164, -293.89258, 404.5085, -318.712, 385.25662, -342.27356, 364.4843, -364.4843, 342.27353, -385.25665, 318.71198, -404.50854, 293.89258, -422.164, 267.91333, -438.15332, 240.87688, -452.4135, 212.88968, -464.88824, 184.0623, -475.52823, 154.50851, -484.2916, 124.344955, -491.14362, 93.69065, -496.05737, 62.666603, -499.01337, 31.395231, -500, -4.371139e-05, -499.01337, -31.395317, -496.05737, -62.666565, -491.14365, -93.69062, -484.2916, -124.344925, -475.52826, -154.50848, -464.88824, -184.06227, -452.41354, -212.88966, -438.15332, -240.87685, -422.16394, -267.91342, -404.50848, -293.89267, -385.25665, -318.71198, -364.48434, -342.27353, -342.27356, -364.48428, -318.7119, -385.25668, -293.89255, -404.50858, -267.91348, -422.1639, -240.87692, -438.1533, -212.88971, -452.4135, -184.06235, -464.8882, -154.50854, -475.52823, -124.344986, -484.2916, -93.69069, -491.14362, -62.66664, -496.05737, -31.395267, -499.01337, 5.9624404e-06, -500, 31.395279, -499.01337, 62.66665, -496.05737, 93.690704, -491.14362, 124.34499, -484.29156, 154.50856, -475.52823, 184.06235, -464.8882, 212.88972, -452.4135, 240.87692, -438.1533, 267.9133, -422.16403, 293.89255, -404.50858, 318.71194, -385.25668, 342.2735, -364.48438, 364.48428, -342.2736, 385.2566, -318.71204, 404.50848, -293.89264, 422.16394, -267.91342, 438.15332, -240.87685, 452.41354, -212.88965, 464.88824, -184.06227, 475.52826, -154.50847, 484.2916, -124.34491, 491.14365, -93.69061, 496.05737, -62.666557, 499.01337, -31.395185, 500, 0, 171.875, 0, 287.2621, -287.26218, 2.0495888e-06, -171.875, -287.26215, -287.26212, -171.875, -1.502579e-05, -287.26212, 287.26212, -7.512895e-06, 171.875, 287.26212, 287.26212, 171.875, 0)
+script = ExtResource("4_yt7eg")
+outer_vertices = 100
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 406.25
+inner_radius_modifiers = Dictionary[int, float]({
+2: -234.375
+})
+
+[node name="Circle17" type="Polygon2D" parent="." index="59" unique_id=134543994]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(33617.35, -15261.928)
+rotation = 2.2412589
+scale = Vector2(0.7709422, 0.7709422)
+polygon = PackedVector2Array(500, 0, 496.05737, 62.66662, 484.2916, 124.344955, 464.88824, 184.06227, 438.15332, 240.87685, 404.5085, 293.8926, 364.4843, 342.27356, 318.712, 385.25662, 267.91336, 422.16397, 212.88966, 452.41354, 154.50848, 475.52826, 93.690674, 491.14362, 31.395248, 499.01337, -31.395235, 499.01337, -93.69066, 491.14362, -154.50851, 475.52823, -212.88968, 452.4135, -267.91336, 422.164, -318.712, 385.25662, -364.4843, 342.27353, -404.50854, 293.89258, -438.15332, 240.87688, -464.88824, 184.0623, -484.2916, 124.344955, -496.05737, 62.666603, -500, -4.371139e-05, -496.05737, -62.666565, -484.2916, -124.344925, -464.88824, -184.06227, -438.15332, -240.87685, -404.50848, -293.89267, -364.48434, -342.27353, -318.7119, -385.25668, -267.91348, -422.1639, -212.88971, -452.4135, -154.50854, -475.52823, -93.69069, -491.14362, -31.395267, -499.01337, 31.395279, -499.01337, 93.690704, -491.14362, 154.50856, -475.52823, 212.88972, -452.4135, 267.9133, -422.16403, 318.71194, -385.25668, 364.48428, -342.2736, 404.50848, -293.89264, 438.15332, -240.87685, 464.88824, -184.06227, 484.2916, -124.34491, 496.05737, -62.666557, 500, 0, 171.875, 0, 287.2621, -287.26218, 2.0495888e-06, -171.875, -287.26215, -287.26212, -171.875, -1.502579e-05, -287.26212, 287.26212, -7.512895e-06, 171.875, 287.26212, 287.26212, 171.875, 0)
+script = ExtResource("4_yt7eg")
+outer_vertices = 50
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 406.25
+inner_radius_modifiers = Dictionary[int, float]({
+2: -234.375
+})
+
+[node name="Circle18" type="Polygon2D" parent="." index="60" unique_id=381371516]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(31693.229, -16787.766)
+rotation = 2.2412589
+scale = Vector2(0.77094257, 0.77094257)
+polygon = PackedVector2Array(500, 0, 496.05737, 62.66662, 484.2916, 124.344955, 464.88824, 184.06227, 438.15332, 240.87685, 404.5085, 293.8926, 364.4843, 342.27356, 318.712, 385.25662, 267.91336, 422.16397, 212.88966, 452.41354, 154.50848, 475.52826, 93.690674, 491.14362, 31.395248, 499.01337, -31.395235, 499.01337, -93.69066, 491.14362, -154.50851, 475.52823, -212.88968, 452.4135, -267.91336, 422.164, -318.712, 385.25662, -364.4843, 342.27353, -404.50854, 293.89258, -438.15332, 240.87688, -464.88824, 184.0623, -484.2916, 124.344955, -496.05737, 62.666603, -500, -4.371139e-05, -496.05737, -62.666565, -484.2916, -124.344925, -464.88824, -184.06227, -438.15332, -240.87685, -404.50848, -293.89267, -364.48434, -342.27353, -318.7119, -385.25668, -267.91348, -422.1639, -212.88971, -452.4135, -154.50854, -475.52823, -93.69069, -491.14362, -31.395267, -499.01337, 31.395279, -499.01337, 93.690704, -491.14362, 154.50856, -475.52823, 212.88972, -452.4135, 267.9133, -422.16403, 318.71194, -385.25668, 364.48428, -342.2736, 404.50848, -293.89264, 438.15332, -240.87685, 464.88824, -184.06227, 484.2916, -124.34491, 496.05737, -62.666557, 500, 0, 171.875, 0, 287.2621, -287.26218, 2.0495888e-06, -171.875, -287.26215, -287.26212, -171.875, -1.502579e-05, -287.26212, 287.26212, -7.512895e-06, 171.875, 287.26212, 287.26212, 171.875, 0)
+script = ExtResource("4_yt7eg")
+outer_vertices = 50
+outer_radius = 500.0
+inner_vertices = 8
+inner_radius = 406.25
+inner_radius_modifiers = Dictionary[int, float]({
+2: -234.375
+})
+
+[node name="Circle19" parent="." index="61" unique_id=1347771296 instance=ExtResource("3_eok7y")]
+position = Vector2(34767.125, -14350.1455)
+rotation = 0.6704625
+scale = Vector2(1.895464, 1.895464)
+
+[node name="Spline2D11" type="Line2D" parent="." index="62" unique_id=2020354859]
+position = Vector2(20385.172, -19276.684)
+rotation = -0.11493569
+scale = Vector2(0.8470416, 0.8470416)
+points = PackedVector2Array(12462, 2462, 13693.048, 3710.34, 14289.057, 4296.8545, 16936, 6941)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(12462, 2462), Vector2(16936, 6941)])
+sample_mesh = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D11" index="0" unique_id=942052989]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D11/SB" index="0" unique_id=1143346346]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+
+[node name="Spline2D12" type="Line2D" parent="." index="63" unique_id=1396320889]
+position = Vector2(19263.299, -17841.734)
+rotation = -0.11493569
+scale = Vector2(0.8470416, 0.8470416)
+points = PackedVector2Array(12462, 2462, 13693.048, 3710.34, 14289.057, 4296.8545, 16936, 6941)
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(12462, 2462), Vector2(16936, 6941)])
+sample_mesh = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="SB" type="StaticBody2D" parent="Spline2D12" index="0" unique_id=1698954315]
+collision_mask = 2
+
+[node name="CM" type="CollisionPolygon2D" parent="Spline2D12/SB" index="0" unique_id=786720540]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(16964.3, 6912.7314, 16907.7, 6969.2686, 12433.7, 2490.2686, 12490.3, 2433.7314)
+
+[node name="Spline2D13" type="Line2D" parent="." index="64" unique_id=764407747]
+position = Vector2(28540, -21797)
+points = PackedVector2Array(0, -600, 600, 0, 609.8242, 609.8244, 1400, 800, 797.3916, 1402.6084, 534.9634, 1665.0366, 193.39734, 2006.6025, 195.40161, 2702.791, 197.29639, 3361.0159, 200, 4300, -25.271484, 4525.2715, -321.05908, 4821.059, -600, 5100, -2185.8564, 5100, -3124.3708, 5100, -4500, 5100, -4500, 4931.152, -4500, 4811.0576, -4500, 4700, -3493.5496, 4700, -2332.6382, 4700, -700, 4700, -508.78784, 4508.788, -386.46973, 4386.4697, -200, 4200, -198.27588, 3423.3254, -196.79468, 2756.094, -195.12695, 2004.8729, -514.636, 1685.3639, -923.84717, 1276.1528, -1400, 700, -900, 400, -300, 300)
+closed = true
+width = 80.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(0, -600), Vector2(1400, 800), Vector2(193.39734, 2006.6025), Vector2(200, 4300), Vector2(-600, 5100), Vector2(-4500, 5100), Vector2(-4500, 4700), Vector2(-700, 4700), Vector2(-200, 4200), Vector2(-195.12695, 2004.8729), Vector2(-1400, 700)])
+sample_mesh = PackedVector2Array(1456.5685, 800, 233.44505, 2023.1233, 240.04773, 4316.521, -583.43146, 5140, -4540, 5140, -4540, 4660, -716.56854, 4660, -239.96323, 4183.3945, -235.16168, 2020.4783, -1456.4478, 697.83014, 1.02817, -655.54034)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="DeathSpikeLarge2" parent="." index="65" unique_id=859954743 instance=ExtResource("5_dgjqn")]
+position = Vector2(28740, -17497)
+
+[node name="DeathSpikeLarge3" parent="." index="66" unique_id=1529622651 instance=ExtResource("5_dgjqn")]
+position = Vector2(27940, -16697)
+
+[node name="DeathSpikeMedium8" parent="." index="67" unique_id=1933185628 instance=ExtResource("7_o1gqc")]
+position = Vector2(28340, -17097)
+
+[node name="DeathSpikeMedium9" parent="." index="68" unique_id=76120172 instance=ExtResource("7_o1gqc")]
+position = Vector2(27340, -16697)
+
+[node name="DeathSpikeMedium24" parent="." index="69" unique_id=622457710 instance=ExtResource("7_o1gqc")]
+position = Vector2(26740, -16697)
+
+[node name="DeathSpikeMedium25" parent="." index="70" unique_id=1974132198 instance=ExtResource("7_o1gqc")]
+position = Vector2(26140, -16697)
+
+[node name="DeathSpikeMedium26" parent="." index="71" unique_id=1270821550 instance=ExtResource("7_o1gqc")]
+position = Vector2(25540, -16697)
+
+[node name="DeathSpikeMedium27" parent="." index="72" unique_id=2053764827 instance=ExtResource("7_o1gqc")]
+position = Vector2(24840, -16697)
+
+[node name="DeathSpikeLarge4" parent="." index="73" unique_id=1624252343 instance=ExtResource("5_dgjqn")]
+position = Vector2(24040, -16697)
+
+[node name="DeathSpikeLarge5" parent="." index="74" unique_id=751046161 instance=ExtResource("5_dgjqn")]
+position = Vector2(26453, -21097)
+
+[node name="DeathSpikeLarge6" parent="." index="75" unique_id=375893322 instance=ExtResource("5_dgjqn")]
+position = Vector2(28540, -22997)
+
+[node name="DeathSpikeLarge7" parent="." index="76" unique_id=434969798 instance=ExtResource("5_dgjqn")]
+position = Vector2(30640, -20997)
+
+[node name="Square17" parent="." index="77" unique_id=1805394705 instance=ExtResource("2_jtkwe")]
+position = Vector2(23140, -18197)
+scale = Vector2(1.9412162, 1.9412162)
+
+[node name="Square18" parent="." index="78" unique_id=1705324594 instance=ExtResource("2_jtkwe")]
+position = Vector2(15439.998, -20296.998)
+scale = Vector2(1.9412162, 1.9412162)
+
+[node name="Circle20" parent="." index="79" unique_id=1534169184 instance=ExtResource("3_eok7y")]
+position = Vector2(20240, -17897)
+scale = Vector2(1.5112479, 1.5112479)
+
+[node name="Circle21" parent="." index="80" unique_id=805802173 instance=ExtResource("3_eok7y")]
+position = Vector2(13940, -18897)
+scale = Vector2(1.5112479, 1.5112479)
+
+[node name="Spline2D14" type="Line2D" parent="." index="81" unique_id=1503272075]
+points = PackedVector2Array(18840, -18497, 18840, -18899.125, 18840, -19273.406, 18840, -19697, 18773.408, -19763.592, 18686.521, -19850.479, 18640, -19897, 18761.367, -20018.367, 19254.281, -20511.281, 20340, -21097, 19268.29, -21668.707, 18915.73, -22021.268, 18440, -22497, 18039.75, -22096.75, 17458.277, -21515.277, 16540, -21097, 17345.297, -20791.701, 17996.947, -20140.05, 18240, -19897, 18177.06, -19834.059, 18101.87, -19758.867, 18040, -19697, 18040, -19266.727, 18040, -18959.281, 18040, -18497, 18142.676, -18394.322, 18314.78, -18222.219, 18440, -18097, 18540, -18197, 18640, -18297)
+closed = true
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(18840, -18497), Vector2(18840, -19697), Vector2(18640, -19897), Vector2(20340, -21097), Vector2(18440, -22497), Vector2(16540, -21097), Vector2(18240, -19897), Vector2(18040, -19697), Vector2(18040, -18497), Vector2(18440, -18097)])
+sample_mesh = PackedVector2Array(18440, -22521.844, 16505.813, -21096.652, 18209.068, -19894.354, 18020, -19705.285, 18020, -18488.715, 18440, -18068.715, 18860, -18488.715, 18860, -19705.285, 18670.932, -19894.354, 20374.188, -21096.652)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="DeathSpikeMedium10" parent="." index="82" unique_id=305974134 instance=ExtResource("7_o1gqc")]
+position = Vector2(18240, -19897)
+
+[node name="DeathSpikeMedium11" parent="." index="83" unique_id=1204071165 instance=ExtResource("7_o1gqc")]
+position = Vector2(18640, -19897)
+
+[node name="DeathSpikeSmall" parent="." index="84" unique_id=163417232 instance=ExtResource("8_tyn4s")]
+position = Vector2(18440, -22497)
+
+[node name="DeathSpikeMedium12" parent="." index="85" unique_id=1503921123 instance=ExtResource("7_o1gqc")]
+position = Vector2(20240, -21097)
+
+[node name="DeathSpikeMedium13" parent="." index="86" unique_id=1073640045 instance=ExtResource("7_o1gqc")]
+position = Vector2(16640, -21097)
+
+[node name="DeathSpikeLarge8" parent="." index="87" unique_id=1500497119 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -18097)
+
+[node name="DeathSpikeLarge9" parent="." index="88" unique_id=2080145549 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -17697)
+rotation = 0.2617994
+
+[node name="DeathSpikeLarge10" parent="." index="89" unique_id=1778467532 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -17297)
+
+[node name="DeathSpikeLarge11" parent="." index="90" unique_id=184185403 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -16897)
+rotation = 0.2617994
+
+[node name="DeathSpikeLarge12" parent="." index="91" unique_id=2072788536 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -18097)
+
+[node name="DeathSpikeLarge13" parent="." index="92" unique_id=1476415165 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -17697)
+rotation = 0.2617994
+
+[node name="DeathSpikeLarge14" parent="." index="93" unique_id=208805553 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -17297)
+
+[node name="DeathSpikeLarge15" parent="." index="94" unique_id=1416483226 instance=ExtResource("5_dgjqn")]
+position = Vector2(18440, -16897)
+rotation = 0.2617994
+
+[node name="DeathSpikeLarge16" parent="." index="95" unique_id=182125341 instance=ExtResource("5_dgjqn")]
+position = Vector2(18139.998, -16597)
+rotation = 0.5235988
+
+[node name="DeathSpikeLarge17" parent="." index="96" unique_id=1422129781 instance=ExtResource("5_dgjqn")]
+position = Vector2(17840, -16296.998)
+rotation = 0.7853982
+
+[node name="DeathSpikeLarge18" parent="." index="97" unique_id=931969351 instance=ExtResource("5_dgjqn")]
+position = Vector2(17540, -15996.998)
+rotation = 0.5235988
+
+[node name="DeathSpikeLarge19" parent="." index="98" unique_id=1245430212 instance=ExtResource("5_dgjqn")]
+position = Vector2(17140, -15997)
+rotation = 0.7853982
+
+[node name="DeathSpikeLarge20" parent="." index="99" unique_id=1147798595 instance=ExtResource("5_dgjqn")]
+position = Vector2(16740, -15997)
+rotation = 0.5235988
+
+[node name="DeathSpikeLarge21" parent="." index="100" unique_id=130182179 instance=ExtResource("5_dgjqn")]
+position = Vector2(16340, -15997)
+rotation = 0.7853982
+
+[node name="Spline2D15" type="Line2D" parent="." index="101" unique_id=1570123689]
+position = Vector2(140, -97)
+points = PackedVector2Array(20100, -20300, 20407.416, -20515.191, 20784.658, -20779.262, 21100, -21000)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(20100, -20300), Vector2(21100, -21000)])
+sample_mesh = PackedVector2Array(21111.469, -20983.615, 20111.469, -20283.615, 20088.531, -20316.385, 21088.531, -21016.385)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D16" type="Line2D" parent="." index="102" unique_id=47951120]
+position = Vector2(-2360, -2297)
+points = PackedVector2Array(20100, -20200, 20256.863, -20356.863, 20396.336, -20496.336, 20500, -20600, 20754.61, -20600.002, 20956.22, -20600.002, 21100, -20600, 21217.654, -20482.35, 21375.078, -20324.926, 21500, -20200)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(20100, -20200), Vector2(20500, -20600), Vector2(21100, -20600), Vector2(21500, -20200)])
+sample_mesh = PackedVector2Array(21514.143, -20214.143, 21485.857, -20185.857, 21091.715, -20580, 20508.285, -20580, 20114.143, -20185.857, 20085.857, -20214.143, 20491.715, -20620, 21108.285, -20620)
+seg = 1.0
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Spline2D17" type="Line2D" parent="." index="103" unique_id=699476340]
+points = PackedVector2Array(12840, -18997, 11440, -19597, 10640, -18497, 11140, -18097, 10940, -17697, 11340, -16997, 13240, -17497)
+width = 40.0
+default_color = Color(0, 0, 0, 0)
+script = ExtResource("6_rpsvi")
+sample_points = Array[Vector2]([Vector2(12840, -18997), Vector2(12664.75, -18999.5), Vector2(12499, -18997), Vector2(12342.75, -18989.5), Vector2(12196, -18977), Vector2(12058.75, -18959.5), Vector2(11931, -18937), Vector2(11812.75, -18909.5), Vector2(11704, -18877), Vector2(11604.75, -18839.5), Vector2(11515, -18797), Vector2(11434.75, -18749.5), Vector2(11364, -18697), Vector2(11302.75, -18639.5), Vector2(11251, -18577), Vector2(11208.75, -18509.5), Vector2(11176, -18437), Vector2(11152.75, -18359.5), Vector2(11139, -18277), Vector2(11134.75, -18189.5), Vector2(11140, -18097), Vector2(11145.25, -18024.25), Vector2(11161, -17956), Vector2(11187.25, -17892.25), Vector2(11224, -17833), Vector2(11271.25, -17778.25), Vector2(11329, -17728), Vector2(11397.25, -17682.25), Vector2(11476, -17641), Vector2(11565.25, -17604.25), Vector2(11665, -17572), Vector2(11775.25, -17544.25), Vector2(11896, -17521), Vector2(12027.25, -17502.25), Vector2(12169, -17488), Vector2(12321.25, -17478.25), Vector2(12484, -17473), Vector2(12657.25, -17472.25), Vector2(12841, -17476), Vector2(13035.25, -17484.25), Vector2(13240, -17497)])
+sample_mesh = PackedVector2Array(12840.285, -19016.998, 12839.715, -18977.002, 12664.758, -18979.498, 12499.63, -18977.008, 12344.079, -18969.541, 12198.114, -18957.107, 12061.751, -18939.72, 11935.003, -18917.396, 11817.884, -18890.16, 11710.406, -18858.041, 11612.577, -18821.078, 11524.394, -18779.318, 11445.833, -18732.818, 11376.846, -18681.627, 11317.3545, -18625.777, 11267.25, -18565.266, 11226.42, -18500.035, 11194.774, -18429.979, 11172.27, -18354.965, 11158.92, -18274.863, 11154.777, -18189.582, 11159.959, -18098.287, 11165.087, -18027.236, 11180.118, -17962.098, 11205.115, -17901.39, 11240.168, -17844.877, 11285.457, -17792.398, 11341.18, -17743.912, 11407.488, -17699.465, 11484.466, -17659.143, 11572.145, -17623.041, 11670.523, -17591.234, 11779.585, -17563.783, 11899.307, -17540.73, 12029.665, -17522.107, 12170.64, -17507.936, 12322.212, -17498.229, 12484.366, -17492.998, 12657.089, -17492.25, 12840.371, -17495.992, 13034.204, -17504.223, 13238.757, -17516.96, 13241.243, -17477.04, 13036.296, -17464.277, 12841.629, -17456.008, 12657.411, -17452.25, 12483.634, -17453.002, 12320.288, -17458.271, 12167.36, -17468.064, 12024.835, -17482.393, 11892.693, -17501.27, 11770.915, -17524.717, 11659.477, -17552.766, 11558.355, -17585.459, 11467.534, -17622.857, 11387.012, -17665.035, 11316.819, -17712.088, 11257.043, -17764.102, 11207.832, -17821.123, 11169.385, -17883.11, 11141.881, -17949.902, 11125.413, -18021.264, 11120.041, -18095.713, 11114.723, -18189.418, 11119.08, -18279.137, 11133.23, -18364.035, 11157.226, -18444.021, 11191.08, -18518.965, 11234.75, -18588.734, 11288.1455, -18653.223, 11351.154, -18712.373, 11423.667, -18766.182, 11505.606, -18814.682, 11596.923, -18857.922, 11697.594, -18895.959, 11807.616, -18928.84, 11926.997, -18956.604, 12055.749, -18979.28, 12193.886, -18996.893, 12341.421, -19009.459, 12498.369, -19016.992, 12664.742, -19019.502)
+metadata/_custom_type_script = "uid://bdxcdqki1luyk"
+
+[node name="Arrow" parent="." index="104" unique_id=1166528215 instance=ExtResource("9_dgjqn")]
+position = Vector2(2321, 2121)
+
+[node name="Arrow2" parent="." index="105" unique_id=1040960378 instance=ExtResource("9_dgjqn")]
+position = Vector2(1954, 2458)
+rotation = 1.5707964
+
+[node name="Arrow3" parent="." index="106" unique_id=2069417637 instance=ExtResource("9_dgjqn")]
+position = Vector2(2386, 4293)
+
+[node name="Arrow4" parent="." index="107" unique_id=1841169260 instance=ExtResource("9_dgjqn")]
+position = Vector2(4955.0005, 4317.0005)
+rotation = 0.117679976
+
+[node name="Arrow9" parent="." index="108" unique_id=840795869 instance=ExtResource("9_dgjqn")]
+position = Vector2(4043, 2080)
+rotation = -0.5235988
+
+[node name="Arrow10" parent="." index="109" unique_id=1813442711 instance=ExtResource("9_dgjqn")]
+position = Vector2(6168, 1506)
+rotation = -0.5235988
+
+[node name="Arrow11" parent="." index="110" unique_id=1266552159 instance=ExtResource("9_dgjqn")]
+position = Vector2(6251, 2980)
+rotation = -1.5707964
+
+[node name="Arrow12" parent="." index="111" unique_id=775035485 instance=ExtResource("9_dgjqn")]
+position = Vector2(7726.001, 4863.0005)
+rotation = -0.66578364
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow13" parent="." index="112" unique_id=439253833 instance=ExtResource("9_dgjqn")]
+position = Vector2(6055.9995, -442.00018)
+rotation = -1.0471976
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow14" parent="." index="113" unique_id=1002827622 instance=ExtResource("9_dgjqn")]
+position = Vector2(8898, -460.00006)
+rotation = 1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow15" parent="." index="114" unique_id=310941507 instance=ExtResource("9_dgjqn")]
+position = Vector2(9188.999, 606)
+rotation = 0.5235988
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow20" parent="." index="115" unique_id=912498173 instance=ExtResource("9_dgjqn")]
+position = Vector2(12173, 2110)
+rotation = 0.5235988
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow21" parent="." index="116" unique_id=1760863525 instance=ExtResource("9_dgjqn")]
+position = Vector2(13315.001, 2087)
+rotation = -0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow22" parent="." index="117" unique_id=834966428 instance=ExtResource("9_dgjqn")]
+position = Vector2(15470.001, 3946)
+rotation = -0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow30" parent="." index="118" unique_id=1098657234 instance=ExtResource("9_dgjqn")]
+position = Vector2(16576, 2850)
+rotation = -0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow31" parent="." index="119" unique_id=1638199630 instance=ExtResource("9_dgjqn")]
+position = Vector2(14297.002, 1124.0009)
+rotation = -0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow32" parent="." index="120" unique_id=1172556248 instance=ExtResource("9_dgjqn")]
+position = Vector2(16757, -162.99988)
+rotation = -0.2617994
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow33" parent="." index="121" unique_id=1838981255 instance=ExtResource("9_dgjqn")]
+position = Vector2(16298.999, -1669.9994)
+rotation = -0.5235988
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow34" parent="." index="122" unique_id=701785975 instance=ExtResource("9_dgjqn")]
+position = Vector2(18872.998, -3290.9998)
+rotation = -0.5235988
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow35" parent="." index="123" unique_id=76431036 instance=ExtResource("9_dgjqn")]
+position = Vector2(20523.002, -4091.9998)
+rotation = -0.2617994
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow36" parent="." index="124" unique_id=1708620913 instance=ExtResource("9_dgjqn")]
+position = Vector2(23316, -4807)
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow37" parent="." index="125" unique_id=659820133 instance=ExtResource("9_dgjqn")]
+position = Vector2(24622, -4601.001)
+rotation = 1.0471976
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow38" parent="." index="126" unique_id=810409580 instance=ExtResource("9_dgjqn")]
+position = Vector2(19788, 1290.0001)
+rotation = -0.5235988
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow39" parent="." index="127" unique_id=1992757712 instance=ExtResource("9_dgjqn")]
+position = Vector2(20616.002, 2169.0005)
+rotation = -1.0471976
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow40" parent="." index="128" unique_id=639539411 instance=ExtResource("9_dgjqn")]
+position = Vector2(21485, 1346)
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow41" parent="." index="129" unique_id=1790349777 instance=ExtResource("9_dgjqn")]
+position = Vector2(20806, 265.99997)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow42" parent="." index="130" unique_id=2127595166 instance=ExtResource("9_dgjqn")]
+position = Vector2(21120, -1801.0006)
+rotation = -0.2617994
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow43" parent="." index="131" unique_id=2029761288 instance=ExtResource("9_dgjqn")]
+position = Vector2(20802, -3168)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow44" parent="." index="132" unique_id=1585257986 instance=ExtResource("9_dgjqn")]
+position = Vector2(21728.002, -655)
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow45" parent="." index="133" unique_id=990560226 instance=ExtResource("9_dgjqn")]
+position = Vector2(23447, -2754.001)
+rotation = 0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow46" parent="." index="134" unique_id=311708261 instance=ExtResource("9_dgjqn")]
+position = Vector2(24257.002, -1200.0004)
+rotation = 0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow47" parent="." index="135" unique_id=1102049025 instance=ExtResource("9_dgjqn")]
+position = Vector2(26088, 249.00012)
+rotation = 0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow48" parent="." index="136" unique_id=1926090271 instance=ExtResource("9_dgjqn")]
+position = Vector2(27193.998, 1974.9988)
+rotation = 0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow49" parent="." index="137" unique_id=1535080225 instance=ExtResource("9_dgjqn")]
+position = Vector2(29901.998, 5035.0005)
+rotation = 1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow50" parent="." index="138" unique_id=927643951 instance=ExtResource("9_dgjqn")]
+position = Vector2(29883, 4349)
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow51" parent="." index="139" unique_id=935871556 instance=ExtResource("9_dgjqn")]
+position = Vector2(32104, 4584)
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow54" parent="." index="140" unique_id=800004329 instance=ExtResource("9_dgjqn")]
+position = Vector2(34284.004, 4426)
+rotation = -0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow55" parent="." index="141" unique_id=605500164 instance=ExtResource("9_dgjqn")]
+position = Vector2(34721, 2367.9995)
+rotation = -2.0943952
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow56" parent="." index="142" unique_id=689007151 instance=ExtResource("9_dgjqn")]
+position = Vector2(34240, 687.99994)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow57" parent="." index="143" unique_id=1039035396 instance=ExtResource("9_dgjqn")]
+position = Vector2(35050.004, -612.99896)
+rotation = -0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow58" parent="." index="144" unique_id=2121396782 instance=ExtResource("9_dgjqn")]
+position = Vector2(35356, -1653.0001)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow59" parent="." index="145" unique_id=2145656900 instance=ExtResource("9_dgjqn")]
+position = Vector2(35356, -1653.0001)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow60" parent="." index="146" unique_id=1942405360 instance=ExtResource("9_dgjqn")]
+position = Vector2(34919, -4239)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow61" parent="." index="147" unique_id=1576206362 instance=ExtResource("9_dgjqn")]
+position = Vector2(35543, -7775)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow62" parent="." index="148" unique_id=225625040 instance=ExtResource("9_dgjqn")]
+position = Vector2(35165.004, -12539.001)
+rotation = -2.3204155
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow63" parent="." index="149" unique_id=868133369 instance=ExtResource("9_dgjqn")]
+position = Vector2(33524.004, -13989.002)
+rotation = -2.4941428
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow64" parent="." index="150" unique_id=341678242 instance=ExtResource("9_dgjqn")]
+position = Vector2(34757.004, -15687.001)
+rotation = -2.4941428
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow65" parent="." index="151" unique_id=539454328 instance=ExtResource("9_dgjqn")]
+position = Vector2(32658.004, -17336)
+rotation = -2.4941428
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow66" parent="." index="152" unique_id=1726686465 instance=ExtResource("9_dgjqn")]
+position = Vector2(30363.002, -16529.002)
+rotation = -2.4941428
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow67" parent="." index="153" unique_id=639455131 instance=ExtResource("9_dgjqn")]
+position = Vector2(29277, -17889)
+rotation = -2.4941428
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow68" parent="." index="154" unique_id=539988106 instance=ExtResource("9_dgjqn")]
+position = Vector2(29790.998, -18667)
+rotation = -2.7178595
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow69" parent="." index="155" unique_id=725520343 instance=ExtResource("9_dgjqn")]
+position = Vector2(28946, -19676)
+rotation = -1.0471976
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow70" parent="." index="156" unique_id=1601610622 instance=ExtResource("9_dgjqn")]
+position = Vector2(30029.002, -21154.002)
+rotation = -3.1415927
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow52" parent="." index="157" unique_id=1301597516 instance=ExtResource("9_dgjqn")]
+position = Vector2(29945.998, 9267)
+rotation = 1.3089969
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow53" parent="." index="158" unique_id=2028066496 instance=ExtResource("9_dgjqn")]
+position = Vector2(34190, 7650.0005)
+rotation = -1.5707964
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow23" parent="." index="159" unique_id=1771807300 instance=ExtResource("9_dgjqn")]
+position = Vector2(13788, 3620.9998)
+rotation = 0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow24" parent="." index="160" unique_id=2135319593 instance=ExtResource("9_dgjqn")]
+position = Vector2(15736.001, 5562)
+rotation = 3.926991
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow25" parent="." index="161" unique_id=229031259 instance=ExtResource("9_dgjqn")]
+position = Vector2(17098, 6876)
+rotation = 3.926991
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow26" parent="." index="162" unique_id=1028213156 instance=ExtResource("9_dgjqn")]
+position = Vector2(12184, 5502.9995)
+rotation = 3.926991
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow27" parent="." index="163" unique_id=1645480068 instance=ExtResource("9_dgjqn")]
+position = Vector2(10692, 3905)
+rotation = 3.926991
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow28" parent="." index="164" unique_id=1317196863 instance=ExtResource("9_dgjqn")]
+position = Vector2(13694, 6924.9995)
+rotation = 0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow29" parent="." index="165" unique_id=560388668 instance=ExtResource("9_dgjqn")]
+position = Vector2(14801, 8037.9995)
+rotation = 0.7853982
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow19" parent="." index="166" unique_id=918958782 instance=ExtResource("9_dgjqn")]
+position = Vector2(7543, -1147.0001)
+rotation = 4.4505897
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow16" parent="." index="167" unique_id=247376549 instance=ExtResource("9_dgjqn")]
+position = Vector2(7342, -2449)
+rotation = 5.2359877
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow17" parent="." index="168" unique_id=121472109 instance=ExtResource("9_dgjqn")]
+position = Vector2(8869.001, -3100.0007)
+rotation = 7.3303833
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow18" parent="." index="169" unique_id=1111519727 instance=ExtResource("9_dgjqn")]
+position = Vector2(8549, -1779.9996)
+rotation = 7.3303833
+scale = Vector2(0.8253056, 0.8253056)
+
+[node name="Arrow5" parent="." index="170" unique_id=1874238995 instance=ExtResource("9_dgjqn")]
+position = Vector2(8928, 5791)
+rotation = 1.0471976
+scale = Vector2(0.8215085, 0.8215085)
+
+[node name="Arrow6" parent="." index="171" unique_id=1019582201 instance=ExtResource("9_dgjqn")]
+position = Vector2(8644, 7585)
+rotation = 2.3561945
+scale = Vector2(0.8215085, 0.8215085)
+
+[node name="Arrow7" parent="." index="172" unique_id=667825896 instance=ExtResource("9_dgjqn")]
+position = Vector2(6039, 6608)
+rotation = 4.712389
+scale = Vector2(0.8215085, 0.8215085)
+
+[node name="Arrow8" parent="." index="173" unique_id=229022056 instance=ExtResource("9_dgjqn")]
+position = Vector2(6317.0005, 5395.0005)
+rotation = 4.1887903
+scale = Vector2(0.8215085, 0.8215085)
+
+[node name="DashIndicator" parent="." index="174" unique_id=1894425035 instance=ExtResource("10_rpsvi")]
+position = Vector2(2080, 4288)
+
+[node name="DashIndicator2" parent="." index="175" unique_id=671838014 instance=ExtResource("10_rpsvi")]
+position = Vector2(6425, 5572)
+
+[node name="DashIndicator3" parent="." index="176" unique_id=221321476 instance=ExtResource("10_rpsvi")]
+position = Vector2(7562, -898)
+
+[node name="JumpIndicator" parent="." index="177" unique_id=373011309 instance=ExtResource("11_o1gqc")]
+position = Vector2(24501, -4832)
+
+[node name="DashIndicator4" parent="." index="178" unique_id=1800617994 instance=ExtResource("10_rpsvi")]
+position = Vector2(29640, 4349)
+
+[node name="JumpIndicator2" parent="." index="179" unique_id=191496493 instance=ExtResource("11_o1gqc")]
+position = Vector2(34210, 4815)
+
+[node name="JumpIndicator3" parent="." index="180" unique_id=923600825 instance=ExtResource("11_o1gqc")]
+position = Vector2(33918, 4589)
+
+[node name="Jump Indicator" parent="." index="181" unique_id=1371647314 instance=ExtResource("12_tyn4s")]
+position = Vector2(35355, -3322)
+
+[node name="Jump Indicator2" parent="." index="182" unique_id=1610031487 instance=ExtResource("12_tyn4s")]
+position = Vector2(35152, -6298)
+
+[node name="Jump Indicator3" parent="." index="183" unique_id=680209576 instance=ExtResource("12_tyn4s")]
+position = Vector2(35317, -8282)
+
+[node name="Jump Indicator4" parent="." index="184" unique_id=427347676 instance=ExtResource("12_tyn4s")]
+position = Vector2(35159, -10252)
+
+[node name="Jump Indicator5" parent="." index="185" unique_id=2067752292 instance=ExtResource("12_tyn4s")]
+position = Vector2(35309, -12372)
+
+[node name="DashIndicator5" parent="." index="186" unique_id=2129882848 instance=ExtResource("10_rpsvi")]
+position = Vector2(29993, -18553)
+
+[node name="JumpIndicator4" parent="." index="187" unique_id=349880 instance=ExtResource("11_o1gqc")]
+position = Vector2(29475, -17760)
+
+[node name="DashIndicator6" parent="." index="188" unique_id=847138984 instance=ExtResource("10_rpsvi")]
+position = Vector2(30206, -21156)
+
+[node name="Arrow71" parent="." index="189" unique_id=833614074 instance=ExtResource("9_dgjqn")]
+position = Vector2(28426, -22485)
+rotation = -4.712389
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="DashIndicator7" parent="." index="190" unique_id=646309605 instance=ExtResource("10_rpsvi")]
+position = Vector2(28427, -22657)
+
+[node name="Arrow72" parent="." index="191" unique_id=2102551477 instance=ExtResource("9_dgjqn")]
+position = Vector2(26986, -20968)
+rotation = -6.2831855
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow73" parent="." index="192" unique_id=486454641 instance=ExtResource("9_dgjqn")]
+position = Vector2(27739.002, -20233.998)
+rotation = -5.4977875
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow74" parent="." index="193" unique_id=938429414 instance=ExtResource("9_dgjqn")]
+position = Vector2(28228, -18815)
+rotation = -4.712389
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow75" parent="." index="194" unique_id=1814389618 instance=ExtResource("9_dgjqn")]
+position = Vector2(27093.002, -17230)
+rotation = -3.1415927
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow76" parent="." index="195" unique_id=295589416 instance=ExtResource("9_dgjqn")]
+position = Vector2(23922.998, -17303.998)
+rotation = -2.6179938
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow77" parent="." index="196" unique_id=1961715880 instance=ExtResource("9_dgjqn")]
+position = Vector2(22370, -17420.002)
+rotation = -3.1415927
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow78" parent="." index="197" unique_id=1704903478 instance=ExtResource("9_dgjqn")]
+position = Vector2(20249, -17055.002)
+rotation = -3.1415927
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow79" parent="." index="198" unique_id=794780237 instance=ExtResource("9_dgjqn")]
+position = Vector2(19418, -18140.002)
+rotation = -2.0943952
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow80" parent="." index="199" unique_id=2062232228 instance=ExtResource("9_dgjqn")]
+position = Vector2(18958.002, -19629)
+rotation = -1.0471976
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow81" parent="." index="200" unique_id=1903828750 instance=ExtResource("9_dgjqn")]
+position = Vector2(20979, -21253.998)
+rotation = -2.8797934
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow82" parent="." index="201" unique_id=1438872717 instance=ExtResource("9_dgjqn")]
+position = Vector2(16589, -21396)
+rotation = -3.1415927
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow83" parent="." index="202" unique_id=2006364591 instance=ExtResource("9_dgjqn")]
+position = Vector2(15423.001, -21063.998)
+rotation = -3.1415927
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow84" parent="." index="203" unique_id=1776486906 instance=ExtResource("9_dgjqn")]
+position = Vector2(14680, -20877.002)
+rotation = -4.9741883
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow85" parent="." index="204" unique_id=2058972103 instance=ExtResource("9_dgjqn")]
+position = Vector2(14703, -19577)
+rotation = -4.712389
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow86" parent="." index="205" unique_id=1164038652 instance=ExtResource("9_dgjqn")]
+position = Vector2(14152.001, -18097)
+rotation = -3.403392
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="Arrow87" parent="." index="206" unique_id=703646471 instance=ExtResource("9_dgjqn")]
+position = Vector2(13159.999, -18207.002)
+rotation = -3.499096
+scale = Vector2(0.6222806, 0.6222806)
+
+[node name="DashIndicator8" parent="." index="207" unique_id=970372269 instance=ExtResource("10_rpsvi")]
+position = Vector2(26814, -20969)
+rotation = -1.5707964
+
+[node name="JumpIndicator5" parent="." index="208" unique_id=1338041588 instance=ExtResource("11_o1gqc")]
+position = Vector2(24082, -17228)
+
+[node name="DashIndicator9" parent="." index="209" unique_id=833908206 instance=ExtResource("10_rpsvi")]
+position = Vector2(21166, -21199)
+
+[node name="JumpIndicator6" parent="." index="210" unique_id=166409902 instance=ExtResource("11_o1gqc")]
+position = Vector2(17902, -22493)
+
+[node name="JumpIndicator8" parent="." index="211" unique_id=1349411080 instance=ExtResource("11_o1gqc")]
+position = Vector2(16782, -21407)
+
+[node name="JumpIndicator7" parent="." index="212" unique_id=249793447 instance=ExtResource("11_o1gqc")]
+position = Vector2(18780, -22367)
+
+[node name="DashIndicator10" parent="." index="213" unique_id=499497976 instance=ExtResource("10_rpsvi")]
+position = Vector2(14638, -21038)
+
+[node name="JumpIndicator9" parent="." index="214" unique_id=2029370338 instance=ExtResource("11_o1gqc")]
+position = Vector2(13349, -18281)
