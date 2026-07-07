@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dg0goppapt031"
+path="res://.godot/imported/Wheel Sound V2-001.wav-1713f332a20af9d4eb5c8acfbdecd14d.sample"
+
+[deps]
+
+source_file="res://SFX/UI/Wheel Cycle/Wheel Sound V2-001.wav"
+dest_files=["res://.godot/imported/Wheel Sound V2-001.wav-1713f332a20af9d4eb5c8acfbdecd14d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
