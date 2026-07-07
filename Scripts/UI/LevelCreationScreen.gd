@@ -124,6 +124,9 @@ func _ready() -> void:
 		editor.finished_editing.connect(_on_editor_finished)
 		$EditorContainer.add_child(editor)
 		
+		# Setup all the SFX.
+		DynamicSFXDriver.setup(editor)
+		
 		animator.play("ToEditorIn")
 		
 		await animator.animation_finished

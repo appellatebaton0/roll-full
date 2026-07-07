@@ -13,6 +13,7 @@ tooltip_text = "
 "
 theme = ExtResource("1_x5al1")
 script = ExtResource("2_ue8b4")
+metadata/IgnoreSFXDriver = false
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=817889222]
 use_parent_material = true

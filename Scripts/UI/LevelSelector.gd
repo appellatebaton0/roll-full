@@ -63,7 +63,6 @@ func tween_spin():
 
 var entry_index:int:
 	set(to): if entry_index != to: # Skip everything if the index hasn't changed.
-		print(to)
 		if entry_index == null: entry_passed.emit() # Skip the signal if this is the first set.
 		entry_index = to
 func _process(_delta: float) -> void: if focused and selected:

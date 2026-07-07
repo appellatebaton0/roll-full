@@ -34,7 +34,7 @@ project/assembly_name="roll-full"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/godot-hackatime/plugin.cfg", "res://addons/godot-hackatime/tracker/plugin.cfg")
 
 [file_customization]
 

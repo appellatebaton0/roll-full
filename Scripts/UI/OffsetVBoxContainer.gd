@@ -38,8 +38,11 @@ func _selected(button:BaseButton):
 	
 	if tween and tween.is_running(): tween.kill()
 	
+	#button.offset_transform_pivot = Vector2(0, button.size.y / 2.)
+	
 	tween = create_tween().set_parallel().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(button, "offset_transform_position:x", selection_offset, 0.1)
+	tween.tween_property(button, "offset_transform_scale", Vector2.ONE * 1.02, 0.1)
 	
 	tweens[button] = tween
 func _unselected(button:BaseButton):
@@ -49,5 +52,6 @@ func _unselected(button:BaseButton):
 	
 	tween = create_tween().set_parallel().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(button, "offset_transform_position:x", 0.0, 0.1)
+	tween.tween_property(button, "offset_transform_scale", Vector2.ONE, 0.1)
 	
 	tweens[button] = tween
