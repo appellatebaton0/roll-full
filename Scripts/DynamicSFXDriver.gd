@@ -18,12 +18,7 @@ static func setup(with:Node):
 
 @export var initial_setup:Array[Node]
 
-## 
-@export var sound_bank:Dictionary[String, AudioStream] = {
-	"button_down": null,
-	"button_up": null,
-	"pressed": null,
-}
+@export var sound_bank:Dictionary[String, AudioStream]
 @export var instant_setup_classes:Array[String]
 
 func _ready() -> void:

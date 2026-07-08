@@ -1,28 +1,28 @@
-[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://co0pflge7b3ca"]
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://cwuinhvq766hk"]
 
-[ext_resource type="PackedScene" uid="uid://dpbfq5sfrqh4b" path="res://Scenes/Levels/World1/Wave.tscn" id="1_bs53v"]
-[ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="1_owbt0"]
-[ext_resource type="AudioStream" uid="uid://dqpqjqxvbyq4b" path="res://Assets/Music/Wave/Chords.mp3" id="3_h2h8n"]
-[ext_resource type="AudioStream" uid="uid://8cx5kpph3hcn" path="res://Assets/Music/Wave/Bass.mp3" id="4_tw1sl"]
-[ext_resource type="AudioStream" uid="uid://bny4qq2ivr8c1" path="res://Assets/Music/Wave/Drums.mp3" id="5_d58n0"]
-[ext_resource type="AudioStream" uid="uid://b8m27hem7esox" path="res://Assets/Music/Wave/Lead.mp3" id="6_f0vdf"]
+[ext_resource type="PackedScene" uid="uid://bil5t8vfdowre" path="res://Scenes/Levels/World1/Flipside.tscn" id="1_trgkt"]
+[ext_resource type="Script" uid="uid://dmqr6mq2bgy3k" path="res://Scripts/LevelData.gd" id="2_umu5q"]
+[ext_resource type="AudioStream" uid="uid://bvmfeba2vf55b" path="res://Assets/Music/Flipside/Chords.mp3" id="3_trgkt"]
+[ext_resource type="AudioStream" uid="uid://brofjqmj41let" path="res://Assets/Music/Flipside/Bass.mp3" id="4_umu5q"]
+[ext_resource type="AudioStream" uid="uid://c5ebm4s1ncjej" path="res://Assets/Music/Flipside/Drums.mp3" id="5_7xiut"]
+[ext_resource type="AudioStream" uid="uid://ch8otfiyk3ah2" path="res://Assets/Music/Flipside/Lead.mp3" id="6_27smf"]
 
 [resource]
-script = ExtResource("1_owbt0")
-name = "Wave"
-base_player_speed = 2660
-scene = ExtResource("1_bs53v")
+script = ExtResource("2_umu5q")
+name = "Flipside"
+base_player_speed = 2600
+scene = ExtResource("1_trgkt")
 ranking_maximums = Dictionary[int, float]({
-0: 70.0,
+0: 75.0,
 1: 80.0,
 2: 90.0,
 3: 100.0,
 4: 120.0
 })
-score_threshold = 1000
+score_threshold = 500
 tracks = Dictionary[int, AudioStream]({
-0: ExtResource("3_h2h8n"),
-1: ExtResource("4_tw1sl"),
-2: ExtResource("5_d58n0"),
-3: ExtResource("6_f0vdf")
+0: ExtResource("3_trgkt"),
+1: ExtResource("4_umu5q"),
+2: ExtResource("5_7xiut"),
+3: ExtResource("6_27smf")
 })
